@@ -88,6 +88,7 @@ struct parser {
 
 struct ast *parse_expr(struct parser *p);
 void ast_print(struct ast *node, int indent);
+int ast_exec(struct ast *node);
 
 struct ast *ast_new_command(char **argv, int argc)
 {
@@ -659,7 +660,8 @@ int loop(int flags)
 		parser.pos = 0;
 
 		struct ast *tree = parse_expr(&parser);
-		ast_print(tree, 0);
+		// ast_print(tree, 0);
+		ast_exec(tree);
 		ast_free(tree);
 
 		PS = PS1;
