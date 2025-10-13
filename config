@@ -49,7 +49,7 @@ $(CURDIR)/../../build/$(ARCH)/sysroot/bin/$(notdir $(BIN)): $(BIN)
 install: $(CURDIR)/../../build/$(ARCH)/sysroot/bin/$(notdir $(BIN))
 
 clean:
-	rm -f $(OBJ) $(DEP)
+	rm -f $(BIN) $(OBJ) $(DEP)
 
 .PHONY: install clean
 endif
