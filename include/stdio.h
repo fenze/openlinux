@@ -28,6 +28,7 @@ extern FILE *const stdin;
 extern FILE *const stdout;
 extern FILE *const stderr;
 
+// TODO: sort it
 char *ctermid(char *);
 void clearerr(FILE *);
 int fclose(FILE *);
@@ -52,5 +53,6 @@ int vsnprintf(char *restrict, size_t, const char *restrict, va_list);
 int getc(FILE *);
 int fgetc(FILE *);
 int getchar(void);
+int rename(const char *, const char *);
 
 #endif

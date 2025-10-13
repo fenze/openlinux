@@ -21,7 +21,14 @@ typedef __UINT32_TYPE__ mode_t;
 #define MAP_NORESERVE 0x04000
 #define MAP_POPULATE 0x08000
 
+#define POSIX_MADV_NORMAL 0
+#define POSIX_MADV_RANDOM 1
+#define POSIX_MADV_SEQUENTIAL 2
+#define POSIX_MADV_WILLNEED 3
+#define POSIX_MADV_DONTNEED 4
+
 void *mmap(void *, size_t, int, int, int, off_t);
 int munmap(void *, size_t);
+int posix_madvise(void *, size_t, int);
 
 #endif
