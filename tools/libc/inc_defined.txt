@@ -99,6 +99,7 @@ islessgreater
 isnan
 isnormal
 isunordered
+jmp_buf
 key_t
 kill_dependency
 le16toh
@@ -136,6 +137,7 @@ semid_ds
 sigaction
 sigevent
 siginfo_t
+sigjmp_buf
 signbit
 sigset_t
 sigval
@@ -155,6 +157,7 @@ time_t
 timer_t
 timespec
 timeval
+tm
 tms
 typeof
 uid_t

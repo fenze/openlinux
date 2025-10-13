@@ -1,3 +1,4 @@
+#include <libc.h>
 #include <ctype.h>
 
 int tolower(int c)
@@ -6,3 +7,5 @@ int tolower(int c)
 		return c | 32;
 	return c;
 }
+
+weak_reference(tolower, tolower_l);

@@ -20,6 +20,7 @@
 
 typedef __SIZE_TYPE__ size_t;
 
+_Noreturn void _Exit(int);
 _Noreturn void exit(int);
 
 void *malloc(size_t);
