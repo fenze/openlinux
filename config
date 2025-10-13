@@ -1,0 +1,57 @@
+# Build architecute (x86_64/aarch64)
+ARCH ?= x86_64
+VENDOR := none
+
+LLVM_PREFIX := llvm-
+
+HOSTCC := clang
+HOSTLD := lld
+HOSTAR := ${LLVM_PREFIX}ar
+
+# Enabled libraries
+LIBS := libc libm
+
+CFLAGS := -target ${ARCH}-linux-eabi
+ifeq (${ARCH},x86_64)
+CFLAGS += -march=x86-64 
+else
+CFLAGS += -march=arm
+endif
+CFLAGS += -mtune=generic -Wno-macro-redefined
+CFLAGS += -nostdlib -nostdinc -nodefaultlibs
+CFLAGS += -Os -ffunction-sections -fdata-sections -flto
+TASK := printf '  \033[34m%+8s\033[m %s\n'
+MAKEFLAGS := -j8 -s --no-print-directory
+
+ifdef BIN
+BIN := $(addprefix $(CURDIR)/,$(BIN))
+SRC := $(addprefix $(CURDIR)/,$(SRC))
+OBJ := $(SRC:.c=.o)
+DEP := $(OBJ:.o=.d)
+-include $(DEP)
+CFLAGS  += -I$(CURDIR)/../../build/$(ARCH)/sysroot/usr/include
+LDFLAGS += -fuse-ld=lld -Wl,--as-needed -Wl,--gc-sections 
+LDFLAGS += -Wl,--build-id=none
+LIB := $(CURDIR)/../../build/$(ARCH)/sysroot/lib/libc.a
+
+$(BIN): $(OBJ)
+	$(TASK) LD $(notdir $@)
+	$(HOSTCC) -static $(LDFLAGS) $(CFLAGS) $(LIB) -o $@ $^
+
+%.o: %.c
+	$(TASK) CC $(notdir $@)
+	$(HOSTCC) -MMD -MP $(CFLAGS) -c -o $@ $<
+
+$(CURDIR)/../../build/$(ARCH)/sysroot/bin/$(notdir $(BIN)): $(BIN)
+	$(TASK) INSTALL bin/$(notdir $(BIN))
+	cp -f $(BIN) $(CURDIR)/../../build/$(ARCH)/sysroot/bin
+
+install: $(CURDIR)/../../build/$(ARCH)/sysroot/bin/$(notdir $(BIN))
+
+clean:
+	rm -f $(OBJ) $(DEP)
+
+.PHONY: install clean
+endif
+
+# vim:ft=make

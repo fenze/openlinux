@@ -1,0 +1,37 @@
+#!./sh
+
+echo "simple echo"
+
+(
+    echo "inside subshell"
+    echo "second line"
+)
+
+{
+    echo "block start"
+    echo "block end"
+}
+
+echo $((1 + 2))
+echo $(( (3 + 4) * 2 ))
+
+echo 'this is (ignored) literal'
+echo "this is (interpreted) \$((2 + 2)) -> $((2 + 2))"
+
+echo "first" | grep f && echo "found f" || echo "not found"
+echo "test" &&
+echo "continues" ||
+echo "done"
+
+echo "line1" \
+"line2"
+
+echo "nested $(echo subshell $(echo deep))"
+
+# test niezamkniętych nawiasów (powinno wywołać PS2)
+# (komentarz, żeby nie uruchomić błędnie)
+# echo "unclosed ("
+# echo $((1 + 2
+
+echo "double 'inside' quotes"
+echo 'single "inside" quotes'
