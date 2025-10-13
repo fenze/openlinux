@@ -54,5 +54,6 @@ int getc(FILE *);
 int fgetc(FILE *);
 int getchar(void);
 int rename(const char *, const char *);
+int fileno(FILE *);
 
 #endif
