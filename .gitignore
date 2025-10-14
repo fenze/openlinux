@@ -1,11 +1,14 @@
+build/
+lib/libc/arch/*/include
+
+bin/*/*
+!bin/*/*.*
+
 .DS_Store
 *.o
 *.d
 *.a
 
-build/
-lib/libc/arch/*/include
-
-bin/*/*.*
-
 tools/libc/*.txt
+compile_commands.json
+.cache
