@@ -3,7 +3,9 @@
 *.d
 *.a
 
-tools/libc/inc_defined.txt
-tools/libc/libc_defined.txt
-tools/libc/libm_defined.txt
-tools/libc/symbols.txt
+build/
+lib/libc/arch/*/include
+
+bin/*/*.*
+
+tools/libc/*.txt
