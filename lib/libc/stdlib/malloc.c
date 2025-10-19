@@ -9,7 +9,7 @@
 #include <sys/mman.h>
 #include <unistd.h>
 
-struct page *page_list = NULL;
+struct page *__malloc_pvec = NULL;
 
 static __inline uint32_t get_size_class(size_t size)
 {
@@ -40,7 +40,7 @@ void *malloc(size_t size)
 	uint32_t class_index = get_size_class(size);
 	const struct class *cls = &global_size_class[class_index];
 
-	struct page *p = page_list;
+	struct page *p = __malloc_pvec;
 	while (p) {
 		if (p->flags == PAGE_SMALL && cls->size <= 16 * 64) {
 			LIBC_LOCK(p->lock);
@@ -145,14 +145,14 @@ void *malloc(size_t size)
 	memset(new_page->bitmap, 0, bitmap_size);
 	new_page->heap = (uint8_t *)mem + sizeof(struct page) + bitmap_size;
 	atomic_flag_clear(&new_page->lock);
-	new_page->next = page_list;
+	new_page->next = __malloc_pvec;
 	new_page->prev = NULL;
 
-	if (page_list) {
-		page_list->prev = new_page;
+	if (__malloc_pvec) {
+		__malloc_pvec->prev = new_page;
 	}
 
-	page_list = new_page;
+	__malloc_pvec = new_page;
 
 	// Mark the first block as used and return it
 	new_page->bitmap[0] |= 1;

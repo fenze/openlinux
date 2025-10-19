@@ -2,17 +2,25 @@
 #include <string.h>
 #include <errno.h>
 #include <unistd.h>
+#include <sys/uio.h>
 
 void perror(const char *s)
 {
+	struct iovec iov[4];
+
 	char *errstr = strerror(errno);
 
 	if (s != NULL && *s != '\0') {
-		fwrite(s, strlen(s), 1, stderr);
-		fputc(':', stderr);
-		fputc(' ', stderr);
+		iov[0].iov_base = (void *)s;
+		iov[0].iov_len = strlen(s);
+		iov[1].iov_base = ": ";
+		iov[1].iov_len = 2;
 	}
 
-	fwrite(errstr, strlen(errstr), 1, stderr);
-	fputc('\n', stderr);
+	iov[s != NULL && *s != '\0' ? 2 : 0].iov_base = errstr;
+	iov[s != NULL && *s != '\0' ? 2 : 0].iov_len = strlen(errstr);
+	iov[s != NULL && *s != '\0' ? 3 : 1].iov_base = "\n";
+	iov[s != NULL && *s != '\0' ? 3 : 1].iov_len = 1;
+
+	writev(STDERR_FILENO, iov, s != NULL && *s != '\0' ? 4 : 2);
 }

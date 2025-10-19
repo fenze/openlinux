@@ -7,6 +7,9 @@
 
 #if __STDC_VERSION__ >= 202311L
 typedef typeof(nullptr) nullptr_t;
+#else
+typedef void *nullptr_t;
+#define nullptr ((void *)0)
 #endif
 
 #ifndef offsetof

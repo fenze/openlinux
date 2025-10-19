@@ -1,3 +1,4 @@
+#include <libc.h>
 #include <ctype.h>
 #include <stddef.h>
 
@@ -22,4 +23,10 @@ int strncasecmp(const char *s1, const char *s2, size_t n)
 
 	return (unsigned char)tolower((unsigned char)*s1) -
 	       (unsigned char)tolower((unsigned char)*s2);
+}
+
+weak int strncasecmp_l(const char *s1, const char *s2, size_t n,
+		       locale_t unused locale)
+{
+	return strncasecmp(s1, s2, n);
 }

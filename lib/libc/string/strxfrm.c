@@ -1,3 +1,4 @@
+#include <libc.h>
 #include <string.h>
 
 size_t strxfrm(char *restrict s1, const char *restrict s2, size_t n)
@@ -8,4 +9,10 @@ size_t strxfrm(char *restrict s1, const char *restrict s2, size_t n)
 		strcpy(s1, s2);
 
 	return len;
+}
+
+weak size_t strxfrm_l(char *restrict s1, const char *restrict s2, size_t n,
+		      locale_t unused locale)
+{
+	return strxfrm(s1, s2, n);
 }

@@ -9,6 +9,7 @@
 #include <stddef.h>
 #include <math.h>
 #include <unistd.h>
+#include <wchar.h>
 
 extern char *dtoa(double, int mode, int ndigits, int *decpt, int *sign,
 		  char **rve);
@@ -186,7 +187,7 @@ int vfprintf(FILE *restrict stream, const char *restrict format, va_list ap)
 					val = va_arg(ap, intmax_t);
 					break;
 				case LENGTH_Z:
-					val = va_arg(ap, size_t);
+					val = va_arg(ap, ssize_t);
 					break;
 				case LENGTH_T:
 					val = va_arg(ap, ptrdiff_t);
@@ -314,21 +315,20 @@ int vfprintf(FILE *restrict stream, const char *restrict format, va_list ap)
 				char *buf_r = dtoa(val, mode, ndigits, &decpt,
 						   &sign, &rve);
 				int mant_len = rve - buf_r;
-				char tmp[mant_len + 1];
-				char *s = tmp;
+				s = buf;
 				int pos = 0;
 
 				if (sign)
-					tmp[pos++] = '-';
+					buf[pos++] = '-';
 				else if (flags & FLAG_PLUS)
-					tmp[pos++] = '+';
+					buf[pos++] = '+';
 				else if (flags & FLAG_SPACE)
-					tmp[pos++] = ' ';
+					buf[pos++] = ' ';
 
 				for (int i = 0; i < mant_len; i++)
-					tmp[pos++] = buf_r[i];
+					buf[pos++] = buf_r[i];
 
-				tmp[pos] = '\0';
+				buf[pos] = '\0';
 				free(buf_r);
 				l = strlen(s);
 
@@ -403,10 +403,10 @@ int vfprintf(FILE *restrict stream, const char *restrict format, va_list ap)
 				/* fallthrough */
 			case 'c': {
 				if (length == LENGTH_L) {
-					// wint_t wc = va_arg(ap, wint_t);
-					// int n = wcrtomb(buf, wc, NULL);
-					// s = buf;
-					// l = n;
+					wint_t wc = va_arg(ap, wint_t);
+					int n = wcrtomb(buf, wc, NULL);
+					s = buf;
+					l = n;
 				} else {
 					char c = (char)va_arg(ap, int);
 					buf[0] = c;
@@ -422,10 +422,10 @@ int vfprintf(FILE *restrict stream, const char *restrict format, va_list ap)
 				/* fallthrough */
 			case 's':
 				if (length == LENGTH_L) {
-					// wchar_t *wstr = va_arg(ap, wchar_t *);
-					// char buf[1024];
-					// l = wcstombs(buf, wstr, sizeof(buf));
-					// s = buf;
+					wchar_t *wstr = va_arg(ap, wchar_t *);
+					char buf[1024];
+					l = wcstombs(buf, wstr, sizeof(buf));
+					s = buf;
 				} else {
 					s = va_arg(ap, char *);
 					l = strlen(s);
@@ -457,8 +457,8 @@ int vfprintf(FILE *restrict stream, const char *restrict format, va_list ap)
 				break;
 			}
 			case '%': {
-				char c = '%';
-				s = &c;
+				buf[0] = '%';
+				s = buf;
 				l = 1;
 				break;
 			}

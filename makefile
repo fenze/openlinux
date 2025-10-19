@@ -5,6 +5,8 @@ VERSION := 1.0.0-alpha
 ROOTFS_TAR := openlinux-$(VERSION)-$(ARCH)-rootfs.tar.gz
 
 all: __all
+
+pack:
 	$(TASK) TAR ${ROOTFS_TAR}
 	gtar --owner=0 --group=0 --numeric-owner -czf build/$(ARCH)/${ROOTFS_TAR} -C build/$(ARCH)/sysroot .
 	ARCH=${ARCH} sh tools/package.sh
@@ -30,4 +32,4 @@ clean:
 	$(MAKE) -C bin clean
 	rm -rf build
 
-.PHONY: all build clean
+.PHONY: all build pack clean

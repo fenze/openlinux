@@ -1,12 +1,30 @@
 #include <string.h>
 #include <unistd.h>
+#include <sys/uio.h>
 
 int main(int argc, char **argv)
 {
+	if (argc <= 1)
+		return 0;
+
+	struct iovec iov[2 * argc - 2];
+	int iovcnt = 0;
+
 	for (int i = 1; i < argc; i++) {
-		write(STDOUT_FILENO, argv[i], strlen(argv[i]));
-		write(STDOUT_FILENO, " ", 1);
+		iov[iovcnt].iov_base = argv[i];
+		iov[iovcnt].iov_len = strlen(argv[i]);
+		iovcnt++;
+
+		if (i < argc - 1) {
+			iov[iovcnt].iov_base = " ";
+			iov[iovcnt].iov_len = 1;
+			iovcnt++;
+		}
 	}
 
-	write(STDOUT_FILENO, "\n", 1);
+	iov[iovcnt].iov_base = "\n";
+	iov[iovcnt].iov_len = 1;
+	iovcnt++;
+
+	return writev(STDOUT_FILENO, iov, iovcnt) < 0 ? 1 : 0;
 }

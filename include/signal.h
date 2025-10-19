@@ -70,6 +70,10 @@
 typedef __INT64_TYPE__ pid_t;
 typedef __UINT32_TYPE__ uid_t;
 typedef __UINT64_TYPE__ sigset_t;
+typedef __SIZE_TYPE__ size_t;
+typedef struct __thread_self pthread_t;
+
+struct timespec;
 
 union sigval {
 	int sival_int;
@@ -94,6 +98,12 @@ typedef struct {
 	union sigval si_value;
 } siginfo_t;
 
+typedef struct {
+	void *ss_sp;
+	int ss_flags;
+	size_t ss_size;
+} stack_t;
+
 struct sigaction {
 	void (*sa_handler)(int);
 	sigset_t sa_mask;
@@ -101,14 +111,31 @@ struct sigaction {
 	void (*sa_sigaction)(int, siginfo_t *, void *);
 };
 
+int kill(pid_t, int);
+int killpg(pid_t, int);
+void psiginfo(const siginfo_t *, const char *);
+void psignal(int, const char *);
+int pthread_kill(pthread_t, int);
+int pthread_sigmask(int, const sigset_t *restrict, sigset_t *restrict);
+int raise(int);
+int sig2str(int, char *);
 int sigaction(int, const struct sigaction *restrict,
 	      struct sigaction *restrict);
-int sigemptyset(sigset_t *);
 int sigaddset(sigset_t *, int);
-int sigprocmask(int, const sigset_t *restrict, sigset_t *restrict);
-int sigsuspend(const sigset_t *);
-int raise(int);
-
+int sigaltstack(const stack_t *restrict, stack_t *restrict);
+int sigdelset(sigset_t *, int);
+int sigemptyset(sigset_t *);
+int sigfillset(sigset_t *);
+int sigismember(const sigset_t *, int);
 void (*signal(int, void (*)(int)))(int);
+int sigpending(sigset_t *);
+int sigprocmask(int, const sigset_t *restrict, sigset_t *restrict);
+int sigqueue(pid_t, int, union sigval);
+int sigsuspend(const sigset_t *);
+int sigtimedwait(const sigset_t *restrict, siginfo_t *restrict,
+		 const struct timespec *restrict);
+int sigwait(const sigset_t *restrict, int *restrict);
+int sigwaitinfo(const sigset_t *restrict, siginfo_t *restrict);
+int str2sig(const char *restrict, int *restrict);
 
 #endif

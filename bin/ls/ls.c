@@ -305,7 +305,11 @@ static void print_simple_format(const struct file_info *file)
 		printf("/");
 	}
 
-	printf("\n");
+	if (flags & FLAG_ONE_LINE) {
+		printf("\n");
+	} else {
+		printf("  ");
+	}
 }
 
 static int get_file_info(const char *path, const char *name,
@@ -420,6 +424,10 @@ static int list_directory(const char *path, int show_header)
 		}
 
 		free_file_info(&files[i]);
+	}
+
+	if (!(flags & (FLAG_LONG | FLAG_ONE_LINE)) && file_count > 0) {
+		printf("\n");
 	}
 
 	free(files);

@@ -4,6 +4,8 @@
 #include <atomic.h>
 #include <stdio.h>
 
+char __stdin_buffer[BUFSIZ];
+
 size_t fread(void *restrict ptr, size_t size, size_t nitems,
 	     FILE *restrict stream)
 {

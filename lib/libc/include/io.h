@@ -12,6 +12,7 @@ typedef __SIZE_TYPE__ size_t;
 
 #define _IO_ERR 0x4
 #define _IO_EOF 0x8
+#define _IO_WIDE 0x10
 
 /* Buffering modes */
 #define _IOFBF 0 /* Full buffering */
@@ -36,6 +37,7 @@ struct __FILE {
 	int fd;
 	uint32_t flags;
 	int type;
+	pid_t pid;
 	atomic_flag lock;
 	char *buf;
 	int eof;

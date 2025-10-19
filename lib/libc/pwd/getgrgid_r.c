@@ -33,7 +33,7 @@ int getpwuid_r(uid_t uid, struct passwd *pwd, char *buf, size_t buflen,
 		char *passwd = strtok(NULL, ":");
 		char *uid_str = strtok(NULL, ":");
 		char *gid_str = strtok(NULL, ":");
-		char *gecos = strtok(NULL, ":");
+		strtok(NULL, ":");
 		char *dir = strtok(NULL, ":");
 		char *shell = strtok(NULL, "\n");
 
@@ -58,8 +58,10 @@ int getpwuid_r(uid_t uid, struct passwd *pwd, char *buf, size_t buflen,
 		pwd->pw_gid = (gid_t)strtoul(gid_str, NULL, 10);
 
 		if (pwd->pw_name == NULL || pwd->pw_dir == NULL ||
-		    pwd->pw_shell == NULL)
+		    pwd->pw_shell == NULL) {
+			fclose(stream);
 			return ERANGE;
+		}
 
 		fclose(stream);
 		*result = pwd;

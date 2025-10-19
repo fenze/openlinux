@@ -6,7 +6,7 @@
 #include <stdlib.h>
 
 static unsigned long long
-__intscan(const char *s, int base, unsigned long long lim, int *neg, char **end)
+__scanint(const char *s, int base, unsigned long long lim, int *neg, char **end)
 {
 	unsigned long long res = 0;
 	int digit, any = 0;
@@ -46,8 +46,10 @@ __intscan(const char *s, int base, unsigned long long lim, int *neg, char **end)
 			errno = ERANGE;
 			res = lim;
 			any = 1;
-			while (isalnum((unsigned char)*++s))
-				; /* consume rest */
+			while (1) {
+				if (isalnum((unsigned char)*++s) == 0)
+					break;
+			}
 			break;
 		}
 		res = res * base + digit;
@@ -148,7 +150,7 @@ static long double __scanfloat(const char *s, char **end)
 long strtol(const char *restrict nptr, char **restrict endptr, int base)
 {
 	int neg;
-	unsigned long long v = __intscan(nptr, base, LONG_MAX, &neg, endptr);
+	unsigned long long v = __scanint(nptr, base, LONG_MAX, &neg, endptr);
 	if (neg)
 		return (v > (unsigned long long)LONG_MAX + 1ULL) ?
 			       (errno = ERANGE, LONG_MIN) :
@@ -160,7 +162,7 @@ long strtol(const char *restrict nptr, char **restrict endptr, int base)
 long long strtoll(const char *restrict nptr, char **restrict endptr, int base)
 {
 	int neg;
-	unsigned long long v = __intscan(nptr, base, LLONG_MAX, &neg, endptr);
+	unsigned long long v = __scanint(nptr, base, LLONG_MAX, &neg, endptr);
 	if (neg)
 		return (v > (unsigned long long)LLONG_MAX + 1ULL) ?
 			       (errno = ERANGE, LLONG_MIN) :
@@ -174,7 +176,7 @@ unsigned long strtoul(const char *restrict nptr, char **restrict endptr,
 		      int base)
 {
 	int neg;
-	unsigned long long v = __intscan(nptr, base, ULONG_MAX, &neg, endptr);
+	unsigned long long v = __scanint(nptr, base, ULONG_MAX, &neg, endptr);
 	if (neg) {
 		errno = EINVAL;
 		return 0;
@@ -186,7 +188,7 @@ unsigned long long strtoull(const char *restrict nptr, char **restrict endptr,
 			    int base)
 {
 	int neg;
-	unsigned long long v = __intscan(nptr, base, ULLONG_MAX, &neg, endptr);
+	unsigned long long v = __scanint(nptr, base, ULLONG_MAX, &neg, endptr);
 	if (neg) {
 		errno = EINVAL;
 		return 0;

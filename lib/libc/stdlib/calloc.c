@@ -4,15 +4,22 @@
 
 void *calloc(size_t nelem, size_t elsize)
 {
-	size_t total = nelem * elsize;
-	if (nelem != 0 && total / nelem != elsize) {
+	void *ptr;
+	size_t total;
+
+	if (nelem == 0 || elsize == 0) {
+		errno = EINVAL;
+		return NULL;
+	}
+
+	if (__builtin_mul_overflow(nelem, elsize, &total)) {
 		errno = ENOMEM;
 		return NULL;
 	}
 
-	void *ptr = malloc(total);
-	if (ptr) {
+	if ((ptr = malloc(total)) != NULL) {
 		memset(ptr, 0, total);
 	}
+
 	return ptr;
 }

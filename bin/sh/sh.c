@@ -10,6 +10,20 @@
 #include <sys/wait.h>
 
 #define MAX_BUILTINS 16
+#define BUILTIN_HASH_SIZE 16
+
+/* Builtin function pointer type */
+typedef int (*builtin_func_t)(int argc, char **argv);
+
+/* Hash table entry for builtins */
+struct builtin_entry {
+	const char *name;
+	builtin_func_t func;
+	struct builtin_entry *next;
+};
+
+/* Hash table for builtins */
+static struct builtin_entry *builtin_hash_table[BUILTIN_HASH_SIZE];
 
 enum {
 	FLAG_NONE = 0,
@@ -194,6 +208,41 @@ void error(const char *msg)
 {
 	tputs(msg);
 	exit(1);
+}
+
+/* Simple hash function for strings */
+static unsigned int hash_string(const char *str)
+{
+	unsigned int hash = 5381;
+	int c;
+	while ((c = *str++))
+		hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
+	return hash % BUILTIN_HASH_SIZE;
+}
+
+/* Add a builtin to the hash table */
+static void builtin_add(const char *name, builtin_func_t func)
+{
+	unsigned int index = hash_string(name);
+	struct builtin_entry *entry = malloc(sizeof(struct builtin_entry));
+	entry->name = name;
+	entry->func = func;
+	entry->next = builtin_hash_table[index];
+	builtin_hash_table[index] = entry;
+}
+
+/* Find a builtin function by name */
+static builtin_func_t builtin_find(const char *name)
+{
+	unsigned int index = hash_string(name);
+	struct builtin_entry *entry = builtin_hash_table[index];
+
+	while (entry) {
+		if (strcmp(entry->name, name) == 0)
+			return entry->func;
+		entry = entry->next;
+	}
+	return NULL;
 }
 
 ssize_t tputc(char c)
@@ -814,6 +863,12 @@ int ast_exec(struct ast *node)
 		if (node->argc == 0)
 			return 0;
 
+		/* Check for builtin commands first */
+		builtin_func_t builtin_func = builtin_find(node->argv[0]);
+		if (builtin_func) {
+			return builtin_func(node->argc, node->argv);
+		}
+
 		pid_t pid = fork();
 		if (pid == 0) {
 			execvp(node->argv[0], node->argv);
@@ -938,6 +993,34 @@ void ast_print(struct ast *node, int indent)
 	ast_print(node->right, indent + 1);
 }
 
+int builtin_cd(int argc, char **argv)
+{
+	const char *path;
+
+	if (argc < 2) {
+		/* No arguments - change to HOME directory */
+		// path = getenv("HOME");
+		path = "/";
+		if (!path) {
+			tputs("cd: HOME not set\n");
+			return 1;
+		}
+	} else {
+		path = argv[1];
+	}
+
+	if (chdir(path) != 0) {
+		tputs("cd: ");
+		tputs(path);
+		tputs(": ");
+		tputs(strerror(errno));
+		tputs("\n");
+		return 1;
+	}
+
+	return 0;
+}
+
 int builtin_exit(int argc, char **argv)
 {
 	int status = 0;
@@ -947,9 +1030,26 @@ int builtin_exit(int argc, char **argv)
 	exit(status);
 }
 
+/* Initialize builtin hash table */
+static void builtin_init(void)
+{
+	/* Clear hash table */
+	for (int i = 0; i < BUILTIN_HASH_SIZE; i++)
+		builtin_hash_table[i] = NULL;
+
+	/* Add builtins */
+	builtin_add("cd", builtin_cd);
+	builtin_add("exit", builtin_exit);
+}
+
 int main(int argc, char **argv)
 {
 	flags = FLAG_NONE;
+
+	/* Initialize builtin hash table */
+	builtin_init();
+
+	printf("Welcome to OpenLinux Shell (sh)\n");
 
 	for (int i = 1; i < argc; i++) {
 		if (strcmp(argv[i], "-c") == 0) {

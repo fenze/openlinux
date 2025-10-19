@@ -6,4 +6,7 @@ int isalnum(int c)
 	return isalpha(c) || isdigit(c);
 }
 
-weak_reference(isalnum, isalnum_l);
+weak int isalnum_l(int c, locale_t unused locale)
+{
+	return isalnum(c);
+}

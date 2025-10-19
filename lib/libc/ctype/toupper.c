@@ -8,4 +8,7 @@ int toupper(int c)
 	return c;
 }
 
-weak_reference(toupper, toupper_l);
+int toupper_l(int c, locale_t unused locale)
+{
+	return toupper(c);
+}

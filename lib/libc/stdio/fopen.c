@@ -5,6 +5,11 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
+#include <libc.h>
+
+weak void __stdio_cleanup(void)
+{
+}
 
 FILE *fopen(const char *restrict pathname, const char *restrict mode)
 {
@@ -46,5 +51,6 @@ FILE *fopen(const char *restrict pathname, const char *restrict mode)
 	}
 
 	__libc_fadd(fp);
+
 	return fp;
 }

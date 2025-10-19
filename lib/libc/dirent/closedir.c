@@ -2,15 +2,16 @@
 #include <__dirent.h>
 #include <unistd.h>
 #include <dirent.h>
+#include <stdlib.h>
 
 int closedir(DIR *dirp)
 {
-	intptr_t i = (intptr_t)dirp;
-
-	if (i >= 0) {
+	if (dirp->fildes >= 0) {
 		errno = EBADF;
 		return -1;
 	}
 
-	return close(~i);
+	close(dirp->fildes);
+	free(dirp);
+	return 0;
 }

@@ -853,6 +853,11 @@ static char *json__encode_array(struct json_value *value)
 		}
 
 		encoded_item_len = json__strlen(encoded_item);
+		if (encoded_item_len < 0) {
+			free(encoded_array);
+			free(encoded_item);
+			return NULL;
+		}
 
 		needed = length + encoded_item_len + (i > 0 ? 1 : 0) + 1;
 		if (needed > buffer_size) {
@@ -870,8 +875,11 @@ static char *json__encode_array(struct json_value *value)
 			encoded_array[length++] = ',';
 		}
 
-		for (int i = 0; i < encoded_item_len; i++)
+		for (int i = 0; i < encoded_item_len; i++) {
+			if (encoded_item[i] == '\0')
+				break;
 			encoded_array[length + i] = encoded_item[i];
+		}
 
 		length += encoded_item_len;
 
@@ -900,9 +908,18 @@ static char *json__encode_object(struct json_value *object)
 		char *new_buffer;
 		char *key = object->object.items[i]->key;
 		char *value = json_encode(object->object.items[i]->value);
+		if (value == NULL) {
+			free(encoded_object);
+			return NULL;
+		}
 
 		int key_length = json__strlen(key);
 		int value_length = json__strlen(value);
+		if (value_length < 0) {
+			free(encoded_object);
+			free(value);
+			return NULL;
+		}
 
 		int needed = length + key_length + value_length + 4 +
 			     (i < object->object.n_items - 1 ? 1 : 0);
@@ -924,8 +941,11 @@ static char *json__encode_object(struct json_value *object)
 
 		encoded_object[length++] = '"';
 		encoded_object[length++] = ':';
-		for (int j = 0; j < value_length; j++)
+		for (int j = 0; j < value_length; j++) {
+			if (value[j] == '\0')
+				break;
 			encoded_object[length++] = value[j];
+		}
 
 		free(value);
 

@@ -7,7 +7,6 @@ VENDOR := none
 
 LLVM_PREFIX := llvm-
 
-
 HOSTCC := clang
 HOSTLD := lld
 HOSTAR := ${LLVM_PREFIX}ar
@@ -29,7 +28,12 @@ endif
 # CFLAGS += -Wall -Wextra
 CFLAGS += -mtune=generic -Wno-macro-redefined
 CFLAGS += -nostdlib -nostdinc -nodefaultlibs
-CFLAGS += -Os -ffunction-sections -fdata-sections -flto
+CFLAGS += -Oz -ffunction-sections -fdata-sections -flto
+CFLAGS += -fno-asynchronous-unwind-tables
+CFLAGS += -fno-unwind-tables -fomit-frame-pointer
+CFLAGS += -fmerge-all-constants -fno-common
+CFLAGS += -fforce-addr
+
 
 TASK := printf '  \033[34m%+8s\033[m %s\n'
 MAKEFLAGS := -j8 -s --no-print-directory
@@ -45,9 +49,9 @@ LDFLAGS += -fuse-ld=lld -Wl,--as-needed -Wl,--gc-sections
 LDFLAGS += -Wl,--build-id=none
 LIB := $(CURDIR)/../../build/$(ARCH)/sysroot/lib/libc.a
 
-$(BIN): $(OBJ)
+$(BIN): $(OBJ) $(LIB)
 	$(TASK) LD $(notdir $@)
-	$(HOSTCC) -static $(LDFLAGS) $(CFLAGS) $(LIB) -o $@ $^
+	$(HOSTCC) -static $(LDFLAGS) $(CFLAGS) $(LIB) -o $@ $(OBJ)
 
 %.o: %.c
 	$(TASK) CC $(notdir $@)

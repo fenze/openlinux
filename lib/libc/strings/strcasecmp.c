@@ -1,3 +1,4 @@
+#include <libc.h>
 #include <ctype.h>
 
 int strcasecmp(const char *s1, const char *s2)
@@ -15,4 +16,9 @@ int strcasecmp(const char *s1, const char *s2)
 
 	return (unsigned char)tolower((unsigned char)*s1) -
 	       (unsigned char)tolower((unsigned char)*s2);
+}
+
+weak int strcasecmp_l(const char *s1, const char *s2, locale_t unused locale)
+{
+	return strcasecmp(s1, s2);
 }
