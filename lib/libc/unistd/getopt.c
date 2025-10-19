@@ -1,5 +1,7 @@
 #include <unistd.h>
 #include <stdio.h>
+#include <string.h>
+#include <sys/uio.h>
 
 char *optarg;
 int optind = 1, opterr = 1, optopt;
@@ -49,7 +51,6 @@ int getopt(int argc, char *const argv[], const char *optstring)
 	}
 
 	i = 0;
-	d = 0;
 
 	do {
 		d = optstring[i++];
@@ -58,8 +59,19 @@ int getopt(int argc, char *const argv[], const char *optstring)
 	if (d != c || c == ':') {
 		optopt = c;
 		if (optstring[0] != ':' && opterr) {
-			fprintf(stderr, "%s: invalid option -- %c\n", argv[0],
-				*optchar);
+			struct iovec iov[4];
+			char opt_char[2] = { *optchar, '\0' };
+
+			iov[0].iov_base = argv[0];
+			iov[0].iov_len = strlen(argv[0]);
+			iov[1].iov_base = ": invalid option -- ";
+			iov[1].iov_len = 20;
+			iov[2].iov_base = opt_char;
+			iov[2].iov_len = 1;
+			iov[3].iov_base = "\n";
+			iov[3].iov_len = 1;
+
+			writev(STDERR_FILENO, iov, 4);
 		}
 		return '?';
 	}
@@ -79,9 +91,20 @@ int getopt(int argc, char *const argv[], const char *optstring)
 				return ':';
 			}
 			if (opterr) {
-				fprintf(stderr,
-					"%s: option requires an argument: %c\n",
-					argv[0], *optchar);
+				struct iovec iov[4];
+				char opt_char[2] = { *optchar, '\0' };
+
+				iov[0].iov_base = argv[0];
+				iov[0].iov_len = strlen(argv[0]);
+				iov[1].iov_base =
+					": option requires an argument -- ";
+				iov[1].iov_len = 33;
+				iov[2].iov_base = opt_char;
+				iov[2].iov_len = 1;
+				iov[3].iov_base = "\n";
+				iov[3].iov_len = 1;
+
+				writev(STDERR_FILENO, iov, 4);
 			}
 			return '?';
 		}

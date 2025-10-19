@@ -6,10 +6,9 @@
 
 DIR *opendir(const char *dirname)
 {
-	int fildes;
+	int fildes = open(dirname, O_RDONLY);
 
-	fildes = open(dirname, O_RDONLY);
-	if (fildes == -1)
+	if (fildes < 0)
 		return NULL;
 
 	return fdopendir(fildes);

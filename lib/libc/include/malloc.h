@@ -32,7 +32,7 @@ struct page {
 	struct page *prev;
 };
 
-extern struct page *page_list;
+extern struct page *__malloc_pvec;
 
 #define SMALL_PAGE_SIZE_SHIFT 16
 #define SMALL_PAGE_SIZE (1 << SMALL_PAGE_SIZE_SHIFT)

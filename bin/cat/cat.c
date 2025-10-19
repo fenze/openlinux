@@ -6,7 +6,7 @@
 
 void usage()
 {
-	fprintf(stderr, "usage: cat [-u] [file...]\n");
+	write(STDERR_FILENO, "usage: cat [-u] [file...]\n", 27);
 }
 
 int main(int argc, char **argv)

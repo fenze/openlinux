@@ -2,6 +2,7 @@
 #define __STRING_H
 
 typedef __SIZE_TYPE__ size_t;
+typedef struct __locale_t *locale_t;
 
 #ifndef NULL
 #define NULL ((void *)0)
@@ -19,16 +20,14 @@ char *stpncpy(char *restrict, const char *restrict, size_t);
 char *strcat(char *restrict, const char *restrict);
 char *strchr(const char *, int);
 int strcmp(const char *, const char *);
-// TODO:
-// int strcoll(const char *, const char *);
-// int strcoll_l(const char *, const char *, locale_t);
+int strcoll(const char *, const char *);
+int strcoll_l(const char *, const char *, locale_t);
 char *strcpy(char *restrict, const char *restrict);
 size_t strcspn(const char *, const char *);
 char *strdup(const char *);
 char *strerror(int);
-// TODO:
-// char    *strerror_l(int, locale_t);
-// int strerror_r(int, char *, size_t);
+char *strerror_l(int, locale_t);
+int strerror_r(int, char *, size_t);
 size_t strlcat(char *restrict, const char *restrict, size_t);
 size_t strlcpy(char *restrict, const char *restrict, size_t);
 size_t strlen(const char *);
@@ -39,14 +38,12 @@ char *strndup(const char *, size_t);
 size_t strnlen(const char *, size_t);
 char *strpbrk(const char *, const char *);
 char *strrchr(const char *, int);
-// TODO:
-// char *strsignal(int);
+char *strsignal(int);
 size_t strspn(const char *, const char *);
 char *strstr(const char *, const char *);
 char *strtok(char *restrict, const char *restrict);
 char *strtok_r(char *restrict, const char *restrict, char **restrict);
 size_t strxfrm(char *restrict, const char *restrict, size_t);
-// TODO:
-// size_t strxfrm_l(char *restrict, const char *restrict, size_t, locale_t);
+size_t strxfrm_l(char *restrict, const char *restrict, size_t, locale_t);
 
 #endif

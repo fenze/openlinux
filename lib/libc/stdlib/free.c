@@ -11,7 +11,7 @@ void free(void *ptr)
 
 	LIBC_LOCK(libc.lock.malloc);
 
-	struct page *p = page_list;
+	struct page *p = __malloc_pvec;
 	while (p) {
 		if ((uintptr_t)ptr >= (uintptr_t)p->heap &&
 		    (uintptr_t)ptr < (uintptr_t)(p->heap + (p->block.size *
@@ -33,8 +33,8 @@ void free(void *ptr)
 					p->prev->next = p->next;
 				if (p->next)
 					p->next->prev = p->prev;
-				if (p == page_list)
-					page_list = p->next;
+				if (p == __malloc_pvec)
+					__malloc_pvec = p->next;
 
 				munmap(p, (p->flags == PAGE_SMALL) ?
 						  SMALL_PAGE_SIZE :

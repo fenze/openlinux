@@ -1,4 +1,5 @@
 #include <time.h>
+#include <libc.h>
 #include <string.h>
 
 static size_t append_string(char *restrict *s, size_t *remaining,
@@ -91,9 +92,7 @@ static int iso_week_number(const struct tm *tm, int *week_year)
 {
 	int year = tm->tm_year + 1900;
 	int yday = tm->tm_yday + 1;
-	int wday = tm->tm_wday;
-	if (wday == 0)
-		wday = 7;
+	int wday;
 
 	int jan4_wday = (4 + year + (year - 1) / 4 - (year - 1) / 100 +
 			 (year - 1) / 400) %
@@ -552,4 +551,12 @@ size_t strftime(char *restrict s, size_t maxsize, const char *restrict format,
 
 	*s = '\0';
 	return s - orig_s;
+}
+
+weak size_t strftime_l(char *restrict s, size_t maxsize,
+		       const char *restrict format,
+		       const struct tm *restrict timeptr,
+		       locale_t unused locale)
+{
+	return strftime(s, maxsize, format, timeptr);
 }

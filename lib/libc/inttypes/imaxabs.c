@@ -1,6 +1,6 @@
-#include <inttypes.h>
+#include <stdint.h>
 
-intmax_t imaxabs(intmax_t a)
+intmax_t imaxabs(intmax_t j)
 {
-	return a > 0 ? a : -a;
+	return (j < 0) ? -j : j;
 }

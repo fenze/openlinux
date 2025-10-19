@@ -1,6 +1,11 @@
 #include <io.h>
+#include <libc.h>
 #include <unistd.h>
 #include <stdio.h>
+
+weak void __stdio_cleanup(void)
+{
+}
 
 FILE *fdopen(int fildes, const char *mode)
 {

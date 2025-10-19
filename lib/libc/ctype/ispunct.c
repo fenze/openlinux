@@ -6,4 +6,7 @@ int ispunct(int c)
 	return isgraph(c) && !isalnum(c);
 }
 
-weak_reference(ispunct, ispunct_l);
+weak int ispunct_l(int c, locale_t locale)
+{
+	return ispunct(c);
+}

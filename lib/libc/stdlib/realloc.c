@@ -18,7 +18,7 @@ void *realloc(void *ptr, size_t size)
 
 	LIBC_LOCK(libc.lock.malloc);
 
-	struct page *p = page_list;
+	struct page *p = __malloc_pvec;
 	while (p) {
 		if ((uintptr_t)ptr >= (uintptr_t)p->heap &&
 		    (uintptr_t)ptr < (uintptr_t)(p->heap + (p->block.size *

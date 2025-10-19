@@ -1,10 +1,14 @@
 #include <io.h>
+#include <libc.h>
 #include <atomic.h>
 #include <stdio.h>
 #include <errno.h>
 #include <string.h>
 #include <unistd.h>
 #include <fcntl.h>
+
+char __stdout_buffer[BUFSIZ];
+void (*__stdio_cleanup)(void);
 
 size_t fwrite(const void *restrict ptr, size_t size, size_t nitems,
 	      FILE *restrict stream)

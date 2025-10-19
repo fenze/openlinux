@@ -8,4 +8,7 @@ int tolower(int c)
 	return c;
 }
 
-weak_reference(tolower, tolower_l);
+weak int tolower_l(int c, locale_t unused locale)
+{
+	return tolower(c);
+}

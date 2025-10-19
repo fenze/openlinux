@@ -4,6 +4,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include <libc.h>
+
+weak void __stdio_cleanup(void)
+{
+}
 
 FILE *fmemopen(void *restrict buf, size_t max_size, const char *restrict mode)
 {

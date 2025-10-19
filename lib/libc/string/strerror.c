@@ -1,4 +1,7 @@
+#include <libc.h>
 #include <errno.h>
+#include <string.h>
+#include <locale.h>
 
 char *strerror(int errnum)
 {
@@ -101,4 +104,22 @@ char *strerror(int errnum)
 	};
 
 	return table[errnum];
+}
+
+int strerror_r(int errnum, char *buf, size_t buflen)
+{
+	const char *msg = strerror(errnum);
+	size_t msglen = strlen(msg) + 1;
+
+	if (buflen < msglen) {
+		return ERANGE;
+	}
+
+	memcpy(buf, msg, msglen);
+	return 0;
+}
+
+weak char *strerror_l(int errnum, locale_t unused locale)
+{
+	return strerror(errnum);
 }

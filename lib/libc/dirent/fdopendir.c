@@ -3,14 +3,22 @@
 #include <dirent.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-#include <stdint.h>
+#include <stdlib.h>
 
 DIR *fdopendir(int fildes)
 {
+	DIR *dir;
+
 	if (fildes < 0) {
 		errno = EBADF;
 		return NULL;
 	}
 
-	return (DIR *)(intptr_t)~fildes;
+	if ((dir = calloc(1, sizeof(DIR))) == NULL) {
+		return NULL;
+	}
+
+	dir->fildes = fildes;
+
+	return dir;
 }
