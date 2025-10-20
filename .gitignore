@@ -9,6 +9,7 @@ bin/*/*
 *.d
 *.a
 
+!tools/package.d/*
 tests/headers/output.txt
 tools/libc/*.txt
 compile_commands.json

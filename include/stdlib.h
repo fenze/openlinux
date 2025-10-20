@@ -18,6 +18,9 @@
 #define WIFSTOPPED(s)  ((short)((((s) & 0xffff) * 0x10001U) >> 8) > 0x7f00)
 #define WIFSIGNALED(s) (((s) & 0xffff) - 1U < 0xffu)
 
+int ___mb_cur_max(void);
+#define MB_CUR_MAX (___mb_cur_max())
+
 #define RAND_MAX (0x7fffffff)
 
 typedef __SIZE_TYPE__ size_t;
