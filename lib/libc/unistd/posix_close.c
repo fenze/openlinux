@@ -1,8 +1,7 @@
+#include <libc.h>
 #include <syscall.h>
 
-int posix_close(int fildes, int flag)
+int posix_close(int fildes, int unused flag)
 {
-	(void)flag;
-
 	return syscall(close, fildes);
 }
