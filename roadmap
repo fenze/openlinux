@@ -1,0 +1,28 @@
+roadmap
+=======
+
+The goal of the openlinux project is to build a complete, clean, and stable userspace from scratch, with a 
+strong focus on portability and POSIX compliance. Below are the main development stages and planned features.
+
+
+Short-term Goals
+----------------
+
+ - Complete header implementation – ensure a complete and correct set of system headers.
+ - Complete header tests (compile-time) – verify the correctness of headers during compilation.
+ - Add missing functions in libc – expand the functionality of the standard library.
+ - Split the built rootfs into packages – modularize the system for easier distribution and updates.
+ - Add documentation in headers – enable better integration with tools like LSP and Clangd, providing accurate and convenient developer hints.
+
+Mid-term Goals
+--------------
+
+ - Complete the shell – create a fully POSIX-compliant command interpreter.
+ - Add POSIX coreutils – implement essential POSIX-compliant system utilities.
+ - Linux utilities – extend user-facing system tools to increase environment functionality.
+
+Long-term Goals
+---------------
+ - Write a bootloader for x86_64/aarch64 – a lightweight bootloader that starts the kernel and mounts partitions, minimizing the need for an initramfs.
+ - Add QEMU emulation – currently only Docker is available for rootfs development; full virtual machine emulation support is planned.
+ - Add developer documentation – create comprehensive guides and examples for software developers.
