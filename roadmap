@@ -19,6 +19,7 @@ Mid-term Goals
 
  - Complete the shell – create a fully POSIX-compliant command interpreter.
  - Add POSIX coreutils – implement essential POSIX-compliant system utilities.
+ - LLVM utilities - clang llvm-nm....
  - Linux utilities – extend user-facing system tools to increase environment functionality.
 
 Long-term Goals
