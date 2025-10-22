@@ -9,7 +9,7 @@ rootfs: all
 	$(TASK) TAR ${ROOTFS_TAR}
 	$(TAR) --owner=0 --group=0 --numeric-owner -czf build/$(ARCH)/${ROOTFS_TAR} -C build/$(ARCH)/sysroot .
 
-qemu: image
+qemu:
 	sh tools/qemu.sh $(ARCH) build/$(ARCH)/openlinux-$(VERSION)-$(ARCH).img
 
 docker: rootfs
@@ -30,6 +30,7 @@ __all: | build
 		$(MAKE) -C lib/$$lib install; \
 	done
 	$(MAKE) -C bin install
+	$(MAKE) -C arch/$(ARCH) install
 
 build/$(ARCH)/sysroot/usr/include:
 	mkdir -p $@
@@ -57,6 +58,7 @@ clean:
 		$(MAKE) -C lib/$$lib clean; \
 	done
 	$(MAKE) -C bin clean
+	$(MAKE) -C arch/$(ARCH) clean
 
 distclean: clean
 	rm -rf build

@@ -31,11 +31,10 @@ task() {
 task "BUILD" "Building kernel build environment..."
 docker buildx build -q --platform=linux/amd64 -t openlinux-image:latest --load . > /dev/null
 
-mkdir -p "build/$ARCH/boot"
 task "RUN" "Starting kernel build environment..."
 docker run -q -it --rm --platform linux/amd64 \
     -v "$PWD/build/$ARCH:/build" \
     openlinux-image:latest \
-    /bin/sh -c "yes '' | make -j\$(nproc) LLVM=1 ARCH=$ARCH bzImage; cp $BZIMAGE_PATH/bzImage /build/vmlinuz"
+    /bin/sh -c "yes '' | make -j\$(nproc) LLVM=1 ARCH=$ARCH bzImage; cp $BZIMAGE_PATH/bzImage /build/kernel"
 
 rm -f dockerfile
