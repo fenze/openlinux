@@ -1,0 +1,89 @@
+obj-y    :=
+obj-m    :=
+
+src := $(patsubst %/,%,$(obj))
+
+-include $(srctree)/.config
+-include $(obj)Kbuild
+
+ifdef lib-y
+  export cflags-y
+endif
+
+ifdef bin-y
+  export cflags-y
+  export ldflags-y
+endif
+
+objects := $(filter %.o,$(obj-y))
+subdirs := $(filter %/,$(obj-y))
+
+cflags := $(cflags-y) $(KBUILD_CFLAGS)
+asflags := $(asflags-y) $(KBUILD_ASFLAGS)
+ldflags := $(ldflags-y) $(KBUILD_LDFLAGS)
+
+collect-obj-y = $(foreach e,$(shell echo 'all:; @echo $$(obj-y)' | \
+  $(MAKE) -f $(obj)$(1)Kbuild -f - --no-print-directory 2>/dev/null),\
+  $(if $(filter %/,$(e)),$(addprefix $(e),$(call collect-obj-y,$(1)$(e))),$(e)))
+
+ifdef lib-y
+  subdir-objects := $(foreach d,$(subdirs),$(addprefix $(d),$(call collect-obj-y,$(d))))
+  all-objects := $(objects) $(subdir-objects)
+else ifdef bin-y
+  subdir-objects := $(foreach d,$(subdirs),$(addprefix $(d),$(call collect-obj-y,$(d))))
+  all-objects := $(objects) $(subdir-objects)
+else
+  all-objects := $(objects)
+endif
+
+c-sources := $(wildcard $(addprefix $(obj),$(objects:.o=.c)))
+s-sources := $(wildcard $(addprefix $(obj),$(objects:.o=.s)))
+subdir-c-sources := $(wildcard $(addprefix $(obj),$(subdir-objects:.o=.c)))
+subdir-s-sources := $(wildcard $(addprefix $(obj),$(subdir-objects:.o=.s)))
+
+PHONY := all
+
+ifdef lib-y
+all: $(obj)$(lib-y)
+$(obj)$(lib-y): $(addprefix $(obj),$(all-objects))
+	$(MSG) AR "$@"
+	$(Q)$(AR) rcs $@ $^
+else ifdef bin-y
+all: $(obj)$(bin-y)
+$(obj)$(bin-y): $(addprefix $(obj),$(all-objects)) $(libs-y)
+	$(MSG) LD "$@"
+	$(Q)$(LD) $(ldflags) -o $@ $^
+else
+all: $(addprefix $(obj),$(all-objects)) $(subdirs)
+endif
+
+PHONY += clean clean-%
+clean: $(addprefix clean-,$(subdirs))
+ifdef all-objects
+	$(Q)rm -f $(addprefix $(obj),$(all-objects))
+endif
+ifdef lib-y
+	$(Q)rm -f $(obj)$(lib-y)
+endif
+ifdef bin-y
+	$(Q)rm -f $(obj)$(bin-y)
+endif
+
+# Build C sources to objects
+$(filter $(addprefix $(obj),$(all-objects)),$(c-sources:.c=.o) $(subdir-c-sources:.c=.o)): $(obj)%.o: $(obj)%.c
+	$(MSG) CC "$@"
+	$(Q)$(CC) $(cflags) -c $< -o $@
+
+# Build assembly sources to objects
+$(filter $(addprefix $(obj),$(all-objects)),$(s-sources:.s=.o) $(subdir-s-sources:.s=.o)): $(obj)%.o: $(obj)%.s
+	$(MSG) AS "$@"
+	$(Q)$(CC) $(asflags) -c $< -o $@
+
+.PHONY: $(subdirs)
+$(subdirs):
+	$(Q)$(MAKE) -f $(srctree)/scripts/Makefile.build obj="$(obj)$@"
+
+clean-%:
+	$(Q)$(MAKE) -f $(srctree)/scripts/Makefile.build obj="$(obj)$*" clean
+
+.PHONY: $(PHONY)

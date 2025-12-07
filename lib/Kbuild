@@ -1,0 +1,2 @@
+obj-y += libjson/
+obj-y += libc/

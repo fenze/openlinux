@@ -1,0 +1,9 @@
+*.o
+
+.config
+.config.old
+
+include/config
+include/generated
+
+compile_commands.json

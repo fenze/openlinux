@@ -1,0 +1,3 @@
+lib-y := libjson.a
+
+obj-y += json.o

@@ -1,0 +1,8 @@
+obj-y += htonl.o
+obj-y += htons.o
+obj-y += inet_addr.o
+obj-y += inet_ntoa.o
+obj-y += inet_ntop.o
+obj-y += inet_pton.o
+obj-y += ntohl.o
+obj-y += ntohs.o

@@ -1,0 +1,7 @@
+obj-y += clock_gettime.o
+obj-y += crt0.o
+obj-y += fenv.o
+obj-y += longjmp.o
+obj-y += setjmp.o
+obj-y += sigsetjmp.o
+obj-y += vdso_setup.o
