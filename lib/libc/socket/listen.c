@@ -3,5 +3,5 @@
 
 int listen(int socket, int backlog)
 {
-	return syscall(listen, backlog);
+	return syscall(listen, socket, backlog);
 }

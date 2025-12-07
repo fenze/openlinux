@@ -4,7 +4,7 @@
 #include <syscall.h>
 
 int posix_devctl(int fildes, int dcmd, void *restrict dev_data_ptr,
-		 size_t unused nbyte, int *restrict dev_info_ptr)
+		 size_t __unused nbyte, int *restrict dev_info_ptr)
 {
 	long r;
 

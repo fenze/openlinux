@@ -553,10 +553,10 @@ size_t strftime(char *restrict s, size_t maxsize, const char *restrict format,
 	return s - orig_s;
 }
 
-weak size_t strftime_l(char *restrict s, size_t maxsize,
+__weak size_t strftime_l(char *restrict s, size_t maxsize,
 		       const char *restrict format,
 		       const struct tm *restrict timeptr,
-		       locale_t unused locale)
+		       locale_t __unused locale)
 {
 	return strftime(s, maxsize, format, timeptr);
 }

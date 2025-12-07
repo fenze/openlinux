@@ -8,7 +8,7 @@ int toupper(int c)
 	return c;
 }
 
-int toupper_l(int c, locale_t unused locale)
+int toupper_l(int c, locale_t __unused locale)
 {
 	return toupper(c);
 }

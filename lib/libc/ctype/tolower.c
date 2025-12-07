@@ -8,7 +8,7 @@ int tolower(int c)
 	return c;
 }
 
-weak int tolower_l(int c, locale_t unused locale)
+__weak int tolower_l(int c, locale_t __unused locale)
 {
 	return tolower(c);
 }

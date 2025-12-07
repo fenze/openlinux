@@ -4,6 +4,7 @@
 #include <io.h>
 #include <errno.h>
 #include <string.h>
+#include <fcntl.h>
 
 int fflush(FILE *stream)
 {

@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdatomic.h>
+#include <fcntl.h>
 
 int vsnprintf(char *restrict s, size_t n, const char *restrict format,
 	      va_list ap)

@@ -1598,7 +1598,9 @@ static Bigint *Balloc(int k MTd)
 		len = (sizeof(Bigint) + (x - 1) * sizeof(ULong) +
 		       sizeof(double) - 1) /
 		      sizeof(double);
-		if (k <= Kmax && pmem_next - private_mem + len <= PRIVATE_mem
+		if (k <= Kmax &&
+		    (long)(pmem_next - private_mem) + (long)len <=
+			    (long)PRIVATE_mem
 #ifdef MULTIPLE_THREADS
 		    && TI == TI1
 #endif
@@ -4891,7 +4893,8 @@ static char *rv_alloc(int i MTd)
 	int j, k, *r;
 
 	j = sizeof(ULong);
-	for (k = 0; sizeof(Bigint) - sizeof(ULong) - sizeof(int) + j <= i;
+	for (k = 0;
+	     sizeof(Bigint) - sizeof(ULong) - sizeof(int) + j <= (size_t)i;
 	     j <<= 1)
 		k++;
 	r = (int *)Balloc(k MTa);
@@ -4910,7 +4913,7 @@ static char *nrv_alloc(const char *s, char *s0, size_t s0len, char **rve,
 
 	if (!s0)
 		s0 = rv_alloc(n MTa);
-	else if (s0len <= n) {
+	else if (s0len <= (size_t)n) {
 		rv = 0;
 		t = rv + n;
 		goto rve_chk;
@@ -5312,7 +5315,7 @@ char *dtoa_r(double dd, int mode, int ndigits, int *decpt, int *sign,
 		blen = sizeof(Bigint) +
 		       ((1 << ((int *)buf)[-1]) - 1) * sizeof(ULong) -
 		       sizeof(int);
-	} else if (blen <= i) {
+	} else if (blen <= (size_t)i) {
 		buf = 0;
 		if (rve)
 			*rve = buf + i;

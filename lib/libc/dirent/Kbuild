@@ -1,0 +1,6 @@
+obj-y += closedir.o
+obj-y += dirfd.o
+obj-y += fdopendir.o
+obj-y += opendir.o
+obj-y += readdir_r.o
+obj-y += readdir.o

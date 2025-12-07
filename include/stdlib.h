@@ -1,5 +1,11 @@
-#ifndef __STDLIB_H__
-#define __STDLIB_H__
+#ifndef __STDLIB_H
+#define __STDLIB_H
+
+#define __BITS_WAIT_H_
+#include <bits/wait.h>
+
+#define __BITS_ERRNO_H_
+#include <bits/errno.h>
 
 #ifndef NULL
 #define NULL ((void *)0)
@@ -8,18 +14,7 @@
 #define EXIT_FAILURE 1
 #define EXIT_SUCCESS 0
 
-#define WNOHANG	  1
-#define WUNTRACED 2
-
-#define WEXITSTATUS(s) (((s) & 0xff00) >> 8)
-#define WTERMSIG(s)    ((s) & 0x7f)
-#define WSTOPSIG(s)    WEXITSTATUS(s)
-#define WIFEXITED(s)   (!WTERMSIG(s))
-#define WIFSTOPPED(s)  ((short)((((s) & 0xffff) * 0x10001U) >> 8) > 0x7f00)
-#define WIFSIGNALED(s) (((s) & 0xffff) - 1U < 0xffu)
-
-int ___mb_cur_max(void);
-#define MB_CUR_MAX (___mb_cur_max())
+#define MB_CUR_MAX 1
 
 #define RAND_MAX (0x7fffffff)
 

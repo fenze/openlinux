@@ -1,0 +1,16 @@
+obj-y += chmod.o
+obj-y += fchmod.o
+obj-y += fchmodat.o
+obj-y += fstat.o
+obj-y += fstatat.o
+obj-y += futimens.o
+obj-y += lstat.o
+obj-y += mkdir.o
+obj-y += mkdirat.o
+obj-y += mkfifo.o
+obj-y += mkfifoat.o
+obj-y += mknod.o
+obj-y += mknodat.o
+obj-y += stat.o
+obj-y += umask.o
+obj-y += utimensat.o

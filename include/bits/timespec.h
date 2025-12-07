@@ -3,6 +3,8 @@
 
 #ifndef __BITS_TIMESPEC_H_
 #error "Never include <bits/timespec.h> directly; use <time.h> instead."
+#else
+#undef __BITS_TIMESPEC_H_
 #endif
 
 typedef __INT64_TYPE__ time_t;

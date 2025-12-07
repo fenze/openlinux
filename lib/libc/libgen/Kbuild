@@ -1,0 +1,2 @@
+obj-y += basename.o
+obj-y += dirname.o

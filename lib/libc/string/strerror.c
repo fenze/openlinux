@@ -119,7 +119,7 @@ int strerror_r(int errnum, char *buf, size_t buflen)
 	return 0;
 }
 
-weak char *strerror_l(int errnum, locale_t unused locale)
+__weak char *strerror_l(int errnum, locale_t __unused locale)
 {
 	return strerror(errnum);
 }

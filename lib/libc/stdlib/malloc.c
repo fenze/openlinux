@@ -28,7 +28,7 @@ static __inline uint32_t get_size_class(size_t size)
 	return (uint32_t)((most_significant_bit << 2) + subclass_bits) + 41;
 }
 
-weak void *malloc(size_t size);
+__weak void *malloc(size_t size);
 
 void *malloc(size_t size)
 {

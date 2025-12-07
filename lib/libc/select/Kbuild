@@ -1,0 +1,2 @@
+obj-y += pselect.o
+obj-y += select.o

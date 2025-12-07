@@ -1,12 +1,15 @@
 #ifndef __STRING_H
 #define __STRING_H
 
-typedef __SIZE_TYPE__ size_t;
-typedef struct __locale_t *locale_t;
+#define __BITS_ERRNO_H_
+#include <bits/errno.h>
 
 #ifndef NULL
 #define NULL ((void *)0)
 #endif
+
+typedef __SIZE_TYPE__ size_t;
+typedef struct __locale_t *locale_t;
 
 void *memccpy(void *restrict, const void *restrict, int, size_t);
 void *memchr(const void *, int, size_t);

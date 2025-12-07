@@ -1,6 +1,7 @@
 #include <errno.h>
 #include <asm-generic/signal.h>
 #include <libc.h>
+#include <stddef.h>
 
 int sigdelset(sigset_t *, int);
 int sigismember(const sigset_t *, int);

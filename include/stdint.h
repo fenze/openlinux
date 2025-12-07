@@ -1,5 +1,5 @@
-#ifndef __STDINT_H__
-#define __STDINT_H__
+#ifndef __STDINT_H
+#define __STDINT_H
 
 #undef WCHAR_MAX
 #undef WCHAR_MIN

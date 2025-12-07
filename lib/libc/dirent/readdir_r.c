@@ -29,9 +29,9 @@ int readdir_r(DIR *restrict dirp, struct dirent *restrict entry,
 		ldir = (void *)(dirp->buffer + dirp->offset);
 
 		/* Validate buffer bounds */
-		if (dirp->offset >= sizeof(dirp->buffer) ||
-		    dirp->offset + sizeof(struct linux_dirent64) >
-			    sizeof(dirp->buffer)) {
+		if (dirp->offset >= (off_t)sizeof(dirp->buffer) ||
+		    dirp->offset + (off_t)sizeof(struct linux_dirent64) >
+			    (off_t)sizeof(dirp->buffer)) {
 			dirp->cached = 0;
 			*result = NULL;
 			return 0;
@@ -40,7 +40,8 @@ int readdir_r(DIR *restrict dirp, struct dirent *restrict entry,
 		/* Validate record length */
 		if (ldir->d_reclen <
 			    offsetof(struct linux_dirent64, d_name) + 1 ||
-		    dirp->offset + ldir->d_reclen > sizeof(dirp->buffer) ||
+		    dirp->offset + (off_t)ldir->d_reclen >
+			    (off_t)sizeof(dirp->buffer) ||
 		    ldir->d_reclen == 0) {
 			dirp->cached = 0;
 			*result = NULL;
@@ -90,7 +91,7 @@ int readdir_r(DIR *restrict dirp, struct dirent *restrict entry,
 	nread = ret;
 
 	/* Validate first entry bounds */
-	if (nread < sizeof(struct linux_dirent64) ||
+	if (nread < (ssize_t)sizeof(struct linux_dirent64) ||
 	    ldir->d_reclen < offsetof(struct linux_dirent64, d_name) + 1 ||
 	    ldir->d_reclen > nread || ldir->d_reclen == 0) {
 		*result = NULL;
@@ -124,7 +125,8 @@ int readdir_r(DIR *restrict dirp, struct dirent *restrict entry,
 			(void *)(dirp->buffer + buffer_offset);
 
 		/* Validate entry bounds to prevent infinite loops */
-		if (buffer_offset + sizeof(struct linux_dirent64) > nread ||
+		if (buffer_offset + (ssize_t)sizeof(struct linux_dirent64) >
+			    nread ||
 		    next_ldir->d_reclen <
 			    offsetof(struct linux_dirent64, d_name) + 1 ||
 		    buffer_offset + next_ldir->d_reclen > nread ||

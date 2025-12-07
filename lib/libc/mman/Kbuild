@@ -1,0 +1,9 @@
+obj-y += mlock.o
+obj-y += mlockall.o
+obj-y += mmap.o
+obj-y += mprotect.o
+obj-y += msync.o
+obj-y += munlock.o
+obj-y += munlockall.o
+obj-y += munmap.o
+obj-y += posix_madvise.o

@@ -1,0 +1,4 @@
+obj-y += closelog.o
+obj-y += openlog.o
+obj-y += setlogmask.o
+obj-y += syslog.o

@@ -18,7 +18,8 @@ int strcasecmp(const char *s1, const char *s2)
 	       (unsigned char)tolower((unsigned char)*s2);
 }
 
-weak int strcasecmp_l(const char *s1, const char *s2, locale_t unused locale)
+__weak int strcasecmp_l(const char *s1, const char *s2,
+			locale_t __unused locale)
 {
 	return strcasecmp(s1, s2);
 }

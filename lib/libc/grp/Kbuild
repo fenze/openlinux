@@ -1,0 +1,2 @@
+obj-y += getgrgid_r.o
+obj-y += getgrgid.o

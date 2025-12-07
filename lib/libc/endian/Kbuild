@@ -1,0 +1,12 @@
+obj-y += be16toh.o
+obj-y += be32toh.o
+obj-y += be64toh.o
+obj-y += htobe16.o
+obj-y += htobe32.o
+obj-y += htobe64.o
+obj-y += htole16.o
+obj-y += htole32.o
+obj-y += htole64.o
+obj-y += le16toh.o
+obj-y += le32toh.o
+obj-y += le64toh.o

@@ -1,0 +1,3 @@
+obj-y += semctl.o
+obj-y += semget.o
+obj-y += semop.o

@@ -25,8 +25,8 @@ int strncasecmp(const char *s1, const char *s2, size_t n)
 	       (unsigned char)tolower((unsigned char)*s2);
 }
 
-weak int strncasecmp_l(const char *s1, const char *s2, size_t n,
-		       locale_t unused locale)
+__weak int strncasecmp_l(const char *s1, const char *s2, size_t n,
+		       locale_t __unused locale)
 {
 	return strncasecmp(s1, s2, n);
 }

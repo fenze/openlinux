@@ -3,7 +3,7 @@
 #include <unistd.h>
 #include <stdio.h>
 
-weak void __stdio_cleanup(void)
+__weak void __stdio_cleanup(void)
 {
 }
 

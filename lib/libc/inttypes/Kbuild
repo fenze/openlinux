@@ -1,0 +1,4 @@
+obj-y += imaxabs.o
+obj-y += imaxdiv.o
+obj-y += strtoimax.o
+obj-y += strtoumax.o

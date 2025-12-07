@@ -1,5 +1,5 @@
-#ifndef __NET_IF_H__
-#define __NET_IF_H__
+#ifndef __NET_IF_H
+#define __NET_IF_H
 
 struct if_nameindex {
 	unsigned if_index;

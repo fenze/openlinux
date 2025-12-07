@@ -1,0 +1,14 @@
+obj-y += isalnum.o
+obj-y += isalpha.o
+obj-y += isblank.o
+obj-y += iscntrl.o
+obj-y += isdigit.o
+obj-y += isgraph.o
+obj-y += islower.o
+obj-y += isprint.o
+obj-y += ispunct.o
+obj-y += isspace.o
+obj-y += isupper.o
+obj-y += isxdigit.o
+obj-y += tolower.o
+obj-y += toupper.o

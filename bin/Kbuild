@@ -1,0 +1,2 @@
+obj-y += true/
+obj-y += false/

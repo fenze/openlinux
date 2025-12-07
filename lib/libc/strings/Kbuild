@@ -1,0 +1,5 @@
+obj-y += ffs.o
+obj-y += ffsl.o
+obj-y += ffsll.o
+obj-y += strcasecmp.o
+obj-y += strncasecmp.o

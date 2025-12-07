@@ -1,7 +1,8 @@
 int ffs(int i)
 {
-	if (i == 0)
+	if (i == 0) {
 		return 0;
+	}
 
 	int pos = 1;
 	unsigned int u = (unsigned int)i;
@@ -10,5 +11,6 @@ int ffs(int i)
 		u >>= 1;
 		pos++;
 	}
+
 	return pos;
 }

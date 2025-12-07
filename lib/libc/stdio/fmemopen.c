@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <libc.h>
 
-weak void __stdio_cleanup(void)
+__weak void __stdio_cleanup(void)
 {
 }
 

@@ -1,7 +1,7 @@
 #include <string.h>
 #include <features.h>
 
-weak void *memcpy(void *restrict s1, const void *restrict s2, size_t n);
+__weak void *memcpy(void *restrict s1, const void *restrict s2, size_t n);
 
 void *memcpy(void *restrict s1, const void *restrict s2, size_t n)
 {

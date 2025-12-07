@@ -103,12 +103,12 @@ all: $(srctree)/include/config/auto.conf $(srctree)/include/generated/autoconf.h
 
 clean:
 	$(Q)$(MAKE) -f scripts/makefile.build obj=$(obj) clean
-	rm -f $(srctree)/include/config/auto.conf
-	rm -f $(srctree)/include/generated/autoconf.h
-	rm -f compile_commands.json
+	$(Q)rm -f $(srctree)/include/config/auto.conf
+	$(Q)rm -f $(srctree)/include/generated/autoconf.h
 
 distclean: clean
 	$(Q)$(MAKE) -C scripts/kconfig clean
+	$(Q)rm -f compile_commands.json
 
 $(KCONFIG_CONFIG):
 	@echo >&2 '***'

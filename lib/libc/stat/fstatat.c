@@ -1,7 +1,8 @@
-#include <sys/stat.h>
-#include <syscall.h>
-
 #include <linux/stat.h>
+#define __BITS_STAT_H_
+#include <bits/stat.h>
+#undef __BITS_STAT_H_
+#include <syscall.h>
 
 #define makedev(major, minor)                \
 	((((major) & 0xfffff000ULL) << 32) | \
@@ -37,8 +38,7 @@ int fstatat(int fd, const char *restrict path, struct stat *restrict buf,
 			buf->st_blksize = stx.stx_blksize;
 			buf->st_blocks = stx.stx_blocks;
 		} else {
-			ret = -1; // Indicate failure if STATX_BASIC_STATS is
-				  // not set
+			ret = -1;
 		}
 	}
 

@@ -9,7 +9,6 @@
 #include <stddef.h>
 #include <math.h>
 #include <unistd.h>
-#include <wchar.h>
 
 extern char *dtoa(double, int mode, int ndigits, int *decpt, int *sign,
 		  char **rve);
@@ -752,15 +751,12 @@ int vfprintf(FILE *restrict stream, const char *restrict format, va_list ap)
 
 			if ((flags & FLAG_MINUS) == 0) {
 				if (pad_char == '0' && s != NULL) {
-					int prefix_len = 0;
-
 					if (s[0] == '-' || s[0] == '+' ||
 					    s[0] == ' ') {
 						fwrite(s, 1, 1, stream);
 						total_printed++;
 						s++;
 						l--;
-						prefix_len++;
 					}
 
 					if (l >= 2 && s[0] == '0' &&
@@ -769,7 +765,6 @@ int vfprintf(FILE *restrict stream, const char *restrict format, va_list ap)
 						total_printed += 2;
 						s += 2;
 						l -= 2;
-						prefix_len += 2;
 					}
 
 					for (int i = 0; i < padding; i++) {

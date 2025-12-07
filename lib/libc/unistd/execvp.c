@@ -3,6 +3,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 extern char **environ;
 
@@ -17,7 +18,7 @@ int execvp(const char *file, char *const argv[])
 		return execv(file, argv);
 	} else {
 		char *ptr;
-		char *path = NULL; // TODO: getenv
+		char *path = getenv("PATH");
 
 		if (path == NULL || *path == '\0') {
 			path = "/bin";

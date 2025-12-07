@@ -3,6 +3,8 @@
 
 #ifndef __BITS_SIGEVENT_H_
 #error "Internal header — include the public API header instead."
+#else
+#undef __BITS_SIGEVENT_H_
 #endif
 
 union sigval {

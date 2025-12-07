@@ -1,8 +1,6 @@
 #include <stdarg.h>
-#include <stddef.h>
-#include <syscall.h>
+#include <unistd.h>
 
-// TODO: need to find in path and call execl
 int execlp(const char *path, const char *argv0, ...)
 {
 	int argc;
@@ -23,5 +21,5 @@ int execlp(const char *path, const char *argv0, ...)
 	argv[argc] = NULL;
 	va_end(ap);
 
-	return syscall(execve, path, argv, 0);
+	return execve(path, argv, 0);
 }

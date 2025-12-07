@@ -1,0 +1,3 @@
+obj-y += wait.o
+obj-y += waitid.o
+obj-y += waitpid.o

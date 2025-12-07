@@ -1,0 +1,6 @@
+obj-y += creat.o
+obj-y += fcntl.o
+obj-y += open.o
+obj-y += openat.o
+obj-y += posix_fadvise.o
+obj-y += posix_fallocate.o

@@ -3,11 +3,12 @@
 
 #define __BITS_TIMESPEC_H_
 #include <bits/timespec.h>
-#undef __BITS_TIMESPEC_H_
 
 #define __BITS_SIGEVENT_H_
 #include <bits/sigevent.h>
-#undef __BITS_SIGEVENT_H_
+
+#define __BITS_ERRNO_H_
+#include <bits/errno.h>
 
 #ifndef NULL
 #define NULL ((void *)0)

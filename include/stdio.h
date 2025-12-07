@@ -1,6 +1,9 @@
 #ifndef __STDIO_H
 #define __STDIO_H
 
+#define __BITS_ERRNO_H_
+#include <bits/errno.h>
+
 #ifndef NULL
 #define NULL ((void *)0)
 #endif

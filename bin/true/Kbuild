@@ -1,0 +1,3 @@
+bin-y := true
+
+obj-y += arch/

@@ -1,5 +1,5 @@
-#ifndef __FNMATCH_H__
-#define __FNMATCH_H__
+#ifndef __FNMATCH_H
+#define __FNMATCH_H
 
 #define FNM_PATHNAME   0x1
 #define FNM_NOESCAPE   0x2
