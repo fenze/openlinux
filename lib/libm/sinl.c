@@ -1,4 +1,7 @@
-#include "libm.h"
+#include "libm.h" // for ldshape, ldshape::(anonymous), __sinl, __cosl
+
+#include <float.h> // for LDBL_MANT_DIG, LDBL_MAX_EXP
+#include <math.h>  // for sinl, M_PI_4
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
 long double sinl(long double x)

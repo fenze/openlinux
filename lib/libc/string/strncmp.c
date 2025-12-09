@@ -1,4 +1,4 @@
-#include <stddef.h> // for size_t
+#include <string.h> // for strncmp, size_t
 
 int strncmp(const char *s1, const char *s2, size_t n)
 {

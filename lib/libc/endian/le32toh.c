@@ -1,5 +1,5 @@
-#include <endian.h> // for le32toh
-#include <stdint.h> // for uint32_t
+#include <endian.h> // for uint32_t, le32toh
+#include <stdint.h>
 
 uint32_t le32toh(uint32_t little_endian_32bits)
 {

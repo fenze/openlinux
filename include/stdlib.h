@@ -1,6 +1,7 @@
 #ifndef __STDLIB_H
 #define __STDLIB_H
 
+#include <stddef.h>
 #define __BITS_WAIT_H_
 #include <bits/wait.h>
 

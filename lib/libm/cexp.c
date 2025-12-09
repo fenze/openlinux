@@ -1,5 +1,5 @@
-#include <math.h>
-#include <complex.h>
+#include <complex.h> // for cexp, cimag, complex, creal, I
+#include <math.h>    // for cos, exp, sin
 
 double complex cexp(double complex z)
 {

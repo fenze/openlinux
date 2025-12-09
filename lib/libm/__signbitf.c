@@ -1,4 +1,4 @@
-#include "libm.h"
+#include <stdint.h> // for uint32_t
 
 // FIXME: macro in math.h
 int __signbitf(float x)

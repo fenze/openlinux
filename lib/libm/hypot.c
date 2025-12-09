@@ -1,6 +1,6 @@
-#include <math.h>
-#include <stdint.h>
-#include <float.h>
+#include <float.h>  // for FLT_EVAL_METHOD, LDBL_MANT_DIG
+#include <math.h>   // for double_t, hypot, sqrt
+#include <stdint.h> // for uint64_t
 
 #if FLT_EVAL_METHOD > 1U && LDBL_MANT_DIG == 64
 #define SPLIT (0x1p32 + 1)

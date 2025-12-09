@@ -1,6 +1,7 @@
 #ifndef __STRING_H
 #define __STRING_H
 
+#include <stddef.h>
 #define __BITS_ERRNO_H_
 #include <bits/errno.h>
 

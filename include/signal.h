@@ -1,10 +1,15 @@
 #ifndef __SIGNAL_H
 #define __SIGNAL_H
 
+#include <signal.h>
+#include <stddef.h>
+#include <time.h>
+
 #define __BITS_SIGEVENT_H_
-#include <bits/sigevent.h>
 
 #define __BITS_SIGINFO_H_
+#include "signal.h"
+
 #include <bits/siginfo.h> // for siginfo_t
 
 union sigval;

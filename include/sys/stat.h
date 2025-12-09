@@ -1,6 +1,7 @@
 #ifndef __SYS_STAT_H
 #define __SYS_STAT_H
 
+#include <time.h>
 #define __BITS_STAT_H_
 #include <bits/stat.h>
 #undef __BITS_STAT_H_

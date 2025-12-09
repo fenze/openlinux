@@ -3,11 +3,12 @@
  * SPDX-License-Identifier: MIT
  */
 
-#include <math.h>
-#include <stdint.h>
-#include "libm.h"
-#include "exp2f_data.h"
-#include "powf_data.h"
+#include "exp2f_data.h" // for __exp2f_data, exp2f_data, EXP2F_TABLE_BITS
+#include "libm.h"	// for predict_false, asuint, asuint64, __math_inva...
+#include "powf_data.h"	// for __powf_log2_data, powf_log2_data, powf_log2_...
+
+#include <math.h>   // for double_t, powf, float_t
+#include <stdint.h> // for uint32_t, uint64_t, int32_t
 
 /*
 POWF_LOG2_POLY_ORDER = 5

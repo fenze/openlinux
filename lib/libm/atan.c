@@ -29,7 +29,10 @@
  * to produce the hexadecimal values shown.
  */
 
-#include "libm.h"
+#include "libm.h" // for FORCE_EVAL, GET_HIGH_WORD
+
+#include <math.h>   // for double_t, atan, fabs, isnan
+#include <stdint.h> // for uint32_t
 
 static const double atanhi[] = {
 	4.63647609000806093515e-01, /* atan(0.5)hi 0x3FDDAC67, 0x0561BB4F */

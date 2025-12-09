@@ -1,6 +1,7 @@
 #ifndef __DIRENT_H
 #define __DIRENT_H
 
+#include <stddef.h>
 #define DT_UNKNOWN 0x0
 #define DT_FIFO	   0x1
 #define DT_CHR	   0x2

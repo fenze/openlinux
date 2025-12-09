@@ -104,7 +104,10 @@
  * to produce the hexadecimal values shown.
  */
 
-#include "libm.h"
+#include "libm.h" // for FORCE_EVAL
+
+#include <math.h>   // for double_t, expm1, isnan
+#include <stdint.h> // for uint64_t, uint32_t
 
 static const double o_threshold = 7.09782712893383973096e+02, /* 0x40862E42,
 								 0xFEFA39EF */

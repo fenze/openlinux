@@ -1,4 +1,4 @@
-#include "libm.h"
+#include "libm.h" // for __math_invalid
 
 double __math_invalid(double x)
 {

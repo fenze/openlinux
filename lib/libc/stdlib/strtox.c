@@ -1,10 +1,10 @@
-#include <ctype.h>
-#include <float.h>
-#include <errno.h>
-#include <strings.h>
-#include <limits.h>
-#include <math.h>
-#include <stdlib.h>
+#include <ctype.h>   // for isdigit, isspace, isalnum, isalpha, toupper
+#include <errno.h>   // for errno, ERANGE, EINVAL
+#include <float.h>   // for LDBL_MAX, FLT_MAX
+#include <limits.h>  // for LLONG_MAX, LONG_MAX, ULLONG_MAX, ULONG_MAX, LLO...
+#include <math.h>    // for HUGE_VALF, powl, INFINITY, NAN
+#include <stdlib.h>  // for strtof, strtol, strtold, strtoll, strtoul, strt...
+#include <strings.h> // for strncasecmp
 
 static unsigned long long
 __scanint(const char *s, int base, unsigned long long lim, int *neg, char **end)
@@ -163,8 +163,7 @@ long strtol(const char *restrict nptr, char **restrict endptr, int base)
 
 	if (neg)
 		return (v == lim) ? LONG_MIN : -(long)v;
-	else
-		return (v > LONG_MAX) ? (errno = ERANGE, LONG_MAX) : (long)v;
+	return (v > LONG_MAX) ? (errno = ERANGE, LONG_MAX) : (long)v;
 }
 
 long long strtoll(const char *restrict nptr, char **restrict endptr, int base)
@@ -185,15 +184,13 @@ long long strtoll(const char *restrict nptr, char **restrict endptr, int base)
 	if (neg) {
 		if (v == lim)
 			return LLONG_MIN;
-		else
-			return -(long long)v;
-	} else {
-		if (v > LLONG_MAX) {
-			errno = ERANGE;
-			return LLONG_MAX;
-		} else
-			return (long long)v;
+		return -(long long)v;
 	}
+	if (v > LLONG_MAX) {
+		errno = ERANGE;
+		return LLONG_MAX;
+	}
+	return (long long)v;
 }
 
 unsigned long strtoul(const char *restrict nptr, char **restrict endptr,
@@ -245,7 +242,8 @@ float strtof(const char *restrict nptr, char **restrict endptr)
 	if (val > FLT_MAX) {
 		errno = ERANGE;
 		return HUGE_VALF;
-	} else if (val < -FLT_MAX) {
+	}
+	if (val < -FLT_MAX) {
 		errno = ERANGE;
 		return -HUGE_VALF;
 	}
@@ -260,7 +258,8 @@ long double strtold(const char *restrict nptr, char **restrict endptr)
 	if (val > LDBL_MAX) {
 		errno = ERANGE;
 		return LDBL_MAX;
-	} else if (val < -LDBL_MAX) {
+	}
+	if (val < -LDBL_MAX) {
 		errno = ERANGE;
 		return -LDBL_MAX;
 	}

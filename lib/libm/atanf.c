@@ -13,7 +13,10 @@
  * ====================================================
  */
 
-#include "libm.h"
+#include "libm.h" // for FORCE_EVAL, GET_FLOAT_WORD
+
+#include <math.h>   // for float_t, atanf, fabsf, isnan
+#include <stdint.h> // for uint32_t
 
 static const float atanhi[] = {
 	4.6364760399e-01, /* atan(0.5)hi 0x3eed6338 */

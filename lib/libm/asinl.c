@@ -14,7 +14,11 @@
  * Converted to long double by David Schultz <das@FreeBSD.ORG>.
  */
 
-#include "libm.h"
+#include "libm.h" // for ldshape, ldshape::(anonymous), FORCE_EVAL
+
+#include <float.h>  // for LDBL_MANT_DIG, LDBL_MAX_EXP
+#include <math.h>   // for asinl, fabsl, sqrtl
+#include <stdint.h> // for uint16_t
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
 long double asinl(long double x)
@@ -22,10 +26,10 @@ long double asinl(long double x)
 	return asin(x);
 }
 #elif (LDBL_MANT_DIG == 64 || LDBL_MANT_DIG == 113) && LDBL_MAX_EXP == 16384
-#include "__invtrigl.h"
+#include "__invtrigl.h" // for __invtrigl_R, pio2_hi, pio2_lo
 #if LDBL_MANT_DIG == 64
-#define CLOSETO1(u)    (u.i.m >> 56 >= 0xf7)
-#define CLEARBOTTOM(u) (u.i.m &= -1ULL << 32)
+#define CLOSETO1(u)    ((u).i.m >> 56 >= 0xf7)
+#define CLEARBOTTOM(u) ((u).i.m &= -1ULL << 32)
 #elif LDBL_MANT_DIG == 113
 #define CLOSETO1(u)    (u.i.top >= 0xee00)
 #define CLEARBOTTOM(u) (u.i.lo = 0)

@@ -1,7 +1,7 @@
-#include <libc.h>
-#include <termios.h>
-#include <syscall.h>
 #include <asm-generic/ioctls.h>
+#include <libc.h>
+#include <syscall.h>
+#include <termios.h>
 
 int tcsendbreak(int fildes, int __unused duration)
 {

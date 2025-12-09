@@ -1,4 +1,4 @@
-#include <signal.h>
+#include <signal.h> // for sigaction, sigemptyset, sighandler_t, SIG_ERR
 
 sighandler_t sysv_signal(int signum, sighandler_t handler)
 {

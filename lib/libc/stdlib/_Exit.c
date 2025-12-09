@@ -1,4 +1,4 @@
-#include <unistd.h>
+#include <unistd.h> // for _exit
 
 _Noreturn void _Exit(int status)
 {

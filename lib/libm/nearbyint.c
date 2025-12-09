@@ -1,5 +1,7 @@
-#include <fenv.h>
-#include <math.h>
+
+
+#include <fenv.h> // for feclearexcept, fetestexcept
+#include <math.h> // for nearbyint, rint
 
 /* nearbyint is the same as rint, but it must not raise the inexact exception */
 

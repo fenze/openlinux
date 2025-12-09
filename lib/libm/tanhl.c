@@ -1,4 +1,8 @@
-#include "libm.h"
+#include "libm.h" // for ldshape, ldshape::(anonymous)
+
+#include <float.h>  // for LDBL_MANT_DIG, LDBL_MAX_EXP
+#include <math.h>   // for expm1l, tanhl
+#include <stdint.h> // for uint32_t
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
 long double tanhl(long double x)

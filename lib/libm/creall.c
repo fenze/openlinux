@@ -1,4 +1,6 @@
-#include "__complex.h"
+#include "__complex.h" // for REAL_PART, long_double_complex
+
+#include <complex.h> // for creall, complex
 
 long double creall(long double complex z)
 {

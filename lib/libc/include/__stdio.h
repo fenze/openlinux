@@ -1,12 +1,12 @@
-#ifndef __LIBC_IO
-#define __LIBC_IO
+#ifndef __LIBC_STDIO_H__
+#define __LIBC_STDIO_H__
 
+#include <stdatomic.h>
 #include <stddef.h>
+#include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdint.h>
 #include <sys/types.h>
-#include <stdatomic.h>
 
 typedef __SIZE_TYPE__ size_t;
 
@@ -30,6 +30,8 @@ struct __FILE {
 	off_t offset;
 	struct __FILE *next;
 };
+
+#define __FILE(__stream) ((struct __FILE *)(__stream))
 
 void __libc_fadd(struct __FILE *f);
 

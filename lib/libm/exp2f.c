@@ -5,10 +5,11 @@
  * SPDX-License-Identifier: MIT
  */
 
-#include <math.h>
-#include <stdint.h>
-#include "libm.h"
-#include "exp2f_data.h"
+#include "exp2f_data.h" // for __exp2f_data, exp2f_data, EXP2F_TABLE_BITS
+#include "libm.h"	// for asuint, __math_oflowf, __math_uflowf, eval_a...
+
+#include <math.h>   // for double_t, INFINITY, exp2f
+#include <stdint.h> // for uint32_t, uint64_t
 
 /*
 EXP2F_TABLE_BITS = 5

@@ -12,7 +12,10 @@
  *
  * Optimized by Bruce D. Evans.
  */
-#include "libm.h"
+#include "libm.h" // for ldshape, ldshape::(anonymous), __rem_pio2_large
+
+#include <float.h>  // for LDBL_MANT_DIG, LDBL_EPSILON, LDBL_MAX_EXP
+#include <stdint.h> // for int32_t, uint32_t
 #if (LDBL_MANT_DIG == 64 || LDBL_MANT_DIG == 113) && LDBL_MAX_EXP == 16384
 /* ld80 and ld128 version of __rem_pio2(x,y)
  *
@@ -24,10 +27,10 @@ static const long double toint = 1.5 / LDBL_EPSILON;
 
 #if LDBL_MANT_DIG == 64
 /* u ~< 0x1p25*pi/2 */
-#define SMALL(u)                                    \
-	(((u.i.se & 0x7fffU) << 16 | u.i.m >> 48) < \
+#define SMALL(u)                                        \
+	((((u).i.se & 0x7fffU) << 16 | (u).i.m >> 48) < \
 	 ((0x3fff + 25) << 16 | 0x921f >> 1 | 0x8000))
-#define QUOBITS(x) ((uint32_t)(int32_t)x & 0x7fffffff)
+#define QUOBITS(x) ((uint32_t)(int32_t)(x) & 0x7fffffff)
 #define ROUND1	   22
 #define ROUND2	   61
 #define NX	   3

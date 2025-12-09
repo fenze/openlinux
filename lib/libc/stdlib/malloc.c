@@ -1,13 +1,14 @@
-#include <atomic.h>
-#include <features.h>
-#include <libc.h>
-#include <malloc.h>
-#include <linux/errno.h>
-#include <stdatomic.h>
-#include <stdint.h>
-#include <string.h>
-#include <sys/mman.h>
-#include <unistd.h>
+#include "stddef.h" // for NULL
+
+#include <atomic.h>    // for LIBC_UNLOCK, LIBC_LOCK
+#include <features.h>  // for __weak
+#include <libc.h>      // for (anonymous struct)::(anonymous), (anonymous)
+#include <malloc.h>    // for page, page::(anonymous), class, global_size_c...
+#include <stdatomic.h> // for atomic_flag_clear
+#include <stdint.h>    // for uint32_t, uint8_t, uintptr_t
+#include <stdlib.h>    // for malloc
+#include <string.h>    // for memset
+#include <sys/mman.h>  // for size_t, mmap, munmap, MAP_ANONYMOUS, MAP_FAILED
 
 struct page *__malloc_pvec = NULL;
 

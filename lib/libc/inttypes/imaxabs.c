@@ -1,4 +1,5 @@
-#include <stdint.h> // for intmax_t
+#include <inttypes.h> // for imaxabs
+#include <stdint.h>   // for intmax_t
 
 intmax_t imaxabs(intmax_t j)
 {

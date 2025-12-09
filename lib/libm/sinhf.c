@@ -1,4 +1,7 @@
-#include "libm.h"
+#include "libm.h" // for __expo2f
+
+#include <math.h>   // for expm1f, sinhf
+#include <stdint.h> // for uint32_t
 
 float sinhf(float x)
 {

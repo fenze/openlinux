@@ -1,4 +1,7 @@
-#include "__complex.h"
+#include "__complex.h" // for ctansl
+
+#include <complex.h> // for cimagl, complex, creall, I, ctanl
+#include <math.h>    // for HUGE_VALL, coshl, cosl, fabsl, sinhl, sinl
 
 long double complex ctanl(long double complex z)
 {

@@ -1,4 +1,4 @@
-#include <complex.h>
+#include <complex.h> // for I, cimag, creal, complex, casin, clog, csqrt
 
 double complex casin(double complex z)
 {

@@ -1,6 +1,8 @@
-#include <time.h>
-#include <libc.h>
-#include <string.h>
+#include "features.h" // for __weak
+
+#include <libc.h>   // for __unused
+#include <string.h> // for strlcpy, strlen
+#include <time.h>   // for tm, size_t, locale_t, strftime, strftime_l
 
 static size_t append_string(char *restrict *s, size_t *remaining,
 			    const char *str)
@@ -34,15 +36,18 @@ static size_t format_int(char *restrict *s, size_t *remaining, int value,
 	*ptr = '\0';
 
 	int negative = 0;
+	unsigned int uvalue;
 	if (value < 0) {
 		negative = 1;
-		value = -value;
+		uvalue = (unsigned int)(-value);
+	} else {
+		uvalue = (unsigned int)value;
 	}
 
 	do {
-		*--ptr = '0' + (value % 10);
-		value /= 10;
-	} while (value > 0);
+		*--ptr = (char)('0' + (uvalue % 10));
+		uvalue /= 10;
+	} while (uvalue > 0);
 
 	if (negative) {
 		*--ptr = '-';
@@ -50,9 +55,9 @@ static size_t format_int(char *restrict *s, size_t *remaining, int value,
 		*--ptr = '+';
 	}
 
-	int len = (buffer + sizeof(buffer) - 1) - ptr;
+	size_t len = (size_t)((buffer + sizeof(buffer) - 1) - ptr);
 
-	while (len < width) {
+	while ((int)len < width) {
 		*--ptr = pad;
 		len++;
 	}
@@ -497,8 +502,8 @@ size_t strftime(char *restrict s, size_t maxsize, const char *restrict format,
 				sign = '-';
 				offset = -offset;
 			}
-			int hours = offset / 3600;
-			int minutes = (offset % 3600) / 60;
+			int hours = (int)(offset / 3600);
+			int minutes = (int)((offset % 3600) / 60);
 			if (!append_char(&s, &remaining, sign) ||
 			    !format_int(&s, &remaining, hours, 2, '0', 0) ||
 			    !format_int(&s, &remaining, minutes, 2, '0', 0)) {

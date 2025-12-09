@@ -33,7 +33,10 @@
  * Function needed: sqrt
  */
 
-#include "libm.h"
+#include "libm.h" // for GET_HIGH_WORD, GET_LOW_WORD, SET_LOW_WORD
+
+#include <math.h>   // for sqrt, acos, double_t
+#include <stdint.h> // for uint32_t
 
 static const double pio2_hi = 1.57079632679489655800e+00, /* 0x3FF921FB,
 							     0x54442D18 */

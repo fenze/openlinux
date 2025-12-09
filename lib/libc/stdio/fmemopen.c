@@ -1,10 +1,9 @@
-#include "__stdio.h"  // for __libc_fadd
+#include "__stdio.h"  // for __FILE, __libc_fadd
 #include "features.h" // for __weak
 #include "stddef.h"   // for NULL
 
 #include <errno.h>  // for EINVAL, errno
 #include <fcntl.h>  // for O_WRONLY, O_CREAT, O_RDONLY, O_APPEND, O_RDWR
-#include <libc.h>   // for __IMPL
 #include <stdio.h>  // for FILE, _IOFBF, fmemopen, size_t
 #include <stdlib.h> // for calloc, free
 #include <string.h> // for strchr
@@ -21,10 +20,10 @@ FILE *fmemopen(void *restrict buf, size_t max_size, const char *restrict mode)
 	if (stream == NULL)
 		return stream;
 
-	__IMPL(stream)->fd = -1;
-	__IMPL(stream)->buf = buf;
-	__IMPL(stream)->buf_size = max_size;
-	__IMPL(stream)->type = _IOFBF;
+	__FILE(stream)->fd = -1;
+	__FILE(stream)->buf = buf;
+	__FILE(stream)->buf_size = max_size;
+	__FILE(stream)->type = _IOFBF;
 
 	if (mode[0] == 'r') {
 		flags = O_RDONLY;
@@ -42,7 +41,7 @@ FILE *fmemopen(void *restrict buf, size_t max_size, const char *restrict mode)
 		flags = (flags & ~(O_RDONLY | O_WRONLY)) | O_RDWR;
 	}
 
-	__IMPL(stream)->flags = flags;
+	__FILE(stream)->flags = flags;
 
 	__libc_fadd(stream);
 

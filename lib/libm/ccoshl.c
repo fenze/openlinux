@@ -1,5 +1,5 @@
-#include <math.h>
-#include <complex.h>
+#include <complex.h> // for ccoshl, cimagl, complex, creall, I
+#include <math.h>    // for coshl, cosl, sinhl, sinl
 
 long double complex ccoshl(long double complex z)
 {

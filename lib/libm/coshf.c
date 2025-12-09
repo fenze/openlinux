@@ -1,4 +1,7 @@
-#include "libm.h"
+#include "libm.h" // for __expo2f, FORCE_EVAL
+
+#include <math.h>   // for coshf, expf, expm1f
+#include <stdint.h> // for uint32_t
 
 float coshf(float x)
 {

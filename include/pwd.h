@@ -1,6 +1,7 @@
 #ifndef __PWD_H
 #define __PWD_H
 
+#include <stddef.h>
 typedef __SIZE_TYPE__ size_t;
 typedef __UINT32_TYPE__ gid_t;
 typedef __UINT32_TYPE__ uid_t;

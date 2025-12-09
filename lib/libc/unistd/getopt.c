@@ -56,7 +56,7 @@ int getopt(int argc, char *const argv[], const char *optstring)
 	} while (d && d != c);
 
 	if (d != c || c == ':') {
-		optopt = c;
+		optopt = (unsigned char)c;
 		if (optstring[0] != ':' && opterr) {
 			struct iovec iov[4];
 			char opt_char[2] = { *optchar, '\0' };
@@ -85,7 +85,7 @@ int getopt(int argc, char *const argv[], const char *optstring)
 			optpos = 0;
 		}
 		if (optind > argc) {
-			optopt = c;
+			optopt = (unsigned char)c;
 			if (optstring[0] == ':') {
 				return ':';
 			}

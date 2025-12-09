@@ -1,6 +1,7 @@
-#include <stdbool.h>
-#include <float.h>
-#include "__complex.h"
+#include <complex.h> // for complex, I, cimagl, creall, csqrtl
+#include <float.h>   // for LDBL_MAX
+#include <math.h>    // for fabsl, copysignl, hypotl, sqrtl, isinf, INFINITY
+#include <stdbool.h> // for bool, false, true
 
 #define THRESH	     (LDBL_MAX / 2.414213562373095048801688724209698L)
 #define cpackl(r, i) ((r) + (i) * (long double complex)I)
@@ -31,8 +32,7 @@ long double complex csqrtl(long double complex z)
 		 */
 		if (signbit(a))
 			return (cpackl(fabsl(b - b), copysignl(a, b)));
-		else
-			return (cpackl(a, copysignl(b - b, b)));
+		return (cpackl(a, copysignl(b - b, b)));
 	}
 	/*
 	 * The remaining special case (b is NaN) is handled just fine by
@@ -57,6 +57,5 @@ long double complex csqrtl(long double complex z)
 	/* Rescale. */
 	if (scale)
 		return (result * 2.0L);
-	else
-		return (result);
+	return (result);
 }

@@ -1,6 +1,8 @@
 #ifndef __STDIO_H
 #define __STDIO_H
 
+#include <stddef.h>
+#include <stdio.h>
 #define __BITS_ERRNO_H_
 #include <bits/errno.h>
 

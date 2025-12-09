@@ -1,5 +1,5 @@
-#include <math.h>
-#include <stdint.h>
+#include <math.h>   // for remquof, isnan
+#include <stdint.h> // for uint32_t
 
 float remquof(float x, float y, int *quo)
 {

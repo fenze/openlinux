@@ -1,5 +1,5 @@
-#include <math.h>
-#include <complex.h>
+#include <complex.h> // for cabsf, cimagf, crealf, complex
+#include <math.h>    // for hypotf
 
 float cabsf(float complex z)
 {

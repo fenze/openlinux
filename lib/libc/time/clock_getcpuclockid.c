@@ -1,5 +1,5 @@
-#include <time.h>
-#include <syscall.h>
+#include <syscall.h> // for __syscall_2, syscall
+#include <time.h>    // for clockid_t, clock_getcpuclockid, pid_t
 
 int clock_getcpuclockid(pid_t pid, clockid_t *clock_id)
 {
@@ -7,7 +7,7 @@ int clock_getcpuclockid(pid_t pid, clockid_t *clock_id)
 	clockid_t id;
 	struct timespec ts;
 
-	id = (-pid - 1) * 8U + 2;
+	id = (clockid_t)((-pid - 1) * 8U + 2);
 	ret = syscall(clock_getres, id, &ts);
 
 	if (ret >= 0) {

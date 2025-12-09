@@ -1,6 +1,7 @@
 #ifndef __SYS_TIMES_H
 #define __SYS_TIMES_H
 
+#include <time.h>
 typedef __INT64_TYPE__ clock_t;
 
 struct tms {

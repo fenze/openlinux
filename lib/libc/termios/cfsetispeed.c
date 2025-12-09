@@ -1,5 +1,6 @@
-#include <errno.h>
+#include "asm-generic/termbits-common.h"
 #include <asm-generic/termbits.h>
+#include <errno.h>
 
 int cfsetispeed(struct termios *termios_p, speed_t speed)
 {

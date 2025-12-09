@@ -2,6 +2,7 @@
 #define __SETJMP_H
 
 #include <bits/setjmp.h>
+#include <setjmp.h>
 
 typedef jmp_buf sigjmp_buf;
 

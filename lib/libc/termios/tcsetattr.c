@@ -1,7 +1,7 @@
-#include <termios.h>
-#include <syscall.h>
 #include <asm-generic/ioctls.h>
 #include <errno.h>
+#include <syscall.h>
+#include <termios.h>
 
 int tcsetattr(int fildes, int optional_actions, const struct termios *termios_p)
 {

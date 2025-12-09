@@ -1,5 +1,7 @@
-#include <math.h>
-#include "__complex.h"
+#include "__complex.h" // for M_IVLN10
+
+#include <complex.h> // for complex, cabs, cimag, creal, I
+#include <math.h>    // for atan2, log10
 
 double complex clog10(double complex z)
 {

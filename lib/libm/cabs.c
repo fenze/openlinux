@@ -1,5 +1,5 @@
-#include <math.h>
-#include <complex.h>
+#include <complex.h> // for cabs, cimag, creal, complex
+#include <math.h>    // for hypot
 
 double cabs(double complex z)
 {

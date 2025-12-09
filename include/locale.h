@@ -1,6 +1,7 @@
 #ifndef __LOCALE_H
 #define __LOCALE_H
 
+#include <locale.h>
 #undef NULL
 #define NULL ((void *)0)
 

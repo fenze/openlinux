@@ -5,8 +5,7 @@
 #ifndef _POWF_DATA_H
 #define _POWF_DATA_H
 
-#include "libm.h"
-#include "exp2f_data.h"
+#include "libm.h" // for TOINT_INTRINSICS, hidden
 
 #define POWF_LOG2_TABLE_BITS 4
 #define POWF_LOG2_POLY_ORDER 5

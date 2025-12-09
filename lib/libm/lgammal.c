@@ -85,8 +85,12 @@
  *
  */
 
+#include <float.h>  // for LDBL_MANT_DIG, LDBL_MAX_EXP
+#include <math.h>   // for logl, floorl, lgammal
+#include <stdint.h> // for uint32_t
+
 #define _GNU_SOURCE
-#include "libm.h"
+#include "libm.h" // for ldshape, __cosl, __sinl, ldshape::(anonymous)
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
 long double __lgammal_r(long double x, int *sg)

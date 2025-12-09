@@ -16,10 +16,12 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+#include "stddef.h" // for NULL
+
 #include <errno.h>  // for ENAMETOOLONG, errno
 #include <libgen.h> // for dirname
 #include <limits.h> // for PATH_MAX
-#include <string.h> // for NULL, memcpy, strlen, size_t
+#include <string.h> // for memcpy, strlen, size_t
 
 char *dirname(char *path)
 {
@@ -48,12 +50,10 @@ char *dirname(char *path)
 		dname[0] = *endp == '/' ? '/' : '.';
 		dname[1] = '\0';
 		return (dname);
-	} else {
-		/* Move forward past the separating slashes */
-		do {
-			endp--;
-		} while (endp > path && *endp == '/');
-	}
+	} /* Move forward past the separating slashes */
+	do {
+		endp--;
+	} while (endp > path && *endp == '/');
 
 	len = endp - path + 1;
 	if (len >= sizeof(dname)) {

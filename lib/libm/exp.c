@@ -5,10 +5,11 @@
  * SPDX-License-Identifier: MIT
  */
 
-#include <math.h>
-#include <stdint.h>
-#include "libm.h"
-#include "exp_data.h"
+#include "exp_data.h" // for __exp_data, exp_data, EXP_POLY_ORDER, EXP_TABL...
+#include "libm.h"     // for eval_as_double, asuint64, asdouble, WANT_ROUNDING
+
+#include <math.h>   // for double_t, INFINITY, exp
+#include <stdint.h> // for uint64_t, uint32_t
 
 #define N	  (1 << EXP_TABLE_BITS)
 #define InvLn2N	  __exp_data.invln2N
@@ -91,8 +92,7 @@ double exp(double x)
 				return 1.0 + x;
 			if (asuint64(x) >> 63)
 				return __math_uflow(0);
-			else
-				return __math_oflow(0);
+			return __math_oflow(0);
 		}
 		/* Large x is special cased below.  */
 		abstop = 0;

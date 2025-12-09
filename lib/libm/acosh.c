@@ -1,4 +1,6 @@
-#include "libm.h"
+#include <float.h>  // for FLT_EVAL_METHOD
+#include <math.h>   // for log, sqrt, acosh, log1p
+#include <stdint.h> // for uint64_t
 
 #if FLT_EVAL_METHOD == 2
 #undef sqrt

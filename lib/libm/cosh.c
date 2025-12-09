@@ -1,4 +1,7 @@
-#include "libm.h"
+#include "libm.h" // for __expo2, FORCE_EVAL
+
+#include <math.h>   // for cosh, exp, expm1
+#include <stdint.h> // for uint64_t, uint32_t
 
 /* cosh(x) = (exp(x) + 1/exp(x))/2
  *         = 1 + 0.5*(exp(x)-1)*(exp(x)-1)/exp(x)

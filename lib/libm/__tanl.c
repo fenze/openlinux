@@ -11,7 +11,10 @@
  * ====================================================
  */
 
-#include "libm.h"
+#include "libm.h" // for __tanl
+
+#include <float.h> // for LDBL_MANT_DIG, LDBL_MAX_EXP
+#include <math.h>  // for fabsl
 
 #if (LDBL_MANT_DIG == 64 || LDBL_MANT_DIG == 113) && LDBL_MAX_EXP == 16384
 #if LDBL_MANT_DIG == 64
@@ -44,14 +47,18 @@ static const double T9 = 0.021869488536312216, /*  0x1664f4882cc1c2.0p-58 */
 	T29 = 0.0000078293456938132840,	       /*  0x106b59141a6cb3.0p-69 */
 	T31 = -0.0000032609076735050182,       /* -0x1b5abef3ba4b59.0p-71 */
 	T33 = 0.0000023261313142559411;	       /*  0x13835436c0c87f.0p-71 */
-#define RPOLY(w)         \
-	(T5 +            \
-	 w * (T9 +       \
-	      w * (T13 + \
-		   w * (T17 + w * (T21 + w * (T25 + w * (T29 + w * T33)))))))
-#define VPOLY(w) \
-	(T7 +    \
-	 w * (T11 + w * (T15 + w * (T19 + w * (T23 + w * (T27 + w * T31))))))
+#define RPOLY(w)                                       \
+	(T5 +                                          \
+	 (w) * (T9 + (w) * (T13 +                      \
+			    (w) * (T17 +               \
+				   (w) * (T21 +        \
+					  (w) * (T25 + \
+						 (w) * (T29 + (w) * T33)))))))
+#define VPOLY(w)             \
+	(T7 +                \
+	 (w) * (T11 +        \
+		(w) * (T15 + \
+		       (w) * (T19 + (w) * (T23 + (w) * (T27 + (w) * T31))))))
 #elif LDBL_MANT_DIG == 113
 /*
  * ld128 version of __tan.c.  See __tan.c for most comments.

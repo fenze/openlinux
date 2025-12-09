@@ -1,5 +1,4 @@
 #include <signal.h>
-#include <unistd.h>
 
 const char *const sys_sigabbrev[64] = {
 	[SIGABRT] = "ABRT",   [SIGALRM] = "ALRM",     [SIGBUS] = "BUS",

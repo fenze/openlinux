@@ -1,5 +1,7 @@
 #include <linux/elf.h> // for Elf64_Sym, (anonymous struct)::(anonymous)
-#include <string.h>    // for NULL, strcmp
+#include "stddef.h"    // for NULL
+
+#include <string.h> // for strcmp
 
 struct timespec;
 

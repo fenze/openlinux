@@ -1,4 +1,5 @@
-#include "libm.h"
+#include <math.h>   // for modff
+#include <stdint.h> // for uint32_t
 
 float modff(float x, float *iptr)
 {

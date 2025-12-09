@@ -1,5 +1,8 @@
-#include <float.h>
-#include "__complex.h"
+#include "__complex.h" // for redupil
+
+#include <complex.h> // for complex, I, catanl, cimagl, creall
+#include <float.h>   // for LDBL_MAX
+#include <math.h>    // for atan2l, logl
 
 long double complex catanl(long double complex z)
 {

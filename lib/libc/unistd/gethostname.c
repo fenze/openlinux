@@ -1,3 +1,4 @@
+#include <stddef.h>
 #include <unistd.h> // for gethostname, size_t
 
 int gethostname(char *name, size_t namelen)

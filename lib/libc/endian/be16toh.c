@@ -1,5 +1,5 @@
-#include <endian.h> // for be16toh
-#include <stdint.h> // for uint16_t
+#include <endian.h> // for uint16_t, be16toh
+#include <stdint.h>
 
 uint16_t be16toh(uint16_t big_endian_16bits)
 {

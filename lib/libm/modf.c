@@ -1,4 +1,5 @@
-#include "libm.h"
+#include <math.h>   // for modf
+#include <stdint.h> // for uint64_t
 
 double modf(double x, double *iptr)
 {

@@ -1,4 +1,6 @@
-#include "libm.h"
+#include <float.h>  // for FLT_EVAL_METHOD
+#include <math.h>   // for logf, sqrtf, acoshf, log1pf
+#include <stdint.h> // for uint32_t
 
 #if FLT_EVAL_METHOD == 2
 #undef sqrtf

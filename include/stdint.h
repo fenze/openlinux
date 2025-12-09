@@ -1,6 +1,7 @@
 #ifndef __STDINT_H
 #define __STDINT_H
 
+#include <stdint.h>
 #undef WCHAR_MAX
 #undef WCHAR_MIN
 #if L'\0' - 1 > 0

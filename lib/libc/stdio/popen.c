@@ -1,10 +1,10 @@
 #include "stddef.h" // for NULL
 
-#include <errno.h>  // for EINVAL, errno
-#include <fcntl.h>  // for O_RDONLY, O_CLOEXEC, O_WRONLY
-#include <libc.h>   // for __IMPL
-#include <stdio.h>  // for FILE, fclose, fdopen, popen
-#include <unistd.h> // for close, dup2, _exit, execl, fork, pipe2, STDIN_FI...
+#include <__stdio.h> // for __FILE
+#include <errno.h>   // for EINVAL, errno
+#include <fcntl.h>   // for O_RDONLY, O_CLOEXEC, O_WRONLY
+#include <stdio.h>   // for FILE, fclose, fdopen, popen
+#include <unistd.h>  // for close, dup2, _exit, execl, fork, pipe2, STDIN_F...
 
 FILE *popen(const char *command, const char *mode)
 {
@@ -41,7 +41,9 @@ FILE *popen(const char *command, const char *mode)
 		close(pipefd[1]);
 		fclose(stream);
 		return NULL;
-	} else if (pid == 0) {
+	}
+
+	if (pid == 0) {
 		if (oflag == O_RDONLY) {
 			dup2(pipefd[1], STDOUT_FILENO);
 			close(pipefd[0]);
@@ -51,7 +53,7 @@ FILE *popen(const char *command, const char *mode)
 			close(pipefd[0]);
 			close(pipefd[1]);
 		}
-		execl("/bin/sh", "sh", "-c", command, (char *)NULL);
+		execl("/bin/sh", "sh", "-c", command, (char *)0);
 		_exit(127);
 	} else {
 		if (oflag == O_RDONLY) {
@@ -60,7 +62,7 @@ FILE *popen(const char *command, const char *mode)
 			close(pipefd[0]);
 		}
 
-		__IMPL(stream)->pid = pid;
+		__FILE(stream)->pid = pid;
 
 		return stream;
 	}

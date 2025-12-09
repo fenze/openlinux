@@ -12,7 +12,9 @@
  * ====================================================
  */
 
-#include "libm.h"
+#include "libm.h" // for __sinl
+
+#include <float.h> // for LDBL_MANT_DIG, LDBL_MAX_EXP
 
 #if (LDBL_MANT_DIG == 64 || LDBL_MANT_DIG == 113) && LDBL_MAX_EXP == 16384
 #if LDBL_MANT_DIG == 64
@@ -35,8 +37,10 @@ static const double S2 = 0.0083333333333333332, /*  0x11111111111111.0p-59 */
 	S6 = 1.6059006598854211e-10,		/*  0x161242b90243b5.0p-85 */
 	S7 = -7.6429779983024564e-13,		/* -0x1ae42ebd1b2e00.0p-93 */
 	S8 = 2.6174587166648325e-15;		/*  0x179372ea0b3f64.0p-101 */
-#define POLY(z) \
-	(S2 + z * (S3 + z * (S4 + z * (S5 + z * (S6 + z * (S7 + z * S8))))))
+#define POLY(z)      \
+	(S2 +        \
+	 (z) * (S3 + \
+		(z) * (S4 + (z) * (S5 + (z) * (S6 + (z) * (S7 + (z) * S8))))))
 #elif LDBL_MANT_DIG == 113
 /*
  * ld128 version of __sin.c.  See __sin.c for most comments.

@@ -1,5 +1,8 @@
-#include <float.h>
-#include "__complex.h"
+#include "__complex.h" // for redupi
+
+#include <complex.h> // for complex, I, catan, cimag, creal
+#include <float.h>   // for DBL_MAX
+#include <math.h>    // for atan2, log
 
 double complex catan(double complex z)
 {

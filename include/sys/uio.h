@@ -1,6 +1,7 @@
 #ifndef __SYS_UIO_H
 #define __SYS_UIO_H
 
+#include <stddef.h>
 typedef __SIZE_TYPE__ size_t;
 typedef __INT64_TYPE__ ssize_t;
 

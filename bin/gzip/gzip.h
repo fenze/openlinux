@@ -19,9 +19,9 @@ typedef char *voidp;
 /* I don't like nested includes, but the string and io functions are used
  * too often
  */
-#include <stdio.h>
-#include <string.h>
-#include <time.h>
+#include <stdio.h> // for fprintf, FILE
+#include <time.h>  // for time_t
+
 #define memzero(s, n) memset((voidp)(s), 0, (n))
 
 #define local static

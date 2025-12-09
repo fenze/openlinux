@@ -1,4 +1,7 @@
-#include "libm.h"
+#include "libm.h" // for __expo2
+
+#include <math.h>   // for expm1, sinh
+#include <stdint.h> // for uint64_t, uint32_t
 
 /* sinh(x) = (exp(x) - 1/exp(x))/2
  *         = (exp(x)-1 + (exp(x)-1)/exp(x))/2

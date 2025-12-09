@@ -1,4 +1,8 @@
-#include "libm.h"
+#include "libm.h" // for FORCE_EVAL
+
+#include <float.h>  // for DBL_EPSILON, FLT_EVAL_METHOD
+#include <math.h>   // for ceil, double_t
+#include <stdint.h> // for uint64_t
 
 #if FLT_EVAL_METHOD == 0 || FLT_EVAL_METHOD == 1
 #define EPS DBL_EPSILON

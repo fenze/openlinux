@@ -1,6 +1,7 @@
 #ifndef __POLL_H
 #define __POLL_H
 
+#include <time.h>
 #define POLLIN	   0x0001
 #define POLLRDNORM 0x0040
 #define POLLRDBAND 0x0080

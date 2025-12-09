@@ -1,4 +1,4 @@
-#include <math.h>
+#include <math.h> // for lrintf, rintf
 
 /* uses LONG_MAX > 2^24, see comments in lrint.c */
 

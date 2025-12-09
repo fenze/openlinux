@@ -1,6 +1,9 @@
-#include <limits.h>
-#include <fenv.h>
-#include "libm.h"
+
+
+#include <fenv.h>   // for feclearexcept, fetestexcept
+#include <float.h>  // for LDBL_MANT_DIG, LDBL_MAX_EXP
+#include <limits.h> // for LLONG_MAX, LLONG_MIN
+#include <math.h>   // for llrintl, rintl
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
 long long llrintl(long double x)

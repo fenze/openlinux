@@ -1,8 +1,8 @@
 #include "stddef.h" // for NULL
 
-#include <errno.h> // for EINVAL, errno
-#include <libc.h>  // for __IMPL
-#include <stdio.h> // for EOF, fwrite, FILE, fputc
+#include <__stdio.h> // for __FILE
+#include <errno.h>   // for EINVAL, errno
+#include <stdio.h>   // for EOF, fwrite, FILE, fputc
 
 int fputc(int c, FILE *stream)
 {
@@ -11,12 +11,13 @@ int fputc(int c, FILE *stream)
 		return EOF;
 	}
 
-	if (__IMPL(stream)->fd == -1 && __IMPL(stream)->buf != NULL) {
-		if (__IMPL(stream)->buf_len >= __IMPL(stream)->buf_size - 1) {
+	if ((__FILE(stream))->fd == -1 && (__FILE(stream))->buf != NULL) {
+		if ((__FILE(stream))->buf_len >=
+		    (__FILE(stream))->buf_size - 1) {
 			return EOF;
 		}
 
-		__IMPL(stream)->buf[__IMPL(stream)->buf_len++] = (char)c;
+		(__FILE(stream))->buf[(__FILE(stream))->buf_len++] = (char)c;
 		return (unsigned char)c;
 	}
 

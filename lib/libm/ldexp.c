@@ -1,4 +1,4 @@
-#include <math.h>
+#include <math.h> // for ldexp, scalbn
 
 double ldexp(double x, int n)
 {

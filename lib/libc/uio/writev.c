@@ -1,9 +1,9 @@
-#include "asm/unistd_64.h" // for __NR_writev
 
 #include <errno.h>     // for errno, EAGAIN, EINTR, EINVAL
 #include <string.h>    // for memcpy
 #include <sys/types.h> // for ssize_t, size_t
 #include <syscall.h>   // for __syscall_3, syscall
+
 
 #include <linux/uio.h> // for iovec, UIO_MAXIOV
 

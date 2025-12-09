@@ -1,4 +1,4 @@
-#include <stdlib.h>
+#include <stdlib.h> // for div_t, div
 
 div_t div(int numer, int denom)
 {

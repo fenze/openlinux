@@ -1,4 +1,7 @@
-#include "libm.h"
+#include "libm.h" // for INSERT_WORDS, __expo2
+
+#include <math.h>   // for exp
+#include <stdint.h> // for uint32_t
 
 /* k is such that k*ln2 has minimal relative error and x - kln2 > log(DBL_MIN)
  */

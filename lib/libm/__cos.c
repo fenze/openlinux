@@ -48,7 +48,9 @@
  *         any extra precision in w.
  */
 
-#include "libm.h"
+#include "libm.h" // for __cos
+
+#include <math.h> // for double_t
 
 static const double C1 = 4.16666666666666019037e-02, /* 0x3FA55555, 0x5555554C
 						      */

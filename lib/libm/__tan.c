@@ -44,7 +44,10 @@
  *                     = 1 - 2*(tan(y) - (tan(y)^2)/(1+tan(y)))
  */
 
-#include "libm.h"
+#include "libm.h" // for SET_LOW_WORD, GET_HIGH_WORD, __tan
+
+#include <math.h>   // for double_t
+#include <stdint.h> // for uint32_t
 
 static const double T[] = {
              3.33333333333334091986e-01, /* 3FD55555, 55555563 */

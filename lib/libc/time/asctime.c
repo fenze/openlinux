@@ -1,5 +1,5 @@
-#include <time.h>
-#include <stdio.h>
+#include <stdio.h> // for snprintf
+#include <time.h>  // for tm, asctime
 
 char *asctime(const struct tm *timeptr)
 {

@@ -1,5 +1,6 @@
-#include <math.h>
-#include "libm.h"
+#include "libm.h" // for __signgam, weak_alias
+
+#include <math.h> // for signgam
 
 int __signgam = 0;
 

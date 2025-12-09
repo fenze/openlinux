@@ -1,5 +1,5 @@
-#include <math.h>
-#include <stdint.h>
+#include <math.h>   // for scalbnf, float_t
+#include <stdint.h> // for uint32_t
 
 float scalbnf(float x, int n)
 {

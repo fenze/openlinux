@@ -5,7 +5,7 @@
 #ifndef _EXP_DATA_H
 #define _EXP_DATA_H
 
-#include <stdint.h>
+#include <stdint.h> // for uint64_t
 
 #define hidden __attribute__((visibility("hidden")))
 

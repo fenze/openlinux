@@ -1,7 +1,7 @@
-#include <stdlib.h>
-#include <errno.h>
-#include <linux/errno.h>
-#include <malloc.h>
+#include "stddef.h" // for NULL
+
+#include <errno.h>  // for ENOMEM, errno
+#include <stdlib.h> // for size_t, realloc, reallocarray
 
 void *reallocarray(void *ptr, size_t nmemb, size_t size)
 {

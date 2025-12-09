@@ -1,6 +1,6 @@
-#include <string.h>
-#include <unistd.h>
-#include <sys/uio.h>
+#include <string.h>  // for strlen
+#include <sys/uio.h> // for iovec, writev
+#include <unistd.h>  // for STDOUT_FILENO
 
 int main(int argc, char **argv)
 {

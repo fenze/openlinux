@@ -4,21 +4,21 @@
  * terms of the GNU General Public License, see the file COPYING.
  */
 
+#include "stddef.h" // for NULL
+
+#include <stdio.h>  // for fprintf, stderr, EOF, perror, FILE
+#include <string.h> // for strspn, strcpy, strcspn, strlen, strrchr
 #ifdef RCSID
 static char rcsid[] = "$Id: util.c,v 1.1 2002/08/18 00:59:21 hpa Exp $";
 #endif
 
-#include <ctype.h>
-#include <errno.h>
-#include <sys/types.h>
+#include "gzip.h"   // for insize, outcnt, ulg, abort_gzip, bytes_out, voidp
+#include "tailor.h" // for PATH_SEP, casemap
 
-#include "tailor.h"
-
-#include <unistd.h>
-#include <fcntl.h>
-#include <stdlib.h>
-
-#include "gzip.h"
+#include <ctype.h>  // for tolower
+#include <errno.h>  // for errno
+#include <stdlib.h> // for calloc, free, getenv, malloc
+#include <unistd.h> // for read, write
 
 extern ulg crc_32_tab[]; /* crc table, defined below */
 

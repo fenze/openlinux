@@ -1,4 +1,5 @@
-#include "__complex.h"
+#include <complex.h> // for complex, I, cabs, cimag, creal, csqrt
+#include <math.h>    // for fabs, sqrt
 
 double complex csqrt(double complex z)
 {
@@ -10,15 +11,13 @@ double complex csqrt(double complex z)
 	if (y == 0.0) {
 		if (x == 0.0) {
 			return 0.0 + y * (double complex)I;
-		} else {
-			r = fabs(x);
-			r = sqrt(r);
-			if (x < 0.0) {
-				return 0.0 + r * (double complex)I;
-			} else {
-				return r + y * (double complex)I;
-			}
 		}
+		r = fabs(x);
+		r = sqrt(r);
+		if (x < 0.0) {
+			return 0.0 + r * (double complex)I;
+		}
+		return r + y * (double complex)I;
 	}
 
 	if (x == 0.0) {
@@ -27,8 +26,7 @@ double complex csqrt(double complex z)
 
 		if (y > 0)
 			return r + r * (double complex)I;
-		else
-			return r - r * (double complex)I;
+		return r - r * (double complex)I;
 	}
 
 	if ((fabs(x) > 4.0) || (fabs(y) > 4.0)) {
@@ -55,6 +53,5 @@ double complex csqrt(double complex z)
 
 	if (y < 0)
 		return t - r * (double complex)I;
-	else
-		return t + r * (double complex)I;
+	return t + r * (double complex)I;
 }

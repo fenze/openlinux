@@ -1,7 +1,10 @@
-#include <libc.h>
-#include <libc.h>
-#include <unistd.h>
-#include <stdio.h>
+#include "__stdio.h" // for __FILE
+#include "stddef.h"  // for NULL
+
+#include <libc.h>   // for weak_reference
+#include <stdio.h>  // for fflush, stdout, FILE, stderr, stdin
+#include <stdlib.h> // for free, exit
+#include <unistd.h> // for _exit, close, write, STDERR_FILENO
 
 void (*__dummy_atexit_fvec)(void);
 weak_reference(__dummy_atexit_fvec, __atexit_fvec);
@@ -15,16 +18,16 @@ static void __fclose(FILE *stream)
 		return;
 	}
 
-	if (__IMPL(stream)->buf_len > 0) {
+	if (__FILE(stream)->buf_len > 0) {
 		fflush(stream);
 	}
 
-	if (__IMPL(stream)->fd > STDERR_FILENO) {
-		close(__IMPL(stream)->fd);
+	if (__FILE(stream)->fd > STDERR_FILENO) {
+		close(__FILE(stream)->fd);
 	}
 
-	if (__IMPL(stream)->buf) {
-		free(__IMPL(stream)->buf);
+	if (__FILE(stream)->buf) {
+		free(__FILE(stream)->buf);
 	}
 
 	if (stream != stdout && stream != stderr && stream != stdin) {

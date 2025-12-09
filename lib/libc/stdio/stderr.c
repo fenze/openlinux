@@ -2,6 +2,7 @@
 #include "stdatomic.h" // for ATOMIC_FLAG_INIT
 
 #include <fcntl.h>  // for O_WRONLY
+#include <stdio.h>  // for FILE, stderr
 #include <unistd.h> // for STDERR_FILENO
 
 #define BUFSIZ 4096
@@ -19,4 +20,4 @@ struct __FILE __stderr = { .fd = STDERR_FILENO,
 			   .offset = 0,
 			   .lock = ATOMIC_FLAG_INIT };
 
-struct FILE *const stderr = (struct FILE *)&__stderr;
+FILE *const stderr = (FILE *)&__stderr;

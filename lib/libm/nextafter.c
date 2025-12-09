@@ -1,4 +1,7 @@
-#include "libm.h"
+#include "libm.h" // for FORCE_EVAL
+
+#include <math.h>   // for isnan, nextafter
+#include <stdint.h> // for uint64_t
 
 double nextafter(double x, double y)
 {

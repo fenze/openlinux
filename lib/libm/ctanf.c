@@ -1,4 +1,7 @@
-#include "__complex.h"
+#include "__complex.h" // for redupif, MACHEPF
+
+#include <complex.h> // for cimagf, crealf, complex, I, ctanf
+#include <math.h>    // for fabsf, HUGE_VALF, cosf, coshf, sinf, sinhf
 
 static float _ctansf(float complex z)
 {

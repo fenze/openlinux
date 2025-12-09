@@ -1,4 +1,4 @@
-#include <math.h>
+#include <math.h> // for ilogb, logb, isfinite
 
 /*
 special cases:

@@ -1,8 +1,8 @@
 #define _GNU_SOURCE
-#include "libm.h"
+#include "libm.h" // for weak_alias
 
-#include <math.h>
-#include <stdint.h>
+#include <math.h>   // for exp2, modf, pow
+#include <stdint.h> // for uint64_t
 
 double exp10(double x)
 {

@@ -10,6 +10,8 @@ Diagnostics:
       - llvm-*
       - performance-*
       - concurrency-*
+      - misc-*
     Remove:
       - bugprone-reserved-identifier
+      - bugprone-easily-swappable-parameters
       - llvm-header-guard

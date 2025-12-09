@@ -1,4 +1,5 @@
-#include "libm.h"
+#include <math.h>   // for copysign
+#include <stdint.h> // for uint64_t
 
 double copysign(double x, double y)
 {

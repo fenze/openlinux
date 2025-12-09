@@ -1,4 +1,7 @@
-#include "__complex.h"
+#include "__complex.h" // for IMAG_PART, REAL_PART, long_double_complex
+
+#include <complex.h> // for cimagl, complex, cprojl, creall
+#include <math.h>    // for copysignl, isinf, INFINITY
 
 long double complex cprojl(long double complex z)
 {

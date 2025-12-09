@@ -53,8 +53,6 @@
  *
  */
 
-#include <ctype.h>
-
 #include "tailor.h"
 #include "gzip.h"
 
@@ -307,7 +305,7 @@ local void compress_block OF((ct_data * ltree, ct_data *dtree));
 local void set_file_type OF((void));
 
 #ifndef DEBUG
-#define send_code(c, tree) send_bits(tree[c].Code, tree[c].Len)
+#define send_code(c, tree) send_bits((tree)[c].Code, (tree)[c].Len)
 /* Send a code of the given tree. c and tree must not have side effects */
 
 #else /* DEBUG */
@@ -326,7 +324,7 @@ local void set_file_type OF((void));
  * used.
  */
 
-#define MAX(a, b) (a >= b ? a : b)
+#define MAX(a, b) ((a) >= (b) ? (a) : (b))
 /* the arguments must not have side effects */
 
 /* ===========================================================================
@@ -442,7 +440,7 @@ local void init_block()
  */
 #define pqremove(tree, top)                        \
 	{                                          \
-		top = heap[SMALLEST];              \
+		(top) = heap[SMALLEST];            \
 		heap[SMALLEST] = heap[heap_len--]; \
 		pqdownheap(tree, SMALLEST);        \
 	}
@@ -451,9 +449,9 @@ local void init_block()
  * Compares to subtrees, using the tree depth as tie breaker when
  * the subtrees have equal frequency. This minimizes the worst case length.
  */
-#define smaller(tree, n, m)             \
-	(tree[n].Freq < tree[m].Freq || \
-	 (tree[n].Freq == tree[m].Freq && depth[n] <= depth[m]))
+#define smaller(tree, n, m)                 \
+	((tree)[n].Freq < (tree)[m].Freq || \
+	 ((tree)[n].Freq == (tree)[m].Freq && depth[n] <= depth[m]))
 
 /* ===========================================================================
  * Restore the heap property by moving down the tree starting at node k,
@@ -743,7 +741,8 @@ int max_code; /* and its largest code of non zero frequency */
 		nextlen = tree[n + 1].Len;
 		if (++count < max_count && curlen == nextlen) {
 			continue;
-		} else if (count < min_count) {
+		}
+		if (count < min_count) {
 			bl_tree[curlen].Freq += count;
 		} else if (curlen != 0) {
 			if (curlen != prevlen)
@@ -790,7 +789,8 @@ int max_code; /* and its largest code of non zero frequency */
 		nextlen = tree[n + 1].Len;
 		if (++count < max_count && curlen == nextlen) {
 			continue;
-		} else if (count < min_count) {
+		}
+		if (count < min_count) {
 			do {
 				send_code(curlen, bl_tree);
 			} while (--count != 0);

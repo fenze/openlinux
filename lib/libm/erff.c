@@ -13,7 +13,10 @@
  * ====================================================
  */
 
-#include "libm.h"
+#include "libm.h" // for GET_FLOAT_WORD, SET_FLOAT_WORD
+
+#include <math.h>   // for float_t, expf, fabsf, erfcf, erff
+#include <stdint.h> // for uint32_t
 
 static const float erx = 8.4506291151e-01, /* 0x3f58560b */
 	/*

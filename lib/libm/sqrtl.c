@@ -1,7 +1,8 @@
-#include <stdint.h>
-#include <math.h>
-#include <float.h>
-#include "libm.h"
+#include "libm.h" // for ldshape, ldshape::(anonymous), __math_invalidl
+
+#include <float.h>  // for LDBL_MANT_DIG, LDBL_MAX_EXP
+#include <math.h>   // for sqrtl
+#include <stdint.h> // for uint64_t, uint32_t
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
 long double sqrtl(long double x)
@@ -9,7 +10,7 @@ long double sqrtl(long double x)
 	return sqrt(x);
 }
 #elif (LDBL_MANT_DIG == 113 || LDBL_MANT_DIG == 64) && LDBL_MAX_EXP == 16384
-#include "sqrt_data.h"
+#include "sqrt_data.h" // for __rsqrt_tab
 
 #define FENV_SUPPORT 1
 

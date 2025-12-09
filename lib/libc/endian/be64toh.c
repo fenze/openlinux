@@ -1,5 +1,5 @@
-#include <endian.h> // for be64toh
-#include <stdint.h> // for uint64_t
+#include <endian.h> // for uint64_t, be64toh
+#include <stdint.h>
 
 uint64_t be64toh(uint64_t big_endian_64bits)
 {

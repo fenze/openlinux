@@ -15,8 +15,8 @@ WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
 ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR
 IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE. */
 
-#include <stdlib.h>
-#include <stdint.h>
+#include <stdint.h> // for uint64_t
+#include <stdlib.h> // for RAND_MAX, drand48, erand48, jrand48, lrand48
 
 #define UINT64_C(c) ((uint64_t)(c##ULL))
 

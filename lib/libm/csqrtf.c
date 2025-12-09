@@ -1,4 +1,5 @@
-#include "__complex.h"
+#include <complex.h> // for I, complex, cabsf, cimagf, crealf, csqrtf
+#include <math.h>    // for fabsf, sqrtf
 
 float complex csqrtf(float complex z)
 {
@@ -10,11 +11,11 @@ float complex csqrtf(float complex z)
 	if (y == 0.0f) {
 		if (x < 0.0f) {
 			return 0.0f + sqrtf(-x) * I;
-		} else if (x == 0.0f) {
-			return (0.0f + y * I);
-		} else {
-			return sqrtf(x) + y * I;
 		}
+		if (x == 0.0f) {
+			return (0.0f + y * I);
+		}
+		return sqrtf(x) + y * I;
 	}
 
 	if (x == 0.0f) {
@@ -22,8 +23,7 @@ float complex csqrtf(float complex z)
 		r = sqrtf(0.5f * r);
 		if (y > 0)
 			return r + r * I;
-		else
-			return r - r * I;
+		return r - r * I;
 	}
 
 	if ((fabsf(x) > 4.0f) || (fabsf(y) > 4.0f)) {
@@ -50,6 +50,5 @@ float complex csqrtf(float complex z)
 
 	if (y < 0)
 		return t - r * I;
-	else
-		return t + r * I;
+	return t + r * I;
 }

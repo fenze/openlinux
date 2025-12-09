@@ -1,4 +1,5 @@
-#include "__complex.h"
+#include <complex.h> // for complex, I, cabs, carg, cimag, cpow, creal
+#include <math.h>    // for cos, exp, log, pow, sin
 
 double complex cpow(double complex a, double complex z)
 {

@@ -1,5 +1,5 @@
-#include <math.h>
-#include <stdint.h>
+#include <math.h>   // for FP_INFINITE, FP_NAN, FP_NORMAL, FP_SUBNORMAL
+#include <stdint.h> // for uint64_t
 
 int __fpclassify(double x)
 {

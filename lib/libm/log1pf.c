@@ -10,7 +10,10 @@
  * ====================================================
  */
 
-#include "libm.h"
+#include "libm.h" // for FORCE_EVAL
+
+#include <math.h>   // for float_t, log1pf
+#include <stdint.h> // for uint32_t
 
 static const float ln2_hi = 6.9313812256e-01, /* 0x3f317180 */
 	ln2_lo = 9.0580006145e-06,	      /* 0x3717f7d1 */

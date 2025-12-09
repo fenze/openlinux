@@ -1,6 +1,7 @@
 #ifndef __SYS_MMAN_H
 #define __SYS_MMAN_H
 
+#include <stddef.h>
 typedef __SIZE_TYPE__ size_t;
 typedef __INT64_TYPE__ off_t;
 typedef __UINT32_TYPE__ mode_t;

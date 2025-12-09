@@ -1,4 +1,7 @@
-#include "libm.h"
+#include "libm.h" // for SET_FLOAT_WORD, __expo2f
+
+#include <math.h>   // for expf
+#include <stdint.h> // for uint32_t
 
 /* k is such that k*ln2 has minimal relative error and x - kln2 > log(FLT_MIN)
  */

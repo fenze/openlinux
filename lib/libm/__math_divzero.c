@@ -1,4 +1,6 @@
-#include "libm.h"
+#include "libm.h" // for __math_divzero, fp_barrier
+
+#include <stdint.h> // for uint32_t
 
 double __math_divzero(uint32_t sign)
 {

@@ -1,4 +1,3 @@
-#include "asm/unistd_64.h" // for __NR_fcntl, __NR_close
 #include "errno.h"	   // for EINVAL
 
 #include <fcntl.h>   // for F_DUPFD_CLOEXEC, FD_CLOEXEC, F_SETFD, F_D...

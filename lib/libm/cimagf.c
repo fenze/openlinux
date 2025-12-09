@@ -1,4 +1,6 @@
-#include "__complex.h"
+#include "__complex.h" // for IMAG_PART, float_complex
+
+#include <complex.h> // for cimagf, complex
 
 float cimagf(float complex z)
 {

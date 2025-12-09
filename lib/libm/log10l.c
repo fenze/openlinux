@@ -57,7 +57,10 @@
  * log domain:       x < 0; returns MINLOG
  */
 
-#include "libm.h"
+#include "libm.h" // for __p1evll, __polevll
+
+#include <float.h> // for LDBL_MANT_DIG, LDBL_MAX_EXP
+#include <math.h>  // for INFINITY, frexpl, log10l, isnan
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
 long double log10l(long double x)
@@ -102,10 +105,10 @@ static const long double S[4] = {
 };
 /* log10(2) */
 #define L102A 0.3125L
-#define L102B -1.1470004336018804786261e-2L
+#define L102B (-1.1470004336018804786261e-2L)
 /* log10(e) */
 #define L10EA 0.5L
-#define L10EB -6.5705518096748172348871e-2L
+#define L10EB (-6.5705518096748172348871e-2L)
 
 #define SQRTH 0.70710678118654752440L
 

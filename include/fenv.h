@@ -2,6 +2,7 @@
 #define __FENV_H
 
 #include <bits/fenv.h>
+#include <fenv.h>
 
 int feclearexcept(int);
 int fegetenv(fenv_t *);

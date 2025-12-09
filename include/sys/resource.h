@@ -1,6 +1,7 @@
 #ifndef __SYS_RESOURCE_H
 #define __SYS_RESOURCE_H
 
+#include <time.h>
 typedef __INT64_TYPE__ time_t;
 typedef __INT64_TYPE__ suseconds_t;
 

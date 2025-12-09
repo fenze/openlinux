@@ -1,6 +1,8 @@
+#include "stddef.h" // for NULL
+
 #include <errno.h>  // for errno, ENAMETOOLONG, ENOENT
 #include <limits.h> // for PATH_MAX
-#include <stdio.h>  // for NULL, snprintf
+#include <stdio.h>  // for snprintf
 #include <stdlib.h> // for getenv
 #include <string.h> // for strchr, strlen, strstr
 #include <unistd.h> // for execv, execvp
@@ -27,7 +29,8 @@ int execvp(const char *file, char *const argv[])
 		do {
 			char buf[PATH_MAX];
 
-			if ((ptr = strchr(path, ':')) == NULL) {
+			ptr = strchr(path, ':');
+			if (ptr == NULL) {
 				if (snprintf(buf, PATH_MAX, "%s/%s", path,
 					     file) >= PATH_MAX) {
 					errno = ENAMETOOLONG;

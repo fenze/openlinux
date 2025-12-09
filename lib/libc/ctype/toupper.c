@@ -1,6 +1,5 @@
-#include <ctype.h>  // for islower, toupper, toupper_l
-#include <libc.h>   // for __unused
-#include <locale.h> // for locale_t
+#include <ctype.h>     // for islower, toupper, locale_t, toupper_l
+#include <sys/cdefs.h> // for __unused
 
 int toupper(int c)
 {

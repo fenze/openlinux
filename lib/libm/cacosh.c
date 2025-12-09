@@ -1,4 +1,4 @@
-#include <complex.h>
+#include <complex.h> // for csqrt, cacosh, clog, complex
 
 double complex cacosh(double complex z)
 {

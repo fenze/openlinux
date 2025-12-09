@@ -1,5 +1,7 @@
-#include <time.h>
-#include <syscall.h>
+
+
+#include <syscall.h> // for __syscall_2, syscall
+#include <time.h>    // for nanosleep
 
 int nanosleep(const struct timespec *rqtp, struct timespec *rmtp)
 {

@@ -1,4 +1,4 @@
-#include <math.h>
+#include <math.h> // for llrint, rint
 
 /* uses LLONG_MAX > 2^53, see comments in lrint.c */
 

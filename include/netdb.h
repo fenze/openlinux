@@ -1,6 +1,7 @@
 #ifndef __NETDB_H
 #define __NETDB_H
 
+#include <stdint.h>
 #define IPPORT_RESERVED 1024
 
 #define AI_PASSIVE     0x00000001

@@ -1,7 +1,8 @@
-#include <stdint.h>
-#include <math.h>
-#include "libm.h"
-#include "sqrt_data.h"
+#include "libm.h"      // for __math_invalid, asdouble, asuint64, eval_as_d...
+#include "sqrt_data.h" // for __rsqrt_tab
+
+#include <math.h>   // for sqrt
+#include <stdint.h> // for uint64_t, uint32_t
 
 #define FENV_SUPPORT 1
 

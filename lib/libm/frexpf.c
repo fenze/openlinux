@@ -1,5 +1,5 @@
-#include <math.h>
-#include <stdint.h>
+#include <math.h>   // for frexpf
+#include <stdint.h> // for uint32_t
 
 float frexpf(float x, int *e)
 {
@@ -16,7 +16,8 @@ float frexpf(float x, int *e)
 		} else
 			*e = 0;
 		return x;
-	} else if (ee == 0xff) {
+	}
+	if (ee == 0xff) {
 		return x;
 	}
 

@@ -1,4 +1,5 @@
 #include <stddef.h> // for NULL
+#include <string.h> // for strcmp
 
 int strcmp(const char *s1, const char *s2)
 {

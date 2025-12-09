@@ -1,6 +1,7 @@
 #ifndef __ICONV_H
 #define __ICONV_H
 
+#include <stddef.h>
 typedef void *iconv_t;
 typedef __SIZE_TYPE__ size_t;
 

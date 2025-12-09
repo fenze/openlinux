@@ -78,7 +78,10 @@
  *
  */
 
-#include "libm.h"
+#include "libm.h" // for __cos, __sin, __lgamma_r, weak_alias
+
+#include <math.h>   // for log, double_t, floor
+#include <stdint.h> // for uint32_t, uint64_t
 
 static const double pi = 3.14159265358979311600e+00, /* 0x400921FB, 0x54442D18
 						      */

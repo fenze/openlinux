@@ -1,6 +1,7 @@
 #ifndef __NETINET_IN_H
 #define __NETINET_IN_H
 
+#include <stdint.h>
 #define __BITS_IN_ADDR_H_
 #include <bits/in_addr.h>
 #undef __BITS_IN_ADDR_H_

@@ -1,5 +1,8 @@
-#include <float.h>
-#include "__complex.h"
+#include "__complex.h" // for redupif
+
+#include <complex.h> // for complex, I, catanf, cimagf, crealf
+#include <float.h>   // for FLT_MAX
+#include <math.h>    // for atan2f, logf
 
 float complex catanf(float complex z)
 {

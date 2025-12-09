@@ -1,6 +1,7 @@
 #ifndef __UNISTD_H
 #define __UNISTD_H
 
+#include <stddef.h>
 #ifndef NULL
 #define NULL ((void *)0)
 #endif

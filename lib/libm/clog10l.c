@@ -1,4 +1,5 @@
-#include "__complex.h"
+#include <complex.h> // for complex, cabsl, cimagl, creall, I
+#include <math.h>    // for atan2l, log10l
 
 long double complex clog10l(long double complex z)
 {

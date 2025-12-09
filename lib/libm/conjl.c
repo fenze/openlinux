@@ -1,4 +1,6 @@
-#include "__complex.h"
+#include "__complex.h" // for IMAG_PART, long_double_complex
+
+#include <complex.h> // for complex, conjl
 
 long double complex conjl(long double complex z)
 {

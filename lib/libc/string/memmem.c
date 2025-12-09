@@ -1,4 +1,6 @@
-#include <string.h> // for memcmp, size_t, NULL, memmem
+#include "stddef.h" // for NULL
+
+#include <string.h> // for memcmp, size_t, memmem
 
 void *memmem(const void *haystack, size_t haystacklen, const void *needle,
 	     size_t needlelen)

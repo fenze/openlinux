@@ -1,4 +1,7 @@
-#include "libm.h"
+#include "libm.h" // for FORCE_EVAL
+
+#include <math.h>   // for expm1f, tanhf
+#include <stdint.h> // for uint32_t
 
 float tanhf(float x)
 {
@@ -7,7 +10,7 @@ float tanhf(float x)
 		uint32_t i;
 	} u = { .f = x };
 	uint32_t w;
-	int sign;
+	uint32_t sign;
 	float t;
 
 	/* x = |x| */

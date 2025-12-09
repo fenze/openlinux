@@ -1,8 +1,6 @@
-#include "features.h" // for __weak
-
-#include <ctype.h>  // for isupper, tolower, tolower_l
-#include <libc.h>   // for __unused
-#include <locale.h> // for locale_t
+#include <ctype.h>     // for isupper, tolower, tolower_l
+#include <locale.h>    // for locale_t
+#include <sys/cdefs.h> // for __unused, __weak
 
 int tolower(int c)
 {

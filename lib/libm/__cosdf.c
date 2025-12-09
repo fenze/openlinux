@@ -14,7 +14,9 @@
  * ====================================================
  */
 
-#include "libm.h"
+#include "libm.h" // for __cosdf
+
+#include <math.h> // for double_t
 
 /* |cos(x) - c(x)| < 2**-34.1 (~[-5.37e-11, 5.295e-11]). */
 static const double C0 = -0x1ffffffd0c5e81.0p-54, /* -0.499999997251031003120 */

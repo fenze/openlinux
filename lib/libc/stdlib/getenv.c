@@ -1,6 +1,7 @@
-#include <libc.h>
-#include <stddef.h>
-#include <atomic.h>
+#include <atomic.h> // for LIBC_UNLOCK, LIBC_LOCK
+#include <libc.h>   // for (anonymous struct)::(anonymous), (anonymous), libc
+#include <stddef.h> // for NULL
+#include <stdlib.h> // for getenv, secure_getenv
 
 extern char **environ;
 

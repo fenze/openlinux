@@ -1,4 +1,7 @@
-#include "libm.h"
+#include "libm.h" // for FORCE_EVAL
+
+#include <math.h>   // for trunc
+#include <stdint.h> // for uint64_t
 
 double trunc(double x)
 {

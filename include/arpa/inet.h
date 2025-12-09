@@ -1,6 +1,7 @@
 #ifndef __ARPA_INET_H
 #define __ARPA_INET_H
 
+#include <stdint.h>
 #define __BITS_IN_ADDR_H_
 #include <bits/in_addr.h>
 #undef __BITS_IN_ADDR_H_

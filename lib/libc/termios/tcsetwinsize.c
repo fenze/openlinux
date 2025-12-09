@@ -1,6 +1,6 @@
-#include <termios.h>
-#include <syscall.h>
 #include <asm-generic/ioctls.h>
+#include <syscall.h>
+#include <termios.h>
 
 int tcsetwinsize(int fildes, const struct winsize *winsize_p)
 {

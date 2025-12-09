@@ -1,9 +1,7 @@
 #ifndef _LIBM_H
 #define _LIBM_H
 
-#include <asm/fpmath.h>
 #include <float.h>
-#include <math.h>
 #include <stdint.h>
 
 #define hidden __attribute__((visibility("hidden")))
@@ -346,6 +344,6 @@ hidden long double __math_invalidl(long double);
 #endif
 
 #define weak_alias(old, new) \
-	extern __typeof(old) new __attribute__((__weak__, __alias__(#old)))
+	extern __typeof(old)(new) __attribute__((__weak__, __alias__(#old)))
 
 #endif

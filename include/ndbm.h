@@ -1,6 +1,7 @@
 #ifndef __NDBM_H
 #define __NDBM_H
 
+#include <stddef.h>
 #define DBM_INSERT  0
 #define DBM_REPLACE 1
 

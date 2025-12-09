@@ -13,7 +13,10 @@
  * ====================================================
  */
 
-#include "libm.h"
+#include "libm.h" // for GET_FLOAT_WORD
+
+#include <math.h>   // for atanf, atan2f, fabsf, isnan
+#include <stdint.h> // for uint32_t
 
 static const float pi = 3.1415927410e+00, /* 0x40490fdb */
 	pi_lo = -8.7422776573e-08;	  /* 0xb3bbbd2e */

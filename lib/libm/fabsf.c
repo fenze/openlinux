@@ -1,5 +1,5 @@
-#include <math.h>
-#include <stdint.h>
+#include <math.h>   // for fabsf
+#include <stdint.h> // for uint32_t
 
 float fabsf(float x)
 {

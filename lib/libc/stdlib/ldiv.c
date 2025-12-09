@@ -1,4 +1,4 @@
-#include <stdlib.h>
+#include <stdlib.h> // for ldiv_t, ldiv
 
 ldiv_t ldiv(long numer, long denom)
 {

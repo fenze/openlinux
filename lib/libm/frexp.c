@@ -1,5 +1,5 @@
-#include <math.h>
-#include <stdint.h>
+#include <math.h>   // for frexp
+#include <stdint.h> // for uint64_t
 
 double frexp(double x, int *e)
 {
@@ -16,7 +16,8 @@ double frexp(double x, int *e)
 		} else
 			*e = 0;
 		return x;
-	} else if (ee == 0x7ff) {
+	}
+	if (ee == 0x7ff) {
 		return x;
 	}
 

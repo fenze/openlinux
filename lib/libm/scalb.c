@@ -16,7 +16,7 @@
  */
 
 #define _GNU_SOURCE
-#include <math.h>
+#include <math.h> // for scalbn, isnan, rint, isfinite
 
 double scalb(double x, double fn)
 {
@@ -25,8 +25,7 @@ double scalb(double x, double fn)
 	if (!isfinite(fn)) {
 		if (fn > 0.0)
 			return x * fn;
-		else
-			return x / (-fn);
+		return x / (-fn);
 	}
 	if (rint(fn) != fn)
 		return (fn - fn) / (fn - fn);

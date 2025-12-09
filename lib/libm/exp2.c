@@ -5,10 +5,11 @@
  * SPDX-License-Identifier: MIT
  */
 
-#include <math.h>
-#include <stdint.h>
-#include "libm.h"
-#include "exp_data.h"
+#include "exp_data.h" // for __exp_data, exp_data, EXP_TABLE_BITS
+#include "libm.h"     // for eval_as_double, asuint64, asdouble, WANT_ROUNDING
+
+#include <math.h>   // for double_t, INFINITY, exp2
+#include <stdint.h> // for uint64_t, uint32_t
 
 #define N     (1 << EXP_TABLE_BITS)
 #define Shift __exp_data.exp2_shift
@@ -88,7 +89,7 @@ double exp2(double x)
 				return 1.0 + x;
 			if (!(asuint64(x) >> 63))
 				return __math_oflow(0);
-			else if (asuint64(x) >= asuint64(-1075.0))
+			if (asuint64(x) >= asuint64(-1075.0))
 				return __math_uflow(0);
 		}
 		if (2 * asuint64(x) > 2 * asuint64(928.0))

@@ -1,9 +1,8 @@
 #ifndef __LIBC_COMPLEX_H__
 #define __LIBC_COMPLEX_H__
 
-#include <sys/cdefs.h>
-#include <math.h>
 #include <complex.h>
+#include <math.h>
 
 typedef union {
 	float complex z;

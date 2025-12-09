@@ -1,6 +1,8 @@
 #ifndef __TIME_H
 #define __TIME_H
 
+#include <stddef.h>
+#include <time.h>
 #define __BITS_TIMESPEC_H_
 #include <bits/timespec.h>
 

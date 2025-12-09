@@ -13,12 +13,12 @@
    either deflated or stored.
  */
 
+#include "stddef.h" // for NULL
 #ifdef RCSID
 static char rcsid[] = "$Id: unzip.c,v 1.1 2002/08/18 00:59:21 hpa Exp $";
 #endif
 
-#include "tailor.h"
-#include "gzip.h"
+#include "gzip.h" // for error, updcrc, ulg, LG, inflate, uch, DEFLATED, OK
 
 /* ===========================================================================
  * Unzip in to out.  This routine works on gzip files only.

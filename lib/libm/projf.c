@@ -1,4 +1,7 @@
-#include "__complex.h"
+#include "__complex.h" // for IMAG_PART, REAL_PART, float_complex
+
+#include <complex.h> // for cimagf, complex, cprojf, crealf
+#include <math.h>    // for copysignf, isinf, INFINITY
 
 float complex cprojf(float complex z)
 {

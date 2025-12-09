@@ -14,7 +14,7 @@
  */
 
 #define _GNU_SOURCE
-#include <math.h>
+#include <math.h> // for scalbnf, isnan, rintf, isfinite
 
 float scalbf(float x, float fn)
 {
@@ -23,8 +23,7 @@ float scalbf(float x, float fn)
 	if (!isfinite(fn)) {
 		if (fn > 0.0f)
 			return x * fn;
-		else
-			return x / (-fn);
+		return x / (-fn);
 	}
 	if (rintf(fn) != fn)
 		return (fn - fn) / (fn - fn);

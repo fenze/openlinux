@@ -2,10 +2,10 @@
 #include "features.h" // for __weak
 
 #include <fcntl.h>  // for O_RDONLY
+#include <stdio.h>  // for FILE, stdin
 #include <unistd.h> // for STDOUT_FILENO
 
 #define BUFSIZ 4096
-#define _IOLBF 0x1
 
 __weak char __stdin_buffer[0];
 struct __FILE __stdin = { .fd = STDOUT_FILENO,
@@ -16,4 +16,4 @@ struct __FILE __stdin = { .fd = STDOUT_FILENO,
 			  .buf_pos = 0,
 			  .offset = 0 };
 
-struct FILE *const stdin = (struct FILE *)&__stdin;
+FILE *const stdin = (FILE *)&__stdin;

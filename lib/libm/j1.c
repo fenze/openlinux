@@ -54,7 +54,10 @@
  *         by method mentioned above.
  */
 
-#include "libm.h"
+#include "libm.h" // for GET_HIGH_WORD, EXTRACT_WORDS
+
+#include <math.h>   // for double_t, cos, fabs, log, sin, sqrt, j1, y1
+#include <stdint.h> // for uint32_t
 
 static double pone(double), qone(double);
 

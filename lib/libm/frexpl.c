@@ -1,4 +1,7 @@
-#include "libm.h"
+#include "libm.h" // for ldshape, ldshape::(anonymous)
+
+#include <float.h> // for LDBL_MANT_DIG, LDBL_MAX_EXP
+#include <math.h>  // for frexpl
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
 long double frexpl(long double x, int *e)
@@ -18,7 +21,8 @@ long double frexpl(long double x, int *e)
 		} else
 			*e = 0;
 		return x;
-	} else if (ee == 0x7fff) {
+	}
+	if (ee == 0x7fff) {
 		return x;
 	}
 

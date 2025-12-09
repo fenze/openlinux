@@ -9,6 +9,11 @@
  * See the file algorithm.doc for the compression algorithms and file formats.
  */
 
+#include "stddef.h" // for NULL
+
+#include <stdio.h>  // for fprintf, stderr, perror, fileno, stdin, stdout
+#include <string.h> // for strcpy, strcmp, strlen, strcat, memcmp, strncmp
+
 static char *license_msg[] = {
 	"   Copyright (C) 1992-1993 Jean-loup Gailly",
 	"   This program is free software; you can redistribute it and/or modify",
@@ -49,21 +54,18 @@ static char *license_msg[] = {
 static char rcsid[] = "$Id: gzip.c,v 1.3 2005/02/12 21:03:28 olh Exp $";
 #endif
 
-#include <sys/types.h>
-#include <signal.h>
-#include <sys/stat.h>
-#include <errno.h>
-
-#include "tailor.h"
 #include "gzip.h"
-#include "revision.h"
+#include "revision.h" // for REVDATE, VERSION
+#include "tailor.h"   // for MAX_SUFFIX, PATH_SEP, get_char, MIN_PART, OPTI...
 
-#include <time.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdlib.h>
-
-#include <utime.h>
+#include <errno.h>    // for errno, ENAMETOOLONG, ENOENT
+#include <fcntl.h>    // for open, O_RDONLY, O_CREAT, O_EXCL, O_WRONLY
+#include <signal.h>   // for sysv_signal, SIG_IGN, SIGHUP, SIGTERM, SIGINT
+#include <stdlib.h>   // for exit, free
+#include <sys/stat.h> // for stat, chmod, st_mtime, fstat, S_IRUSR, S_IWUSR
+#include <time.h>     // for time_t
+#include <unistd.h>   // for close, unlink, optarg, optind, chown, getopt
+#include <utime.h>    // for utimbuf, utime
 
 typedef void(*sig_type) OF((int));
 
@@ -1000,12 +1002,10 @@ local int get_method()
 			ifname);
 		exit_code = ERROR;
 		return -1;
-	} else {
-		WARN((stderr,
-		      "\n%s: %s: decompression OK, trailing garbage ignored\n",
-		      progname, ifname));
-		return -2;
 	}
+	WARN((stderr, "\n%s: %s: decompression OK, trailing garbage ignored\n",
+	      progname, ifname));
+	return -2;
 }
 
 /* ========================================================================

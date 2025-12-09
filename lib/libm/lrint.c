@@ -1,7 +1,6 @@
-#include <limits.h>
-#include <fenv.h>
-#include <math.h>
-#include "libm.h"
+
+#include <limits.h> // for LONG_MAX
+#include <math.h>   // for lrint, rint
 
 /*
 If the result cannot be represented (overflow, nan), then

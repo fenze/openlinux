@@ -1,6 +1,8 @@
 #ifndef __LIMITS_H
 #define __LIMITS_H
 
+#include <limits.h>
+#include <stdint.h>
 #if '\xff' > 0
 #define CHAR_MIN 0
 #define CHAR_MAX 255

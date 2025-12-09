@@ -1,6 +1,8 @@
 #ifndef __AIO_H
 #define __AIO_H
 
+#include <stddef.h>
+#include <time.h>
 #define __BITS_SIGEVENT_H_
 #include <bits/sigevent.h>
 #undef __BITS_SIGEVENT_H_

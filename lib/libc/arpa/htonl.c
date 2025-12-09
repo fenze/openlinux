@@ -1,6 +1,6 @@
-#include <arpa/inet.h> // for htonl
+#include <arpa/inet.h> // for uint32_t, htonl
 #include <byteswap.h>  // for bswap32
-#include <stdint.h>    // for uint32_t
+#include <stdint.h>
 
 uint32_t htonl(uint32_t hostlong)
 {

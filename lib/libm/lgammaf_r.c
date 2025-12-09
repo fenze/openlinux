@@ -13,7 +13,10 @@
  * ====================================================
  */
 
-#include "libm.h"
+#include "libm.h" // for __cosdf, __sindf, __lgammaf_r, weak_alias
+
+#include <math.h>   // for logf, floorf, double_t
+#include <stdint.h> // for uint32_t
 
 static const float pi = 3.1415927410e+00, /* 0x40490fdb */
 	a0 = 7.7215664089e-02,		  /* 0x3d9e233f */

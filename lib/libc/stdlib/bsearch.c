@@ -47,8 +47,9 @@ is respectively less than, matching, or greater than the array member.
 
 */
 
-#include <sys/types.h> /* size_t */
-#include <stdio.h>
+#include "stddef.h" // for NULL
+
+#include <stdio.h> // for size_t
 
 /*
  * Perform a binary search.

@@ -20,7 +20,11 @@
  * use __rem_pio2_large() for large x
  */
 
-#include "libm.h"
+#include "libm.h" // for __rem_pio2_large, predict_false, __rem_pio2f
+
+#include <float.h>  // for DBL_EPSILON, FLT_EVAL_METHOD
+#include <math.h>   // for double_t
+#include <stdint.h> // for uint32_t, int32_t
 
 #if FLT_EVAL_METHOD == 0 || FLT_EVAL_METHOD == 1
 #define EPS DBL_EPSILON

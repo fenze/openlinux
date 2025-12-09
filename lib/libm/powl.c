@@ -59,7 +59,10 @@
  *
  */
 
-#include "libm.h"
+#include "libm.h" // for __polevll, __p1evll
+
+#include <float.h> // for LDBL_MANT_DIG, LDBL_MAX_EXP, LDBL_EPSILON, LDBL_M...
+#include <math.h>  // for INFINITY, fabsl, floorl, frexpl, isnan, powl, sca...
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
 long double powl(long double x, long double y)

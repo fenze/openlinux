@@ -17,7 +17,11 @@
  * use __rem_pio2_large() for large x
  */
 
-#include "libm.h"
+#include "libm.h" // for __rem_pio2_large, predict_false, __rem_pio2
+
+#include <float.h>  // for DBL_EPSILON, FLT_EVAL_METHOD
+#include <math.h>   // for double_t
+#include <stdint.h> // for uint64_t, int32_t, uint32_t
 
 #if FLT_EVAL_METHOD == 0 || FLT_EVAL_METHOD == 1
 #define EPS DBL_EPSILON
@@ -67,25 +71,22 @@ int __rem_pio2(double x, double *y)
 				y[0] = z - pio2_1t;
 				y[1] = (z - y[0]) - pio2_1t;
 				return 1;
-			} else {
-				z = x + pio2_1;
-				y[0] = z + pio2_1t;
-				y[1] = (z - y[0]) + pio2_1t;
-				return -1;
 			}
-		} else {
-			if (!sign) {
-				z = x - 2 * pio2_1;
-				y[0] = z - 2 * pio2_1t;
-				y[1] = (z - y[0]) - 2 * pio2_1t;
-				return 2;
-			} else {
-				z = x + 2 * pio2_1;
-				y[0] = z + 2 * pio2_1t;
-				y[1] = (z - y[0]) + 2 * pio2_1t;
-				return -2;
-			}
+			z = x + pio2_1;
+			y[0] = z + pio2_1t;
+			y[1] = (z - y[0]) + pio2_1t;
+			return -1;
 		}
+		if (!sign) {
+			z = x - 2 * pio2_1;
+			y[0] = z - 2 * pio2_1t;
+			y[1] = (z - y[0]) - 2 * pio2_1t;
+			return 2;
+		}
+		z = x + 2 * pio2_1;
+		y[0] = z + 2 * pio2_1t;
+		y[1] = (z - y[0]) + 2 * pio2_1t;
+		return -2;
 	}
 	if (ix <= 0x401c463b) {		      /* |x| ~<= 9pi/4 */
 		if (ix <= 0x4015fdbc) {	      /* |x| ~<= 7pi/4 */
@@ -96,27 +97,24 @@ int __rem_pio2(double x, double *y)
 				y[0] = z - 3 * pio2_1t;
 				y[1] = (z - y[0]) - 3 * pio2_1t;
 				return 3;
-			} else {
-				z = x + 3 * pio2_1;
-				y[0] = z + 3 * pio2_1t;
-				y[1] = (z - y[0]) + 3 * pio2_1t;
-				return -3;
 			}
-		} else {
-			if (ix == 0x401921fb) /* |x| ~= 4pi/2 */
-				goto medium;
-			if (!sign) {
-				z = x - 4 * pio2_1;
-				y[0] = z - 4 * pio2_1t;
-				y[1] = (z - y[0]) - 4 * pio2_1t;
-				return 4;
-			} else {
-				z = x + 4 * pio2_1;
-				y[0] = z + 4 * pio2_1t;
-				y[1] = (z - y[0]) + 4 * pio2_1t;
-				return -4;
-			}
+			z = x + 3 * pio2_1;
+			y[0] = z + 3 * pio2_1t;
+			y[1] = (z - y[0]) + 3 * pio2_1t;
+			return -3;
 		}
+		if (ix == 0x401921fb) /* |x| ~= 4pi/2 */
+			goto medium;
+		if (!sign) {
+			z = x - 4 * pio2_1;
+			y[0] = z - 4 * pio2_1t;
+			y[1] = (z - y[0]) - 4 * pio2_1t;
+			return 4;
+		}
+		z = x + 4 * pio2_1;
+		y[0] = z + 4 * pio2_1t;
+		y[1] = (z - y[0]) + 4 * pio2_1t;
+		return -4;
 	}
 	if (ix < 0x413921fb) { /* |x| ~< 2^20*(pi/2), medium size */
 medium:

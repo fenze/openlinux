@@ -25,9 +25,10 @@
  * SUCH DAMAGE.
  */
 
-#include <fenv.h>
-#include <math.h>
-#include <stdint.h>
+
+#include <fenv.h>   // for feraiseexcept, fetestexcept, feclearexcept
+#include <math.h>   // for fmaf
+#include <stdint.h> // for uint64_t
 
 /*
  * Fused multiply-add: Compute x * y + z with a single rounding error.

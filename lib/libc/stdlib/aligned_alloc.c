@@ -1,8 +1,8 @@
-#include <errno.h>
-#include <stdlib.h>
-#include <stdint.h>
-#include <sys/mman.h>
-#include <unistd.h>
+#include "stddef.h" // for NULL
+
+#include <errno.h>  // for errno, EINVAL, ENOMEM
+#include <stdint.h> // for uintptr_t
+#include <stdlib.h> // for size_t, aligned_alloc, malloc
 
 void *aligned_alloc(size_t alignment, size_t size)
 {

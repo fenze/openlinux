@@ -1,5 +1,5 @@
-#include <time.h>
-#include <limits.h>
+#include <limits.h> // for LONG_MAX
+#include <time.h>   // for timespec, clock_gettime, CLOCK_PROCESS_CPUTIME_ID
 
 clock_t clock(void)
 {

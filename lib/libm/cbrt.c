@@ -15,8 +15,8 @@
  * Return cube root of x
  */
 
-#include <math.h>
-#include <stdint.h>
+#include <math.h>   // for double_t, cbrt
+#include <stdint.h> // for uint32_t, uint64_t
 
 static const uint32_t B1 = 715094163, /* B1 = (1023-1023/3-0.03306235651)*2**20
 				       */

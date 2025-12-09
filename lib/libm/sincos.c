@@ -10,8 +10,10 @@
  * ====================================================
  */
 
+#include <stdint.h> // for uint32_t
+
 #define _GNU_SOURCE
-#include "libm.h"
+#include "libm.h" // for __cos, __sin, __rem_pio2, FORCE_EVAL, GET_HIGH_WORD
 
 void sincos(double x, double *sin, double *cos)
 {

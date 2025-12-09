@@ -1,5 +1,5 @@
-#include <sys/cdefs.h>
-#include <math.h>
+#include <math.h>      // for nanl, NAN
+#include <sys/cdefs.h> // for __unused
 
 long double nanl(const char *__unused s)
 {

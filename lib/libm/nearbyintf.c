@@ -1,5 +1,7 @@
-#include <fenv.h>
-#include <math.h>
+
+
+#include <fenv.h> // for feclearexcept, fetestexcept
+#include <math.h> // for nearbyintf, rintf
 
 float nearbyintf(float x)
 {

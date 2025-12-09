@@ -1,6 +1,7 @@
 #ifndef __MATH_H
 #define __MATH_H
 
+#include <math.h>
 extern int signgam;
 
 #if FLT_EVAL_METHOD == 1

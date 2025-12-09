@@ -14,7 +14,10 @@
  * Converted to long double by David Schultz <das@FreeBSD.ORG>.
  */
 
-#include "libm.h"
+#include "libm.h" // for ldshape, ldshape::(anonymous), FORCE_EVAL
+
+#include <float.h> // for LDBL_MANT_DIG, LDBL_MAX_EXP
+#include <math.h>  // for atanl, fabsl, isnan
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
 long double atanl(long double x)
@@ -24,7 +27,7 @@ long double atanl(long double x)
 #elif (LDBL_MANT_DIG == 64 || LDBL_MANT_DIG == 113) && LDBL_MAX_EXP == 16384
 
 #if LDBL_MANT_DIG == 64
-#define EXPMAN(u) ((u.i.se & 0x7fff) << 8 | (u.i.m >> 55 & 0xff))
+#define EXPMAN(u) (((u).i.se & 0x7fff) << 8 | ((u).i.m >> 55 & 0xff))
 
 static const long double atanhi[] = {
 	4.63647609000806116202e-01L,

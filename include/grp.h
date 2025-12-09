@@ -1,6 +1,7 @@
 #ifndef __GRP_H
 #define __GRP_H
 
+#include <stddef.h>
 typedef __SIZE_TYPE__ size_t;
 typedef __UINT32_TYPE__ gid_t;
 

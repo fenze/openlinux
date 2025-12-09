@@ -1,6 +1,8 @@
-#include <errno.h>
-#include <string.h>
-#include <stdlib.h>
+#include "stddef.h" // for NULL
+
+#include <errno.h>  // for errno, EINVAL, ENOMEM
+#include <stdlib.h> // for calloc, malloc
+#include <string.h> // for size_t, memset
 
 void *calloc(size_t nelem, size_t elsize)
 {

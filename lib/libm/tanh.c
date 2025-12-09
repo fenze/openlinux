@@ -1,4 +1,7 @@
-#include "libm.h"
+#include "libm.h" // for FORCE_EVAL
+
+#include <math.h>   // for expm1, tanh, double_t
+#include <stdint.h> // for uint64_t, uint32_t
 
 /* tanh(x) = (exp(x) - exp(-x))/(exp(x) + exp(-x))
  *         = (exp(2*x) - 1)/(exp(2*x) - 1 + 2)
@@ -15,7 +18,7 @@ double tanh(double x)
 	double_t t;
 
 	/* x = |x| */
-	sign = u.i >> 63;
+	sign = (int)(u.i >> 63);
 	u.i &= (uint64_t)-1 / 2;
 	x = u.f;
 	w = u.i >> 32;

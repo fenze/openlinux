@@ -103,7 +103,10 @@
  *              erfc/erf(NaN) is NaN
  */
 
-#include "libm.h"
+#include "libm.h" // for GET_HIGH_WORD, SET_LOW_WORD
+
+#include <math.h>   // for double_t, exp, fabs, erf, erfc
+#include <stdint.h> // for uint32_t
 
 static const double erx = 8.45062911510467529297e-01, /* 0x3FEB0AC1, 0x60000000
 						       */

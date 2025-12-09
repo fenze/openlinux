@@ -12,7 +12,9 @@
  * ====================================================
  */
 
-#include "libm.h"
+#include "libm.h" // for __cosl
+
+#include <float.h> // for LDBL_MANT_DIG, LDBL_MAX_EXP
 
 #if (LDBL_MANT_DIG == 64 || LDBL_MANT_DIG == 113) && LDBL_MAX_EXP == 16384
 #if LDBL_MANT_DIG == 64
@@ -51,9 +53,12 @@ static const double C2 = -0.0013888888888888874, /* -0x16c16c16c16c10.0p-62 */
 	C5 = 0.0000000020876754400407278,	 /*  0x11eed8caaeccf1.0p-81 */
 	C6 = -1.1470297442401303e-11,		 /* -0x19393412bd1529.0p-89 */
 	C7 = 4.7383039476436467e-14;		 /*  0x1aac9d9af5c43e.0p-97 */
-#define POLY(z) \
-	(z *    \
-	 (C1 + z * (C2 + z * (C3 + z * (C4 + z * (C5 + z * (C6 + z * C7)))))))
+#define POLY(z)              \
+	((z) *               \
+	 (C1 +               \
+	  (z) * (C2 +        \
+		 (z) * (C3 + \
+			(z) * (C4 + (z) * (C5 + (z) * (C6 + (z) * C7)))))))
 #elif LDBL_MANT_DIG == 113
 /*
  * ld128 version of __cos.c.  See __cos.c for most comments.

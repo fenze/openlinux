@@ -1,5 +1,5 @@
-#include <math.h>
-#include <complex.h>
+#include <complex.h> // for cimagf, complex, crealf, ctanhf, I
+#include <math.h>    // for cosf, coshf, sinf, sinhf
 
 float complex ctanhf(float complex z)
 {

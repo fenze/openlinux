@@ -1,4 +1,4 @@
-#include <math.h>
+#include <math.h> // for ldexpf, scalbnf
 
 float ldexpf(float x, int n)
 {

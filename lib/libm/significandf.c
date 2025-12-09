@@ -1,5 +1,5 @@
 #define _GNU_SOURCE
-#include <math.h>
+#include <math.h> // for ilogbf, scalbnf
 
 float significandf(float x)
 {

@@ -1,5 +1,6 @@
-#include <complex.h>
-#include "__complex.h"
+#include "__complex.h" // for IMAG_PART, double_complex
+
+#include <complex.h> // for cimag, complex
 
 double cimag(double complex z)
 {

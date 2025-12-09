@@ -1,5 +1,7 @@
-#include <errno.h>
-#include <stdlib.h>
+#include "stddef.h" // for NULL
+
+#include <errno.h>  // for EINVAL, ENOMEM
+#include <stdlib.h> // for size_t, aligned_alloc, posix_memalign
 
 int posix_memalign(void **memptr, size_t alignment, size_t size)
 {

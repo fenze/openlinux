@@ -1,5 +1,7 @@
-#include "asm/unistd_64.h" // for __NR_madvise
 
+
+
+#include <stddef.h>
 #include <sys/mman.h> // for posix_madvise, size_t
 #include <syscall.h>  // for __syscall_3, syscall
 

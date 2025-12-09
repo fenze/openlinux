@@ -1,4 +1,4 @@
-#include <complex.h>
+#include <complex.h> // for I, catanf, catanhf, complex
 
 float complex catanhf(float complex z)
 {

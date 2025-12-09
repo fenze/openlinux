@@ -202,8 +202,6 @@
 #define SCNuPTR __PRIPTR "u"
 #define SCNxPTR __PRIPTR "x"
 
-typedef __WCHAR_TYPE__ wchar_t;
-
 // TODO: make it private
 typedef struct {
 	intmax_t quot, rem;
@@ -213,7 +211,5 @@ intmax_t imaxabs(intmax_t);
 imaxdiv_t imaxdiv(intmax_t, intmax_t);
 intmax_t strtoimax(const char *restrict, char **restrict, int);
 uintmax_t strtoumax(const char *restrict, char **restrict, int);
-intmax_t wcstoimax(const wchar_t *restrict, wchar_t **restrict, int);
-uintmax_t wcstoumax(const wchar_t *restrict, wchar_t **restrict, int);
 
 #endif

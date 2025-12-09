@@ -1,4 +1,4 @@
-#include <math.h>
+#include <math.h> // for fdim, isnan
 
 double fdim(double x, double y)
 {

@@ -12,7 +12,10 @@
  * is preserved.
  * ====================================================
  */
-#include "libm.h"
+#include "libm.h" // for GET_FLOAT_WORD
+
+#include <math.h>   // for asinf, fabsf, float_t, sqrtf
+#include <stdint.h> // for uint32_t
 
 static const double pio2 = 1.570796326794896558e+00;
 
@@ -52,7 +55,7 @@ float asinf(float x)
 	}
 	/* 1 > |x| >= 0.5 */
 	z = (1 - fabsf(x)) * 0.5f;
-	s = sqrt(z);
+	s = sqrtf(z);
 	x = pio2 - 2 * (s + s * R(z));
 	if (hx >> 31)
 		return -x;

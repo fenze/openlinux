@@ -1,4 +1,5 @@
-#include "__complex.h"
+#include <complex.h> // for complex, I, cabsf, cargf, cimagf, cpowf, crealf
+#include <math.h>    // for cosf, expf, logf, powf, sinf
 
 float complex cpowf(float complex a, float complex z)
 {

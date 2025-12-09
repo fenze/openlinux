@@ -1,4 +1,4 @@
-#include <math.h>
+#include <math.h> // for fdimf, isnan
 
 float fdimf(float x, float y)
 {

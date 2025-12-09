@@ -1,5 +1,5 @@
-#include <endian.h> // for htole32
-#include <stdint.h> // for uint32_t
+#include <endian.h> // for uint32_t, htole32
+#include <stdint.h>
 
 uint32_t htole32(uint32_t host_32bits)
 {

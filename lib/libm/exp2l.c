@@ -26,7 +26,11 @@
  * SUCH DAMAGE.
  */
 
-#include "libm.h"
+#include "libm.h" // for ldshape, ldshape::(anonymous), FORCE_EVAL
+
+#include <float.h>  // for LDBL_MANT_DIG, LDBL_MAX_EXP
+#include <math.h>   // for exp2l, scalbnl
+#include <stdint.h> // for uint32_t, int32_t
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
 long double exp2l(long double x)

@@ -210,9 +210,9 @@
  *	used for input more than STRTOD_DIGLIM digits long (default 40).
  */
 
-#include <atomic.h>  // for LIBC_LOCK, LIBC_UNLOCK
-#include <libc.h>    // for __IMPL
-#include <threads.h> // for thrd_current
+#include <__thread.h> // for __thread_self
+#include <atomic.h>   // for LIBC_LOCK, LIBC_UNLOCK
+#include <threads.h>  // for thrd_current
 
 static atomic_flag dtoa_lock[2] = { ATOMIC_FLAG_INIT, ATOMIC_FLAG_INIT };
 
@@ -1556,7 +1556,7 @@ void set_max_dtoa_threads(unsigned int n)
 
 static ThInfo *get_TI(void)
 {
-	unsigned int thno = __IMPL(thrd_current())->tid;
+	unsigned int thno = ((struct __thread_self *)thrd_current())->tid;
 
 	if (thno < maxthreads)
 		return TI1 + thno;

@@ -8,10 +8,7 @@
 static char rcsid[] = "$Id: zip.c,v 1.1 2002/08/18 00:59:21 hpa Exp $";
 #endif
 
-#include <ctype.h>
-#include <sys/types.h>
 #include <unistd.h>
-#include <fcntl.h>
 
 #include "tailor.h"
 #include "gzip.h"

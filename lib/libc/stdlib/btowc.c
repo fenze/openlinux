@@ -1,6 +1,6 @@
-#include <wchar.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <wchar.h>
 
 #define CODEUNIT(c) (0xdfff & (signed char)(c))
 

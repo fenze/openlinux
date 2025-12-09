@@ -54,7 +54,10 @@
  *      3. Special cases: y0(0)=-inf, y0(x<0)=NaN, y0(inf)=0.
  */
 
-#include "libm.h"
+#include "libm.h" // for GET_HIGH_WORD, EXTRACT_WORDS
+
+#include <math.h>   // for double_t, cos, log, fabs, sin, sqrt, j0, y0
+#include <stdint.h> // for uint32_t
 
 static double pzero(double), qzero(double);
 

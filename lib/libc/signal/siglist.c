@@ -1,5 +1,4 @@
 #include <signal.h>
-#include <unistd.h>
 
 const char *const sys_siglist[64] = {
 	[SIGABRT] = "Aborted",

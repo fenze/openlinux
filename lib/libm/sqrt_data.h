@@ -1,7 +1,7 @@
 #ifndef _SQRT_DATA_H
 #define _SQRT_DATA_H
 
-#include <stdint.h>
+#include <stdint.h> // for uint16_t
 
 #define hidden __attribute__((visibility("hidden")))
 

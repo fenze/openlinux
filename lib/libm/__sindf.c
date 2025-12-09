@@ -14,7 +14,9 @@
  * ====================================================
  */
 
-#include "libm.h"
+#include "libm.h" // for __sindf
+
+#include <math.h> // for double_t
 
 /* |sin(x)/x - s(x)| < 2**-37.5 (~[-4.89e-12, 4.824e-12]). */
 static const double S1 = -0x15555554cbac77.0p-55, /* -0.166666666416265235595 */

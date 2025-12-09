@@ -1,10 +1,9 @@
 #ifndef __LIBC_DIRENT_H
 #define __LIBC_DIRENT_H
 
-#include <libc.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <sys/types.h>
-#include <stdint.h>
 
 struct linux_dirent64 {
 	uint64_t d_ino;

@@ -1,5 +1,7 @@
-#include <time.h>
-#include <ctype.h>
+#include "stddef.h" // for NULL
+
+#include <ctype.h> // for isdigit
+#include <time.h>  // for daylight, timezone, tzname, tzset
 
 int daylight = 0;
 long timezone = 0;

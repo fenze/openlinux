@@ -5,10 +5,11 @@
  * SPDX-License-Identifier: MIT
  */
 
-#include <math.h>
-#include <stdint.h>
-#include "libm.h"
-#include "log_data.h"
+#include "libm.h"     // for asuint64, eval_as_double, predict_false, __mat...
+#include "log_data.h" // for __log_data, log_data, log_data::(anonymous)
+
+#include <math.h>   // for double_t, log, INFINITY
+#include <stdint.h> // for uint64_t, uint32_t, int64_t
 
 #define T     __log_data.tab
 #define T2    __log_data.tab2

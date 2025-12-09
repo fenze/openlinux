@@ -1,4 +1,8 @@
-#include "libm.h"
+#include "libm.h" // for FORCE_EVAL
+
+#include <float.h>  // for LDBL_MANT_DIG, LDBL_MAX_EXP
+#include <math.h>   // for signbit, isnan, nexttoward
+#include <stdint.h> // for uint64_t
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
 double nexttoward(double x, long double y)

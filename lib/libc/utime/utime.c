@@ -1,5 +1,5 @@
-#include <utime.h>
-#include <sys/time.h>
+#include <sys/time.h> // for timeval, utimes
+#include <utime.h>    // for utimbuf, utime
 
 int utime(const char *filename, const struct utimbuf *buf)
 {

@@ -5,6 +5,7 @@
 #include <atomic.h> // for LIBC_LOCK, LIBC_UNLOCK
 #include <fcntl.h>  // for O_WRONLY
 #include <stddef.h> // for NULL
+#include <stdio.h>  // for stdout
 #include <unistd.h> // for STDOUT_FILENO
 
 #define BUFSIZ 4096

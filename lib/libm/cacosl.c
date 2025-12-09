@@ -1,5 +1,5 @@
-#include <math.h>
-#include <complex.h>
+#include <complex.h> // for complex, cacosl, casinl, cimagl, creall, I
+#include <math.h>    // for M_PI_2
 
 long double complex cacosl(long double complex z)
 {

@@ -1,5 +1,4 @@
-#include <linux/uio.h>	   // for iovec, UIO_MAXIOV
-#include "asm/unistd_64.h" // for __NR_readv
+#include <linux/uio.h> // for iovec, UIO_MAXIOV
 
 #include <errno.h>     // for errno, EAGAIN, EINTR, EINVAL
 #include <string.h>    // for memcpy
@@ -40,8 +39,8 @@ ssize_t readv(int fd, const struct iovec *iov, int iovcnt)
 
 		ssize_t remaining = ret;
 		while (remaining > 0 && iovcnt > 0) {
-			if ((size_t)remaining >= iov->iov_len) {
-				remaining -= iov->iov_len;
+			if (remaining >= (ssize_t)iov->iov_len) {
+				remaining -= (ssize_t)iov->iov_len;
 				iov++;
 				iovcnt--;
 			} else {

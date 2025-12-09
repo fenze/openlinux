@@ -1,7 +1,7 @@
-#include <stdint.h>
-#include <float.h>
-#include <math.h>
-#include "atomic.h"
+#include <asm/atomic.h> // for a_clz_64
+#include <float.h>	// for FLT_MIN, DBL_MIN
+#include <math.h>	// for fma, scalbn, double_t
+#include <stdint.h>	// for uint64_t, int64_t, uint32_t
 
 #define ASUINT64(x)         \
 	((union {           \
@@ -20,12 +20,12 @@ struct num {
 static struct num normalize(double x)
 {
 	uint64_t ix = ASUINT64(x);
-	int e = ix >> 52;
+	int e = (int)(ix >> 52);
 	int sign = e & 0x800;
 	e &= 0x7ff;
 	if (!e) {
 		ix = ASUINT64(x * 0x1p63);
-		e = ix >> 52 & 0x7ff;
+		e = (int)(ix >> 52) & 0x7ff;
 		e = e ? e - 63 : 0x800;
 	}
 	ix &= (1ull << 52) - 1;
@@ -146,10 +146,10 @@ double fma(double x, double y, double z)
 	e -= d;
 
 	/* convert to double */
-	int64_t i = rhi; /* i is in [1<<62,(1<<63)-1] */
+	int64_t i = (int64_t)rhi; /* i is in [1<<62,(1<<63)-1] */
 	if (sign)
 		i = -i;
-	double r = i; /* |r| is in [0x1p62,0x1p63] */
+	double r = (double)i; /* |r| is in [0x1p62,0x1p63] */
 
 	if (e < -1022 - 62) {
 		/* result is subnormal before rounding */
@@ -159,34 +159,39 @@ double fma(double x, double y, double z)
 				c = -c;
 			if (r == c) {
 				/* min normal after rounding, underflow depends
-				   on arch behaviour which can be imitated by
-				   a double to float conversion */
-				float fltmin = 0x0.ffffff8p-63 * FLT_MIN * r;
+							on arch behaviour which
+				   can be imitated by a double to float
+				   conversion */
+				float fltmin = (float)(0x0.ffffff8p-63) *
+					       FLT_MIN * (float)r;
 				return DBL_MIN / FLT_MIN * fltmin;
 			}
 			/* one bit is lost when scaled, add another top bit to
-			   only round once at conversion if it is inexact */
+						only round once at conversion if
+			   it is inexact */
 			if (rhi << 53) {
-				i = rhi >> 1 | (rhi & 1) | 1ull << 62;
+				i = (int64_t)(rhi >> 1 | (rhi & 1) |
+					      1ull << 62);
 				if (sign)
 					i = -i;
-				r = i;
+				r = (double)i;
 				r = 2 * r - c; /* remove top bit */
 
 				/* raise underflow portably, such that it
-				   cannot be optimized away */
+							cannot be optimized away
+				 */
 				{
 					double_t tiny = DBL_MIN / FLT_MIN * r;
-					r += (double)(tiny * tiny) * (r - r);
+					r += (double)(tiny * tiny);
 				}
 			}
 		} else {
 			/* only round once when scaled */
 			d = 10;
-			i = (rhi >> d | !!(rhi << (64 - d))) << d;
+			i = (int64_t)((rhi >> d | !!(rhi << (64 - d))) << d);
 			if (sign)
 				i = -i;
-			r = i;
+			r = (double)i;
 		}
 	}
 	return scalbn(r, e);

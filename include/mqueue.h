@@ -1,6 +1,8 @@
 #ifndef __MQUEUE_H
 #define __MQUEUE_H
 
+#include <stddef.h>
+#include <time.h>
 #define __BITS_TIMESPEC_H_
 #include <bits/timespec.h>
 #undef __BITS_TIMESPEC_H_

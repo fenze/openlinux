@@ -3,7 +3,6 @@
 
 #define __BITS_STAT_H_
 
-#include "asm/unistd_64.h" // for __NR_statx
 
 #include <bits/stat.h> // for stat
 #include <syscall.h>   // for __syscall_5, syscall

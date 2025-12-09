@@ -1,5 +1,5 @@
-#include <math.h>
-#include <stdint.h>
+#include <math.h>   // for remquo, isnan
+#include <stdint.h> // for uint64_t, uint32_t
 
 double remquo(double x, double y, int *quo)
 {

@@ -1,6 +1,6 @@
-#include <arpa/inet.h> // for ntohl
+#include <arpa/inet.h> // for uint32_t, ntohl
 #include <byteswap.h>  // for bswap32
-#include <stdint.h>    // for uint32_t
+#include <stdint.h>
 
 uint32_t ntohl(uint32_t netlong)
 {

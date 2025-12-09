@@ -1,5 +1,5 @@
-#include <math.h>
-#include <stdint.h>
+#include <math.h>   // for fabs
+#include <stdint.h> // for uint64_t
 
 double fabs(double x)
 {

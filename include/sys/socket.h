@@ -1,6 +1,7 @@
 #ifndef __SYS_SOCKET_H
 #define __SYS_SOCKET_H
 
+#include <stddef.h>
 #define SCM_RIGHTS 0x01
 
 #define CMSG_DATA(cmsg) ((void *)(cmsg) + sizeof(struct cmsghdr))

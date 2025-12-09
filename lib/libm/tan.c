@@ -39,7 +39,10 @@
  *      TRIG(x) returns trig(x) nearly rounded
  */
 
-#include "libm.h"
+#include "libm.h" // for __tan, __rem_pio2, FORCE_EVAL, GET_HIGH_WORD
+
+#include <math.h>   // for tan
+#include <stdint.h> // for uint32_t
 
 double tan(double x)
 {

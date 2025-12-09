@@ -1,8 +1,9 @@
-#include <fcntl.h>
-#include <errno.h>
-#include <stddef.h>
-#include <sys/stat.h>
-#include <sys/time.h>
+#include <errno.h>    // for EINVAL, errno
+#include <fcntl.h>    // for AT_FDCWD
+#include <stddef.h>   // for NULL
+#include <sys/stat.h> // for utimensat
+#include <sys/time.h> // for timeval, utimes
+#include <time.h>     // for timespec
 
 int utimes(const char *path, const struct timeval times[2])
 {

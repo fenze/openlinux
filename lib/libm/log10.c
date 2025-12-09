@@ -17,8 +17,8 @@
  *    log10(x) = (f - f*f/2 + r)/log(10) + k*log10(2)
  */
 
-#include <math.h>
-#include <stdint.h>
+#include <math.h>   // for double_t, log10
+#include <stdint.h> // for uint64_t, uint32_t
 
 static const double ivln10hi = 4.34294481878168880939e-01, /* 0x3fdbcb7b,
 							      0x15200000 */

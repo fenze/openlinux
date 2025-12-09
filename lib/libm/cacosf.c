@@ -1,5 +1,5 @@
-#include <math.h>
-#include <complex.h>
+#include <complex.h> // for complex, cacosf, casinf, cimagf, crealf, I
+#include <math.h>    // for M_PI_2
 
 float complex cacosf(float complex z)
 {

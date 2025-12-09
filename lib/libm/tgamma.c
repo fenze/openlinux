@@ -22,7 +22,10 @@ Gamma(x)*Gamma(-x) = -pi/(x sin(pi x))
 
 most ideas and constants are from boost and python
 */
-#include "libm.h"
+#include "libm.h" // for __cos, __sin, FORCE_EVAL
+
+#include <math.h>   // for floor, double_t, exp, pow, tgamma, INFINITY
+#include <stdint.h> // for uint32_t, uint64_t
 
 static const double pi = 3.141592653589793238462643383279502884;
 
@@ -37,7 +40,7 @@ static double sinpi(double x)
 	x = 2 * (x - floor(x));
 
 	/* reduce x into [-.25,.25] */
-	n = 4 * x;
+	n = (int)(4 * x);
 	n = (n + 1) / 2;
 	x -= n * 0.5;
 
@@ -132,8 +135,8 @@ double tgamma(double x)
 	} u = { x };
 	double absx, y;
 	double_t dy, z, r;
-	uint32_t ix = u.i >> 32 & 0x7fffffff;
-	int sign = u.i >> 63;
+	uint32_t ix = (uint32_t)(u.i >> 32) & 0x7fffffff;
+	int sign = (int)(u.i >> 63);
 
 	/* special cases */
 	if (ix >= 0x7ff00000)
@@ -149,7 +152,7 @@ double tgamma(double x)
 	if (x == floor(x)) {
 		if (sign)
 			return 0 / 0.0;
-		if (x <= sizeof fact / sizeof *fact)
+		if (x <= ((double)sizeof(fact) / (double)(sizeof *fact)))
 			return fact[(int)x - 1];
 	}
 

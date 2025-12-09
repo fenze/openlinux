@@ -14,7 +14,10 @@
  * ====================================================
  */
 
-#include "libm.h"
+#include "libm.h" // for __tandf, __rem_pio2f, FORCE_EVAL, GET_FLOAT_WORD
+
+#include <math.h>   // for M_PI_2, tanf
+#include <stdint.h> // for uint32_t
 
 /* Small multiples of pi/2 rounded to double precision. */
 static const double t1pio2 = 1 * M_PI_2, /* 0x3FF921FB, 0x54442D18 */
@@ -26,7 +29,8 @@ float tanf(float x)
 {
 	double y;
 	uint32_t ix;
-	unsigned n, sign;
+	int n;
+	unsigned sign;
 
 	GET_FLOAT_WORD(ix, x);
 	sign = ix >> 31;
@@ -44,19 +48,17 @@ float tanf(float x)
 	if (ix <= 0x407b53d1) {	      /* |x| ~<= 5*pi/4 */
 		if (ix <= 0x4016cbe3) /* |x| ~<= 3pi/4 */
 			return __tandf((sign ? x + t1pio2 : x - t1pio2), 1);
-		else
-			return __tandf((sign ? x + t2pio2 : x - t2pio2), 0);
+		return __tandf((sign ? x + t2pio2 : x - t2pio2), 0);
 	}
 	if (ix <= 0x40e231d5) {	      /* |x| ~<= 9*pi/4 */
 		if (ix <= 0x40afeddf) /* |x| ~<= 7*pi/4 */
 			return __tandf((sign ? x + t3pio2 : x - t3pio2), 1);
-		else
-			return __tandf((sign ? x + t4pio2 : x - t4pio2), 0);
+		return __tandf((sign ? x + t4pio2 : x - t4pio2), 0);
 	}
 
 	/* tan(Inf or NaN) is NaN */
 	if (ix >= 0x7f800000)
-		return x - x;
+		return NAN;
 
 	/* argument reduction */
 	n = __rem_pio2f(x, &y);

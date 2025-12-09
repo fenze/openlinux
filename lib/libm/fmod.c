@@ -1,5 +1,5 @@
-#include <math.h>
-#include <stdint.h>
+#include <math.h>   // for fmod, isnan
+#include <stdint.h> // for uint64_t
 
 double fmod(double x, double y)
 {

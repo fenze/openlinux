@@ -1,5 +1,5 @@
-#include <math.h>
-#include <complex.h>
+#include <complex.h> // for complex, cimag, creal, ctanh, I
+#include <math.h>    // for cos, cosh, sin, sinh
 
 double complex ctanh(double complex z)
 {

@@ -1,5 +1,5 @@
-#include <limits.h>
-#include <math.h>
+#include <limits.h> // for INT_MAX, INT_MIN
+#include <math.h>   // for scalbln, scalbn
 
 double scalbln(double x, long n)
 {

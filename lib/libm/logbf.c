@@ -1,4 +1,4 @@
-#include <math.h>
+#include <math.h> // for ilogbf, logbf, isfinite
 
 float logbf(float x)
 {

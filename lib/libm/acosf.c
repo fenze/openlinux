@@ -13,7 +13,10 @@
  * ====================================================
  */
 
-#include "libm.h"
+#include "libm.h" // for GET_FLOAT_WORD, SET_FLOAT_WORD
+
+#include <math.h>   // for sqrtf, acosf, float_t
+#include <stdint.h> // for uint32_t
 
 static const float pio2_hi = 1.5707962513e+00, /* 0x3fc90fda */
 	pio2_lo = 7.5497894159e-08,	       /* 0x33a22168 */

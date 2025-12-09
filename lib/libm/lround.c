@@ -1,4 +1,4 @@
-#include <math.h>
+#include <math.h> // for lround, round
 
 long lround(double x)
 {

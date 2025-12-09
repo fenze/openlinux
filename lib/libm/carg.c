@@ -1,5 +1,5 @@
-#include <math.h>
-#include <complex.h>
+#include <complex.h> // for carg, complex
+#include <math.h>    // for atan2
 
 double carg(double complex z)
 {

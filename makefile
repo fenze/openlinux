@@ -57,7 +57,7 @@ endif
 
 # CFLAGS
 
-KBUILD_CFLAGS :=
+KBUILD_CFLAGS := -x c
 
 KBUILD_CFLAGS += -Wall -Wextra
 KBUILD_CFLAGS += -nostdinc
@@ -152,7 +152,7 @@ include-what-you-use: compile_commands.json
 			--reorder
 
 clang-tidy: compile_commands.json
-	$(Q)clang-tidy -header-filter=.* -p=. -fix -fix-errors $(shell find . -name '*.c' -o -name '*.h' | grep -v './scripts/\|dtoa\|linux\|arch\|bits') \
+	$(Q)clang-tidy -header-filter=.* -p=. -fix -fix-errors $(shell find . -name '*.c' -o -name '*.h' | grep -v './scripts/\|dtoa\|linux\|arch\|bits\|libm') \
 		--export-fixes=clang-tidy-fixes.yaml
 
 clang-format:

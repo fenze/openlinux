@@ -1,6 +1,7 @@
 #include <errno.h>    // for EINVAL, ERANGE
 #include <features.h> // for __weak
-#include <string.h>   // for rsize_t, NULL, memcpy, size_t, errno_t, memcpy_s
+#include <stddef.h>   // for NULL, errno_t
+#include <string.h>   // for rsize_t, memcpy, size_t, memcpy_s
 
 __weak void *memcpy(void *restrict s1, const void *restrict s2, size_t n);
 

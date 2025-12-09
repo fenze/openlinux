@@ -1,5 +1,5 @@
 #define _GNU_SOURCE
-#include <math.h>
+#include <math.h> // for ilogb, scalbn
 
 double significand(double x)
 {

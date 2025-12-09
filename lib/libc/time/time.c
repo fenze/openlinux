@@ -1,6 +1,5 @@
-#include <time.h>
-#include <asm/vdso.h>
-#include <syscall.h>
+#include <asm/vdso.h> // for __vdso_time
+#include <time.h>     // for timespec, clock_gettime, time_t, CLOCK_REALTIME
 
 time_t time(time_t *tloc)
 {

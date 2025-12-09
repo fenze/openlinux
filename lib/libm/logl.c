@@ -52,7 +52,10 @@
  * [-10000, +10000].
  */
 
-#include "libm.h"
+#include "libm.h" // for __p1evll, __polevll
+
+#include <float.h> // for LDBL_MANT_DIG, LDBL_MAX_EXP
+#include <math.h>  // for frexpl, logl, INFINITY, isnan
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
 long double logl(long double x)

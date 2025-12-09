@@ -1,4 +1,7 @@
-#include "__complex.h"
+#include "__complex.h" // for IMAG_PART, REAL_PART, double_complex
+
+#include <complex.h> // for cimag, complex, cproj, creal
+#include <math.h>    // for copysign, isinf, INFINITY
 
 double complex cproj(double complex z)
 {

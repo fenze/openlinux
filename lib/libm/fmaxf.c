@@ -1,4 +1,4 @@
-#include <math.h>
+#include <math.h> // for signbit, fmaxf, isnan
 
 float fmaxf(float x, float y)
 {

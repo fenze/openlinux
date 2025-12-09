@@ -1,5 +1,9 @@
+#include "math.h" // for M_PI_4
+
+#include <float.h> // for LDBL_MANT_DIG, LDBL_MAX_EXP
+
 #define _GNU_SOURCE
-#include "libm.h"
+#include "libm.h" // for ldshape, __cosl, __sinl, ldshape::(anonymous)
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
 void sincosl(long double x, long double *sin, long double *cos)

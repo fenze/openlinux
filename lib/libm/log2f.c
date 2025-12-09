@@ -5,10 +5,11 @@
  * SPDX-License-Identifier: MIT
  */
 
-#include <math.h>
-#include <stdint.h>
-#include "libm.h"
-#include "log2f_data.h"
+#include "libm.h"	// for __math_divzerof, __math_invalidf, asuint
+#include "log2f_data.h" // for __log2f_data, log2f_data, log2f_data::(anony...
+
+#include <math.h>   // for double_t, log2f
+#include <stdint.h> // for uint32_t, int32_t
 
 /*
 LOG2F_TABLE_BITS = 4

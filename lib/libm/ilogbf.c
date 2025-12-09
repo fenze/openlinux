@@ -1,5 +1,8 @@
-#include <limits.h>
-#include "libm.h"
+#include "libm.h" // for FORCE_EVAL
+
+#include <limits.h> // for INT_MAX
+#include <math.h>   // for ilogbf, FP_ILOGB0, FP_ILOGBNAN
+#include <stdint.h> // for uint32_t
 
 int ilogbf(float x)
 {

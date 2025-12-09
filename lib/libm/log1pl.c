@@ -48,7 +48,10 @@
  *    IEEE     -1.0, 9.0    100000      8.2e-20    2.5e-20
  */
 
-#include "libm.h"
+#include "libm.h" // for __p1evll, __polevll
+
+#include <float.h> // for LDBL_MANT_DIG, LDBL_MAX_EXP
+#include <math.h>  // for frexpl, log1pl, INFINITY, isnan
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
 long double log1pl(long double x)

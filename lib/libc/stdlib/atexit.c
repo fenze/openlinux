@@ -1,4 +1,6 @@
-#include <stdlib.h>
+#include "stddef.h" // for NULL
+
+#include <stdlib.h> // for atexit
 
 static void (*__atexit_fvec[32])(void) = { NULL };
 

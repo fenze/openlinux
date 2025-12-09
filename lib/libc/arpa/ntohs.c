@@ -1,6 +1,6 @@
-#include <arpa/inet.h> // for ntohs
+#include <arpa/inet.h> // for uint16_t, ntohs
 #include <byteswap.h>  // for bswap16
-#include <stdint.h>    // for uint16_t
+#include <stdint.h>
 
 uint16_t ntohs(uint16_t netshort)
 {

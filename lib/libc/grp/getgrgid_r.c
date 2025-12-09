@@ -1,7 +1,9 @@
+#include "stddef.h" // for NULL
+
 #include <errno.h>     // for ERANGE, errno
 #include <grp.h>       // for group, getgrgid_r
 #include <limits.h>    // for LINE_MAX
-#include <stdio.h>     // for NULL, fclose, fgets, fopen, FILE
+#include <stdio.h>     // for fclose, fgets, fopen, FILE
 #include <stdlib.h>    // for strtoul
 #include <string.h>    // for strtok, memcpy, strlen
 #include <sys/types.h> // for gid_t, size_t

@@ -5,7 +5,9 @@ Checks: >
     llvm-*,
     performance-*,
     concurrency-*,
+    misc-*,
     -bugprone-reserved-identifier,
+    -bugprone-easily-swappable-parameters,
     -llvm-header-guard
 
 WarningsAsErrors: ""

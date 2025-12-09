@@ -1,5 +1,6 @@
-#include <float.h>
 #include "__invtrigl.h"
+
+#include <float.h> // for LDBL_MANT_DIG, LDBL_MAX_EXP
 
 #if LDBL_MANT_DIG == 64 && LDBL_MAX_EXP == 16384
 static const long double pS0 = 1.66666666666666666631e-01L,

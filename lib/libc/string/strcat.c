@@ -1,3 +1,5 @@
+#include <string.h> // for strcat
+
 char *strcat(char *restrict s1, const char *restrict s2)
 {
 	char *d = s1;

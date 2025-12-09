@@ -1,6 +1,6 @@
-#include "libm.h"
+#include "libm.h" // for weak_alias
 
-#include <math.h>
+#include <math.h> // for remainder, remquo
 
 double remainder(double x, double y)
 {

@@ -1,9 +1,10 @@
-#include <libc.h>
-#include <sys/mman.h>
-#include <atomic.h>
-#include <malloc.h>
-#include <stdint.h>
-#include <stdbool.h>
+#include <atomic.h>   // for LIBC_UNLOCK, LIBC_LOCK
+#include <libc.h>     // for (anonymous struct)::(anonymous), (anonymous)
+#include <malloc.h>   // for page, page::(anonymous), __malloc_pvec, LARGE_...
+#include <stddef.h>   // for NULL
+#include <stdint.h>   // for uintptr_t
+#include <stdlib.h>   // for free
+#include <sys/mman.h> // for size_t, munmap
 
 void free(void *ptr)
 {

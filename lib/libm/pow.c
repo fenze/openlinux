@@ -5,11 +5,12 @@
  * SPDX-License-Identifier: MIT
  */
 
-#include <math.h>
-#include <stdint.h>
-#include "libm.h"
-#include "exp_data.h"
-#include "pow_data.h"
+#include "exp_data.h" // for __exp_data, exp_data, EXP_POLY_ORDER, EXP_TABL...
+#include "libm.h"     // for asuint64, eval_as_double, asdouble, predict_false
+#include "pow_data.h" // for __pow_log_data, pow_log_data, pow_log_data::(a...
+
+#include <math.h>   // for double_t, INFINITY, fabs, pow
+#include <stdint.h> // for uint64_t, uint32_t, int64_t
 
 /*
 Worst-case error: 0.54 ULP (~= ulperr_exp + 1024*Ln2*relerr_log*2^53)
@@ -187,8 +188,7 @@ static inline double exp_inline(double_t x, double_t xtail, uint32_t sign_bias)
 			/* Note: inf and nan are already handled.  */
 			if (asuint64(x) >> 63)
 				return __math_uflow(sign_bias);
-			else
-				return __math_oflow(sign_bias);
+			return __math_oflow(sign_bias);
 		}
 		/* Large x is special cased below.  */
 		abstop = 0;
@@ -318,8 +318,7 @@ double pow(double x, double y)
 				if (WANT_ROUNDING)
 					return ix > asuint64(1.0) ? 1.0 + y :
 								    1.0 - y;
-				else
-					return 1.0;
+				return 1.0;
 			}
 			return (ix > asuint64(1.0)) == (topy < 0x800) ?
 				       __math_oflow(0) :

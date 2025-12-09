@@ -12,6 +12,7 @@
 #define __malloc     __attribute__((__malloc__))
 #define __pure	     __attribute__((__pure__))
 #define __nodiscard  __attribute__((__warn_unused_result__))
+#define __weak	     __attribute__((__weak__))
 
 #define __predict_true(exp)  __builtin_expect((exp) != 0, 1)
 #define __predict_false(exp) __builtin_expect((exp) != 0, 0)

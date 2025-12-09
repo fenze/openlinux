@@ -14,8 +14,11 @@
  * ====================================================
  */
 
+#include <math.h>   // for M_PI_2, float_t
+#include <stdint.h> // for uint32_t
+
 #define _GNU_SOURCE
-#include "libm.h"
+#include "libm.h" // for __cosdf, __sindf, __rem_pio2f, FORCE_EVAL, GET_F...
 
 /* Small multiples of pi/2 rounded to double precision. */
 static const double s1pio2 = 1 * M_PI_2, /* 0x3FF921FB, 0x54442D18 */

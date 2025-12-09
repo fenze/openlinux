@@ -1,6 +1,6 @@
-#include <math.h>
+#include <math.h> // for tgamma, tgammaf
 
 float tgammaf(float x)
 {
-	return tgamma(x);
+	return (float)tgamma((double)x);
 }

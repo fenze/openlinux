@@ -1,4 +1,4 @@
-#include "libm.h"
+#include <stdint.h> // for uint64_t
 
 // FIXME: macro in math.h
 int __signbit(double x)

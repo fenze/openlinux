@@ -1,4 +1,4 @@
-#include <complex.h>
+#include <complex.h> // for I, casinf, casinhf, complex
 
 float complex casinhf(float complex z)
 {

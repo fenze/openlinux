@@ -122,7 +122,11 @@
  * to produce the hexadecimal values shown.
  */
 
-#include "libm.h"
+#include "libm.h" // for __rem_pio2_large
+
+#include <float.h>  // for LDBL_MAX_EXP
+#include <math.h>   // for scalbn, floor
+#include <stdint.h> // for int32_t
 
 static const int init_jk[] = { 3, 4, 4, 6 }; /* initial value for jk */
 

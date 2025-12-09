@@ -1,4 +1,7 @@
-#include "libm.h"
+#include "libm.h" // for ldshape, ldshape::(anonymous), __BYTE_ORDER, __LI...
+
+#include <float.h> // for LDBL_MANT_DIG, LDBL_MAX_EXP
+#include <math.h>  // for FP_NAN, FP_INFINITE, FP_NORMAL, FP_SUBNORMAL, FP_...
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
 int __fpclassifyl(long double x)

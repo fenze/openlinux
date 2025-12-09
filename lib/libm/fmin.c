@@ -1,4 +1,4 @@
-#include <math.h>
+#include <math.h> // for signbit, fmin, isnan
 
 double fmin(double x, double y)
 {

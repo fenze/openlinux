@@ -30,8 +30,8 @@
  * SUCH DAMAGE.
  */
 
-#include <stddef.h>
-#include <stdlib.h>
+#include <stddef.h> // for NULL
+#include <stdlib.h> // for size_t, free, malloc
 
 /*
  * Swap two areas of size number of bytes.  Although qsort(3) permits random
@@ -40,25 +40,25 @@
  * isn't worth optimizing; the SWAP's get sped up by the cache, and pointer
  * arithmetic gets lost in the time required for comparison function calls.
  */
-#define SWAP(a, b, count, size, tmp) \
-	{                            \
-		count = size;        \
-		do {                 \
-			tmp = *a;    \
-			*a++ = *b;   \
-			*b++ = tmp;  \
-		} while (--count);   \
+#define SWAP(a, b, count, size, tmp)   \
+	{                              \
+		(count) = size;        \
+		do {                   \
+			(tmp) = *(a);  \
+			*(a)++ = *(b); \
+			*(b)++ = tmp;  \
+		} while (--(count));   \
 	}
 
 /* Copy one block of size size to another. */
-#define COPY(a, b, count, size, tmp1, tmp2) \
-	{                                   \
-		count = size;               \
-		tmp1 = a;                   \
-		tmp2 = b;                   \
-		do {                        \
-			*tmp1++ = *tmp2++;  \
-		} while (--count);          \
+#define COPY(a, b, count, size, tmp1, tmp2)    \
+	{                                      \
+		(count) = size;                \
+		(tmp1) = a;                    \
+		(tmp2) = b;                    \
+		do {                           \
+			*(tmp1)++ = *(tmp2)++; \
+		} while (--(count));           \
 	}
 
 /*
@@ -68,21 +68,21 @@
  * There two cases.  If j == nmemb, select largest of Ki and Kj.  If
  * j < nmemb, select largest of Ki, Kj and Kj+1.
  */
-#define CREATE(initval, nmemb, par_i, child_i, par, child, size, count, tmp) \
-	{                                                                    \
-		for (par_i = initval; (child_i = par_i * 2) <= nmemb;        \
-		     par_i = child_i) {                                      \
-			child = base + child_i * size;                       \
-			if (child_i < nmemb &&                               \
-			    compar(child, child + size) < 0) {               \
-				child += size;                               \
-				++child_i;                                   \
-			}                                                    \
-			par = base + par_i * size;                           \
-			if (compar(child, par) <= 0)                         \
-				break;                                       \
-			SWAP(par, child, count, size, tmp);                  \
-		}                                                            \
+#define CREATE(initval, nmemb, par_i, child_i, par, child, size, count, tmp)  \
+	{                                                                     \
+		for ((par_i) = initval; ((child_i) = (par_i) * 2) <= (nmemb); \
+		     (par_i) = (child_i)) {                                   \
+			(child) = base + (child_i) * (size);                  \
+			if ((child_i) < (nmemb) &&                            \
+			    compar(child, (child) + (size)) < 0) {            \
+				(child) += (size);                            \
+				++(child_i);                                  \
+			}                                                     \
+			(par) = base + (par_i) * (size);                      \
+			if (compar(child, par) <= 0)                          \
+				break;                                        \
+			SWAP(par, child, count, size, tmp);                   \
+		}                                                             \
 	}
 
 /*
@@ -104,23 +104,23 @@
  */
 #define SELECT(par_i, child_i, nmemb, par, child, size, k, count, tmp1, tmp2) \
 	{                                                                     \
-		for (par_i = 1; (child_i = par_i * 2) <= nmemb;               \
-		     par_i = child_i) {                                       \
-			child = base + child_i * size;                        \
-			if (child_i < nmemb &&                                \
-			    compar(child, child + size) < 0) {                \
-				child += size;                                \
-				++child_i;                                    \
+		for ((par_i) = 1; ((child_i) = (par_i) * 2) <= (nmemb);       \
+		     (par_i) = (child_i)) {                                   \
+			(child) = base + (child_i) * (size);                  \
+			if ((child_i) < (nmemb) &&                            \
+			    compar(child, (child) + (size)) < 0) {            \
+				(child) += (size);                            \
+				++(child_i);                                  \
 			}                                                     \
-			par = base + par_i * size;                            \
+			(par) = base + (par_i) * (size);                      \
 			COPY(par, child, count, size, tmp1, tmp2);            \
 		}                                                             \
 		for (;;) {                                                    \
-			child_i = par_i;                                      \
-			par_i = child_i / 2;                                  \
-			child = base + child_i * size;                        \
-			par = base + par_i * size;                            \
-			if (child_i == 1 || compar(k, par) < 0) {             \
+			(child_i) = par_i;                                    \
+			(par_i) = (child_i) / 2;                              \
+			(child) = base + (child_i) * (size);                  \
+			(par) = base + (par_i) * (size);                      \
+			if ((child_i) == 1 || compar(k, par) < 0) {           \
 				COPY(child, k, count, size, tmp1, tmp2);      \
 				break;                                        \
 			}                                                     \

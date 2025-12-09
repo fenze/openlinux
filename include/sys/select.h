@@ -1,14 +1,12 @@
 #ifndef __SYS_SELECT_H
 #define __SYS_SELECT_H
 
+#include <time.h>
 #define __BITS_SELECT_H_
-#include <bits/select.h>
+#include <bits/select.h> // for fd_set
 
 #define __BITS_TIMESPEC_H_
-#include <bits/timespec.h>
-
 struct timespec;
-struct timeval;
 
 typedef __UINT64_TYPE__ sigset_t;
 

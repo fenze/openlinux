@@ -1,4 +1,5 @@
-#include <stddef.h> // for NULL, size_t
+#include <stddef.h> // for NULL
+#include <string.h> // for memchr, size_t
 
 void *memchr(const void *s, int c, size_t n)
 {

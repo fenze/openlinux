@@ -14,7 +14,10 @@
  * ====================================================
  */
 
-#include "libm.h"
+#include "libm.h" // for __cosdf, __sindf, __rem_pio2f, FORCE_EVAL, GET_F...
+
+#include <math.h>   // for M_PI_2, sinf
+#include <stdint.h> // for uint32_t
 
 /* Small multiples of pi/2 rounded to double precision. */
 static const double s1pio2 = 1 * M_PI_2, /* 0x3FF921FB, 0x54442D18 */
@@ -45,8 +48,7 @@ float sinf(float x)
 		if (ix <= 0x4016cbe3) { /* |x| ~<= 3pi/4 */
 			if (sign)
 				return -__cosdf(x + s1pio2);
-			else
-				return __cosdf(x - s1pio2);
+			return __cosdf(x - s1pio2);
 		}
 		return __sindf(sign ? -(x + s2pio2) : -(x - s2pio2));
 	}
@@ -54,8 +56,7 @@ float sinf(float x)
 		if (ix <= 0x40afeddf) { /* |x| ~<= 7*pi/4 */
 			if (sign)
 				return __cosdf(x + s3pio2);
-			else
-				return -__cosdf(x - s3pio2);
+			return -__cosdf(x - s3pio2);
 		}
 		return __sindf(sign ? x + s4pio2 : x - s4pio2);
 	}

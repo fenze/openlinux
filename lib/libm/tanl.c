@@ -1,4 +1,7 @@
-#include "libm.h"
+#include "libm.h" // for ldshape, ldshape::(anonymous), __tanl, __rem_pio2l
+
+#include <float.h> // for LDBL_MANT_DIG, LDBL_MAX_EXP
+#include <math.h>  // for tanl, M_PI_4
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
 long double tanl(long double x)
@@ -14,7 +17,8 @@ long double tanl(long double x)
 
 	u.i.se &= 0x7fff;
 	if (u.i.se == 0x7fff)
-		return x - x;
+		return NAN;
+
 	if (u.f < M_PI_4) {
 		if (u.i.se < 0x3fff - LDBL_MANT_DIG / 2) {
 			/* raise inexact if x!=0 and underflow if subnormal */
@@ -24,6 +28,6 @@ long double tanl(long double x)
 		return __tanl(x, 0, 0);
 	}
 	n = __rem_pio2l(x, y);
-	return __tanl(y[0], y[1], n & 1);
+	return __tanl(y[0], y[1], (int)(n & 1));
 }
 #endif

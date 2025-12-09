@@ -1,4 +1,5 @@
-#include "__complex.h"
+#include <complex.h> // for complex, cimag, creal, csinh, I
+#include <math.h>    // for cos, cosh, sin, sinh
 
 double complex csinh(double complex z)
 {

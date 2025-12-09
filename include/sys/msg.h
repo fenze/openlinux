@@ -1,7 +1,9 @@
 #ifndef __SYS_MSG_H
 #define __SYS_MSG_H
 
+#include <stddef.h>
 #include <sys/ipc.h>
+#include <time.h>
 
 typedef __INT64_TYPE__ pid_t;
 typedef __INT64_TYPE__ ssize_t;

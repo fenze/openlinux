@@ -1,7 +1,9 @@
-#include <libc.h>
-#include <atomic.h>
-#include <stdlib.h>
-#include <string.h>
+#include "stddef.h" // for NULL
+
+#include <atomic.h> // for LIBC_LOCK, LIBC_UNLOCK
+#include <libc.h>   // for (anonymous), libc, (anonymous struct)::(anonymous)
+#include <stdlib.h> // for malloc, realloc, setenv
+#include <string.h> // for strlen, size_t, memcpy, strcpy, strchr, strncmp
 
 extern char **environ;
 
@@ -20,7 +22,7 @@ int setenv(const char *var, const char *value, int overwrite)
 					malloc(var_len + 1 + value_len + 1);
 				if (!new_env)
 					return -1;
-				memcpy(new_env, var, var_len);
+				strcpy(new_env, var);
 				new_env[var_len] = '=';
 				memcpy(new_env + var_len + 1, value,
 				       value_len + 1);
@@ -34,7 +36,8 @@ int setenv(const char *var, const char *value, int overwrite)
 	while (environ[env_count])
 		env_count++;
 
-	char **new_envp = realloc(environ, (env_count + 2) * sizeof(char *));
+	char **new_envp = (char **)realloc((void *)environ,
+					   (env_count + 2) * sizeof(char *));
 	if (!new_envp)
 		return -1;
 
@@ -43,7 +46,7 @@ int setenv(const char *var, const char *value, int overwrite)
 	if (!new_var)
 		return -1;
 
-	memcpy(new_var, var, var_len);
+	strcpy(new_var, var);
 	new_var[var_len] = '=';
 	memcpy(new_var + var_len + 1, value, value_len + 1);
 

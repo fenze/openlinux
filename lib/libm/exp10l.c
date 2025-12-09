@@ -1,7 +1,8 @@
 #define _GNU_SOURCE
-#include <float.h>
-#include <math.h>
-#include "libm.h"
+#include "libm.h" // for ldshape, ldshape::(anonymous), weak_alias
+
+#include <float.h> // for LDBL_MANT_DIG, LDBL_MAX_EXP
+#include <math.h>  // for exp2l, modfl, powl
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
 long double exp10l(long double x)

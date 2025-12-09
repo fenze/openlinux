@@ -1,5 +1,5 @@
 #define _GNU_SOURCE
-#include <math.h>
+#include <math.h> // for isfinite
 
 int finite(double x)
 {

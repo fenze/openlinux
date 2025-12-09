@@ -1,6 +1,7 @@
 #ifndef __STRINGS_H
 #define __STRINGS_H
 
+#include <stddef.h>
 typedef __SIZE_TYPE__ size_t;
 
 int ffs(int);

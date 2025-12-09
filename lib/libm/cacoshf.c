@@ -1,4 +1,4 @@
-#include <complex.h>
+#include <complex.h> // for csqrtf, cacoshf, clogf, complex
 
 float complex cacoshf(float complex z)
 {

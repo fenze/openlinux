@@ -1,5 +1,5 @@
-#include <stdlib.h>
-#include <string.h>
+#include <stdlib.h> // for setenv, unsetenv, putenv
+#include <string.h> // for memcpy, strchr
 
 int putenv(char *string)
 {

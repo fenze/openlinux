@@ -25,9 +25,11 @@
 			Run time: Worst case O(n log n), close to O(n) in the
    mostly-sorted case. */
 
+#include "stddef.h" // for NULL
+
 #define _BSD_SOURCE
-#include <stdlib.h>
-#include <string.h>
+#include <stdlib.h> // for qsort_r
+#include <string.h> // for size_t, memcpy
 
 #define ntz(x) __builtin_ctzl((x))
 

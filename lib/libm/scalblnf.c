@@ -1,5 +1,5 @@
-#include <limits.h>
-#include <math.h>
+#include <limits.h> // for INT_MAX, INT_MIN
+#include <math.h>   // for scalblnf, scalbnf
 
 float scalblnf(float x, long n)
 {

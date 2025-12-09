@@ -15,7 +15,10 @@
  * Converted to long double by David Schultz <das@FreeBSD.ORG>.
  */
 
-#include "libm.h"
+#include "libm.h" // for ldshape, ldshape::(anonymous)
+
+#include <float.h> // for LDBL_MANT_DIG, LDBL_MAX_EXP
+#include <math.h>  // for atanl, atan2l, fabsl, isnan
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
 long double atan2l(long double y, long double x)
@@ -23,7 +26,7 @@ long double atan2l(long double y, long double x)
 	return atan2(y, x);
 }
 #elif (LDBL_MANT_DIG == 64 || LDBL_MANT_DIG == 113) && LDBL_MAX_EXP == 16384
-#include "__invtrigl.h"
+#include "__invtrigl.h" // for pio2_hi, pio2_lo
 
 long double atan2l(long double y, long double x)
 {

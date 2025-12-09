@@ -1,4 +1,7 @@
-#include "libm.h"
+#include "libm.h" // for FORCE_EVAL
+
+#include <math.h>   // for signbit, isnan, nexttowardf
+#include <stdint.h> // for uint32_t
 
 float nexttowardf(float x, long double y)
 {

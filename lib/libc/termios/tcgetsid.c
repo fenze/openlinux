@@ -1,6 +1,6 @@
-#include <termios.h>
-#include <syscall.h>
 #include <asm-generic/ioctls.h>
+#include <syscall.h>
+#include <termios.h>
 
 pid_t tcgetsid(int fildes)
 {

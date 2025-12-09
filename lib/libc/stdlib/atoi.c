@@ -1,4 +1,6 @@
-#include <stdlib.h>
+#include "stddef.h" // for NULL
+
+#include <stdlib.h> // for strtol, atoi
 
 int atoi(const char *str)
 {

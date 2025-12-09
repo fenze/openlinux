@@ -40,7 +40,10 @@
  *      TRIG(x) returns trig(x) nearly rounded
  */
 
-#include "libm.h"
+#include "libm.h" // for __cos, __sin, __rem_pio2, FORCE_EVAL, GET_HIGH_WORD
+
+#include <math.h>   // for cos
+#include <stdint.h> // for uint32_t
 
 double cos(double x)
 {

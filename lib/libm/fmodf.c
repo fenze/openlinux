@@ -1,5 +1,5 @@
-#include <math.h>
-#include <stdint.h>
+#include <math.h>   // for fmodf, isnan
+#include <stdint.h> // for uint32_t
 
 float fmodf(float x, float y)
 {

@@ -1,5 +1,9 @@
-#include <limits.h>
-#include "libm.h"
+#include "libm.h" // for ldshape, FORCE_EVAL, ldshape::(anonymous)
+
+#include <float.h>  // for LDBL_MANT_DIG, LDBL_MAX_EXP
+#include <limits.h> // for INT_MAX
+#include <math.h>   // for ilogbl, FP_ILOGB0, FP_ILOGBNAN
+#include <stdint.h> // for uint64_t
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
 int ilogbl(long double x)

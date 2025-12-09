@@ -1,4 +1,7 @@
-#include "__complex.h"
+#include "__complex.h" // for redupi, MACHEP
+
+#include <complex.h> // for cimag, creal, complex, I, ctan
+#include <math.h>    // for fabs, HUGE_VAL, cos, cosh, sin, sinh
 
 double _ctans(double complex z)
 {

@@ -1,4 +1,6 @@
-#include "libm.h"
+#include "libm.h" // for ldshape, ldshape::(anonymous)
+
+#include <float.h> // for LDBL_MANT_DIG, LDBL_MAX_EXP
 
 #if (LDBL_MANT_DIG == 64 || LDBL_MANT_DIG == 113) && LDBL_MAX_EXP == 16384
 int __signbitl(long double x)

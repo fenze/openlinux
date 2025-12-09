@@ -34,7 +34,10 @@
  *      values of n>1.
  */
 
-#include "libm.h"
+#include "libm.h" // for EXTRACT_WORDS, GET_HIGH_WORD
+
+#include <math.h>   // for cos, sin, fabs, j0, j1, y1, sqrt, y0, log, jn, yn
+#include <stdint.h> // for uint32_t
 
 static const double invsqrtpi = 5.64189583547756279280e-01; /* 0x3FE20DD7,
 							       0x50429B6D */

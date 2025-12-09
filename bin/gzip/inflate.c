@@ -95,15 +95,18 @@
       the two sets of lengths.
  */
 
+#include "stddef.h" // for NULL
+
+#include <stdio.h>  // for fprintf, stderr
+#include <string.h> // for memcpy
 #ifdef RCSID
 static char rcsid[] = "$Id: inflate.c,v 1.1 2002/08/18 00:59:21 hpa Exp $";
 #endif
 
-#include <sys/types.h>
-#include <stdlib.h>
+#include "gzip.h" // for uch, ulg, get_byte, ush, outcnt, OF, flush_window
 
-#include "tailor.h"
-#include "gzip.h"
+#include <stdlib.h> // for free, malloc
+
 #define slide window
 
 /* Huffman code lookup table entry--this entry is four bytes for machines

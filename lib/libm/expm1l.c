@@ -47,7 +47,8 @@
  *    IEEE    -45,+maxarg   200,000     1.2e-19     2.5e-20
  */
 
-#include "libm.h"
+#include <float.h> // for LDBL_MANT_DIG, LDBL_MAX_EXP
+#include <math.h>  // for expm1l, floorl, scalbnl, isnan
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
 long double expm1l(long double x)

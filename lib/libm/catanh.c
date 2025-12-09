@@ -1,4 +1,4 @@
-#include <complex.h>
+#include <complex.h> // for I, catan, catanh, complex
 
 double complex catanh(double complex z)
 {

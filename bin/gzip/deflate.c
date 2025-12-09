@@ -61,10 +61,12 @@
  *          attributes.
  */
 
+#include "stddef.h"
 #include <stdio.h>
 
-#include "tailor.h"
 #include "gzip.h"
+#include "tailor.h"
+#include <string.h>
 
 #ifdef RCSID
 static char rcsid[] = "$Id: deflate.c,v 1.1 2002/08/18 00:59:21 hpa Exp $";
@@ -266,7 +268,7 @@ local void check_match OF((IPos start, IPos match, int length));
  *    input characters, so that a running hash key can be computed from the
  *    previous key instead of complete recalculation each time.
  */
-#define UPDATE_HASH(h, c) (h = (((h) << H_SHIFT) ^ (c)) & HASH_MASK)
+#define UPDATE_HASH(h, c) ((h) = (((h) << H_SHIFT) ^ (c)) & HASH_MASK)
 
 /* ===========================================================================
  * Insert string s in the dictionary and set match_head to the previous head
@@ -278,14 +280,12 @@ local void check_match OF((IPos start, IPos match, int length));
  */
 #define INSERT_STRING(s, match_head)                      \
 	(UPDATE_HASH(ins_h, window[(s) + MIN_MATCH - 1]), \
-	 prev[(s) & WMASK] = match_head = head[ins_h], head[ins_h] = (s))
+	 prev[(s) & WMASK] = (match_head) = head[ins_h], head[ins_h] = (s))
 
 /* ===========================================================================
  * Initialize the "longest match" routines for a new file
  */
-void lm_init(pack_level, flags) int pack_level; /* 0: store, 1: best speed, 9:
-						   best compression */
-ush *flags;					/* general purpose bit flag */
+void lm_init(int pack_level, ush *flags)
 {
 	register unsigned j;
 

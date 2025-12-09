@@ -1,8 +1,7 @@
 #include "features.h" // for __weak
 
 #include <libc.h>   // for __unused
-#include <locale.h> // for locale_t
-#include <string.h> // for strcmp, strcoll, strcoll_l
+#include <string.h> // for strcmp, locale_t, strcoll, strcoll_l
 
 int strcoll(const char *s1, const char *s2)
 {

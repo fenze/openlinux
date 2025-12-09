@@ -1,5 +1,5 @@
-#include <endian.h> // for htole64
-#include <stdint.h> // for uint64_t
+#include <endian.h> // for uint64_t, htole64
+#include <stdint.h>
 
 uint64_t htole64(uint64_t host_64bits)
 {

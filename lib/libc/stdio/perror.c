@@ -1,5 +1,7 @@
+#include "stddef.h" // for NULL
+
 #include <errno.h>   // for errno
-#include <stdio.h>   // for NULL, perror
+#include <stdio.h>   // for perror
 #include <string.h>  // for strlen, strerror
 #include <sys/uio.h> // for iovec, writev
 #include <unistd.h>  // for STDERR_FILENO

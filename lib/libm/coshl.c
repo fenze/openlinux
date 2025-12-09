@@ -1,4 +1,8 @@
-#include "libm.h"
+#include "libm.h" // for ldshape, ldshape::(anonymous), FORCE_EVAL
+
+#include <float.h>  // for LDBL_MANT_DIG, LDBL_MAX_EXP
+#include <math.h>   // for expl, coshl, expm1l
+#include <stdint.h> // for uint32_t
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
 long double coshl(long double x)

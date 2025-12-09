@@ -1,4 +1,4 @@
-#include <math.h>
+#include <math.h> // for lroundf, roundf
 
 long lroundf(float x)
 {

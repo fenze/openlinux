@@ -13,8 +13,11 @@
  * ====================================================
  */
 
+#include <math.h>   // for float_t, cosf, fabsf, logf, sinf, sqrtf
+#include <stdint.h> // for uint32_t
+
 #define _GNU_SOURCE
-#include "libm.h"
+#include "libm.h" // for GET_FLOAT_WORD
 
 static float ponef(float), qonef(float);
 

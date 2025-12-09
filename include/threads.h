@@ -1,6 +1,8 @@
 #ifndef __THREADS_H
 #define __THREADS_H
 
+#include <threads.h>
+#include <time.h>
 #define thread_local _Thread_local
 #define ONCE_FLAG_INIT
 #define TSS_DTOR_ITERATIONS

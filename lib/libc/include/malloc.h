@@ -1,9 +1,8 @@
 #ifndef __LIBC_MALLOC_H
 #define __LIBC_MALLOC_H
 
-#include <stddef.h>
-#include <stdint.h>
 #include <stdatomic.h>
+#include <stdint.h>
 
 struct class {
 	uint32_t size;
@@ -47,11 +46,12 @@ extern struct page *__malloc_pvec;
 #define LARGE_PAGE_MASK	      (~((uintptr_t)LARGE_PAGE_SIZE - 1))
 
 #define SMALL_CLASS(n) \
-	{ (n * 16), (SMALL_PAGE_SIZE - sizeof(struct page)) / (n * 16) }
+	{ (((n)) * 16), (SMALL_PAGE_SIZE - sizeof(struct page)) / (((n)) * 16) }
 #define MEDIUM_CLASS(n) \
-	{ (n * 16), (MEDIUM_PAGE_SIZE - sizeof(struct page)) / (n * 16) }
+	{ (((n)) * 16), \
+	  (MEDIUM_PAGE_SIZE - sizeof(struct page)) / (((n)) * 16) }
 #define LARGE_CLASS(n) \
-	{ (n * 16), (LARGE_PAGE_SIZE - sizeof(struct page)) / (n * 16) }
+	{ (((n)) * 16), (LARGE_PAGE_SIZE - sizeof(struct page)) / (((n)) * 16) }
 
 static const struct class global_size_class[] = {
 	SMALL_CLASS(1),	     SMALL_CLASS(1),	  SMALL_CLASS(2),
