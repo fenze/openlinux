@@ -1,42 +1,43 @@
-#include <io.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdatomic.h>
-#include <fcntl.h>
+#include "__stdio.h" // for __FILE
+#include "stddef.h"  // for NULL
+
+#include <fcntl.h>     // for O_WRONLY
+#include <stdatomic.h> // for atomic_flag_clear
+#include <stdio.h>     // for vfprintf, vsnprintf, _IONBF, size_t, va_list
+#include <string.h>    // for memset
 
 int vsnprintf(char *restrict s, size_t n, const char *restrict format,
 	      va_list ap)
 {
 	int r;
-	FILE f;
+	struct __FILE stream;
 
 	if (n == 0) {
 		return 0;
 	}
 
-	if (!s) {
+	if (s == NULL) {
 		return -1;
 	}
 
-	memset(&f, 0, sizeof(f));
-	f.fd = -1;
-	f.flags = O_WRONLY;
-	f.type = _IONBF;
-	atomic_flag_clear(&f.lock);
-	f.buf = s;
-	f.buf_size = n;
-	f.buf_len = 0;
-	f.buf_pos = 0;
-	f.eof = 0;
-	f.unget_cnt = 0;
-	f.offset = 0;
-	f.next = NULL;
+	memset(&stream, 0, sizeof(stream));
+	stream.fd = -1;
+	stream.flags = O_WRONLY;
+	stream.type = _IONBF;
+	atomic_flag_clear(&stream.lock);
+	stream.buf = s;
+	stream.buf_size = n;
+	stream.buf_len = 0;
+	stream.buf_pos = 0;
+	stream.eof = 0;
+	stream.unget_cnt = 0;
+	stream.offset = 0;
+	stream.next = NULL;
 
-	r = vfprintf(&f, format, ap);
+	r = vfprintf(&stream, format, ap);
 
-	if (f.buf_len < n) {
-		s[f.buf_len] = '\0';
+	if (stream.buf_len < n) {
+		s[stream.buf_len] = '\0';
 	} else if (n > 0) {
 		s[n - 1] = '\0';
 		r = n - 1;

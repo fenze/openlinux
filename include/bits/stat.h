@@ -3,11 +3,12 @@
 
 #ifndef __BITS_STAT_H_
 #error "Internal header — include the public API header instead."
+#else
+#undef __BITS_STAT_H_
 #endif
 
 #define __BITS_TIMESPEC_H_
 #include <bits/timespec.h>
-#undef __BITS_TIMESPEC_H_
 
 typedef __UINT64_TYPE__ dev_t;
 typedef __UINT64_TYPE__ ino_t;

@@ -1,4 +1,4 @@
-#include <libc.h>
+#include <libc.h> // for weak_reference
 
 int isblank(int c)
 {

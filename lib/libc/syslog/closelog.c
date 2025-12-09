@@ -1,4 +1,4 @@
-#include <syslog.h>
+#include <syslog.h> // for closelog
 
 void closelog(void)
 {

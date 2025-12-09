@@ -1,5 +1,4 @@
-#include <io.h>
-#include <stdio.h>
+#include <stdio.h> // for setvbuf, BUFSIZ, FILE, NULL, _IOFBF, _IONBF, setbuf
 
 void setbuf(FILE *restrict stream, char *restrict buf)
 {

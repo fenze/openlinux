@@ -1,5 +1,6 @@
-#include <arpa/inet.h>
-#include <byteswap.h>
+#include <arpa/inet.h> // for htons
+#include <byteswap.h>  // for bswap16
+#include <stdint.h>    // for uint16_t
 
 uint16_t htons(uint16_t hostshort)
 {

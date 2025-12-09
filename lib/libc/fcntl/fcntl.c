@@ -1,6 +1,9 @@
-#include <fcntl.h>
-#include <stdarg.h>
-#include <syscall.h>
+#include "asm/unistd_64.h" // for __NR_fcntl, __NR_close
+#include "errno.h"	   // for EINVAL
+
+#include <fcntl.h>   // for F_DUPFD_CLOEXEC, FD_CLOEXEC, F_SETFD, F_D...
+#include <stdarg.h>  // for va_arg, va_end, va_list, va_start
+#include <syscall.h> // for __syscall_ret, syscall, __syscall_3, __sy...
 
 int fcntl(int fildes, int cmd, ...)
 {

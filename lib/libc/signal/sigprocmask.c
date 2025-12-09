@@ -1,5 +1,7 @@
-#include <signal.h>
-#include <syscall.h>
+#include "asm/unistd_64.h" // for __NR_rt_sigprocmask
+
+#include <signal.h>  // for sigset_t, sigprocmask
+#include <syscall.h> // for __syscall_4, syscall
 
 int sigprocmask(int how, const sigset_t *restrict set, sigset_t *restrict oset)
 {

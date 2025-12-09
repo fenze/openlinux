@@ -1,8 +1,12 @@
-#include <linux/stat.h>
+#include <linux/stat.h> // for statx, statx_timestamp, STATX_BASIC_STATS
+#include <time.h>	// for timespec
+
 #define __BITS_STAT_H_
-#include <bits/stat.h>
-#undef __BITS_STAT_H_
-#include <syscall.h>
+
+#include "asm/unistd_64.h" // for __NR_statx
+
+#include <bits/stat.h> // for stat
+#include <syscall.h>   // for __syscall_5, syscall
 
 #define makedev(major, minor)                \
 	((((major) & 0xfffff000ULL) << 32) | \

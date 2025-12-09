@@ -1,5 +1,8 @@
-#include <libc.h>
-#include <ctype.h>
+#include "features.h" // for __weak
+
+#include <ctype.h>  // for tolower
+#include <libc.h>   // for __unused
+#include <locale.h> // for locale_t
 
 int strcasecmp(const char *s1, const char *s2)
 {

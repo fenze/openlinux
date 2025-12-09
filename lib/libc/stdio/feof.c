@@ -1,10 +1,12 @@
-#include <stdio.h>
-#include <io.h>
+#include "stddef.h" // for NULL
+
+#include <libc.h>  // for __IMPL
+#include <stdio.h> // for FILE, feof
 
 int feof(FILE *stream)
 {
-	if (!stream)
+	if (stream == NULL)
 		return 0;
 
-	return stream->eof;
+	return __IMPL(stream)->eof;
 }

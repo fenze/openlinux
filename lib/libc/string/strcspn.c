@@ -1,4 +1,4 @@
-#include <string.h>
+#include <string.h> // for size_t, strchr, strcspn, NULL
 
 size_t strcspn(const char *s1, const char *s2)
 {

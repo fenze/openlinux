@@ -1,5 +1,5 @@
-#include <stdlib.h>
-#include <string.h>
+#include <stdlib.h> // for NULL, malloc
+#include <string.h> // for memcpy, size_t, strndup
 
 char *strndup(const char *s, size_t size)
 {

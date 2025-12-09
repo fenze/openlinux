@@ -1,27 +1,24 @@
-#include <stdio.h>
-#include <errno.h>
-#include <string.h>
-#include <io.h>
+#include "stddef.h" // for NULL
+
+#include <errno.h> // for EINVAL, errno
+#include <libc.h>  // for __IMPL
+#include <stdio.h> // for EOF, fwrite, FILE, fputc
 
 int fputc(int c, FILE *stream)
 {
-	if (!stream) {
+	if (stream == NULL) {
 		errno = EINVAL;
 		return EOF;
 	}
 
-	// Special case for string buffer operations (snprintf)
-	// When fd is -1, we're writing to a string buffer
-	if (stream->fd == -1 && stream->buf != NULL) {
-		// Check if there's space (leave room for null terminator)
-		if (stream->buf_len >= stream->buf_size - 1) {
+	if (__IMPL(stream)->fd == -1 && __IMPL(stream)->buf != NULL) {
+		if (__IMPL(stream)->buf_len >= __IMPL(stream)->buf_size - 1) {
 			return EOF;
 		}
 
-		stream->buf[stream->buf_len++] = (char)c;
+		__IMPL(stream)->buf[__IMPL(stream)->buf_len++] = (char)c;
 		return (unsigned char)c;
 	}
 
-	// For regular file operations, use fwrite
 	return fwrite(&c, 1, 1, stream) ? c : EOF;
 }

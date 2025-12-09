@@ -1,5 +1,5 @@
-#include <libc.h>
-#include <stdio.h>
+#include <libc.h>  // for weak_reference
+#include <stdio.h> // for putc, putchar, putchar_unlocked, stdout
 
 int putchar(int c)
 {

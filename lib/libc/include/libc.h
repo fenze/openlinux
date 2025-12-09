@@ -4,6 +4,11 @@
 #include <stdatomic.h>
 #include <features.h>
 
+#include <__stdio.h>
+#include <thread.h>
+
+#define __IMPL(_v) ((__##typeof(_v))_v)
+
 #define likely(x)     __builtin_expect(!!(x), 1)
 #define unlikely(x)   __builtin_expect(!!(x), 0)
 #define __unused      __attribute__((unused))

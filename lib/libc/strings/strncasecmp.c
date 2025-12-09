@@ -1,6 +1,9 @@
-#include <libc.h>
-#include <ctype.h>
-#include <stddef.h>
+#include "__stdio.h"  // for size_t
+#include "features.h" // for __weak
+
+#include <ctype.h>  // for tolower
+#include <libc.h>   // for __unused
+#include <locale.h> // for locale_t
 
 int strncasecmp(const char *s1, const char *s2, size_t n)
 {

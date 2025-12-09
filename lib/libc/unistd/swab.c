@@ -1,4 +1,4 @@
-#include <unistd.h>
+#include <unistd.h> // for ssize_t, swab
 
 void swab(const void *restrict src, void *restrict dest, ssize_t nbytes)
 {

@@ -1,5 +1,7 @@
-#include <stdarg.h>
-#include <syscall.h>
+#include "asm/unistd_64.h" // for __NR_ioctl
+
+#include <stdarg.h>  // for va_arg, va_end, va_list, va_start
+#include <syscall.h> // for __syscall_3, syscall
 
 int ioctl(int fildes, unsigned long request, ...)
 {

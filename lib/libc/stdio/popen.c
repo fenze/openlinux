@@ -1,8 +1,10 @@
-#include <io.h>
-#include <errno.h>
-#include <stdio.h>
-#include <fcntl.h>
-#include <unistd.h>
+#include "stddef.h" // for NULL
+
+#include <errno.h>  // for EINVAL, errno
+#include <fcntl.h>  // for O_RDONLY, O_CLOEXEC, O_WRONLY
+#include <libc.h>   // for __IMPL
+#include <stdio.h>  // for FILE, fclose, fdopen, popen
+#include <unistd.h> // for close, dup2, _exit, execl, fork, pipe2, STDIN_FI...
 
 FILE *popen(const char *command, const char *mode)
 {
@@ -58,7 +60,7 @@ FILE *popen(const char *command, const char *mode)
 			close(pipefd[0]);
 		}
 
-		stream->pid = pid;
+		__IMPL(stream)->pid = pid;
 
 		return stream;
 	}

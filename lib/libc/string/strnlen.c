@@ -1,4 +1,4 @@
-#include <stddef.h>
+#include <stddef.h> // for size_t
 
 size_t strnlen(const char *s, size_t maxlen)
 {

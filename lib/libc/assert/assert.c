@@ -1,6 +1,6 @@
 #include <assert.h>
-#include <stdlib.h>
-#include <stdio.h>
+#include <stdio.h>  // for fprintf, stderr
+#include <stdlib.h> // for abort
 
 _Noreturn void __assert(const char *_Nonnull __file, int __line,
 			const char *_Nonnull __func,

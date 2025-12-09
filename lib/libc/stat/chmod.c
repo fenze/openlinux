@@ -1,5 +1,8 @@
-#include <sys/stat.h>
-#include <syscall.h>
+#include "asm/unistd_64.h" // for __NR_chmod
+
+#include <sys/stat.h>  // for chmod
+#include <sys/types.h> // for mode_t
+#include <syscall.h>   // for __syscall_2, syscall
 
 int chmod(const char *path, mode_t mode)
 {

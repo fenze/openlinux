@@ -1,5 +1,6 @@
-#include <stdarg.h>
-#include <unistd.h>
+#include <stdarg.h> // for va_arg, va_end, va_start, va_list
+#include <stddef.h> // for NULL
+#include <unistd.h> // for execve, execlp
 
 int execlp(const char *path, const char *argv0, ...)
 {

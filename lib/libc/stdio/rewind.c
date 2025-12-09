@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <stdio.h> // for clearerr, fseek, FILE, SEEK_SET, rewind
 
 void rewind(FILE *stream)
 {

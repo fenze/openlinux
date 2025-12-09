@@ -1,5 +1,5 @@
-#include <stdio.h>
-#include <stdarg.h>
+#include <stdarg.h> // for va_end, va_start
+#include <stdio.h>  // for snprintf, vsnprintf, size_t, va_list
 
 int snprintf(char *restrict s, size_t n, const char *restrict format, ...)
 {

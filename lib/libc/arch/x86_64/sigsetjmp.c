@@ -1,4 +1,4 @@
-#include <setjmp.h>
+#include <setjmp.h> // for sigsetjmp, sigjmp_buf
 
 int sigsetjmp(sigjmp_buf env, int savemask)
 {

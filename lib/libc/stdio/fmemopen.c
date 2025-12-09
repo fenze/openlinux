@@ -1,10 +1,13 @@
-#include <io.h>
-#include <errno.h>
-#include <fcntl.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
-#include <libc.h>
+#include "__stdio.h"  // for __libc_fadd
+#include "features.h" // for __weak
+#include "stddef.h"   // for NULL
+
+#include <errno.h>  // for EINVAL, errno
+#include <fcntl.h>  // for O_WRONLY, O_CREAT, O_RDONLY, O_APPEND, O_RDWR
+#include <libc.h>   // for __IMPL
+#include <stdio.h>  // for FILE, _IOFBF, fmemopen, size_t
+#include <stdlib.h> // for calloc, free
+#include <string.h> // for strchr
 
 __weak void __stdio_cleanup(void)
 {
@@ -13,15 +16,15 @@ __weak void __stdio_cleanup(void)
 FILE *fmemopen(void *restrict buf, size_t max_size, const char *restrict mode)
 {
 	int flags;
-	FILE *f = calloc(1, sizeof(FILE));
+	FILE *stream = calloc(1, sizeof(FILE));
 
-	if (f == NULL)
-		return f;
+	if (stream == NULL)
+		return stream;
 
-	f->fd = -1;
-	f->buf = buf;
-	f->buf_size = max_size;
-	f->type = _IOFBF;
+	__IMPL(stream)->fd = -1;
+	__IMPL(stream)->buf = buf;
+	__IMPL(stream)->buf_size = max_size;
+	__IMPL(stream)->type = _IOFBF;
 
 	if (mode[0] == 'r') {
 		flags = O_RDONLY;
@@ -30,7 +33,7 @@ FILE *fmemopen(void *restrict buf, size_t max_size, const char *restrict mode)
 	} else if (mode[0] == 'a') {
 		flags = O_WRONLY | O_CREAT | O_APPEND;
 	} else {
-		free(f);
+		free(stream);
 		errno = EINVAL;
 		return NULL;
 	}
@@ -39,9 +42,9 @@ FILE *fmemopen(void *restrict buf, size_t max_size, const char *restrict mode)
 		flags = (flags & ~(O_RDONLY | O_WRONLY)) | O_RDWR;
 	}
 
-	f->flags = flags;
+	__IMPL(stream)->flags = flags;
 
-	__libc_fadd(f);
+	__libc_fadd(stream);
 
-	return f;
+	return stream;
 }

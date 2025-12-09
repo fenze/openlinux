@@ -1,4 +1,5 @@
-#include <endian.h>
+#include <endian.h> // for htobe16
+#include <stdint.h> // for uint16_t
 
 uint16_t htobe16(uint16_t host_16bits)
 {

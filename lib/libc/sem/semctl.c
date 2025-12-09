@@ -1,8 +1,10 @@
-#include <stdarg.h>
-#include <stddef.h>
-#include <sys/ipc.h>
-#include <sys/sem.h>
-#include <syscall.h>
+#include "asm/unistd_64.h" // for __NR_semctl
+
+#include <stdarg.h>  // for va_arg, va_end, va_list, va_start
+#include <stddef.h>  // for NULL
+#include <sys/ipc.h> // for IPC_SET, IPC_STAT
+#include <sys/sem.h> // for GETALL, SETALL, SETVAL, semctl
+#include <syscall.h> // for __syscall_4, syscall
 
 int semctl(int semid, int semnum, int cmd, ...)
 {

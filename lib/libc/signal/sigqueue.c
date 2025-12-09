@@ -1,5 +1,5 @@
-#include <signal.h>
-#include <errno.h>
+#include <errno.h>  // for errno
+#include <signal.h> // for pthread_sigmask, sigset_t, sigprocmask
 
 int sigprocmask(int how, const sigset_t *restrict set, sigset_t *restrict old)
 {

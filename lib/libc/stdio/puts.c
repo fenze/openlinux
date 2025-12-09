@@ -1,5 +1,5 @@
-#include <stdio.h>
-#include <string.h>
+#include <stdio.h>  // for fwrite, stdout, puts
+#include <string.h> // for strlen
 
 int puts(const char *s)
 {

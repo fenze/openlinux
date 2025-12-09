@@ -1,14 +1,12 @@
-#include <ctype.h>
-#include <errno.h>
-#include <stdio.h>
-#include <stdarg.h>
-#include <stdint.h>
-#include <stdarg.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stddef.h>
-#include <math.h>
-#include <unistd.h>
+#include <ctype.h>     // for isdigit
+#include <errno.h>     // for EINVAL, errno
+#include <math.h>      // for frexp, isinf, isnan
+#include <stdarg.h>    // for va_arg
+#include <stddef.h>    // for NULL, ptrdiff_t
+#include <stdint.h>    // for uintptr_t, intmax_t, uintmax_t
+#include <stdio.h>     // for fwrite, fputc, vfprintf, FILE, va_list
+#include <string.h>    // for memmove, strlcpy, strlen
+#include <sys/types.h> // for size_t, ssize_t
 
 extern char *dtoa(double, int mode, int ndigits, int *decpt, int *sign,
 		  char **rve);

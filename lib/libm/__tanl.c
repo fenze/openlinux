@@ -24,8 +24,9 @@
  *
  * See __cosl.c for more details about the polynomial.
  */
-static const long double T3 = 0.333333333333333333180L, /*  0xaaaaaaaaaaaaaaa5.0p-65
-							 */
+static const long double
+	T3 = 0.333333333333333333180L,	       /*  0xaaaaaaaaaaaaaaa5.0p-65
+						*/
 	T5 = 0.133333333333333372290L,	       /*  0x88888888888893c3.0p-66 */
 	T7 = 0.0539682539682504975744L,	       /*  0xdd0dd0dd0dc13ba2.0p-68 */
 	pio4 = 0.785398163397448309628L,       /*  0xc90fdaa22168c235.0p-64 */

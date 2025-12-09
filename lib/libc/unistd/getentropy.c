@@ -1,5 +1,4 @@
-#include <unistd.h>
-#include <syscall.h>
+#include <unistd.h> // for getentropy, size_t
 
 int getentropy(void *buffer, size_t length)
 {

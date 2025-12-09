@@ -1,6 +1,6 @@
-#include <io.h>
-#include <stdarg.h>
-#include <stdio.h>
+#include <stdarg.h> // for va_copy, va_end
+#include <stdio.h>  // for vsnprintf, va_list, vasprintf
+#include <stdlib.h> // for malloc
 
 // TODO: maybe use memstream in future??
 int vasprintf(char **restrict ptr, const char *restrict format, va_list ap)

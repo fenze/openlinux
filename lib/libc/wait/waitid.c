@@ -1,5 +1,9 @@
-#include <sys/wait.h>
-#include <syscall.h>
+#include "asm/unistd_64.h" // for __NR_waitid
+
+#include <signal.h>    // for siginfo_t
+#include <sys/types.h> // for id_t
+#include <sys/wait.h>  // for idtype_t, waitid
+#include <syscall.h>   // for __syscall_4, syscall
 
 int waitid(idtype_t idtype, id_t id, siginfo_t *infop, int options)
 {

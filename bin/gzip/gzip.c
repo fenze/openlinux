@@ -49,7 +49,6 @@ static char *license_msg[] = {
 static char rcsid[] = "$Id: gzip.c,v 1.3 2005/02/12 21:03:28 olh Exp $";
 #endif
 
-#include <ctype.h>
 #include <sys/types.h>
 #include <signal.h>
 #include <sys/stat.h>
@@ -230,9 +229,7 @@ local void version()
 }
 
 /* ======================================================================== */
-int main(argc, argv)
-int argc;
-char **argv;
+int main(int argc, char **argv)
 {
 	int file_count; /* number of files to precess */
 	int optc;	/* current option */
@@ -489,7 +486,7 @@ local void treat_stdin()
 /* ========================================================================
  * Compress or decompress the given file
  */
-local void treat_file(iname) char *iname;
+local void treat_file(char *iname)
 {
 	/* Accept "-" as synonym for stdin */
 	if (strequ(iname, "-")) {
@@ -692,9 +689,7 @@ local int create_outfile()
  * Use lstat if available, except for -c or -f. Use stat otherwise.
  * This allows links when not removing the original file.
  */
-local int do_stat(name, sbuf)
-char *name;
-struct stat *sbuf;
+local int do_stat(char *name, struct stat *sbuf)
 {
 	errno = 0;
 	if (!to_stdout && !force) {
@@ -715,8 +710,7 @@ struct stat *sbuf;
  *   On systems allowing multiple versions of the same file (such as VMS),
  * this function removes any version suffix in the given name.
  */
-local char *get_suffix(name)
-char *name;
+local char *get_suffix(char *name)
 {
 	int nlen, slen;
 	char suffix[MAX_SUFFIX + 3]; /* last chars of name, forced to lower case
@@ -754,9 +748,7 @@ char *name;
  * For MSDOS, we try only z_suffix and z.
  * Return OK or ERROR.
  */
-local int get_istat(iname, sbuf)
-char *iname;
-struct stat *sbuf;
+local int get_istat(char *iname, struct stat *sbuf)
 {
 	int ilen; /* strlen(ifname) */
 	static char *suffixes[] = { z_suffix, ".gz", ".z", "-z", ".Z", NULL };
@@ -1019,9 +1011,7 @@ local int get_method()
 /* ========================================================================
  * Return true if the two stat structures correspond to the same file.
  */
-local int same_file(stat1, stat2)
-struct stat *stat1;
-struct stat *stat2;
+local int same_file(struct stat *stat1, struct stat *stat2)
 {
 	return stat1->st_ino == stat2->st_ino &&
 	       stat1->st_dev == stat2->st_dev
@@ -1042,9 +1032,7 @@ struct stat *stat2;
  * Return true if a file name is ambiguous because the operating system
  * truncates file names.
  */
-local int name_too_long(name, statb)
-char *name;	    /* file name to check */
-struct stat *statb; /* stat buf for this file name */
+local int name_too_long(char *name, struct stat *statb)
 {
 	int s = strlen(name);
 	char c = name[s - 1];
@@ -1068,7 +1056,7 @@ struct stat *statb; /* stat buf for this file name */
  *
  * IN assertion: for compression, the suffix of the given name is z_suffix.
  */
-local void shorten_name(name) char *name;
+local void shorten_name(char *name)
 {
 	int len;		 /* length of name without z_suffix */
 	char *trunc = NULL;	 /* character to be truncated */
@@ -1215,8 +1203,7 @@ local int check_ofname()
 /* ========================================================================
  * Set the access and modification times from the given stat buffer.
  */
-local void reset_times(name, statb) char *name;
-struct stat *statb;
+local void reset_times(char *name, struct stat *statb)
 {
 	struct utimbuf timep;
 
@@ -1236,7 +1223,7 @@ struct stat *statb;
  * Copy modes, times, ownership from input file to output file.
  * IN assertion: to_stdout is false.
  */
-local void copy_stat(ifstat) struct stat *ifstat;
+local void copy_stat(struct stat *ifstat)
 {
 	if (decompress && time_stamp != 0 && ifstat->st_mtime != time_stamp) {
 		ifstat->st_mtime = time_stamp;
@@ -1268,7 +1255,7 @@ local void copy_stat(ifstat) struct stat *ifstat;
 /* ========================================================================
  * Free all dynamically allocated variables and exit with the given code.
  */
-local void do_exit(exitcode) int exitcode;
+local void do_exit(int exitcode)
 {
 	static int in_exit = 0;
 

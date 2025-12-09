@@ -1,4 +1,4 @@
-#include <stddef.h>
+#include <stddef.h> // for size_t
 
 int memcmp(const void *s1, const void *s2, size_t n)
 {

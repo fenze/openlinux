@@ -26,8 +26,7 @@ extern ulg crc_32_tab[]; /* crc table, defined below */
  * Copy input to output unchanged: zcat == cat with --force.
  * IN assertion: insize bytes have already been read in inbuf.
  */
-int copy(in, out)
-int in, out; /* input and output file descriptors */
+int copy(int in, int out)
 {
 	errno = 0;
 	while (insize != 0 && (int)insize != EOF) {
@@ -47,9 +46,7 @@ int in, out; /* input and output file descriptors */
  * pointer, then initialize the crc shift register contents instead.
  * Return the current crc in either case.
  */
-ulg updcrc(s, n)
-uch *s;	    /* pointer to bytes to pump through */
-unsigned n; /* number of bytes in s[] */
+ulg updcrc(uch *s, unsigned n)
 {
 	register ulg c; /* temporary variable */
 
@@ -82,8 +79,7 @@ void clear_bufs()
 /* ===========================================================================
  * Fill the input buffer. This is called only when the buffer is empty.
  */
-int fill_inbuf(eof_ok)
-int eof_ok; /* set if EOF acceptable as a result */
+int fill_inbuf(int eof_ok)
 {
 	int len;
 
@@ -142,9 +138,7 @@ void flush_window()
  * Does the same as write(), but also handles partial pipe writes and checks
  * for error return.
  */
-void write_buf(fd, buf, cnt) int fd;
-voidp buf;
-unsigned cnt;
+void write_buf(int fd, voidp buf, unsigned cnt)
 {
 	unsigned n;
 
@@ -160,12 +154,11 @@ unsigned cnt;
 /* ========================================================================
  * Put string s in lower case, return s.
  */
-char *strlwr(s)
-char *s;
+char *strlwr(char *s)
 {
 	char *t;
 	for (t = s; *t; t++)
-		*t = tolow(*t);
+		*t = tolower(*t);
 	return s;
 }
 
@@ -174,8 +167,7 @@ char *s;
  * any version suffix). For systems with file names that are not
  * case sensitive, force the base name to lower case.
  */
-char *basename(fname)
-char *fname;
+char *basename(char *fname)
 {
 	char *p;
 
@@ -183,6 +175,7 @@ char *fname;
 		fname = p + 1;
 	if (casemap('A') == 'a')
 		strlwr(fname);
+
 	return fname;
 }
 
@@ -193,10 +186,7 @@ char *fname;
  */
 #define SEPARATOR " \t" /* separators in env variable */
 
-char *add_envopt(argcp, argvp, env)
-int *argcp;    /* pointer to argc */
-char ***argvp; /* pointer to argv */
-char *env;     /* name of environment variable */
+char *add_envopt(int *argcp, char ***argvp, char *env)
 {
 	char *p;	    /* running pointer through env variable */
 	char **oargv;	    /* runs through old argv array */
@@ -257,13 +247,13 @@ char *env;     /* name of environment variable */
 /* ========================================================================
  * Error handlers.
  */
-void error(m) char *m;
+void error(char *m)
 {
 	fprintf(stderr, "\n%s: %s: %s\n", progname, ifname, m);
 	abort_gzip();
 }
 
-void warn(a, b) char *a, *b; /* message strings juxtaposed in output */
+void warn(char *a, char *b)
 {
 	WARN((stderr, "%s: %s: warning: %s%s\n", progname, ifname, a, b));
 }
@@ -289,9 +279,7 @@ void write_error()
 /* ========================================================================
  * Display compression ratio on the given stream on 6 characters.
  */
-void display_ratio(num, den, file) long num;
-long den;
-FILE *file;
+void display_ratio(long num, long den, FILE *file)
 {
 	long ratio; /* 1000 times the compression ratio */
 	char sign;
@@ -315,8 +303,7 @@ FILE *file;
 /* ========================================================================
  * Semi-safe malloc -- never returns NULL.
  */
-voidp xmalloc(size)
-unsigned size;
+voidp xmalloc(unsigned size)
 {
 	voidp cp = (voidp)malloc(size);
 

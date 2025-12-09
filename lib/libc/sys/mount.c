@@ -1,5 +1,7 @@
-#include <syscall.h>
-#include <sys/mount.h>
+#include "asm/unistd_64.h" // for __NR_mount
+
+#include <sys/mount.h> // for mount
+#include <syscall.h>   // for __syscall_5, syscall
 
 int mount(const char *source, const char *target, const char *filesystemtype,
 	  unsigned long mountflags, const void *_Nullable data)

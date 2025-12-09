@@ -1,4 +1,4 @@
-#include <stddef.h>
+#include <stddef.h> // for NULL, size_t
 
 void *memchr(const void *s, int c, size_t n)
 {

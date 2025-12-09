@@ -2,7 +2,9 @@
 #define __WAIT_H
 
 #define __BITS_WAIT_H_
-#include <bits/wait.h>
+#include <bits/wait.h> // for WUNTRACED
+#include <signal.h>    // for siginfo_t
+#include <sys/types.h> // for pid_t, id_t
 
 #define __BITS_SIGINFO_H_
 #include <bits/siginfo.h>

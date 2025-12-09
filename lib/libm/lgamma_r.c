@@ -253,9 +253,10 @@ double __lgamma_r(double x, int *signgamp)
 			z = y * y;
 			w = z * y;
 			p1 = t0 +
-			     w * (t3 + w * (t6 + w * (t9 + w * t12))); /* parallel
-									  comp
-									*/
+			     w * (t3 +
+				  w * (t6 + w * (t9 + w * t12))); /* parallel
+								     comp
+								   */
 			p2 = t1 + w * (t4 + w * (t7 + w * (t10 + w * t13)));
 			p3 = t2 + w * (t5 + w * (t8 + w * (t11 + w * t14)));
 			p = z * p1 - (tt - w * (p2 + y * p3));

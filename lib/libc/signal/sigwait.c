@@ -1,4 +1,4 @@
-#include <signal.h>
+#include <signal.h> // for sigtimedwait, siginfo_t, sigset_t, sigwait
 
 int sigwait(const sigset_t *restrict mask, int *restrict sig)
 {

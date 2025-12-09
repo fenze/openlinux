@@ -1,5 +1,7 @@
-#include <unistd.h>
-#include <syscall.h>
+#include "asm/unistd_64.h" // for __NR_ftruncate
+
+#include <syscall.h> // for __syscall_2, syscall
+#include <unistd.h>  // for ftruncate, off_t
 
 int ftruncate(int fildes, off_t length)
 {

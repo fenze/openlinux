@@ -1,5 +1,7 @@
-#include <unistd.h>
-#include <syscall.h>
+#include "asm/unistd_64.h" // for __NR_getresgid
+
+#include <syscall.h> // for __syscall_3, syscall
+#include <unistd.h>  // for gid_t, getresgid
 
 int getresgid(gid_t *restrict rgid, gid_t *restrict egid, gid_t *restrict sgid)
 {

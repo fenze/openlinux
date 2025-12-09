@@ -1,7 +1,7 @@
-#include <stdio.h>
-#include <string.h>
-#include <asm-generic/signal.h>
-#include <__signal.h>
+#include <__signal.h>		// for __sys_signame
+#include <asm-generic/signal.h> // for SIGRTMAX, SIGRTMIN, SIGHUP, SIGSYS
+#include <stdio.h>		// for snprintf
+#include <string.h>		// for strlcpy
 
 int sig2str(int signum, char *str)
 {

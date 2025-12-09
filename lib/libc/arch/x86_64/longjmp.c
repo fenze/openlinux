@@ -1,4 +1,6 @@
-#include <setjmp.h>
+#include "bits/setjmp.h" // for jmp_buf
+
+#include <setjmp.h> // for longjmp
 
 __attribute__((noreturn, naked, returns_twice)) void longjmp(jmp_buf env,
 							     int val)

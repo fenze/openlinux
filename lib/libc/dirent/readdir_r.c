@@ -1,15 +1,15 @@
 /* Maintainer: <contact@bellrise.net> */
 
-#include <__dirent.h>
-#include <errno.h>
-#include <dirent.h>
-#include <syscall.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <string.h>
-#include <stddef.h>
+#include "asm/unistd_64.h" // for __NR_getdents64
+#include "stdio.h"	   // for NULL
+#include "sys/types.h"	   // for off_t
 
-#include <stdio.h>
+#include <__dirent.h> // for linux_dirent64
+#include <dirent.h>   // for dirent, size_t, ssize_t, DIR, readdir_r
+#include <errno.h>    // for EINVAL, errno
+#include <stddef.h>   // for offsetof
+#include <string.h>   // for memcpy, memset
+#include <syscall.h>  // for __syscall_3, syscall
 
 int readdir_r(DIR *restrict dirp, struct dirent *restrict entry,
 	      struct dirent **restrict result)

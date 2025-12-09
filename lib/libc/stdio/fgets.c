@@ -1,5 +1,7 @@
-#include <libc.h>
-#include <stdio.h>
+#include "stddef.h" // for NULL
+
+#include <libc.h>  // for weak_reference
+#include <stdio.h> // for fread, FILE, fgets
 
 char *fgets(char *restrict s, int n, FILE *restrict stream)
 {

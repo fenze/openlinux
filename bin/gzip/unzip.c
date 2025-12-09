@@ -27,8 +27,7 @@ static char rcsid[] = "$Id: unzip.c,v 1.1 2002/08/18 00:59:21 hpa Exp $";
  *   the compressed data, from offsets inptr to insize-1 included.
  *   The magic header has already been checked. The output buffer is cleared.
  */
-int unzip(in, out)
-int in, out; /* input and output file descriptors */
+int unzip(int in, int out)
 {
 	ulg orig_crc = 0; /* original crc */
 	ulg orig_len = 0; /* original uncompressed length */

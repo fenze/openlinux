@@ -1,6 +1,9 @@
-#include <fcntl.h>
-#include <stdarg.h>
-#include <syscall.h>
+#include "asm/unistd_64.h" // for __NR_fcntl, __NR_open
+
+#include <fcntl.h>     // for FD_CLOEXEC, F_SETFD, O_CLOEXEC, O_CREAT
+#include <stdarg.h>    // for va_arg, va_end, va_list, va_start
+#include <sys/types.h> // for mode_t
+#include <syscall.h>   // for __syscall_3, syscall
 
 int open(const char *path, int oflag, ...)
 {

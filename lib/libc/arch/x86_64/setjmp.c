@@ -1,4 +1,6 @@
-#include <setjmp.h>
+#include "bits/setjmp.h" // for jmp_buf
+
+#include <setjmp.h> // for setjmp
 
 __attribute__((naked, returns_twice)) int setjmp(jmp_buf env)
 {

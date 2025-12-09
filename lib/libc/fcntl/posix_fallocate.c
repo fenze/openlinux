@@ -1,5 +1,8 @@
-#include <fcntl.h>
-#include <syscall.h>
+#include "asm/unistd_64.h" // for __NR_fallocate
+
+#include <fcntl.h>     // for posix_fallocate
+#include <sys/types.h> // for off_t
+#include <syscall.h>   // for __syscall_4, syscall
 
 int posix_fallocate(int fd, off_t offset, off_t len)
 {

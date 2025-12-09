@@ -1,7 +1,10 @@
-#include <libc.h>
-#include <errno.h>
-#include <string.h>
-#include <locale.h>
+#include "__stdio.h"  // for size_t
+#include "features.h" // for __weak
+
+#include <errno.h>  // for ERANGE, E2BIG, EACCES, EADDRINUSE, EADDRNOTAVAIL
+#include <libc.h>   // for __unused
+#include <locale.h> // for locale_t
+#include <string.h> // for memcpy, strerror, strlen, strerror_l, strerror_r
 
 char *strerror(int errnum)
 {

@@ -1,8 +1,6 @@
-#include <__dirent.h>
-
-#include <fcntl.h>
-#include <unistd.h>
-#include <dirent.h>
+#include <dirent.h> // for fdopendir, DIR, opendir
+#include <fcntl.h>  // for open, O_RDONLY
+#include <stddef.h> // for NULL
 
 DIR *opendir(const char *dirname)
 {

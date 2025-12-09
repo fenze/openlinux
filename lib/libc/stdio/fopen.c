@@ -1,11 +1,15 @@
-#include <io.h>
-#include <errno.h>
-#include <fcntl.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <string.h>
-#include <libc.h>
+#include "__stdio.h"   // for __libc_fadd
+#include "features.h"  // for __weak
+#include "stdatomic.h" // for atomic_flag_clear
+#include "stddef.h"    // for NULL
+
+#include <errno.h>  // for EINVAL, errno
+#include <fcntl.h>  // for O_WRONLY, O_CREAT, O_RDONLY, open, O_APPEND
+#include <libc.h>   // for __IMPL
+#include <stdio.h>  // for FILE, BUFSIZ, fopen, _IOLBF
+#include <stdlib.h> // for calloc, free, malloc
+#include <string.h> // for strchr
+#include <unistd.h> // for close
 
 __weak void __stdio_cleanup(void)
 {
@@ -14,7 +18,7 @@ __weak void __stdio_cleanup(void)
 FILE *fopen(const char *restrict pathname, const char *restrict mode)
 {
 	int fd, flags, _mode;
-	FILE *fp;
+	FILE *stream;
 
 	_mode = 0;
 	if (mode[0] == 'r') {
@@ -36,21 +40,22 @@ FILE *fopen(const char *restrict pathname, const char *restrict mode)
 	if ((fd = open(pathname, flags, _mode)) < 0)
 		return NULL;
 
-	if ((fp = calloc(1, sizeof(FILE))) == NULL)
+	if ((stream = calloc(1, sizeof(FILE))) == NULL)
 		return NULL;
 
-	fp->fd = fd;
-	fp->buf_size = BUFSIZ;
-	fp->flags = flags;
-	fp->type = _IOLBF;
-	atomic_flag_clear(&fp->lock);
-	if ((fp->buf = malloc(BUFSIZ)) == NULL) {
+	__IMPL(stream)->fd = fd;
+	__IMPL(stream)->buf_size = BUFSIZ;
+	__IMPL(stream)->flags = flags;
+	__IMPL(stream)->type = _IOLBF;
+	atomic_flag_clear(&stream->lock);
+
+	if ((__IMPL(stream)->buf = malloc(BUFSIZ)) == NULL) {
 		close(fd);
-		free(fp);
+		free(stream);
 		return NULL;
 	}
 
-	__libc_fadd(fp);
+	__libc_fadd(stream);
 
-	return fp;
+	return stream;
 }

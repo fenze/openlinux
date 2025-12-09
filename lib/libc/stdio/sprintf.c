@@ -1,6 +1,5 @@
-#include <stdio.h>
-#include <limits.h>
-#include <stdarg.h>
+#include <stdarg.h> // for va_end, va_start
+#include <stdio.h>  // for sprintf, vsprintf, va_list
 
 int sprintf(char *restrict s, const char *restrict format, ...)
 {

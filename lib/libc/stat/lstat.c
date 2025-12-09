@@ -1,5 +1,5 @@
-#include <fcntl.h>
-#include <sys/stat.h>
+#include <fcntl.h>    // for AT_FDCWD, AT_SYMLINK_NOFOLLOW
+#include <sys/stat.h> // for fstatat, lstat
 
 int lstat(const char *restrict path, struct stat *restrict buf)
 {

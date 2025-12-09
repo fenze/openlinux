@@ -1,5 +1,5 @@
-#include <time.h>
-#include <unistd.h>
+#include <time.h>   // for nanosleep, timespec
+#include <unistd.h> // for sleep
 
 unsigned sleep(unsigned seconds)
 {

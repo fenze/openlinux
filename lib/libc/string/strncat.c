@@ -1,4 +1,4 @@
-#include <string.h>
+#include <string.h> // for strncat, size_t
 
 char *strncat(char *restrict s1, const char *restrict s2, size_t n)
 {

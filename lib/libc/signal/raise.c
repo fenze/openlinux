@@ -1,5 +1,5 @@
-#include <unistd.h>
-#include <signal.h>
+#include <signal.h> // for kill, raise
+#include <unistd.h> // for getpid
 
 int raise(int sig)
 {

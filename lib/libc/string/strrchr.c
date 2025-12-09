@@ -1,4 +1,4 @@
-#include <stddef.h>
+#include <stddef.h> // for NULL
 
 char *strrchr(const char *s, int c)
 {

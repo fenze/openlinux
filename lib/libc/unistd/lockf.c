@@ -1,5 +1,4 @@
-#include <unistd.h>
-#include <syscall.h>
+#include <unistd.h> // for lockf, off_t
 
 int lockf(int fildes, int function, off_t size)
 {

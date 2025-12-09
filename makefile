@@ -10,6 +10,7 @@ export MSG = @printf '\033[34m%-8s\033[0m %s\n'
 
 this-makefile = $(lastword $(MAKEFILE_LIST))
 srctree = $(realpath $(dir $(this-makefile)))
+.DEFAULT_GOAL := all
 
 LLVM ?= 1
 ifneq ($(LLVM),1)
@@ -35,6 +36,10 @@ endif
 
 ifndef ARCH
   ARCH := x86_64
+endif
+
+ifeq ($(CCACHE),1)
+  CC      := ccache $(CC)
 endif
 
 export CC LD AR STRIP CROSS_COMPILE ARCH
@@ -76,6 +81,14 @@ KBUILD_CFLAGS += -fno-stack-check
 
 # Weird loops transformations to wcslen
 KBUILD_CFLAGS += -fno-builtin-wcslen
+
+ifeq ($(CONFIG_WERROR),y)
+KBUILD_CFLAGS += -Werror
+endif
+
+ifeq ($(CONFIG_DEBUG),y)
+KBUILD_CFLAGS += -g -Og -fno-omit-frame-pointer
+endif
 
 KBUILD_ASFLAGS :=
 
@@ -131,15 +144,22 @@ defconfig:
 	$(Q)$(MAKE) -f scripts/kconfig/makefile defconfig
 
 include-what-you-use: compile_commands.json
-	$(Q)iwyu_tool.py -p. -j$(nproc) -- \
-		--update_comments | \
+	$(Q)iwyu_tool.py -p. -j$(nproc) -- -Xiwyu --update_comments -Xiwyu --transitive_includes_only -Xiwyu --no_internal_mappings | \
 		fix_includes.py --comments \
 			--quoted_includes_first \
+			--nosafe_headers \
 			--update_comments \
 			--reorder
 
 clang-tidy: compile_commands.json
-	$(Q)clang-tidy -header-filter=.* -p=. $(shell find . -name '*.c' -o -name '*.h' | grep -v './scripts/\|dtoa\|linux\|arch\|bits')
+	$(Q)run-clang-tidy.py \
+		-p . \
+		-fix \
+		-fix-errors \
+		-header-filter='.*' \
+		-source-filter='.*\.(c|h)$$' \
+		-exclude-header-filter='(scripts/|dtoa|linux|arch|bits)' \
+		-j $(shell nproc)
 
 clang-format:
 	$(Q)clang-format -i $(shell find . -name '*.c' -o -name '*.h' | grep -v './scripts/')

@@ -1,5 +1,5 @@
-#include <stdio.h>
-#include <stdarg.h>
+#include <stdarg.h> // for va_end, va_start
+#include <stdio.h>  // for vdprintf, dprintf, va_list
 
 int dprintf(int fildes, const char *restrict format, ...)
 {

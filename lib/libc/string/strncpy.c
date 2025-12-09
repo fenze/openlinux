@@ -1,4 +1,4 @@
-#include <stddef.h>
+#include <stddef.h> // for size_t
 
 char *strncpy(char *restrict s1, const char *restrict s2, size_t n)
 {

@@ -1,5 +1,4 @@
-#include <unistd.h>
-#include <syscall.h>
+#include <unistd.h> // for nice
 
 int nice(int incr)
 {

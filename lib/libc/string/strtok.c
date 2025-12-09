@@ -1,5 +1,4 @@
-#include <stddef.h>
-#include <string.h>
+#include <string.h> // for NULL, strchr, strtok
 
 char *strtok(char *restrict s, const char *restrict sep)
 {

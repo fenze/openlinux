@@ -210,16 +210,14 @@
  *	used for input more than STRTOD_DIGLIM digits long (default 40).
  */
 
-#include <thread.h>
-#include <threads.h>
-#include <atomic.h>
+#include <atomic.h>  // for LIBC_LOCK, LIBC_UNLOCK
+#include <libc.h>    // for __IMPL
+#include <threads.h> // for thrd_current
 
 static atomic_flag dtoa_lock[2] = { ATOMIC_FLAG_INIT, ATOMIC_FLAG_INIT };
 
 #define ACQUIRE_DTOA_LOCK(n) LIBC_LOCK(dtoa_lock[(n)])
 #define FREE_DTOA_LOCK(n)    LIBC_UNLOCK(dtoa_lock[(n)])
-
-#define dtoa_get_threadno() thrd_current()->tid
 
 #define IEEE_8087
 #define Honor_FLT_ROUNDS
@@ -233,8 +231,10 @@ typedef unsigned Long ULong;
 #endif
 
 #ifdef DEBUG
-#include <assert.h>
 #include "stdio.h"
+
+#include <assert.h>
+
 #define Bug(x)                              \
 	{                                   \
 		fprintf(stderr, "%s\n", x); \
@@ -247,8 +247,11 @@ int dtoa_stats[7]; /* strtod_{64,96,bigcomp},dtoa_{exact,64,96,bigcomp} */
 #define Debug(x)  /*nothing*/
 #endif
 
-#include "stdlib.h"
-#include "string.h"
+#include "__stdio.h"   // for size_t
+#include "bits/fenv.h" // for FE_DOWNWARD, FE_TOWARDZERO, FE_UPWARD
+#include "stdatomic.h" // for ATOMIC_FLAG_INIT, atomic_flag
+#include "stdlib.h"    // for malloc, free, realloc, strtod
+#include "string.h"    // for memcpy, memset
 
 #ifdef USE_LOCALE
 #include "locale.h"
@@ -256,7 +259,7 @@ int dtoa_stats[7]; /* strtod_{64,96,bigcomp},dtoa_{exact,64,96,bigcomp} */
 
 #ifdef Honor_FLT_ROUNDS
 #ifndef Trust_FLT_ROUNDS
-#include <fenv.h>
+#include <fenv.h> // for fegetround
 #endif
 #endif
 
@@ -310,7 +313,7 @@ static double private_mem[PRIVATE_mem], *pmem_next = private_mem;
 #define NO_STRTOD_BIGCOMP
 #endif
 
-#include "errno.h"
+#include "errno.h" // for errno, ERANGE
 
 #ifdef NO_ERRNO /*{*/
 #undef Set_errno
@@ -350,13 +353,9 @@ static double private_mem[PRIVATE_mem], *pmem_next = private_mem;
 #define LONG_MAX 2147483647
 #endif
 
-#else /* ifndef Bad_float_h */
-#include "float.h"
-#endif /* Bad_float_h */
-
-#ifndef __MATH_H__
-#include "math.h"
-#endif
+#else		   /* ifndef Bad_float_h */
+#include "float.h" // for DBL_MAX_EXP, FLT_RADIX, DBL_DIG, FLT_ROUNDS
+#endif		   /* Bad_float_h */
 
 #ifdef __cplusplus
 extern "C" {
@@ -1557,7 +1556,8 @@ void set_max_dtoa_threads(unsigned int n)
 
 static ThInfo *get_TI(void)
 {
-	unsigned int thno = dtoa_get_threadno();
+	unsigned int thno = __IMPL(thrd_current())->tid;
+
 	if (thno < maxthreads)
 		return TI1 + thno;
 	if (thno == 0)

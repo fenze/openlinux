@@ -1,4 +1,3 @@
-#include <syscall.h>
 
 char *getlogin(void)
 {

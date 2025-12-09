@@ -16,10 +16,10 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#include <errno.h>
-#include <libgen.h>
-#include <limits.h>
-#include <string.h>
+#include <errno.h>  // for ENAMETOOLONG, errno
+#include <libgen.h> // for basename
+#include <limits.h> // for PATH_MAX
+#include <string.h> // for NULL, memcpy, strlen, size_t
 
 char *basename(char *path)
 {

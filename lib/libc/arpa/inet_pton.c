@@ -1,4 +1,4 @@
-#include <arpa/inet.h>
+#include <arpa/inet.h> // for inet_pton
 
 int inet_pton(int af, const char *restrict src, void *restrict dst)
 {

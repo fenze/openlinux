@@ -1,4 +1,5 @@
-#include <endian.h>
+#include <endian.h> // for le16toh
+#include <stdint.h> // for uint16_t
 
 uint16_t le16toh(uint16_t little_endian_16bits)
 {

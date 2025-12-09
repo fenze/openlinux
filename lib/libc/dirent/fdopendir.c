@@ -1,20 +1,20 @@
-#include <errno.h>
-#include <__dirent.h>
-#include <dirent.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <stdlib.h>
+#include "stddef.h" // for NULL
+
+#include <__dirent.h> // for __DIR
+#include <dirent.h>   // for DIR, fdopendir
+#include <errno.h>    // for EBADF, errno
+#include <stdlib.h>   // for calloc
 
 DIR *fdopendir(int fildes)
 {
-	DIR *dir;
+	struct __DIR *dir;
 
 	if (fildes < 0) {
 		errno = EBADF;
 		return NULL;
 	}
 
-	if ((dir = calloc(1, sizeof(DIR))) == NULL) {
+	if ((dir = calloc(1, sizeof(struct __DIR))) == NULL) {
 		return NULL;
 	}
 

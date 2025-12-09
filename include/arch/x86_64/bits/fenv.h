@@ -1,3 +1,5 @@
+#pragma once
+
 #define FE_INVALID   1
 #define __FE_DENORM  2
 #define FE_DIVBYZERO 4

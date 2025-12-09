@@ -28,9 +28,11 @@
  * SUCH DAMAGE.
  */
 
-#include <ctype.h>
-#include <errno.h>
-#include <inttypes.h>
+#include "stdint.h" // for intmax_t, INTMAX_MAX, INTMAX_MIN
+
+#include <ctype.h>    // for isalpha, isdigit, isspace, isupper, isxdigit
+#include <errno.h>    // for errno, ERANGE, EINVAL
+#include <inttypes.h> // for strtoimax
 
 /*
  * Convert a string to an intmax_t

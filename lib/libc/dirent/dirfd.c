@@ -1,6 +1,5 @@
-#include <__dirent.h>
-#include <dirent.h>
-#include <stdint.h>
+#include <dirent.h> // for DIR, dirfd
+#include <stdint.h> // for intptr_t
 
 int dirfd(DIR *dirp)
 {

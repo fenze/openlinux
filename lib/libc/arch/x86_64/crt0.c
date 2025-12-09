@@ -1,10 +1,9 @@
-#include <linux/auxvec.h>
-#include <linux/elf.h>
-#include <stdint.h>
-#include <stdlib.h>
-#include <sys/time.h>
-#include <thread.h>
-#include <unistd.h>
+#include <linux/auxvec.h> // for AT_NULL
+#include <linux/elf.h>	  // for Elf64_Ehdr
+#include "asm/auxvec.h"	  // for AT_SYSINFO_EHDR
+
+#include <stdint.h> // for uintptr_t
+#include <stdlib.h> // for exit
 
 #define weak_reference(old, new) \
 	extern __typeof(old) new __attribute__((__weak__, __alias__(#old)))

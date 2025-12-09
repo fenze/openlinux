@@ -1,5 +1,4 @@
-#include <stdarg.h>
-#include <stdio.h>
+#include <stdio.h> // for vsnprintf, vsprintf, size_t, va_list
 
 int vsprintf(char *restrict s, const char *restrict format, va_list ap)
 {

@@ -1,5 +1,8 @@
-#include <libc.h>
-#include <ctype.h>
+#include "features.h" // for __weak
+
+#include <ctype.h>  // for isalnum, isgraph, ispunct, ispunct_l
+#include <libc.h>   // for __unused
+#include <locale.h> // for locale_t
 
 int ispunct(int c)
 {

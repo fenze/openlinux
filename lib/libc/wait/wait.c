@@ -1,5 +1,8 @@
-#include <sys/wait.h>
-#include <syscall.h>
+#include "asm/unistd_64.h" // for __NR_wait4
+#include "sys/types.h"	   // for pid_t
+
+#include <sys/wait.h> // for wait
+#include <syscall.h>  // for __syscall_4, syscall
 
 pid_t wait(int *stat_loc)
 {

@@ -1,8 +1,8 @@
-#include <stdio.h>
-#include <string.h>
-#include <errno.h>
-#include <unistd.h>
-#include <sys/uio.h>
+#include <errno.h>   // for errno
+#include <stdio.h>   // for NULL, perror
+#include <string.h>  // for strlen, strerror
+#include <sys/uio.h> // for iovec, writev
+#include <unistd.h>  // for STDERR_FILENO
 
 void perror(const char *s)
 {

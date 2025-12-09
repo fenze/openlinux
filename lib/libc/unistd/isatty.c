@@ -1,7 +1,9 @@
-#include <termios.h>
-#include <unistd.h>
-#include <syscall.h>
-#include <asm-generic/ioctls.h>
+#include "asm/unistd_64.h" // for __NR_ioctl
+
+#include <asm-generic/ioctls.h> // for TIOCGWINSZ
+#include <syscall.h>		// for __syscall_3, syscall
+#include <termios.h>		// for winsize
+#include <unistd.h>		// for isatty
 
 int isatty(int fildes)
 {

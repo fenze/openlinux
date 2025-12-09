@@ -1,5 +1,5 @@
-#include <libc.h>
-#include <stdio.h>
+#include <libc.h>  // for weak_reference
+#include <stdio.h> // for fgetc, getchar, getchar_unlocked, stdin
 
 int getchar(void)
 {

@@ -1,85 +1,77 @@
-#include <stdio.h>
-#include <unistd.h>
-#include <atomic.h>
-#include <io.h>
-#include <errno.h>
-#include <string.h>
-#include <fcntl.h>
+#include "__stdio.h" // for _IO_ERR
+#include "stddef.h"  // for NULL
+
+#include <atomic.h> // for LIBC_UNLOCK, LIBC_LOCK
+#include <errno.h>  // for errno, EBADF, EIO
+#include <fcntl.h>  // for O_ACCMODE, O_RDONLY
+#include <libc.h>   // for __IMPL
+#include <stdio.h>  // for EOF, FILE, fflush
+#include <string.h> // for memmove
+#include <unistd.h> // for size_t, write, ssize_t
 
 int fflush(FILE *stream)
 {
-	// Handle NULL stream - flush all open streams
 	if (stream == NULL) {
 		// TODO: Implement flushing all open streams
 		// For now, just return success
 		return 0;
 	}
 
-	// Nothing to flush if buffer is empty
-	if (stream->buf_len == 0) {
+	if (__IMPL(stream)->buf_len == 0) {
 		return 0;
 	}
 
-	// Handle special case of invalid file descriptor
-	if (stream->fd == -1) {
+	if (__IMPL(stream)->fd == -1) {
 		stream->buf_len = 0;
 		return 0;
 	}
 
-	// Check if stream is in error state
-	if (stream->flags & _IO_ERR) {
+	if (__IMPL(stream)->flags & _IO_ERR) {
 		errno = EIO;
 		return EOF;
 	}
 
-	// Check if stream is writable
-	if ((stream->flags & O_ACCMODE) == O_RDONLY) {
+	if ((__IMPL(stream)->flags & O_ACCMODE) == O_RDONLY) {
 		errno = EBADF;
 		return EOF;
 	}
 
-	LIBC_LOCK(stream->lock);
+	LIBC_LOCK(__IMPL(stream)->lock);
 
-	size_t bytes_to_write = stream->buf_len;
+	size_t bytes_to_write = __IMPL(stream)->buf_len;
 	size_t total_written = 0;
-	char *buf_ptr = stream->buf;
+	char *buf_ptr = __IMPL(stream)->buf;
 
-	// Write all buffered data
 	while (total_written < bytes_to_write) {
-		ssize_t result = write(stream->fd, buf_ptr + total_written,
+		ssize_t result = write(__IMPL(stream)->fd,
+				       buf_ptr + total_written,
 				       bytes_to_write - total_written);
 
 		if (result < 0) {
-			// Write error occurred
-			stream->flags |= _IO_ERR;
-			LIBC_UNLOCK(stream->lock);
+			__IMPL(stream)->flags |= _IO_ERR;
+			LIBC_UNLOCK(__IMPL(stream)->lock);
 			return EOF;
 		}
 
 		if (result == 0) {
-			// No progress made (shouldn't happen with regular
-			// files)
 			break;
 		}
 
 		total_written += result;
 	}
 
-	// Update buffer state
 	if (total_written == bytes_to_write) {
-		// All data was written successfully
-		stream->buf_len = 0;
-		stream->buf_pos = 0;
+		__IMPL(stream)->buf_len = 0;
+		__IMPL(stream)->buf_pos = 0;
 	} else {
-		// Partial write - move remaining data to beginning of buffer
 		size_t remaining = bytes_to_write - total_written;
-		memmove(stream->buf, stream->buf + total_written, remaining);
-		stream->buf_len = remaining;
-		stream->buf_pos = 0;
+		memmove(__IMPL(stream)->buf,
+			__IMPL(stream)->buf + total_written, remaining);
+		__IMPL(stream)->buf_len = remaining;
+		__IMPL(stream)->buf_pos = 0;
 	}
 
-	LIBC_UNLOCK(stream->lock);
+	LIBC_UNLOCK(__IMPL(stream)->lock);
 
-	// Return success if all data was written, error otherwise
 	return (total_written == bytes_to_write) ? 0 : EOF;
 }

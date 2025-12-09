@@ -1,5 +1,7 @@
-#include <sys/socket.h>
-#include <syscall.h>
+#include "asm/unistd_64.h" // for __NR_getsockopt
+
+#include <sys/socket.h> // for getsockopt, socklen_t
+#include <syscall.h>	// for __syscall_5, syscall
 
 int getsockopt(int socket, int level, int option_name,
 	       void *restrict option_value, socklen_t *restrict option_len)

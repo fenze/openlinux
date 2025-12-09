@@ -1,4 +1,4 @@
-#include <ctype.h>
+#include <ctype.h> // for isdigit, isxdigit
 
 int isxdigit(int c)
 {

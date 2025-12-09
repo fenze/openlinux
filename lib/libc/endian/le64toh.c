@@ -1,4 +1,5 @@
-#include <endian.h>
+#include <endian.h> // for le64toh
+#include <stdint.h> // for uint64_t
 
 uint64_t le64toh(uint64_t little_endian_64bits)
 {

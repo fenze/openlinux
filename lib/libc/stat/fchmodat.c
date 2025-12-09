@@ -1,5 +1,8 @@
-#include <sys/stat.h>
-#include <syscall.h>
+#include "asm/unistd_64.h" // for __NR_fchmodat2
+
+#include <sys/stat.h>  // for fchmodat
+#include <sys/types.h> // for mode_t
+#include <syscall.h>   // for __syscall_4, syscall
 
 int fchmodat(int fd, const char *path, mode_t mode, int flag)
 {

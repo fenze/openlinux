@@ -1,6 +1,9 @@
-#include <thread.h>
-#include <asm-generic/signal.h>
-#include <syscall.h>
+#include "asm/unistd_64.h" // for __NR_tkill
+#include "errno.h"	   // for EINVAL
+
+#include <asm-generic/signal.h> // for _NSIG
+#include <syscall.h>		// for __syscall_2, syscall
+#include <thread.h>		// for __thread_self
 
 typedef struct __thread_self *pthread_t;
 

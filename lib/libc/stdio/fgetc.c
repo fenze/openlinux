@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <stdio.h> // for fread, FILE, fgetc
 
 int fgetc(FILE *stream)
 {

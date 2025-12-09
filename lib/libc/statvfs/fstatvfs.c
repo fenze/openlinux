@@ -1,6 +1,8 @@
-#include <__statvfs.h>
-#include <syscall.h>
-#include <asm-generic/statfs.h>
+#include "asm/unistd_64.h" // for __NR_fstatfs
+
+#include <__statvfs.h>		// for __statvfs
+#include <asm-generic/statfs.h> // for statfs
+#include <syscall.h>		// for __syscall_2, syscall
 
 int fstatvfs(int fildes, struct __statvfs *buf)
 {

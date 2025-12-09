@@ -87,7 +87,7 @@ enum CLOCK_sources {
 	CLK_DIVIDER,  /* Rx = DPLL, Tx = divider (fullduplex with */
 		      /* modems without clock regeneration */
 	CLK_BRG	      /* experimental fullduplex mode with DPLL/BRG for */
-	/* MODEMs without clock recovery */
+		      /* MODEMs without clock recovery */
 };
 
 /* Tx state */

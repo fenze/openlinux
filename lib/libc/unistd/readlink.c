@@ -1,5 +1,7 @@
-#include <unistd.h>
-#include <syscall.h>
+#include "asm/unistd_64.h" // for __NR_readlink
+
+#include <syscall.h> // for __syscall_3, syscall
+#include <unistd.h>  // for readlink, size_t, ssize_t
 
 ssize_t readlink(const char *restrict path, char *restrict buf, size_t bufsize)
 {

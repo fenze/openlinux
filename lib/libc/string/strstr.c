@@ -1,4 +1,4 @@
-#include <stddef.h>
+#include <stddef.h> // for NULL
 
 char *strstr(const char *s1, const char *s2)
 {

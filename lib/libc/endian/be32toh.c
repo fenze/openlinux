@@ -1,4 +1,5 @@
-#include <endian.h>
+#include <endian.h> // for be32toh
+#include <stdint.h> // for uint32_t
 
 uint32_t be32toh(uint32_t big_endian_32bits)
 {

@@ -42,8 +42,9 @@
  * almost for free from the complications needed to search for the best
  * higher coefficients.
  */
-static const long double C1 = 0.0416666666666666666136L; /*  0xaaaaaaaaaaaaaa9b.0p-68
-							  */
+static const long double C1 =
+	0.0416666666666666666136L;		 /*  0xaaaaaaaaaaaaaa9b.0p-68
+						  */
 static const double C2 = -0.0013888888888888874, /* -0x16c16c16c16c10.0p-62 */
 	C3 = 0.000024801587301571716,		 /*  0x1a01a01a018e22.0p-68 */
 	C4 = -0.00000027557319215507120,	 /* -0x127e4fb7602f22.0p-74 */

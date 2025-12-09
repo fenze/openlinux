@@ -7,6 +7,9 @@
 #define __BITS_TIMESPEC_H_
 #include <bits/timespec.h>
 
+struct timespec;
+struct timeval;
+
 typedef __UINT64_TYPE__ sigset_t;
 
 int pselect(int, fd_set *restrict, fd_set *restrict, fd_set *restrict,

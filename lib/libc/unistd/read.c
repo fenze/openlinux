@@ -1,5 +1,7 @@
-#include <syscall.h>
-#include <unistd.h>
+#include "asm/unistd_64.h" // for __NR_read
+
+#include <syscall.h> // for __syscall_3, syscall
+#include <unistd.h>  // for read, size_t, ssize_t
 
 ssize_t read(int fildes, void *buf, size_t nbyte)
 {

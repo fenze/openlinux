@@ -1,9 +1,10 @@
-#include <grp.h>
-#include <string.h>
-#include <limits.h>
-#include <errno.h>
-#include <stdlib.h>
-#include <stdio.h>
+#include <errno.h>     // for ERANGE, errno
+#include <grp.h>       // for group, getgrgid_r
+#include <limits.h>    // for LINE_MAX
+#include <stdio.h>     // for NULL, fclose, fgets, fopen, FILE
+#include <stdlib.h>    // for strtoul
+#include <string.h>    // for strtok, memcpy, strlen
+#include <sys/types.h> // for gid_t, size_t
 
 int getgrgid_r(gid_t gid, struct group *grp, char *buf, size_t buflen,
 	       struct group **result)

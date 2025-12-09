@@ -1,9 +1,9 @@
-#include <errno.h>
-#include <limits.h>
-#include <string.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include <errno.h>  // for errno, ENAMETOOLONG, ENOENT
+#include <limits.h> // for PATH_MAX
+#include <stdio.h>  // for NULL, snprintf
+#include <stdlib.h> // for getenv
+#include <string.h> // for strchr, strlen, strstr
+#include <unistd.h> // for execv, execvp
 
 extern char **environ;
 

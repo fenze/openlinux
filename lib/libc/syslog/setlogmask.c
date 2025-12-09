@@ -1,4 +1,4 @@
-#include <syslog.h>
+#include <syslog.h> // for setlogmask
 
 int setlogmask(int maskpri)
 {

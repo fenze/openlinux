@@ -1,6 +1,7 @@
-#include <pwd.h>
-#include <stddef.h>
-#include <limits.h>
+#include <limits.h>    // for LINE_MAX
+#include <pwd.h>       // for getpwuid_r, getpwuid, passwd
+#include <stddef.h>    // for NULL
+#include <sys/types.h> // for uid_t
 
 struct passwd *getpwuid(uid_t uid)
 {

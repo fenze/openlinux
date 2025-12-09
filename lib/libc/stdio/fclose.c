@@ -1,6 +1,6 @@
-#include <io.h>
-#include <stdio.h>
-#include <unistd.h>
+#include <libc.h>   // for __IMPL
+#include <stdio.h>  // for fflush, FILE, fclose, stderr, stdin, stdout
+#include <unistd.h> // for close
 
 int fclose(FILE *stream)
 {
@@ -8,7 +8,7 @@ int fclose(FILE *stream)
 		return -1;
 
 	if (stream != stdin && stream != stdout && stream != stderr) {
-		if (close(stream->fd) == -1)
+		if (close(__IMPL(stream)->fd) == -1)
 			return -1;
 	}
 

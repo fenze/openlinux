@@ -1,6 +1,6 @@
-#include <errno.h>
-#include <signal.h>
-#include <syscall.h>
+#include <errno.h>     // for EINVAL, errno
+#include <signal.h>    // for kill, killpg
+#include <sys/types.h> // for pid_t
 
 int killpg(pid_t pgrp, int sig)
 {

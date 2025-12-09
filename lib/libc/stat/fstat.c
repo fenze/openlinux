@@ -1,6 +1,4 @@
-#include <fcntl.h>
-#include <sys/stat.h>
-#include <syscall.h>
+#include <sys/stat.h> // for fstatat, fstat
 
 int fstat(int fildes, struct stat *buf)
 {

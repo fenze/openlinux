@@ -25,8 +25,9 @@
  *
  * See __cosl.c for more details about the polynomial.
  */
-static const long double S1 = -0.166666666666666666671L; /* -0xaaaaaaaaaaaaaaab.0p-66
-							  */
+static const long double S1 =
+	-0.166666666666666666671L;		/* -0xaaaaaaaaaaaaaaab.0p-66
+						 */
 static const double S2 = 0.0083333333333333332, /*  0x11111111111111.0p-59 */
 	S3 = -0.00019841269841269427,		/* -0x1a01a01a019f81.0p-65 */
 	S4 = 0.0000027557319223597490,		/*  0x171de3a55560f7.0p-71 */

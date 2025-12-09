@@ -1,5 +1,5 @@
-#include <__dirent.h>
-#include <dirent.h>
+#include <dirent.h> // for readdir_r, DIR, dirent, readdir
+#include <stddef.h> // for NULL
 
 struct dirent *readdir(DIR *dirp)
 {

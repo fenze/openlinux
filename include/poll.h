@@ -13,7 +13,7 @@
 #define POLLNVAL   0x0020
 
 typedef __INT64_TYPE__ time_t;
-typedef __INT32_TYPE__ sigset_t;
+typedef __UINT64_TYPE__ sigset_t;
 typedef unsigned long nfds_t;
 
 struct timespec;

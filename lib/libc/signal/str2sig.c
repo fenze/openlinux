@@ -1,9 +1,9 @@
-#include <__signal.h>
-#include <errno.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdbool.h>
-#include <asm-generic/signal.h>
+#include <__signal.h>		// for __sys_signame
+#include <asm-generic/signal.h> // for SIGRTMAX, SIGRTMIN, SIGHUP, SIGSYS
+#include <errno.h>		// for errno
+#include <stdbool.h>		// for bool
+#include <stdlib.h>		// for strtol, NULL
+#include <string.h>		// for strcmp, strncmp, size_t
 
 int str2sig(const char *restrict str, int *restrict pnum)
 {

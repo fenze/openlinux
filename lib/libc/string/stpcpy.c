@@ -1,4 +1,4 @@
-#include <string.h>
+#include <string.h> // for stpcpy
 
 char *stpcpy(char *restrict s1, const char *restrict s2)
 {

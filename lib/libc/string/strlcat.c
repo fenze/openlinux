@@ -1,4 +1,4 @@
-#include <string.h>
+#include <string.h> // for size_t, strlen, memcpy, strlcat
 
 size_t strlcat(char *restrict dst, const char *restrict src, size_t dstsize)
 {

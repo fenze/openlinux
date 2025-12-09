@@ -1,6 +1,7 @@
 #ifndef __LIBC_COMPLEX_H__
 #define __LIBC_COMPLEX_H__
 
+#include <sys/cdefs.h>
 #include <math.h>
 #include <complex.h>
 
@@ -45,7 +46,7 @@ static const long double DP3 = 0L;
 #define MACHEPL 1.1e-19L
 #endif
 
-static void cchsh(double x, double *c, double *s)
+void cchsh(double x, double *c, double *s)
 {
 	double e, ei;
 
@@ -61,7 +62,7 @@ static void cchsh(double x, double *c, double *s)
 	}
 }
 
-static void cchshl(long double x, long double *c, long double *s)
+void cchshl(long double x, long double *c, long double *s)
 {
 	long double e, ei;
 
@@ -77,7 +78,7 @@ static void cchshl(long double x, long double *c, long double *s)
 	}
 }
 
-static void cchshf(float x, float *c, float *s)
+void cchshf(float x, float *c, float *s)
 {
 	float e, ei;
 
@@ -93,7 +94,7 @@ static void cchshf(float x, float *c, float *s)
 	}
 }
 
-static double redupi(double x)
+double redupi(double x)
 {
 	double t;
 	long i;
@@ -110,7 +111,7 @@ static double redupi(double x)
 	return t;
 }
 
-static float redupif(float x)
+float redupif(float x)
 {
 	float t;
 	long i;
@@ -143,7 +144,7 @@ static long double redupil(long double x)
 	return ((x - t * DP1) - t * DP2) - t * DP3;
 }
 
-static long double ctansl(long double complex z)
+long double ctansl(long double complex z)
 {
 	long double f, x, x2, y, y2, rn, t;
 	long double d;

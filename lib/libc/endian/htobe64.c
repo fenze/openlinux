@@ -1,4 +1,5 @@
-#include <endian.h>
+#include <endian.h> // for htobe64
+#include <stdint.h> // for uint64_t
 
 uint64_t htobe64(uint64_t host_64bits)
 {

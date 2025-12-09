@@ -1,7 +1,8 @@
-#include <io.h>
-#include <libc.h>
-#include <fcntl.h>
-#include <unistd.h>
+#include "__stdio.h"  // for __FILE
+#include "features.h" // for __weak
+
+#include <fcntl.h>  // for O_RDONLY
+#include <unistd.h> // for STDOUT_FILENO
 
 #define BUFSIZ 4096
 #define _IOLBF 0x1

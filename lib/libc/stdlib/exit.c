@@ -1,4 +1,4 @@
-#include <io.h>
+#include <libc.h>
 #include <libc.h>
 #include <unistd.h>
 #include <stdio.h>
@@ -9,26 +9,26 @@ weak_reference(__dummy_atexit_fvec, __atexit_fvec);
 void (*__dummy_stdio_cleanup)(void);
 weak_reference(__dummy_stdio_cleanup, __stdio_cleanup);
 
-static void __fclose(FILE *fp)
+static void __fclose(FILE *stream)
 {
-	if (fp == NULL) {
+	if (stream == NULL) {
 		return;
 	}
 
-	if (fp->buf_len > 0) {
-		fflush(fp);
+	if (__IMPL(stream)->buf_len > 0) {
+		fflush(stream);
 	}
 
-	if (fp->fd > STDERR_FILENO) {
-		close(fp->fd);
+	if (__IMPL(stream)->fd > STDERR_FILENO) {
+		close(__IMPL(stream)->fd);
 	}
 
-	if (fp->buf) {
-		free(fp->buf);
+	if (__IMPL(stream)->buf) {
+		free(__IMPL(stream)->buf);
 	}
 
-	if (fp != stdout && fp != stderr && fp != stdin) {
-		free(fp);
+	if (stream != stdout && stream != stderr && stream != stdin) {
+		free(stream);
 	}
 }
 

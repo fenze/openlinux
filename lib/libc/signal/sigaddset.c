@@ -1,4 +1,4 @@
-#include <signal.h>
+#include <signal.h> // for sigaddset, sigset_t
 
 int sigaddset(sigset_t *set, int signo)
 {

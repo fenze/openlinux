@@ -1,5 +1,5 @@
-#include <stdio.h>
-#include <string.h>
+#include <stdio.h>  // for fwrite, EOF, FILE, fputs
+#include <string.h> // for strlen
 
 int fputs(const char *restrict s, FILE *restrict stream)
 {

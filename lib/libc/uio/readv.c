@@ -1,8 +1,10 @@
-#include <unistd.h>
-#include <linux/uio.h>
-#include <syscall.h>
-#include <errno.h>
-#include <string.h>
+#include <linux/uio.h>	   // for iovec, UIO_MAXIOV
+#include "asm/unistd_64.h" // for __NR_readv
+
+#include <errno.h>     // for errno, EAGAIN, EINTR, EINVAL
+#include <string.h>    // for memcpy
+#include <sys/types.h> // for ssize_t, size_t
+#include <syscall.h>   // for __syscall_3, syscall
 
 ssize_t readv(int fd, const struct iovec *iov, int iovcnt)
 {
@@ -29,8 +31,10 @@ ssize_t readv(int fd, const struct iovec *iov, int iovcnt)
 				return total;
 			return ret;
 		}
-		if (ret == 0)
+
+		if (ret == 0) {
 			break; // EOF
+		}
 
 		total += ret;
 

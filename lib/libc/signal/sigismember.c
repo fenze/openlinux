@@ -1,4 +1,4 @@
-#include <asm-generic/signal.h>
+#include <asm-generic/signal.h> // for _NSIG
 
 typedef __UINT64_TYPE__ __sigset_t;
 

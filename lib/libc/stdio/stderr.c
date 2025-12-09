@@ -1,6 +1,8 @@
-#include <io.h>
-#include <fcntl.h>
-#include <unistd.h>
+#include "__stdio.h"   // for __FILE
+#include "stdatomic.h" // for ATOMIC_FLAG_INIT
+
+#include <fcntl.h>  // for O_WRONLY
+#include <unistd.h> // for STDERR_FILENO
 
 #define BUFSIZ 4096
 

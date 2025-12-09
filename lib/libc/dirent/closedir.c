@@ -1,17 +1,19 @@
-#include <errno.h>
-#include <__dirent.h>
-#include <unistd.h>
-#include <dirent.h>
-#include <stdlib.h>
+#include <__dirent.h> // for __DIR
+#include <dirent.h>   // for DIR, closedir
+#include <errno.h>    // for EBADF, errno
+#include <stdlib.h>   // for free
+#include <unistd.h>   // for close
 
 int closedir(DIR *dirp)
 {
-	if (dirp->fildes >= 0) {
+	struct __DIR *rdirp = (struct __DIR *)dirp;
+
+	if (rdirp->fildes >= 0) {
 		errno = EBADF;
 		return -1;
 	}
 
-	close(dirp->fildes);
-	free(dirp);
+	close(rdirp->fildes);
+	free(rdirp);
 	return 0;
 }

@@ -1,6 +1,6 @@
-#include <stdio.h>
-#include <string.h>
-#include <signal.h>
+#include <signal.h> // for psignal
+#include <stdio.h>  // for fprintf, stderr
+#include <string.h> // for strsignal
 
 void psignal(int signum, const char *message)
 {

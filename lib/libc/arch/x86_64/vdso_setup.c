@@ -1,7 +1,7 @@
-#include <linux/auxvec.h>
-#include <linux/elf.h>
-#include <string.h>
-#include <time.h>
+#include <linux/elf.h> // for Elf64_Sym, (anonymous struct)::(anonymous)
+#include <string.h>    // for NULL, strcmp
+
+struct timespec;
 
 int (*__vdso_clock_gettime)(int, struct timespec *) = NULL;
 int (*__vdso_getcpu)(unsigned *, unsigned *, void *) = NULL;

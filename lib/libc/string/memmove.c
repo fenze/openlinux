@@ -1,5 +1,5 @@
-#include <stddef.h>
-#include <stdint.h>
+#include <stddef.h> // for size_t
+#include <stdint.h> // for uint8_t, uintptr_t
 
 void *memmove(void *dst, const void *src, size_t n)
 {

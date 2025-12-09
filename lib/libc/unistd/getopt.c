@@ -1,7 +1,6 @@
-#include <unistd.h>
-#include <stdio.h>
-#include <string.h>
-#include <sys/uio.h>
+#include <string.h>  // for strlen
+#include <sys/uio.h> // for iovec, writev
+#include <unistd.h>  // for STDERR_FILENO, getopt, optarg, opterr, optind
 
 char *optarg;
 int optind = 1, opterr = 1, optopt;

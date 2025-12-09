@@ -1,5 +1,7 @@
-#include <syscall.h>
-#include <sys/mman.h>
+#include "asm/unistd_64.h" // for __NR_msync
+
+#include <stddef.h>  // for size_t
+#include <syscall.h> // for __syscall_3, syscall
 
 int msync(void *addr, size_t len, int flags)
 {

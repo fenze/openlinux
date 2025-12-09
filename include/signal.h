@@ -5,7 +5,9 @@
 #include <bits/sigevent.h>
 
 #define __BITS_SIGINFO_H_
-#include <bits/siginfo.h>
+#include <bits/siginfo.h> // for siginfo_t
+
+union sigval;
 
 #define SIG_DFL	 ((void (*)(int))0)
 #define SIG_ERR	 ((void (*)(int)) - 1)

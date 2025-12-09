@@ -1,5 +1,5 @@
-#include <libc.h>
-#include <stdio.h>
+#include <libc.h>  // for weak_reference
+#include <stdio.h> // for fputc, FILE, putc, putc_unlocked
 
 int putc(int c, FILE *stream)
 {

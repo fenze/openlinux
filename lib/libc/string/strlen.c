@@ -1,4 +1,4 @@
-#include <stddef.h>
+#include <stddef.h> // for size_t, NULL
 
 size_t strlen(const char *str)
 {

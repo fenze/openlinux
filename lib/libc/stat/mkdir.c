@@ -1,6 +1,8 @@
-#include <fcntl.h>
-#include <syscall.h>
-#include <sys/stat.h>
+#include "asm/unistd_64.h" // for __NR_mkdir
+
+#include <sys/stat.h>  // for mkdir
+#include <sys/types.h> // for mode_t
+#include <syscall.h>   // for __syscall_2, syscall
 
 int mkdir(const char *path, mode_t mode)
 {

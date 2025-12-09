@@ -1,5 +1,7 @@
-#include <sys/socket.h>
-#include <syscall.h>
+#include "asm/unistd_64.h" // for __NR_getsockname
+
+#include <sys/socket.h> // for getsockname, socklen_t
+#include <syscall.h>	// for __syscall_3, syscall
 
 int getsockname(int socket, struct sockaddr *restrict address,
 		socklen_t *restrict address_len)

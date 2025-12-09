@@ -1,4 +1,3 @@
-#include <syscall.h>
 
 long gethostid(void)
 {

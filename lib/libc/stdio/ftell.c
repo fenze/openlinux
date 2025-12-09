@@ -1,6 +1,7 @@
-#include <stdio.h>
-#include <limits.h>
-#include <errno.h>
+#include <errno.h>     // for EOVERFLOW, errno
+#include <limits.h>    // for LONG_MAX
+#include <stdio.h>     // for ftello, FILE, ftell
+#include <sys/types.h> // for off_t
 
 long ftell(FILE *stream)
 {

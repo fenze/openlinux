@@ -1,7 +1,13 @@
-#include <errno.h>
-#include <asm-generic/signal.h>
-#include <libc.h>
-#include <stddef.h>
+#define __ASSEMBLY__
+#include <asm-generic/signal.h> // for SIGRTMIN
+
+#undef __ASSEMBLY__
+
+#include <errno.h>  // for errno
+#include <libc.h>   // for unlikely
+#include <stddef.h> // for NULL
+
+typedef __UINT64_TYPE__ sigset_t;
 
 int sigdelset(sigset_t *, int);
 int sigismember(const sigset_t *, int);

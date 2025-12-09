@@ -1,7 +1,5 @@
-#include <io.h>
-#include <atomic.h>
-#include <stdio.h>
-#include <unistd.h>
+#include <stdio.h>     // for fseek, FILE, SEEK_CUR, ftello
+#include <sys/types.h> // for off_t
 
 off_t ftello(FILE *stream)
 {
