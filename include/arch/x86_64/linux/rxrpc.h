@@ -36,9 +36,10 @@ struct sockaddr_rxrpc {
 	3 /* Deprecated; use RXRPC_EXCLUSIVE_CALL instead */
 #define RXRPC_MIN_SECURITY_LEVEL  4 /* minimum security level */
 #define RXRPC_UPGRADEABLE_SERVICE 5 /* Upgrade service[0] -> service[1] */
-#define RXRPC_SUPPORTED_CMSG	  6 /* Get highest supported control message type \
-				     */
-#define RXRPC_MANAGE_RESPONSE 7	    /* [clnt] Want to manage RESPONSE packets */
+#define RXRPC_SUPPORTED_CMSG                                                  \
+	6			/* Get highest supported control message type \
+				 */
+#define RXRPC_MANAGE_RESPONSE 7 /* [clnt] Want to manage RESPONSE packets */
 
 /*
  * RxRPC control messages
@@ -118,9 +119,11 @@ enum rxrpc_cmsg_type {
  *   like "unsupported security", so we have to use these instead and hope the
  *   other side understands
  */
-#define RXKADINCONSISTENCY 19270400 /* security module structure inconsistent \
-				     */
-#define RXKADPACKETSHORT 19270401   /* packet too short for security challenge \
+#define RXKADINCONSISTENCY                                 \
+	19270400 /* security module structure inconsistent \
+		  */
+#define RXKADPACKETSHORT                                                       \
+	19270401		    /* packet too short for security challenge \
 				     */
 #define RXKADLEVELFAIL	   19270402 /* security level negotiation failed */
 #define RXKADTICKETLEN	   19270403 /* ticket length too short or too long */
@@ -145,8 +148,9 @@ enum rxrpc_cmsg_type {
 #define RXGK_PACKETSHORT \
 	1233242881 /* Packet too short for security challenge */
 #define RXGK_BADCHALLENGE 1233242882 /* Invalid security challenge */
-#define RXGK_BADETYPE	  1233242883 /* Invalid or impermissible encryption type \
-				      */
+#define RXGK_BADETYPE                                          \
+	1233242883 /* Invalid or impermissible encryption type \
+		    */
 #define RXGK_BADLEVEL	  1233242884 /* Invalid or impermissible security level */
 #define RXGK_BADKEYNO	  1233242885 /* Key version number not found */
 #define RXGK_EXPIRED	  1233242886 /* Token has expired */
@@ -154,9 +158,10 @@ enum rxrpc_cmsg_type {
 #define RXGK_BAD_TOKEN	  1233242888 /* Security object was passed a bad token */
 #define RXGK_SEALED_INCON 1233242889 /* Sealed data inconsistent */
 #define RXGK_DATA_LEN	  1233242890 /* User data too long */
-#define RXGK_BAD_QOP	  1233242891 /* Inadequate quality of protection available \
-				      */
-#else /* Revised standard abort codes (used by YFS) */
+#define RXGK_BAD_QOP                                             \
+	1233242891 /* Inadequate quality of protection available \
+		    */
+#else		   /* Revised standard abort codes (used by YFS) */
 #define RXGK_INCONSISTENCY \
 	1233242880 /* Security module structure inconsistent */
 #define RXGK_PACKETSHORT \

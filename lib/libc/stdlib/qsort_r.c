@@ -22,7 +22,8 @@
 /* Minor changes by Rich Felker for integration in musl, 2011-04-27. */
 
 /* Smoothsort, an adaptive variant of Heapsort.  Memory usage: O(1).
-   Run time: Worst case O(n log n), close to O(n) in the mostly-sorted case. */
+			Run time: Worst case O(n log n), close to O(n) in the
+   mostly-sorted case. */
 
 #define _BSD_SOURCE
 #include <stdlib.h>
@@ -68,13 +69,15 @@ static void cycle(size_t width, unsigned char *ar[], int n)
 /* shl() and shr() need n > 0 */
 static inline void shl(size_t p[2], int n)
 {
-	if (n >= 8 * sizeof(size_t)) {
-		n -= 8 * sizeof(size_t);
+	size_t bits = sizeof(size_t) * 8;
+
+	if (n >= (int)bits) {
+		n -= (int)bits;
 		p[1] = p[0];
 		p[0] = 0;
 	}
 	p[1] <<= n;
-	p[1] |= (n < sizeof(size_t) * 8) ? p[0] >> (sizeof(size_t) * 8 - n) : 0;
+	p[1] |= (n < (int)bits) ? p[0] >> (bits - n) : 0;
 	p[0] <<= n;
 }
 
@@ -82,19 +85,19 @@ static inline void shr(size_t p[2], int n)
 {
 	size_t bits = sizeof(size_t) * 8;
 
-	if (n >= 8 * sizeof(size_t)) {
-		n -= 8 * sizeof(size_t);
+	if (n >= (int)bits) {
+		n -= (int)bits;
 		p[0] = p[1];
 		p[1] = 0;
 	}
 
 	p[0] >>= n;
-	p[0] |= (n > 0 && n < bits) ? p[1] << (bits - n) : 0;
+	p[0] |= (n > 0 && n < (int)bits) ? p[1] << (bits - n) : 0;
 	p[1] >>= n;
 }
 
 static void sift(unsigned char *head, size_t width, cmpfun cmp, void *arg,
-		 int pshift, size_t lp[])
+		 int pshift, size_t lp[], int max_lp_index)
 {
 	unsigned char *rt, *lf;
 	unsigned char *ar[14 * sizeof(size_t) + 1];
@@ -102,6 +105,9 @@ static void sift(unsigned char *head, size_t width, cmpfun cmp, void *arg,
 
 	ar[0] = head;
 	while (pshift > 1) {
+		if (pshift - 2 < 0 || pshift - 2 > max_lp_index)
+			break;
+
 		rt = head - width;
 		lf = head - width - lp[pshift - 2];
 
@@ -162,7 +168,7 @@ static void trinkle(unsigned char *head, size_t width, cmpfun cmp, void *arg,
 	}
 	if (!trusty) {
 		cycle(width, ar, i);
-		sift(head, width, cmp, arg, pshift, lp);
+		sift(head, width, cmp, arg, pshift, lp, max_lp_index);
 	}
 }
 
@@ -190,16 +196,17 @@ void qsort_r(void *base, size_t nel, size_t width, cmpfun cmp, void *arg)
 
 	while (head < high) {
 		if ((p[0] & 3) == 3) {
-			sift(head, width, cmp, arg, pshift, lp);
+			sift(head, width, cmp, arg, pshift, lp, max_lp_index);
 			shr(p, 2);
 			pshift += 2;
 		} else {
 			if (pshift - 1 >= 0 && pshift - 1 <= max_lp_index &&
-			    lp[pshift - 1] >= high - head) {
+			    lp[pshift - 1] >= (size_t)(high - head)) {
 				trinkle(head, width, cmp, arg, p, pshift, 0, lp,
 					max_lp_index);
 			} else {
-				sift(head, width, cmp, arg, pshift, lp);
+				sift(head, width, cmp, arg, pshift, lp,
+				     max_lp_index);
 			}
 
 			if (pshift == 1) {

@@ -10,8 +10,9 @@ enum ocxl_event_type {
 	OCXL_AFU_EVENT_XSL_FAULT_ERROR = 0,
 };
 
-#define OCXL_KERNEL_EVENT_FLAG_LAST 0x0001 /* This is the last event pending \
-					    */
+#define OCXL_KERNEL_EVENT_FLAG_LAST              \
+	0x0001 /* This is the last event pending \
+		*/
 
 struct ocxl_kernel_event_header {
 	__u16 type;

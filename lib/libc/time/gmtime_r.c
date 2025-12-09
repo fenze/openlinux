@@ -4,7 +4,7 @@ struct tm *gmtime_r(const time_t *timer, struct tm *result)
 {
 	time_t t = *timer;
 	int days, rem;
-	int year, month;
+	int year;
 
 	rem = t % 86400;
 	days = t / 86400;

@@ -112,7 +112,8 @@ struct rtc_param {
 #define RTC_PARAM_GET _IOW('p', 0x13, struct rtc_param) /* Get parameter */
 #define RTC_PARAM_SET _IOW('p', 0x14, struct rtc_param) /* Set parameter */
 
-#define RTC_VL_DATA_INVALID _BITUL(0) /* Voltage too low, RTC data is invalid \
+#define RTC_VL_DATA_INVALID                                                   \
+	_BITUL(0)		      /* Voltage too low, RTC data is invalid \
 				       */
 #define RTC_VL_BACKUP_LOW   _BITUL(1) /* Backup voltage is low */
 #define RTC_VL_BACKUP_EMPTY _BITUL(2) /* Backup empty or not present */

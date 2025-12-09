@@ -19,7 +19,6 @@
 #define RAND_MAX (0x7fffffff)
 
 typedef __SIZE_TYPE__ size_t;
-typedef __WCHAR_TYPE__ wchar_t;
 
 typedef struct {
 	int quot;
@@ -69,8 +68,6 @@ lldiv_t lldiv(long long, long long);
 long lrand48(void);
 void *malloc(size_t);
 int mblen(const char *, size_t);
-size_t mbstowcs(wchar_t *restrict, const char *restrict, size_t);
-int mbtowc(wchar_t *restrict, const char *restrict, size_t);
 char *mkdtemp(char *);
 int mkostemp(char *, int);
 int mkstemp(char *);
@@ -108,7 +105,5 @@ unsigned long long strtoull(const char *restrict, char **restrict, int);
 int system(const char *);
 int unlockpt(int);
 int unsetenv(const char *);
-size_t wcstombs(char *restrict, const wchar_t *restrict, size_t);
-int wctomb(char *, wchar_t);
 
 #endif

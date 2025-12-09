@@ -3,7 +3,9 @@
 
 #define __BITS_SIGEVENT_H_
 #include <bits/sigevent.h>
-#undef __BITS_SIGEVENT_H_
+
+#define __BITS_SIGINFO_H_
+#include <bits/siginfo.h>
 
 #define SIG_DFL	 ((void (*)(int))0)
 #define SIG_ERR	 ((void (*)(int)) - 1)
@@ -76,18 +78,11 @@ typedef __UINT64_TYPE__ sigset_t;
 typedef __SIZE_TYPE__ size_t;
 typedef struct __thread_self pthread_t;
 
-struct timespec;
+typedef void (*sighandler_t)(int);
 
-typedef struct {
-	int si_signo;
-	int si_code;
-	int si_errno;
-	pid_t si_pid;
-	uid_t si_uid;
-	void *si_addr;
-	int si_status;
-	union sigval si_value;
-} siginfo_t;
+typedef _Atomic int sig_atomic_t;
+
+struct timespec;
 
 typedef struct {
 	void *ss_sp;
@@ -101,6 +96,9 @@ struct sigaction {
 	int sa_flags;
 	void (*sa_sigaction)(int, siginfo_t *, void *);
 };
+
+extern const char *const sys_siglist[64];
+extern const char *const sys_sigabbrev[64];
 
 int kill(pid_t, int);
 int killpg(pid_t, int);
@@ -128,5 +126,7 @@ int sigtimedwait(const sigset_t *restrict, siginfo_t *restrict,
 int sigwait(const sigset_t *restrict, int *restrict);
 int sigwaitinfo(const sigset_t *restrict, siginfo_t *restrict);
 int str2sig(const char *restrict, int *restrict);
+
+sighandler_t sysv_signal(int signum, sighandler_t handler);
 
 #endif

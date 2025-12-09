@@ -159,8 +159,8 @@ struct icmp6_filter {
 #define MLD2_ALLOW_NEW_SOURCES 5
 #define MLD2_BLOCK_OLD_SOURCES 6
 
-#define MLD2_ALL_MCR_INIT                                                    \
-	{                                                                    \
+#define MLD2_ALL_MCR_INIT                                        \
+	{                                                        \
 		{ { 0xff,0x02,0,0,0,0,0,0,0,0,0,0,0,0,0,0x16 } } \
 	}
 

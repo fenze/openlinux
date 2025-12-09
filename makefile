@@ -131,7 +131,7 @@ defconfig:
 	$(Q)$(MAKE) -f scripts/kconfig/makefile defconfig
 
 clang-tidy: compile_commands.json
-	$(Q)clang-tidy -p=. $(shell find . -name '*.c' -o -name '*.h' | grep -v './scripts/')
+	$(Q)clang-tidy -header-filter=.* -p=. $(shell find . -name '*.c' -o -name '*.h' | grep -v './scripts/\|dtoa\|linux\|arch\|bits')
 
 clang-format:
 	$(Q)clang-format -i $(shell find . -name '*.c' -o -name '*.h' | grep -v './scripts/')

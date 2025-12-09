@@ -4,6 +4,9 @@
 #define __BITS_ERRNO_H_
 #include <bits/errno.h>
 
+#define __BITS_RSIZE_H_
+#include <bits/rsize.h>
+
 #ifndef NULL
 #define NULL ((void *)0)
 #endif
@@ -15,6 +18,7 @@ void *memccpy(void *restrict, const void *restrict, int, size_t);
 void *memchr(const void *, int, size_t);
 int memcmp(const void *, const void *, size_t);
 void *memcpy(void *restrict, const void *restrict, size_t);
+errno_t memcpy_s(void *restrict, rsize_t, const void *restrict, rsize_t);
 void *memmem(const void *, size_t, const void *, size_t);
 void *memmove(void *, const void *, size_t);
 void *memset(void *, int, size_t);

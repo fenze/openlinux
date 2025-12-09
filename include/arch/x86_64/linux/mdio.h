@@ -354,15 +354,17 @@
 /* BASE-T1 auto-negotiation advertisement register [15:0] */
 #define MDIO_AN_T1_ADV_L_PAUSE_CAP  ADVERTISE_PAUSE_CAP
 #define MDIO_AN_T1_ADV_L_PAUSE_ASYM ADVERTISE_PAUSE_ASYM
-#define MDIO_AN_T1_ADV_L_FORCE_MS   0x1000 /* Force Master/slave Configuration \
-					    */
+#define MDIO_AN_T1_ADV_L_FORCE_MS                  \
+	0x1000 /* Force Master/slave Configuration \
+		*/
 #define MDIO_AN_T1_ADV_L_REMOTE_FAULT  ADVERTISE_RFAULT
 #define MDIO_AN_T1_ADV_L_ACK	       ADVERTISE_LPACK
 #define MDIO_AN_T1_ADV_L_NEXT_PAGE_REQ ADVERTISE_NPAGE
 
 /* BASE-T1 auto-negotiation advertisement register [31:16] */
-#define MDIO_AN_T1_ADV_M_B10L 0x4000 /* device is compatible with 10BASE-T1L \
-				      */
+#define MDIO_AN_T1_ADV_M_B10L                          \
+	0x4000 /* device is compatible with 10BASE-T1L \
+		*/
 #define MDIO_AN_T1_ADV_M_1000BT1 0x0080 /* advertise 1000BASE-T1 */
 #define MDIO_AN_T1_ADV_M_100BT1	 0x0020 /* advertise 100BASE-T1 */
 #define MDIO_AN_T1_ADV_M_MST	 0x0010 /* advertise master preference */

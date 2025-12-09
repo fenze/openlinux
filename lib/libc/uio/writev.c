@@ -39,7 +39,6 @@ ssize_t writev(int fd, const struct iovec *iov, int iovcnt)
 				tmp.iov_base = (char *)tmp.iov_base + remaining;
 				tmp.iov_len -= remaining;
 				memcpy(local, &tmp, sizeof(tmp));
-				remaining = 0;
 				break;
 			}
 		}

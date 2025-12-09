@@ -445,8 +445,9 @@ typedef struct elf64_shdr {
 #define NN_PPC_TM_CPPR	"LINUX"
 #define NT_PPC_TM_CPPR	0x10e /* TM checkpointed Program Priority Register */
 #define NN_PPC_TM_CDSCR "LINUX"
-#define NT_PPC_TM_CDSCR 0x10f /* TM checkpointed Data Stream Control Register \
-			       */
+#define NT_PPC_TM_CDSCR                                       \
+	0x10f /* TM checkpointed Data Stream Control Register \
+	       */
 #define NN_PPC_PKEY	"LINUX"
 #define NT_PPC_PKEY	0x110 /* Memory Protection Keys registers */
 #define NN_PPC_DEXCR	"LINUX"
@@ -552,8 +553,9 @@ typedef struct elf64_shdr {
 #define NN_LOONGARCH_CSR    "LINUX"
 #define NT_LOONGARCH_CSR    0xa01 /* LoongArch control and status registers */
 #define NN_LOONGARCH_LSX    "LINUX"
-#define NT_LOONGARCH_LSX    0xa02 /* LoongArch Loongson SIMD Extension registers \
-				   */
+#define NT_LOONGARCH_LSX                                     \
+	0xa02 /* LoongArch Loongson SIMD Extension registers \
+	       */
 #define NN_LOONGARCH_LASX "LINUX"
 #define NT_LOONGARCH_LASX \
 	0xa03 /* LoongArch Loongson Advanced SIMD Extension registers */

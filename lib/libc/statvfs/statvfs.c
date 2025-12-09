@@ -4,7 +4,7 @@
 
 int statvfs(const char *restrict path, struct __statvfs *restrict buf)
 {
-	struct statfs statfs;
+	struct statfs statfs = { 0 };
 
 	if (syscall(statfs, path, &statfs) < 0)
 		return -1;

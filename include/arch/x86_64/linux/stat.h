@@ -200,27 +200,29 @@ struct statx {
  * These bits should be set in the mask argument of statx() to request
  * particular items when calling statx().
  */
-#define STATX_TYPE	  0x00000001U /* Want/got stx_mode & S_IFMT */
-#define STATX_MODE	  0x00000002U /* Want/got stx_mode & ~S_IFMT */
-#define STATX_NLINK	  0x00000004U /* Want/got stx_nlink */
-#define STATX_UID	  0x00000008U /* Want/got stx_uid */
-#define STATX_GID	  0x00000010U /* Want/got stx_gid */
-#define STATX_ATIME	  0x00000020U /* Want/got stx_atime */
-#define STATX_MTIME	  0x00000040U /* Want/got stx_mtime */
-#define STATX_CTIME	  0x00000080U /* Want/got stx_ctime */
-#define STATX_INO	  0x00000100U /* Want/got stx_ino */
-#define STATX_SIZE	  0x00000200U /* Want/got stx_size */
-#define STATX_BLOCKS	  0x00000400U /* Want/got stx_blocks */
-#define STATX_BASIC_STATS 0x000007ffU /* The stuff in the normal stat struct \
-				       */
-#define STATX_BTIME	     0x00000800U /* Want/got stx_btime */
-#define STATX_MNT_ID	     0x00001000U /* Got stx_mnt_id */
-#define STATX_DIOALIGN	     0x00002000U /* Want/got direct I/O alignment info */
-#define STATX_MNT_ID_UNIQUE  0x00004000U /* Want/got extended stx_mount_id */
-#define STATX_SUBVOL	     0x00008000U /* Want/got stx_subvol */
-#define STATX_WRITE_ATOMIC   0x00010000U /* Want/got atomic_write_* fields */
-#define STATX_DIO_READ_ALIGN 0x00020000U /* Want/got dio read alignment info \
-					  */
+#define STATX_TYPE   0x00000001U /* Want/got stx_mode & S_IFMT */
+#define STATX_MODE   0x00000002U /* Want/got stx_mode & ~S_IFMT */
+#define STATX_NLINK  0x00000004U /* Want/got stx_nlink */
+#define STATX_UID    0x00000008U /* Want/got stx_uid */
+#define STATX_GID    0x00000010U /* Want/got stx_gid */
+#define STATX_ATIME  0x00000020U /* Want/got stx_atime */
+#define STATX_MTIME  0x00000040U /* Want/got stx_mtime */
+#define STATX_CTIME  0x00000080U /* Want/got stx_ctime */
+#define STATX_INO    0x00000100U /* Want/got stx_ino */
+#define STATX_SIZE   0x00000200U /* Want/got stx_size */
+#define STATX_BLOCKS 0x00000400U /* Want/got stx_blocks */
+#define STATX_BASIC_STATS                                                      \
+	0x000007ffU			/* The stuff in the normal stat struct \
+					 */
+#define STATX_BTIME	    0x00000800U /* Want/got stx_btime */
+#define STATX_MNT_ID	    0x00001000U /* Got stx_mnt_id */
+#define STATX_DIOALIGN	    0x00002000U /* Want/got direct I/O alignment info */
+#define STATX_MNT_ID_UNIQUE 0x00004000U /* Want/got extended stx_mount_id */
+#define STATX_SUBVOL	    0x00008000U /* Want/got stx_subvol */
+#define STATX_WRITE_ATOMIC  0x00010000U /* Want/got atomic_write_* fields */
+#define STATX_DIO_READ_ALIGN                            \
+	0x00020000U /* Want/got dio read alignment info \
+		     */
 
 #define STATX__RESERVED \
 	0x80000000U /* Reserved for future struct statx expansion */
@@ -246,11 +248,12 @@ struct statx {
  * some filesystems support.
  *
  */
-#define STATX_ATTR_COMPRESSED 0x00000004 /* [I] File is compressed by the fs \
-					  */
-#define STATX_ATTR_IMMUTABLE 0x00000010	 /* [I] File is marked immutable */
-#define STATX_ATTR_APPEND    0x00000020	 /* [I] File is append-only */
-#define STATX_ATTR_NODUMP    0x00000040	 /* [I] File is not to be dumped */
+#define STATX_ATTR_COMPRESSED                                               \
+	0x00000004			/* [I] File is compressed by the fs \
+					 */
+#define STATX_ATTR_IMMUTABLE 0x00000010 /* [I] File is marked immutable */
+#define STATX_ATTR_APPEND    0x00000020 /* [I] File is append-only */
+#define STATX_ATTR_NODUMP    0x00000040 /* [I] File is not to be dumped */
 #define STATX_ATTR_ENCRYPTED \
 	0x00000800 /* [I] File requires key to decrypt in fs */
 #define STATX_ATTR_AUTOMOUNT  0x00001000 /* Dir: Automount trigger */

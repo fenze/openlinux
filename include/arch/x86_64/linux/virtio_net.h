@@ -32,14 +32,15 @@
 #include <linux/if_ether.h>
 
 /* The feature bitmap for virtio net */
-#define VIRTIO_NET_F_CSUM		 0 /* Host handles pkts w/ partial csum */
-#define VIRTIO_NET_F_GUEST_CSUM		 1 /* Guest handles pkts w/ partial csum */
-#define VIRTIO_NET_F_CTRL_GUEST_OFFLOADS 2 /* Dynamic offload configuration. \
-					    */
-#define VIRTIO_NET_F_MTU	   3	   /* Initial MTU advice */
-#define VIRTIO_NET_F_MAC	   5	   /* Host has given MAC address. */
-#define VIRTIO_NET_F_GUEST_TSO4	   7	   /* Guest can handle TSOv4 in. */
-#define VIRTIO_NET_F_GUEST_TSO6	   8	   /* Guest can handle TSOv6 in. */
+#define VIRTIO_NET_F_CSUM	0 /* Host handles pkts w/ partial csum */
+#define VIRTIO_NET_F_GUEST_CSUM 1 /* Guest handles pkts w/ partial csum */
+#define VIRTIO_NET_F_CTRL_GUEST_OFFLOADS                                \
+	2			      /* Dynamic offload configuration. \
+				       */
+#define VIRTIO_NET_F_MTU	   3  /* Initial MTU advice */
+#define VIRTIO_NET_F_MAC	   5  /* Host has given MAC address. */
+#define VIRTIO_NET_F_GUEST_TSO4	   7  /* Guest can handle TSOv4 in. */
+#define VIRTIO_NET_F_GUEST_TSO6	   8  /* Guest can handle TSOv6 in. */
 #define VIRTIO_NET_F_GUEST_ECN	   9  /* Guest can handle TSO[6] w/ ECN in. */
 #define VIRTIO_NET_F_GUEST_UFO	   10 /* Guest can handle UFO in. */
 #define VIRTIO_NET_F_HOST_TSO4	   11 /* Host can handle TSOv4 in. */
@@ -63,8 +64,9 @@
 	50 /* Device can provide device-level statistics. */
 #define VIRTIO_NET_F_VQ_NOTF_COAL \
 	52 /* Device supports virtqueue notification coalescing */
-#define VIRTIO_NET_F_NOTF_COAL 53 /* Device supports notifications coalescing \
-				   */
+#define VIRTIO_NET_F_NOTF_COAL                         \
+	53 /* Device supports notifications coalescing \
+	    */
 #define VIRTIO_NET_F_GUEST_USO4	 54 /* Guest can handle USOv4 in. */
 #define VIRTIO_NET_F_GUEST_USO6	 55 /* Guest can handle USOv6 in. */
 #define VIRTIO_NET_F_HOST_USO	 56 /* Host can handle USO in. */

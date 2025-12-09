@@ -201,21 +201,22 @@ typedef struct hd_drive_hob_hdr {
 /*
  *	0x9A VENDOR
  */
-#define WIN_PACKETCMD	    0xA0 /* Send a packet command. */
-#define WIN_PIDENTIFY	    0xA1 /* identify ATAPI device	*/
-#define WIN_QUEUED_SERVICE  0xA2
-#define WIN_SMART	    0xB0 /* self-monitoring and reporting */
-#define CFA_ERASE_SECTORS   0xC0
-#define WIN_MULTREAD	    0xC4 /* read sectors using multiple mode*/
-#define WIN_MULTWRITE	    0xC5 /* write sectors using multiple mode */
-#define WIN_SETMULT	    0xC6 /* enable/disable multiple mode */
-#define WIN_READDMA_QUEUED  0xC7 /* read sectors using Queued DMA transfers */
-#define WIN_READDMA	    0xC8 /* read sectors using DMA transfers */
-#define WIN_READDMA_ONCE    0xC9 /* 28-Bit - without retries */
-#define WIN_WRITEDMA	    0xCA /* write sectors using DMA transfers */
-#define WIN_WRITEDMA_ONCE   0xCB /* 28-Bit - without retries */
-#define WIN_WRITEDMA_QUEUED 0xCC /* write sectors using Queued DMA transfers \
-				  */
+#define WIN_PACKETCMD	   0xA0 /* Send a packet command. */
+#define WIN_PIDENTIFY	   0xA1 /* identify ATAPI device	*/
+#define WIN_QUEUED_SERVICE 0xA2
+#define WIN_SMART	   0xB0 /* self-monitoring and reporting */
+#define CFA_ERASE_SECTORS  0xC0
+#define WIN_MULTREAD	   0xC4 /* read sectors using multiple mode*/
+#define WIN_MULTWRITE	   0xC5 /* write sectors using multiple mode */
+#define WIN_SETMULT	   0xC6 /* enable/disable multiple mode */
+#define WIN_READDMA_QUEUED 0xC7 /* read sectors using Queued DMA transfers */
+#define WIN_READDMA	   0xC8 /* read sectors using DMA transfers */
+#define WIN_READDMA_ONCE   0xC9 /* 28-Bit - without retries */
+#define WIN_WRITEDMA	   0xCA /* write sectors using DMA transfers */
+#define WIN_WRITEDMA_ONCE  0xCB /* 28-Bit - without retries */
+#define WIN_WRITEDMA_QUEUED                              \
+	0xCC /* write sectors using Queued DMA transfers \
+	      */
 #define CFA_WRITE_MULTI_WO_ERASE 0xCD /* CFA Write multiple without erase */
 #define WIN_GETMEDIASTATUS	 0xDA
 #define WIN_ACKMEDIACHANGE	 0xDB /* ATA-1, ATA-2 vendor */

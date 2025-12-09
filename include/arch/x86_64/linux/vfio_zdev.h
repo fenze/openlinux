@@ -45,8 +45,9 @@ struct vfio_device_info_cap_zpci_group {
 	__u64 dasm;	/* DMA Address space mask */
 	__u64 msi_addr; /* MSI address */
 	__u64 flags;
-#define VFIO_DEVICE_INFO_ZPCI_FLAG_REFRESH 1 /* Program-specified TLB refresh \
-					      */
+#define VFIO_DEVICE_INFO_ZPCI_FLAG_REFRESH              \
+	1	       /* Program-specified TLB refresh \
+			*/
 	__u16 mui;     /* Measurement Block Update Interval */
 	__u16 noi;     /* Maximum number of MSIs */
 	__u16 maxstbl; /* Maximum Store Block Length */

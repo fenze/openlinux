@@ -6,25 +6,28 @@
 int sig2str(int signum, char *str)
 {
 	if (signum >= SIGHUP && signum <= SIGSYS) {
-		strcpy(str, __sys_signame[signum - SIGHUP]);
+		strlcpy(str, __sys_signame[signum - SIGHUP],
+			sizeof(__sys_signame[signum - SIGHUP]));
 		return 0;
 	}
 
 	if (signum == SIGRTMIN) {
-		strcpy(str, "SIGRTMIN");
+		strlcpy(str, "SIGRTMIN", sizeof("SIGRTMIN"));
 		return 0;
 	}
 
 	if (signum == SIGRTMAX) {
-		strcpy(str, "RTMAX");
+		strlcpy(str, "SIGRTMAX", sizeof("SIGRTMAX"));
 		return 0;
 	}
 
 	if (signum > SIGRTMIN && signum < SIGRTMAX) {
 		if (signum - SIGRTMIN <= SIGRTMAX - signum) {
-			sprintf(str, "RTMIN+%d", signum - SIGRTMIN);
+			snprintf(str, sizeof("RTMIN+") + 1, "RTMIN+%d",
+				 signum - SIGRTMIN);
 		} else {
-			sprintf(str, "RTMAX-%d", SIGRTMAX - signum);
+			snprintf(str, sizeof("RTMAX-") + 1, "RTMAX-%d",
+				 SIGRTMAX - signum);
 		}
 		return 0;
 	}

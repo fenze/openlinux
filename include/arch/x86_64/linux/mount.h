@@ -68,8 +68,9 @@
 /*
  * move_mount() flags.
  */
-#define MOVE_MOUNT_F_SYMLINKS	0x00000001 /* Follow symlinks on from path */
-#define MOVE_MOUNT_F_AUTOMOUNTS 0x00000002 /* Follow automounts on from path \
+#define MOVE_MOUNT_F_SYMLINKS 0x00000001 /* Follow symlinks on from path */
+#define MOVE_MOUNT_F_AUTOMOUNTS                                              \
+	0x00000002			   /* Follow automounts on from path \
 					    */
 #define MOVE_MOUNT_F_EMPTY_PATH 0x00000004 /* Empty from path permitted */
 #define MOVE_MOUNT_T_SYMLINKS	0x00000010 /* Follow symlinks on to path */
@@ -234,10 +235,11 @@ struct mnt_id_req {
 #define STATMOUNT_SB_SOURCE	 0x00000200U /* Want/got sb_source */
 #define STATMOUNT_OPT_ARRAY	 0x00000400U /* Want/got opt_... */
 #define STATMOUNT_OPT_SEC_ARRAY	 0x00000800U /* Want/got opt_sec... */
-#define STATMOUNT_SUPPORTED_MASK 0x00001000U /* Want/got supported mask flags \
-					      */
-#define STATMOUNT_MNT_UIDMAP 0x00002000U     /* Want/got uidmap... */
-#define STATMOUNT_MNT_GIDMAP 0x00004000U     /* Want/got gidmap... */
+#define STATMOUNT_SUPPORTED_MASK                                          \
+	0x00001000U			 /* Want/got supported mask flags \
+					  */
+#define STATMOUNT_MNT_UIDMAP 0x00002000U /* Want/got uidmap... */
+#define STATMOUNT_MNT_GIDMAP 0x00004000U /* Want/got gidmap... */
 
 /*
  * Special @mnt_id values that can be passed to listmount

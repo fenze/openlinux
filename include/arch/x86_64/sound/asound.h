@@ -178,9 +178,10 @@ typedef int __bitwise snd_pcm_access_t;
 	((snd_pcm_access_t)0) /* interleaved mmap */
 #define SNDRV_PCM_ACCESS_MMAP_NONINTERLEAVED \
 	((snd_pcm_access_t)1) /* noninterleaved mmap */
-#define SNDRV_PCM_ACCESS_MMAP_COMPLEX	((snd_pcm_access_t)2) /* complex mmap */
-#define SNDRV_PCM_ACCESS_RW_INTERLEAVED ((snd_pcm_access_t)3) /* readi/writei \
-							       */
+#define SNDRV_PCM_ACCESS_MMAP_COMPLEX ((snd_pcm_access_t)2) /* complex mmap */
+#define SNDRV_PCM_ACCESS_RW_INTERLEAVED       \
+	((snd_pcm_access_t)3) /* readi/writei \
+			       */
 #define SNDRV_PCM_ACCESS_RW_NONINTERLEAVED \
 	((snd_pcm_access_t)4) /* readn/writen */
 #define SNDRV_PCM_ACCESS_LAST SNDRV_PCM_ACCESS_RW_NONINTERLEAVED
@@ -632,8 +633,9 @@ struct __snd_pcm_mmap_control {
 };
 
 #define SNDRV_PCM_SYNC_PTR_HWSYNC (1 << 0) /* execute hwsync */
-#define SNDRV_PCM_SYNC_PTR_APPL	  (1 << 1) /* get appl_ptr from driver (r/w op) \
-					    */
+#define SNDRV_PCM_SYNC_PTR_APPL                       \
+	(1 << 1) /* get appl_ptr from driver (r/w op) \
+		  */
 #define SNDRV_PCM_SYNC_PTR_AVAIL_MIN (1 << 2) /* get avail_min from driver */
 
 struct __snd_pcm_sync_ptr {
@@ -1174,11 +1176,13 @@ struct snd_ctl_card_info {
 };
 
 typedef int __bitwise snd_ctl_elem_type_t;
-#define SNDRV_CTL_ELEM_TYPE_NONE    ((snd_ctl_elem_type_t)0) /* invalid */
-#define SNDRV_CTL_ELEM_TYPE_BOOLEAN ((snd_ctl_elem_type_t)1) /* boolean type \
-							      */
-#define SNDRV_CTL_ELEM_TYPE_INTEGER ((snd_ctl_elem_type_t)2) /* integer type \
-							      */
+#define SNDRV_CTL_ELEM_TYPE_NONE ((snd_ctl_elem_type_t)0) /* invalid */
+#define SNDRV_CTL_ELEM_TYPE_BOOLEAN              \
+	((snd_ctl_elem_type_t)1) /* boolean type \
+				  */
+#define SNDRV_CTL_ELEM_TYPE_INTEGER              \
+	((snd_ctl_elem_type_t)2) /* integer type \
+				  */
 #define SNDRV_CTL_ELEM_TYPE_ENUMERATED \
 	((snd_ctl_elem_type_t)3)			   /* enumerated type */
 #define SNDRV_CTL_ELEM_TYPE_BYTES ((snd_ctl_elem_type_t)4) /* byte array */
@@ -1189,8 +1193,9 @@ typedef int __bitwise snd_ctl_elem_type_t;
 #define SNDRV_CTL_ELEM_TYPE_LAST SNDRV_CTL_ELEM_TYPE_INTEGER64
 
 typedef int __bitwise snd_ctl_elem_iface_t;
-#define SNDRV_CTL_ELEM_IFACE_CARD ((snd_ctl_elem_iface_t)0) /* global control \
-							     */
+#define SNDRV_CTL_ELEM_IFACE_CARD                   \
+	((snd_ctl_elem_iface_t)0) /* global control \
+				   */
 #define SNDRV_CTL_ELEM_IFACE_HWDEP \
 	((snd_ctl_elem_iface_t)1) /* hardware dependent device */
 #define SNDRV_CTL_ELEM_IFACE_MIXER \
@@ -1198,8 +1203,9 @@ typedef int __bitwise snd_ctl_elem_iface_t;
 #define SNDRV_CTL_ELEM_IFACE_PCM ((snd_ctl_elem_iface_t)3) /* PCM device */
 #define SNDRV_CTL_ELEM_IFACE_RAWMIDI \
 	((snd_ctl_elem_iface_t)4) /* RawMidi device */
-#define SNDRV_CTL_ELEM_IFACE_TIMER ((snd_ctl_elem_iface_t)5) /* timer device \
-							      */
+#define SNDRV_CTL_ELEM_IFACE_TIMER                \
+	((snd_ctl_elem_iface_t)5) /* timer device \
+				   */
 #define SNDRV_CTL_ELEM_IFACE_SEQUENCER \
 	((snd_ctl_elem_iface_t)6) /* sequencer client */
 #define SNDRV_CTL_ELEM_IFACE_LAST SNDRV_CTL_ELEM_IFACE_SEQUENCER
@@ -1215,8 +1221,9 @@ typedef int __bitwise snd_ctl_elem_iface_t;
 #define SNDRV_CTL_ELEM_ACCESS_TLV_WRITE (1 << 5) /* TLV write is possible */
 #define SNDRV_CTL_ELEM_ACCESS_TLV_READWRITE \
 	(SNDRV_CTL_ELEM_ACCESS_TLV_READ | SNDRV_CTL_ELEM_ACCESS_TLV_WRITE)
-#define SNDRV_CTL_ELEM_ACCESS_TLV_COMMAND (1 << 6) /* TLV command is possible \
-						    */
+#define SNDRV_CTL_ELEM_ACCESS_TLV_COMMAND   \
+	(1 << 6) /* TLV command is possible \
+		  */
 #define SNDRV_CTL_ELEM_ACCESS_INACTIVE \
 	(1 << 8) /* control does actually nothing, but may be updated */
 #define SNDRV_CTL_ELEM_ACCESS_LOCK  (1 << 9)  /* write lock */

@@ -34,7 +34,12 @@ int execvp(const char *file, char *const argv[])
 					return -1;
 				}
 
-				execv(buf, argv);
+				/* Validate path doesn't contain dangerous
+				 * characters */
+				if (strstr(buf, "..") == NULL &&
+				    strchr(buf, '\0') == buf + strlen(buf)) {
+					execv(buf, argv);
+				}
 				break;
 			}
 
@@ -45,7 +50,12 @@ int execvp(const char *file, char *const argv[])
 				return -1;
 			}
 
-			execv(buf, argv);
+			/* Validate path doesn't contain dangerous characters */
+			if (strstr(buf, "..") == NULL &&
+			    strchr(buf, '\0') == buf + strlen(buf)) {
+				execv(buf, argv);
+			}
+			path = ptr + 1;
 		} while (*ptr != '\0');
 
 		errno = ENOENT;

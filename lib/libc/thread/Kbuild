@@ -1,0 +1,1 @@
+obj-y += thrd_current.o

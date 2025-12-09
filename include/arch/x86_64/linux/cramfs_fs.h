@@ -74,8 +74,9 @@ struct cramfs_super {
 #define CRAMFS_FLAG_HOLES		0x00000100 /* support for holes */
 #define CRAMFS_FLAG_WRONG_SIGNATURE	0x00000200 /* reserved */
 #define CRAMFS_FLAG_SHIFTED_ROOT_OFFSET 0x00000400 /* shifted root fs */
-#define CRAMFS_FLAG_EXT_BLOCK_POINTERS	0x00000800 /* block pointer extensions \
-						    */
+#define CRAMFS_FLAG_EXT_BLOCK_POINTERS         \
+	0x00000800 /* block pointer extensions \
+		    */
 
 /*
  * Valid values in super.flags.  Currently we refuse to mount

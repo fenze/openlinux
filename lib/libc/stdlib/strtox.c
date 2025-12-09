@@ -66,7 +66,6 @@ __scanint(const char *s, int base, unsigned long long lim, int *neg, char **end)
 static long double __scanfloat(const char *s, char **end)
 {
 	long double value = 0.0;
-	long double frac = 0.0;
 	long double sign = 1.0;
 	long double scale = 1.0;
 	int exp_sign = 1;

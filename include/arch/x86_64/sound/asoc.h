@@ -520,11 +520,12 @@ struct snd_soc_tplg_pcm {
 	__le32 playback; /* supports playback mode */
 	__le32 capture;	 /* supports capture mode */
 	__le32 compress; /* 1 = compressed; 0 = PCM */
-	struct snd_soc_tplg_stream stream[SND_SOC_TPLG_STREAM_CONFIG_MAX]; /* for
-									      DAI
-									      link
-									    */
-	__le32 num_streams;			 /* number of streams */
+	struct snd_soc_tplg_stream
+		stream[SND_SOC_TPLG_STREAM_CONFIG_MAX]; /* for
+							   DAI
+							   link
+							 */
+	__le32 num_streams;				/* number of streams */
 	struct snd_soc_tplg_stream_caps caps[2]; /* playback and capture for DAI
 						  */
 	__le32 flag_mask; /* bitmask of flags to configure */
@@ -548,13 +549,14 @@ struct snd_soc_tplg_link_config {
 	char name[SNDRV_CTL_ELEM_ID_NAME_MAXLEN]; /* name - used to match */
 	char stream_name[SNDRV_CTL_ELEM_ID_NAME_MAXLEN]; /* stream name - used
 							    to match */
-	struct snd_soc_tplg_stream stream[SND_SOC_TPLG_STREAM_CONFIG_MAX]; /* supported
-									      configs
-									      playback
-									      and
-									      captrure
-									    */
-	__le32 num_streams; /* number of streams */
+	struct snd_soc_tplg_stream
+		stream[SND_SOC_TPLG_STREAM_CONFIG_MAX]; /* supported
+							   configs
+							   playback
+							   and
+							   captrure
+							 */
+	__le32 num_streams;				/* number of streams */
 	struct snd_soc_tplg_hw_config
 		hw_config[SND_SOC_TPLG_HW_CONFIG_MAX]; /* hw configs */
 	__le32 num_hw_configs;	     /* number of hw configs */

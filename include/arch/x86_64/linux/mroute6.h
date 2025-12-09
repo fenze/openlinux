@@ -22,21 +22,26 @@
 #define MRT6_INIT    (MRT6_BASE)     /* Activate the kernel mroute code 	*/
 #define MRT6_DONE    (MRT6_BASE + 1) /* Shutdown the kernel mroute		*/
 #define MRT6_ADD_MIF (MRT6_BASE + 2) /* Add a virtual interface		*/
-#define MRT6_DEL_MIF (MRT6_BASE + 3) /* Delete a virtual interface \
-				      */
-#define MRT6_ADD_MFC (MRT6_BASE + 4) /* Add a multicast forwarding entry \
-				      */
-#define MRT6_DEL_MFC (MRT6_BASE + 5) /* Delete a multicast forwarding entry \
-				      */
-#define MRT6_VERSION (MRT6_BASE + 6) /* Get the kernel multicast version \
-				      */
-#define MRT6_ASSERT	   (MRT6_BASE + 7)  /* Activate PIM assert mode		*/
-#define MRT6_PIM	   (MRT6_BASE + 8)  /* enable PIM code			*/
-#define MRT6_TABLE	   (MRT6_BASE + 9)  /* Specify mroute table ID		*/
+#define MRT6_DEL_MIF                                  \
+	(MRT6_BASE + 3) /* Delete a virtual interface \
+			 */
+#define MRT6_ADD_MFC                                        \
+	(MRT6_BASE + 4) /* Add a multicast forwarding entry \
+			 */
+#define MRT6_DEL_MFC                                           \
+	(MRT6_BASE + 5) /* Delete a multicast forwarding entry \
+			 */
+#define MRT6_VERSION                                                           \
+	(MRT6_BASE + 6)			   /* Get the kernel multicast version \
+					    */
+#define MRT6_ASSERT	   (MRT6_BASE + 7) /* Activate PIM assert mode		*/
+#define MRT6_PIM	   (MRT6_BASE + 8) /* enable PIM code			*/
+#define MRT6_TABLE	   (MRT6_BASE + 9) /* Specify mroute table ID		*/
 #define MRT6_ADD_MFC_PROXY (MRT6_BASE + 10) /* Add a (*,*|G) mfc entry	*/
 #define MRT6_DEL_MFC_PROXY (MRT6_BASE + 11) /* Del a (*,*|G) mfc entry	*/
-#define MRT6_FLUSH	   (MRT6_BASE + 12) /* Flush all mfc entries and/or vifs \
-					     */
+#define MRT6_FLUSH                                            \
+	(MRT6_BASE + 12) /* Flush all mfc entries and/or vifs \
+			  */
 #define MRT6_MAX (MRT6_BASE + 12)
 
 #define SIOCGETMIFCNT_IN6 SIOCPROTOPRIVATE /* IP protocol privates */

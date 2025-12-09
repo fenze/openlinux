@@ -112,8 +112,9 @@
 #define PIDFD_SELF_THREAD_GROUP -10001 /* Current thread group leader. */
 
 #define FD_PIDFS_ROOT -10002 /* Root of the pidfs filesystem */
-#define FD_INVALID    -10009 /* Invalid file descriptor: -10000 - EBADF = -10009 \
-			      */
+#define FD_INVALID                                                 \
+	-10009 /* Invalid file descriptor: -10000 - EBADF = -10009 \
+		*/
 
 /* Generic flags for the *at(2) family of syscalls. */
 
@@ -139,8 +140,9 @@
 #define AT_STATX_SYNC_AS_STAT 0x0000 /* - Do whatever stat() does */
 #define AT_STATX_FORCE_SYNC \
 	0x2000 /* - Force the attributes to be sync'd with the server */
-#define AT_STATX_DONT_SYNC 0x4000 /* - Don't sync attributes with the server \
-				   */
+#define AT_STATX_DONT_SYNC                                \
+	0x4000 /* - Don't sync attributes with the server \
+		*/
 
 #define AT_RECURSIVE 0x8000 /* Apply to the entire subtree */
 

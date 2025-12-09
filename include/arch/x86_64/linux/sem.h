@@ -76,13 +76,14 @@ struct seminfo {
  * allocating the sop array.
  */
 
-#define SEMMNI 32000		 /* <= IPCMNI  max # of semaphore identifiers */
-#define SEMMSL 32000		 /* <= INT_MAX max num of semaphores per id */
-#define SEMMNS (SEMMNI * SEMMSL) /* <= INT_MAX max # of semaphores in system \
-				  */
-#define SEMOPM 500		 /* <= 1 000 max num of ops per semop call */
-#define SEMVMX 32767		 /* <= 32767 semaphore maximum value */
-#define SEMAEM SEMVMX		 /* adjust on exit max value */
+#define SEMMNI 32000 /* <= IPCMNI  max # of semaphore identifiers */
+#define SEMMSL 32000 /* <= INT_MAX max num of semaphores per id */
+#define SEMMNS                                                        \
+	(SEMMNI * SEMMSL) /* <= INT_MAX max # of semaphores in system \
+			   */
+#define SEMOPM 500	  /* <= 1 000 max num of ops per semop call */
+#define SEMVMX 32767	  /* <= 32767 semaphore maximum value */
+#define SEMAEM SEMVMX	  /* adjust on exit max value */
 
 /* unused */
 #define SEMUME SEMOPM /* max num of undo entries per process */

@@ -1,3 +1,4 @@
+#include <errno.h>
 #include <string.h>
 #include <features.h>
 
@@ -13,4 +14,42 @@ void *memcpy(void *restrict s1, const void *restrict s2, size_t n)
 	}
 
 	return s1;
+}
+
+errno_t memcpy_s(void *restrict dest, rsize_t destsz, const void *restrict src,
+		 rsize_t count)
+{
+	if (dest == NULL || src == NULL) {
+		if (dest != NULL && destsz > 0) {
+			unsigned char *d = dest;
+			for (rsize_t i = 0; i < destsz; i++) {
+				d[i] = 0;
+			}
+		}
+
+		return EINVAL;
+	}
+
+	const unsigned char *s = src;
+	unsigned char *d = dest;
+
+	if ((d > s && d < s + count) || (s > d && s < d + count)) {
+		for (rsize_t i = 0; i < destsz; i++) {
+			d[i] = 0;
+		}
+		return EINVAL;
+	}
+
+	if (count > destsz) {
+		for (rsize_t i = 0; i < destsz; i++) {
+			d[i] = 0;
+		}
+		return ERANGE;
+	}
+
+	for (rsize_t i = 0; i < count; i++) {
+		d[i] = s[i];
+	}
+
+	return 0;
 }

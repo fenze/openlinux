@@ -9,7 +9,7 @@ static size_t append_string(char *restrict *s, size_t *remaining,
 	if (len >= *remaining) {
 		return 0;
 	}
-	strcpy(*s, str);
+	strlcpy(*s, str, *remaining);
 	*s += len;
 	*remaining -= len;
 	return len;
@@ -73,26 +73,10 @@ static const char *month_full[] = { "January", "February", "March",
 				    "July",    "August",   "September",
 				    "October", "November", "December" };
 
-static int day_of_year(const struct tm *tm)
-{
-	static const int days_to_month[] = { 0,	  31,  59,  90,	 120, 151,
-					     181, 212, 243, 273, 304, 334 };
-	int days = days_to_month[tm->tm_mon] + tm->tm_mday;
-
-	if (tm->tm_mon > 1) {
-		int year = tm->tm_year + 1900;
-		if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
-			days++;
-		}
-	}
-	return days;
-}
-
 static int iso_week_number(const struct tm *tm, int *week_year)
 {
 	int year = tm->tm_year + 1900;
 	int yday = tm->tm_yday + 1;
-	int wday;
 
 	int jan4_wday = (4 + year + (year - 1) / 4 - (year - 1) / 100 +
 			 (year - 1) / 400) %
@@ -554,9 +538,9 @@ size_t strftime(char *restrict s, size_t maxsize, const char *restrict format,
 }
 
 __weak size_t strftime_l(char *restrict s, size_t maxsize,
-		       const char *restrict format,
-		       const struct tm *restrict timeptr,
-		       locale_t __unused locale)
+			 const char *restrict format,
+			 const struct tm *restrict timeptr,
+			 locale_t __unused locale)
 {
 	return strftime(s, maxsize, format, timeptr);
 }

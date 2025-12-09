@@ -37,10 +37,11 @@
 #include <linux/virtio_config.h>
 
 /* Feature bits */
-#define VIRTIO_CONSOLE_F_SIZE	     0 /* Does host provide console size? */
-#define VIRTIO_CONSOLE_F_MULTIPORT   1 /* Does host provide multiple ports? */
-#define VIRTIO_CONSOLE_F_EMERG_WRITE 2 /* Does host support emergency write? \
-					*/
+#define VIRTIO_CONSOLE_F_SIZE	   0 /* Does host provide console size? */
+#define VIRTIO_CONSOLE_F_MULTIPORT 1 /* Does host provide multiple ports? */
+#define VIRTIO_CONSOLE_F_EMERG_WRITE            \
+	2 /* Does host support emergency write? \
+	   */
 
 #define VIRTIO_CONSOLE_BAD_ID (~(__u32)0)
 

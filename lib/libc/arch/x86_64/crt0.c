@@ -12,8 +12,6 @@
 extern int main(int, char *[]);
 char **environ;
 
-static struct __thread_self thread = { .tid = 0, ._errno = 0 };
-
 struct __attribute__((packed)) auxv_t {
 	uintptr_t a_type;
 	uintptr_t a_val;
@@ -46,8 +44,6 @@ __attribute__((used)) void __libc_start(uintptr_t *sp)
 
 		__auxv++;
 	}
-
-	__asm__ volatile("wrfsbase %0" ::"r"(thread));
 
 	exit(main(argc, argv));
 }

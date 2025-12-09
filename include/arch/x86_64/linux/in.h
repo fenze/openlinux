@@ -225,11 +225,12 @@ struct group_filter {
 	union {
 		struct {
 			__u32 gf_interface_aux; /* interface index */
-			struct __kernel_sockaddr_storage gf_group_aux; /* multicast
-									  address
-									*/
-			__u32 gf_fmode_aux;  /* filter mode */
-			__u32 gf_numsrc_aux; /* number of sources */
+			struct __kernel_sockaddr_storage
+				gf_group_aux; /* multicast
+						 address
+					       */
+			__u32 gf_fmode_aux;   /* filter mode */
+			__u32 gf_numsrc_aux;  /* number of sources */
 			struct __kernel_sockaddr_storage gf_slist[1]; /* interface
 									 index
 								       */
@@ -240,9 +241,10 @@ struct group_filter {
 								      address */
 			__u32 gf_fmode;	 /* filter mode */
 			__u32 gf_numsrc; /* number of sources */
-			struct __kernel_sockaddr_storage gf_slist_flex[]; /* interface
-									     index
-									   */
+			struct __kernel_sockaddr_storage
+				gf_slist_flex[]; /* interface
+						    index
+						  */
 		};
 	};
 };

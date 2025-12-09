@@ -28,8 +28,9 @@
 #define PR_GET_FPEMU	 9
 #define PR_SET_FPEMU	 10
 #define PR_FPEMU_NOPRINT 1 /* silently emulate fp operations accesses */
-#define PR_FPEMU_SIGFPE	 2 /* don't emulate fp operations, send SIGFPE instead \
-			    */
+#define PR_FPEMU_SIGFPE                                       \
+	2 /* don't emulate fp operations, send SIGFPE instead \
+	   */
 
 /* Get/set floating-point exception mode (if meaningful) */
 #define PR_GET_FPEXC	    11
@@ -332,7 +333,8 @@ struct prctl_mm_map {
 #define PR_PPC_DEXCR_SBHE 0 /* Speculative branch hint enable */
 #define PR_PPC_DEXCR_IBRTPD \
 	1 /* Indirect branch recurrent target prediction disable */
-#define PR_PPC_DEXCR_SRAPD 2 /* Subroutine return address prediction disable \
+#define PR_PPC_DEXCR_SRAPD                                                   \
+	2		     /* Subroutine return address prediction disable \
 			      */
 #define PR_PPC_DEXCR_NPHIE 3 /* Non-privileged hash instruction enable */
 /* Action to apply / return */

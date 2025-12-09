@@ -24,9 +24,10 @@
  * Disk quota - quotactl(2) commands for the XFS Quota Manager (XQM).
  */
 
-#define XQM_CMD(x)     (('X' << 8) + (x)) /* note: forms first QCMD argument */
-#define XQM_COMMAND(x) (((x) & (0xff << 8)) == ('X' << 8)) /* test if for XFS \
-							    */
+#define XQM_CMD(x) (('X' << 8) + (x)) /* note: forms first QCMD argument */
+#define XQM_COMMAND(x)                                         \
+	(((x) & (0xff << 8)) == ('X' << 8)) /* test if for XFS \
+					     */
 
 #define XQM_USRQUOTA  0 /* system call user quota type */
 #define XQM_GRPQUOTA  1 /* system call group quota type */

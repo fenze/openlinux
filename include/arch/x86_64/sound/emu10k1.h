@@ -154,9 +154,10 @@
 
 /* Each FX general purpose register is 32 bits in length, all bits are used
  */
-#define FXGPREGBASE   0x100 /* FX general purpose registers base       	*/
-#define A_FXGPREGBASE 0x400 /* Audigy GPRs, 0x400 to 0x5ff \
-			     */
+#define FXGPREGBASE 0x100 /* FX general purpose registers base       	*/
+#define A_FXGPREGBASE                        \
+	0x400 /* Audigy GPRs, 0x400 to 0x5ff \
+	       */
 
 #define A_TANKMEMCTLREGBASE \
 	0x100 /* Tank memory control registers base - only for Audigy */
@@ -194,19 +195,25 @@
 #define ITRAM_ADDR(x) (TANKMEMADDRREGBASE + 0x00 + (x)) /* x = 0x00 - 0x7f */
 #define ETRAM_ADDR(x) (TANKMEMADDRREGBASE + 0x80 + (x)) /* x = 0x00 - 0x1f */
 
-#define A_GPR(x)	(A_FXGPREGBASE + (x))
-#define A_ITRAM_DATA(x) (TANKMEMDATAREGBASE + 0x00 + (x)) /* x = 0x00 - 0xbf \
-							   */
-#define A_ETRAM_DATA(x) (TANKMEMDATAREGBASE + 0xc0 + (x)) /* x = 0x00 - 0x3f \
-							   */
-#define A_ITRAM_ADDR(x) (TANKMEMADDRREGBASE + 0x00 + (x)) /* x = 0x00 - 0xbf \
-							   */
-#define A_ETRAM_ADDR(x) (TANKMEMADDRREGBASE + 0xc0 + (x)) /* x = 0x00 - 0x3f \
-							   */
-#define A_ITRAM_CTL(x) (A_TANKMEMCTLREGBASE + 0x00 + (x)) /* x = 0x00 - 0xbf \
-							   */
-#define A_ETRAM_CTL(x) (A_TANKMEMCTLREGBASE + 0xc0 + (x)) /* x = 0x00 - 0x3f \
-							   */
+#define A_GPR(x) (A_FXGPREGBASE + (x))
+#define A_ITRAM_DATA(x)                                      \
+	(TANKMEMDATAREGBASE + 0x00 + (x)) /* x = 0x00 - 0xbf \
+					   */
+#define A_ETRAM_DATA(x)                                      \
+	(TANKMEMDATAREGBASE + 0xc0 + (x)) /* x = 0x00 - 0x3f \
+					   */
+#define A_ITRAM_ADDR(x)                                      \
+	(TANKMEMADDRREGBASE + 0x00 + (x)) /* x = 0x00 - 0xbf \
+					   */
+#define A_ETRAM_ADDR(x)                                      \
+	(TANKMEMADDRREGBASE + 0xc0 + (x)) /* x = 0x00 - 0x3f \
+					   */
+#define A_ITRAM_CTL(x)                                        \
+	(A_TANKMEMCTLREGBASE + 0x00 + (x)) /* x = 0x00 - 0xbf \
+					    */
+#define A_ETRAM_CTL(x)                                        \
+	(A_TANKMEMCTLREGBASE + 0xc0 + (x)) /* x = 0x00 - 0x3f \
+					    */
 
 /* cc_reg constants */
 #define CC_REG_NORMALIZED C_00000001

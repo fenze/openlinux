@@ -19,6 +19,8 @@ typedef void *nullptr_t;
 #define offsetof(__type, __member) __builtin_offsetof(__type, __member)
 #endif
 
+#define unreachable() __builtin_unreachable()
+
 typedef __WCHAR_TYPE__ wchar_t;
 typedef __SIZE_TYPE__ ptrdiff_t;
 typedef __SIZE_TYPE__ size_t;

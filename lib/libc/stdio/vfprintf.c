@@ -325,11 +325,12 @@ int vfprintf(FILE *restrict stream, const char *restrict format, va_list ap)
 				int pos = 0;
 
 				if (isnan(val)) {
-					strcpy(buf,
-					       (*ptr == 'F' || *ptr == 'E' ||
-						*ptr == 'G') ?
-						       "NAN" :
-						       "nan");
+					strlcpy(buf,
+						(*ptr == 'F' || *ptr == 'E' ||
+						 *ptr == 'G') ?
+							"NAN" :
+							"nan",
+						sizeof(buf));
 					l = 3;
 					break;
 				}
@@ -341,11 +342,12 @@ int vfprintf(FILE *restrict stream, const char *restrict format, va_list ap)
 					} else if (flags & FLAG_SPACE) {
 						buf[pos++] = ' ';
 					}
-					strcpy(buf + pos,
-					       (*ptr == 'F' || *ptr == 'E' ||
-						*ptr == 'G') ?
-						       "INF" :
-						       "inf");
+					strlcpy(buf + pos,
+						(*ptr == 'F' || *ptr == 'E' ||
+						 *ptr == 'G') ?
+							"INF" :
+							"inf",
+						sizeof(buf) - pos);
 					l = pos + 3;
 					break;
 				}
@@ -607,8 +609,9 @@ int vfprintf(FILE *restrict stream, const char *restrict format, va_list ap)
 				}
 
 				if (val == 0.0) {
-					strcpy(buf + pos,
-					       upper ? "0X0P+0" : "0x0p+0");
+					strlcpy(buf + pos,
+						upper ? "0X0P+0" : "0x0p+0",
+						sizeof(buf) - pos);
 					l = pos + 6;
 					break;
 				}

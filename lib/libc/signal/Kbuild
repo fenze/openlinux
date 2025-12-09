@@ -19,3 +19,4 @@ obj-y += sigtimedwait.o
 obj-y += sigwait.o
 obj-y += sigwaitinfo.o
 obj-y += str2sig.o
+obj-y += sysv_signal.o

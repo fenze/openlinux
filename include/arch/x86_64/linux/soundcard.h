@@ -225,16 +225,17 @@ struct patch_info {
  * The least significant byte has the same format than the GUS .PAT
  * files
  */
-#define WAVE_16_BITS	  0x01 /* bit 0 = 8 or 16 bit wave data. */
-#define WAVE_UNSIGNED	  0x02 /* bit 1 = Signed - Unsigned data. */
-#define WAVE_LOOPING	  0x04 /* bit 2 = looping enabled-1. */
-#define WAVE_BIDIR_LOOP	  0x08 /* bit 3 = Set is bidirectional looping. */
-#define WAVE_LOOP_BACK	  0x10 /* bit 4 = Set is looping backward. */
-#define WAVE_SUSTAIN_ON	  0x20 /* bit 5 = Turn sustaining on. (Env. pts. 3)*/
-#define WAVE_ENVELOPES	  0x40 /* bit 6 = Enable envelopes - 1 */
-#define WAVE_FAST_RELEASE 0x80 /* bit 7 = Shut off immediately after note off \
-				*/
-			       /* 	(use the env_rate/env_offs fields). */
+#define WAVE_16_BITS	0x01 /* bit 0 = 8 or 16 bit wave data. */
+#define WAVE_UNSIGNED	0x02 /* bit 1 = Signed - Unsigned data. */
+#define WAVE_LOOPING	0x04 /* bit 2 = looping enabled-1. */
+#define WAVE_BIDIR_LOOP 0x08 /* bit 3 = Set is bidirectional looping. */
+#define WAVE_LOOP_BACK	0x10 /* bit 4 = Set is looping backward. */
+#define WAVE_SUSTAIN_ON 0x20 /* bit 5 = Turn sustaining on. (Env. pts. 3)*/
+#define WAVE_ENVELOPES	0x40 /* bit 6 = Enable envelopes - 1 */
+#define WAVE_FAST_RELEASE                                   \
+	0x80 /* bit 7 = Shut off immediately after note off \
+	      */
+	     /* 	(use the env_rate/env_offs fields). */
 /* Linux specific bits */
 #define WAVE_VIBRATO   0x00010000 /* The vibrato info is valid */
 #define WAVE_TREMOLO   0x00020000 /* The tremolo info is valid */
@@ -243,7 +244,7 @@ struct patch_info {
 /* Reserved bits */
 #define WAVE_ROM   0x40000000 /* For future use */
 #define WAVE_MULAW 0x20000000 /* For future use */
-			      /* Other bits must be zeroed */
+	/* Other bits must be zeroed */
 
 	int len;		  /* Size of the wave data in bytes */
 	int loop_start, loop_end; /* Byte offsets from the beginning */
@@ -666,8 +667,9 @@ typedef struct buffmem_desc {
 #define SNDCTL_DSP_PROFILE _SIOW('P', 23, int)
 #define APF_NORMAL	   0 /* Normal applications */
 #define APF_NETWORK	   1 /* Underruns probably caused by an "external" delay */
-#define APF_CPUINTENS	   2 /* Underruns probably caused by "overheating" the CPU \
-			      */
+#define APF_CPUINTENS                                           \
+	2 /* Underruns probably caused by "overheating" the CPU \
+	   */
 
 #define SOUND_PCM_READ_RATE	_SIOR('P', 2, int)
 #define SOUND_PCM_READ_CHANNELS _SIOR('P', 6, int)

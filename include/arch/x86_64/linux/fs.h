@@ -253,17 +253,19 @@ struct file_attr {
 /* the read-only stuff doesn't really belong here, but any other place is
    probably as bad and I don't want to create yet another include file. */
 
-#define BLKROSET   _IO(0x12, 93)  /* set device read-only (0 = read-write) */
-#define BLKROGET   _IO(0x12, 94)  /* get read-only status (0 = read_write) */
-#define BLKRRPART  _IO(0x12, 95)  /* re-read partition table */
-#define BLKGETSIZE _IO(0x12, 96)  /* return device size /512 (long *arg) */
-#define BLKFLSBUF  _IO(0x12, 97)  /* flush buffer cache */
-#define BLKRASET   _IO(0x12, 98)  /* set read ahead for block device */
-#define BLKRAGET   _IO(0x12, 99)  /* get current read ahead setting */
-#define BLKFRASET  _IO(0x12, 100) /* set filesystem (mm/filemap.c) read-ahead \
-				   */
-#define BLKFRAGET _IO(0x12, 101)  /* get filesystem (mm/filemap.c) read-ahead \
-				   */
+#define BLKROSET   _IO(0x12, 93) /* set device read-only (0 = read-write) */
+#define BLKROGET   _IO(0x12, 94) /* get read-only status (0 = read_write) */
+#define BLKRRPART  _IO(0x12, 95) /* re-read partition table */
+#define BLKGETSIZE _IO(0x12, 96) /* return device size /512 (long *arg) */
+#define BLKFLSBUF  _IO(0x12, 97) /* flush buffer cache */
+#define BLKRASET   _IO(0x12, 98) /* set read ahead for block device */
+#define BLKRAGET   _IO(0x12, 99) /* get current read ahead setting */
+#define BLKFRASET                                                  \
+	_IO(0x12, 100) /* set filesystem (mm/filemap.c) read-ahead \
+			*/
+#define BLKFRAGET                                                  \
+	_IO(0x12, 101) /* get filesystem (mm/filemap.c) read-ahead \
+			*/
 #define BLKSECTSET \
 	_IO(0x12, 102) /* set max sectors per request (ll_rw_blk.c) */
 #define BLKSECTGET \

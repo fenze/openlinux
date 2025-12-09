@@ -128,8 +128,9 @@ struct snd_compr_metadata {
 } __attribute__((packed, aligned(4)));
 
 /* flags for struct snd_compr_task */
-#define SND_COMPRESS_TFLG_NEW_STREAM (1 << 0) /* mark for the new stream data \
-					       */
+#define SND_COMPRESS_TFLG_NEW_STREAM             \
+	(1 << 0) /* mark for the new stream data \
+		  */
 
 /**
  * struct snd_compr_task - task primitive for non-realtime operation

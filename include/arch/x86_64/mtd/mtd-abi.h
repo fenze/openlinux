@@ -147,12 +147,13 @@ struct mtd_read_req {
 #define MTD_UBIVOLUME	 7
 #define MTD_MLCNANDFLASH 8 /* MLC NAND (including TLC) */
 
-#define MTD_WRITEABLE		 0x400	/* Device is writeable */
-#define MTD_BIT_WRITEABLE	 0x800	/* Single bits can be flipped */
-#define MTD_NO_ERASE		 0x1000 /* No erase necessary */
-#define MTD_POWERUP_LOCK	 0x2000 /* Always locked after reset */
-#define MTD_SLC_ON_MLC_EMULATION 0x4000 /* Emulate SLC behavior on MLC NANDs \
-					 */
+#define MTD_WRITEABLE	  0x400	 /* Device is writeable */
+#define MTD_BIT_WRITEABLE 0x800	 /* Single bits can be flipped */
+#define MTD_NO_ERASE	  0x1000 /* No erase necessary */
+#define MTD_POWERUP_LOCK  0x2000 /* Always locked after reset */
+#define MTD_SLC_ON_MLC_EMULATION                    \
+	0x4000 /* Emulate SLC behavior on MLC NANDs \
+		*/
 
 /* Some common devices / combinations of capabilities */
 #define MTD_CAP_ROM	  0

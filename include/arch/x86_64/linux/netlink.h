@@ -6,11 +6,12 @@
 #include <linux/socket.h> /* for __kernel_sa_family_t */
 #include <linux/types.h>
 
-#define NETLINK_ROUTE	  0	 /* Routing/device hook				*/
-#define NETLINK_UNUSED	  1	 /* Unused number				*/
-#define NETLINK_USERSOCK  2	 /* Reserved for user mode socket protocols 	*/
-#define NETLINK_FIREWALL  3	 /* Unused number, formerly ip_queue		*/
-#define NETLINK_SOCK_DIAG 4	 /* socket monitoring \
+#define NETLINK_ROUTE	 0 /* Routing/device hook				*/
+#define NETLINK_UNUSED	 1 /* Unused number				*/
+#define NETLINK_USERSOCK 2 /* Reserved for user mode socket protocols 	*/
+#define NETLINK_FIREWALL 3 /* Unused number, formerly ip_queue		*/
+#define NETLINK_SOCK_DIAG                             \
+	4			 /* socket monitoring \
 				  */
 #define NETLINK_NFLOG	       5 /* netfilter/iptables ULOG */
 #define NETLINK_XFRM	       6 /* ipsec */
@@ -60,12 +61,13 @@ struct nlmsghdr {
 
 /* Flags values */
 
-#define NLM_F_REQUEST	0x01 /* It is request message. 	*/
-#define NLM_F_MULTI	0x02 /* Multipart message, terminated by NLMSG_DONE */
-#define NLM_F_ACK	0x04 /* Reply with ack, with zero or error code */
-#define NLM_F_ECHO	0x08 /* Receive resulting notifications */
-#define NLM_F_DUMP_INTR 0x10 /* Dump was inconsistent due to sequence change \
-			      */
+#define NLM_F_REQUEST 0x01 /* It is request message. 	*/
+#define NLM_F_MULTI   0x02 /* Multipart message, terminated by NLMSG_DONE */
+#define NLM_F_ACK     0x04 /* Reply with ack, with zero or error code */
+#define NLM_F_ECHO    0x08 /* Receive resulting notifications */
+#define NLM_F_DUMP_INTR                                      \
+	0x10 /* Dump was inconsistent due to sequence change \
+	      */
 #define NLM_F_DUMP_FILTERED 0x20 /* Dump was filtered as requested */
 
 /* Modifiers to GET request */

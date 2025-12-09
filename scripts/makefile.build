@@ -1,5 +1,7 @@
 obj-y    :=
 obj-m    :=
+always   :=
+targets  :=
 
 src := $(patsubst %/,%,$(obj))
 
@@ -44,21 +46,26 @@ subdir-s-sources := $(wildcard $(addprefix $(obj),$(subdir-objects:.o=.s)))
 PHONY := all
 
 ifdef lib-y
-all: $(obj)$(lib-y)
+all: $(obj)$(lib-y) $(addprefix $(obj),$(always))
 $(obj)$(lib-y): $(addprefix $(obj),$(all-objects))
 	$(MSG) AR "$@"
 	$(Q)$(AR) rcs $@ $^
 else ifdef bin-y
-all: $(obj)$(bin-y)
-$(obj)$(bin-y): $(addprefix $(obj),$(all-objects)) $(libs-y)
+all: $(obj)$(bin-y) $(addprefix $(obj),$(always))
+
+$(obj)$(bin-y): $(addprefix $(obj),$(all-objects)) $(libs-y) ${prereq}
 	$(MSG) LD "$@"
 	$(Q)$(LD) $(ldflags) -o $@ $^
 else
-all: $(addprefix $(obj),$(all-objects)) $(subdirs)
+all: $(addprefix $(obj),$(all-objects)) $(subdirs) $(addprefix $(obj),$(always))
 endif
 
 PHONY += clean clean-%
 clean: $(addprefix clean-,$(subdirs))
+ifdef targets
+	$(info Cleaning targets: $(targets))
+	$(Q)rm -f $(addprefix $(obj),$(targets))
+endif
 ifdef all-objects
 	$(Q)rm -f $(addprefix $(obj),$(all-objects))
 endif
@@ -67,6 +74,9 @@ ifdef lib-y
 endif
 ifdef bin-y
 	$(Q)rm -f $(obj)$(bin-y)
+endif
+ifdef always
+	$(Q)rm -f $(addprefix $(obj),$(always))
 endif
 
 # Build C sources to objects

@@ -74,11 +74,12 @@
 #define TIPC_CMD_GET_MEDIA_NAMES  0x0002 /* tx none, rx media_name(s) */
 #define TIPC_CMD_GET_BEARER_NAMES 0x0003 /* tx none, rx bearer_name(s) */
 #define TIPC_CMD_GET_LINKS	  0x0004 /* tx net_addr, rx link_info(s) */
-#define TIPC_CMD_SHOW_NAME_TABLE  0x0005 /* tx name_tbl_query, rx ultra_string \
-					  */
-#define TIPC_CMD_SHOW_PORTS	 0x0006	 /* tx none, rx ultra_string */
-#define TIPC_CMD_SHOW_LINK_STATS 0x000B	 /* tx link_name, rx ultra_string */
-#define TIPC_CMD_SHOW_STATS	 0x000F	 /* tx unsigned, rx ultra_string */
+#define TIPC_CMD_SHOW_NAME_TABLE                                              \
+	0x0005				/* tx name_tbl_query, rx ultra_string \
+					 */
+#define TIPC_CMD_SHOW_PORTS	 0x0006 /* tx none, rx ultra_string */
+#define TIPC_CMD_SHOW_LINK_STATS 0x000B /* tx link_name, rx ultra_string */
+#define TIPC_CMD_SHOW_STATS	 0x000F /* tx unsigned, rx ultra_string */
 
 /*
  * Protected commands:

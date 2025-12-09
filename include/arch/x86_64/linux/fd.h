@@ -144,11 +144,11 @@ struct floppy_drive_params {
 	struct floppy_max_errors max_errors;
 
 	char flags; /* various flags, including ftd_msg */
-	/*
-	 * Announce successful media type detection and media information loss
-	 * after disk changes. Also used to enable/disable printing of overrun
-	 * warnings.
-	 */
+		    /*
+		     * Announce successful media type detection and media information loss
+		     * after disk changes. Also used to enable/disable printing of overrun
+		     * warnings.
+		     */
 
 #define FTD_MSG		    0x10
 #define FD_BROKEN_DCL	    0x20

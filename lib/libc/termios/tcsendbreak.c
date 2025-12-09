@@ -1,8 +1,9 @@
+#include <libc.h>
 #include <termios.h>
 #include <syscall.h>
 #include <asm-generic/ioctls.h>
 
-int tcsendbreak(int fildes, int duration)
+int tcsendbreak(int fildes, int __unused duration)
 {
 	// IEEE Std 1003.1-2024
 	// If duration is not 0, it shall send zero-valued

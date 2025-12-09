@@ -2,12 +2,12 @@
 #define __LIBC_LIBC_H
 
 #include <stdatomic.h>
+#include <features.h>
 
 #define likely(x)     __builtin_expect(!!(x), 1)
 #define unlikely(x)   __builtin_expect(!!(x), 0)
 #define __unused      __attribute__((unused))
 #define aligned(type) __attribute__((aligned(__alignof__(type))))
-#define __weak	      __attribute__((__weak__))
 #define weak_reference(old, new) \
 	extern __typeof(old) new __attribute__((__weak__, __alias__(#old)))
 

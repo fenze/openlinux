@@ -49,17 +49,17 @@ struct acct {
 	__u16 ac_gid16; /* LSB of Real Group ID */
 	__u16 ac_tty;	/* Control Terminal */
 	/* __u32 range means times from 1970 to 2106 */
-	__u32 ac_btime;		     /* Process Creation Time */
-	comp_t ac_utime;	     /* User Time */
-	comp_t ac_stime;	     /* System Time */
-	comp_t ac_etime;	     /* Elapsed Time */
-	comp_t ac_mem;		     /* Average Memory Usage */
-	comp_t ac_io;		     /* Chars Transferred */
-	comp_t ac_rw;		     /* Blocks Read or Written */
-	comp_t ac_minflt;	     /* Minor Pagefaults */
-	comp_t ac_majflt;	     /* Major Pagefaults */
-	comp_t ac_swaps;	     /* Number of Swaps */
-				     /* m68k had no padding here. */
+	__u32 ac_btime;	  /* Process Creation Time */
+	comp_t ac_utime;  /* User Time */
+	comp_t ac_stime;  /* System Time */
+	comp_t ac_etime;  /* Elapsed Time */
+	comp_t ac_mem;	  /* Average Memory Usage */
+	comp_t ac_io;	  /* Chars Transferred */
+	comp_t ac_rw;	  /* Blocks Read or Written */
+	comp_t ac_minflt; /* Minor Pagefaults */
+	comp_t ac_majflt; /* Major Pagefaults */
+	comp_t ac_swaps;  /* Number of Swaps */
+	/* m68k had no padding here. */
 	__u16 ac_ahz;		     /* AHZ */
 	__u32 ac_exitcode;	     /* Exitcode */
 	char ac_comm[ACCT_COMM + 1]; /* Command Name */

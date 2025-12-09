@@ -919,8 +919,9 @@ struct v4l2_pix_format {
 	v4l2_fourcc('A', 'V', '1', 'F')			  /* AV1 parsed frame */
 #define V4L2_PIX_FMT_SPK  v4l2_fourcc('S', 'P', 'K', '0') /* Sorenson Spark */
 #define V4L2_PIX_FMT_RV30 v4l2_fourcc('R', 'V', '3', '0') /* RealVideo 8 */
-#define V4L2_PIX_FMT_RV40 v4l2_fourcc('R', 'V', '4', '0') /* RealVideo 9 & 10 \
-							   */
+#define V4L2_PIX_FMT_RV40                                   \
+	v4l2_fourcc('R', 'V', '4', '0') /* RealVideo 9 & 10 \
+					 */
 
 /*  Vendor-specific formats   */
 #define V4L2_PIX_FMT_CPIA1 v4l2_fourcc('C', 'P', 'I', 'A') /* cpia1 YUV */
@@ -930,18 +931,23 @@ struct v4l2_pix_format {
 	v4l2_fourcc('S', '9', '1', '0') /* SN9C10x compression */
 #define V4L2_PIX_FMT_SN9C20X_I420 \
 	v4l2_fourcc('S', '9', '2', '0') /* SN9C20x YUV 4:2:0 */
-#define V4L2_PIX_FMT_PWC1 v4l2_fourcc('P', 'W', 'C', '1') /* pwc older webcam \
-							   */
-#define V4L2_PIX_FMT_PWC2 v4l2_fourcc('P', 'W', 'C', '2') /* pwc newer webcam \
-							   */
+#define V4L2_PIX_FMT_PWC1                                   \
+	v4l2_fourcc('P', 'W', 'C', '1') /* pwc older webcam \
+					 */
+#define V4L2_PIX_FMT_PWC2                                   \
+	v4l2_fourcc('P', 'W', 'C', '2') /* pwc newer webcam \
+					 */
 #define V4L2_PIX_FMT_ET61X251 \
 	v4l2_fourcc('E', '6', '2', '5') /* ET61X251 compression */
-#define V4L2_PIX_FMT_SPCA501 v4l2_fourcc('S', '5', '0', '1') /* YUYV per line \
-							      */
-#define V4L2_PIX_FMT_SPCA505 v4l2_fourcc('S', '5', '0', '5') /* YYUV per line \
-							      */
-#define V4L2_PIX_FMT_SPCA508 v4l2_fourcc('S', '5', '0', '8') /* YUVY per line \
-							      */
+#define V4L2_PIX_FMT_SPCA501                             \
+	v4l2_fourcc('S', '5', '0', '1') /* YUYV per line \
+					 */
+#define V4L2_PIX_FMT_SPCA505                             \
+	v4l2_fourcc('S', '5', '0', '5') /* YYUV per line \
+					 */
+#define V4L2_PIX_FMT_SPCA508                             \
+	v4l2_fourcc('S', '5', '0', '8') /* YUVY per line \
+					 */
 #define V4L2_PIX_FMT_SPCA561 \
 	v4l2_fourcc('S', '5', '6', '1') /* compressed GBRG bayer */
 #define V4L2_PIX_FMT_PAC207 \
@@ -954,14 +960,17 @@ struct v4l2_pix_format {
 	v4l2_fourcc('S', 'O', 'N', 'X') /* compressed GBRG bayer */
 #define V4L2_PIX_FMT_SQ905C \
 	v4l2_fourcc('9', '0', '5', 'C') /* compressed RGGB bayer */
-#define V4L2_PIX_FMT_PJPG v4l2_fourcc('P', 'J', 'P', 'G') /* Pixart 73xx JPEG \
-							   */
-#define V4L2_PIX_FMT_OV511   v4l2_fourcc('O', '5', '1', '1') /* ov511 JPEG */
-#define V4L2_PIX_FMT_OV518   v4l2_fourcc('O', '5', '1', '8') /* ov518 JPEG */
-#define V4L2_PIX_FMT_STV0680 v4l2_fourcc('S', '6', '8', '0') /* stv0680 bayer \
-							      */
-#define V4L2_PIX_FMT_TM6000 v4l2_fourcc('T', 'M', '6', '0')  /* tm5600/tm60x0 \
-							      */
+#define V4L2_PIX_FMT_PJPG                                                      \
+	v4l2_fourcc('P', 'J', 'P', 'G')			   /* Pixart 73xx JPEG \
+							    */
+#define V4L2_PIX_FMT_OV511 v4l2_fourcc('O', '5', '1', '1') /* ov511 JPEG */
+#define V4L2_PIX_FMT_OV518 v4l2_fourcc('O', '5', '1', '8') /* ov518 JPEG */
+#define V4L2_PIX_FMT_STV0680                             \
+	v4l2_fourcc('S', '6', '8', '0') /* stv0680 bayer \
+					 */
+#define V4L2_PIX_FMT_TM6000                              \
+	v4l2_fourcc('T', 'M', '6', '0') /* tm5600/tm60x0 \
+					 */
 #define V4L2_PIX_FMT_CIT_YYVYUY                                              \
 	v4l2_fourcc('C', 'I', 'T', 'V') /* one line of Y then 1 line of VYUY \
 					 */
@@ -979,8 +988,9 @@ struct v4l2_pix_format {
 	v4l2_fourcc('Y', '1', '2', 'I') /* Greyscale 12-bit L/R interleaved */
 #define V4L2_PIX_FMT_Y16I \
 	v4l2_fourcc('Y', '1', '6', 'I') /* Greyscale 16-bit L/R interleaved */
-#define V4L2_PIX_FMT_Z16 v4l2_fourcc('Z', '1', '6', ' ') /* Depth data 16-bit \
-							  */
+#define V4L2_PIX_FMT_Z16                                     \
+	v4l2_fourcc('Z', '1', '6', ' ') /* Depth data 16-bit \
+					 */
 #define V4L2_PIX_FMT_MT21C \
 	v4l2_fourcc('M', 'T', '2', '1') /* Mediatek compressed block mode  */
 #define V4L2_PIX_FMT_MM21                                                 \
@@ -1059,7 +1069,8 @@ struct v4l2_pix_format {
 #define V4L2_SDR_FMT_CU8    v4l2_fourcc('C', 'U', '0', '8') /* IQ u8 */
 #define V4L2_SDR_FMT_CU16LE v4l2_fourcc('C', 'U', '1', '6') /* IQ u16le */
 #define V4L2_SDR_FMT_CS8    v4l2_fourcc('C', 'S', '0', '8') /* complex s8 */
-#define V4L2_SDR_FMT_CS14LE v4l2_fourcc('C', 'S', '1', '4') /* complex s14le \
+#define V4L2_SDR_FMT_CS14LE                                                  \
+	v4l2_fourcc('C', 'S', '1', '4')			    /* complex s14le \
 							     */
 #define V4L2_SDR_FMT_RU12LE v4l2_fourcc('R', 'U', '1', '2') /* real u12le */
 #define V4L2_SDR_FMT_PCU16BE \
@@ -1090,8 +1101,9 @@ struct v4l2_pix_format {
 	v4l2_fourcc('D', '4', 'X', 'X') /* D4XX Payload Header metadata */
 #define V4L2_META_FMT_UVC_MSXU_1_5 \
 	v4l2_fourcc('U', 'V', 'C', 'M') /* UVC MSXU metadata */
-#define V4L2_META_FMT_VIVID v4l2_fourcc('V', 'I', 'V', 'D') /* Vivid Metadata \
-							     */
+#define V4L2_META_FMT_VIVID                               \
+	v4l2_fourcc('V', 'I', 'V', 'D') /* Vivid Metadata \
+					 */
 
 /* Vendor specific - used for RK_ISP1 camera sub-system */
 #define V4L2_META_FMT_RK_ISP1_PARAMS \
@@ -2674,13 +2686,15 @@ struct v4l2_format {
 	__u32 type;
 	union {
 		struct v4l2_pix_format pix; /* V4L2_BUF_TYPE_VIDEO_CAPTURE */
-		struct v4l2_pix_format_mplane pix_mp; /* V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE
-						       */
-		struct v4l2_window win;	    /* V4L2_BUF_TYPE_VIDEO_OVERLAY */
+		struct v4l2_pix_format_mplane
+			pix_mp;		/* V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE
+					 */
+		struct v4l2_window win; /* V4L2_BUF_TYPE_VIDEO_OVERLAY */
 		struct v4l2_vbi_format vbi; /* V4L2_BUF_TYPE_VBI_CAPTURE */
-		struct v4l2_sliced_vbi_format sliced; /* V4L2_BUF_TYPE_SLICED_VBI_CAPTURE
-						       */
-		struct v4l2_sdr_format sdr;   /* V4L2_BUF_TYPE_SDR_CAPTURE */
+		struct v4l2_sliced_vbi_format
+			sliced;		    /* V4L2_BUF_TYPE_SLICED_VBI_CAPTURE
+					     */
+		struct v4l2_sdr_format sdr; /* V4L2_BUF_TYPE_SDR_CAPTURE */
 		struct v4l2_meta_format meta; /* V4L2_BUF_TYPE_META_CAPTURE */
 		__u8 raw_data[200];	      /* user-defined */
 	} fmt;

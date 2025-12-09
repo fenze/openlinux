@@ -1,2 +1,4 @@
-obj-y += true/
+obj-y += echo/
 obj-y += false/
+obj-y += gzip/
+obj-y += true/

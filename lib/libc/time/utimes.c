@@ -9,8 +9,8 @@ int utimes(const char *path, const struct timeval times[2])
 	struct timespec ts[2];
 
 	if (times) {
-		if (times[0].tv_usec >= 1000000ULL ||
-		    times[1].tv_usec >= 1000000ULL) {
+		if (times[0].tv_usec >= 1000000L ||
+		    times[1].tv_usec >= 1000000L) {
 			errno = EINVAL;
 			return -1;
 		}

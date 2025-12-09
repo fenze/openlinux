@@ -59,12 +59,12 @@
 /* sockopts to force stmin timer values for protocol regression tests */
 
 #define CAN_ISOTP_TX_STMIN 3 /* pass __u32 value in nano secs    */
-			     /* use this time instead of value   */
-			     /* provided in FC from the receiver */
+/* use this time instead of value   */
+/* provided in FC from the receiver */
 
 #define CAN_ISOTP_RX_STMIN 4 /* pass __u32 value in nano secs   */
-			     /* ignore received CF frames which */
-			     /* timestamps differ less than val */
+/* ignore received CF frames which */
+/* timestamps differ less than val */
 
 #define CAN_ISOTP_LL_OPTS 5 /* pass struct can_isotp_ll_options */
 
@@ -85,7 +85,7 @@ struct can_isotp_options {
 			    /* __u8 value : content	on rx path	*/
 
 	__u8 rx_ext_address; /* set address for extended addressing	*/
-			     /* __u8 value : extended address (rx)	*/
+	/* __u8 value : extended address (rx)	*/
 };
 
 struct can_isotp_fc_options {

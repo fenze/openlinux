@@ -30,6 +30,7 @@ FILE *fmemopen(void *restrict buf, size_t max_size, const char *restrict mode)
 	} else if (mode[0] == 'a') {
 		flags = O_WRONLY | O_CREAT | O_APPEND;
 	} else {
+		free(f);
 		errno = EINVAL;
 		return NULL;
 	}

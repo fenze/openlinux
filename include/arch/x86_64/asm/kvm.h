@@ -912,7 +912,8 @@ struct kvm_hyperv_eventfd {
 #define KVM_PMU_MASKED_ENTRY_UMASK_MASK_SHIFT (56)
 
 /* for KVM_{GET,SET,HAS}_DEVICE_ATTR */
-#define KVM_VCPU_TSC_CTRL 0   /* control group for the timestamp counter (TSC) \
+#define KVM_VCPU_TSC_CTRL                                                      \
+	0		      /* control group for the timestamp counter (TSC) \
 			       */
 #define KVM_VCPU_TSC_OFFSET 0 /* attribute for the TSC offset */
 

@@ -121,7 +121,8 @@
  * event data type = snd_seq_ev_ext
  * (SNDRV_SEQ_EVENT_LENGTH_VARIABLE must be set)
  */
-#define SNDRV_SEQ_EVENT_SYSEX 130  /* system exclusive data (variable length) \
+#define SNDRV_SEQ_EVENT_SYSEX                                                 \
+	130			   /* system exclusive data (variable length) \
 				    */
 #define SNDRV_SEQ_EVENT_BOUNCE 131 /* error event */
 /* 132-134: reserved */

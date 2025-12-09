@@ -1,0 +1,8 @@
+bin-y := gzip
+obj-y := gzip.o util.o unzip.o inflate.o
+
+libs-y += $(srctree)/lib/libc/libc.a
+libs-y += $(srctree)/lib/libm/libm.a
+
+obj-$(CONFIG_ZIP)    += zip.o deflate.o trees.o bits.o
+cflags-$(CONFIG_ZIP) += -DSUPPORT_ZIP

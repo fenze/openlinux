@@ -1309,8 +1309,9 @@ enum perf_callchain_context {
 /* CoreSight PMU AUX buffer formats */
 #define PERF_AUX_FLAG_CORESIGHT_FORMAT_CORESIGHT \
 	0x0000 /* Default for backward compatibility */
-#define PERF_AUX_FLAG_CORESIGHT_FORMAT_RAW 0x0100 /* Raw format of the source \
-						   */
+#define PERF_AUX_FLAG_CORESIGHT_FORMAT_RAW \
+	0x0100 /* Raw format of the source \
+		*/
 
 #define PERF_FLAG_FD_NO_GROUP (1UL << 0)
 #define PERF_FLAG_FD_OUTPUT   (1UL << 1)

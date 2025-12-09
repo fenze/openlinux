@@ -306,8 +306,9 @@ struct drm_msm_gem_submit_bo {
 #define MSM_SUBMIT_SUDO		0x10000000 /* run submitted cmds from RB */
 #define MSM_SUBMIT_SYNCOBJ_IN	0x08000000 /* enable input syncobj */
 #define MSM_SUBMIT_SYNCOBJ_OUT	0x04000000 /* enable output syncobj */
-#define MSM_SUBMIT_FENCE_SN_IN	0x02000000 /* userspace passes in seqno fence \
-					    */
+#define MSM_SUBMIT_FENCE_SN_IN                        \
+	0x02000000 /* userspace passes in seqno fence \
+		    */
 #define MSM_SUBMIT_FLAGS                                                     \
 	(MSM_SUBMIT_NO_IMPLICIT | MSM_SUBMIT_FENCE_FD_IN |                   \
 	 MSM_SUBMIT_FENCE_FD_OUT | MSM_SUBMIT_SUDO | MSM_SUBMIT_SYNCOBJ_IN | \

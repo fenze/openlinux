@@ -38,6 +38,7 @@ obj-y += time/
 obj-y += times/
 obj-y += uio/
 obj-y += unistd/
+obj-y += utime/
 obj-y += utsname/
 obj-y += wait/
 obj-y += wchar/

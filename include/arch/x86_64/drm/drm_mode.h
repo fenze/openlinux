@@ -48,9 +48,10 @@ extern "C" {
 
 #define DRM_MODE_TYPE_BUILTIN (1 << 0) /* deprecated */
 #define DRM_MODE_TYPE_CLOCK_C \
-	((1 << 1) | DRM_MODE_TYPE_BUILTIN)			/* deprecated */
-#define DRM_MODE_TYPE_CRTC_C ((1 << 2) | DRM_MODE_TYPE_BUILTIN) /* deprecated \
-								 */
+	((1 << 1) | DRM_MODE_TYPE_BUILTIN) /* deprecated */
+#define DRM_MODE_TYPE_CRTC_C                             \
+	((1 << 2) | DRM_MODE_TYPE_BUILTIN) /* deprecated \
+					    */
 #define DRM_MODE_TYPE_PREFERRED (1 << 3)
 #define DRM_MODE_TYPE_DEFAULT	(1 << 4) /* deprecated */
 #define DRM_MODE_TYPE_USERDEF	(1 << 5)

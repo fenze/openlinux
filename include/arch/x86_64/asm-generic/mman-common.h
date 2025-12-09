@@ -32,8 +32,9 @@
 	0x020000 /* give out an address that is best suited for process/thread \
 		    stacks */
 #define MAP_HUGETLB 0x040000 /* create a huge page mapping */
-#define MAP_SYNC    0x080000 /* perform synchronous page faults for the mapping \
-			      */
+#define MAP_SYNC                                                    \
+	0x080000 /* perform synchronous page faults for the mapping \
+		  */
 #define MAP_FIXED_NOREPLACE \
 	0x100000 /* MAP_FIXED which doesn't unmap underlying mapping */
 

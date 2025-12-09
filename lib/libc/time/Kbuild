@@ -1,0 +1,15 @@
+obj-y += asctime.o
+obj-y += clock_getcpuclockid.o
+obj-y += clock_getres.o
+obj-y += clock_nanosleep.o
+obj-y += clock.o
+obj-y += ctime.o
+obj-y += difftime.o
+obj-y += gmtime_r.o
+obj-y += localtime_r.o
+obj-y += localtime.o
+obj-y += nanosleep.o
+obj-y += strftime.o
+obj-y += time.o
+obj-y += tzset.o
+obj-y += utimes.o

@@ -4,7 +4,7 @@
 
 int fstatvfs(int fildes, struct __statvfs *buf)
 {
-	struct statfs statfs;
+	struct statfs statfs = { 0 };
 
 	if (syscall(fstatfs, fildes, &statfs) < 0)
 		return -1;

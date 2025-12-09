@@ -3,11 +3,10 @@
 
 char *asctime(const struct tm *timeptr)
 {
-	static char wday_name[7][3] = { "Sun", "Mon", "Tue", "Wed",
-					"Thu", "Fri", "Sat" };
-	static char mon_name[12][3] = { "Jan", "Feb", "Mar", "Apr",
-					"May", "Jun", "Jul", "Aug",
-					"Sep", "Oct", "Nov", "Dec" };
+	static char wday_name[][4] = { "Sun", "Mon", "Tue", "Wed",
+				       "Thu", "Fri", "Sat" };
+	static char mon_name[][4] = { "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+				      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
 	static char result[26];
 
 	snprintf(result, sizeof(result), "%.3s %.3s%3d %.2d:%.2d:%.2d %d\n",
