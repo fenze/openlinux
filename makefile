@@ -130,6 +130,14 @@ PHONY += defconfig
 defconfig:
 	$(Q)$(MAKE) -f scripts/kconfig/makefile defconfig
 
+include-what-you-use: compile_commands.json
+	$(Q)iwyu_tool.py -p. -j$(nproc) -- \
+		--update_comments | \
+		fix_includes.py --comments \
+			--quoted_includes_first \
+			--update_comments \
+			--reorder
+
 clang-tidy: compile_commands.json
 	$(Q)clang-tidy -header-filter=.* -p=. $(shell find . -name '*.c' -o -name '*.h' | grep -v './scripts/\|dtoa\|linux\|arch\|bits')
 
