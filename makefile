@@ -144,7 +144,7 @@ defconfig:
 	$(Q)$(MAKE) -f scripts/kconfig/makefile defconfig
 
 include-what-you-use: compile_commands.json
-	$(Q)iwyu_tool.py -p. -j$(nproc) -- -Xiwyu --update_comments -Xiwyu --transitive_includes_only -Xiwyu --no_internal_mappings | \
+	$(Q)iwyu_tool.py -p. -j4 -- -Xiwyu --update_comments -Xiwyu --transitive_includes_only -Xiwyu --no_internal_mappings | \
 		fix_includes.py --comments \
 			--quoted_includes_first \
 			--nosafe_headers \
@@ -152,14 +152,8 @@ include-what-you-use: compile_commands.json
 			--reorder
 
 clang-tidy: compile_commands.json
-	$(Q)run-clang-tidy.py \
-		-p . \
-		-fix \
-		-fix-errors \
-		-header-filter='.*' \
-		-source-filter='.*\.(c|h)$$' \
-		-exclude-header-filter='(scripts/|dtoa|linux|arch|bits)' \
-		-j $(shell nproc)
+	$(Q)clang-tidy -header-filter=.* -p=. -fix -fix-errors $(shell find . -name '*.c' -o -name '*.h' | grep -v './scripts/\|dtoa\|linux\|arch\|bits') \
+		--export-fixes=clang-tidy-fixes.yaml
 
 clang-format:
 	$(Q)clang-format -i $(shell find . -name '*.c' -o -name '*.h' | grep -v './scripts/')

@@ -1,12 +1,17 @@
 ---
-Checks: "clang-diagnostic-*,clang-analyzer-*,-clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling"
+Checks: >
+    clang-analyzer-*,
+    bugprone-*,
+    llvm-*,
+    performance-*,
+    concurrency-*,
+    -bugprone-reserved-identifier,
+    -llvm-header-guard
+
 WarningsAsErrors: ""
 HeaderFileExtensions:
   - h
 ImplementationFileExtensions:
   - c
 SystemHeaders: false
-CheckOptions:
-  - key: clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling
-    value: "0"
 ...

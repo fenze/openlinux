@@ -1,0 +1,15 @@
+CompileFlags:
+  Add: [-xc]
+
+Diagnostics:
+  ClangTidy:
+    FastCheckFilter: Strict
+    Add:
+      - clang-analyzer-*
+      - bugprone-*
+      - llvm-*
+      - performance-*
+      - concurrency-*
+    Remove:
+      - bugprone-reserved-identifier
+      - llvm-header-guard
