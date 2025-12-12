@@ -1,3 +1,4 @@
+obj-y += clear/
 obj-y += echo/
 obj-y += false/
 obj-y += gzip/

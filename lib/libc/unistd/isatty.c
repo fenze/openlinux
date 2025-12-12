@@ -1,5 +1,3 @@
-
-
 #include <asm-generic/ioctls.h> // for TIOCGWINSZ
 #include <syscall.h>		// for __syscall_3, syscall
 #include <termios.h>		// for winsize
