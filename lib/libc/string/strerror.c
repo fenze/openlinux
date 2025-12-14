@@ -104,6 +104,12 @@ char *strerror(int errnum)
 		[EKEYREJECTED] = "Key was rejected by service",
 	};
 
+	if (errnum < 0 || (size_t)errnum >= sizeof(table) / sizeof(table[0]) ||
+	    !table[errnum]) {
+		errno = EINVAL;
+		return NULL;
+	}
+
 	return table[errnum];
 }
 

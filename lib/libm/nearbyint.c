@@ -1,5 +1,7 @@
 
 
+#include "bits/fenv.h" // for FE_INEXACT
+
 #include <fenv.h> // for feclearexcept, fetestexcept
 #include <math.h> // for nearbyint, rint
 

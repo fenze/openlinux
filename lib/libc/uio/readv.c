@@ -2,7 +2,7 @@
 
 #include <errno.h>     // for errno, EAGAIN, EINTR, EINVAL
 #include <string.h>    // for memcpy
-#include <sys/types.h> // for ssize_t, size_t
+#include <sys/types.h> // for ssize_t
 #include <syscall.h>   // for __syscall_3, syscall
 
 ssize_t readv(int fd, const struct iovec *iov, int iovcnt)

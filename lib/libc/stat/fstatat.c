@@ -3,7 +3,6 @@
 
 #define __BITS_STAT_H_
 
-
 #include <bits/stat.h> // for stat
 #include <syscall.h>   // for __syscall_5, syscall
 

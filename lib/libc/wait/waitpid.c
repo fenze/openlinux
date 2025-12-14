@@ -1,4 +1,4 @@
-#include "sys/types.h"	   // for pid_t
+#include "signal.h" // for pid_t
 
 #include <sys/wait.h> // for waitpid
 #include <syscall.h>  // for __syscall_4, syscall

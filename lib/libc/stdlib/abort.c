@@ -1,6 +1,7 @@
+
 #include <__thread.h> // for __thread_self
 #include <atomic.h>   // for LIBC_LOCK
-#include <libc.h>     // for (anonymous struct)::(anonymous), (anonymous)
+#include <libc.h>     // for libc, libc::(anonymous)
 #include <signal.h>   // for SIGABRT, sigaction, SIGKILL, SIG_DFL
 #include <stdlib.h>   // for abort
 #include <syscall.h>  // for __syscall, __syscall_2, __syscall_4

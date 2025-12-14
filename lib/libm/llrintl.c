@@ -1,5 +1,7 @@
 
 
+#include "bits/fenv.h" // for FE_INEXACT
+
 #include <fenv.h>   // for feclearexcept, fetestexcept
 #include <float.h>  // for LDBL_MANT_DIG, LDBL_MAX_EXP
 #include <limits.h> // for LLONG_MAX, LLONG_MIN

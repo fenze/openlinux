@@ -1,4 +1,6 @@
 obj-y += ioctl.o
 obj-y += mount.o
+obj-y += reboot.o
+obj-y += sysinfo.o
 obj-y += umount.o
 obj-y += umount2.o

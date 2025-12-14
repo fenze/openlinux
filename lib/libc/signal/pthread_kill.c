@@ -1,4 +1,4 @@
-#include "errno.h"	   // for EINVAL
+#include "errno.h" // for EINVAL
 
 #include <__thread.h>		// for __thread_self
 #include <asm-generic/signal.h> // for _NSIG

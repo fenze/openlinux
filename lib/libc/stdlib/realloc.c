@@ -2,7 +2,7 @@
 
 #include <atomic.h> // for LIBC_UNLOCK, LIBC_LOCK
 #include <errno.h>  // for EINVAL, errno
-#include <libc.h>   // for (anonymous struct)::(anonymous), (anonymous), libc
+#include <libc.h>   // for libc, libc::(anonymous)
 #include <malloc.h> // for page, page::(anonymous), __malloc_pvec
 #include <stdint.h> // for uintptr_t
 #include <stdlib.h> // for free, malloc, realloc

@@ -1,0 +1,8 @@
+obj-y += err.o
+obj-y += errx.o
+obj-y += verr.o
+obj-y += verrx.o
+obj-y += vwarn.o
+obj-y += vwarnx.o
+obj-y += warn.o
+obj-y += warnx.o

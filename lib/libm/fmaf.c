@@ -25,6 +25,7 @@
  * SUCH DAMAGE.
  */
 
+#include "bits/fenv.h" // for FE_INEXACT, FE_UNDERFLOW, FE_TONEAREST
 
 #include <fenv.h>   // for feraiseexcept, fetestexcept, feclearexcept
 #include <math.h>   // for fmaf

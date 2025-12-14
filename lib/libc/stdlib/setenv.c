@@ -1,7 +1,7 @@
 #include "stddef.h" // for NULL
 
 #include <atomic.h> // for LIBC_LOCK, LIBC_UNLOCK
-#include <libc.h>   // for (anonymous), libc, (anonymous struct)::(anonymous)
+#include <libc.h>   // for libc, libc::(anonymous), libc::LIBC_ENVP_TOUCHED
 #include <stdlib.h> // for malloc, realloc, setenv
 #include <string.h> // for strlen, size_t, memcpy, strcpy, strchr, strncmp
 

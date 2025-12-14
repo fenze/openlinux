@@ -2,7 +2,7 @@
 
 #include <atomic.h>    // for LIBC_UNLOCK, LIBC_LOCK
 #include <features.h>  // for __weak
-#include <libc.h>      // for (anonymous struct)::(anonymous), (anonymous)
+#include <libc.h>      // for libc, libc::(anonymous)
 #include <malloc.h>    // for page, page::(anonymous), class, global_size_c...
 #include <stdatomic.h> // for atomic_flag_clear
 #include <stdint.h>    // for uint32_t, uint8_t, uintptr_t

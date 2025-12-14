@@ -1,5 +1,7 @@
 obj-y += clear/
 obj-y += echo/
 obj-y += false/
+obj-y += free/
 obj-y += gzip/
+obj-y += sync/
 obj-y += true/

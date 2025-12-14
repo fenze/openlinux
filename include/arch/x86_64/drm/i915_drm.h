@@ -2115,10 +2115,10 @@ struct drm_i915_gem_context_param {
 #define I915_CONTEXT_MAX_USER_PRIORITY	    1023 /* inclusive */
 #define I915_CONTEXT_DEFAULT_PRIORITY	    0
 #define I915_CONTEXT_MIN_USER_PRIORITY	    -1023 /* inclusive */
-	/*
-	 * When using the following param, value should be a pointer to
-	 * drm_i915_gem_context_param_sseu.
-	 */
+						  /*
+						   * When using the following param, value should be a pointer to
+						   * drm_i915_gem_context_param_sseu.
+						   */
 #define I915_CONTEXT_PARAM_SSEU 0x7
 
 /*

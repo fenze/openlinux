@@ -1,0 +1,3 @@
+bin-y := sync
+
+obj-y += arch/

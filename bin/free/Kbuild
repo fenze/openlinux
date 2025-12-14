@@ -1,0 +1,4 @@
+bin-y := free
+obj-y += free.o
+libs-y += $(srctree)/lib/libc/libc.a
+

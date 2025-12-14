@@ -1,5 +1,5 @@
 #include <atomic.h>   // for LIBC_UNLOCK, LIBC_LOCK
-#include <libc.h>     // for (anonymous struct)::(anonymous), (anonymous)
+#include <libc.h>     // for libc, libc::(anonymous)
 #include <malloc.h>   // for page, page::(anonymous), __malloc_pvec, LARGE_...
 #include <stddef.h>   // for NULL
 #include <stdint.h>   // for uintptr_t

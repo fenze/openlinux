@@ -1,5 +1,3 @@
 bin-y := echo
-
-libs-y += $(srctree)/lib/libc/libc.a
-
 obj-y += echo.o
+libs-y += $(srctree)/lib/libc/libc.a

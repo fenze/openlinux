@@ -1,7 +1,7 @@
 #include "libm.h" // for ldshape, ldshape::(anonymous), __tanl, __rem_pio2l
 
 #include <float.h> // for LDBL_MANT_DIG, LDBL_MAX_EXP
-#include <math.h>  // for tanl, M_PI_4
+#include <math.h>  // for tanl, M_PI_4, NAN
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
 long double tanl(long double x)

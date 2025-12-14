@@ -1,0 +1,14 @@
+#ifndef __SYS_REBOOT_H
+#define __SYS_REBOOT_H
+
+#define RB_AUTOBOOT    0x01234567
+#define RB_HALT_SYSTEM 0xCDEF0123
+#define RB_ENABLE_CAD  0x89ABCDEF
+#define RB_DISABLE_CAD 0x00000000
+#define RB_POWRT_OFF   0x4321FEDC
+#define RB_SW_SUSPEND  0xD000FCE2
+#define RB_KEXEC       0x45584543
+
+int reboot(int);
+
+#endif

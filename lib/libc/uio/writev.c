@@ -4,7 +4,6 @@
 #include <sys/types.h> // for ssize_t, size_t
 #include <syscall.h>   // for __syscall_3, syscall
 
-
 #include <linux/uio.h> // for iovec, UIO_MAXIOV
 
 ssize_t writev(int fd, const struct iovec *iov, int iovcnt)

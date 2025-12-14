@@ -1,5 +1,5 @@
 #include <atomic.h> // for LIBC_UNLOCK, LIBC_LOCK
-#include <libc.h>   // for (anonymous struct)::(anonymous), (anonymous), libc
+#include <libc.h>   // for libc, libc::(anonymous), weak_reference
 #include <stddef.h> // for NULL
 #include <stdlib.h> // for getenv, secure_getenv
 

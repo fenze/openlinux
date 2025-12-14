@@ -1,6 +1,6 @@
 /* Maintainer: <contact@bellrise.net> */
 
-#include "stdio.h"	   // for off_t
+#include "sys/types.h" // for off_t
 
 #include <__dirent.h> // for linux_dirent64
 #include <dirent.h>   // for dirent, ssize_t, DIR, readdir_r

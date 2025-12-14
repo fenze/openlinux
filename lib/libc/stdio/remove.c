@@ -1,4 +1,4 @@
-#include "errno.h"	   // for EISDIR, errno
+#include "errno.h" // for EISDIR, errno
 
 #include <fcntl.h>   // for AT_FDCWD, AT_REMOVEDIR
 #include <stdio.h>   // for remove

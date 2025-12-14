@@ -1,12 +1,39 @@
-#include <ctype.h>     // for isdigit
-#include <errno.h>     // for EINVAL, errno
-#include <math.h>      // for frexp, isinf, isnan
-#include <stdarg.h>    // for va_arg
-#include <stddef.h>    // for NULL, ptrdiff_t
+#include <ctype.h>  // for isdigit
+#include <errno.h>  // for EINVAL, errno
+#include <math.h>   // for isinf, isnan
+#include <stdarg.h> // for va_arg
+#include <stddef.h> // for NULL, ptrdiff_t
+#include <stdint.h>
 #include <stdint.h>    // for uintptr_t, intmax_t, uintmax_t
 #include <stdio.h>     // for fwrite, fputc, vfprintf, FILE, va_list
 #include <string.h>    // for memmove, strlcpy, strlen
 #include <sys/types.h> // for size_t, ssize_t
+
+static double __frexp(double x, int *e)
+{
+	union {
+		double d;
+		uint64_t i;
+	} y = { x };
+	uint64_t ee = y.i >> 52 & 0x7ff;
+
+	if (!ee) {
+		if (x) {
+			x = __frexp(x * 0x1p64, e);
+			*e -= 64;
+		} else
+			*e = 0;
+		return x;
+	}
+	if (ee == 0x7ff) {
+		return x;
+	}
+
+	*e = (int)ee - 0x3fe;
+	y.i &= 0x800fffffffffffffull;
+	y.i |= 0x3fe0000000000000ull;
+	return y.d;
+}
 
 extern char *dtoa(double, int mode, int ndigits, int *decpt, int *sign,
 		  char **rve);
@@ -615,7 +642,7 @@ int vfprintf(FILE *restrict stream, const char *restrict format, va_list ap)
 				}
 
 				int exp;
-				double mant = frexp(val, &exp);
+				double mant = __frexp(val, &exp);
 				mant *= 2.0;
 				exp--;
 

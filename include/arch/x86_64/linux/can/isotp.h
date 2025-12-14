@@ -85,7 +85,7 @@ struct can_isotp_options {
 			    /* __u8 value : content	on rx path	*/
 
 	__u8 rx_ext_address; /* set address for extended addressing	*/
-	/* __u8 value : extended address (rx)	*/
+			     /* __u8 value : extended address (rx)	*/
 };
 
 struct can_isotp_fc_options {

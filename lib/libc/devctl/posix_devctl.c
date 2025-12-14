@@ -1,9 +1,8 @@
 
 
-
-#include <devctl.h>  // for posix_devctl, size_t
-#include <errno.h>   // for errno
-#include <libc.h>    // for __unused
+#include <devctl.h> // for posix_devctl, size_t
+#include <errno.h>  // for errno
+#include <libc.h>   // for __unused
 #include <stddef.h>
 #include <syscall.h> // for __syscall_3, syscall
 

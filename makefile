@@ -55,6 +55,10 @@ ifdef M
   obj = $(M)/
 endif
 
+KCONFIG_CONFIG ?= .config
+
+-include ${KCONFIG_CONFIG}
+
 # CFLAGS
 
 KBUILD_CFLAGS := -x c
@@ -62,6 +66,7 @@ KBUILD_CFLAGS := -x c
 KBUILD_CFLAGS += -Wall -Wextra
 KBUILD_CFLAGS += -nostdinc
 KBUILD_CFLAGS += -target $(ARCH)-linux-eabi
+KBUILD_CFLAGS += -ffreestanding
 KBUILD_CFLAGS += -I$(srctree)/include
 KBUILD_CFLAGS += -I$(srctree)/include/arch/$(ARCH)
 
@@ -86,27 +91,31 @@ ifeq ($(CONFIG_WERROR),y)
 KBUILD_CFLAGS += -Werror
 endif
 
+KBUILD_LDFLAGS :=
+KBUILD_ASFLAGS :=
 ifeq ($(CONFIG_DEBUG),y)
 KBUILD_CFLAGS += -g -Og -fno-omit-frame-pointer
-endif
+else
+KBUILD_CFLAGS += -O2 -fdata-sections -ffunction-sections
+KBUILD_CFLAGS += -fno-unwind-tables -fomit-frame-pointer
 
-KBUILD_ASFLAGS :=
+KBUILD_LDFLAGS += --gc-sections
+KBUILD_LDFLAGS += --build-id=none
+KBUILD_LDFLAGS += --as-needed
+KBUILD_LDFLAGS += --strip-all
+KBUILD_LDFLAGS += -z relro -z now -z noexecstack
+KBUILD_LDFLAGS += --no-undefined
+KBUILD_LDFLAGS += --icf=all
+
+KBUILD_ASFLAGS += 
+endif
 
 # Assembly does not need -nostdinc; clang warns it is unused.
 KBUILD_ASFLAGS += -target $(ARCH)-linux-eabi
 KBUILD_ASFLAGS += -I$(srctree)/include
 KBUILD_ASFLAGS += -I$(srctree)/include/arch/$(ARCH)
 
-# LDFLAGS
-KBUILD_LDFLAGS :=
-
-KBUILD_LDFLAGS += --gc-sections
-KBUILD_LDFLAGS += --build-id=none
-KBUILD_LDFLAGS += --as-needed
-
 PHONY :=
-
-KCONFIG_CONFIG ?= .config
 
 export Q srctree MAKEFLAGS KCONFIG_CONFIG \
        KBUILD_CFLAGS KBUILD_ASFLAGS KBUILD_LDFLAGS
@@ -122,6 +131,13 @@ clean:
 distclean: clean
 	$(Q)$(MAKE) -C scripts/kconfig clean
 	$(Q)rm -f compile_commands.json
+
+info:
+	echo "CC:      $(CC)"
+	echo "ARCH:    $(ARCH)"
+	echo "CFLAGS:  $(KBUILD_CFLAGS)"
+	echo "LDFLAGS: $(KBUILD_LDFLAGS)"
+	echo "ASFLAGS: $(KBUILD_ASFLAGS)"
 
 $(KCONFIG_CONFIG):
 	@echo >&2 '***'

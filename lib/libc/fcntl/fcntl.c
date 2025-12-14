@@ -1,4 +1,4 @@
-#include "errno.h"	   // for EINVAL
+#include "errno.h" // for EINVAL
 
 #include <fcntl.h>   // for F_DUPFD_CLOEXEC, FD_CLOEXEC, F_SETFD, F_D...
 #include <stdarg.h>  // for va_arg, va_end, va_list, va_start

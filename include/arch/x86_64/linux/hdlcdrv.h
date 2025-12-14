@@ -29,7 +29,7 @@ struct hdlcdrv_channel_params {
 	int slottime; /* the slottime in 10ms; usually 10 = 100ms */
 	int ppersist; /* the p-persistence 0..255 */
 	int fulldup;  /* some driver do not support full duplex, setting */
-	/* this just makes them send even if DCD is on */
+		      /* this just makes them send even if DCD is on */
 };
 
 struct hdlcdrv_old_channel_state {

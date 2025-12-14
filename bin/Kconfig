@@ -1,0 +1,46 @@
+# bin/Kconfig
+
+menu "Binary Utilities Configuration"
+config BIN_CLEAR
+    bool "clear"
+    default y
+    help
+      Enable the 'clear' command to clear the terminal screen.
+
+config BIN_ECHO
+    bool "echo"
+    default y
+    help
+      Enable the 'echo' command to display a line of text.
+
+config BIN_FALSE
+    bool "false"
+    default y
+    help
+      Enable the 'false' command which returns a non-zero exit status.
+
+config BIN_FREE
+    bool "free"
+    default y
+    help
+      Enable the 'free' command to display memory usage.
+
+config BIN_GZIP
+    bool "gzip"
+    default n
+    help
+      Enable the 'gzip' command to compress files using the gzip algorithm.
+
+config BIN_SYNC
+    bool "sync"
+    default y
+    help
+      Enable the 'sync' command to flush filesystem buffers.
+
+config BIN_TRUE
+    bool "true"
+    default y
+    help
+      Enable the 'true' command which returns a zero exit status.
+
+endmenu

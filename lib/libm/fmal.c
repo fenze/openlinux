@@ -25,6 +25,7 @@
  * SUCH DAMAGE.
  */
 
+#include "bits/fenv.h" // for FE_INEXACT, FE_UNDERFLOW, FE_DOWNWARD, FE_TON...
 #include "libm.h"      // for ldshape, ldshape::(anonymous)
 
 #include <float.h> // for LDBL_MANT_DIG, LDBL_MAX_EXP, LDBL_MIN

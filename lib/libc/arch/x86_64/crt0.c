@@ -10,6 +10,7 @@
 
 extern int main(int, char *[]);
 char **environ;
+char *__progname;
 
 struct __attribute__((packed)) auxv_t {
 	uintptr_t a_type;
@@ -29,6 +30,7 @@ __attribute__((used)) void __libc_start(uintptr_t *sp)
 
 	argc = (int)(*sp);
 	argv = (char **)(++sp);
+	__progname = argv[0];
 	sp += argc;
 	environ = (char **)(++sp);
 

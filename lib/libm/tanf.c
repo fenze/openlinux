@@ -16,7 +16,7 @@
 
 #include "libm.h" // for __tandf, __rem_pio2f, FORCE_EVAL, GET_FLOAT_WORD
 
-#include <math.h>   // for M_PI_2, tanf
+#include <math.h>   // for M_PI_2, tanf, NAN
 #include <stdint.h> // for uint32_t
 
 /* Small multiples of pi/2 rounded to double precision. */

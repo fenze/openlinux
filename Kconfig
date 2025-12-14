@@ -11,3 +11,5 @@ menu "General Setup"
 	help
 	  Enable this option to include debugging symbols and additional debug information in the build.
 endmenu
+
+source "bin/Kconfig"

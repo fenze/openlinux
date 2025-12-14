@@ -1,7 +1,6 @@
 #define __BITS_SELECT_H_
 #include "bits/select.h" // for fd_set, timeval (ptr only)
 
-
 #include <sys/select.h> // for select
 #include <syscall.h>	// for __syscall_6, syscall, syscall_arg_t
 

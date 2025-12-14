@@ -1,5 +1,7 @@
 
 
+#include "bits/fenv.h" // for FE_INEXACT
+
 #include <float.h> // for LDBL_MANT_DIG, LDBL_MAX_EXP
 #include <math.h>  // for nearbyintl, rintl
 
