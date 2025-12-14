@@ -1,0 +1,24 @@
+Introduction
+============
+
+Openlinux is lightweight linux userspace distribution designed to be small, 
+portable and fast. It is definitely a work in progress.
+
+Building
+========
+
+The real system build is not done yet, but you can build the tools and libs
+for development using make in the root directory.
+
+Configuration
+=============
+
+The configuration is defined in a ".config" file in the root directory.
+You can use menuconfig target in make to create/edit it.
+
+Architecture support
+====================
+
+  arm64:  Not yet
+  x86-64: Working 
+  ...: Not planned for now

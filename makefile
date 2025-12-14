@@ -155,10 +155,6 @@ PHONY += menuconfig
 menuconfig:
 	$(Q)$(MAKE) -f scripts/kconfig/makefile menuconfig
 
-PHONY += defconfig
-defconfig:
-	$(Q)$(MAKE) -f scripts/kconfig/makefile defconfig
-
 include-what-you-use: compile_commands.json
 	$(Q)iwyu_tool.py -p. -j4 -- -Xiwyu --update_comments -Xiwyu --transitive_includes_only -Xiwyu --no_internal_mappings | \
 		fix_includes.py --comments \

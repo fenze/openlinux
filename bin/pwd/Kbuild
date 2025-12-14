@@ -1,0 +1,3 @@
+bin-y  := pwd
+obj-y  += pwd.o
+libs-y += $(srctree)/lib/libc/libc.a
