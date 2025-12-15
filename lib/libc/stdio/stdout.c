@@ -1,11 +1,10 @@
-#include "__stdio.h"   // for __FILE, __libc_fadd
-#include "features.h"  // for __weak
-#include "stdatomic.h" // for ATOMIC_FLAG_INIT, atomic_flag
+#include "__stdio.h" // for __FILE, __libc_fadd
 
 #include <atomic.h> // for LIBC_LOCK, LIBC_UNLOCK
 #include <fcntl.h>  // for O_WRONLY
 #include <stddef.h> // for NULL
 #include <stdio.h>  // for stdout
+#include <sys/cdefs.h>
 #include <unistd.h> // for STDOUT_FILENO
 
 #define BUFSIZ 4096

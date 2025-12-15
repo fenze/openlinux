@@ -14,18 +14,15 @@ int setenv(const char *var, const char *value, int overwrite)
 
 	for (; *env; env++) {
 		char *eq = strchr(*env, '=');
-		if (eq && ((size_t)(eq - *env) == var_len) &&
-		    !strncmp(*env, var, var_len)) {
+		if (eq && ((size_t)(eq - *env) == var_len) && !strncmp(*env, var, var_len)) {
 			if (overwrite) {
 				size_t value_len = strlen(value);
-				char *new_env =
-					malloc(var_len + 1 + value_len + 1);
+				char *new_env = malloc(var_len + 1 + value_len + 1);
 				if (!new_env)
 					return -1;
 				strcpy(new_env, var);
 				new_env[var_len] = '=';
-				memcpy(new_env + var_len + 1, value,
-				       value_len + 1);
+				memcpy(new_env + var_len + 1, value, value_len + 1);
 				*env = new_env;
 			}
 			return 0;
@@ -36,8 +33,7 @@ int setenv(const char *var, const char *value, int overwrite)
 	while (environ[env_count])
 		env_count++;
 
-	char **new_envp = (char **)realloc((void *)environ,
-					   (env_count + 2) * sizeof(char *));
+	char **new_envp = (char **)realloc((void *)environ, (env_count + 2) * sizeof(char *));
 	if (!new_envp)
 		return -1;
 
@@ -52,10 +48,10 @@ int setenv(const char *var, const char *value, int overwrite)
 
 	new_envp[env_count] = new_var;
 	new_envp[env_count + 1] = NULL;
-	LIBC_LOCK(libc.lock.environ);
+	LIBC_LOCK(__libc.lock.environ);
 	environ = new_envp;
-	LIBC_UNLOCK(libc.lock.environ);
-	libc.flags |= LIBC_ENVP_TOUCHED;
+	LIBC_UNLOCK(__libc.lock.environ);
+	__libc.flags |= LIBC_ENVP_TOUCHED;
 
 	return 0;
 }

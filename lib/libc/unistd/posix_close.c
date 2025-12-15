@@ -1,7 +1,5 @@
-
-
-#include <libc.h>    // for __unused
-#include <syscall.h> // for __syscall_1, syscall
+#include <sys/cdefs.h>
+#include <syscall.h>
 
 int posix_close(int fildes, int __unused flag)
 {

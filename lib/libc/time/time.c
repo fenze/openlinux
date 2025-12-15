@@ -1,11 +1,11 @@
-#include <asm/vdso.h> // for __vdso_time
-#include <time.h>     // for timespec, clock_gettime, time_t, CLOCK_REALTIME
+#include <asm/vdso.h>
+#include <time.h>
 
 time_t time(time_t *tloc)
 {
 	struct timespec ts;
 
-#if defined(__x86_64__)
+#if defined(__VDSO_TIME)
 	if (__vdso_time)
 		return __vdso_time(tloc);
 #endif

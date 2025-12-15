@@ -1,10 +1,7 @@
-#include "__stdio.h"   // for __FILE, __libc_fadd
-#include "features.h"  // for __weak
-#include "stdatomic.h" // for atomic_flag_clear
-#include "stddef.h"    // for NULL
-
-#include <stdio.h>  // for FILE, _IONBF, SEEK_END, _IOLBF, fdopen
-#include <stdlib.h> // for calloc, free
+#include "__stdio.h" // for __FILE, __libc_fadd
+#include <stdio.h>   // for FILE, _IONBF, SEEK_END, _IOLBF, fdopen
+#include <stdlib.h>  // for calloc, free
+#include <sys/cdefs.h>
 #include <unistd.h> // for lseek, off_t
 
 __weak void __stdio_cleanup(void)
@@ -15,8 +12,7 @@ FILE *fdopen(int fildes, const char *mode)
 {
 	FILE *stream;
 
-	if (mode == NULL ||
-	    (mode[0] != 'r' && mode[0] != 'w' && mode[0] != 'a')) {
+	if (mode == NULL || (mode[0] != 'r' && mode[0] != 'w' && mode[0] != 'a')) {
 		return NULL;
 	}
 

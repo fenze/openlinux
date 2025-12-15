@@ -1,7 +1,7 @@
-#include <errno.h>    // for EINVAL, ERANGE
-#include <features.h> // for __weak
-#include <stddef.h>   // for NULL, errno_t
-#include <string.h>   // for rsize_t, memcpy, size_t, memcpy_s
+#include <errno.h>  // for EINVAL, ERANGE
+#include <stddef.h> // for NULL, errno_t
+#include <string.h> // for rsize_t, memcpy, size_t, memcpy_s
+#include <sys/cdefs.h>
 
 __weak void *memcpy(void *restrict s1, const void *restrict s2, size_t n);
 
@@ -17,8 +17,7 @@ void *memcpy(void *restrict s1, const void *restrict s2, size_t n)
 	return s1;
 }
 
-errno_t memcpy_s(void *restrict dest, rsize_t destsz, const void *restrict src,
-		 rsize_t count)
+errno_t memcpy_s(void *restrict dest, rsize_t destsz, const void *restrict src, rsize_t count)
 {
 	if (dest == NULL || src == NULL) {
 		if (dest != NULL && destsz > 0) {

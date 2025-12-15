@@ -18,15 +18,14 @@ void *realloc(void *ptr, size_t size)
 		return NULL;
 	}
 
-	LIBC_LOCK(libc.lock.malloc);
+	LIBC_LOCK(__libc.lock.malloc);
 
 	struct page *p = __malloc_pvec;
 	while (p) {
 		if ((uintptr_t)ptr >= (uintptr_t)p->heap &&
-		    (uintptr_t)ptr < (uintptr_t)(p->heap + (p->block.size *
-							    p->block.count))) {
+		    (uintptr_t)ptr < (uintptr_t)(p->heap + (p->block.size * p->block.count))) {
 			size_t old_size = p->block.size;
-			LIBC_UNLOCK(libc.lock.malloc);
+			LIBC_UNLOCK(__libc.lock.malloc);
 
 			if (size <= old_size) {
 				return ptr;
@@ -41,7 +40,7 @@ void *realloc(void *ptr, size_t size)
 		p = p->next;
 	}
 
-	LIBC_UNLOCK(libc.lock.malloc);
+	LIBC_UNLOCK(__libc.lock.malloc);
 
 	errno = EINVAL;
 	return NULL;

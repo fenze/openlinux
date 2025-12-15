@@ -1,9 +1,8 @@
-#include "features.h" // for __weak
-
 #include <ctype.h>  // for tolower
 #include <libc.h>   // for __unused
 #include <locale.h> // for locale_t
 #include <stddef.h> // for size_t
+#include <sys/cdefs.h>
 
 int strncasecmp(const char *s1, const char *s2, size_t n)
 {
@@ -24,12 +23,10 @@ int strncasecmp(const char *s1, const char *s2, size_t n)
 	if (n == (size_t)-1)
 		return 0;
 
-	return (unsigned char)tolower((unsigned char)*s1) -
-	       (unsigned char)tolower((unsigned char)*s2);
+	return (unsigned char)tolower((unsigned char)*s1) - (unsigned char)tolower((unsigned char)*s2);
 }
 
-__weak int strncasecmp_l(const char *s1, const char *s2, size_t n,
-			 locale_t __unused locale)
+__weak int strncasecmp_l(const char *s1, const char *s2, size_t n, locale_t __unused locale)
 {
 	return strncasecmp(s1, s2, n);
 }

@@ -1,11 +1,9 @@
-#include "features.h" // for __weak
-
 #include <libc.h>   // for __unused
 #include <string.h> // for strlcpy, strlen
-#include <time.h>   // for tm, size_t, locale_t, strftime, strftime_l
+#include <sys/cdefs.h>
+#include <time.h> // for tm, size_t, locale_t, strftime, strftime_l
 
-static size_t append_string(char *restrict *s, size_t *remaining,
-			    const char *str)
+static size_t append_string(char *restrict *s, size_t *remaining, const char *str)
 {
 	size_t len = strlen(str);
 	if (len >= *remaining) {
@@ -28,8 +26,7 @@ static size_t append_char(char *restrict *s, size_t *remaining, char c)
 	return 1;
 }
 
-static size_t format_int(char *restrict *s, size_t *remaining, int value,
-			 int width, char pad, int show_sign)
+static size_t format_int(char *restrict *s, size_t *remaining, int value, int width, char pad, int show_sign)
 {
 	char buffer[32];
 	char *ptr = buffer + sizeof(buffer) - 1;
@@ -65,27 +62,19 @@ static size_t format_int(char *restrict *s, size_t *remaining, int value,
 	return append_string(s, remaining, ptr);
 }
 
-static const char *weekday_abbr[] = { "Sun", "Mon", "Tue", "Wed",
-				      "Thu", "Fri", "Sat" };
-static const char *weekday_full[] = { "Sunday",	   "Monday",   "Tuesday",
-				      "Wednesday", "Thursday", "Friday",
-				      "Saturday" };
+static const char *weekday_abbr[] = { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
+static const char *weekday_full[] = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
 
-static const char *month_abbr[] = { "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-				    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
-static const char *month_full[] = { "January", "February", "March",
-				    "April",   "May",	   "June",
-				    "July",    "August",   "September",
-				    "October", "November", "December" };
+static const char *month_abbr[] = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
+static const char *month_full[] = { "January", "February", "March",	"April",   "May",      "June",
+				    "July",    "August",   "September", "October", "November", "December" };
 
 static int iso_week_number(const struct tm *tm, int *week_year)
 {
 	int year = tm->tm_year + 1900;
 	int yday = tm->tm_yday + 1;
 
-	int jan4_wday = (4 + year + (year - 1) / 4 - (year - 1) / 100 +
-			 (year - 1) / 400) %
-			7;
+	int jan4_wday = (4 + year + (year - 1) / 4 - (year - 1) / 100 + (year - 1) / 400) % 7;
 	if (jan4_wday == 0)
 		jan4_wday = 7;
 
@@ -101,8 +90,7 @@ static int iso_week_number(const struct tm *tm, int *week_year)
 			prev_jan4_wday = 7;
 		int prev_week1_start = 4 - prev_jan4_wday + 1;
 		int prev_year_days = 365;
-		if (((year - 1) % 4 == 0 && (year - 1) % 100 != 0) ||
-		    ((year - 1) % 400 == 0)) {
+		if (((year - 1) % 4 == 0 && (year - 1) % 100 != 0) || ((year - 1) % 400 == 0)) {
 			prev_year_days = 366;
 		}
 		week = (prev_year_days - prev_week1_start + 8) / 7;
@@ -124,8 +112,7 @@ static int iso_week_number(const struct tm *tm, int *week_year)
 	return week;
 }
 
-size_t strftime(char *restrict s, size_t maxsize, const char *restrict format,
-		const struct tm *restrict timeptr)
+size_t strftime(char *restrict s, size_t maxsize, const char *restrict format, const struct tm *restrict timeptr)
 {
 	if (maxsize == 0)
 		return 0;
@@ -172,91 +159,73 @@ size_t strftime(char *restrict s, size_t maxsize, const char *restrict format,
 
 		switch (*ptr) {
 		case 'a':
-			if (!append_string(&s, &remaining,
-					   weekday_abbr[timeptr->tm_wday])) {
+			if (!append_string(&s, &remaining, weekday_abbr[timeptr->tm_wday])) {
 				*orig_s = '\0';
 				return 0;
 			}
 			break;
 		case 'A':
-			if (!append_string(&s, &remaining,
-					   weekday_full[timeptr->tm_wday])) {
+			if (!append_string(&s, &remaining, weekday_full[timeptr->tm_wday])) {
 				*orig_s = '\0';
 				return 0;
 			}
 			break;
 		case 'b':
 		case 'h':
-			if (!append_string(&s, &remaining,
-					   month_abbr[timeptr->tm_mon])) {
+			if (!append_string(&s, &remaining, month_abbr[timeptr->tm_mon])) {
 				*orig_s = '\0';
 				return 0;
 			}
 			break;
 		case 'B':
-			if (!append_string(&s, &remaining,
-					   month_full[timeptr->tm_mon])) {
+			if (!append_string(&s, &remaining, month_full[timeptr->tm_mon])) {
 				*orig_s = '\0';
 				return 0;
 			}
 			break;
 		case 'c':
-			if (!append_string(&s, &remaining,
-					   weekday_abbr[timeptr->tm_wday]) ||
+			if (!append_string(&s, &remaining, weekday_abbr[timeptr->tm_wday]) ||
 			    !append_char(&s, &remaining, ' ') ||
-			    !append_string(&s, &remaining,
-					   month_abbr[timeptr->tm_mon]) ||
+			    !append_string(&s, &remaining, month_abbr[timeptr->tm_mon]) ||
 			    !append_char(&s, &remaining, ' ') ||
-			    !format_int(&s, &remaining, timeptr->tm_mday, 2,
-					' ', 0) ||
+			    !format_int(&s, &remaining, timeptr->tm_mday, 2, ' ', 0) ||
 			    !append_char(&s, &remaining, ' ') ||
-			    !format_int(&s, &remaining, timeptr->tm_hour, 2,
-					'0', 0) ||
+			    !format_int(&s, &remaining, timeptr->tm_hour, 2, '0', 0) ||
 			    !append_char(&s, &remaining, ':') ||
-			    !format_int(&s, &remaining, timeptr->tm_min, 2, '0',
-					0) ||
+			    !format_int(&s, &remaining, timeptr->tm_min, 2, '0', 0) ||
 			    !append_char(&s, &remaining, ':') ||
-			    !format_int(&s, &remaining, timeptr->tm_sec, 2, '0',
-					0) ||
+			    !format_int(&s, &remaining, timeptr->tm_sec, 2, '0', 0) ||
 			    !append_char(&s, &remaining, ' ') ||
-			    !format_int(&s, &remaining, timeptr->tm_year + 1900,
-					4, '0', 0)) {
+			    !format_int(&s, &remaining, timeptr->tm_year + 1900, 4, '0', 0)) {
 				*orig_s = '\0';
 				return 0;
 			}
 			break;
 		case 'C':
-			if (!format_int(&s, &remaining,
-					(timeptr->tm_year + 1900) / 100,
-					min_width ? min_width : 2, pad_char,
-					show_sign)) {
+			if (!format_int(&s, &remaining, (timeptr->tm_year + 1900) / 100, min_width ? min_width : 2,
+					pad_char, show_sign)) {
 				*orig_s = '\0';
 				return 0;
 			}
 			break;
 		case 'd':
-			if (!format_int(&s, &remaining, timeptr->tm_mday, 2,
-					'0', 0)) {
+			if (!format_int(&s, &remaining, timeptr->tm_mday, 2, '0', 0)) {
 				*orig_s = '\0';
 				return 0;
 			}
 			break;
 		case 'D':
-			if (!format_int(&s, &remaining, timeptr->tm_mon + 1, 2,
-					'0', 0) ||
+			if (!format_int(&s, &remaining, timeptr->tm_mon + 1, 2, '0', 0) ||
 			    !append_char(&s, &remaining, '/') ||
-			    !format_int(&s, &remaining, timeptr->tm_mday, 2,
-					'0', 0) ||
+			    !format_int(&s, &remaining, timeptr->tm_mday, 2, '0', 0) ||
 			    !append_char(&s, &remaining, '/') ||
-			    !format_int(&s, &remaining, timeptr->tm_year % 100,
-					2, '0', 0)) {
+			    !format_int(&s, &remaining, timeptr->tm_year % 100, 2, '0', 0)) {
 				*orig_s = '\0';
 				return 0;
 			}
 			break;
 		case 'e':
-			if (!format_int(&s, &remaining, timeptr->tm_mday, 2,
-					' ', 0)) {
+			if (!format_int(&s, &remaining, timeptr->tm_mday, 2, ' ', 0)) {
 				*orig_s = '\0';
 				return 0;
 			}
@@ -265,14 +234,11 @@ size_t strftime(char *restrict s, size_t maxsize, const char *restrict format,
 			int width = min_width ? min_width - 6 : 4;
 			if (width < 4)
 				width = 4;
-			if (!format_int(&s, &remaining, timeptr->tm_year + 1900,
-					width, pad_char, show_sign) ||
+			if (!format_int(&s, &remaining, timeptr->tm_year + 1900, width, pad_char, show_sign) ||
 			    !append_char(&s, &remaining, '-') ||
-			    !format_int(&s, &remaining, timeptr->tm_mon + 1, 2,
-					'0', 0) ||
+			    !format_int(&s, &remaining, timeptr->tm_mon + 1, 2, '0', 0) ||
 			    !append_char(&s, &remaining, '-') ||
-			    !format_int(&s, &remaining, timeptr->tm_mday, 2,
-					'0', 0)) {
+			    !format_int(&s, &remaining, timeptr->tm_mday, 2, '0', 0)) {
 				*orig_s = '\0';
 				return 0;
 			}
@@ -280,8 +246,7 @@ size_t strftime(char *restrict s, size_t maxsize, const char *restrict format,
 		case 'g': {
 			int week_year;
 			iso_week_number(timeptr, &week_year);
-			if (!format_int(&s, &remaining, week_year % 100, 2, '0',
-					0)) {
+			if (!format_int(&s, &remaining, week_year % 100, 2, '0', 0)) {
 				*orig_s = '\0';
 				return 0;
 			}
@@ -289,16 +254,13 @@ size_t strftime(char *restrict s, size_t maxsize, const char *restrict format,
 		case 'G': {
 			int week_year;
 			iso_week_number(timeptr, &week_year);
-			if (!format_int(&s, &remaining, week_year,
-					min_width ? min_width : 4, pad_char,
-					show_sign)) {
+			if (!format_int(&s, &remaining, week_year, min_width ? min_width : 4, pad_char, show_sign)) {
 				*orig_s = '\0';
 				return 0;
 			}
 		} break;
 		case 'H':
-			if (!format_int(&s, &remaining, timeptr->tm_hour, 2,
-					'0', 0)) {
+			if (!format_int(&s, &remaining, timeptr->tm_hour, 2, '0', 0)) {
 				*orig_s = '\0';
 				return 0;
 			}
@@ -313,22 +275,19 @@ size_t strftime(char *restrict s, size_t maxsize, const char *restrict format,
 			}
 		} break;
 		case 'j':
-			if (!format_int(&s, &remaining, timeptr->tm_yday + 1, 3,
-					'0', 0)) {
+			if (!format_int(&s, &remaining, timeptr->tm_yday + 1, 3, '0', 0)) {
 				*orig_s = '\0';
 				return 0;
 			}
 			break;
 		case 'm':
-			if (!format_int(&s, &remaining, timeptr->tm_mon + 1, 2,
-					'0', 0)) {
+			if (!format_int(&s, &remaining, timeptr->tm_mon + 1, 2, '0', 0)) {
 				*orig_s = '\0';
 				return 0;
 			}
 			break;
 		case 'M':
-			if (!format_int(&s, &remaining, timeptr->tm_min, 2, '0',
-					0)) {
+			if (!format_int(&s, &remaining, timeptr->tm_min, 2, '0', 0)) {
 				*orig_s = '\0';
 				return 0;
 			}
@@ -340,9 +299,7 @@ size_t strftime(char *restrict s, size_t maxsize, const char *restrict format,
 			}
 			break;
 		case 'p':
-			if (!append_string(&s, &remaining,
-					   timeptr->tm_hour < 12 ? "AM" :
-								   "PM")) {
+			if (!append_string(&s, &remaining, timeptr->tm_hour < 12 ? "AM" : "PM")) {
 				*orig_s = '\0';
 				return 0;
 			}
@@ -351,27 +308,20 @@ size_t strftime(char *restrict s, size_t maxsize, const char *restrict format,
 			int hour12 = timeptr->tm_hour % 12;
 			if (hour12 == 0)
 				hour12 = 12;
-			if (!format_int(&s, &remaining, hour12, 2, '0', 0) ||
+			if (!format_int(&s, &remaining, hour12, 2, '0', 0) || !append_char(&s, &remaining, ':') ||
+			    !format_int(&s, &remaining, timeptr->tm_min, 2, '0', 0) ||
 			    !append_char(&s, &remaining, ':') ||
-			    !format_int(&s, &remaining, timeptr->tm_min, 2, '0',
-					0) ||
-			    !append_char(&s, &remaining, ':') ||
-			    !format_int(&s, &remaining, timeptr->tm_sec, 2, '0',
-					0) ||
+			    !format_int(&s, &remaining, timeptr->tm_sec, 2, '0', 0) ||
 			    !append_char(&s, &remaining, ' ') ||
-			    !append_string(&s, &remaining,
-					   timeptr->tm_hour < 12 ? "AM" :
-								   "PM")) {
+			    !append_string(&s, &remaining, timeptr->tm_hour < 12 ? "AM" : "PM")) {
 				*orig_s = '\0';
 				return 0;
 			}
 		} break;
 		case 'R':
-			if (!format_int(&s, &remaining, timeptr->tm_hour, 2,
-					'0', 0) ||
+			if (!format_int(&s, &remaining, timeptr->tm_hour, 2, '0', 0) ||
 			    !append_char(&s, &remaining, ':') ||
-			    !format_int(&s, &remaining, timeptr->tm_min, 2, '0',
-					0)) {
+			    !format_int(&s, &remaining, timeptr->tm_min, 2, '0', 0)) {
 				*orig_s = '\0';
 				return 0;
 			}
@@ -384,8 +334,7 @@ size_t strftime(char *restrict s, size_t maxsize, const char *restrict format,
 			}
 			break;
 		case 'S':
-			if (!format_int(&s, &remaining, timeptr->tm_sec, 2, '0',
-					0)) {
+			if (!format_int(&s, &remaining, timeptr->tm_sec, 2, '0', 0)) {
 				*orig_s = '\0';
 				return 0;
 			}
@@ -397,14 +346,11 @@ size_t strftime(char *restrict s, size_t maxsize, const char *restrict format,
 			}
 			break;
 		case 'T':
-			if (!format_int(&s, &remaining, timeptr->tm_hour, 2,
-					'0', 0) ||
+			if (!format_int(&s, &remaining, timeptr->tm_hour, 2, '0', 0) ||
 			    !append_char(&s, &remaining, ':') ||
-			    !format_int(&s, &remaining, timeptr->tm_min, 2, '0',
-					0) ||
+			    !format_int(&s, &remaining, timeptr->tm_min, 2, '0', 0) ||
 			    !append_char(&s, &remaining, ':') ||
-			    !format_int(&s, &remaining, timeptr->tm_sec, 2, '0',
-					0)) {
+			    !format_int(&s, &remaining, timeptr->tm_sec, 2, '0', 0)) {
 				*orig_s = '\0';
 				return 0;
 			}
@@ -419,8 +365,7 @@ size_t strftime(char *restrict s, size_t maxsize, const char *restrict format,
 			}
 		} break;
 		case 'U': {
-			int week =
-				(timeptr->tm_yday + 7 - timeptr->tm_wday) / 7;
+			int week = (timeptr->tm_yday + 7 - timeptr->tm_wday) / 7;
 			if (!format_int(&s, &remaining, week, 2, '0', 0)) {
 				*orig_s = '\0';
 				return 0;
@@ -435,8 +380,7 @@ size_t strftime(char *restrict s, size_t maxsize, const char *restrict format,
 			}
 		} break;
 		case 'w':
-			if (!format_int(&s, &remaining, timeptr->tm_wday, 1,
-					'0', 0)) {
+			if (!format_int(&s, &remaining, timeptr->tm_wday, 1, '0', 0)) {
 				*orig_s = '\0';
 				return 0;
 			}
@@ -452,41 +396,33 @@ size_t strftime(char *restrict s, size_t maxsize, const char *restrict format,
 			}
 		} break;
 		case 'x':
-			if (!format_int(&s, &remaining, timeptr->tm_mon + 1, 2,
-					'0', 0) ||
+			if (!format_int(&s, &remaining, timeptr->tm_mon + 1, 2, '0', 0) ||
 			    !append_char(&s, &remaining, '/') ||
-			    !format_int(&s, &remaining, timeptr->tm_mday, 2,
-					'0', 0) ||
+			    !format_int(&s, &remaining, timeptr->tm_mday, 2, '0', 0) ||
 			    !append_char(&s, &remaining, '/') ||
-			    !format_int(&s, &remaining, timeptr->tm_year % 100,
-					2, '0', 0)) {
+			    !format_int(&s, &remaining, timeptr->tm_year % 100, 2, '0', 0)) {
 				*orig_s = '\0';
 				return 0;
 			}
 			break;
 		case 'X':
-			if (!format_int(&s, &remaining, timeptr->tm_hour, 2,
-					'0', 0) ||
+			if (!format_int(&s, &remaining, timeptr->tm_hour, 2, '0', 0) ||
 			    !append_char(&s, &remaining, ':') ||
-			    !format_int(&s, &remaining, timeptr->tm_min, 2, '0',
-					0) ||
+			    !format_int(&s, &remaining, timeptr->tm_min, 2, '0', 0) ||
 			    !append_char(&s, &remaining, ':') ||
-			    !format_int(&s, &remaining, timeptr->tm_sec, 2, '0',
-					0)) {
+			    !format_int(&s, &remaining, timeptr->tm_sec, 2, '0', 0)) {
 				*orig_s = '\0';
 				return 0;
 			}
 			break;
 		case 'y':
-			if (!format_int(&s, &remaining, timeptr->tm_year % 100,
-					2, '0', 0)) {
+			if (!format_int(&s, &remaining, timeptr->tm_year % 100, 2, '0', 0)) {
 				*orig_s = '\0';
 				return 0;
 			}
 			break;
 		case 'Y':
-			if (!format_int(&s, &remaining, timeptr->tm_year + 1900,
-					min_width ? min_width : 4, pad_char,
+			if (!format_int(&s, &remaining, timeptr->tm_year + 1900, min_width ? min_width : 4, pad_char,
 					show_sign)) {
 				*orig_s = '\0';
 				return 0;
@@ -504,8 +440,7 @@ size_t strftime(char *restrict s, size_t maxsize, const char *restrict format,
 			}
 			int hours = (int)(offset / 3600);
 			int minutes = (int)((offset % 3600) / 60);
-			if (!append_char(&s, &remaining, sign) ||
-			    !format_int(&s, &remaining, hours, 2, '0', 0) ||
+			if (!append_char(&s, &remaining, sign) || !format_int(&s, &remaining, hours, 2, '0', 0) ||
 			    !format_int(&s, &remaining, minutes, 2, '0', 0)) {
 				*orig_s = '\0';
 				return 0;
@@ -513,8 +448,7 @@ size_t strftime(char *restrict s, size_t maxsize, const char *restrict format,
 		} break;
 		case 'Z':
 			if (timeptr->tm_zone) {
-				if (!append_string(&s, &remaining,
-						   timeptr->tm_zone)) {
+				if (!append_string(&s, &remaining, timeptr->tm_zone)) {
 					*orig_s = '\0';
 					return 0;
 				}
@@ -528,8 +462,7 @@ size_t strftime(char *restrict s, size_t maxsize, const char *restrict format,
 			break;
 		default:
 
-			if (!append_char(&s, &remaining, '%') ||
-			    !append_char(&s, &remaining, *ptr)) {
+			if (!append_char(&s, &remaining, '%') || !append_char(&s, &remaining, *ptr)) {
 				*orig_s = '\0';
 				return 0;
 			}
@@ -542,10 +475,8 @@ size_t strftime(char *restrict s, size_t maxsize, const char *restrict format,
 	return s - orig_s;
 }
 
-__weak size_t strftime_l(char *restrict s, size_t maxsize,
-			 const char *restrict format,
-			 const struct tm *restrict timeptr,
-			 locale_t __unused locale)
+__weak size_t strftime_l(char *restrict s, size_t maxsize, const char *restrict format,
+			 const struct tm *restrict timeptr, locale_t __unused locale)
 {
 	return strftime(s, maxsize, format, timeptr);
 }

@@ -1,8 +1,8 @@
-#include "__stdio.h"  // for __FILE
-#include "features.h" // for __weak
+#include "__stdio.h" // for __FILE
 
-#include <fcntl.h>  // for O_RDONLY
-#include <stdio.h>  // for FILE, stdin
+#include <fcntl.h> // for O_RDONLY
+#include <stdio.h> // for FILE, stdin
+#include <sys/cdefs.h>
 #include <unistd.h> // for STDOUT_FILENO
 
 #define BUFSIZ 4096

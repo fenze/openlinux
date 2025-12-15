@@ -1,8 +1,7 @@
-// TODO: Should return the address of the calling thread's `errno` storage.
-// Currently, this is a stub implementation that returns the address of a
-// static variable.
+#include <__thread.h>
+#include <threads.h>
+
 int *__errno(void)
 {
-	static int __thread_errno = 0;
-	return &__thread_errno;
+	return &thrd_current()->terrno;
 }

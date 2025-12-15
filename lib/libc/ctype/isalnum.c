@@ -1,8 +1,5 @@
-#include "features.h" // for __weak
-
-#include <ctype.h>  // for isalnum, isalpha, isdigit, isalnum_l
-#include <libc.h>   // for __unused
-#include <locale.h> // for locale_t
+#include <ctype.h>
+#include <sys/cdefs.h>
 
 int isalnum(int c)
 {

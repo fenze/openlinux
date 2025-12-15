@@ -1,12 +1,13 @@
-#include "__stdio.h"  // for __FILE, __libc_fadd
-#include "features.h" // for __weak
-#include "stddef.h"   // for NULL
+#include "__stdio.h" // for __FILE, __libc_fadd
+#include "stddef.h"  // for NULL
 
 #include <errno.h>  // for EINVAL, errno
 #include <fcntl.h>  // for O_WRONLY, O_CREAT, O_RDONLY, O_APPEND, O_RDWR
 #include <stdio.h>  // for FILE, _IOFBF, fmemopen, size_t
 #include <stdlib.h> // for calloc, free
 #include <string.h> // for strchr
+
+#include <sys/cdefs.h>
 
 __weak void __stdio_cleanup(void)
 {

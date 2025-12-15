@@ -1,13 +1,11 @@
-#include "__stdio.h"   // for __FILE, __libc_fadd
-#include "features.h"  // for __weak
-#include "stdatomic.h" // for atomic_flag_clear
-#include "stddef.h"    // for NULL
+#include <__stdio.h>
 
 #include <errno.h>  // for EINVAL, errno
 #include <fcntl.h>  // for O_WRONLY, O_CREAT, O_RDONLY, open, O_APPEND
 #include <stdio.h>  // for FILE, BUFSIZ, fopen, _IOLBF
 #include <stdlib.h> // for calloc, free, malloc
 #include <string.h> // for strchr
+#include <sys/cdefs.h>
 #include <unistd.h> // for close
 
 __weak void __stdio_cleanup(void)
@@ -36,10 +34,12 @@ FILE *fopen(const char *restrict pathname, const char *restrict mode)
 		flags = (flags & ~(O_RDONLY | O_WRONLY)) | O_RDWR;
 	}
 
-	if ((fd = open(pathname, flags, _mode)) < 0)
+	fd = open(pathname, flags, _mode);
+	if (fd < 0)
 		return NULL;
 
-	if ((stream = calloc(1, sizeof(FILE))) == NULL)
+	stream = calloc(1, sizeof(struct __FILE));
+	if (stream == NULL)
 		return NULL;
 
 	__FILE(stream)->fd = fd;
@@ -48,7 +48,9 @@ FILE *fopen(const char *restrict pathname, const char *restrict mode)
 	__FILE(stream)->type = _IOLBF;
 	atomic_flag_clear(&__FILE(stream)->lock);
 
-	if ((__FILE(stream)->buf = malloc(BUFSIZ)) == NULL) {
+	__FILE(stream)->buf = malloc(BUFSIZ);
+
+	if (__FILE(stream)->buf == NULL) {
 		close(fd);
 		free(stream);
 		return NULL;

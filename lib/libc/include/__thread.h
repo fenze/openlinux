@@ -3,7 +3,7 @@
 
 struct __thread_self {
 	int tid;
-	int _errno;
+	int terrno;
 };
 
 #endif

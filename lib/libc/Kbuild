@@ -15,6 +15,7 @@ obj-y += errno/
 obj-y += fcntl/
 obj-y += fenv/
 obj-y += grp/
+obj-y += internal/
 obj-y += inttypes/
 obj-y += libgen/
 obj-y += mman/
@@ -47,3 +48,4 @@ obj-y += utsname/
 obj-y += wait/
 obj-y += wchar/
 obj-y += wctype/
+

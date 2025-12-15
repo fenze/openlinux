@@ -12,15 +12,14 @@ void free(void *ptr)
 		return;
 	}
 
-	LIBC_LOCK(libc.lock.malloc);
+	LIBC_LOCK(__libc.lock.malloc);
 
 	struct page *p = __malloc_pvec;
 	int found_in_pages = 0;
 
 	while (p) {
 		if ((uintptr_t)ptr >= (uintptr_t)p->heap &&
-		    (uintptr_t)ptr < (uintptr_t)(p->heap + (p->block.size *
-							    p->block.count))) {
+		    (uintptr_t)ptr < (uintptr_t)(p->heap + (p->block.size * p->block.count))) {
 			size_t offset = (uintptr_t)ptr - (uintptr_t)p->heap;
 			size_t index = offset / p->block.size;
 			size_t byte_index = index / 8;
@@ -42,14 +41,12 @@ void free(void *ptr)
 				if (p == __malloc_pvec)
 					__malloc_pvec = p->next;
 
-				munmap(p, (p->flags == PAGE_SMALL) ?
-						  SMALL_PAGE_SIZE :
-					  (p->flags == PAGE_MEDIUM) ?
-						  MEDIUM_PAGE_SIZE :
-						  LARGE_PAGE_SIZE);
+				munmap(p, (p->flags == PAGE_SMALL)  ? SMALL_PAGE_SIZE :
+					  (p->flags == PAGE_MEDIUM) ? MEDIUM_PAGE_SIZE :
+								      LARGE_PAGE_SIZE);
 			}
 
-			LIBC_UNLOCK(libc.lock.malloc);
+			LIBC_UNLOCK(__libc.lock.malloc);
 			return;
 		}
 		p = p->next;
@@ -61,11 +58,8 @@ void free(void *ptr)
 	p = __malloc_pvec;
 	while (p) {
 		if ((uintptr_t)potential_orig >= (uintptr_t)p->heap &&
-		    (uintptr_t)potential_orig <
-			    (uintptr_t)(p->heap +
-					(p->block.size * p->block.count))) {
-			size_t offset =
-				(uintptr_t)potential_orig - (uintptr_t)p->heap;
+		    (uintptr_t)potential_orig < (uintptr_t)(p->heap + (p->block.size * p->block.count))) {
+			size_t offset = (uintptr_t)potential_orig - (uintptr_t)p->heap;
 			size_t index = offset / p->block.size;
 			size_t byte_index = index / 8;
 			size_t bit_index = index % 8;
@@ -85,18 +79,16 @@ void free(void *ptr)
 				if (p == __malloc_pvec)
 					__malloc_pvec = p->next;
 
-				munmap(p, (p->flags == PAGE_SMALL) ?
-						  SMALL_PAGE_SIZE :
-					  (p->flags == PAGE_MEDIUM) ?
-						  MEDIUM_PAGE_SIZE :
-						  LARGE_PAGE_SIZE);
+				munmap(p, (p->flags == PAGE_SMALL)  ? SMALL_PAGE_SIZE :
+					  (p->flags == PAGE_MEDIUM) ? MEDIUM_PAGE_SIZE :
+								      LARGE_PAGE_SIZE);
 			}
 
-			LIBC_UNLOCK(libc.lock.malloc);
+			LIBC_UNLOCK(__libc.lock.malloc);
 			return;
 		}
 		p = p->next;
 	}
 
-	LIBC_UNLOCK(libc.lock.malloc);
+	LIBC_UNLOCK(__libc.lock.malloc);
 }

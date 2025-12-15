@@ -1,14 +1,12 @@
-#include "stddef.h" // for NULL
-
 #include <atomic.h>    // for LIBC_UNLOCK, LIBC_LOCK
-#include <features.h>  // for __weak
 #include <libc.h>      // for libc, libc::(anonymous)
 #include <malloc.h>    // for page, page::(anonymous), class, global_size_c...
 #include <stdatomic.h> // for atomic_flag_clear
 #include <stdint.h>    // for uint32_t, uint8_t, uintptr_t
 #include <stdlib.h>    // for malloc
 #include <string.h>    // for memset
-#include <sys/mman.h>  // for size_t, mmap, munmap, MAP_ANONYMOUS, MAP_FAILED
+#include <sys/cdefs.h>
+#include <sys/mman.h> // for size_t, mmap, munmap, MAP_ANONYMOUS, MAP_FAILED
 
 struct page *__malloc_pvec = NULL;
 
@@ -16,15 +14,13 @@ static __inline uint32_t get_size_class(size_t size)
 {
 	uintptr_t minblock_count = (size + (16 - 1)) / 16;
 
-	if (size <= (16 * 64)) {
+	if (size <= (size_t)(16 * 64)) {
 		return (uint32_t)(minblock_count ? minblock_count : 1);
 	}
 
-	const uint32_t most_significant_bit =
-		(uint32_t)(63 - (int)__builtin_clzll(minblock_count));
+	const uint32_t most_significant_bit = (uint32_t)(63 - (int)__builtin_clzll(minblock_count));
 
-	const uint32_t subclass_bits =
-		(minblock_count >> (most_significant_bit - 2)) & 0x03;
+	const uint32_t subclass_bits = (minblock_count >> (most_significant_bit - 2)) & 0x03;
 
 	return (uint32_t)((most_significant_bit << 2) + subclass_bits) + 41;
 }
@@ -36,12 +32,11 @@ void *malloc(size_t size)
 	if (size == 0)
 		return NULL;
 
-	LIBC_LOCK(libc.lock.malloc);
+	LIBC_LOCK(__libc.lock.malloc);
 
 	uint32_t class_index = get_size_class(size);
-	if (class_index >=
-	    sizeof(global_size_class) / sizeof(global_size_class[0])) {
-		LIBC_UNLOCK(libc.lock.malloc);
+	if (class_index >= sizeof(global_size_class) / sizeof(global_size_class[0])) {
+		LIBC_UNLOCK(__libc.lock.malloc);
 		return NULL;
 	}
 	const struct class *cls = &global_size_class[class_index];
@@ -50,70 +45,57 @@ void *malloc(size_t size)
 	while (p) {
 		if (p->flags == PAGE_SMALL && cls->size <= 16 * 64) {
 			LIBC_LOCK(p->lock);
-			if (p->block.used < p->block.count &&
-			    p->block.size == cls->size) {
+			if (p->block.used < p->block.count && p->block.size == cls->size) {
 				for (uint32_t i = 0; i < p->block.count; i++) {
 					int byte_index = i / 8;
 					int bit_index = i % 8;
-					if (!(p->bitmap[byte_index] &
-					      (1 << bit_index))) {
-						p->bitmap[byte_index] |=
-							(1 << bit_index);
+					if (!(p->bitmap[byte_index] & (1 << bit_index))) {
+						p->bitmap[byte_index] |= (1 << bit_index);
 						p->block.used++;
 						LIBC_UNLOCK(p->lock);
-						LIBC_UNLOCK(libc.lock.malloc);
+						LIBC_UNLOCK(__libc.lock.malloc);
 						if (p->heap == NULL)
 							return NULL;
-						return p->heap +
-						       (i * p->block.size);
+						return p->heap + (i * p->block.size);
 					}
 				}
 			}
 			LIBC_UNLOCK(p->lock);
-		} else if (p->flags == PAGE_MEDIUM && cls->size > 16 * 64 &&
-			   cls->size <= 16 * 8192) {
+		} else if (p->flags == PAGE_MEDIUM && cls->size > 16 * 64 && cls->size <= 16 * 8192) {
 			LIBC_LOCK(p->lock);
-			if (p->block.used < p->block.count &&
-			    p->block.size == cls->size) {
+			if (p->block.used < p->block.count && p->block.size == cls->size) {
 				for (uint32_t i = 0; i < p->block.count; i++) {
 					int byte_index = i / 8;
 					int bit_index = i % 8;
-					if (!(p->bitmap[byte_index] &
-					      (1 << bit_index))) {
+					if (!(p->bitmap[byte_index] & (1 << bit_index))) {
 						// Mark block as used
-						p->bitmap[byte_index] |=
-							(1 << bit_index);
+						p->bitmap[byte_index] |= (1 << bit_index);
 						p->block.used++;
 						LIBC_UNLOCK(p->lock);
-						LIBC_UNLOCK(libc.lock.malloc);
+						LIBC_UNLOCK(__libc.lock.malloc);
 						if (p->heap == NULL)
 							return NULL;
-						return p->heap +
-						       (i * p->block.size);
+						return p->heap + (i * p->block.size);
 					}
 				}
 			}
 			LIBC_UNLOCK(p->lock);
 		} else if (p->flags == PAGE_LARGE && cls->size > 16 * 8192) {
 			LIBC_LOCK(p->lock);
-			if (p->block.used < p->block.count &&
-			    p->block.size == cls->size) {
+			if (p->block.used < p->block.count && p->block.size == cls->size) {
 				// Find free block
 				for (uint32_t i = 0; i < p->block.count; i++) {
 					int byte_index = i / 8;
 					int bit_index = i % 8;
-					if (!(p->bitmap[byte_index] &
-					      (1 << bit_index))) {
-						p->bitmap[byte_index] |=
-							(1 << bit_index);
+					if (!(p->bitmap[byte_index] & (1 << bit_index))) {
+						p->bitmap[byte_index] |= (1 << bit_index);
 						p->block.used++;
 						LIBC_UNLOCK(p->lock);
-						LIBC_UNLOCK(libc.lock.malloc);
+						LIBC_UNLOCK(__libc.lock.malloc);
 
 						if (p->heap == NULL)
 							return NULL;
-						return p->heap +
-						       (i * p->block.size);
+						return p->heap + (i * p->block.size);
 					}
 				}
 			}
@@ -137,11 +119,10 @@ void *malloc(size_t size)
 	}
 
 	size_t bitmap_size = (cls->count + 7) / 8;
-	void *mem = mmap(NULL, page_size, PROT_READ | PROT_WRITE,
-			 MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+	void *mem = mmap(NULL, page_size, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
 
 	if (mem == MAP_FAILED) {
-		LIBC_UNLOCK(libc.lock.malloc);
+		LIBC_UNLOCK(__libc.lock.malloc);
 		return NULL;
 	}
 
@@ -159,7 +140,7 @@ void *malloc(size_t size)
 
 	if (new_page->heap == NULL || new_page->bitmap == NULL) {
 		munmap(mem, page_size);
-		LIBC_UNLOCK(libc.lock.malloc);
+		LIBC_UNLOCK(__libc.lock.malloc);
 		return NULL;
 	}
 	atomic_flag_clear(&new_page->lock);
@@ -176,7 +157,7 @@ void *malloc(size_t size)
 	new_page->bitmap[0] |= 1;
 	new_page->block.used = 1;
 
-	LIBC_UNLOCK(libc.lock.malloc);
+	LIBC_UNLOCK(__libc.lock.malloc);
 
 	return new_page->heap;
 }

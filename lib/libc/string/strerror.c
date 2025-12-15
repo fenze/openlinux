@@ -1,9 +1,7 @@
-#include "features.h" // for __weak
-
-#include "stddef.h"
 #include <errno.h>  // for ERANGE, E2BIG, EACCES, EADDRINUSE, EADDRNOTAVAIL
 #include <libc.h>   // for __unused
 #include <string.h> // for memcpy, size_t, strerror, strlen, locale_t
+#include <sys/cdefs.h>
 
 char *strerror(int errnum)
 {
@@ -105,8 +103,7 @@ char *strerror(int errnum)
 		[EKEYREJECTED] = "Key was rejected by service",
 	};
 
-	if (errnum < 0 || (size_t)errnum >= sizeof(table) / sizeof(table[0]) ||
-	    !table[errnum]) {
+	if (errnum < 0 || (size_t)errnum >= sizeof(table) / sizeof(table[0]) || !table[errnum]) {
 		errno = EINVAL;
 		return NULL;
 	}

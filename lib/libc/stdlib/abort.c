@@ -16,12 +16,11 @@ _Noreturn void abort(void)
 
 	raise(SIGABRT);
 
-	LIBC_LOCK(libc.lock.abort);
+	LIBC_LOCK(__libc.lock.abort);
 	sa.sa_handler = SIG_DFL;
 
 	__syscall(rt_sigaction, SIGABRT, &sa, 0, 64 / 8);
-	__syscall(tkill, ((struct __thread_self *)thrd_current())->tid,
-		  SIGABRT);
+	__syscall(tkill, ((struct __thread_self *)thrd_current())->tid, SIGABRT);
 
 	// This point should never be reached
 	raise(SIGKILL);

@@ -7,7 +7,7 @@ extern char **environ;
 
 char *getenv(const char *name)
 {
-	LIBC_LOCK(libc.lock.environ);
+	LIBC_LOCK(__libc.lock.environ);
 
 	for (char **env = environ; *env; env++) {
 		char *eq = NULL;
@@ -21,12 +21,12 @@ char *getenv(const char *name)
 			}
 		}
 		if (eq && name[eq - *env] == '\0') {
-			LIBC_UNLOCK(libc.lock.environ);
+			LIBC_UNLOCK(__libc.lock.environ);
 			return eq + 1;
 		}
 	}
 
-	LIBC_UNLOCK(libc.lock.environ);
+	LIBC_UNLOCK(__libc.lock.environ);
 
 	return NULL;
 }
