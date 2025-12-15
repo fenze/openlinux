@@ -1,3 +1,4 @@
 bin-y := clear
 obj-y += clear.o
 libs-y += $(srctree)/lib/libc/libc.a
+install-y := bin/clear

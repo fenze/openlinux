@@ -1,5 +1,14 @@
+bin/*/*
+!bin/*/*.*
+!bin/*/Kbuild
+
+*.lex.c
+*.tab.c
+*.tab.h
+
 *.o
 *.a
+*.d
 
 .cache
 

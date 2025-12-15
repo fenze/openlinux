@@ -1,0 +1,3 @@
+bin-y := init
+obj-y := init.o
+libs-y := $(srctree)/lib/libc/libc.a

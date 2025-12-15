@@ -35,6 +35,7 @@ int access(const char *, int);
 unsigned alarm(unsigned);
 int chdir(const char *);
 int chown(const char *, uid_t, gid_t);
+int chroot(const char *);
 int close(int);
 
 // TODO:

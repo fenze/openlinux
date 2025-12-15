@@ -1,4 +1,5 @@
 lib-y := libc.a
+install-y := lib/libc.a
 
 cflags-y += -I $(src)/include
 

@@ -21,7 +21,7 @@ endif
 objects := $(filter %.o,$(obj-y))
 subdirs := $(filter %/,$(obj-y))
 
-cflags := $(cflags-y) $(KBUILD_CFLAGS)
+cflags := $(cflags-y) $(KBUILD_CFLAGS) -MMD -MP
 asflags := $(asflags-y) $(KBUILD_ASFLAGS)
 ldflags := $(ldflags-y) $(KBUILD_LDFLAGS)
 
@@ -39,6 +39,9 @@ else
   all-objects := $(objects)
 endif
 
+deps := $(all-objects:.o=.d)
+-include $(deps)
+
 c-sources := $(wildcard $(addprefix $(obj),$(objects:.o=.c)))
 s-sources := $(wildcard $(addprefix $(obj),$(objects:.o=.s)))
 subdir-c-sources := $(wildcard $(addprefix $(obj),$(subdir-objects:.o=.c)))
@@ -51,14 +54,38 @@ all: $(obj)$(lib-y) $(addprefix $(obj),$(always))
 $(obj)$(lib-y): $(addprefix $(obj),$(all-objects))
 	$(MSG) AR "$@"
 	$(Q)$(AR) rcs $@ $^
+
+$(O)/$(install-y): $(obj)$(lib-y)
+	mkdir -p $(O)/$(dir $(install-y))
+	install -m 0644 $< $(O)/$(install-y)
+
+ifdef install-y
+install: $(O)/$(install-y)
+else
+install:
+endif
+
 else ifdef bin-y
 all: $(obj)$(bin-y) $(addprefix $(obj),$(always))
 
 $(obj)$(bin-y): $(addprefix $(obj),$(all-objects)) $(libs-y) ${prereq}
 	$(MSG) LD "$@"
 	$(Q)$(LD) $(ldflags) -o $@ $^
+
+ifdef install-y
+$(O)/$(install-y): $(obj)$(bin-y)
+	mkdir -p $(O)/$(dir $(install-y))
+	install -m 0755 $< $(O)/$(install-y)
+
+install: $(O)/$(install-y)
+else
+install:
+endif
+
 else
 all: $(addprefix $(obj),$(all-objects)) $(subdirs) $(addprefix $(obj),$(always))
+
+install: $(subdirs)
 endif
 
 PHONY += clean clean-%
@@ -92,7 +119,7 @@ $(filter $(addprefix $(obj),$(all-objects)),$(s-sources:.s=.o) $(subdir-s-source
 
 .PHONY: $(subdirs)
 $(subdirs):
-	$(Q)$(MAKE) -f $(srctree)/scripts/Makefile.build obj="$(obj)$@"
+	$(Q)$(MAKE) -f $(srctree)/scripts/Makefile.build obj="$(obj)$@" ${MAKECMDGOALS}
 
 clean-%:
 	$(Q)$(MAKE) -f $(srctree)/scripts/Makefile.build obj="$(obj)$*" clean
