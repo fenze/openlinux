@@ -1,0 +1,1 @@
+obj-y += inotify_init.o

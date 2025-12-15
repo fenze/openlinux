@@ -1,14 +1,12 @@
-obj-y += eventfd.o
-obj-y += eventfd_read.o
-obj-y += eventfd_write.o
+obj-y += eventfd/
+obj-y += inotify/
+obj-y += io_uring/
+
+obj-y += flock.o
 obj-y += getauxval.o
-obj-y += io_uring_enter.o
-obj-y += io_uring_register.o
-obj-y += io_uring_setup.o
 obj-y += ioctl.o
 obj-y += mount.o
 obj-y += reboot.o
 obj-y += sysinfo.o
 obj-y += umount.o
 obj-y += umount2.o
-obj-y += flock.o

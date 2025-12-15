@@ -1,0 +1,3 @@
+obj-y += io_uring_enter.o
+obj-y += io_uring_register.o
+obj-y += io_uring_setup.o

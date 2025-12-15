@@ -1,0 +1,3 @@
+obj-y += eventfd.o
+obj-y += eventfd_read.o
+obj-y += eventfd_write.o
