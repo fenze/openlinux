@@ -11,3 +11,4 @@ obj-y += reboot.o
 obj-y += sysinfo.o
 obj-y += umount.o
 obj-y += umount2.o
+obj-y += flock.o
