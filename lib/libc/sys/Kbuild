@@ -1,3 +1,9 @@
+obj-y += eventfd_read.o
+obj-y += eventfd_write.o
+obj-y += eventfd.o
+obj-y += io_uring_enter.o
+obj-y += io_uring_register.o
+obj-y += io_uring_setup.o
 obj-y += ioctl.o
 obj-y += mount.o
 obj-y += reboot.o

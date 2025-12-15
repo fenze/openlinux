@@ -1,9 +1,9 @@
+#include "asm/auxvec.h" // for AT_SYSINFO_EHDR
+#include <io_uring.h>
 #include <linux/auxvec.h> // for AT_NULL
 #include <linux/elf.h>	  // for Elf64_Ehdr
-#include "asm/auxvec.h"	  // for AT_SYSINFO_EHDR
-
-#include <stdint.h> // for uintptr_t
-#include <stdlib.h> // for exit
+#include <stdint.h>	  // for uintptr_t
+#include <stdlib.h>	  // for exit
 
 #define weak_reference(old, new) \
 	extern __typeof(old) new __attribute__((__weak__, __alias__(#old)))
@@ -22,6 +22,11 @@ static void __vdso_setup(Elf64_Ehdr *vdso_addr __attribute__((unused)))
 }
 
 weak_reference(__vdso_setup, vdso_setup);
+
+static void __io_uring_setup_(void)
+{
+}
+weak_reference(__io_uring_setup_, __io_uring_setup);
 
 __attribute__((used)) void __libc_start(uintptr_t *sp)
 {
@@ -45,6 +50,8 @@ __attribute__((used)) void __libc_start(uintptr_t *sp)
 
 		__auxv++;
 	}
+
+	__io_uring_setup_();
 
 	exit(main(argc, argv));
 }

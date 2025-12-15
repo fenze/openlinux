@@ -120,7 +120,7 @@ PHONY :=
 export Q srctree MAKEFLAGS KCONFIG_CONFIG \
        KBUILD_CFLAGS KBUILD_ASFLAGS KBUILD_LDFLAGS
 
-all: $(srctree)/include/config/auto.conf $(srctree)/include/generated/autoconf.h
+all: compile_commands.json
 	$(Q)$(MAKE) -f scripts/makefile.build obj=$(obj)
 
 clean:
@@ -149,7 +149,7 @@ $(KCONFIG_CONFIG):
 	@false
 
 compile_commands.json:
-	$(Q)bear -- $(MAKE) -f scripts/makefile.build obj=$(obj)
+	$(Q)bear -- $(MAKE) -f scripts/makefile.build obj=$(obj) all
 
 PHONY += menuconfig
 menuconfig:

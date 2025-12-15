@@ -1,0 +1,3 @@
+bin-y := yes
+obj-y := yes.o
+libs  := $(srctree)/lib/libc/libc.a

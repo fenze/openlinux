@@ -1,8 +1,11 @@
+obj-y += basename/
 obj-y += clear/
 obj-y += echo/
 obj-y += false/
 obj-y += free/
 obj-y += gzip/
 obj-y += pwd/
+obj-y += sleep/
 obj-y += sync/
 obj-y += true/
+obj-y += yes/

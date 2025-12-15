@@ -79,6 +79,11 @@ union sigval;
 #define SS_ONSTACK 1
 #define SS_DISABLE 2
 
+#define SIGEV_SIGNAL	0
+#define SIGEV_NONE	1
+#define SIGEV_THREAD	2
+#define SIGEV_THREAD_ID 4
+
 typedef __INT64_TYPE__ pid_t;
 typedef __UINT32_TYPE__ uid_t;
 typedef __UINT64_TYPE__ sigset_t;

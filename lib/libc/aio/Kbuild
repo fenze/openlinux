@@ -1,0 +1,9 @@
+obj-y += aio.o
+obj-y += aio_cancel.o
+obj-y += aio_error.o
+obj-y += aio_fsync.o
+obj-y += aio_read.o
+obj-y += aio_return.o
+obj-y += aio_suspend.o
+obj-y += aio_write.o
+obj-y += lio_listio.o

@@ -1,6 +1,7 @@
 #ifndef __COMPLEX_H
 #define __COMPLEX_H
 
+#include <complex.h>
 #define complex	     _Complex
 #define _Complex_I   (__extension__(0.0f + 1.0fi))
 #define imaginary    _Imaginary

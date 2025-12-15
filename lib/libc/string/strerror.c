@@ -1,5 +1,6 @@
 #include "features.h" // for __weak
 
+#include "stddef.h"
 #include <errno.h>  // for ERANGE, E2BIG, EACCES, EADDRINUSE, EADDRNOTAVAIL
 #include <libc.h>   // for __unused
 #include <string.h> // for memcpy, size_t, strerror, strlen, locale_t

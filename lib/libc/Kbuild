@@ -2,6 +2,7 @@ lib-y := libc.a
 
 cflags-y += -I $(src)/include
 
+obj-y += aio/
 obj-y += arch/
 obj-y += arpa/
 obj-y += assert/
