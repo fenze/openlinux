@@ -1,11 +1,9 @@
 #ifndef __MQUEUE_H
 #define __MQUEUE_H
 
-#include <stddef.h>
-#include <time.h>
-#define __BITS_TIMESPEC_H_
-#include <bits/timespec.h>
-#undef __BITS_TIMESPEC_H_
+#include <sys/cdefs.h>
+
+__BEGIN_DECLS
 
 #undef O_RDONLY
 #define O_RDONLY 000000000
@@ -26,6 +24,7 @@ typedef __SIZE_TYPE__ size_t;
 typedef __INT64_TYPE__ ssize_t;
 
 struct sigevent;
+struct timespec;
 struct mq_attr {
 	long mq_flags;
 	long mq_maxmsg;
@@ -45,5 +44,7 @@ ssize_t mq_timedreceive(mqd_t, char *restrict, size_t, unsigned *restrict,
 int mq_timedsend(mqd_t, const char *, size_t, unsigned,
 		 const struct timespec *);
 int mq_unlink(const char *);
+
+__END_DECLS
 
 #endif

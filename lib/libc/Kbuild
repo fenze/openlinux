@@ -19,6 +19,7 @@ obj-y += inttypes/
 obj-y += libgen/
 obj-y += mman/
 obj-y += monetary/
+obj-y += mqueue/
 obj-y += msg/
 obj-y += poll/
 obj-y += pwd/
