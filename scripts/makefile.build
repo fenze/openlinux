@@ -90,8 +90,10 @@ endif
 
 PHONY += clean clean-%
 clean: $(addprefix clean-,$(subdirs))
+ifdef deps
+	$(Q)rm -f $(addprefix $(obj),$(deps))
+endif
 ifdef targets
-	$(info Cleaning targets: $(targets))
 	$(Q)rm -f $(addprefix $(obj),$(targets))
 endif
 ifdef all-objects
