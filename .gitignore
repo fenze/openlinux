@@ -2,6 +2,10 @@ bin/*/*
 !bin/*/*.*
 !bin/*/Kbuild
 
+boot/*/*
+!boot/*/*.*
+!boot/*/Kbuild
+
 *.lex.c
 *.tab.c
 *.tab.h
