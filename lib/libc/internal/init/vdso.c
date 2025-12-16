@@ -6,6 +6,11 @@
 void __init_vdso(void)
 {
 	Elf64_Ehdr *ehdr = (Elf64_Ehdr *)getauxval(AT_SYSINFO_EHDR);
+
+	if (ehdr == NULL) {
+		return;
+	}
+
 	Elf64_Phdr *phdr = (Elf64_Phdr *)(ehdr + ehdr->e_phoff);
 
 	for (int i = 0; i < ehdr->e_phnum; i++) {

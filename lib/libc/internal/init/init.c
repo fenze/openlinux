@@ -6,13 +6,13 @@
 
 extern void __init_vdso(void);
 
-struct libc __libc;
+struct libc __libc = { 0 };
 char **environ;
 char *__progname;
 
 extern int main(int, char **, char **);
 
-__used void __libc_main(uintptr_t *rsp)
+__used void __init(uintptr_t *rsp)
 {
 	char **argv;
 	size_t *auxv;

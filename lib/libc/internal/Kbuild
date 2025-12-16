@@ -1,2 +1,1 @@
 obj-y += init/
-obj-y += libc_main.o

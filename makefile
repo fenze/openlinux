@@ -82,7 +82,6 @@ KBUILD_CFLAGS += -fno-PIE
 KBUILD_CFLAGS += -fstrict-aliasing
 
 KBUILD_CFLAGS += -fno-delete-null-pointer-checks
-KBUILD_CFLAGS += -flto
 
 # Disable overflow optimizations
 KBUILD_CFLAGS += -fno-strict-overflow
@@ -104,6 +103,7 @@ KBUILD_CFLAGS += -g -Og -fno-omit-frame-pointer
 else
 KBUILD_CFLAGS += -O2 -fdata-sections -ffunction-sections
 KBUILD_CFLAGS += -fno-unwind-tables -fomit-frame-pointer
+KBUILD_CFLAGS += -flto
 
 KBUILD_LDFLAGS += --gc-sections
 KBUILD_LDFLAGS += --build-id=none
