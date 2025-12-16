@@ -1,8 +1,9 @@
-#include <__thread.h> // for __thread_self
-#include <threads.h>  // for thrd_current, thrd_t
+#include <__thread.h>
+#include <threads.h>
+
+thread_local struct __thread_self __thread_self;
 
 thrd_t thrd_current(void)
 {
-	static struct __thread_self self = { 0 };
-	return &self;
+	return &__thread_self;
 }

@@ -1,6 +1,8 @@
 #include <errno.h>
 #include <libc.h>
 
+#include <stdio.h>
+
 unsigned long getauxval(unsigned long type)
 {
 	size_t *auxv = __libc.auxv;

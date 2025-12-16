@@ -16,6 +16,7 @@
 #define PT_NOTE	   4
 #define PT_SHLIB   5
 #define PT_PHDR	   6
+#define PT_TLS	   7
 #define PT_LOOS	   0x60000000
 #define PT_HIOS	   0x6fffffff
 #define PT_LOPROC  0x70000000
@@ -101,12 +102,13 @@
 #define SHT_LOUSER   0x80000000
 #define SHT_HIUSER   0xffffffff
 
-#define SHF_WRITE     0x1
-#define SHF_ALLOC     0x2
-#define SHF_EXECINSTR 0x4
+#define SHF_WRITE     0x00000001
+#define SHF_ALLOC     0x00000002
+#define SHF_EXECINSTR 0x00000004
+#define SHF_TLS	      0x00000400
 #define SHF_MASKPROC  0xf0000000
 
-#define SHN_UNDEF     0
+#define SHN_UNDEF     0x0000
 #define SHN_LORESERVE 0xff00
 #define SHN_LOPROC    0xff00
 #define SHN_HIPROC    0xff1f

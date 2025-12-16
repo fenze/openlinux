@@ -9,6 +9,9 @@
 #define __END_DECLS
 #endif
 
+#define ___STRING(x) #x
+#define __STRING(x)  ___STRING(x)
+
 #define __dead	     __attribute__((__noreturn__))
 #define __used	     __attribute__((__used__))
 #define __unused     __attribute__((__unused__))

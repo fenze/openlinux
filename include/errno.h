@@ -1,8 +1,7 @@
 #ifndef __ERRNO_H
 #define __ERRNO_H
 
-#define errno (*__errno())
-extern int *__errno(void) __attribute__((const));
+extern _Thread_local int errno;
 
 #define EPERM		1
 #define ENOENT		2

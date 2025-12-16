@@ -1,10 +1,9 @@
 lib-y := libc.a
 install-y := lib/libc.a
 
-cflags-y += -I $(src)/include
+cflags-y += -I $(src)/internal/include
 
 obj-y += aio/
-obj-y += arch/
 obj-y += arpa/
 obj-y += assert/
 obj-y += ctype/
@@ -49,4 +48,3 @@ obj-y += utsname/
 obj-y += wait/
 obj-y += wchar/
 obj-y += wctype/
-

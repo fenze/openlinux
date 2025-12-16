@@ -1,5 +1,0 @@
-obj-y += _start.o
-obj-y += fenv.o
-obj-y += longjmp.o
-obj-y += setjmp.o
-obj-y += sigsetjmp.o
