@@ -8,7 +8,7 @@ int fclose(FILE *stream)
 		return -1;
 
 	if (stream != stdin && stream != stdout && stream != stderr) {
-		if (close((__FILE(stream))->fd) == -1)
+		if (close(fileno(stream)) == -1)
 			return -1;
 	}
 

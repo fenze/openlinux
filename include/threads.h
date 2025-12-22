@@ -35,19 +35,21 @@ enum {
 };
 
 void call_once(once_flag *, void (*)(void));
+
 int cnd_broadcast(cnd_t *);
 void cnd_destroy(cnd_t *);
 int cnd_init(cnd_t *);
 int cnd_signal(cnd_t *);
-int cnd_timedwait(cnd_t *restrict, mtx_t *restrict,
-		  const struct timespec *restrict);
+int cnd_timedwait(cnd_t *restrict, mtx_t *restrict, const struct timespec *restrict);
 int cnd_wait(cnd_t *, mtx_t *);
+
 void mtx_destroy(mtx_t *);
 int mtx_init(mtx_t *, int);
 int mtx_lock(mtx_t *);
 int mtx_timedlock(mtx_t *restrict, const struct timespec *restrict);
 int mtx_trylock(mtx_t *);
 int mtx_unlock(mtx_t *);
+
 int thrd_create(thrd_t *, thrd_start_t, void *);
 thrd_t thrd_current(void);
 int thrd_detach(thrd_t);
@@ -56,6 +58,7 @@ _Noreturn void thrd_exit(int);
 int thrd_join(thrd_t, int *);
 int thrd_sleep(const struct timespec *, struct timespec *);
 void thrd_yield(void);
+
 int tss_create(tss_t *, tss_dtor_t);
 void tss_delete(tss_t);
 void *tss_get(tss_t);

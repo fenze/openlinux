@@ -1,11 +1,12 @@
-#include <stdio.h> // for fread, FILE, fgetc
+#include <stdio.h>
 
 int fgetc(FILE *stream)
 {
-	int c;
+	int r;
 
-	if (fread(&c, 1, 1, stream) < 0)
-		return -1;
+	flockfile(stream);
+	r = fgetc_unlocked(stream);
+	funlockfile(stream);
 
-	return c;
+	return r;
 }

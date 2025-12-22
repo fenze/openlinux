@@ -1,9 +1,12 @@
-#include <libc.h>  // for weak_reference
-#include <stdio.h> // for fgetc, getchar, getchar_unlocked, stdin
+#include <stdio.h>
 
 int getchar(void)
 {
-	return fgetc(stdin);
-}
+	int r;
 
-weak_reference(getchar, getchar_unlocked);
+	flockfile(stdin);
+	r = getchar_unlocked();
+	funlockfile(stdin);
+
+	return r;
+}

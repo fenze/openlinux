@@ -31,5 +31,6 @@ typedef __UINT32_TYPE__ mode_t;
 void *mmap(void *, size_t, int, int, int, off_t);
 int munmap(void *, size_t);
 int posix_madvise(void *, size_t, int);
+int mprotect(void *, size_t, int);
 
 #endif

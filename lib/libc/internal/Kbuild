@@ -1,5 +1,4 @@
-obj-y += init/
 obj-y += arch/
-
-obj-y += panic.o
-obj-y += syscall.o
+obj-y += init/
+obj-y += thrd/
+obj-y += util/

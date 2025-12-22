@@ -6,14 +6,31 @@
 #include <sys/mman.h>
 #include <syscall.h>
 
-#define ALIGN_DOWN(x, a) ((x) & ~((a) - 1))
-#define ALIGN_UP(x, a)	 (((x) + (a) - 1) & ~((a) - 1))
+#include <libc/tcb.h>
 
+#include <stdio.h>
+
+// TODO: remove this thing
 static struct tls __libc_tls = { 0 };
+
 static struct __thread_self __libc_thread;
 volatile int __libc_tid;
 
-void __init_tls(void)
+void __libc_tls_copy(void *dest)
+{
+	if (__libc_tls.size == 0)
+		return;
+
+	if (__libc_tls.length > 0) {
+		memcpy(dest, __libc_tls.data, __libc_tls.length);
+
+		memset((unsigned char *)dest + __libc_tls.length, 0, __libc_tls.size - __libc_tls.length);
+	} else {
+		memset(dest, 0, __libc_tls.size);
+	}
+}
+
+void __libc_init_tls(void)
 {
 	int r;
 	void *mem;
@@ -40,6 +57,7 @@ void __init_tls(void)
 		__libc_tls.length = tls_phdr->p_filesz;
 		__libc_tls.size = tls_phdr->p_memsz;
 		__libc_tls.align = tls_phdr->p_align;
+		__libc.tls.align = __libc_tls.align;
 	}
 
 	if (__libc_tls.size != 0) {
@@ -56,21 +74,22 @@ void __init_tls(void)
 		thrd = (struct __thread_self *)mem;
 		tls_mem = (unsigned char *)mem + sizeof(struct __thread_self);
 
-		if (tls_phdr->p_filesz > 0) {
-			memcpy(tls_mem, (void *)tls_phdr->p_vaddr, tls_phdr->p_filesz);
-			memset(tls_mem + tls_phdr->p_filesz, 0, tls_phdr->p_memsz - tls_phdr->p_filesz);
-		} else {
-			memset(tls_mem, 0, tls_phdr->p_memsz);
-		}
+		__libc_tls_copy(tls_mem);
 
-		r = syscall(arch_prctl, ARCH_SET_FS, mem + sizeof(struct __thread_self));
-		panic_if(r < 0, "arch_prctl(SET_FS) failed");
+		__libc.tls.base = tls_mem;
+		__libc.tls.size = __libc_tls.size;
 	} else {
-		__libc.tls.base = NULL;
 		thrd = &__libc_thread;
+		__libc.tls.base = &__libc_thread;
+		__libc.tls.size = 0;
 	}
 
 	r = syscall(set_tid_address, &__libc_tid);
 	panic_if(r < 0, "set_tid_address failed");
+
+	thrd->self = thrd;
 	thrd->tid = r;
+	thrd->dtv = NULL;
+
+	__libc_tcb_set((uint64_t)thrd);
 }

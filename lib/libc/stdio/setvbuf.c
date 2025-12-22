@@ -10,13 +10,13 @@ int setvbuf(FILE *restrict stream, char *restrict buf, int type, size_t size)
 	if (type != _IONBF && (buf == NULL || size == 0))
 		return -1;
 
-	if (__FILE(stream)->fd < 0)
+	if (stream->fd < 0)
 		return -1;
 
-	__FILE(stream)->buf = buf;
-	__FILE(stream)->buf_size = size;
-	__FILE(stream)->buf_pos = 0;
-	__FILE(stream)->type = type;
+	stream->buf = buf;
+	stream->buf_size = size;
+	stream->buf_pos = 0;
+	stream->type = type;
 
 	return 0;
 }

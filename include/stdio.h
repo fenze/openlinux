@@ -69,7 +69,6 @@ size_t fwrite(const void *restrict, size_t, size_t, FILE *restrict);
 int getc(FILE *);
 int getchar(void);
 int getc_unlocked(FILE *);
-int getchar_unlocked(void);
 ssize_t getdelim(char **restrict, size_t *restrict, int, FILE *restrict);
 ssize_t getline(char **restrict, size_t *restrict, FILE *restrict);
 FILE *open_memstream(char **, size_t *);
@@ -79,8 +78,6 @@ FILE *popen(const char *, const char *);
 int printf(const char *restrict, ...);
 int putc(int, FILE *);
 int putchar(int);
-int putc_unlocked(int, FILE *);
-int putchar_unlocked(int);
 int puts(const char *);
 int remove(const char *);
 int rename(const char *, const char *);
@@ -104,5 +101,21 @@ int vscanf(const char *restrict, va_list);
 int vsnprintf(char *restrict, size_t, const char *restrict, va_list);
 int vsprintf(char *restrict, const char *restrict, va_list);
 int vsscanf(const char *restrict, const char *restrict, va_list);
+
+int getc_unlocked(FILE *);
+int getchar_unlocked(void);
+int putc_unlocked(int, FILE *);
+int putchar_unlocked(int);
+void clearerr_unlocked(FILE *);
+int feof_unlocked(FILE *);
+int ferror_unlocked(FILE *);
+int fileno_unlocked(FILE *);
+int fflush_unlocked(FILE *);
+int fgetc_unlocked(FILE *);
+int fputc_unlocked(int, FILE *);
+size_t fread_unlocked(void *restrict, size_t, size_t, FILE *restrict);
+size_t fwrite_unlocked(const void *, size_t, size_t, FILE *);
+char *fgets_unlocked(char *, int, FILE *);
+int fputs_unlocked(const char *, FILE *);
 
 #endif

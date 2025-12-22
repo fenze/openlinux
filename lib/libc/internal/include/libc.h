@@ -1,26 +1,20 @@
 #ifndef __LIBC_LIBC_H
 #define __LIBC_LIBC_H
 
+#include <__stdio.h>
 #include <stdatomic.h>
 #include <stddef.h>
 #include <sys/cdefs.h>
 
 #define weak_reference(old, new) extern __typeof(old)((new)) __attribute__((__weak__, __alias__(#old)))
 
-struct tls {
-	struct tls *next;
-	void *data;
-	size_t size;
-	size_t align;
-	size_t length;
-	size_t offset;
-};
-
 struct libc {
-	size_t auxv[32];
+	size_t *auxv;
+
 	struct {
 		void *base;
 		size_t size;
+		size_t align;
 	} tls;
 
 	enum {
@@ -32,6 +26,10 @@ struct libc {
 		volatile atomic_flag malloc;
 		volatile atomic_flag environ;
 	} lock;
+
+	struct __FILE stdin;
+	struct __FILE stdout;
+	struct __FILE stderr;
 };
 
 extern struct libc __libc;

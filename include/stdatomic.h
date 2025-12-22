@@ -1,7 +1,6 @@
 #ifndef __STDATOMIC_H
 #define __STDATOMIC_H
 
-#include <stdatomic.h>
 #define atomic_bool	      _Atomic _Bool
 #define atomic_char	      _Atomic char
 #define atomic_schar	      _Atomic signed char
@@ -54,117 +53,89 @@ typedef enum {
 	memory_order_seq_cst = __ATOMIC_SEQ_CST
 } memory_order;
 
-#define atomic_flag_clear_explicit(__ATOMIC_FLAG, __MEMORY_ORDER) \
-	__atomic_clear((__ATOMIC_FLAG), (__MEMORY_ORDER))
+#define atomic_flag_clear_explicit(__ATOMIC_FLAG, __MEMORY_ORDER) __atomic_clear((__ATOMIC_FLAG), (__MEMORY_ORDER))
 
-#define atomic_flag_clear(__ATOMIC_FLAG) \
-	atomic_flag_clear_explicit((__ATOMIC_FLAG), memory_order_seq_cst)
+#define atomic_flag_clear(__ATOMIC_FLAG) atomic_flag_clear_explicit((__ATOMIC_FLAG), memory_order_seq_cst)
 
 #define atomic_flag_test_and_set_explicit(__ATOMIC_FLAG, __MEMORY_ORDER) \
 	__atomic_test_and_set((__ATOMIC_FLAG), (__MEMORY_ORDER))
 
-#define atomic_flag_test_and_set(__ATOMIC_FLAG) \
-	atomic_flag_test_and_set_explicit((__ATOMIC_FLAG), memory_order_seq_cst)
+#define atomic_flag_test_and_set(__ATOMIC_FLAG) atomic_flag_test_and_set_explicit((__ATOMIC_FLAG), memory_order_seq_cst)
 
-#define atomic_signal_fence(__MEMORY_ORDER) \
-	__atomic_signal_fence(__MEMORY_ORDER)
+#define atomic_signal_fence(__MEMORY_ORDER) __atomic_signal_fence(__MEMORY_ORDER)
 
-#define atomic_thread_fence(__MEMORY_ORDER) \
-	__atomic_thread_fence(__MEMORY_ORDER)
+#define atomic_thread_fence(__MEMORY_ORDER) __atomic_thread_fence(__MEMORY_ORDER)
 
-#define atomic_compare_exchange_strong_explicit(__ATOMIC_OBJECT_PTR,      \
-						__VALUE_PTR, __DESIRED,   \
-						__SUCCESS_MEMORDER,       \
-						__FAILURE_MEMORDER)       \
-	__atomic_compare_exchange_n((__ATOMIC_OBJECT_PTR), (__VALUE_PTR), \
-				    (__DESIRED), 0, (__SUCCESS_MEMORDER), \
+#define atomic_compare_exchange_strong_explicit(__ATOMIC_OBJECT_PTR, __VALUE_PTR, __DESIRED, __SUCCESS_MEMORDER, \
+						__FAILURE_MEMORDER)                                              \
+	__atomic_compare_exchange_n((__ATOMIC_OBJECT_PTR), (__VALUE_PTR), (__DESIRED), 0, (__SUCCESS_MEMORDER),  \
 				    (__FAILURE_MEMORDER))
 
-#define atomic_compare_exchange_strong(__ATOMIC_OBJECT_PTR, __VALUE_PTR,    \
-				       __DESIRED)                           \
-	atomic_compare_exchange_strong_explicit((__ATOMIC_OBJECT_PTR),      \
-						(__VALUE_PTR), (__DESIRED), \
-						memory_order_seq_cst,       \
-						memory_order_seq_cst)
+#define atomic_compare_exchange_strong(__ATOMIC_OBJECT_PTR, __VALUE_PTR, __DESIRED)                \
+	atomic_compare_exchange_strong_explicit((__ATOMIC_OBJECT_PTR), (__VALUE_PTR), (__DESIRED), \
+						memory_order_seq_cst, memory_order_seq_cst)
 
-#define atomic_compare_exchange_weak_explicit(__ATOMIC_OBJECT_PTR,        \
-					      __VALUE_PTR, __DESIRED,     \
-					      __SUCCESS_MEMORDER,         \
-					      __FAILURE_MEMORDER)         \
-	__atomic_compare_exchange_n((__ATOMIC_OBJECT_PTR), (__VALUE_PTR), \
-				    (__DESIRED), 1, (__SUCCESS_MEMORDER), \
+#define atomic_compare_exchange_weak_explicit(__ATOMIC_OBJECT_PTR, __VALUE_PTR, __DESIRED, __SUCCESS_MEMORDER,  \
+					      __FAILURE_MEMORDER)                                               \
+	__atomic_compare_exchange_n((__ATOMIC_OBJECT_PTR), (__VALUE_PTR), (__DESIRED), 1, (__SUCCESS_MEMORDER), \
 				    (__FAILURE_MEMORDER))
 
-#define atomic_compare_exchange_weak(__ATOMIC_OBJECT_PTR, __VALUE_PTR,    \
-				     __DESIRED)                           \
-	atomic_compare_exchange_weak_explicit((__ATOMIC_OBJECT_PTR),      \
-					      (__VALUE_PTR), (__DESIRED), \
-					      memory_order_seq_cst,       \
+#define atomic_compare_exchange_weak(__ATOMIC_OBJECT_PTR, __VALUE_PTR, __DESIRED)                                      \
+	atomic_compare_exchange_weak_explicit((__ATOMIC_OBJECT_PTR), (__VALUE_PTR), (__DESIRED), memory_order_seq_cst, \
 					      memory_order_seq_cst)
 
-#define atomic_exchange_explicit(__ATOMIC_OBJECT_PTR, __DESIRED, \
-				 __MEMORY_ORDER)                 \
-	__atomic_exchange_n((__ATOMIC_OBJECT_PTR), (__DESIRED),  \
-			    (__MEMORY_ORDER))
+#define atomic_exchange_explicit(__ATOMIC_OBJECT_PTR, __DESIRED, __MEMORY_ORDER) \
+	__atomic_exchange_n((__ATOMIC_OBJECT_PTR), (__DESIRED), (__MEMORY_ORDER))
 
-#define atomic_exchange(__ATOMIC_OBJECT_PTR, __DESIRED)              \
-	atomic_exchange_explicit((__ATOMIC_OBJECT_PTR), (__DESIRED), \
-				 memory_order_seq_cst)
+#define atomic_exchange(__ATOMIC_OBJECT_PTR, __DESIRED) \
+	atomic_exchange_explicit((__ATOMIC_OBJECT_PTR), (__DESIRED), memory_order_seq_cst)
 
 #define atomic_fetch_add_explicit(__ATOMIC_OBJECT_PTR, __ARG, __MEMORY_ORDER) \
 	__atomic_fetch_add((__ATOMIC_OBJECT_PTR), (__ARG), (__MEMORY_ORDER))
 
-#define atomic_fetch_add(__ATOMIC_OBJECT_PTR, __ARG)              \
-	atomic_fetch_add_explicit((__ATOMIC_OBJECT_PTR), (__ARG), \
-				  memory_order_seq_cst)
+#define atomic_fetch_add(__ATOMIC_OBJECT_PTR, __ARG) \
+	atomic_fetch_add_explicit((__ATOMIC_OBJECT_PTR), (__ARG), memory_order_seq_cst)
 
 #define atomic_fetch_and_explicit(__ATOMIC_OBJECT_PTR, __ARG, __MEMORY_ORDER) \
 	__atomic_fetch_and((__ATOMIC_OBJECT_PTR), (__ARG), (__MEMORY_ORDER))
 
-#define atomic_fetch_and(__ATOMIC_OBJECT_PTR, __ARG)              \
-	atomic_fetch_and_explicit((__ATOMIC_OBJECT_PTR), (__ARG), \
-				  memory_order_seq_cst)
+#define atomic_fetch_and(__ATOMIC_OBJECT_PTR, __ARG) \
+	atomic_fetch_and_explicit((__ATOMIC_OBJECT_PTR), (__ARG), memory_order_seq_cst)
 
 #define atomic_fetch_or_explicit(__ATOMIC_OBJECT_PTR, __ARG, __MEMORY_ORDER) \
 	__atomic_fetch_or((__ATOMIC_OBJECT_PTR), (__ARG), (__MEMORY_ORDER))
 
-#define atomic_fetch_or(__ATOMIC_OBJECT_PTR, __ARG)              \
-	atomic_fetch_or_explicit((__ATOMIC_OBJECT_PTR), (__ARG), \
-				 memory_order_seq_cst)
+#define atomic_fetch_or(__ATOMIC_OBJECT_PTR, __ARG) \
+	atomic_fetch_or_explicit((__ATOMIC_OBJECT_PTR), (__ARG), memory_order_seq_cst)
 
 #define atomic_fetch_sub_explicit(__ATOMIC_OBJECT_PTR, __ARG, __MEMORY_ORDER) \
 	__atomic_fetch_sub((__ATOMIC_OBJECT_PTR), (__ARG), (__MEMORY_ORDER))
 
-#define atomic_fetch_sub(__ATOMIC_OBJECT_PTR, __ARG)              \
-	atomic_fetch_sub_explicit((__ATOMIC_OBJECT_PTR), (__ARG), \
-				  memory_order_seq_cst)
+#define atomic_fetch_sub(__ATOMIC_OBJECT_PTR, __ARG) \
+	atomic_fetch_sub_explicit((__ATOMIC_OBJECT_PTR), (__ARG), memory_order_seq_cst)
 
 #define atomic_fetch_xor_explicit(__ATOMIC_OBJECT_PTR, __ARG, __MEMORY_ORDER) \
 	__atomic_fetch_xor((__ATOMIC_OBJECT_PTR), (__ARG), (__MEMORY_ORDER))
 
-#define atomic_fetch_xor(__ATOMIC_OBJECT_PTR, __ARG)              \
-	atomic_fetch_xor_explicit((__ATOMIC_OBJECT_PTR), (__ARG), \
-				  memory_order_seq_cst)
+#define atomic_fetch_xor(__ATOMIC_OBJECT_PTR, __ARG) \
+	atomic_fetch_xor_explicit((__ATOMIC_OBJECT_PTR), (__ARG), memory_order_seq_cst)
 
 #define atomic_load_explicit(__ATOMIC_OBJECT_PTR, __MEMORY_ORDER) \
 	__atomic_load_n((__ATOMIC_OBJECT_PTR), (__MEMORY_ORDER))
 
-#define atomic_load(__ATOMIC_OBJECT_PTR) \
-	atomic_load_explicit((__ATOMIC_OBJECT_PTR), memory_order_seq_cst)
+#define atomic_load(__ATOMIC_OBJECT_PTR) atomic_load_explicit((__ATOMIC_OBJECT_PTR), memory_order_seq_cst)
 
 #define atomic_store_explicit(__ATOMIC_OBJECT_PTR, __DESIRED, __MEMORY_ORDER) \
 	__atomic_store_n((__ATOMIC_OBJECT_PTR), (__DESIRED), (__MEMORY_ORDER))
 
-#define atomic_store(__ATOMIC_OBJECT_PTR, __DESIRED)              \
-	atomic_store_explicit((__ATOMIC_OBJECT_PTR), (__DESIRED), \
-			      memory_order_seq_cst)
+#define atomic_store(__ATOMIC_OBJECT_PTR, __DESIRED) \
+	atomic_store_explicit((__ATOMIC_OBJECT_PTR), (__DESIRED), memory_order_seq_cst)
 
 #define atomic_init(__ATOMIC_OBJECT_PTR, __DESIRED) \
 	__atomic_store_n((__ATOMIC_OBJECT_PTR), (__DESIRED), __ATOMIC_RELAXED)
 
-#define atomic_is_lock_free(__ATOMIC_OBJECT_PTR)              \
-	__atomic_is_lock_free(sizeof(*(__ATOMIC_OBJECT_PTR)), \
-			      (__ATOMIC_OBJECT_PTR))
+#define atomic_is_lock_free(__ATOMIC_OBJECT_PTR) \
+	__atomic_is_lock_free(sizeof(*(__ATOMIC_OBJECT_PTR)), (__ATOMIC_OBJECT_PTR))
 
 #define ATOMIC_FLAG_INIT { 0 }
 

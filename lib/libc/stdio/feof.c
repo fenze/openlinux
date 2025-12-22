@@ -1,12 +1,13 @@
-#include "stddef.h" // for NULL
-
-#include <__stdio.h> // for __FILE
-#include <stdio.h>   // for FILE, feof
+#include <__stdio.h>
+#include <stdio.h>
 
 int feof(FILE *stream)
 {
-	if (stream == NULL)
-		return 0;
+	int r;
 
-	return (__FILE(stream))->eof;
+	flockfile(stream);
+	r = feof_unlocked(stream);
+	funlockfile(stream);
+
+	return r;
 }

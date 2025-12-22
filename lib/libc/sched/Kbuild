@@ -1,0 +1,8 @@
+obj-y += sched_get_priority_max.o
+obj-y += sched_get_priority_min.o
+obj-y += sched_getparam.o
+obj-y += sched_getscheduler.o
+obj-y += sched_rr_get_interval.o
+obj-y += sched_setparam.o
+obj-y += sched_setscheduler.o
+obj-y += sched_yield.o

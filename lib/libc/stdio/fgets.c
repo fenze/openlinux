@@ -1,11 +1,12 @@
-#include "stddef.h" // for NULL
-
-#include <libc.h>  // for weak_reference
-#include <stdio.h> // for fread, FILE, fgets
+#include <stdio.h>
 
 char *fgets(char *restrict s, int n, FILE *restrict stream)
 {
-	return fread(s, 1, n, stream) ? s : NULL;
-}
+	char *r;
 
-weak_reference(fgets, fgets_unlocked);
+	flockfile(stream);
+	r = fgets_unlocked(s, n, stream);
+	funlockfile(stream);
+
+	return r;
+}

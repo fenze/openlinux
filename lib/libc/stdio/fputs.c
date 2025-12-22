@@ -1,7 +1,12 @@
-#include <stdio.h>  // for fwrite, EOF, FILE, fputs
-#include <string.h> // for strlen
+#include <stdio.h>
 
 int fputs(const char *restrict s, FILE *restrict stream)
 {
-	return fwrite(s, 1, strlen(s), stream) == strlen(s) ? 0 : EOF;
+	int r;
+
+	flockfile(stream);
+	r = fputs_unlocked(s, stream);
+	funlockfile(stream);
+
+	return r;
 }

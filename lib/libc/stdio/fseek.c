@@ -7,24 +7,21 @@
 
 int fseek(FILE *stream, long offset, int whence)
 {
-	if (stream == NULL || __FILE(stream)->fd < 0)
+	if (stream == NULL || stream->fd < 0)
 		return -1;
 
-	LIBC_LOCK(__FILE(stream)->lock);
+	stream->buf_pos = 0;
+	stream->buf_len = 0;
+	stream->flags &= ~_IO_EOF;
 
-	__FILE(stream)->buf_pos = 0;
-	__FILE(stream)->buf_len = 0;
-	__FILE(stream)->flags &= ~_IO_EOF;
-
-	off_t result = lseek(__FILE(stream)->fd, offset, whence);
-
-	LIBC_UNLOCK(__FILE(stream)->lock);
+	off_t result = lseek(stream->fd, offset, whence);
 
 	if (result == (off_t)-1) {
-		__FILE(stream)->flags |= _IO_ERR;
+		stream->flags |= _IO_ERR;
 		return -1;
 	}
 
-	__FILE(stream)->offset = result;
+	stream->offset = result;
+
 	return 0;
 }

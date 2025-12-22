@@ -8,10 +8,6 @@
 #include <sys/cdefs.h>
 #include <unistd.h> // for close
 
-__weak void __stdio_cleanup(void)
-{
-}
-
 FILE *fopen(const char *restrict pathname, const char *restrict mode)
 {
 	int fd, flags, _mode;
@@ -42,15 +38,15 @@ FILE *fopen(const char *restrict pathname, const char *restrict mode)
 	if (stream == NULL)
 		return NULL;
 
-	__FILE(stream)->fd = fd;
-	__FILE(stream)->buf_size = BUFSIZ;
-	__FILE(stream)->flags = flags;
-	__FILE(stream)->type = _IOLBF;
-	atomic_flag_clear(&__FILE(stream)->lock);
+	stream->fd = fd;
+	stream->buf_size = BUFSIZ;
+	stream->flags = flags;
+	stream->type = _IOLBF;
+	atomic_flag_clear(&stream->lock);
 
-	__FILE(stream)->buf = malloc(BUFSIZ);
+	stream->buf = malloc(BUFSIZ);
 
-	if (__FILE(stream)->buf == NULL) {
+	if (stream->buf == NULL) {
 		close(fd);
 		free(stream);
 		return NULL;

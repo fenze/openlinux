@@ -1,12 +1,12 @@
-#include "__stdio.h" // for __FILE, _IO_ERR
-#include "stddef.h"  // for NULL
-
-#include <stdio.h> // for FILE, ferror
+#include <stdio.h>
 
 int ferror(FILE *stream)
 {
-	if (stream == NULL)
-		return 0;
+	int r;
 
-	return (__FILE(stream)->flags & _IO_ERR) != 0;
+	flockfile(stream);
+	r = ferror_unlocked(stream);
+	funlockfile(stream);
+
+	return r;
 }

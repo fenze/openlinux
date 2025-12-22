@@ -1,9 +1,0 @@
-obj-y += mq_close.o
-obj-y += mq_getattr.o
-obj-y += mq_notify.o
-obj-y += mq_open.o
-obj-y += mq_receive.o
-obj-y += mq_setattr.o
-obj-y += mq_timedreceive.o
-obj-y += mq_timedsend.o
-obj-y += mq_unlink.o

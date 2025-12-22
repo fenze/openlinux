@@ -6,5 +6,5 @@ int pclose(FILE *stream)
 {
 	int stat;
 	fclose(stream);
-	return (waitpid(__FILE(stream)->pid, &stat, 0) < 0) ? -1 : stat;
+	return (waitpid(stream->pid, &stat, 0) < 0) ? -1 : stat;
 }

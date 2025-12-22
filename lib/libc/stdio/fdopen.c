@@ -4,33 +4,30 @@
 #include <sys/cdefs.h>
 #include <unistd.h> // for lseek, off_t
 
-__weak void __stdio_cleanup(void)
-{
-}
-
 FILE *fdopen(int fildes, const char *mode)
 {
-	FILE *stream;
+	struct __FILE *stream;
 
 	if (mode == NULL || (mode[0] != 'r' && mode[0] != 'w' && mode[0] != 'a')) {
 		return NULL;
 	}
 
-	stream = calloc(1, sizeof(FILE));
+	stream = calloc(1, sizeof(struct __FILE));
 	if (stream == NULL)
 		return NULL;
 
-	__FILE(stream)->fd = fildes;
-	atomic_flag_clear(&__FILE(stream)->lock);
-	if (mode[0] == 'r') {
-		__FILE(stream)->type = _IONBF;
-	} else if (mode[0] == 'w') {
-		__FILE(stream)->type = _IOLBF;
-	} else if (mode[0] == 'a') {
-		__FILE(stream)->type = _IONBF;
+	stream->fd = fildes;
+	atomic_flag_clear(&stream->lock);
 
-		off_t offset = lseek(fildes, 0, SEEK_END);
-		if (offset == (off_t)-1) {
+	if (mode[0] == 'r') {
+		stream->type = _IONBF;
+	} else if (mode[0] == 'w') {
+		stream->type = _IOLBF;
+	} else if (mode[0] == 'a') {
+		off_t off;
+		stream->type = _IONBF;
+		off = lseek(fildes, 0, SEEK_END);
+		if (off == (off_t)-1) {
 			free(stream);
 			return NULL;
 		}

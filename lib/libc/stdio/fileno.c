@@ -1,20 +1,12 @@
-#include <__stdio.h> // for __FILE
-#include <atomic.h>  // for LIBC_LOCK, LIBC_UNLOCK
-#include <errno.h>   // for EBADF, errno
-#include <stdio.h>   // for FILE, fileno
+#include <stdio.h>
 
 int fileno(FILE *stream)
 {
-	int fd;
+	int r;
 
-	LIBC_LOCK(__FILE(stream)->lock);
-	fd = __FILE(stream)->fd;
-	LIBC_UNLOCK(__FILE(stream)->lock);
+	flockfile(stream);
+	r = fileno_unlocked(stream);
+	funlockfile(stream);
 
-	if (fd < 0) {
-		errno = EBADF;
-		return -1;
-	}
-
-	return fd;
+	return r;
 }

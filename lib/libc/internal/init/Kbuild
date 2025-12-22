@@ -1,3 +1,4 @@
 obj-y += init.o
+obj-y += io.o
 obj-y += tls.o
 obj-y += vdso.o

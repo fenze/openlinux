@@ -1,13 +1,13 @@
-#include <ctype.h>  // for isdigit
-#include <errno.h>  // for EINVAL, errno
-#include <math.h>   // for isinf, isnan
-#include <stdarg.h> // for va_arg
-#include <stddef.h> // for NULL, ptrdiff_t
+#include <ctype.h>
+#include <errno.h>
+#include <math.h>
+#include <stdarg.h>
+#include <stddef.h>
 #include <stdint.h>
-#include <stdint.h>    // for uintptr_t, intmax_t, uintmax_t
-#include <stdio.h>     // for fwrite, fputc, vfprintf, FILE, va_list
-#include <string.h>    // for memmove, strlcpy, strlen
-#include <sys/types.h> // for size_t, ssize_t
+#include <stdint.h>
+#include <stdio.h>
+#include <string.h>
+#include <sys/types.h>
 
 static double __frexp(double x, int *e)
 {
@@ -35,8 +35,7 @@ static double __frexp(double x, int *e)
 	return y.d;
 }
 
-extern char *dtoa(double, int mode, int ndigits, int *decpt, int *sign,
-		  char **rve);
+extern char *dtoa(double, int mode, int ndigits, int *decpt, int *sign, char **rve);
 extern void freedtoa(char *s);
 
 static int utoa_base(unsigned long long v, char *s, int b, int p, int u)
@@ -65,12 +64,14 @@ int vfprintf(FILE *restrict stream, const char *restrict format, va_list ap)
 	const char *ptr;
 	int total_printed;
 
+	flockfile(stream);
+
 	ptr = format;
 	total_printed = 0;
 
 	while (*ptr != '\0') {
 		if (*ptr != '%') {
-			fputc(*ptr, stream);
+			fputc_unlocked(*ptr, stream);
 			total_printed++;
 			ptr++;
 		} else {
@@ -104,8 +105,7 @@ int vfprintf(FILE *restrict stream, const char *restrict format, va_list ap)
 				LENGTH_CAPL
 			} length = LENGTH_NONE;
 
-			while (*ptr == '-' || *ptr == '+' || *ptr == ' ' ||
-			       *ptr == '0' || *ptr == '#') {
+			while (*ptr == '-' || *ptr == '+' || *ptr == ' ' || *ptr == '0' || *ptr == '#') {
 				if (*ptr == '-')
 					flags |= FLAG_MINUS;
 				else if (*ptr == '+')
@@ -143,8 +143,7 @@ int vfprintf(FILE *restrict stream, const char *restrict format, va_list ap)
 				} else {
 					precision = 0;
 					while (isdigit(*ptr)) {
-						precision = precision * 10 +
-							    (*ptr - '0');
+						precision = precision * 10 + (*ptr - '0');
 						ptr++;
 					}
 				}
@@ -196,7 +195,7 @@ int vfprintf(FILE *restrict stream, const char *restrict format, va_list ap)
 					val = va_arg(ap, int);
 					break;
 				case LENGTH_HH:
-					val = (signed char)va_arg(ap, int);
+					val = (unsigned char)va_arg(ap, int);
 					break;
 				case LENGTH_H:
 					val = (short)va_arg(ap, int);
@@ -218,6 +217,7 @@ int vfprintf(FILE *restrict stream, const char *restrict format, va_list ap)
 					break;
 				case LENGTH_CAPL:
 					errno = EINVAL;
+					funlockfile(stream);
 					return -1;
 				}
 
@@ -261,12 +261,10 @@ int vfprintf(FILE *restrict stream, const char *restrict format, va_list ap)
 					val = va_arg(ap, unsigned int);
 					break;
 				case LENGTH_HH:
-					val = (unsigned char)va_arg(
-						ap, unsigned int);
+					val = (unsigned char)va_arg(ap, unsigned int);
 					break;
 				case LENGTH_H:
-					val = (unsigned short)va_arg(
-						ap, unsigned int);
+					val = (unsigned short)va_arg(ap, unsigned int);
 					break;
 				case LENGTH_L:
 					val = va_arg(ap, unsigned long);
@@ -285,24 +283,20 @@ int vfprintf(FILE *restrict stream, const char *restrict format, va_list ap)
 					break;
 				case LENGTH_CAPL:
 					errno = EINVAL;
+					funlockfile(stream);
 					return -1;
 				}
 
 				if (fmt_char == 'o') {
-					l = utoa_base(val, buf, 8, precision,
-						      0);
+					l = utoa_base(val, buf, 8, precision, 0);
 				} else if (fmt_char == 'u') {
-					l = utoa_base(val, buf, 10, precision,
-						      0);
+					l = utoa_base(val, buf, 10, precision, 0);
 				} else if (fmt_char == 'x') {
-					l = utoa_base(val, buf, 16, precision,
-						      0);
+					l = utoa_base(val, buf, 16, precision, 0);
 				} else if (fmt_char == 'X') {
-					l = utoa_base(val, buf, 16, precision,
-						      1);
+					l = utoa_base(val, buf, 16, precision, 1);
 				} else {
-					l = utoa_base(val, buf, 10, precision,
-						      0);
+					l = utoa_base(val, buf, 10, precision, 0);
 				}
 
 				s = buf;
@@ -350,11 +344,7 @@ int vfprintf(FILE *restrict stream, const char *restrict format, va_list ap)
 				int pos = 0;
 
 				if (isnan(val)) {
-					strlcpy(buf,
-						(*ptr == 'F' || *ptr == 'E' ||
-						 *ptr == 'G') ?
-							"NAN" :
-							"nan",
+					strlcpy(buf, (*ptr == 'F' || *ptr == 'E' || *ptr == 'G') ? "NAN" : "nan",
 						sizeof(buf));
 					l = 3;
 					break;
@@ -367,11 +357,7 @@ int vfprintf(FILE *restrict stream, const char *restrict format, va_list ap)
 					} else if (flags & FLAG_SPACE) {
 						buf[pos++] = ' ';
 					}
-					strlcpy(buf + pos,
-						(*ptr == 'F' || *ptr == 'E' ||
-						 *ptr == 'G') ?
-							"INF" :
-							"inf",
+					strlcpy(buf + pos, (*ptr == 'F' || *ptr == 'E' || *ptr == 'G') ? "INF" : "inf",
 						sizeof(buf) - pos);
 					l = pos + 3;
 					break;
@@ -391,58 +377,40 @@ int vfprintf(FILE *restrict stream, const char *restrict format, va_list ap)
 				case 'F': {
 					int decpt, sign;
 					char *rve;
-					char *digits = dtoa(val, 3, precision,
-							    &decpt, &sign,
-							    &rve);
+					char *digits = dtoa(val, 3, precision, &decpt, &sign, &rve);
 
 					if (sign && val != 0.0) {
 						buf[pos++] = '-';
 					}
 
-					if (decpt <= 1 && digits[0] == '0' &&
-					    digits[1] == '\0') {
+					if (decpt <= 1 && digits[0] == '0' && digits[1] == '\0') {
 						buf[pos++] = '0';
 						if (precision > 0) {
 							buf[pos++] = '.';
-							for (int i = 0;
-							     i < precision;
-							     i++) {
-								buf[pos++] =
-									'0';
+							for (int i = 0; i < precision; i++) {
+								buf[pos++] = '0';
 							}
 						}
 					} else if (decpt <= 0) {
 						buf[pos++] = '0';
 						if (precision > 0) {
 							buf[pos++] = '.';
-							for (int i = 0;
-							     i < -decpt &&
-							     i < precision;
-							     i++) {
-								buf[pos++] =
-									'0';
+							for (int i = 0; i < -decpt && i < precision; i++) {
+								buf[pos++] = '0';
 							}
-							int remaining =
-								precision +
-								decpt;
+							int remaining = precision + decpt;
 							char *d = digits;
-							while (*d &&
-							       remaining-- >
-								       0) {
-								buf[pos++] =
-									*d++;
+							while (*d && remaining-- > 0) {
+								buf[pos++] = *d++;
 							}
-							while (remaining-- >
-							       0) {
-								buf[pos++] =
-									'0';
+							while (remaining-- > 0) {
+								buf[pos++] = '0';
 							}
 						}
 					} else {
 						char *d = digits;
 						int digits_used = 0;
-						for (int i = 0; i < decpt && *d;
-						     i++) {
+						for (int i = 0; i < decpt && *d; i++) {
 							buf[pos++] = *d++;
 							digits_used++;
 						}
@@ -452,15 +420,11 @@ int vfprintf(FILE *restrict stream, const char *restrict format, va_list ap)
 						}
 						if (precision > 0) {
 							buf[pos++] = '.';
-							for (int i = 0;
-							     i < precision;
-							     i++) {
+							for (int i = 0; i < precision; i++) {
 								if (*d) {
-									buf[pos++] =
-										*d++;
+									buf[pos++] = *d++;
 								} else {
-									buf[pos++] =
-										'0';
+									buf[pos++] = '0';
 								}
 							}
 						}
@@ -475,9 +439,7 @@ int vfprintf(FILE *restrict stream, const char *restrict format, va_list ap)
 				case 'E': {
 					int decpt, sign;
 					char *rve;
-					char *digits =
-						dtoa(val, 2, precision + 1,
-						     &decpt, &sign, &rve);
+					char *digits = dtoa(val, 2, precision + 1, &decpt, &sign, &rve);
 
 					if (sign && val != 0.0) {
 						buf[pos++] = '-';
@@ -491,14 +453,11 @@ int vfprintf(FILE *restrict stream, const char *restrict format, va_list ap)
 
 					if (precision > 0) {
 						buf[pos++] = '.';
-						for (int i = 0; i < precision;
-						     i++) {
+						for (int i = 0; i < precision; i++) {
 							if (*digits) {
-								buf[pos++] =
-									*digits++;
+								buf[pos++] = *digits++;
 							} else {
-								buf[pos++] =
-									'0';
+								buf[pos++] = '0';
 							}
 						}
 					}
@@ -510,8 +469,7 @@ int vfprintf(FILE *restrict stream, const char *restrict format, va_list ap)
 						exp = -exp;
 					if (exp < 10)
 						buf[pos++] = '0';
-					pos += utoa_base(exp, buf + pos, 10, 0,
-							 0);
+					pos += utoa_base(exp, buf + pos, 10, 0, 0);
 
 					buf[pos] = '\0';
 					l = pos;
@@ -522,9 +480,7 @@ int vfprintf(FILE *restrict stream, const char *restrict format, va_list ap)
 				case 'G': {
 					int decpt, sign;
 					char *rve;
-					char *digits = dtoa(val, 2, precision,
-							    &decpt, &sign,
-							    &rve);
+					char *digits = dtoa(val, 2, precision, &decpt, &sign, &rve);
 
 					if (sign && val != 0.0) {
 						buf[pos++] = '-';
@@ -538,63 +494,44 @@ int vfprintf(FILE *restrict stream, const char *restrict format, va_list ap)
 						if (*digits) {
 							buf[pos++] = '.';
 							while (*digits) {
-								buf[pos++] =
-									*digits++;
+								buf[pos++] = *digits++;
 							}
 						}
-						buf[pos++] = (*ptr == 'G') ?
-								     'E' :
-								     'e';
-						buf[pos++] = (exp >= 0) ? '+' :
-									  '-';
+						buf[pos++] = (*ptr == 'G') ? 'E' : 'e';
+						buf[pos++] = (exp >= 0) ? '+' : '-';
 						if (exp < 0)
 							exp = -exp;
 						if (exp < 10)
 							buf[pos++] = '0';
-						pos += utoa_base(exp, buf + pos,
-								 10, 0, 0);
+						pos += utoa_base(exp, buf + pos, 10, 0, 0);
 					} else {
 						if (decpt <= 0) {
 							buf[pos++] = '0';
-							if (*digits &&
-							    *digits != '0') {
-								buf[pos++] =
-									'.';
-								for (int i = 0;
-								     i < -decpt;
-								     i++) {
-									buf[pos++] =
-										'0';
+							if (*digits && *digits != '0') {
+								buf[pos++] = '.';
+								for (int i = 0; i < -decpt; i++) {
+									buf[pos++] = '0';
 								}
-								char *d =
-									digits;
-								while (*d &&
-								       *d != '0') {
-									buf[pos++] =
-										*d++;
+								char *d = digits;
+								while (*d && *d != '0') {
+									buf[pos++] = *d++;
 								}
 							}
 						} else {
 							char *d = digits;
-							for (int i = 0;
-							     i < decpt && *d;
-							     i++) {
-								buf[pos++] =
-									*d++;
+							for (int i = 0; i < decpt && *d; i++) {
+								buf[pos++] = *d++;
 							}
 							if (*d) {
-								buf[pos++] =
-									'.';
+								buf[pos++] = '.';
 								while (*d) {
-									buf[pos++] =
-										*d++;
+									buf[pos++] = *d++;
 								}
 							}
 						}
 					}
 
-					while (pos > 1 && buf[pos - 1] == '0' &&
-					       pos > 2 && buf[pos - 2] != 'e' &&
+					while (pos > 1 && buf[pos - 1] == '0' && pos > 2 && buf[pos - 2] != 'e' &&
 					       buf[pos - 2] != 'E') {
 						pos--;
 					}
@@ -634,9 +571,7 @@ int vfprintf(FILE *restrict stream, const char *restrict format, va_list ap)
 				}
 
 				if (val == 0.0) {
-					strlcpy(buf + pos,
-						upper ? "0X0P+0" : "0x0p+0",
-						sizeof(buf) - pos);
+					strlcpy(buf + pos, upper ? "0X0P+0" : "0x0p+0", sizeof(buf) - pos);
 					l = pos + 6;
 					break;
 				}
@@ -662,15 +597,9 @@ int vfprintf(FILE *restrict stream, const char *restrict format, va_list ap)
 						int digit = (int)mant;
 						if (digit > 15)
 							digit = 15;
-						buf[pos++] =
-							(digit < 10) ?
-								('0' + digit) :
-								(upper ? ('A' +
-									  digit -
-									  10) :
-									 ('a' +
-									  digit -
-									  10));
+						buf[pos++] = (digit < 10) ?
+								     ('0' + digit) :
+								     (upper ? ('A' + digit - 10) : ('a' + digit - 10));
 						mant -= digit;
 					}
 
@@ -728,9 +657,7 @@ int vfprintf(FILE *restrict stream, const char *restrict format, va_list ap)
 			case 'p': {
 				void *ptr_val = va_arg(ap, void *);
 				uintptr_t uptr = (uintptr_t)ptr_val;
-				int len = utoa_base((unsigned long long)uptr,
-						    buf + 2, 16,
-						    sizeof(void *) * 2, 0);
+				int len = utoa_base((unsigned long long)uptr, buf + 2, 16, sizeof(void *) * 2, 0);
 				buf[0] = '0';
 				buf[1] = 'x';
 				buf[len + 2] = '\0';
@@ -755,6 +682,7 @@ int vfprintf(FILE *restrict stream, const char *restrict format, va_list ap)
 			}
 			default:
 				errno = EINVAL;
+				funlockfile(stream);
 				return -1;
 			}
 
@@ -767,46 +695,39 @@ int vfprintf(FILE *restrict stream, const char *restrict format, va_list ap)
 			char format_char = *(ptr - 1);
 			char pad_char = ' ';
 			if ((flags & FLAG_ZERO) && !(flags & FLAG_MINUS) &&
-			    (format_char == 'd' || format_char == 'i' ||
-			     format_char == 'u' || format_char == 'o' ||
-			     format_char == 'x' || format_char == 'X' ||
-			     format_char == 'f' || format_char == 'F' ||
-			     format_char == 'e' || format_char == 'E' ||
-			     format_char == 'g' || format_char == 'G') &&
+			    (format_char == 'd' || format_char == 'i' || format_char == 'u' || format_char == 'o' ||
+			     format_char == 'x' || format_char == 'X' || format_char == 'f' || format_char == 'F' ||
+			     format_char == 'e' || format_char == 'E' || format_char == 'g' || format_char == 'G') &&
 			    precision < 0) {
 				pad_char = '0';
 			}
 
 			if ((flags & FLAG_MINUS) == 0) {
 				if (pad_char == '0' && s != NULL) {
-					if (s[0] == '-' || s[0] == '+' ||
-					    s[0] == ' ') {
-						fwrite(s, 1, 1, stream);
+					if (s[0] == '-' || s[0] == '+' || s[0] == ' ') {
+						fwrite_unlocked(s, 1, 1, stream);
 						total_printed++;
 						s++;
 						l--;
 					}
 
-					if (l >= 2 && s[0] == '0' &&
-					    (s[1] == 'x' || s[1] == 'X')) {
-						fwrite(s, 1, 2, stream);
+					if (l >= 2 && s[0] == '0' && (s[1] == 'x' || s[1] == 'X')) {
+						fwrite_unlocked(s, 1, 2, stream);
 						total_printed += 2;
 						s += 2;
 						l -= 2;
 					}
 
 					for (int i = 0; i < padding; i++) {
-						fwrite("0", 1, 1, stream);
+						fwrite_unlocked("0", 1, 1, stream);
 						total_printed++;
 					}
 				} else {
 					for (int i = 0; i < padding; i++) {
 						if (pad_char == '0') {
-							fwrite("0", 1, 1,
-							       stream);
+							fwrite_unlocked("0", 1, 1, stream);
 						} else {
-							fwrite(" ", 1, 1,
-							       stream);
+							fwrite_unlocked(" ", 1, 1, stream);
 						}
 						total_printed++;
 					}
@@ -815,18 +736,20 @@ int vfprintf(FILE *restrict stream, const char *restrict format, va_list ap)
 
 			if (l > 0) {
 				if (s != NULL)
-					fwrite(s, 1, l, stream);
+					fwrite_unlocked(s, 1, l, stream);
 				total_printed += l;
 			}
 
 			if (flags & FLAG_MINUS) {
 				for (int i = 0; i < padding; i++) {
-					fwrite(" ", 1, 1, stream);
+					fwrite_unlocked(" ", 1, 1, stream);
 					total_printed++;
 				}
 			}
 		}
 	}
+
+	funlockfile(stream);
 
 	return total_printed;
 }

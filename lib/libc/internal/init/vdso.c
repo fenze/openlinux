@@ -3,7 +3,18 @@
 #include <string.h>
 #include <sys/auxv.h>
 
-void __init_vdso(void)
+int (*__vdso_clock_gettime)(int, struct timespec *) = 0;
+int (*__vdso_getcpu)(unsigned *, unsigned *, void *) = 0;
+int (*__vdso_time)(long *) = 0;
+
+struct __vdso_sym __vdso_symtab[] = {
+	{ "__vdso_clock_gettime", (void *)&__vdso_clock_gettime },
+	{ "__vdso_getcpu", (void *)&__vdso_getcpu },
+	{ "__vdso_time", (void *)&__vdso_time },
+	{ 0, 0 },
+};
+
+void __libc_init_vdso(void)
 {
 	Elf64_Ehdr *ehdr = (Elf64_Ehdr *)getauxval(AT_SYSINFO_EHDR);
 

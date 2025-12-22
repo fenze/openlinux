@@ -1,0 +1,3 @@
+obj-y += futex.o
+obj-y += panic.o
+obj-y += syscall.o

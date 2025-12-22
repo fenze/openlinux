@@ -1,11 +1,15 @@
+#include <alloca.h>
 #include <libc.h>
 #include <stddef.h>
 #include <stdint.h>
 #include <stdlib.h>
 #include <sys/cdefs.h>
 
-extern void __init_vdso(void);
-extern void __init_tls(void);
+#define BUFSIZ 4096
+
+extern void __libc_init_vdso(void) __attribute__((weak));
+extern void __libc_init_tls(void) __attribute__((weak));
+extern void __libc_init_io(void) __attribute__((weak));
 
 extern int main(int, char **, char **);
 
@@ -13,10 +17,9 @@ struct libc __libc = { 0 };
 char **environ;
 char *__progname;
 
-__used void __init(uintptr_t *rsp)
+__used void __libc_init(uintptr_t *rsp)
 {
 	char **argv;
-	size_t *auxv;
 	int argc;
 
 	argc = (int)(*rsp);
@@ -30,13 +33,27 @@ __used void __init(uintptr_t *rsp)
 	while (*rsp)
 		rsp++;
 
-	auxv = (size_t *)++rsp;
+	__libc.auxv = (size_t *)++rsp;
 
-	for (size_t i = 0; auxv[i]; i += 2)
-		__libc.auxv[auxv[i]] = auxv[i + 1];
+	if (__libc_init_io) {
+		__libc_init_io();
 
-	__init_tls();
-	__init_vdso();
+		__libc.stdout.buf = alloca(BUFSIZ);
+		__libc.stdout.buf_size = BUFSIZ;
+		__libc.stdout.buf_len = 0;
+		__libc.stdout.buf_pos = 0;
+
+		__libc.stdin.buf = alloca(BUFSIZ);
+		__libc.stdin.buf_size = BUFSIZ;
+		__libc.stdin.buf_len = 0;
+		__libc.stdin.buf_pos = 0;
+	}
+
+	if (__libc_init_tls)
+		__libc_init_tls();
+
+	if (__libc_init_vdso)
+		__libc_init_vdso();
 
 	exit(main(argc, argv, environ));
 }

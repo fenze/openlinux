@@ -1,9 +1,12 @@
-#include <libc.h>  // for weak_reference
-#include <stdio.h> // for fgetc, FILE, getc, getc_unlocked
+#include <stdio.h>
 
 int getc(FILE *stream)
 {
-	return fgetc(stream);
-}
+	int r;
 
-weak_reference(getc, getc_unlocked);
+	flockfile(stream);
+	r = getc_unlocked(stream);
+	funlockfile(stream);
+
+	return r;
+}

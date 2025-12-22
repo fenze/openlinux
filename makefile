@@ -99,7 +99,7 @@ endif
 KBUILD_LDFLAGS :=
 KBUILD_ASFLAGS :=
 ifeq ($(CONFIG_DEBUG),y)
-KBUILD_CFLAGS += -g -Og -fno-omit-frame-pointer
+KBUILD_CFLAGS += -g -O0 -fno-omit-frame-pointer -fno-stack-protector
 else
 KBUILD_CFLAGS += -O2 -fdata-sections -ffunction-sections
 KBUILD_CFLAGS += -fno-unwind-tables -fomit-frame-pointer
@@ -108,18 +108,18 @@ KBUILD_CFLAGS += -flto
 KBUILD_LDFLAGS += --gc-sections
 KBUILD_LDFLAGS += --build-id=none
 KBUILD_LDFLAGS += --as-needed
-KBUILD_LDFLAGS += --strip-all
+# KBUILD_LDFLAGS += --strip-all
 KBUILD_LDFLAGS += -z relro -z now -z noexecstack
 KBUILD_LDFLAGS += --no-undefined
 KBUILD_LDFLAGS += --icf=all
 
-KBUILD_ASFLAGS += 
+KBUILD_ASFLAGS +=
 endif
 
 # Assembly does not need -nostdinc; clang warns it is unused.
 KBUILD_ASFLAGS += -target $(ARCH)-linux-eabi
 KBUILD_ASFLAGS += -I$(srctree)/include
-KBUILD_ASFLAGS += -I$(srctree)/include/arch/$(ARCH)
+KUILD_ASFLAGS += -I$(srctree)/include/arch/$(ARCH)
 
 PHONY :=
 

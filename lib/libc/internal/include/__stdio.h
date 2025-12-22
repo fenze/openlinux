@@ -31,8 +31,6 @@ struct __FILE {
 	struct __FILE *next;
 };
 
-#define __FILE(__stream) ((struct __FILE *)(__stream))
-
 void __libc_fadd(struct __FILE *f);
 
 #endif

@@ -1,9 +1,12 @@
-#include <libc.h>  // for weak_reference
-#include <stdio.h> // for putc, putchar, putchar_unlocked, stdout
+#include <stdio.h>
 
 int putchar(int c)
 {
-	return putc(c, stdout);
-}
+	int r;
 
-weak_reference(putchar, putchar_unlocked);
+	flockfile(stdout);
+	r = putchar_unlocked(c);
+	funlockfile(stdout);
+
+	return r;
+}

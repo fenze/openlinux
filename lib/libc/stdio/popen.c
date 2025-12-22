@@ -62,7 +62,7 @@ FILE *popen(const char *command, const char *mode)
 			close(pipefd[0]);
 		}
 
-		__FILE(stream)->pid = pid;
+		stream->pid = pid;
 
 		return stream;
 	}

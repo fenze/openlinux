@@ -1,1 +1,4 @@
+obj-y += thrd_create.o
 obj-y += thrd_current.o
+obj-y += thrd_exit.o
+obj-y += thrd_join.o

@@ -1,6 +1,7 @@
 obj-y += eventfd/
 obj-y += inotify/
 obj-y += io_uring/
+obj-y += mqueue/
 
 obj-y += flock.o
 obj-y += getauxval.o

@@ -6,8 +6,7 @@
 #include <stdlib.h>  // for strtof, strtol, strtold, strtoll, strtoul, strt...
 #include <strings.h> // for strncasecmp
 
-static unsigned long long
-__scanint(const char *s, int base, unsigned long long lim, int *neg, char **end)
+static unsigned long long __scanint(const char *s, int base, unsigned long long lim, int *neg, char **end)
 {
 	unsigned long long res = 0;
 	int digit, any = 0;
@@ -21,8 +20,7 @@ __scanint(const char *s, int base, unsigned long long lim, int *neg, char **end)
 		s++;
 	}
 
-	if ((base == 0 || base == 16) && s[0] == '0' &&
-	    (s[1] == 'x' || s[1] == 'X')) {
+	if ((base == 0 || base == 16) && s[0] == '0' && (s[1] == 'x' || s[1] == 'X')) {
 		base = 16;
 		s += 2;
 	} else if (base == 0 && *s == '0') {
@@ -193,8 +191,7 @@ long long strtoll(const char *restrict nptr, char **restrict endptr, int base)
 	return (long long)v;
 }
 
-unsigned long strtoul(const char *restrict nptr, char **restrict endptr,
-		      int base)
+unsigned long strtoul(const char *restrict nptr, char **restrict endptr, int base)
 {
 	int neg;
 	unsigned long long v;
@@ -214,8 +211,7 @@ unsigned long strtoul(const char *restrict nptr, char **restrict endptr,
 	return (unsigned long)v;
 }
 
-unsigned long long strtoull(const char *restrict nptr, char **restrict endptr,
-			    int base)
+unsigned long long strtoull(const char *restrict nptr, char **restrict endptr, int base)
 {
 	int neg;
 	unsigned long long v;

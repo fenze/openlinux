@@ -21,10 +21,10 @@ FILE *fmemopen(void *restrict buf, size_t max_size, const char *restrict mode)
 	if (stream == NULL)
 		return stream;
 
-	__FILE(stream)->fd = -1;
-	__FILE(stream)->buf = buf;
-	__FILE(stream)->buf_size = max_size;
-	__FILE(stream)->type = _IOFBF;
+	stream->fd = -1;
+	stream->buf = buf;
+	stream->buf_size = max_size;
+	stream->type = _IOFBF;
 
 	if (mode[0] == 'r') {
 		flags = O_RDONLY;
@@ -42,7 +42,7 @@ FILE *fmemopen(void *restrict buf, size_t max_size, const char *restrict mode)
 		flags = (flags & ~(O_RDONLY | O_WRONLY)) | O_RDWR;
 	}
 
-	__FILE(stream)->flags = flags;
+	stream->flags = flags;
 
 	__libc_fadd(stream);
 

@@ -1,7 +1,8 @@
 #ifndef __ERRNO_H
 #define __ERRNO_H
 
-extern _Thread_local int errno;
+#include <sys/cdefs.h>
+#define errno (*__errno())
 
 #define EPERM		1
 #define ENOENT		2
@@ -137,5 +138,7 @@ extern _Thread_local int errno;
 #define ENOTRECOVERABLE 131
 #define ERFKILL		132
 #define EHWPOISON	133
+
+__const int *__errno(void);
 
 #endif

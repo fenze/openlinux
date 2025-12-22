@@ -1,0 +1,4 @@
+bin-y := main
+obj-y := main.o
+
+libs-y := $(srctree)/lib/libc/libc.a

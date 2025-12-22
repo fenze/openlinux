@@ -5,12 +5,12 @@
 
 unsigned long getauxval(unsigned long type)
 {
-	size_t *auxv = __libc.auxv;
+	size_t *p = __libc.auxv;
 
-	while (*auxv) {
-		if (*auxv == type)
-			return auxv[1];
-		auxv += 2;
+	while (*p != 0) {
+		if (*p == type)
+			return p[1];
+		p += 2;
 	}
 
 	errno = ENOENT;
