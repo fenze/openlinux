@@ -16,9 +16,8 @@
 #define SCARLETT2_HWDEP_MINOR	 0
 #define SCARLETT2_HWDEP_SUBMINOR 0
 
-#define SCARLETT2_HWDEP_VERSION                                         \
-	((SCARLETT2_HWDEP_MAJOR << 16) | (SCARLETT2_HWDEP_MINOR << 8) | \
-	 SCARLETT2_HWDEP_SUBMINOR)
+#define SCARLETT2_HWDEP_VERSION \
+	((SCARLETT2_HWDEP_MAJOR << 16) | (SCARLETT2_HWDEP_MINOR << 8) | SCARLETT2_HWDEP_SUBMINOR)
 
 #define SCARLETT2_HWDEP_VERSION_MAJOR(v)    (((v) >> 16) & 0xFF)
 #define SCARLETT2_HWDEP_VERSION_MINOR(v)    (((v) >> 8) & 0xFF)
@@ -47,7 +46,6 @@ struct scarlett2_flash_segment_erase_progress {
 	unsigned char progress;
 	unsigned char num_blocks;
 };
-#define SCARLETT2_IOCTL_GET_ERASE_PROGRESS \
-	_IOR('S', 0x64, struct scarlett2_flash_segment_erase_progress)
+#define SCARLETT2_IOCTL_GET_ERASE_PROGRESS _IOR('S', 0x64, struct scarlett2_flash_segment_erase_progress)
 
 #endif /* __UAPI_SOUND_SCARLETT2_H */

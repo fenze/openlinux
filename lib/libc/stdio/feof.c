@@ -1,4 +1,3 @@
-#include <__stdio.h>
 #include <stdio.h>
 
 int feof(FILE *stream)

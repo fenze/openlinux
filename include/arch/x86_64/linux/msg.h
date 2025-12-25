@@ -81,10 +81,10 @@ struct msginfo {
 				*/
 
 /* unused */
-#define MSGPOOL	 (MSGMNI * MSGMNB / 1024) /* size in kbytes of message pool */
-#define MSGTQL	 MSGMNB			  /* number of system message headers */
-#define MSGMAP	 MSGMNB			  /* number of entries in message map */
-#define MSGSSZ	 16			  /* message segment size */
+#define MSGPOOL	 (MSGMNI * MSGMNB / 1024)    /* size in kbytes of message pool */
+#define MSGTQL	 MSGMNB			     /* number of system message headers */
+#define MSGMAP	 MSGMNB			     /* number of entries in message map */
+#define MSGSSZ	 16			     /* message segment size */
 #define __MSGSEG ((MSGPOOL * 1024) / MSGSSZ) /* max no. of segments */
 #define MSGSEG	 (__MSGSEG <= 0xffff ? __MSGSEG : 0xffff)
 

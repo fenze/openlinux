@@ -104,7 +104,7 @@ struct mlx4_ib_create_srq_resp {
 struct mlx4_ib_create_qp_rss {
 	__aligned_u64 rx_hash_fields_mask; /* Use  enum mlx4_ib_rx_hash_fields
 					    */
-	__u8 rx_hash_function; /* Use enum mlx4_ib_rx_hash_function_flags */
+	__u8 rx_hash_function;		   /* Use enum mlx4_ib_rx_hash_function_flags */
 	__u8 reserved[7];
 	__u8 rx_hash_key[40];
 	__u32 comp_mask;
@@ -164,7 +164,7 @@ enum mlx4_ib_rx_hash_fields {
 
 struct mlx4_ib_rss_caps {
 	__aligned_u64 rx_hash_fields_mask; /* enum mlx4_ib_rx_hash_fields */
-	__u8 rx_hash_function; /* enum mlx4_ib_rx_hash_function_flags */
+	__u8 rx_hash_function;		   /* enum mlx4_ib_rx_hash_function_flags */
 	__u8 reserved[7];
 };
 

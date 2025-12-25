@@ -10,9 +10,8 @@ struct timespec;
 
 typedef __UINT64_TYPE__ sigset_t;
 
-int pselect(int, fd_set *restrict, fd_set *restrict, fd_set *restrict,
-	    const struct timespec *restrict, const sigset_t *restrict);
-int select(int, fd_set *restrict, fd_set *restrict, fd_set *restrict,
-	   struct timeval *restrict);
+int pselect(int, fd_set *restrict, fd_set *restrict, fd_set *restrict, const struct timespec *restrict,
+	    const sigset_t *restrict);
+int select(int, fd_set *restrict, fd_set *restrict, fd_set *restrict, struct timeval *restrict);
 
 #endif

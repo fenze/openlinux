@@ -52,10 +52,10 @@ enum psample_tunnel_key_attr {
 	PSAMPLE_TUNNEL_KEY_ATTR_TP_SRC,	       /* be16 src Transport Port. */
 	PSAMPLE_TUNNEL_KEY_ATTR_TP_DST,	       /* be16 dst Transport Port. */
 	PSAMPLE_TUNNEL_KEY_ATTR_VXLAN_OPTS,    /* Nested VXLAN opts* */
-	PSAMPLE_TUNNEL_KEY_ATTR_IPV6_SRC, /* struct in6_addr src IPv6 address.
-					   */
-	PSAMPLE_TUNNEL_KEY_ATTR_IPV6_DST, /* struct in6_addr dst IPv6 address.
-					   */
+	PSAMPLE_TUNNEL_KEY_ATTR_IPV6_SRC,      /* struct in6_addr src IPv6 address.
+						*/
+	PSAMPLE_TUNNEL_KEY_ATTR_IPV6_DST,      /* struct in6_addr dst IPv6 address.
+						*/
 	PSAMPLE_TUNNEL_KEY_ATTR_PAD,
 	PSAMPLE_TUNNEL_KEY_ATTR_ERSPAN_OPTS,	  /* struct erspan_metadata */
 	PSAMPLE_TUNNEL_KEY_ATTR_IPV4_INFO_BRIDGE, /* No argument.

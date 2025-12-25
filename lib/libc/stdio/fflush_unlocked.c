@@ -1,7 +1,9 @@
+#include "stddef.h"
 #include <__stdio.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <stdio.h>
+#include <string.h>
 #include <sys/cdefs.h>
 #include <unistd.h>
 

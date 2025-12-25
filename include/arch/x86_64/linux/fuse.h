@@ -1049,8 +1049,7 @@ struct fuse_dirent {
 };
 
 /* Align variable length records to 64bit boundary */
-#define FUSE_REC_ALIGN(x) \
-	(((x) + sizeof(uint64_t) - 1) & ~(sizeof(uint64_t) - 1))
+#define FUSE_REC_ALIGN(x) (((x) + sizeof(uint64_t) - 1) & ~(sizeof(uint64_t) - 1))
 
 #define FUSE_NAME_OFFSET     offsetof(struct fuse_dirent, name)
 #define FUSE_DIRENT_ALIGN(x) FUSE_REC_ALIGN(x)
@@ -1061,10 +1060,8 @@ struct fuse_direntplus {
 	struct fuse_dirent dirent;
 };
 
-#define FUSE_NAME_OFFSET_DIRENTPLUS \
-	offsetof(struct fuse_direntplus, dirent.name)
-#define FUSE_DIRENTPLUS_SIZE(d) \
-	FUSE_DIRENT_ALIGN(FUSE_NAME_OFFSET_DIRENTPLUS + (d)->dirent.namelen)
+#define FUSE_NAME_OFFSET_DIRENTPLUS offsetof(struct fuse_direntplus, dirent.name)
+#define FUSE_DIRENTPLUS_SIZE(d)	    FUSE_DIRENT_ALIGN(FUSE_NAME_OFFSET_DIRENTPLUS + (d)->dirent.namelen)
 
 struct fuse_notify_inval_inode_out {
 	uint64_t ino;
@@ -1117,10 +1114,9 @@ struct fuse_backing_map {
 };
 
 /* Device ioctls: */
-#define FUSE_DEV_IOC_MAGIC 229
-#define FUSE_DEV_IOC_CLONE _IOR(FUSE_DEV_IOC_MAGIC, 0, uint32_t)
-#define FUSE_DEV_IOC_BACKING_OPEN \
-	_IOW(FUSE_DEV_IOC_MAGIC, 1, struct fuse_backing_map)
+#define FUSE_DEV_IOC_MAGIC	   229
+#define FUSE_DEV_IOC_CLONE	   _IOR(FUSE_DEV_IOC_MAGIC, 0, uint32_t)
+#define FUSE_DEV_IOC_BACKING_OPEN  _IOW(FUSE_DEV_IOC_MAGIC, 1, struct fuse_backing_map)
 #define FUSE_DEV_IOC_BACKING_CLOSE _IOW(FUSE_DEV_IOC_MAGIC, 2, uint32_t)
 
 struct fuse_lseek_in {
@@ -1171,8 +1167,7 @@ struct fuse_removemapping_one {
 	uint64_t len;
 };
 
-#define FUSE_REMOVEMAPPING_MAX_ENTRY \
-	(PAGE_SIZE / sizeof(struct fuse_removemapping_one))
+#define FUSE_REMOVEMAPPING_MAX_ENTRY (PAGE_SIZE / sizeof(struct fuse_removemapping_one))
 
 struct fuse_syncfs_in {
 	uint64_t padding;

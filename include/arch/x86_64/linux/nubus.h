@@ -26,18 +26,11 @@ enum nubus_category {
 	NUBUS_CAT_DUODOCK = 0x0020
 };
 
-enum nubus_type_network {
-	NUBUS_TYPE_ETHERNET = 0x0001,
-	NUBUS_TYPE_RS232 = 0x0002
-};
+enum nubus_type_network { NUBUS_TYPE_ETHERNET = 0x0001, NUBUS_TYPE_RS232 = 0x0002 };
 
 enum nubus_type_display { NUBUS_TYPE_VIDEO = 0x0001 };
 
-enum nubus_type_cpu {
-	NUBUS_TYPE_68020 = 0x0003,
-	NUBUS_TYPE_68030 = 0x0004,
-	NUBUS_TYPE_68040 = 0x0005
-};
+enum nubus_type_cpu { NUBUS_TYPE_68020 = 0x0003, NUBUS_TYPE_68030 = 0x0004, NUBUS_TYPE_68040 = 0x0005 };
 
 /* Known <Cat,Type,SW,HW> tuples: (according to TattleTech and Slots)
  *  68030 motherboards: <10,4,0,24>
@@ -200,10 +193,7 @@ enum nubus_vendor_res_id {
 
 enum nubus_net_res_id { NUBUS_RESID_MAC_ADDRESS = 0x0080 };
 
-enum nubus_cpu_res_id {
-	NUBUS_RESID_MEMINFO = 0x0081,
-	NUBUS_RESID_ROMINFO = 0x0082
-};
+enum nubus_cpu_res_id { NUBUS_RESID_MEMINFO = 0x0081, NUBUS_RESID_ROMINFO = 0x0082 };
 
 enum nubus_display_res_id {
 	NUBUS_RESID_GAMMADIR = 0x0040,

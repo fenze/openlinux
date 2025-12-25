@@ -90,10 +90,10 @@ enum {
 	KERN_PANIC = 15,       /* int: panic timeout */
 	KERN_REALROOTDEV = 16, /* real root device to mount after initrd */
 
-	KERN_SPARC_REBOOT = 21, /* reboot command on Sparc */
-	KERN_CTLALTDEL = 22,	/* int: allow ctl-alt-del to reboot */
-	KERN_PRINTK = 23,	/* struct: control printk logging parameters */
-	KERN_NAMETRANS = 24,	/* Name translation */
+	KERN_SPARC_REBOOT = 21,	     /* reboot command on Sparc */
+	KERN_CTLALTDEL = 22,	     /* int: allow ctl-alt-del to reboot */
+	KERN_PRINTK = 23,	     /* struct: control printk logging parameters */
+	KERN_NAMETRANS = 24,	     /* Name translation */
 	KERN_PPC_HTABRECLAIM = 25,   /* turn htab reclaimation on/off on PPC */
 	KERN_PPC_ZEROPAGED = 26,     /* turn idle page zeroing on/off on PPC */
 	KERN_PPC_POWERSAVE_NAP = 27, /* use nap mode for power saving */
@@ -105,98 +105,98 @@ enum {
 	KERN_RTSIGNR = 32,  /* Number of rt sigs queued */
 	KERN_RTSIGMAX = 33, /* Max queuable */
 
-	KERN_SHMMAX = 34,	/* long: Maximum shared memory segment */
-	KERN_MSGMAX = 35,	/* int: Maximum size of a messege */
-	KERN_MSGMNB = 36,	/* int: Maximum message queue size */
-	KERN_MSGPOOL = 37,	/* int: Maximum system message pool size */
-	KERN_SYSRQ = 38,	/* int: Sysreq enable */
-	KERN_MAX_THREADS = 39,	/* int: Maximum nr of threads in the system */
-	KERN_RANDOM = 40,	/* Random driver */
-	KERN_SHMALL = 41,	/* int: Maximum size of shared memory */
-	KERN_MSGMNI = 42,	/* int: msg queue identifiers */
-	KERN_SEM = 43,		/* struct: sysv semaphore limits */
-	KERN_SPARC_STOP_A = 44, /* int: Sparc Stop-A enable */
-	KERN_SHMMNI = 45,	/* int: shm array identifiers */
-	KERN_OVERFLOWUID = 46,	/* int: overflow UID */
-	KERN_OVERFLOWGID = 47,	/* int: overflow GID */
-	KERN_SHMPATH = 48,	/* string: path to shm fs */
-	KERN_HOTPLUG = 49,	/* string: path to uevent helper (deprecated) */
+	KERN_SHMMAX = 34,		   /* long: Maximum shared memory segment */
+	KERN_MSGMAX = 35,		   /* int: Maximum size of a messege */
+	KERN_MSGMNB = 36,		   /* int: Maximum message queue size */
+	KERN_MSGPOOL = 37,		   /* int: Maximum system message pool size */
+	KERN_SYSRQ = 38,		   /* int: Sysreq enable */
+	KERN_MAX_THREADS = 39,		   /* int: Maximum nr of threads in the system */
+	KERN_RANDOM = 40,		   /* Random driver */
+	KERN_SHMALL = 41,		   /* int: Maximum size of shared memory */
+	KERN_MSGMNI = 42,		   /* int: msg queue identifiers */
+	KERN_SEM = 43,			   /* struct: sysv semaphore limits */
+	KERN_SPARC_STOP_A = 44,		   /* int: Sparc Stop-A enable */
+	KERN_SHMMNI = 45,		   /* int: shm array identifiers */
+	KERN_OVERFLOWUID = 46,		   /* int: overflow UID */
+	KERN_OVERFLOWGID = 47,		   /* int: overflow GID */
+	KERN_SHMPATH = 48,		   /* string: path to shm fs */
+	KERN_HOTPLUG = 49,		   /* string: path to uevent helper (deprecated) */
 	KERN_IEEE_EMULATION_WARNINGS = 50, /* int: unimplemented ieee
 					      instructions */
 	KERN_S390_USER_DEBUG_LOGGING = 51, /* int: dumps of user faults */
 	KERN_CORE_USES_PID = 52,	   /* int: use core or core.%pid */
-	KERN_TAINTED = 53,	  /* int: various kernel tainted flags */
-	KERN_CADPID = 54,	  /* int: PID of the process to notify on CAD */
-	KERN_PIDMAX = 55,	  /* int: PID # limit */
-	KERN_CORE_PATTERN = 56,	  /* string: pattern for core-file names */
-	KERN_PANIC_ON_OOPS = 57,  /* int: whether we will panic on an oops */
-	KERN_HPPA_PWRSW = 58,	  /* int: hppa soft-power enable */
-	KERN_HPPA_UNALIGNED = 59, /* int: hppa unaligned-trap enable */
-	KERN_PRINTK_RATELIMIT = 60,	  /* int: tune printk ratelimiting */
-	KERN_PRINTK_RATELIMIT_BURST = 61, /* int: tune printk ratelimiting */
-	KERN_PTY = 62,			  /* dir: pty driver */
-	KERN_NGROUPS_MAX = 63,		  /* int: NGROUPS_MAX */
-	KERN_SPARC_SCONS_PWROFF = 64, /* int: serial console power-off halt */
-	KERN_HZ_TIMER = 65,	      /* int: hz timer on or off */
-	KERN_UNKNOWN_NMI_PANIC = 66,  /* int: unknown nmi panic flag */
-	KERN_BOOTLOADER_TYPE = 67,    /* int: boot loader type */
-	KERN_RANDOMIZE = 68,	      /* int: randomize virtual address space */
-	KERN_SETUID_DUMPABLE = 69, /* int: behaviour of dumps for setuid core */
-	KERN_SPIN_RETRY = 70,	   /* int: number of spinlock retries */
-	KERN_ACPI_VIDEO_FLAGS = 71, /* int: flags for setting up video after
-				       ACPI sleep */
-	KERN_IA64_UNALIGNED = 72, /* int: ia64 unaligned userland trap enable */
-	KERN_COMPAT_LOG = 73,	  /* int: print compat layer  messages */
-	KERN_MAX_LOCK_DEPTH = 74, /* int: rtmutex's maximum lock depth */
-	KERN_NMI_WATCHDOG = 75,	  /* int: enable/disable nmi watchdog */
-	KERN_PANIC_ON_NMI = 76,	 /* int: whether we will panic on an unrecovered
-				  */
-	KERN_PANIC_ON_WARN = 77, /* int: call panic() in WARN() functions */
-	KERN_PANIC_PRINT = 78,	 /* ulong: bitmask to print system info on panic
-				  */
+	KERN_TAINTED = 53,		   /* int: various kernel tainted flags */
+	KERN_CADPID = 54,		   /* int: PID of the process to notify on CAD */
+	KERN_PIDMAX = 55,		   /* int: PID # limit */
+	KERN_CORE_PATTERN = 56,		   /* string: pattern for core-file names */
+	KERN_PANIC_ON_OOPS = 57,	   /* int: whether we will panic on an oops */
+	KERN_HPPA_PWRSW = 58,		   /* int: hppa soft-power enable */
+	KERN_HPPA_UNALIGNED = 59,	   /* int: hppa unaligned-trap enable */
+	KERN_PRINTK_RATELIMIT = 60,	   /* int: tune printk ratelimiting */
+	KERN_PRINTK_RATELIMIT_BURST = 61,  /* int: tune printk ratelimiting */
+	KERN_PTY = 62,			   /* dir: pty driver */
+	KERN_NGROUPS_MAX = 63,		   /* int: NGROUPS_MAX */
+	KERN_SPARC_SCONS_PWROFF = 64,	   /* int: serial console power-off halt */
+	KERN_HZ_TIMER = 65,		   /* int: hz timer on or off */
+	KERN_UNKNOWN_NMI_PANIC = 66,	   /* int: unknown nmi panic flag */
+	KERN_BOOTLOADER_TYPE = 67,	   /* int: boot loader type */
+	KERN_RANDOMIZE = 68,		   /* int: randomize virtual address space */
+	KERN_SETUID_DUMPABLE = 69,	   /* int: behaviour of dumps for setuid core */
+	KERN_SPIN_RETRY = 70,		   /* int: number of spinlock retries */
+	KERN_ACPI_VIDEO_FLAGS = 71,	   /* int: flags for setting up video after
+					      ACPI sleep */
+	KERN_IA64_UNALIGNED = 72,	   /* int: ia64 unaligned userland trap enable */
+	KERN_COMPAT_LOG = 73,		   /* int: print compat layer  messages */
+	KERN_MAX_LOCK_DEPTH = 74,	   /* int: rtmutex's maximum lock depth */
+	KERN_NMI_WATCHDOG = 75,		   /* int: enable/disable nmi watchdog */
+	KERN_PANIC_ON_NMI = 76,		   /* int: whether we will panic on an unrecovered
+					    */
+	KERN_PANIC_ON_WARN = 77,	   /* int: call panic() in WARN() functions */
+	KERN_PANIC_PRINT = 78,		   /* ulong: bitmask to print system info on panic
+					    */
 };
 
 /* CTL_VM names: */
 enum {
-	VM_UNUSED1 = 1, /* was: struct: Set vm swapping control */
-	VM_UNUSED2 = 2, /* was; int: Linear or sqrt() swapout for hogs */
-	VM_UNUSED3 = 3, /* was: struct: Set free page thresholds */
-	VM_UNUSED4 = 4, /* Spare */
-	VM_OVERCOMMIT_MEMORY = 5, /* Turn off the virtual memory safety limit */
-	VM_UNUSED5 = 6,	      /* was: struct: Set buffer memory thresholds */
-	VM_UNUSED7 = 7,	      /* was: struct: Set cache memory thresholds */
-	VM_UNUSED8 = 8,	      /* was: struct: Control kswapd behaviour */
-	VM_UNUSED9 = 9,	      /* was: struct: Set page table cache parameters */
-	VM_PAGE_CLUSTER = 10, /* int: set number of pages to swap together */
-	VM_DIRTY_BACKGROUND = 11,   /* dirty_background_ratio */
-	VM_DIRTY_RATIO = 12,	    /* dirty_ratio */
-	VM_DIRTY_WB_CS = 13,	    /* dirty_writeback_centisecs */
-	VM_DIRTY_EXPIRE_CS = 14,    /* dirty_expire_centisecs */
-	VM_NR_PDFLUSH_THREADS = 15, /* nr_pdflush_threads */
-	VM_OVERCOMMIT_RATIO = 16,   /* percent of RAM to allow overcommit in */
-	VM_PAGEBUF = 17,	    /* struct: Control pagebuf parameters */
-	VM_HUGETLB_PAGES = 18,	    /* int: Number of available Huge Pages */
-	VM_SWAPPINESS = 19,	    /* Tendency to steal mapped memory */
-	VM_LOWMEM_RESERVE_RATIO = 20, /* reservation ratio for lower memory
-					 zones */
-	VM_MIN_FREE_KBYTES = 21,      /* Minimum free kilobytes to maintain */
-	VM_MAX_MAP_COUNT = 22, /* int: Maximum number of mmaps/address-space */
-	VM_LAPTOP_MODE = 23,   /* vm laptop mode */
-	VM_BLOCK_DUMP = 24,    /* block dump mode */
-	VM_HUGETLB_GROUP = 25, /* permitted hugetlb group */
-	VM_VFS_CACHE_PRESSURE = 26, /* dcache/icache reclaim pressure */
-	VM_LEGACY_VA_LAYOUT = 27, /* legacy/compatibility virtual address space
-				     layout */
+	VM_UNUSED1 = 1,			  /* was: struct: Set vm swapping control */
+	VM_UNUSED2 = 2,			  /* was; int: Linear or sqrt() swapout for hogs */
+	VM_UNUSED3 = 3,			  /* was: struct: Set free page thresholds */
+	VM_UNUSED4 = 4,			  /* Spare */
+	VM_OVERCOMMIT_MEMORY = 5,	  /* Turn off the virtual memory safety limit */
+	VM_UNUSED5 = 6,			  /* was: struct: Set buffer memory thresholds */
+	VM_UNUSED7 = 7,			  /* was: struct: Set cache memory thresholds */
+	VM_UNUSED8 = 8,			  /* was: struct: Control kswapd behaviour */
+	VM_UNUSED9 = 9,			  /* was: struct: Set page table cache parameters */
+	VM_PAGE_CLUSTER = 10,		  /* int: set number of pages to swap together */
+	VM_DIRTY_BACKGROUND = 11,	  /* dirty_background_ratio */
+	VM_DIRTY_RATIO = 12,		  /* dirty_ratio */
+	VM_DIRTY_WB_CS = 13,		  /* dirty_writeback_centisecs */
+	VM_DIRTY_EXPIRE_CS = 14,	  /* dirty_expire_centisecs */
+	VM_NR_PDFLUSH_THREADS = 15,	  /* nr_pdflush_threads */
+	VM_OVERCOMMIT_RATIO = 16,	  /* percent of RAM to allow overcommit in */
+	VM_PAGEBUF = 17,		  /* struct: Control pagebuf parameters */
+	VM_HUGETLB_PAGES = 18,		  /* int: Number of available Huge Pages */
+	VM_SWAPPINESS = 19,		  /* Tendency to steal mapped memory */
+	VM_LOWMEM_RESERVE_RATIO = 20,	  /* reservation ratio for lower memory
+					     zones */
+	VM_MIN_FREE_KBYTES = 21,	  /* Minimum free kilobytes to maintain */
+	VM_MAX_MAP_COUNT = 22,		  /* int: Maximum number of mmaps/address-space */
+	VM_LAPTOP_MODE = 23,		  /* vm laptop mode */
+	VM_BLOCK_DUMP = 24,		  /* block dump mode */
+	VM_HUGETLB_GROUP = 25,		  /* permitted hugetlb group */
+	VM_VFS_CACHE_PRESSURE = 26,	  /* dcache/icache reclaim pressure */
+	VM_LEGACY_VA_LAYOUT = 27,	  /* legacy/compatibility virtual address space
+					     layout */
 	VM_SWAP_TOKEN_TIMEOUT = 28,	  /* default time for token time out */
 	VM_DROP_PAGECACHE = 29,		  /* int: nuke lots of pagecache */
 	VM_PERCPU_PAGELIST_FRACTION = 30, /* int: fraction of pages in each
 					     percpu_pagelist */
-	VM_ZONE_RECLAIM_MODE = 31, /* reclaim local zone memory before going off
-				      node */
-	VM_MIN_UNMAPPED = 32,	   /* Set min percent of unmapped pages */
-	VM_PANIC_ON_OOM = 33,	   /* panic at out-of-memory */
-	VM_VDSO_ENABLED = 34,	   /* map VDSO into new processes? */
-	VM_MIN_SLAB = 35,	   /* Percent pages ignored by node reclaim */
+	VM_ZONE_RECLAIM_MODE = 31,	  /* reclaim local zone memory before going off
+					     node */
+	VM_MIN_UNMAPPED = 32,		  /* Set min percent of unmapped pages */
+	VM_PANIC_ON_OOM = 33,		  /* panic at out-of-memory */
+	VM_VDSO_ENABLED = 34,		  /* map VDSO into new processes? */
+	VM_MIN_SLAB = 35,		  /* Percent pages ignored by node reclaim */
 };
 
 /* CTL_NET names: */

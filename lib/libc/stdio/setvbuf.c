@@ -1,9 +1,9 @@
 #include "stddef.h" // for NULL
 
-#include <__stdio.h> // for __FILE
-#include <stdio.h>   // for _IONBF, FILE, _IOFBF, _IOLBF, setvbuf, size_t
+#include <__stdio.h>
+#include <stdio.h> // for _IONBF, FILE, _IOFBF, _IOLBF, setvbuf, size_t
 
-int setvbuf(FILE *restrict stream, char *restrict buf, int type, size_t size)
+int setvbuf(struct __FILE *restrict stream, char *restrict buf, int type, size_t size)
 {
 	if (type != _IOFBF && type != _IOLBF && type != _IONBF)
 		return -1;

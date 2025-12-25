@@ -182,8 +182,7 @@ struct ptrace_sud_config {
 #define PTRACE_O_EXITKILL	 (1 << 20)
 #define PTRACE_O_SUSPEND_SECCOMP (1 << 21)
 
-#define PTRACE_O_MASK \
-	(0x000000ff | PTRACE_O_EXITKILL | PTRACE_O_SUSPEND_SECCOMP)
+#define PTRACE_O_MASK (0x000000ff | PTRACE_O_EXITKILL | PTRACE_O_SUSPEND_SECCOMP)
 
 #include <asm/ptrace.h>
 

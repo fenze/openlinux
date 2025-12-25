@@ -277,8 +277,7 @@ struct ipmi_req_settime {
  *   - EMSGSIZE - The message to was too large.
  *   - ENOMEM - Buffers could not be allocated for the command.
  */
-#define IPMICTL_SEND_COMMAND_SETTIME \
-	_IOR(IPMI_IOC_MAGIC, 21, struct ipmi_req_settime)
+#define IPMICTL_SEND_COMMAND_SETTIME _IOR(IPMI_IOC_MAGIC, 21, struct ipmi_req_settime)
 
 /* Messages received from the interface are this format. */
 struct ipmi_recv {
@@ -363,15 +362,13 @@ struct ipmi_cmdspec_chans {
  *   - EBUSY - One of the netfn/cmd/chans supplied was already in use.
  *   - ENOMEM - could not allocate memory for the entry.
  */
-#define IPMICTL_REGISTER_FOR_CMD_CHANS \
-	_IOR(IPMI_IOC_MAGIC, 28, struct ipmi_cmdspec_chans)
+#define IPMICTL_REGISTER_FOR_CMD_CHANS _IOR(IPMI_IOC_MAGIC, 28, struct ipmi_cmdspec_chans)
 /*
  * Unregister some netfn/cmd/chans.  error values:
  *  - EFAULT - an address supplied was invalid.
  *  - ENOENT - None of the netfn/cmd/chans were found registered for this user.
  */
-#define IPMICTL_UNREGISTER_FOR_CMD_CHANS \
-	_IOR(IPMI_IOC_MAGIC, 29, struct ipmi_cmdspec_chans)
+#define IPMICTL_UNREGISTER_FOR_CMD_CHANS _IOR(IPMI_IOC_MAGIC, 29, struct ipmi_cmdspec_chans)
 
 /*
  * Set whether this interface receives events.  Note that the first
@@ -393,14 +390,10 @@ struct ipmi_channel_lun_address_set {
 	unsigned short channel;
 	unsigned char value;
 };
-#define IPMICTL_SET_MY_CHANNEL_ADDRESS_CMD \
-	_IOR(IPMI_IOC_MAGIC, 24, struct ipmi_channel_lun_address_set)
-#define IPMICTL_GET_MY_CHANNEL_ADDRESS_CMD \
-	_IOR(IPMI_IOC_MAGIC, 25, struct ipmi_channel_lun_address_set)
-#define IPMICTL_SET_MY_CHANNEL_LUN_CMD \
-	_IOR(IPMI_IOC_MAGIC, 26, struct ipmi_channel_lun_address_set)
-#define IPMICTL_GET_MY_CHANNEL_LUN_CMD \
-	_IOR(IPMI_IOC_MAGIC, 27, struct ipmi_channel_lun_address_set)
+#define IPMICTL_SET_MY_CHANNEL_ADDRESS_CMD _IOR(IPMI_IOC_MAGIC, 24, struct ipmi_channel_lun_address_set)
+#define IPMICTL_GET_MY_CHANNEL_ADDRESS_CMD _IOR(IPMI_IOC_MAGIC, 25, struct ipmi_channel_lun_address_set)
+#define IPMICTL_SET_MY_CHANNEL_LUN_CMD	   _IOR(IPMI_IOC_MAGIC, 26, struct ipmi_channel_lun_address_set)
+#define IPMICTL_GET_MY_CHANNEL_LUN_CMD	   _IOR(IPMI_IOC_MAGIC, 27, struct ipmi_channel_lun_address_set)
 /* Legacy interfaces, these only set IPMB 0. */
 #define IPMICTL_SET_MY_ADDRESS_CMD _IOR(IPMI_IOC_MAGIC, 17, unsigned int)
 #define IPMICTL_GET_MY_ADDRESS_CMD _IOR(IPMI_IOC_MAGIC, 18, unsigned int)
@@ -415,10 +408,8 @@ struct ipmi_timing_parms {
 	int retries;
 	unsigned int retry_time_ms;
 };
-#define IPMICTL_SET_TIMING_PARMS_CMD \
-	_IOR(IPMI_IOC_MAGIC, 22, struct ipmi_timing_parms)
-#define IPMICTL_GET_TIMING_PARMS_CMD \
-	_IOR(IPMI_IOC_MAGIC, 23, struct ipmi_timing_parms)
+#define IPMICTL_SET_TIMING_PARMS_CMD _IOR(IPMI_IOC_MAGIC, 22, struct ipmi_timing_parms)
+#define IPMICTL_GET_TIMING_PARMS_CMD _IOR(IPMI_IOC_MAGIC, 23, struct ipmi_timing_parms)
 
 /*
  * Set the maintenance mode.  See ipmi_set_maintenance_mode() above

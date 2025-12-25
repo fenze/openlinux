@@ -281,13 +281,11 @@ enum {
 #define DM_TABLE_DEPS	_IOWR(DM_IOCTL, DM_TABLE_DEPS_CMD, struct dm_ioctl)
 #define DM_TABLE_STATUS _IOWR(DM_IOCTL, DM_TABLE_STATUS_CMD, struct dm_ioctl)
 
-#define DM_LIST_VERSIONS _IOWR(DM_IOCTL, DM_LIST_VERSIONS_CMD, struct dm_ioctl)
-#define DM_GET_TARGET_VERSION \
-	_IOWR(DM_IOCTL, DM_GET_TARGET_VERSION_CMD, struct dm_ioctl)
+#define DM_LIST_VERSIONS      _IOWR(DM_IOCTL, DM_LIST_VERSIONS_CMD, struct dm_ioctl)
+#define DM_GET_TARGET_VERSION _IOWR(DM_IOCTL, DM_GET_TARGET_VERSION_CMD, struct dm_ioctl)
 
-#define DM_TARGET_MSG _IOWR(DM_IOCTL, DM_TARGET_MSG_CMD, struct dm_ioctl)
-#define DM_DEV_SET_GEOMETRY \
-	_IOWR(DM_IOCTL, DM_DEV_SET_GEOMETRY_CMD, struct dm_ioctl)
+#define DM_TARGET_MSG	    _IOWR(DM_IOCTL, DM_TARGET_MSG_CMD, struct dm_ioctl)
+#define DM_DEV_SET_GEOMETRY _IOWR(DM_IOCTL, DM_DEV_SET_GEOMETRY_CMD, struct dm_ioctl)
 
 /* Block device ioctls */
 #define DM_MPATH_PROBE_PATHS _IO(DM_IOCTL, DM_MPATH_PROBE_PATHS_CMD)

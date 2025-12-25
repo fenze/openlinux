@@ -45,10 +45,9 @@
 #define PMU_GET_VERSION		0xea /* read the PMU version */
 
 /* Bits to use with the PMU_POWER_CTRL0 command */
-#define PMU_POW0_ON  0x80 /* OR this to power ON the device */
-#define PMU_POW0_OFF 0x00 /* leave bit 7 to 0 to power it OFF */
-#define PMU_POW0_HARD_DRIVE \
-	0x04 /* Hard drive power (on wallstreet/lombard ?) */
+#define PMU_POW0_ON	    0x80 /* OR this to power ON the device */
+#define PMU_POW0_OFF	    0x00 /* leave bit 7 to 0 to power it OFF */
+#define PMU_POW0_HARD_DRIVE 0x04 /* Hard drive power (on wallstreet/lombard ?) */
 
 /* Bits to use with the PMU_POWER_CTRL command */
 #define PMU_POW_ON	  0x80 /* OR this to power ON the device */

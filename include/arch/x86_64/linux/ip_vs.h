@@ -10,8 +10,7 @@
 #include <linux/types.h> /* For __beXX types in userland */
 
 #define IP_VS_VERSION_CODE 0x010201
-#define NVERSION(version) \
-	(version >> 16) & 0xFF, (version >> 8) & 0xFF, version & 0xFF
+#define NVERSION(version)  (version >> 16) & 0xFF, (version >> 8) & 0xFF, version & 0xFF
 
 /*
  *      Virtual Service Flags
@@ -94,22 +93,18 @@
 #define IP_VS_CONN_F_ONE_PACKET 0x2000 /* forward only one packet */
 
 /* Initial bits allowed in backup server */
-#define IP_VS_CONN_F_BACKUP_MASK                         \
-	(IP_VS_CONN_F_FWD_MASK | IP_VS_CONN_F_NOOUTPUT | \
-	 IP_VS_CONN_F_INACTIVE | IP_VS_CONN_F_SEQ_MASK | \
+#define IP_VS_CONN_F_BACKUP_MASK                                                                         \
+	(IP_VS_CONN_F_FWD_MASK | IP_VS_CONN_F_NOOUTPUT | IP_VS_CONN_F_INACTIVE | IP_VS_CONN_F_SEQ_MASK | \
 	 IP_VS_CONN_F_NO_CPORT | IP_VS_CONN_F_TEMPLATE)
 
 /* Bits allowed to update in backup server */
-#define IP_VS_CONN_F_BACKUP_UPD_MASK \
-	(IP_VS_CONN_F_INACTIVE | IP_VS_CONN_F_SEQ_MASK)
+#define IP_VS_CONN_F_BACKUP_UPD_MASK (IP_VS_CONN_F_INACTIVE | IP_VS_CONN_F_SEQ_MASK)
 
 /* Flags that are not sent to backup server start from bit 16 */
 #define IP_VS_CONN_F_NFCT (1 << 16) /* use netfilter conntrack */
 
 /* Connection flags from destination that can be changed by user space */
-#define IP_VS_CONN_F_DEST_MASK                                                 \
-	(IP_VS_CONN_F_FWD_MASK | IP_VS_CONN_F_ONE_PACKET | IP_VS_CONN_F_NFCT | \
-	 0)
+#define IP_VS_CONN_F_DEST_MASK (IP_VS_CONN_F_FWD_MASK | IP_VS_CONN_F_ONE_PACKET | IP_VS_CONN_F_NFCT | 0)
 
 #define IP_VS_SCHEDNAME_MAXLEN 16
 #define IP_VS_PENAME_MAXLEN    16

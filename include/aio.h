@@ -1,6 +1,8 @@
 #ifndef __AIO_H
 #define __AIO_H
 
+#include <stddef.h>
+#include <time.h>
 #define __BITS_SIGEVENT_H_
 #include <bits/sigevent.h>
 
@@ -39,7 +41,6 @@ int aio_read(struct aiocb *);
 ssize_t aio_return(struct aiocb *);
 int aio_suspend(const struct aiocb *const[], int, const struct timespec *);
 int aio_write(struct aiocb *);
-int lio_listio(int, struct aiocb *restrict const[restrict], int,
-	       struct sigevent *restrict);
+int lio_listio(int, struct aiocb *restrict const[restrict], int, struct sigevent *restrict);
 
 #endif

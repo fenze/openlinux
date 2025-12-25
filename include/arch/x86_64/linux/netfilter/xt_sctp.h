@@ -25,12 +25,9 @@ struct xt_sctp_info {
 	__u32 chunkmap[256 / sizeof(__u32)]; /* Bit mask of chunks to be matched
 						according to RFC 2960 */
 
-#define SCTP_CHUNK_MATCH_ANY \
-	0x01 /* Match if any of the chunk types are present */
-#define SCTP_CHUNK_MATCH_ALL \
-	0x02 /* Match if all of the chunk types are present */
-#define SCTP_CHUNK_MATCH_ONLY \
-	0x04 /* Match if these are the only chunk types present */
+#define SCTP_CHUNK_MATCH_ANY  0x01 /* Match if any of the chunk types are present */
+#define SCTP_CHUNK_MATCH_ALL  0x02 /* Match if all of the chunk types are present */
+#define SCTP_CHUNK_MATCH_ONLY 0x04 /* Match if these are the only chunk types present */
 
 	__u32 chunk_match_type;
 	struct xt_sctp_flag_info flag_info[XT_NUM_SCTP_FLAGS];
@@ -42,38 +39,27 @@ struct xt_sctp_info {
 
 #define bytes(type) (sizeof(type) * 8)
 
-#define SCTP_CHUNKMAP_SET(chunkmap, type)                                    \
-	do {                                                                 \
-		(chunkmap)[type / bytes(__u32)] |= 1u                        \
-						   << (type % bytes(__u32)); \
+#define SCTP_CHUNKMAP_SET(chunkmap, type)                                       \
+	do {                                                                    \
+		(chunkmap)[type / bytes(__u32)] |= 1u << (type % bytes(__u32)); \
 	} while (0)
 
-#define SCTP_CHUNKMAP_CLEAR(chunkmap, type)             \
-	do {                                            \
-		(chunkmap)[type / bytes(__u32)] &=      \
-			~(1u << (type % bytes(__u32))); \
+#define SCTP_CHUNKMAP_CLEAR(chunkmap, type)                                        \
+	do {                                                                       \
+		(chunkmap)[type / bytes(__u32)] &= ~(1u << (type % bytes(__u32))); \
 	} while (0)
 
-#define SCTP_CHUNKMAP_IS_SET(chunkmap, type)       \
-	({                                         \
-		((chunkmap)[type / bytes(__u32)] & \
-		 (1u << (type % bytes(__u32)))) ?  \
-			1 :                        \
-			0;                         \
-	})
+#define SCTP_CHUNKMAP_IS_SET(chunkmap, type) \
+	({ ((chunkmap)[type / bytes(__u32)] & (1u << (type % bytes(__u32)))) ? 1 : 0; })
 
 #define SCTP_CHUNKMAP_RESET(chunkmap) memset((chunkmap), 0, sizeof(chunkmap))
 
-#define SCTP_CHUNKMAP_SET_ALL(chunkmap) \
-	memset((chunkmap), ~0U, sizeof(chunkmap))
+#define SCTP_CHUNKMAP_SET_ALL(chunkmap) memset((chunkmap), ~0U, sizeof(chunkmap))
 
-#define SCTP_CHUNKMAP_COPY(destmap, srcmap) \
-	memcpy((destmap), (srcmap), sizeof(srcmap))
+#define SCTP_CHUNKMAP_COPY(destmap, srcmap) memcpy((destmap), (srcmap), sizeof(srcmap))
 
-#define SCTP_CHUNKMAP_IS_CLEAR(chunkmap) \
-	__sctp_chunkmap_is_clear((chunkmap), ARRAY_SIZE(chunkmap))
-static __inline__ _Bool __sctp_chunkmap_is_clear(const __u32 *chunkmap,
-						 unsigned int n)
+#define SCTP_CHUNKMAP_IS_CLEAR(chunkmap) __sctp_chunkmap_is_clear((chunkmap), ARRAY_SIZE(chunkmap))
+static __inline__ _Bool __sctp_chunkmap_is_clear(const __u32 *chunkmap, unsigned int n)
 {
 	unsigned int i;
 	for (i = 0; i < n; ++i)
@@ -82,10 +68,8 @@ static __inline__ _Bool __sctp_chunkmap_is_clear(const __u32 *chunkmap,
 	return 1;
 }
 
-#define SCTP_CHUNKMAP_IS_ALL_SET(chunkmap) \
-	__sctp_chunkmap_is_all_set((chunkmap), ARRAY_SIZE(chunkmap))
-static __inline__ _Bool __sctp_chunkmap_is_all_set(const __u32 *chunkmap,
-						   unsigned int n)
+#define SCTP_CHUNKMAP_IS_ALL_SET(chunkmap) __sctp_chunkmap_is_all_set((chunkmap), ARRAY_SIZE(chunkmap))
+static __inline__ _Bool __sctp_chunkmap_is_all_set(const __u32 *chunkmap, unsigned int n)
 {
 	unsigned int i;
 	for (i = 0; i < n; ++i)

@@ -114,8 +114,7 @@ enum mlx5_ib_devx_obj_query_async_attrs {
 };
 
 enum mlx5_ib_devx_subscribe_event_attrs {
-	MLX5_IB_ATTR_DEVX_SUBSCRIBE_EVENT_FD_HANDLE =
-		(1U << UVERBS_ID_NS_SHIFT),
+	MLX5_IB_ATTR_DEVX_SUBSCRIBE_EVENT_FD_HANDLE = (1U << UVERBS_ID_NS_SHIFT),
 	MLX5_IB_ATTR_DEVX_SUBSCRIBE_EVENT_OBJ_HANDLE,
 	MLX5_IB_ATTR_DEVX_SUBSCRIBE_EVENT_TYPE_NUM_LIST,
 	MLX5_IB_ATTR_DEVX_SUBSCRIBE_EVENT_FD_NUM,
@@ -204,13 +203,11 @@ enum mlx5_ib_devx_umem_methods {
 };
 
 enum mlx5_ib_devx_async_cmd_fd_alloc_attrs {
-	MLX5_IB_ATTR_DEVX_ASYNC_CMD_FD_ALLOC_HANDLE =
-		(1U << UVERBS_ID_NS_SHIFT),
+	MLX5_IB_ATTR_DEVX_ASYNC_CMD_FD_ALLOC_HANDLE = (1U << UVERBS_ID_NS_SHIFT),
 };
 
 enum mlx5_ib_devx_async_event_fd_alloc_attrs {
-	MLX5_IB_ATTR_DEVX_ASYNC_EVENT_FD_ALLOC_HANDLE =
-		(1U << UVERBS_ID_NS_SHIFT),
+	MLX5_IB_ATTR_DEVX_ASYNC_EVENT_FD_ALLOC_HANDLE = (1U << UVERBS_ID_NS_SHIFT),
 	MLX5_IB_ATTR_DEVX_ASYNC_EVENT_FD_ALLOC_FLAGS,
 };
 
@@ -262,8 +259,7 @@ enum mlx5_ib_flow_steering_anchor_create_attrs {
 };
 
 enum mlx5_ib_flow_steering_anchor_destroy_attrs {
-	MLX5_IB_ATTR_STEERING_ANCHOR_DESTROY_HANDLE =
-		(1U << UVERBS_ID_NS_SHIFT),
+	MLX5_IB_ATTR_STEERING_ANCHOR_DESTROY_HANDLE = (1U << UVERBS_ID_NS_SHIFT),
 };
 
 enum mlx5_ib_steering_anchor_methods {
@@ -324,8 +320,7 @@ enum mlx5_ib_flow_methods {
 };
 
 enum mlx5_ib_flow_action_methods {
-	MLX5_IB_METHOD_FLOW_ACTION_CREATE_MODIFY_HEADER =
-		(1U << UVERBS_ID_NS_SHIFT),
+	MLX5_IB_METHOD_FLOW_ACTION_CREATE_MODIFY_HEADER = (1U << UVERBS_ID_NS_SHIFT),
 	MLX5_IB_METHOD_FLOW_ACTION_CREATE_PACKET_REFORMAT,
 };
 

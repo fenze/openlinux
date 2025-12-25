@@ -41,16 +41,14 @@
  * Note: PTP_STRICT_FLAGS is always enabled by the kernel for
  * PTP_EXTTS_REQUEST2 regardless of whether it is set by userspace.
  */
-#define PTP_EXTTS_VALID_FLAGS                                      \
-	(PTP_ENABLE_FEATURE | PTP_RISING_EDGE | PTP_FALLING_EDGE | \
-	 PTP_STRICT_FLAGS | PTP_EXT_OFFSET)
+#define PTP_EXTTS_VALID_FLAGS \
+	(PTP_ENABLE_FEATURE | PTP_RISING_EDGE | PTP_FALLING_EDGE | PTP_STRICT_FLAGS | PTP_EXT_OFFSET)
 
 /*
  * flag fields valid for the original PTP_EXTTS_REQUEST ioctl.
  * DO NOT ADD NEW FLAGS HERE.
  */
-#define PTP_EXTTS_V1_VALID_FLAGS \
-	(PTP_ENABLE_FEATURE | PTP_RISING_EDGE | PTP_FALLING_EDGE)
+#define PTP_EXTTS_V1_VALID_FLAGS (PTP_ENABLE_FEATURE | PTP_RISING_EDGE | PTP_FALLING_EDGE)
 
 /*
  * flag fields valid for the ptp_extts_event report.
@@ -67,8 +65,7 @@
 /*
  * flag fields valid for the new PTP_PEROUT_REQUEST2 ioctl.
  */
-#define PTP_PEROUT_VALID_FLAGS \
-	(PTP_PEROUT_ONE_SHOT | PTP_PEROUT_DUTY_CYCLE | PTP_PEROUT_PHASE)
+#define PTP_PEROUT_VALID_FLAGS (PTP_PEROUT_ONE_SHOT | PTP_PEROUT_DUTY_CYCLE | PTP_PEROUT_PHASE)
 
 /*
  * No flags are valid for the original PTP_PEROUT_REQUEST ioctl
@@ -219,31 +216,27 @@ struct ptp_pin_desc {
 
 #define PTP_CLK_MAGIC '='
 
-#define PTP_CLOCK_GETCAPS  _IOR(PTP_CLK_MAGIC, 1, struct ptp_clock_caps)
-#define PTP_EXTTS_REQUEST  _IOW(PTP_CLK_MAGIC, 2, struct ptp_extts_request)
-#define PTP_PEROUT_REQUEST _IOW(PTP_CLK_MAGIC, 3, struct ptp_perout_request)
-#define PTP_ENABLE_PPS	   _IOW(PTP_CLK_MAGIC, 4, int)
-#define PTP_SYS_OFFSET	   _IOW(PTP_CLK_MAGIC, 5, struct ptp_sys_offset)
-#define PTP_PIN_GETFUNC	   _IOWR(PTP_CLK_MAGIC, 6, struct ptp_pin_desc)
-#define PTP_PIN_SETFUNC	   _IOW(PTP_CLK_MAGIC, 7, struct ptp_pin_desc)
-#define PTP_SYS_OFFSET_PRECISE \
-	_IOWR(PTP_CLK_MAGIC, 8, struct ptp_sys_offset_precise)
-#define PTP_SYS_OFFSET_EXTENDED \
-	_IOWR(PTP_CLK_MAGIC, 9, struct ptp_sys_offset_extended)
+#define PTP_CLOCK_GETCAPS	_IOR(PTP_CLK_MAGIC, 1, struct ptp_clock_caps)
+#define PTP_EXTTS_REQUEST	_IOW(PTP_CLK_MAGIC, 2, struct ptp_extts_request)
+#define PTP_PEROUT_REQUEST	_IOW(PTP_CLK_MAGIC, 3, struct ptp_perout_request)
+#define PTP_ENABLE_PPS		_IOW(PTP_CLK_MAGIC, 4, int)
+#define PTP_SYS_OFFSET		_IOW(PTP_CLK_MAGIC, 5, struct ptp_sys_offset)
+#define PTP_PIN_GETFUNC		_IOWR(PTP_CLK_MAGIC, 6, struct ptp_pin_desc)
+#define PTP_PIN_SETFUNC		_IOW(PTP_CLK_MAGIC, 7, struct ptp_pin_desc)
+#define PTP_SYS_OFFSET_PRECISE	_IOWR(PTP_CLK_MAGIC, 8, struct ptp_sys_offset_precise)
+#define PTP_SYS_OFFSET_EXTENDED _IOWR(PTP_CLK_MAGIC, 9, struct ptp_sys_offset_extended)
 
-#define PTP_CLOCK_GETCAPS2  _IOR(PTP_CLK_MAGIC, 10, struct ptp_clock_caps)
-#define PTP_EXTTS_REQUEST2  _IOW(PTP_CLK_MAGIC, 11, struct ptp_extts_request)
-#define PTP_PEROUT_REQUEST2 _IOW(PTP_CLK_MAGIC, 12, struct ptp_perout_request)
-#define PTP_ENABLE_PPS2	    _IOW(PTP_CLK_MAGIC, 13, int)
-#define PTP_SYS_OFFSET2	    _IOW(PTP_CLK_MAGIC, 14, struct ptp_sys_offset)
-#define PTP_PIN_GETFUNC2    _IOWR(PTP_CLK_MAGIC, 15, struct ptp_pin_desc)
-#define PTP_PIN_SETFUNC2    _IOW(PTP_CLK_MAGIC, 16, struct ptp_pin_desc)
-#define PTP_SYS_OFFSET_PRECISE2 \
-	_IOWR(PTP_CLK_MAGIC, 17, struct ptp_sys_offset_precise)
-#define PTP_SYS_OFFSET_EXTENDED2 \
-	_IOWR(PTP_CLK_MAGIC, 18, struct ptp_sys_offset_extended)
-#define PTP_MASK_CLEAR_ALL _IO(PTP_CLK_MAGIC, 19)
-#define PTP_MASK_EN_SINGLE _IOW(PTP_CLK_MAGIC, 20, unsigned int)
+#define PTP_CLOCK_GETCAPS2	 _IOR(PTP_CLK_MAGIC, 10, struct ptp_clock_caps)
+#define PTP_EXTTS_REQUEST2	 _IOW(PTP_CLK_MAGIC, 11, struct ptp_extts_request)
+#define PTP_PEROUT_REQUEST2	 _IOW(PTP_CLK_MAGIC, 12, struct ptp_perout_request)
+#define PTP_ENABLE_PPS2		 _IOW(PTP_CLK_MAGIC, 13, int)
+#define PTP_SYS_OFFSET2		 _IOW(PTP_CLK_MAGIC, 14, struct ptp_sys_offset)
+#define PTP_PIN_GETFUNC2	 _IOWR(PTP_CLK_MAGIC, 15, struct ptp_pin_desc)
+#define PTP_PIN_SETFUNC2	 _IOW(PTP_CLK_MAGIC, 16, struct ptp_pin_desc)
+#define PTP_SYS_OFFSET_PRECISE2	 _IOWR(PTP_CLK_MAGIC, 17, struct ptp_sys_offset_precise)
+#define PTP_SYS_OFFSET_EXTENDED2 _IOWR(PTP_CLK_MAGIC, 18, struct ptp_sys_offset_extended)
+#define PTP_MASK_CLEAR_ALL	 _IO(PTP_CLK_MAGIC, 19)
+#define PTP_MASK_EN_SINGLE	 _IOW(PTP_CLK_MAGIC, 20, unsigned int)
 
 struct ptp_extts_event {
 	struct ptp_clock_time t; /* Time event occurred. */

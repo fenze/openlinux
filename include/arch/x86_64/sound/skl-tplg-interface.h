@@ -28,13 +28,7 @@
 #define SKL_UUID_STR_SZ 40
 /* Event types goes here */
 /* Reserve event type 0 for no event handlers */
-enum skl_event_types {
-	SKL_EVENT_NONE = 0,
-	SKL_MIXER_EVENT,
-	SKL_MUX_EVENT,
-	SKL_VMIXER_EVENT,
-	SKL_PGA_EVENT
-};
+enum skl_event_types { SKL_EVENT_NONE = 0, SKL_MIXER_EVENT, SKL_MUX_EVENT, SKL_VMIXER_EVENT, SKL_PGA_EVENT };
 
 /**
  * enum skl_ch_cfg - channel configuration
@@ -84,23 +78,11 @@ enum skl_module_type {
 	SKL_MODULE_TYPE_MIC_SELECT,
 };
 
-enum skl_core_affinity {
-	SKL_AFFINITY_CORE_0 = 0,
-	SKL_AFFINITY_CORE_1,
-	SKL_AFFINITY_CORE_MAX
-};
+enum skl_core_affinity { SKL_AFFINITY_CORE_0 = 0, SKL_AFFINITY_CORE_1, SKL_AFFINITY_CORE_MAX };
 
-enum skl_pipe_conn_type {
-	SKL_PIPE_CONN_TYPE_NONE = 0,
-	SKL_PIPE_CONN_TYPE_FE,
-	SKL_PIPE_CONN_TYPE_BE
-};
+enum skl_pipe_conn_type { SKL_PIPE_CONN_TYPE_NONE = 0, SKL_PIPE_CONN_TYPE_FE, SKL_PIPE_CONN_TYPE_BE };
 
-enum skl_hw_conn_type {
-	SKL_CONN_NONE = 0,
-	SKL_CONN_SOURCE = 1,
-	SKL_CONN_SINK = 2
-};
+enum skl_hw_conn_type { SKL_CONN_NONE = 0, SKL_CONN_SOURCE = 1, SKL_CONN_SINK = 2 };
 
 enum skl_dev_type {
 	SKL_DEVICE_BT = 0x0,
@@ -142,12 +124,7 @@ enum module_pin_type {
 	SKL_PIN_TYPE_HETEROGENEOUS,
 };
 
-enum skl_module_param_type {
-	SKL_PARAM_DEFAULT = 0,
-	SKL_PARAM_INIT,
-	SKL_PARAM_SET,
-	SKL_PARAM_BIND
-};
+enum skl_module_param_type { SKL_PARAM_DEFAULT = 0, SKL_PARAM_INIT, SKL_PARAM_SET, SKL_PARAM_BIND };
 
 struct skl_dfw_algo_data {
 	__u32 set_params : 2;

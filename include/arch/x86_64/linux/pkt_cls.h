@@ -251,8 +251,8 @@ struct tc_u32_key {
 
 struct tc_u32_sel {
 	/* New members MUST be added within the __struct_group() macro below. */
-	__struct_group(tc_u32_sel_hdr, hdr, /* no attrs */, unsigned char flags;
-		       unsigned char offshift; unsigned char nkeys;
+	__struct_group(tc_u32_sel_hdr, hdr, /* no attrs */, unsigned char flags; unsigned char offshift;
+		       unsigned char nkeys;
 
 		       __be16 offmask; __u16 off; short offoff;
 
@@ -562,16 +562,16 @@ enum {
 #define TCA_FLOWER_MAX (__TCA_FLOWER_MAX - 1)
 
 enum {
-	TCA_FLOWER_KEY_CT_FLAGS_NEW = 1 << 0, /* Beginning of a new connection.
-					       */
+	TCA_FLOWER_KEY_CT_FLAGS_NEW = 1 << 0,	      /* Beginning of a new connection.
+						       */
 	TCA_FLOWER_KEY_CT_FLAGS_ESTABLISHED = 1 << 1, /* Part of an existing
 							 connection. */
-	TCA_FLOWER_KEY_CT_FLAGS_RELATED = 1 << 2, /* Related to an established
-						     connection. */
-	TCA_FLOWER_KEY_CT_FLAGS_TRACKED = 1 << 3, /* Conntrack has occurred. */
-	TCA_FLOWER_KEY_CT_FLAGS_INVALID = 1 << 4, /* Conntrack is invalid. */
-	TCA_FLOWER_KEY_CT_FLAGS_REPLY = 1 << 5,	  /* Packet is in the reply
-						     direction. */
+	TCA_FLOWER_KEY_CT_FLAGS_RELATED = 1 << 2,     /* Related to an established
+							 connection. */
+	TCA_FLOWER_KEY_CT_FLAGS_TRACKED = 1 << 3,     /* Conntrack has occurred. */
+	TCA_FLOWER_KEY_CT_FLAGS_INVALID = 1 << 4,     /* Conntrack is invalid. */
+	TCA_FLOWER_KEY_CT_FLAGS_REPLY = 1 << 5,	      /* Packet is in the reply
+							 direction. */
 	__TCA_FLOWER_KEY_CT_FLAGS_MAX,
 };
 
@@ -611,8 +611,7 @@ enum {
 	__TCA_FLOWER_KEY_ENC_OPT_GENEVE_MAX,
 };
 
-#define TCA_FLOWER_KEY_ENC_OPT_GENEVE_MAX \
-	(__TCA_FLOWER_KEY_ENC_OPT_GENEVE_MAX - 1)
+#define TCA_FLOWER_KEY_ENC_OPT_GENEVE_MAX (__TCA_FLOWER_KEY_ENC_OPT_GENEVE_MAX - 1)
 
 enum {
 	TCA_FLOWER_KEY_ENC_OPT_VXLAN_UNSPEC,
@@ -620,8 +619,7 @@ enum {
 	__TCA_FLOWER_KEY_ENC_OPT_VXLAN_MAX,
 };
 
-#define TCA_FLOWER_KEY_ENC_OPT_VXLAN_MAX \
-	(__TCA_FLOWER_KEY_ENC_OPT_VXLAN_MAX - 1)
+#define TCA_FLOWER_KEY_ENC_OPT_VXLAN_MAX (__TCA_FLOWER_KEY_ENC_OPT_VXLAN_MAX - 1)
 
 enum {
 	TCA_FLOWER_KEY_ENC_OPT_ERSPAN_UNSPEC,
@@ -632,8 +630,7 @@ enum {
 	__TCA_FLOWER_KEY_ENC_OPT_ERSPAN_MAX,
 };
 
-#define TCA_FLOWER_KEY_ENC_OPT_ERSPAN_MAX \
-	(__TCA_FLOWER_KEY_ENC_OPT_ERSPAN_MAX - 1)
+#define TCA_FLOWER_KEY_ENC_OPT_ERSPAN_MAX (__TCA_FLOWER_KEY_ENC_OPT_ERSPAN_MAX - 1)
 
 enum {
 	TCA_FLOWER_KEY_ENC_OPT_GTP_UNSPEC,
@@ -723,12 +720,7 @@ struct tcf_ematch_tree_hdr {
 	__u16 progid;
 };
 
-enum {
-	TCA_EMATCH_TREE_UNSPEC,
-	TCA_EMATCH_TREE_HDR,
-	TCA_EMATCH_TREE_LIST,
-	__TCA_EMATCH_TREE_MAX
-};
+enum { TCA_EMATCH_TREE_UNSPEC, TCA_EMATCH_TREE_HDR, TCA_EMATCH_TREE_LIST, __TCA_EMATCH_TREE_MAX };
 #define TCA_EMATCH_TREE_MAX (__TCA_EMATCH_TREE_MAX - 1)
 
 struct tcf_ematch_hdr {
@@ -761,12 +753,7 @@ struct tcf_ematch_hdr {
 #define TCF_EM_REL_MASK	    3
 #define TCF_EM_REL_VALID(v) (((v) & TCF_EM_REL_MASK) != TCF_EM_REL_MASK)
 
-enum {
-	TCF_LAYER_LINK,
-	TCF_LAYER_NETWORK,
-	TCF_LAYER_TRANSPORT,
-	__TCF_LAYER_MAX
-};
+enum { TCF_LAYER_LINK, TCF_LAYER_NETWORK, TCF_LAYER_TRANSPORT, __TCF_LAYER_MAX };
 #define TCF_LAYER_MAX (__TCF_LAYER_MAX - 1)
 
 /* Ematch type assignments

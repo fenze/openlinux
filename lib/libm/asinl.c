@@ -68,8 +68,7 @@ long double asinl(long double x)
 		CLEARBOTTOM(u);
 		f = u.f;
 		c = (z - f * f) / (s + f);
-		x = 0.5 * pio2_hi -
-		    (2 * s * r - (pio2_lo - 2 * c) - (0.5 * pio2_hi - 2 * f));
+		x = 0.5 * pio2_hi - (2 * s * r - (pio2_lo - 2 * c) - (0.5 * pio2_hi - 2 * f));
 	}
 	return sign ? -x : x;
 }

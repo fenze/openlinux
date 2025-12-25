@@ -19,19 +19,14 @@ enum sgx_page_flags {
 
 #define SGX_MAGIC 0xA4
 
-#define SGX_IOC_ENCLAVE_CREATE _IOW(SGX_MAGIC, 0x00, struct sgx_enclave_create)
-#define SGX_IOC_ENCLAVE_ADD_PAGES \
-	_IOWR(SGX_MAGIC, 0x01, struct sgx_enclave_add_pages)
-#define SGX_IOC_ENCLAVE_INIT _IOW(SGX_MAGIC, 0x02, struct sgx_enclave_init)
-#define SGX_IOC_ENCLAVE_PROVISION \
-	_IOW(SGX_MAGIC, 0x03, struct sgx_enclave_provision)
-#define SGX_IOC_VEPC_REMOVE_ALL _IO(SGX_MAGIC, 0x04)
-#define SGX_IOC_ENCLAVE_RESTRICT_PERMISSIONS \
-	_IOWR(SGX_MAGIC, 0x05, struct sgx_enclave_restrict_permissions)
-#define SGX_IOC_ENCLAVE_MODIFY_TYPES \
-	_IOWR(SGX_MAGIC, 0x06, struct sgx_enclave_modify_types)
-#define SGX_IOC_ENCLAVE_REMOVE_PAGES \
-	_IOWR(SGX_MAGIC, 0x07, struct sgx_enclave_remove_pages)
+#define SGX_IOC_ENCLAVE_CREATE		     _IOW(SGX_MAGIC, 0x00, struct sgx_enclave_create)
+#define SGX_IOC_ENCLAVE_ADD_PAGES	     _IOWR(SGX_MAGIC, 0x01, struct sgx_enclave_add_pages)
+#define SGX_IOC_ENCLAVE_INIT		     _IOW(SGX_MAGIC, 0x02, struct sgx_enclave_init)
+#define SGX_IOC_ENCLAVE_PROVISION	     _IOW(SGX_MAGIC, 0x03, struct sgx_enclave_provision)
+#define SGX_IOC_VEPC_REMOVE_ALL		     _IO(SGX_MAGIC, 0x04)
+#define SGX_IOC_ENCLAVE_RESTRICT_PERMISSIONS _IOWR(SGX_MAGIC, 0x05, struct sgx_enclave_restrict_permissions)
+#define SGX_IOC_ENCLAVE_MODIFY_TYPES	     _IOWR(SGX_MAGIC, 0x06, struct sgx_enclave_modify_types)
+#define SGX_IOC_ENCLAVE_REMOVE_PAGES	     _IOWR(SGX_MAGIC, 0x07, struct sgx_enclave_remove_pages)
 
 /**
  * struct sgx_enclave_create - parameter structure for the
@@ -150,8 +145,7 @@ struct sgx_enclave_run;
  * - <= 0:	The given value is returned back to the caller.
  * - > 0:	ENCLU function to invoke, either EENTER or ERESUME.
  */
-typedef int (*sgx_enclave_user_handler_t)(long rdi, long rsi, long rdx,
-					  long rsp, long r8, long r9,
+typedef int (*sgx_enclave_user_handler_t)(long rdi, long rsi, long rdx, long rsp, long r8, long r9,
 					  struct sgx_enclave_run *run);
 
 /**
@@ -223,10 +217,7 @@ struct sgx_enclave_run {
  * - 0:		ENCLU function was successfully executed.
  * - -EINVAL:	Invalid ENCL number (neither EENTER nor ERESUME).
  */
-typedef int (*vdso_sgx_enter_enclave_t)(unsigned long rdi, unsigned long rsi,
-					unsigned long rdx,
-					unsigned int function, unsigned long r8,
-					unsigned long r9,
-					struct sgx_enclave_run *run);
+typedef int (*vdso_sgx_enter_enclave_t)(unsigned long rdi, unsigned long rsi, unsigned long rdx, unsigned int function,
+					unsigned long r8, unsigned long r9, struct sgx_enclave_run *run);
 
 #endif /* _ASM_X86_SGX_H */

@@ -87,10 +87,8 @@
  */
 #define VHOST_VRING_LITTLE_ENDIAN 0
 #define VHOST_VRING_BIG_ENDIAN	  1
-#define VHOST_SET_VRING_ENDIAN \
-	_IOW(VHOST_VIRTIO, 0x13, struct vhost_vring_state)
-#define VHOST_GET_VRING_ENDIAN \
-	_IOW(VHOST_VIRTIO, 0x14, struct vhost_vring_state)
+#define VHOST_SET_VRING_ENDIAN	  _IOW(VHOST_VIRTIO, 0x13, struct vhost_vring_state)
+#define VHOST_GET_VRING_ENDIAN	  _IOW(VHOST_VIRTIO, 0x14, struct vhost_vring_state)
 /* Attach a vhost_worker created with VHOST_NEW_WORKER to one of the device's
  * virtqueues.
  *
@@ -98,11 +96,9 @@
  * is no longer attached to any virtqueues, it can be freed with
  * VHOST_FREE_WORKER.
  */
-#define VHOST_ATTACH_VRING_WORKER \
-	_IOW(VHOST_VIRTIO, 0x15, struct vhost_vring_worker)
+#define VHOST_ATTACH_VRING_WORKER _IOW(VHOST_VIRTIO, 0x15, struct vhost_vring_worker)
 /* Return the vring worker's ID */
-#define VHOST_GET_VRING_WORKER \
-	_IOWR(VHOST_VIRTIO, 0x16, struct vhost_vring_worker)
+#define VHOST_GET_VRING_WORKER _IOWR(VHOST_VIRTIO, 0x16, struct vhost_vring_worker)
 
 /* The following ioctls use eventfd file descriptors to signal and poll
  * for events. */
@@ -114,11 +110,9 @@
 /* Set eventfd to signal an error */
 #define VHOST_SET_VRING_ERR _IOW(VHOST_VIRTIO, 0x22, struct vhost_vring_file)
 /* Set busy loop timeout (in us) */
-#define VHOST_SET_VRING_BUSYLOOP_TIMEOUT \
-	_IOW(VHOST_VIRTIO, 0x23, struct vhost_vring_state)
+#define VHOST_SET_VRING_BUSYLOOP_TIMEOUT _IOW(VHOST_VIRTIO, 0x23, struct vhost_vring_state)
 /* Get busy loop timeout (in us) */
-#define VHOST_GET_VRING_BUSYLOOP_TIMEOUT \
-	_IOW(VHOST_VIRTIO, 0x24, struct vhost_vring_state)
+#define VHOST_GET_VRING_BUSYLOOP_TIMEOUT _IOW(VHOST_VIRTIO, 0x24, struct vhost_vring_state)
 
 /* Set or get vhost backend capability */
 
@@ -135,10 +129,8 @@
 
 /* VHOST_SCSI specific defines */
 
-#define VHOST_SCSI_SET_ENDPOINT \
-	_IOW(VHOST_VIRTIO, 0x40, struct vhost_scsi_target)
-#define VHOST_SCSI_CLEAR_ENDPOINT \
-	_IOW(VHOST_VIRTIO, 0x41, struct vhost_scsi_target)
+#define VHOST_SCSI_SET_ENDPOINT	  _IOW(VHOST_VIRTIO, 0x40, struct vhost_scsi_target)
+#define VHOST_SCSI_CLEAR_ENDPOINT _IOW(VHOST_VIRTIO, 0x41, struct vhost_scsi_target)
 /* Changing this breaks userspace. */
 #define VHOST_SCSI_GET_ABI_VERSION _IOW(VHOST_VIRTIO, 0x42, int)
 /* Set and get the events missed flag */
@@ -167,8 +159,7 @@
 #define VHOST_VDPA_GET_CONFIG _IOR(VHOST_VIRTIO, 0x73, struct vhost_vdpa_config)
 #define VHOST_VDPA_SET_CONFIG _IOW(VHOST_VIRTIO, 0x74, struct vhost_vdpa_config)
 /* Enable/disable the ring. */
-#define VHOST_VDPA_SET_VRING_ENABLE \
-	_IOW(VHOST_VIRTIO, 0x75, struct vhost_vring_state)
+#define VHOST_VDPA_SET_VRING_ENABLE _IOW(VHOST_VIRTIO, 0x75, struct vhost_vring_state)
 /* Get the max ring size. */
 #define VHOST_VDPA_GET_VRING_NUM _IOR(VHOST_VIRTIO, 0x76, __u16)
 
@@ -176,8 +167,7 @@
 #define VHOST_VDPA_SET_CONFIG_CALL _IOW(VHOST_VIRTIO, 0x77, int)
 
 /* Get the valid iova range */
-#define VHOST_VDPA_GET_IOVA_RANGE \
-	_IOR(VHOST_VIRTIO, 0x78, struct vhost_vdpa_iova_range)
+#define VHOST_VDPA_GET_IOVA_RANGE _IOR(VHOST_VIRTIO, 0x78, struct vhost_vdpa_iova_range)
 /* Get the config size */
 #define VHOST_VDPA_GET_CONFIG_SIZE _IOR(VHOST_VIRTIO, 0x79, __u32)
 
@@ -189,14 +179,12 @@
  * vhost_vring_state. The group for this specific virtqueue is
  * returned via num field of vhost_vring_state.
  */
-#define VHOST_VDPA_GET_VRING_GROUP \
-	_IOWR(VHOST_VIRTIO, 0x7B, struct vhost_vring_state)
+#define VHOST_VDPA_GET_VRING_GROUP _IOWR(VHOST_VIRTIO, 0x7B, struct vhost_vring_state)
 /* Set the ASID for a virtqueue group. The group index is stored in
  * the index field of vhost_vring_state, the ASID associated with this
  * group is stored at num field of vhost_vring_state.
  */
-#define VHOST_VDPA_SET_GROUP_ASID \
-	_IOW(VHOST_VIRTIO, 0x7C, struct vhost_vring_state)
+#define VHOST_VDPA_SET_GROUP_ASID _IOW(VHOST_VIRTIO, 0x7C, struct vhost_vring_state)
 
 /* Suspend a device so it does not process virtqueue requests anymore
  *
@@ -221,8 +209,7 @@
  * The group ID of the descriptor table for this specific virtqueue
  * is returned via num field of vhost_vring_state.
  */
-#define VHOST_VDPA_GET_VRING_DESC_GROUP \
-	_IOWR(VHOST_VIRTIO, 0x7F, struct vhost_vring_state)
+#define VHOST_VDPA_GET_VRING_DESC_GROUP _IOWR(VHOST_VIRTIO, 0x7F, struct vhost_vring_state)
 
 /* Get the count of all virtqueues */
 #define VHOST_VDPA_GET_VQS_COUNT _IOR(VHOST_VIRTIO, 0x80, __u32)
@@ -234,14 +221,11 @@
  * userspace set the vring index in vhost_vring_state.index
  * kernel set the queue size in vhost_vring_state.num
  */
-#define VHOST_VDPA_GET_VRING_SIZE \
-	_IOWR(VHOST_VIRTIO, 0x82, struct vhost_vring_state)
+#define VHOST_VDPA_GET_VRING_SIZE _IOWR(VHOST_VIRTIO, 0x82, struct vhost_vring_state)
 
 /* Extended features manipulation */
-#define VHOST_GET_FEATURES_ARRAY \
-	_IOR(VHOST_VIRTIO, 0x83, struct vhost_features_array)
-#define VHOST_SET_FEATURES_ARRAY \
-	_IOW(VHOST_VIRTIO, 0x83, struct vhost_features_array)
+#define VHOST_GET_FEATURES_ARRAY _IOR(VHOST_VIRTIO, 0x83, struct vhost_features_array)
+#define VHOST_SET_FEATURES_ARRAY _IOW(VHOST_VIRTIO, 0x83, struct vhost_features_array)
 
 /* fork_owner values for vhost */
 #define VHOST_FORK_OWNER_KTHREAD 0

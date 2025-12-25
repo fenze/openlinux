@@ -39,8 +39,7 @@ float tanf(float x)
 	if (ix <= 0x3f490fda) {	       /* |x| ~<= pi/4 */
 		if (ix < 0x39800000) { /* |x| < 2**-12 */
 			/* raise inexact if x!=0 and underflow if subnormal */
-			FORCE_EVAL(ix < 0x00800000 ? x / 0x1p120f :
-						     x + 0x1p120f);
+			FORCE_EVAL(ix < 0x00800000 ? x / 0x1p120f : x + 0x1p120f);
 			return x;
 		}
 		return __tandf(x, 0);

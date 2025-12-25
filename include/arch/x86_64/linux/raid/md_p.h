@@ -44,8 +44,7 @@
 #define MD_RESERVED_BYTES   (64 * 1024)
 #define MD_RESERVED_SECTORS (MD_RESERVED_BYTES / 512)
 
-#define MD_NEW_SIZE_SECTORS(x) \
-	((x & ~(MD_RESERVED_SECTORS - 1)) - MD_RESERVED_SECTORS)
+#define MD_NEW_SIZE_SECTORS(x) ((x & ~(MD_RESERVED_SECTORS - 1)) - MD_RESERVED_SECTORS)
 
 #define MD_SB_BYTES   4096
 #define MD_SB_WORDS   (MD_SB_BYTES / 4)
@@ -61,17 +60,14 @@
 
 #define MD_SB_GENERIC_CONSTANT_WORDS 32
 #define MD_SB_GENERIC_STATE_WORDS    32
-#define MD_SB_GENERIC_WORDS \
-	(MD_SB_GENERIC_CONSTANT_WORDS + MD_SB_GENERIC_STATE_WORDS)
-#define MD_SB_PERSONALITY_WORDS 64
-#define MD_SB_DESCRIPTOR_WORDS	32
-#define MD_SB_DISKS		27
-#define MD_SB_DISKS_WORDS	(MD_SB_DISKS * MD_SB_DESCRIPTOR_WORDS)
-#define MD_SB_RESERVED_WORDS                                    \
-	(1024 - MD_SB_GENERIC_WORDS - MD_SB_PERSONALITY_WORDS - \
-	 MD_SB_DISKS_WORDS - MD_SB_DESCRIPTOR_WORDS)
-#define MD_SB_EQUAL_WORDS \
-	(MD_SB_GENERIC_WORDS + MD_SB_PERSONALITY_WORDS + MD_SB_DISKS_WORDS)
+#define MD_SB_GENERIC_WORDS	     (MD_SB_GENERIC_CONSTANT_WORDS + MD_SB_GENERIC_STATE_WORDS)
+#define MD_SB_PERSONALITY_WORDS	     64
+#define MD_SB_DESCRIPTOR_WORDS	     32
+#define MD_SB_DISKS		     27
+#define MD_SB_DISKS_WORDS	     (MD_SB_DISKS * MD_SB_DESCRIPTOR_WORDS)
+#define MD_SB_RESERVED_WORDS \
+	(1024 - MD_SB_GENERIC_WORDS - MD_SB_PERSONALITY_WORDS - MD_SB_DISKS_WORDS - MD_SB_DESCRIPTOR_WORDS)
+#define MD_SB_EQUAL_WORDS (MD_SB_GENERIC_WORDS + MD_SB_PERSONALITY_WORDS + MD_SB_DISKS_WORDS)
 
 /*
  * Device "operational" state bits
@@ -173,8 +169,7 @@ typedef struct mdp_superblock_s {
 	__u32 events_lo;    /*  8 low-order of superblock update count    */
 	__u32 cp_events_hi; /*  9 high-order of checkpoint update count   */
 	__u32 cp_events_lo; /* 10 low-order of checkpoint update count    */
-#elif defined(__BYTE_ORDER) ? __BYTE_ORDER == __LITTLE_ENDIAN : \
-			    defined(__LITTLE_ENDIAN)
+#elif defined(__BYTE_ORDER) ? __BYTE_ORDER == __LITTLE_ENDIAN : defined(__LITTLE_ENDIAN)
 	__u32 events_lo;    /*  7 low-order of superblock update count    */
 	__u32 events_hi;    /*  8 high-order of superblock update count   */
 	__u32 cp_events_lo; /*  9 low-order of checkpoint update count    */
@@ -277,8 +272,8 @@ struct mdp_superblock_1 {
 				  */
 
 	/* constant this-device information - 64 bytes */
-	__le64 data_offset; /* sector start of data, often 0 */
-	__le64 data_size; /* sectors in this device that can be used for data */
+	__le64 data_offset;  /* sector start of data, often 0 */
+	__le64 data_size;    /* sectors in this device that can be used for data */
 	__le64 super_offset; /* sector start of this superblock */
 	union {
 		__le64 recovery_offset; /* sectors before this offset (from
@@ -286,14 +281,14 @@ struct mdp_superblock_1 {
 		__le64 journal_tail;	/* journal tail of journal device (from
 					   data_offset) */
 	};
-	__le32 dev_number; /* permanent identifier of this  device - not role in
-			      raid */
+	__le32 dev_number;	   /* permanent identifier of this  device - not role in
+				      raid */
 	__le32 cnt_corrected_read; /* number of read errors that were corrected
 				      by re-writing */
 	__u8 device_uuid[16];	   /* user-space setable, ignored by kernel */
 	__u8 devflags;		   /* per-device flags.  Only two defined...*/
 #define WriteMostly1 1		   /* mask for writemostly flag in above */
-#define FailFast1    2 /* Should avoid retries and fixups and just fail */
+#define FailFast1    2		   /* Should avoid retries and fixups and just fail */
 	/* Bad block log.  If there are any bad blocks the feature flag is set.
 	 * If offset and size are non-zero, that space is reserved and available
 	 */
@@ -349,13 +344,11 @@ struct mdp_superblock_1 {
 #define MD_FEATURE_PPL		 1024 /* support PPL */
 #define MD_FEATURE_MULTIPLE_PPLS 2048 /* support for multiple PPLs */
 #define MD_FEATURE_RAID0_LAYOUT	 4096 /* layout is meaningful for RAID0 */
-#define MD_FEATURE_ALL                                                \
-	(MD_FEATURE_BITMAP_OFFSET | MD_FEATURE_RECOVERY_OFFSET |      \
-	 MD_FEATURE_RESHAPE_ACTIVE | MD_FEATURE_BAD_BLOCKS |          \
-	 MD_FEATURE_REPLACEMENT | MD_FEATURE_RESHAPE_BACKWARDS |      \
-	 MD_FEATURE_NEW_OFFSET | MD_FEATURE_RECOVERY_BITMAP |         \
-	 MD_FEATURE_CLUSTERED | MD_FEATURE_JOURNAL | MD_FEATURE_PPL | \
-	 MD_FEATURE_MULTIPLE_PPLS | MD_FEATURE_RAID0_LAYOUT)
+#define MD_FEATURE_ALL                                                                                                \
+	(MD_FEATURE_BITMAP_OFFSET | MD_FEATURE_RECOVERY_OFFSET | MD_FEATURE_RESHAPE_ACTIVE | MD_FEATURE_BAD_BLOCKS |  \
+	 MD_FEATURE_REPLACEMENT | MD_FEATURE_RESHAPE_BACKWARDS | MD_FEATURE_NEW_OFFSET | MD_FEATURE_RECOVERY_BITMAP | \
+	 MD_FEATURE_CLUSTERED | MD_FEATURE_JOURNAL | MD_FEATURE_PPL | MD_FEATURE_MULTIPLE_PPLS |                      \
+	 MD_FEATURE_RAID0_LAYOUT)
 
 struct r5l_payload_header {
 	__le16 type;
@@ -426,21 +419,18 @@ struct ppl_header_entry {
 			     * entry (~crc32c) */
 } __attribute__((__packed__));
 
-#define PPL_HEADER_SIZE	 4096
-#define PPL_HDR_RESERVED 512
-#define PPL_HDR_ENTRY_SPACE                                        \
-	(PPL_HEADER_SIZE - PPL_HDR_RESERVED - 4 * sizeof(__le32) - \
-	 sizeof(__le64))
-#define PPL_HDR_MAX_ENTRIES \
-	(PPL_HDR_ENTRY_SPACE / sizeof(struct ppl_header_entry))
+#define PPL_HEADER_SIZE	    4096
+#define PPL_HDR_RESERVED    512
+#define PPL_HDR_ENTRY_SPACE (PPL_HEADER_SIZE - PPL_HDR_RESERVED - 4 * sizeof(__le32) - sizeof(__le64))
+#define PPL_HDR_MAX_ENTRIES (PPL_HDR_ENTRY_SPACE / sizeof(struct ppl_header_entry))
 
 struct ppl_header {
 	__u8 reserved[PPL_HDR_RESERVED]; /* reserved space, fill with 0xff */
-	__le32 signature;     /* signature (family number of volume) */
-	__le32 padding;	      /* zero pad */
-	__le64 generation;    /* generation number of the header */
-	__le32 entries_count; /* number of entries in entry array */
-	__le32 checksum;      /* checksum of the header (~crc32c) */
+	__le32 signature;		 /* signature (family number of volume) */
+	__le32 padding;			 /* zero pad */
+	__le64 generation;		 /* generation number of the header */
+	__le32 entries_count;		 /* number of entries in entry array */
+	__le32 checksum;		 /* checksum of the header (~crc32c) */
 	struct ppl_header_entry entries[PPL_HDR_MAX_ENTRIES];
 } __attribute__((__packed__));
 

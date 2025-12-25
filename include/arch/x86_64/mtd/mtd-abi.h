@@ -163,9 +163,8 @@ struct mtd_read_req {
 #define MTD_CAP_NVRAM	  (MTD_WRITEABLE | MTD_BIT_WRITEABLE | MTD_NO_ERASE)
 
 /* Obsolete ECC byte placement modes (used with obsolete MEMGETOOBSEL) */
-#define MTD_NANDECC_OFF 0 /* Switch off ECC (Not recommended) */
-#define MTD_NANDECC_PLACE \
-	1 /* Use the given placement in the structure (YAFFS1 legacy mode) */
+#define MTD_NANDECC_OFF	      0 /* Switch off ECC (Not recommended) */
+#define MTD_NANDECC_PLACE     1 /* Use the given placement in the structure (YAFFS1 legacy mode) */
 #define MTD_NANDECC_AUTOPLACE 2 /* Use the default placement scheme */
 #define MTD_NANDECC_PLACEONLY                                                  \
 	3 /* Use the given placement in the structure (Do not store ecc result \

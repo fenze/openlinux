@@ -94,10 +94,7 @@ enum caif_debug_type {
  * @CAIF_RADIO_DEBUG_SERVICE:	Debug service on the Radio sub-system
  * @CAIF_APP_DEBUG_SERVICE:	Debug for the applications sub-system
  */
-enum caif_debug_service {
-	CAIF_RADIO_DEBUG_SERVICE = 1,
-	CAIF_APP_DEBUG_SERVICE
-};
+enum caif_debug_service { CAIF_RADIO_DEBUG_SERVICE = 1, CAIF_APP_DEBUG_SERVICE };
 
 /**
  * struct sockaddr_caif - the sockaddr structure for CAIF sockets.

@@ -26,8 +26,7 @@
  * (FW protocol version and max message size).
  *
  */
-#define IOCTL_MEI_CONNECT_CLIENT \
-	_IOWR('H', 0x01, struct mei_connect_client_data)
+#define IOCTL_MEI_CONNECT_CLIENT _IOWR('H', 0x01, struct mei_connect_client_data)
 
 /*
  * Intel MEI client information struct
@@ -113,7 +112,6 @@ struct mei_connect_client_data_vtag {
  * Clients that do not support tagged connection
  * will respond with -EOPNOTSUPP.
  */
-#define IOCTL_MEI_CONNECT_CLIENT_VTAG \
-	_IOWR('H', 0x04, struct mei_connect_client_data_vtag)
+#define IOCTL_MEI_CONNECT_CLIENT_VTAG _IOWR('H', 0x04, struct mei_connect_client_data_vtag)
 
 #endif /* _LINUX_MEI_H  */

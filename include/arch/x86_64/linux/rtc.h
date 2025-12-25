@@ -104,25 +104,22 @@ struct rtc_param {
 #define RTC_WKALM_SET _IOW('p', 0x0f, struct rtc_wkalrm) /* Set wakeup alarm*/
 #define RTC_WKALM_RD  _IOR('p', 0x10, struct rtc_wkalrm) /* Get wakeup alarm*/
 
-#define RTC_PLL_GET \
-	_IOR('p', 0x11, struct rtc_pll_info) /* Get PLL correction */
-#define RTC_PLL_SET \
-	_IOW('p', 0x12, struct rtc_pll_info) /* Set PLL correction */
+#define RTC_PLL_GET _IOR('p', 0x11, struct rtc_pll_info) /* Get PLL correction */
+#define RTC_PLL_SET _IOW('p', 0x12, struct rtc_pll_info) /* Set PLL correction */
 
 #define RTC_PARAM_GET _IOW('p', 0x13, struct rtc_param) /* Get parameter */
 #define RTC_PARAM_SET _IOW('p', 0x14, struct rtc_param) /* Set parameter */
 
-#define RTC_VL_DATA_INVALID                                                   \
-	_BITUL(0)		      /* Voltage too low, RTC data is invalid \
-				       */
-#define RTC_VL_BACKUP_LOW   _BITUL(1) /* Backup voltage is low */
-#define RTC_VL_BACKUP_EMPTY _BITUL(2) /* Backup empty or not present */
-#define RTC_VL_ACCURACY_LOW \
-	_BITUL(3) /* Voltage is low, RTC accuracy is reduced */
+#define RTC_VL_DATA_INVALID                                                    \
+	_BITUL(0)		       /* Voltage too low, RTC data is invalid \
+					*/
+#define RTC_VL_BACKUP_LOW    _BITUL(1) /* Backup voltage is low */
+#define RTC_VL_BACKUP_EMPTY  _BITUL(2) /* Backup empty or not present */
+#define RTC_VL_ACCURACY_LOW  _BITUL(3) /* Voltage is low, RTC accuracy is reduced */
 #define RTC_VL_BACKUP_SWITCH _BITUL(4) /* Backup switchover happened */
 
 #define RTC_VL_READ _IOR('p', 0x13, unsigned int) /* Voltage low detection */
-#define RTC_VL_CLR  _IO('p', 0x14) /* Clear voltage low information */
+#define RTC_VL_CLR  _IO('p', 0x14)		  /* Clear voltage low information */
 
 /* interrupt flags */
 #define RTC_IRQF 0x80 /* Any of the following is active */

@@ -22,31 +22,22 @@
  * userfaultfd.h we assumed the kernel was reading (instead _IOC_READ
  * means the userland is reading).
  */
-#define UFFD_API ((__u64)0xAA)
-#define UFFD_API_REGISTER_MODES                                   \
-	(UFFDIO_REGISTER_MODE_MISSING | UFFDIO_REGISTER_MODE_WP | \
-	 UFFDIO_REGISTER_MODE_MINOR)
-#define UFFD_API_FEATURES                                                \
-	(UFFD_FEATURE_PAGEFAULT_FLAG_WP | UFFD_FEATURE_EVENT_FORK |      \
-	 UFFD_FEATURE_EVENT_REMAP | UFFD_FEATURE_EVENT_REMOVE |          \
-	 UFFD_FEATURE_EVENT_UNMAP | UFFD_FEATURE_MISSING_HUGETLBFS |     \
-	 UFFD_FEATURE_MISSING_SHMEM | UFFD_FEATURE_SIGBUS |              \
-	 UFFD_FEATURE_THREAD_ID | UFFD_FEATURE_MINOR_HUGETLBFS |         \
-	 UFFD_FEATURE_MINOR_SHMEM | UFFD_FEATURE_EXACT_ADDRESS |         \
-	 UFFD_FEATURE_WP_HUGETLBFS_SHMEM | UFFD_FEATURE_WP_UNPOPULATED | \
-	 UFFD_FEATURE_POISON | UFFD_FEATURE_WP_ASYNC | UFFD_FEATURE_MOVE)
-#define UFFD_API_IOCTLS                                                  \
-	((__u64)1 << _UFFDIO_REGISTER | (__u64)1 << _UFFDIO_UNREGISTER | \
-	 (__u64)1 << _UFFDIO_API)
-#define UFFD_API_RANGE_IOCTLS                                              \
-	((__u64)1 << _UFFDIO_WAKE | (__u64)1 << _UFFDIO_COPY |             \
-	 (__u64)1 << _UFFDIO_ZEROPAGE | (__u64)1 << _UFFDIO_MOVE |         \
-	 (__u64)1 << _UFFDIO_WRITEPROTECT | (__u64)1 << _UFFDIO_CONTINUE | \
+#define UFFD_API		((__u64)0xAA)
+#define UFFD_API_REGISTER_MODES (UFFDIO_REGISTER_MODE_MISSING | UFFDIO_REGISTER_MODE_WP | UFFDIO_REGISTER_MODE_MINOR)
+#define UFFD_API_FEATURES                                                                                           \
+	(UFFD_FEATURE_PAGEFAULT_FLAG_WP | UFFD_FEATURE_EVENT_FORK | UFFD_FEATURE_EVENT_REMAP |                      \
+	 UFFD_FEATURE_EVENT_REMOVE | UFFD_FEATURE_EVENT_UNMAP | UFFD_FEATURE_MISSING_HUGETLBFS |                    \
+	 UFFD_FEATURE_MISSING_SHMEM | UFFD_FEATURE_SIGBUS | UFFD_FEATURE_THREAD_ID | UFFD_FEATURE_MINOR_HUGETLBFS | \
+	 UFFD_FEATURE_MINOR_SHMEM | UFFD_FEATURE_EXACT_ADDRESS | UFFD_FEATURE_WP_HUGETLBFS_SHMEM |                  \
+	 UFFD_FEATURE_WP_UNPOPULATED | UFFD_FEATURE_POISON | UFFD_FEATURE_WP_ASYNC | UFFD_FEATURE_MOVE)
+#define UFFD_API_IOCTLS ((__u64)1 << _UFFDIO_REGISTER | (__u64)1 << _UFFDIO_UNREGISTER | (__u64)1 << _UFFDIO_API)
+#define UFFD_API_RANGE_IOCTLS                                                                         \
+	((__u64)1 << _UFFDIO_WAKE | (__u64)1 << _UFFDIO_COPY | (__u64)1 << _UFFDIO_ZEROPAGE |         \
+	 (__u64)1 << _UFFDIO_MOVE | (__u64)1 << _UFFDIO_WRITEPROTECT | (__u64)1 << _UFFDIO_CONTINUE | \
 	 (__u64)1 << _UFFDIO_POISON)
-#define UFFD_API_RANGE_IOCTLS_BASIC                                        \
-	((__u64)1 << _UFFDIO_WAKE | (__u64)1 << _UFFDIO_COPY |             \
-	 (__u64)1 << _UFFDIO_WRITEPROTECT | (__u64)1 << _UFFDIO_CONTINUE | \
-	 (__u64)1 << _UFFDIO_POISON)
+#define UFFD_API_RANGE_IOCTLS_BASIC                                                               \
+	((__u64)1 << _UFFDIO_WAKE | (__u64)1 << _UFFDIO_COPY | (__u64)1 << _UFFDIO_WRITEPROTECT | \
+	 (__u64)1 << _UFFDIO_CONTINUE | (__u64)1 << _UFFDIO_POISON)
 
 /*
  * Valid ioctl command number range with this API is from 0x00 to
@@ -68,18 +59,17 @@
 #define _UFFDIO_API	     (0x3F)
 
 /* userfaultfd ioctl ids */
-#define UFFDIO		  0xAA
-#define UFFDIO_API	  _IOWR(UFFDIO, _UFFDIO_API, struct uffdio_api)
-#define UFFDIO_REGISTER	  _IOWR(UFFDIO, _UFFDIO_REGISTER, struct uffdio_register)
-#define UFFDIO_UNREGISTER _IOR(UFFDIO, _UFFDIO_UNREGISTER, struct uffdio_range)
-#define UFFDIO_WAKE	  _IOR(UFFDIO, _UFFDIO_WAKE, struct uffdio_range)
-#define UFFDIO_COPY	  _IOWR(UFFDIO, _UFFDIO_COPY, struct uffdio_copy)
-#define UFFDIO_ZEROPAGE	  _IOWR(UFFDIO, _UFFDIO_ZEROPAGE, struct uffdio_zeropage)
-#define UFFDIO_MOVE	  _IOWR(UFFDIO, _UFFDIO_MOVE, struct uffdio_move)
-#define UFFDIO_WRITEPROTECT \
-	_IOWR(UFFDIO, _UFFDIO_WRITEPROTECT, struct uffdio_writeprotect)
-#define UFFDIO_CONTINUE _IOWR(UFFDIO, _UFFDIO_CONTINUE, struct uffdio_continue)
-#define UFFDIO_POISON	_IOWR(UFFDIO, _UFFDIO_POISON, struct uffdio_poison)
+#define UFFDIO		    0xAA
+#define UFFDIO_API	    _IOWR(UFFDIO, _UFFDIO_API, struct uffdio_api)
+#define UFFDIO_REGISTER	    _IOWR(UFFDIO, _UFFDIO_REGISTER, struct uffdio_register)
+#define UFFDIO_UNREGISTER   _IOR(UFFDIO, _UFFDIO_UNREGISTER, struct uffdio_range)
+#define UFFDIO_WAKE	    _IOR(UFFDIO, _UFFDIO_WAKE, struct uffdio_range)
+#define UFFDIO_COPY	    _IOWR(UFFDIO, _UFFDIO_COPY, struct uffdio_copy)
+#define UFFDIO_ZEROPAGE	    _IOWR(UFFDIO, _UFFDIO_ZEROPAGE, struct uffdio_zeropage)
+#define UFFDIO_MOVE	    _IOWR(UFFDIO, _UFFDIO_MOVE, struct uffdio_move)
+#define UFFDIO_WRITEPROTECT _IOWR(UFFDIO, _UFFDIO_WRITEPROTECT, struct uffdio_writeprotect)
+#define UFFDIO_CONTINUE	    _IOWR(UFFDIO, _UFFDIO_CONTINUE, struct uffdio_continue)
+#define UFFDIO_POISON	    _IOWR(UFFDIO, _UFFDIO_POISON, struct uffdio_poison)
 
 /* read() structure */
 struct uffd_msg {

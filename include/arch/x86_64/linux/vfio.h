@@ -215,7 +215,7 @@ struct vfio_device_info {
 #define VFIO_DEVICE_FLAGS_CDX	   (1 << 8) /* vfio-cdx device */
 	__u32 num_regions;		    /* Max region index + 1 */
 	__u32 num_irqs;			    /* Max IRQ index + 1 */
-	__u32 cap_offset; /* Offset within info struct of first cap */
+	__u32 cap_offset;		    /* Offset within info struct of first cap */
 	__u32 pad;
 };
 #define VFIO_DEVICE_GET_INFO _IO(VFIO_TYPE, VFIO_BASE + 7)
@@ -275,9 +275,9 @@ struct vfio_region_info {
 #define VFIO_REGION_INFO_FLAG_MMAP  (1 << 2) /* Region supports mmap */
 #define VFIO_REGION_INFO_FLAG_CAPS  (1 << 3) /* Info supports caps */
 	__u32 index;			     /* Region index */
-	__u32 cap_offset;     /* Offset within info struct of first cap */
-	__aligned_u64 size;   /* Region size (bytes) */
-	__aligned_u64 offset; /* Region offset from start of device fd */
+	__u32 cap_offset;		     /* Offset within info struct of first cap */
+	__aligned_u64 size;		     /* Region size (bytes) */
+	__aligned_u64 offset;		     /* Region offset from start of device fd */
 };
 #define VFIO_DEVICE_GET_REGION_INFO _IO(VFIO_TYPE, VFIO_BASE + 8)
 
@@ -432,23 +432,17 @@ struct vfio_device_migration_info {
 #define VFIO_DEVICE_STATE_V1_RUNNING  (1 << 0)
 #define VFIO_DEVICE_STATE_V1_SAVING   (1 << 1)
 #define VFIO_DEVICE_STATE_V1_RESUMING (1 << 2)
-#define VFIO_DEVICE_STATE_MASK                                        \
-	(VFIO_DEVICE_STATE_V1_RUNNING | VFIO_DEVICE_STATE_V1_SAVING | \
-	 VFIO_DEVICE_STATE_V1_RESUMING)
+#define VFIO_DEVICE_STATE_MASK \
+	(VFIO_DEVICE_STATE_V1_RUNNING | VFIO_DEVICE_STATE_V1_SAVING | VFIO_DEVICE_STATE_V1_RESUMING)
 
-#define VFIO_DEVICE_STATE_VALID(state)                   \
-	(state & VFIO_DEVICE_STATE_V1_RESUMING ?         \
-		 (state & VFIO_DEVICE_STATE_MASK) ==     \
-			 VFIO_DEVICE_STATE_V1_RESUMING : \
-		 1)
+#define VFIO_DEVICE_STATE_VALID(state) \
+	(state & VFIO_DEVICE_STATE_V1_RESUMING ? (state & VFIO_DEVICE_STATE_MASK) == VFIO_DEVICE_STATE_V1_RESUMING : 1)
 
-#define VFIO_DEVICE_STATE_IS_ERROR(state)    \
-	((state & VFIO_DEVICE_STATE_MASK) == \
-	 (VFIO_DEVICE_STATE_V1_SAVING | VFIO_DEVICE_STATE_V1_RESUMING))
+#define VFIO_DEVICE_STATE_IS_ERROR(state) \
+	((state & VFIO_DEVICE_STATE_MASK) == (VFIO_DEVICE_STATE_V1_SAVING | VFIO_DEVICE_STATE_V1_RESUMING))
 
-#define VFIO_DEVICE_STATE_SET_ERROR(state)                                 \
-	((state & ~VFIO_DEVICE_STATE_MASK) | VFIO_DEVICE_STATE_V1_SAVING | \
-	 VFIO_DEVICE_STATE_V1_RESUMING)
+#define VFIO_DEVICE_STATE_SET_ERROR(state) \
+	((state & ~VFIO_DEVICE_STATE_MASK) | VFIO_DEVICE_STATE_V1_SAVING | VFIO_DEVICE_STATE_V1_RESUMING)
 
 	__u32 reserved;
 	__aligned_u64 pending_bytes;
@@ -598,12 +592,9 @@ struct vfio_irq_set {
 };
 #define VFIO_DEVICE_SET_IRQS _IO(VFIO_TYPE, VFIO_BASE + 10)
 
-#define VFIO_IRQ_SET_DATA_TYPE_MASK                        \
-	(VFIO_IRQ_SET_DATA_NONE | VFIO_IRQ_SET_DATA_BOOL | \
-	 VFIO_IRQ_SET_DATA_EVENTFD)
-#define VFIO_IRQ_SET_ACTION_TYPE_MASK                            \
-	(VFIO_IRQ_SET_ACTION_MASK | VFIO_IRQ_SET_ACTION_UNMASK | \
-	 VFIO_IRQ_SET_ACTION_TRIGGER)
+#define VFIO_IRQ_SET_DATA_TYPE_MASK (VFIO_IRQ_SET_DATA_NONE | VFIO_IRQ_SET_DATA_BOOL | VFIO_IRQ_SET_DATA_EVENTFD)
+#define VFIO_IRQ_SET_ACTION_TYPE_MASK \
+	(VFIO_IRQ_SET_ACTION_MASK | VFIO_IRQ_SET_ACTION_UNMASK | VFIO_IRQ_SET_ACTION_TRIGGER)
 /**
  * VFIO_DEVICE_RESET - _IO(VFIO_TYPE, VFIO_BASE + 11)
  *
@@ -656,12 +647,7 @@ enum {
 
 enum { VFIO_CCW_CONFIG_REGION_INDEX, VFIO_CCW_NUM_REGIONS };
 
-enum {
-	VFIO_CCW_IO_IRQ_INDEX,
-	VFIO_CCW_CRW_IRQ_INDEX,
-	VFIO_CCW_REQ_IRQ_INDEX,
-	VFIO_CCW_NUM_IRQS
-};
+enum { VFIO_CCW_IO_IRQ_INDEX, VFIO_CCW_CRW_IRQ_INDEX, VFIO_CCW_REQ_IRQ_INDEX, VFIO_CCW_NUM_IRQS };
 
 /*
  * The vfio-ap bus driver makes use of the following IRQ index mapping.
@@ -818,8 +804,8 @@ struct vfio_device_gfx_plane_info {
 	__u32 size;		      /* size of plane in bytes, align on page*/
 	__u32 x_pos;		      /* horizontal position of cursor plane */
 	__u32 y_pos;		      /* vertical position of cursor plane*/
-	__u32 x_hot; /* horizontal position of cursor hotspot */
-	__u32 y_hot; /* vertical position of cursor hotspot */
+	__u32 x_hot;		      /* horizontal position of cursor hotspot */
+	__u32 y_hot;		      /* vertical position of cursor hotspot */
 	union {
 		__u32 region_index; /* region index */
 		__u32 dmabuf_id;    /* dma-buf id */
@@ -1488,7 +1474,7 @@ struct vfio_iommu_type1_info {
 #define VFIO_IOMMU_INFO_PGSIZES (1 << 0) /* supported page sizes info */
 #define VFIO_IOMMU_INFO_CAPS	(1 << 1) /* Info supports caps */
 	__aligned_u64 iova_pgsizes;	 /* Bitmap of supported page sizes */
-	__u32 cap_offset; /* Offset within info struct of first cap */
+	__u32 cap_offset;		 /* Offset within info struct of first cap */
 	__u32 pad;
 };
 

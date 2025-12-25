@@ -24,8 +24,6 @@ struct FTW {
 	int level;
 };
 
-int nftw(const char *,
-	 int (*)(const char *, const struct stat *, int, struct FTW *), int,
-	 int);
+int nftw(const char *, int (*)(const char *, const struct stat *, int, struct FTW *), int, int);
 
 #endif

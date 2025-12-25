@@ -87,14 +87,14 @@ struct hfi1_ctxt_info {
 	__u16 ctxt;		     /* ctxt on unit assigned to caller */
 	__u16 subctxt;		     /* subctxt on unit assigned to caller */
 	__u16 rcvtids;		     /* number of Rcv TIDs for this context */
-	__u16 credits;	       /* number of PIO credits for this context */
-	__u16 numa_node;       /* NUMA node of the assigned device */
-	__u16 rec_cpu;	       /* cpu # for affinity (0xffff if none) */
-	__u16 send_ctxt;       /* send context in use by this user context */
-	__u16 egrtids;	       /* number of RcvArray entries for Eager Rcvs */
-	__u16 rcvhdrq_cnt;     /* number of RcvHdrQ entries */
-	__u16 rcvhdrq_entsize; /* size (in bytes) for each RcvHdrQ entry */
-	__u16 sdma_ring_size;  /* number of entries in SDMA request ring */
+	__u16 credits;		     /* number of PIO credits for this context */
+	__u16 numa_node;	     /* NUMA node of the assigned device */
+	__u16 rec_cpu;		     /* cpu # for affinity (0xffff if none) */
+	__u16 send_ctxt;	     /* send context in use by this user context */
+	__u16 egrtids;		     /* number of RcvArray entries for Eager Rcvs */
+	__u16 rcvhdrq_cnt;	     /* number of RcvHdrQ entries */
+	__u16 rcvhdrq_entsize;	     /* size (in bytes) for each RcvHdrQ entry */
+	__u16 sdma_ring_size;	     /* number of entries in SDMA request ring */
 };
 
 struct hfi1_tid_info {

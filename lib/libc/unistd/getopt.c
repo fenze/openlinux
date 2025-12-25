@@ -95,8 +95,7 @@ int getopt(int argc, char *const argv[], const char *optstring)
 
 				iov[0].iov_base = argv[0];
 				iov[0].iov_len = strlen(argv[0]);
-				iov[1].iov_base =
-					": option requires an argument -- ";
+				iov[1].iov_base = ": option requires an argument -- ";
 				iov[1].iov_len = 33;
 				iov[2].iov_base = opt_char;
 				iov[2].iov_len = 1;

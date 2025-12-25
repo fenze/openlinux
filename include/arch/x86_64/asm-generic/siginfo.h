@@ -45,8 +45,8 @@ union __sifields {
 		__kernel_timer_t _tid; /* timer id */
 		int _overrun;	       /* overrun count */
 		sigval_t _sigval;      /* same as below */
-		int _sys_private; /* Not used by the kernel. Historic leftover.
-				     Always 0. */
+		int _sys_private;      /* Not used by the kernel. Historic leftover.
+					  Always 0. */
 	} _timer;
 
 	/* POSIX.1b signals */
@@ -69,9 +69,7 @@ union __sifields {
 	struct {
 		void *_addr; /* faulting insn/memory ref. */
 
-#define __ADDR_BND_PKEY_PAD                                    \
-	(__alignof__(void *) < sizeof(short) ? sizeof(short) : \
-					       __alignof__(void *))
+#define __ADDR_BND_PKEY_PAD (__alignof__(void *) < sizeof(short) ? sizeof(short) : __alignof__(void *))
 		union {
 			/* used on alpha and sparc */
 			int _trapno; /* TRAP # which caused the signal */
@@ -331,8 +329,7 @@ typedef struct siginfo {
 #endif
 
 #define SIGEV_MAX_SIZE 64
-#define SIGEV_PAD_SIZE \
-	((SIGEV_MAX_SIZE - __ARCH_SIGEV_PREAMBLE_SIZE) / sizeof(int))
+#define SIGEV_PAD_SIZE ((SIGEV_MAX_SIZE - __ARCH_SIGEV_PREAMBLE_SIZE) / sizeof(int))
 
 typedef struct sigevent {
 	sigval_t sigev_value;

@@ -130,8 +130,7 @@ float powf(float x, float y)
 
 	ix = asuint(x);
 	iy = asuint(y);
-	if (predict_false(ix - 0x00800000 >= 0x7f800000 - 0x00800000 ||
-			  zeroinfnan(iy))) {
+	if (predict_false(ix - 0x00800000 >= 0x7f800000 - 0x00800000 || zeroinfnan(iy))) {
 		/* Either (x < 0x1p-126 or inf or nan) or (y is 0 or inf or
 		 * nan).  */
 		if (predict_false(zeroinfnan(iy))) {
@@ -139,8 +138,7 @@ float powf(float x, float y)
 				return issignalingf_inline(x) ? x + y : 1.0f;
 			if (ix == 0x3f800000)
 				return issignalingf_inline(y) ? x + y : 1.0f;
-			if (2 * ix > 2u * 0x7f800000 ||
-			    2 * iy > 2u * 0x7f800000)
+			if (2 * ix > 2u * 0x7f800000 || 2 * iy > 2u * 0x7f800000)
 				return x + y;
 			if (2 * ix == 2 * 0x3f800000)
 				return 1.0f;
@@ -178,8 +176,7 @@ float powf(float x, float y)
 	}
 	double_t logx = log2_inline(ix);
 	double_t ylogx = y * logx; /* cannot overflow, y is single prec.  */
-	if (predict_false((asuint64(ylogx) >> 47 & 0xffff) >=
-			  asuint64(126.0 * POWF_SCALE) >> 47)) {
+	if (predict_false((asuint64(ylogx) >> 47 & 0xffff) >= asuint64(126.0 * POWF_SCALE) >> 47)) {
 		/* |y*log(x)| >= 126.  */
 		if (ylogx > 0x1.fffffffd1d571p+6 * POWF_SCALE)
 			return __math_oflowf(sign_bias);

@@ -18,7 +18,6 @@
  * attribute 'loadpin/dm-verity' (which can be typically found under
  * /sys/kernel/security/loadpin/dm-verity).
  */
-#define LOADPIN_IOC_SET_TRUSTED_VERITY_DIGESTS \
-	_IOW(LOADPIN_IOC_MAGIC, 0x00, unsigned int)
+#define LOADPIN_IOC_SET_TRUSTED_VERITY_DIGESTS _IOW(LOADPIN_IOC_MAGIC, 0x00, unsigned int)
 
 #endif /* _LINUX_LOOP_LOADPIN_H */

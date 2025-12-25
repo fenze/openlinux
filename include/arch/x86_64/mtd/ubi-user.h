@@ -207,8 +207,7 @@
 /* Check if LEB is mapped command */
 #define UBI_IOCEBISMAP _IOR(UBI_VOL_IOC_MAGIC, 5, __s32)
 /* Set an UBI volume property */
-#define UBI_IOCSETVOLPROP \
-	_IOW(UBI_VOL_IOC_MAGIC, 6, struct ubi_set_vol_prop_req)
+#define UBI_IOCSETVOLPROP _IOW(UBI_VOL_IOC_MAGIC, 6, struct ubi_set_vol_prop_req)
 /* Create a R/O block device on top of an UBI volume */
 #define UBI_IOCVOLCRBLK _IOW(UBI_VOL_IOC_MAGIC, 7, struct ubi_blkcreate_req)
 /* Remove the R/O block device */

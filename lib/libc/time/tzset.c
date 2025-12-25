@@ -24,8 +24,7 @@ void tzset(void)
 
 	static char stdname[8];
 	int i = 0;
-	while (*p && !isdigit((unsigned char)*p) && *p != '+' && *p != '-' &&
-	       i < 7) {
+	while (*p && !isdigit((unsigned char)*p) && *p != '+' && *p != '-' && i < 7) {
 		stdname[i++] = *p++;
 	}
 

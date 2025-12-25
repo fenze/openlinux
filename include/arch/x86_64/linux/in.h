@@ -207,8 +207,7 @@ struct ip_msfilter {
 	};
 };
 
-#define IP_MSFILTER_SIZE(numsrc) \
-	(sizeof(struct ip_msfilter) - sizeof(__u32) + (numsrc) * sizeof(__u32))
+#define IP_MSFILTER_SIZE(numsrc) (sizeof(struct ip_msfilter) - sizeof(__u32) + (numsrc) * sizeof(__u32))
 
 struct group_req {
 	__u32 gr_interface;			   /* interface index */
@@ -224,34 +223,31 @@ struct group_source_req {
 struct group_filter {
 	union {
 		struct {
-			__u32 gf_interface_aux; /* interface index */
-			struct __kernel_sockaddr_storage
-				gf_group_aux; /* multicast
-						 address
-					       */
-			__u32 gf_fmode_aux;   /* filter mode */
-			__u32 gf_numsrc_aux;  /* number of sources */
-			struct __kernel_sockaddr_storage gf_slist[1]; /* interface
-									 index
-								       */
+			__u32 gf_interface_aux;			       /* interface index */
+			struct __kernel_sockaddr_storage gf_group_aux; /* multicast
+									  address
+									*/
+			__u32 gf_fmode_aux;			       /* filter mode */
+			__u32 gf_numsrc_aux;			       /* number of sources */
+			struct __kernel_sockaddr_storage gf_slist[1];  /* interface
+									  index
+									*/
 		};
 		struct {
-			__u32 gf_interface; /* interface index */
-			struct __kernel_sockaddr_storage gf_group; /* multicast
-								      address */
-			__u32 gf_fmode;	 /* filter mode */
-			__u32 gf_numsrc; /* number of sources */
-			struct __kernel_sockaddr_storage
-				gf_slist_flex[]; /* interface
-						    index
-						  */
+			__u32 gf_interface;				  /* interface index */
+			struct __kernel_sockaddr_storage gf_group;	  /* multicast
+									     address */
+			__u32 gf_fmode;					  /* filter mode */
+			__u32 gf_numsrc;				  /* number of sources */
+			struct __kernel_sockaddr_storage gf_slist_flex[]; /* interface
+									     index
+									   */
 		};
 	};
 };
 
-#define GROUP_FILTER_SIZE(numsrc)                   \
-	(sizeof(struct group_filter) -              \
-	 sizeof(struct __kernel_sockaddr_storage) + \
+#define GROUP_FILTER_SIZE(numsrc)                                                 \
+	(sizeof(struct group_filter) - sizeof(struct __kernel_sockaddr_storage) + \
 	 (numsrc) * sizeof(struct __kernel_sockaddr_storage))
 #endif
 
@@ -272,8 +268,7 @@ struct sockaddr_in {
 	struct in_addr sin_addr;	 /* Internet address		*/
 
 	/* Pad to size of `struct sockaddr'. */
-	unsigned char __pad[__SOCK_SIZE__ - sizeof(short int) -
-			    sizeof(unsigned short int) - sizeof(struct in_addr)];
+	unsigned char __pad[__SOCK_SIZE__ - sizeof(short int) - sizeof(unsigned short int) - sizeof(struct in_addr)];
 };
 #define sin_zero __pad /* for BSD UNIX comp. -FvK	*/
 #endif

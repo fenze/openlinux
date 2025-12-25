@@ -178,9 +178,7 @@ struct atm_cirange {
 #define ATM_MF_DEC_SHP 16 /* Change shaping on decrease */
 #define ATM_MF_BWD     32 /* Set the backward direction parameters */
 
-#define ATM_MF_SET                                                           \
-	(ATM_MF_INC_RSV | ATM_MF_INC_SHP | ATM_MF_DEC_RSV | ATM_MF_DEC_SHP | \
-	 ATM_MF_BWD)
+#define ATM_MF_SET (ATM_MF_INC_RSV | ATM_MF_INC_SHP | ATM_MF_DEC_RSV | ATM_MF_DEC_SHP | ATM_MF_BWD)
 
 /*
  * ATM_VS_* are used to express VC state in a human-friendly way.
@@ -193,12 +191,10 @@ struct atm_cirange {
 #define ATM_VS_INUSE	 4 /* VC is in use (registered with atmsigd) */
 #define ATM_VS_BOUND	 5 /* VC is bound */
 
-#define ATM_VS2TXT_MAP \
-	"IDLE", "CONNECTED", "CLOSING", "LISTEN", "INUSE", "BOUND"
+#define ATM_VS2TXT_MAP "IDLE", "CONNECTED", "CLOSING", "LISTEN", "INUSE", "BOUND"
 
-#define ATM_VF2TXT_MAP                                                       \
-	"ADDR", "READY", "PARTIAL", "REGIS", "RELEASED", "HASQOS", "LISTEN", \
-		"META", "256", "512", "1024", "2048", "SESSION", "HASSAP",   \
-		"BOUND", "CLOSE"
+#define ATM_VF2TXT_MAP                                                                                             \
+	"ADDR", "READY", "PARTIAL", "REGIS", "RELEASED", "HASQOS", "LISTEN", "META", "256", "512", "1024", "2048", \
+		"SESSION", "HASSAP", "BOUND", "CLOSE"
 
 #endif /* LINUX_ATMDEV_H */

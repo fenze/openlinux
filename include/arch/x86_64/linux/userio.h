@@ -24,11 +24,7 @@
 
 #include <linux/types.h>
 
-enum userio_cmd_type {
-	USERIO_CMD_REGISTER = 0,
-	USERIO_CMD_SET_PORT_TYPE = 1,
-	USERIO_CMD_SEND_INTERRUPT = 2
-};
+enum userio_cmd_type { USERIO_CMD_REGISTER = 0, USERIO_CMD_SET_PORT_TYPE = 1, USERIO_CMD_SEND_INTERRUPT = 2 };
 
 /*
  * userio Commands

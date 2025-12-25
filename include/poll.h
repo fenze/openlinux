@@ -26,7 +26,6 @@ struct pollfd {
 };
 
 int poll(struct pollfd[], nfds_t, int);
-int ppoll(struct pollfd[], nfds_t, const struct timespec *restrict,
-	  const sigset_t *restrict);
+int ppoll(struct pollfd[], nfds_t, const struct timespec *restrict, const sigset_t *restrict);
 
 #endif

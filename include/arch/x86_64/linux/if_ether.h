@@ -52,14 +52,14 @@
 #define ETH_P_IP      0x0800 /* Internet Protocol packet	*/
 #define ETH_P_X25     0x0805 /* CCITT X.25			*/
 #define ETH_P_ARP     0x0806 /* Address Resolution packet	*/
-#define ETH_P_BPQ                                                            \
-	0x08FF /* G8BPQ AX.25 Ethernet Packet	[ NOT AN OFFICIALLY REGISTERED \
-		  ID ] */
+#define ETH_P_BPQ                                                                            \
+	0x08FF		       /* G8BPQ AX.25 Ethernet Packet	[ NOT AN OFFICIALLY REGISTERED \
+				  ID ] */
 #define ETH_P_IEEEPUP	0x0a00 /* Xerox IEEE802.3 PUP packet */
 #define ETH_P_IEEEPUPAT 0x0a01 /* Xerox IEEE802.3 PUP Addr Trans packet */
-#define ETH_P_BATMAN                                                          \
-	0x4305 /* B.A.T.M.A.N.-Advanced packet [ NOT AN OFFICIALLY REGISTERED \
-		  ID ] */
+#define ETH_P_BATMAN                                                                       \
+	0x4305		    /* B.A.T.M.A.N.-Advanced packet [ NOT AN OFFICIALLY REGISTERED \
+			       ID ] */
 #define ETH_P_DEC    0x6000 /* DEC Assigned proto           */
 #define ETH_P_DNA_DL 0x6001 /* DEC DNA Dump/Load            */
 #define ETH_P_DNA_RC 0x6002 /* DEC DNA Remote Console       */
@@ -113,28 +113,22 @@
 #define ETH_P_IBOE     0x8915 /* Infiniband over Ethernet	*/
 #define ETH_P_TDLS     0x890D /* TDLS */
 #define ETH_P_FIP      0x8914 /* FCoE Initialization Protocol */
-#define ETH_P_80221                                               \
-	0x8917 /* IEEE 802.21 Media Independent Handover Protocol \
-		*/
+#define ETH_P_80221                                                              \
+	0x8917		      /* IEEE 802.21 Media Independent Handover Protocol \
+			       */
 #define ETH_P_HSR      0x892F /* IEC 62439-3 HSRv1	*/
 #define ETH_P_NSH      0x894F /* Network Service Header */
 #define ETH_P_LOOPBACK 0x9000 /* Ethernet loopback packet, per IEEE 802.3 */
-#define ETH_P_QINQ1 \
-	0x9100 /* deprecated QinQ VLAN [ NOT AN OFFICIALLY REGISTERED ID ] */
-#define ETH_P_QINQ2 \
-	0x9200 /* deprecated QinQ VLAN [ NOT AN OFFICIALLY REGISTERED ID ] */
-#define ETH_P_QINQ3 \
-	0x9300 /* deprecated QinQ VLAN [ NOT AN OFFICIALLY REGISTERED ID ] */
-#define ETH_P_EDSA \
-	0xDADA /* Ethertype DSA [ NOT AN OFFICIALLY REGISTERED ID ] */
-#define ETH_P_DSA_8021Q                                                        \
-	0xDADB /* Fake VLAN Header for DSA [ NOT AN OFFICIALLY REGISTERED ID ] \
-		*/
-#define ETH_P_DSA_A5PSW \
-	0xE001 /* A5PSW Tag Value [ NOT AN OFFICIALLY REGISTERED ID ] */
-#define ETH_P_IFE 0xED3E /* ForCES inter-FE LFB type */
-#define ETH_P_AF_IUCV \
-	0xFBFB /* IBM af_iucv [ NOT AN OFFICIALLY REGISTERED ID ] */
+#define ETH_P_QINQ1    0x9100 /* deprecated QinQ VLAN [ NOT AN OFFICIALLY REGISTERED ID ] */
+#define ETH_P_QINQ2    0x9200 /* deprecated QinQ VLAN [ NOT AN OFFICIALLY REGISTERED ID ] */
+#define ETH_P_QINQ3    0x9300 /* deprecated QinQ VLAN [ NOT AN OFFICIALLY REGISTERED ID ] */
+#define ETH_P_EDSA     0xDADA /* Ethertype DSA [ NOT AN OFFICIALLY REGISTERED ID ] */
+#define ETH_P_DSA_8021Q                                                                        \
+	0xDADB		       /* Fake VLAN Header for DSA [ NOT AN OFFICIALLY REGISTERED ID ] \
+				*/
+#define ETH_P_DSA_A5PSW 0xE001 /* A5PSW Tag Value [ NOT AN OFFICIALLY REGISTERED ID ] */
+#define ETH_P_IFE	0xED3E /* ForCES inter-FE LFB type */
+#define ETH_P_AF_IUCV	0xFBFB /* IBM af_iucv [ NOT AN OFFICIALLY REGISTERED ID ] */
 
 #define ETH_P_802_3_MIN                                                     \
 	0x0600 /* If the value in the ethernet type is more than this value \

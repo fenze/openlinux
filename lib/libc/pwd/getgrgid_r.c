@@ -20,8 +20,7 @@ static char *copy_str(const char *src, char **buf, size_t *buflen)
 	return dst;
 }
 
-int getpwuid_r(uid_t uid, struct passwd *pwd, char *buf, size_t buflen,
-	       struct passwd **result)
+int getpwuid_r(uid_t uid, struct passwd *pwd, char *buf, size_t buflen, struct passwd **result)
 {
 	FILE *stream = fopen("/etc/passwd", "r");
 	if (stream == NULL) {
@@ -40,8 +39,7 @@ int getpwuid_r(uid_t uid, struct passwd *pwd, char *buf, size_t buflen,
 		char *dir = strtok(NULL, ":");
 		char *shell = strtok(NULL, "\n");
 
-		if (name == NULL || passwd == NULL || uid_str == NULL ||
-		    gid_str == NULL)
+		if (name == NULL || passwd == NULL || uid_str == NULL || gid_str == NULL)
 			continue;
 
 		uid_t file_uid = (uid_t)strtoul(uid_str, NULL, 10);
@@ -58,8 +56,7 @@ int getpwuid_r(uid_t uid, struct passwd *pwd, char *buf, size_t buflen,
 		pwd->pw_uid = file_uid;
 		pwd->pw_gid = (gid_t)strtoul(gid_str, NULL, 10);
 
-		if (pwd->pw_name == NULL || pwd->pw_dir == NULL ||
-		    pwd->pw_shell == NULL) {
+		if (pwd->pw_name == NULL || pwd->pw_dir == NULL || pwd->pw_shell == NULL) {
 			fclose(stream);
 			return ERANGE;
 		}

@@ -111,8 +111,7 @@ static __inline__ unsigned int dccp_packet_hdr_len(const __u8 type)
 {
 	if (type == DCCP_PKT_DATA)
 		return 0;
-	if (type == DCCP_PKT_DATAACK || type == DCCP_PKT_ACK ||
-	    type == DCCP_PKT_SYNC || type == DCCP_PKT_SYNCACK ||
+	if (type == DCCP_PKT_DATAACK || type == DCCP_PKT_ACK || type == DCCP_PKT_SYNC || type == DCCP_PKT_SYNCACK ||
 	    type == DCCP_PKT_CLOSE || type == DCCP_PKT_CLOSEREQ)
 		return sizeof(struct dccp_hdr_ack_bits);
 	if (type == DCCP_PKT_REQUEST)
@@ -196,11 +195,7 @@ enum dccp_cmsg_type {
 };
 
 /* DCCP priorities for outgoing/queued packets */
-enum dccp_packet_dequeueing_policy {
-	DCCPQ_POLICY_SIMPLE,
-	DCCPQ_POLICY_PRIO,
-	DCCPQ_POLICY_MAX
-};
+enum dccp_packet_dequeueing_policy { DCCPQ_POLICY_SIMPLE, DCCPQ_POLICY_PRIO, DCCPQ_POLICY_MAX };
 
 /* DCCP socket options */
 #define DCCP_SOCKOPT_PACKET_SIZE     1 /* XXX deprecated, without effect */

@@ -26,8 +26,8 @@ struct sockaddr_llc {
 	unsigned char sllc_ua; /* UA data, only for SOCK_STREAM. */
 	unsigned char sllc_sap;
 	unsigned char sllc_mac[IFHWADDRLEN];
-	unsigned char __pad[__LLC_SOCK_SIZE__ - sizeof(__kernel_sa_family_t) * 2 -
-			    sizeof(unsigned char) * 4 - IFHWADDRLEN];
+	unsigned char
+		__pad[__LLC_SOCK_SIZE__ - sizeof(__kernel_sa_family_t) * 2 - sizeof(unsigned char) * 4 - IFHWADDRLEN];
 };
 
 /* sockopt definitions. */

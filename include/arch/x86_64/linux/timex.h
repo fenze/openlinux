@@ -106,22 +106,22 @@ struct __kernel_timex_timeval {
 };
 
 struct __kernel_timex {
-	unsigned int modes;  /* mode selector */
-	int : 32;	     /* pad */
-	long long offset;    /* time offset (usec) */
-	long long freq;	     /* frequency offset (scaled ppm) */
-	long long maxerror;  /* maximum error (usec) */
-	long long esterror;  /* estimated error (usec) */
-	int status;	     /* clock command/status */
-	int : 32;	     /* pad */
-	long long constant;  /* pll time constant */
-	long long precision; /* clock precision (usec) (read only) */
-	long long tolerance; /* clock frequency tolerance (ppm)
-			      * (read only)
-			      */
+	unsigned int modes;		    /* mode selector */
+	int : 32;			    /* pad */
+	long long offset;		    /* time offset (usec) */
+	long long freq;			    /* frequency offset (scaled ppm) */
+	long long maxerror;		    /* maximum error (usec) */
+	long long esterror;		    /* estimated error (usec) */
+	int status;			    /* clock command/status */
+	int : 32;			    /* pad */
+	long long constant;		    /* pll time constant */
+	long long precision;		    /* clock precision (usec) (read only) */
+	long long tolerance;		    /* clock frequency tolerance (ppm)
+					     * (read only)
+					     */
 	struct __kernel_timex_timeval time; /* (read only, except for
 					       ADJ_SETOFFSET) */
-	long long tick; /* (modified) usecs between clock ticks */
+	long long tick;			    /* (modified) usecs between clock ticks */
 
 	long long ppsfreq; /* pps frequency (scaled ppm) (ro) */
 	long long jitter;  /* pps jitter (us) (ro) */
@@ -201,9 +201,8 @@ struct __kernel_timex {
 #define STA_CLK	     0x8000 /* clock source (0 = A, 1 = B) (ro) */
 
 /* read-only bits */
-#define STA_RONLY                                                       \
-	(STA_PPSSIGNAL | STA_PPSJITTER | STA_PPSWANDER | STA_PPSERROR | \
-	 STA_CLOCKERR | STA_NANO | STA_MODE | STA_CLK)
+#define STA_RONLY \
+	(STA_PPSSIGNAL | STA_PPSJITTER | STA_PPSWANDER | STA_PPSERROR | STA_CLOCKERR | STA_NANO | STA_MODE | STA_CLK)
 
 /*
  * Clock states (time_state)

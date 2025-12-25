@@ -28,11 +28,9 @@ struct tcphdr {
 	__be32 seq;
 	__be32 ack_seq;
 #if defined(__LITTLE_ENDIAN_BITFIELD)
-	__u16 ae : 1, res1 : 3, doff : 4, fin : 1, syn : 1, rst : 1, psh : 1,
-		ack : 1, urg : 1, ece : 1, cwr : 1;
+	__u16 ae : 1, res1 : 3, doff : 4, fin : 1, syn : 1, rst : 1, psh : 1, ack : 1, urg : 1, ece : 1, cwr : 1;
 #elif defined(__BIG_ENDIAN_BITFIELD)
-	__u16 doff : 4, res1 : 3, ae : 1, cwr : 1, ece : 1, urg : 1, ack : 1,
-		psh : 1, rst : 1, syn : 1, fin : 1;
+	__u16 doff : 4, res1 : 3, ae : 1, cwr : 1, ece : 1, urg : 1, ack : 1, psh : 1, rst : 1, syn : 1, fin : 1;
 #else
 #error "Adjust your <asm/byteorder.h> defines"
 #endif
@@ -288,9 +286,9 @@ struct tcp_info {
 
 	__u32 tcpi_rehash; /* PLB or timeout triggered rehash attempts */
 
-	__u16 tcpi_total_rto; /* Total number of RTO timeouts, including
-			       * SYN/SYN-ACK and recurring timeouts.
-			       */
+	__u16 tcpi_total_rto;		 /* Total number of RTO timeouts, including
+					  * SYN/SYN-ACK and recurring timeouts.
+					  */
 	__u16 tcpi_total_rto_recoveries; /* Total number of RTO
 					  * recoveries, including any
 					  * unfinished recovery.
@@ -304,33 +302,33 @@ struct tcp_info {
 /* netlink attributes types for SCM_TIMESTAMPING_OPT_STATS */
 enum {
 	TCP_NLA_PAD,
-	TCP_NLA_BUSY,		/* Time (usec) busy sending data */
-	TCP_NLA_RWND_LIMITED,	/* Time (usec) limited by receive window */
-	TCP_NLA_SNDBUF_LIMITED, /* Time (usec) limited by send buffer */
-	TCP_NLA_DATA_SEGS_OUT,	/* Data pkts sent including retransmission */
-	TCP_NLA_TOTAL_RETRANS,	/* Data pkts retransmitted */
-	TCP_NLA_PACING_RATE,	/* Pacing rate in bytes per second */
-	TCP_NLA_DELIVERY_RATE,	/* Delivery rate in bytes per second */
-	TCP_NLA_SND_CWND,	/* Sending congestion window */
-	TCP_NLA_REORDERING,	/* Reordering metric */
-	TCP_NLA_MIN_RTT,	/* minimum RTT */
-	TCP_NLA_RECUR_RETRANS,	/* Recurring retransmits for the current pkt */
+	TCP_NLA_BUSY,		       /* Time (usec) busy sending data */
+	TCP_NLA_RWND_LIMITED,	       /* Time (usec) limited by receive window */
+	TCP_NLA_SNDBUF_LIMITED,	       /* Time (usec) limited by send buffer */
+	TCP_NLA_DATA_SEGS_OUT,	       /* Data pkts sent including retransmission */
+	TCP_NLA_TOTAL_RETRANS,	       /* Data pkts retransmitted */
+	TCP_NLA_PACING_RATE,	       /* Pacing rate in bytes per second */
+	TCP_NLA_DELIVERY_RATE,	       /* Delivery rate in bytes per second */
+	TCP_NLA_SND_CWND,	       /* Sending congestion window */
+	TCP_NLA_REORDERING,	       /* Reordering metric */
+	TCP_NLA_MIN_RTT,	       /* minimum RTT */
+	TCP_NLA_RECUR_RETRANS,	       /* Recurring retransmits for the current pkt */
 	TCP_NLA_DELIVERY_RATE_APP_LMT, /* delivery rate application limited ? */
 	TCP_NLA_SNDQ_SIZE,	       /* Data (bytes) pending in send queue */
 	TCP_NLA_CA_STATE,	       /* ca_state of socket */
 	TCP_NLA_SND_SSTHRESH,	       /* Slow start size threshold */
-	TCP_NLA_DELIVERED,	/* Data pkts delivered incl. out-of-order */
-	TCP_NLA_DELIVERED_CE,	/* Like above but only ones w/ CE marks */
-	TCP_NLA_BYTES_SENT,	/* Data bytes sent including retransmission */
-	TCP_NLA_BYTES_RETRANS,	/* Data bytes retransmitted */
-	TCP_NLA_DSACK_DUPS,	/* DSACK blocks received */
-	TCP_NLA_REORD_SEEN,	/* reordering events seen */
-	TCP_NLA_SRTT,		/* smoothed RTT in usecs */
-	TCP_NLA_TIMEOUT_REHASH, /* Timeout-triggered rehash attempts */
-	TCP_NLA_BYTES_NOTSENT,	/* Bytes in write queue not yet sent */
-	TCP_NLA_EDT,		/* Earliest departure time (CLOCK_MONOTONIC) */
-	TCP_NLA_TTL,		/* TTL or hop limit of a packet received */
-	TCP_NLA_REHASH,		/* PLB and timeout triggered rehash attempts */
+	TCP_NLA_DELIVERED,	       /* Data pkts delivered incl. out-of-order */
+	TCP_NLA_DELIVERED_CE,	       /* Like above but only ones w/ CE marks */
+	TCP_NLA_BYTES_SENT,	       /* Data bytes sent including retransmission */
+	TCP_NLA_BYTES_RETRANS,	       /* Data bytes retransmitted */
+	TCP_NLA_DSACK_DUPS,	       /* DSACK blocks received */
+	TCP_NLA_REORD_SEEN,	       /* reordering events seen */
+	TCP_NLA_SRTT,		       /* smoothed RTT in usecs */
+	TCP_NLA_TIMEOUT_REHASH,	       /* Timeout-triggered rehash attempts */
+	TCP_NLA_BYTES_NOTSENT,	       /* Bytes in write queue not yet sent */
+	TCP_NLA_EDT,		       /* Earliest departure time (CLOCK_MONOTONIC) */
+	TCP_NLA_TTL,		       /* TTL or hop limit of a packet received */
+	TCP_NLA_REHASH,		       /* PLB and timeout triggered rehash attempts */
 };
 
 /* for TCP_MD5SIG socket option */
@@ -370,18 +368,18 @@ struct tcp_diag_md5sig {
 
 struct tcp_ao_add {			       /* setsockopt(TCP_AO_ADD_KEY) */
 	struct __kernel_sockaddr_storage addr; /* peer's address for the key */
-	char alg_name[64];     /* crypto hash algorithm to use */
-	__s32 ifindex;	       /* L3 dev index for VRF */
-	__u32 set_current : 1, /* set key as Current_key at once */
-		set_rnext : 1, /* request it from peer with RNext_key */
-		reserved : 30; /* must be 0 */
-	__u16 reserved2;       /* padding, must be 0 */
-	__u8 prefix;	       /* peer's address prefix */
-	__u8 sndid;	       /* SendID for outgoing segments */
-	__u8 rcvid;	       /* RecvID to match for incoming seg */
-	__u8 maclen;	       /* length of authentication code (hash) */
-	__u8 keyflags;	       /* see TCP_AO_KEYF_ */
-	__u8 keylen;	       /* length of ::key */
+	char alg_name[64];		       /* crypto hash algorithm to use */
+	__s32 ifindex;			       /* L3 dev index for VRF */
+	__u32 set_current : 1,		       /* set key as Current_key at once */
+		set_rnext : 1,		       /* request it from peer with RNext_key */
+		reserved : 30;		       /* must be 0 */
+	__u16 reserved2;		       /* padding, must be 0 */
+	__u8 prefix;			       /* peer's address prefix */
+	__u8 sndid;			       /* SendID for outgoing segments */
+	__u8 rcvid;			       /* RecvID to match for incoming seg */
+	__u8 maclen;			       /* length of authentication code (hash) */
+	__u8 keyflags;			       /* see TCP_AO_KEYF_ */
+	__u8 keylen;			       /* length of ::key */
 	__u8 key[TCP_AO_MAXKEYLEN];
 } __attribute__((aligned(8)));
 
@@ -390,15 +388,15 @@ struct tcp_ao_del {			       /* setsockopt(TCP_AO_DEL_KEY) */
 	__s32 ifindex;			       /* L3 dev index for VRF */
 	__u32 set_current : 1,		       /* corresponding ::current_key */
 		set_rnext : 1,		       /* corresponding ::rnext */
-		del_async : 1, /* only valid for listen sockets */
-		reserved : 29; /* must be 0 */
-	__u16 reserved2;       /* padding, must be 0 */
-	__u8 prefix;	       /* peer's address prefix */
-	__u8 sndid;	       /* SendID for outgoing segments */
-	__u8 rcvid;	       /* RecvID to match for incoming seg */
-	__u8 current_key;      /* KeyID to set as Current_key */
-	__u8 rnext;	       /* KeyID to set as Rnext_key */
-	__u8 keyflags;	       /* see TCP_AO_KEYF_ */
+		del_async : 1,		       /* only valid for listen sockets */
+		reserved : 29;		       /* must be 0 */
+	__u16 reserved2;		       /* padding, must be 0 */
+	__u8 prefix;			       /* peer's address prefix */
+	__u8 sndid;			       /* SendID for outgoing segments */
+	__u8 rcvid;			       /* RecvID to match for incoming seg */
+	__u8 current_key;		       /* KeyID to set as Current_key */
+	__u8 rnext;			       /* KeyID to set as Rnext_key */
+	__u8 keyflags;			       /* see TCP_AO_KEYF_ */
 } __attribute__((aligned(8)));
 
 struct tcp_ao_info_opt { /* setsockopt(TCP_AO_INFO), getsockopt(TCP_AO_INFO) */

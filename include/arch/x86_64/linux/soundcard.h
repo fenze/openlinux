@@ -78,10 +78,8 @@
  */
 
 #ifndef _SIOWR
-#if defined(_IOWR) &&                                                \
-	(defined(_AIX) ||                                            \
-	 (!defined(sun) && !defined(sparc) && !defined(__sparc__) && \
-	  !defined(__INCioctlh) && !defined(__Lynx__)))
+#if defined(_IOWR) && (defined(_AIX) || (!defined(sun) && !defined(sparc) && !defined(__sparc__) && \
+					 !defined(__INCioctlh) && !defined(__Lynx__)))
 /* Use already defined ioctl defines if they exist (except with Sun or Sparc) */
 #define SIOCPARM_MASK IOCPARM_MASK
 #define SIOC_VOID     IOC_VOID
@@ -106,38 +104,33 @@
  * we restrict parameters to at most 8191 bytes.
  */
 /* #define	SIOCTYPE		(0xff<<8) */
-#define SIOCPARM_MASK 0x1fff	 /* parameters must be < 8192 bytes */
-#define SIOC_VOID     0x00000000 /* no parameters */
-#define SIOC_OUT      0x20000000 /* copy out parameters */
-#define SIOC_IN	      0x40000000 /* copy in parameters */
-#define SIOC_INOUT    (SIOC_IN | SIOC_OUT)
+#define SIOCPARM_MASK	0x1fff	   /* parameters must be < 8192 bytes */
+#define SIOC_VOID	0x00000000 /* no parameters */
+#define SIOC_OUT	0x20000000 /* copy out parameters */
+#define SIOC_IN		0x40000000 /* copy in parameters */
+#define SIOC_INOUT	(SIOC_IN | SIOC_OUT)
 /* the 0x20000000 is so we can distinguish new ioctl's from old */
-#define _SIO(x, y)    ((int)(SIOC_VOID | (x << 8) | y))
-#define _SIOR(x, y, t) \
-	((int)(SIOC_OUT | ((sizeof(t) & SIOCPARM_MASK) << 16) | (x << 8) | y))
-#define _SIOW(x, y, t) \
-	((int)(SIOC_IN | ((sizeof(t) & SIOCPARM_MASK) << 16) | (x << 8) | y))
+#define _SIO(x, y)	((int)(SIOC_VOID | (x << 8) | y))
+#define _SIOR(x, y, t)	((int)(SIOC_OUT | ((sizeof(t) & SIOCPARM_MASK) << 16) | (x << 8) | y))
+#define _SIOW(x, y, t)	((int)(SIOC_IN | ((sizeof(t) & SIOCPARM_MASK) << 16) | (x << 8) | y))
 /* this should be _SIORW, but stdio got there first */
-#define _SIOWR(x, y, t) \
-	((int)(SIOC_INOUT | ((sizeof(t) & SIOCPARM_MASK) << 16) | (x << 8) | y))
-#define _SIOC_SIZE(x) ((x >> 16) & SIOCPARM_MASK)
-#define _SIOC_DIR(x)  (x & 0xf0000000)
-#define _SIOC_NONE    SIOC_VOID
-#define _SIOC_READ    SIOC_OUT
-#define _SIOC_WRITE   SIOC_IN
+#define _SIOWR(x, y, t) ((int)(SIOC_INOUT | ((sizeof(t) & SIOCPARM_MASK) << 16) | (x << 8) | y))
+#define _SIOC_SIZE(x)	((x >> 16) & SIOCPARM_MASK)
+#define _SIOC_DIR(x)	(x & 0xf0000000)
+#define _SIOC_NONE	SIOC_VOID
+#define _SIOC_READ	SIOC_OUT
+#define _SIOC_WRITE	SIOC_IN
 #endif /* _IOWR */
 #endif /* !_SIOWR */
 
-#define SNDCTL_SEQ_RESET  _SIO('Q', 0)
-#define SNDCTL_SEQ_SYNC	  _SIO('Q', 1)
-#define SNDCTL_SYNTH_INFO _SIOWR('Q', 2, struct synth_info)
-#define SNDCTL_SEQ_CTRLRATE \
-	_SIOWR('Q', 3, int) /* Set/get timer resolution (HZ) */
-#define SNDCTL_SEQ_GETOUTCOUNT _SIOR('Q', 4, int)
-#define SNDCTL_SEQ_GETINCOUNT  _SIOR('Q', 5, int)
-#define SNDCTL_SEQ_PERCMODE    _SIOW('Q', 6, int)
-#define SNDCTL_FM_LOAD_INSTR \
-	_SIOW('Q', 7, struct sbi_instrument) /* Obsolete. Don't use!!!!!! */
+#define SNDCTL_SEQ_RESET	  _SIO('Q', 0)
+#define SNDCTL_SEQ_SYNC		  _SIO('Q', 1)
+#define SNDCTL_SYNTH_INFO	  _SIOWR('Q', 2, struct synth_info)
+#define SNDCTL_SEQ_CTRLRATE	  _SIOWR('Q', 3, int) /* Set/get timer resolution (HZ) */
+#define SNDCTL_SEQ_GETOUTCOUNT	  _SIOR('Q', 4, int)
+#define SNDCTL_SEQ_GETINCOUNT	  _SIOR('Q', 5, int)
+#define SNDCTL_SEQ_PERCMODE	  _SIOW('Q', 6, int)
+#define SNDCTL_FM_LOAD_INSTR	  _SIOW('Q', 7, struct sbi_instrument) /* Obsolete. Don't use!!!!!! */
 #define SNDCTL_SEQ_TESTMIDI	  _SIOW('Q', 8, int)
 #define SNDCTL_SEQ_RESETSAMPLES	  _SIOW('Q', 9, int)
 #define SNDCTL_SEQ_NRSYNTHS	  _SIOR('Q', 10, int)
@@ -602,7 +595,7 @@ typedef struct audio_buf_info {
 #define DSP_CAP_TRIGGER 0x00001000	/* Supports SETTRIGGER */
 #define DSP_CAP_MMAP	0x00002000	/* Supports mmap() */
 #define DSP_CAP_MULTI	0x00004000	/* support multiple open */
-#define DSP_CAP_BIND	0x00008000 /* channel binding to front/rear/cneter/lfe */
+#define DSP_CAP_BIND	0x00008000	/* channel binding to front/rear/cneter/lfe */
 
 #define SNDCTL_DSP_GETTRIGGER _SIOR('P', 16, int)
 #define SNDCTL_DSP_SETTRIGGER _SIOW('P', 16, int)
@@ -801,33 +794,25 @@ typedef struct copr_msg {
 #define SOUND_MIXER_MUTE    SOUND_MIXER_NONE
 #define SOUND_MIXER_LOUD    SOUND_MIXER_NONE
 
-#define SOUND_DEVICE_LABELS                                          \
-	{ "Vol  ",   "Bass ",	 "Trebl",    "Synth",	 "Pcm  ",    \
-	  "Spkr ",   "Line ",	 "Mic  ",    "CD   ",	 "Mix  ",    \
-	  "Pcm2 ",   "Rec  ",	 "IGain",    "OGain",	 "Line1",    \
-	  "Line2",   "Line3",	 "Digital1", "Digital2", "Digital3", \
-	  "PhoneIn", "PhoneOut", "Video",    "Radio",	 "Monitor" }
+#define SOUND_DEVICE_LABELS                                                                               \
+	{ "Vol  ",    "Bass ",	  "Trebl",   "Synth",	 "Pcm  ", "Spkr ", "Line ",  "Mic  ", "CD   ",    \
+	  "Mix  ",    "Pcm2 ",	  "Rec  ",   "IGain",	 "OGain", "Line1", "Line2",  "Line3", "Digital1", \
+	  "Digital2", "Digital3", "PhoneIn", "PhoneOut", "Video", "Radio", "Monitor" }
 
-#define SOUND_DEVICE_NAMES                                                  \
-	{ "vol",   "bass",  "treble", "synth",	"pcm",	"speaker", "line",  \
-	  "mic",   "cd",    "mix",    "pcm2",	"rec",	"igain",   "ogain", \
-	  "line1", "line2", "line3",  "dig1",	"dig2", "dig3",	   "phin",  \
-	  "phout", "video", "radio",  "monitor" }
+#define SOUND_DEVICE_NAMES                                                                  \
+	{ "vol",  "bass", "treble", "synth", "pcm",   "speaker", "line",   "mic",   "cd",   \
+	  "mix",  "pcm2", "rec",    "igain", "ogain", "line1",	 "line2",  "line3", "dig1", \
+	  "dig2", "dig3", "phin",   "phout", "video", "radio",	 "monitor" }
 
 /*	Device bitmask identifiers	*/
 
-#define SOUND_MIXER_RECSRC \
-	0xff /* Arg contains a bit for each recording source */
-#define SOUND_MIXER_DEVMASK \
-	0xfe /* Arg contains a bit for each supported device */
-#define SOUND_MIXER_RECMASK \
-	0xfd /* Arg contains a bit for each supported recording source */
-#define SOUND_MIXER_CAPS 0xfc
-#define SOUND_CAP_EXCL_INPUT \
-	0x00000001		    /* Only one recording source at a time */
-#define SOUND_MIXER_STEREODEVS 0xfb /* Mixer channels supporting stereo */
-#define SOUND_MIXER_OUTSRC \
-	0xfa /* Arg contains a bit for each input source to output */
+#define SOUND_MIXER_RECSRC     0xff /* Arg contains a bit for each recording source */
+#define SOUND_MIXER_DEVMASK    0xfe /* Arg contains a bit for each supported device */
+#define SOUND_MIXER_RECMASK    0xfd /* Arg contains a bit for each supported recording source */
+#define SOUND_MIXER_CAPS       0xfc
+#define SOUND_CAP_EXCL_INPUT   0x00000001 /* Only one recording source at a time */
+#define SOUND_MIXER_STEREODEVS 0xfb	  /* Mixer channels supporting stereo */
+#define SOUND_MIXER_OUTSRC     0xfa	  /* Arg contains a bit for each input source to output */
 #define SOUND_MIXER_OUTMASK                                                  \
 	0xf9 /* Arg contains a bit for each supported input source to output \
 	      */
@@ -1164,14 +1149,11 @@ void seqbuf_dump(void); /* This function must be provided by programs */
 		_SEQ_ADVBUF(8);                     \
 	}
 
-#define SEQ_START_NOTE(dev, chn, note, vol) \
-	_CHN_VOICE(dev, MIDI_NOTEON, chn, note, vol)
+#define SEQ_START_NOTE(dev, chn, note, vol) _CHN_VOICE(dev, MIDI_NOTEON, chn, note, vol)
 
-#define SEQ_STOP_NOTE(dev, chn, note, vol) \
-	_CHN_VOICE(dev, MIDI_NOTEOFF, chn, note, vol)
+#define SEQ_STOP_NOTE(dev, chn, note, vol) _CHN_VOICE(dev, MIDI_NOTEOFF, chn, note, vol)
 
-#define SEQ_KEY_PRESSURE(dev, chn, note, pressure) \
-	_CHN_VOICE(dev, MIDI_KEY_PRESSURE, chn, note, pressure)
+#define SEQ_KEY_PRESSURE(dev, chn, note, pressure) _CHN_VOICE(dev, MIDI_KEY_PRESSURE, chn, note, pressure)
 
 /*
  * Midi channel messages
@@ -1220,18 +1202,14 @@ void seqbuf_dump(void); /* This function must be provided by programs */
 		_SEQ_ADVBUF(8);                                  \
 	}
 
-#define SEQ_CHN_PRESSURE(dev, chn, pressure) \
-	_CHN_COMMON(dev, MIDI_CHN_PRESSURE, chn, pressure, 0, 0)
+#define SEQ_CHN_PRESSURE(dev, chn, pressure) _CHN_COMMON(dev, MIDI_CHN_PRESSURE, chn, pressure, 0, 0)
 
-#define SEQ_SET_PATCH SEQ_PGM_CHANGE
-#define SEQ_PGM_CHANGE(dev, chn, patch) \
-	_CHN_COMMON(dev, MIDI_PGM_CHANGE, chn, patch, 0, 0)
+#define SEQ_SET_PATCH			SEQ_PGM_CHANGE
+#define SEQ_PGM_CHANGE(dev, chn, patch) _CHN_COMMON(dev, MIDI_PGM_CHANGE, chn, patch, 0, 0)
 
-#define SEQ_CONTROL(dev, chn, controller, value) \
-	_CHN_COMMON(dev, MIDI_CTL_CHANGE, chn, controller, 0, value)
+#define SEQ_CONTROL(dev, chn, controller, value) _CHN_COMMON(dev, MIDI_CTL_CHANGE, chn, controller, 0, value)
 
-#define SEQ_BENDER(dev, chn, value) \
-	_CHN_COMMON(dev, MIDI_PITCH_BEND, chn, 0, 0, value)
+#define SEQ_BENDER(dev, chn, value) _CHN_COMMON(dev, MIDI_PITCH_BEND, chn, 0, 0, value)
 
 #define SEQ_V2_X_CONTROL(dev, voice, controller, value)          \
 	{                                                        \
@@ -1250,16 +1228,11 @@ void seqbuf_dump(void); /* This function must be provided by programs */
  * The following 5 macros are incorrectly implemented and obsolete.
  * Use SEQ_BENDER and SEQ_CONTROL (with proper controller) instead.
  */
-#define SEQ_PITCHBEND(dev, voice, value) \
-	SEQ_V2_X_CONTROL(dev, voice, CTRL_PITCH_BENDER, value)
-#define SEQ_BENDER_RANGE(dev, voice, value) \
-	SEQ_V2_X_CONTROL(dev, voice, CTRL_PITCH_BENDER_RANGE, value)
-#define SEQ_EXPRESSION(dev, voice, value) \
-	SEQ_CONTROL(dev, voice, CTL_EXPRESSION, value * 128)
-#define SEQ_MAIN_VOLUME(dev, voice, value) \
-	SEQ_CONTROL(dev, voice, CTL_MAIN_VOLUME, (value * 16383) / 100)
-#define SEQ_PANNING(dev, voice, pos) \
-	SEQ_CONTROL(dev, voice, CTL_PAN, (pos + 128) / 2)
+#define SEQ_PITCHBEND(dev, voice, value)    SEQ_V2_X_CONTROL(dev, voice, CTRL_PITCH_BENDER, value)
+#define SEQ_BENDER_RANGE(dev, voice, value) SEQ_V2_X_CONTROL(dev, voice, CTRL_PITCH_BENDER_RANGE, value)
+#define SEQ_EXPRESSION(dev, voice, value)   SEQ_CONTROL(dev, voice, CTL_EXPRESSION, value * 128)
+#define SEQ_MAIN_VOLUME(dev, voice, value)  SEQ_CONTROL(dev, voice, CTL_MAIN_VOLUME, (value * 16383) / 100)
+#define SEQ_PANNING(dev, voice, pos)	    SEQ_CONTROL(dev, voice, CTL_PAN, (pos + 128) / 2)
 
 /*
  * Timing and synchronization macros
@@ -1326,7 +1299,6 @@ void seqbuf_dump(void); /* This function must be provided by programs */
 		if (write(seqfd, (char *)(patchx), len) == -1) \
 			perror("Write patch: /dev/sequencer"); \
 	}
-#define SEQ_WRPATCH2(patchx, len) \
-	(SEQ_DUMPBUF(), write(seqfd, (char *)(patchx), len))
+#define SEQ_WRPATCH2(patchx, len) (SEQ_DUMPBUF(), write(seqfd, (char *)(patchx), len))
 
 #endif /* SOUNDCARD_H */

@@ -1,3 +1,4 @@
+#include "stddef.h"
 #include <stdio.h>
 
 char *fgets_unlocked(char *s, int n, FILE *stream)

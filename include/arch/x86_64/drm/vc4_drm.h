@@ -46,45 +46,24 @@ extern "C" {
 #define DRM_VC4_PERFMON_DESTROY	   0x0d
 #define DRM_VC4_PERFMON_GET_VALUES 0x0e
 
-#define DRM_IOCTL_VC4_SUBMIT_CL \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_VC4_SUBMIT_CL, struct drm_vc4_submit_cl)
-#define DRM_IOCTL_VC4_WAIT_SEQNO                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_VC4_WAIT_SEQNO, \
-		 struct drm_vc4_wait_seqno)
-#define DRM_IOCTL_VC4_WAIT_BO \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_VC4_WAIT_BO, struct drm_vc4_wait_bo)
-#define DRM_IOCTL_VC4_CREATE_BO \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_VC4_CREATE_BO, struct drm_vc4_create_bo)
-#define DRM_IOCTL_VC4_MMAP_BO \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_VC4_MMAP_BO, struct drm_vc4_mmap_bo)
-#define DRM_IOCTL_VC4_CREATE_SHADER_BO                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_VC4_CREATE_SHADER_BO, \
-		 struct drm_vc4_create_shader_bo)
-#define DRM_IOCTL_VC4_GET_HANG_STATE                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_VC4_GET_HANG_STATE, \
-		 struct drm_vc4_get_hang_state)
-#define DRM_IOCTL_VC4_GET_PARAM \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_VC4_GET_PARAM, struct drm_vc4_get_param)
-#define DRM_IOCTL_VC4_SET_TILING                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_VC4_SET_TILING, \
-		 struct drm_vc4_set_tiling)
-#define DRM_IOCTL_VC4_GET_TILING                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_VC4_GET_TILING, \
-		 struct drm_vc4_get_tiling)
-#define DRM_IOCTL_VC4_LABEL_BO \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_VC4_LABEL_BO, struct drm_vc4_label_bo)
-#define DRM_IOCTL_VC4_GEM_MADVISE                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_VC4_GEM_MADVISE, \
-		 struct drm_vc4_gem_madvise)
-#define DRM_IOCTL_VC4_PERFMON_CREATE                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_VC4_PERFMON_CREATE, \
-		 struct drm_vc4_perfmon_create)
-#define DRM_IOCTL_VC4_PERFMON_DESTROY                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_VC4_PERFMON_DESTROY, \
-		 struct drm_vc4_perfmon_destroy)
-#define DRM_IOCTL_VC4_PERFMON_GET_VALUES                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_VC4_PERFMON_GET_VALUES, \
-		 struct drm_vc4_perfmon_get_values)
+#define DRM_IOCTL_VC4_SUBMIT_CL	 DRM_IOWR(DRM_COMMAND_BASE + DRM_VC4_SUBMIT_CL, struct drm_vc4_submit_cl)
+#define DRM_IOCTL_VC4_WAIT_SEQNO DRM_IOWR(DRM_COMMAND_BASE + DRM_VC4_WAIT_SEQNO, struct drm_vc4_wait_seqno)
+#define DRM_IOCTL_VC4_WAIT_BO	 DRM_IOWR(DRM_COMMAND_BASE + DRM_VC4_WAIT_BO, struct drm_vc4_wait_bo)
+#define DRM_IOCTL_VC4_CREATE_BO	 DRM_IOWR(DRM_COMMAND_BASE + DRM_VC4_CREATE_BO, struct drm_vc4_create_bo)
+#define DRM_IOCTL_VC4_MMAP_BO	 DRM_IOWR(DRM_COMMAND_BASE + DRM_VC4_MMAP_BO, struct drm_vc4_mmap_bo)
+#define DRM_IOCTL_VC4_CREATE_SHADER_BO \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_VC4_CREATE_SHADER_BO, struct drm_vc4_create_shader_bo)
+#define DRM_IOCTL_VC4_GET_HANG_STATE DRM_IOWR(DRM_COMMAND_BASE + DRM_VC4_GET_HANG_STATE, struct drm_vc4_get_hang_state)
+#define DRM_IOCTL_VC4_GET_PARAM	     DRM_IOWR(DRM_COMMAND_BASE + DRM_VC4_GET_PARAM, struct drm_vc4_get_param)
+#define DRM_IOCTL_VC4_SET_TILING     DRM_IOWR(DRM_COMMAND_BASE + DRM_VC4_SET_TILING, struct drm_vc4_set_tiling)
+#define DRM_IOCTL_VC4_GET_TILING     DRM_IOWR(DRM_COMMAND_BASE + DRM_VC4_GET_TILING, struct drm_vc4_get_tiling)
+#define DRM_IOCTL_VC4_LABEL_BO	     DRM_IOWR(DRM_COMMAND_BASE + DRM_VC4_LABEL_BO, struct drm_vc4_label_bo)
+#define DRM_IOCTL_VC4_GEM_MADVISE    DRM_IOWR(DRM_COMMAND_BASE + DRM_VC4_GEM_MADVISE, struct drm_vc4_gem_madvise)
+#define DRM_IOCTL_VC4_PERFMON_CREATE DRM_IOWR(DRM_COMMAND_BASE + DRM_VC4_PERFMON_CREATE, struct drm_vc4_perfmon_create)
+#define DRM_IOCTL_VC4_PERFMON_DESTROY \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_VC4_PERFMON_DESTROY, struct drm_vc4_perfmon_destroy)
+#define DRM_IOCTL_VC4_PERFMON_GET_VALUES \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_VC4_PERFMON_GET_VALUES, struct drm_vc4_perfmon_get_values)
 
 struct drm_vc4_submit_rcl_surface {
 	__u32 hindex; /* Handle index, or ~0 if not present. */

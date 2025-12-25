@@ -217,16 +217,13 @@ struct snd_soc_tplg_vendor_string_elem {
 } __attribute__((packed));
 
 struct snd_soc_tplg_vendor_array {
-	__le32 size; /* size in bytes of the array, including all elements */
-	__le32 type; /* SND_SOC_TPLG_TUPLE_TYPE_ */
+	__le32 size;	  /* size in bytes of the array, including all elements */
+	__le32 type;	  /* SND_SOC_TPLG_TUPLE_TYPE_ */
 	__le32 num_elems; /* number of elements in array */
 	union {
-		__DECLARE_FLEX_ARRAY(struct snd_soc_tplg_vendor_uuid_elem,
-				     uuid);
-		__DECLARE_FLEX_ARRAY(struct snd_soc_tplg_vendor_value_elem,
-				     value);
-		__DECLARE_FLEX_ARRAY(struct snd_soc_tplg_vendor_string_elem,
-				     string);
+		__DECLARE_FLEX_ARRAY(struct snd_soc_tplg_vendor_uuid_elem, uuid);
+		__DECLARE_FLEX_ARRAY(struct snd_soc_tplg_vendor_value_elem, value);
+		__DECLARE_FLEX_ARRAY(struct snd_soc_tplg_vendor_string_elem, string);
 	};
 } __attribute__((packed));
 
@@ -319,7 +316,7 @@ struct snd_soc_tplg_stream_caps {
  * FE or BE Stream configuration supported by SW/FW
  */
 struct snd_soc_tplg_stream {
-	__le32 size; /* in bytes of this structure */
+	__le32 size;				  /* in bytes of this structure */
 	char name[SNDRV_CTL_ELEM_ID_NAME_MAXLEN]; /* Name of the stream */
 	__le64 format;				  /* SNDRV_PCM_FMTBIT_* */
 	__le32 rate;				  /* SNDRV_PCM_RATE_* */
@@ -333,24 +330,24 @@ struct snd_soc_tplg_stream {
  * i.e. hardware audio formats.
  */
 struct snd_soc_tplg_hw_config {
-	__le32 size;	       /* in bytes of this structure */
-	__le32 id;	       /* unique ID - - used to match */
-	__le32 fmt;	       /* SND_SOC_DAI_FORMAT_ format value */
-	__u8 clock_gated;      /* SND_SOC_TPLG_DAI_CLK_GATE_ value */
-	__u8 invert_bclk;      /* 1 for inverted BCLK, 0 for normal */
-	__u8 invert_fsync;     /* 1 for inverted frame clock, 0 for normal */
-	__u8 bclk_provider;    /* SND_SOC_TPLG_BCLK_ value */
-	__u8 fsync_provider;   /* SND_SOC_TPLG_FSYNC_ value */
-	__u8 mclk_direction;   /* SND_SOC_TPLG_MCLK_ value */
-	__le16 reserved;       /* for 32bit alignment */
-	__le32 mclk_rate;      /* MCLK or SYSCLK freqency in Hz */
-	__le32 bclk_rate;      /* BCLK freqency in Hz */
-	__le32 fsync_rate;     /* frame clock in Hz */
-	__le32 tdm_slots;      /* number of TDM slots in use */
-	__le32 tdm_slot_width; /* width in bits for each slot */
-	__le32 tx_slots;       /* bit mask for active Tx slots */
-	__le32 rx_slots;       /* bit mask for active Rx slots */
-	__le32 tx_channels;    /* number of Tx channels */
+	__le32 size;				  /* in bytes of this structure */
+	__le32 id;				  /* unique ID - - used to match */
+	__le32 fmt;				  /* SND_SOC_DAI_FORMAT_ format value */
+	__u8 clock_gated;			  /* SND_SOC_TPLG_DAI_CLK_GATE_ value */
+	__u8 invert_bclk;			  /* 1 for inverted BCLK, 0 for normal */
+	__u8 invert_fsync;			  /* 1 for inverted frame clock, 0 for normal */
+	__u8 bclk_provider;			  /* SND_SOC_TPLG_BCLK_ value */
+	__u8 fsync_provider;			  /* SND_SOC_TPLG_FSYNC_ value */
+	__u8 mclk_direction;			  /* SND_SOC_TPLG_MCLK_ value */
+	__le16 reserved;			  /* for 32bit alignment */
+	__le32 mclk_rate;			  /* MCLK or SYSCLK freqency in Hz */
+	__le32 bclk_rate;			  /* BCLK freqency in Hz */
+	__le32 fsync_rate;			  /* frame clock in Hz */
+	__le32 tdm_slots;			  /* number of TDM slots in use */
+	__le32 tdm_slot_width;			  /* width in bits for each slot */
+	__le32 tx_slots;			  /* bit mask for active Tx slots */
+	__le32 rx_slots;			  /* bit mask for active Rx slots */
+	__le32 tx_channels;			  /* number of Tx channels */
 	__le32 tx_chanmap[SND_SOC_TPLG_MAX_CHAN]; /* array of slot number */
 	__le32 rx_channels;			  /* number of Rx channels */
 	__le32 rx_chanmap[SND_SOC_TPLG_MAX_CHAN]; /* array of slot number */
@@ -421,8 +418,7 @@ struct snd_soc_tplg_enum_control {
 	__le32 mask;
 	__le32 count;
 	char texts[SND_SOC_TPLG_NUM_TEXTS][SNDRV_CTL_ELEM_ID_NAME_MAXLEN];
-	__le32 values[SND_SOC_TPLG_NUM_TEXTS * SNDRV_CTL_ELEM_ID_NAME_MAXLEN /
-		      4];
+	__le32 values[SND_SOC_TPLG_NUM_TEXTS * SNDRV_CTL_ELEM_ID_NAME_MAXLEN / 4];
 	struct snd_soc_tplg_private priv;
 } __attribute__((packed));
 
@@ -515,21 +511,20 @@ struct snd_soc_tplg_pcm {
 	__le32 size; /* in bytes of this structure */
 	char pcm_name[SNDRV_CTL_ELEM_ID_NAME_MAXLEN];
 	char dai_name[SNDRV_CTL_ELEM_ID_NAME_MAXLEN];
-	__le32 pcm_id;	 /* unique ID - used to match with DAI link */
-	__le32 dai_id;	 /* unique ID - used to match */
-	__le32 playback; /* supports playback mode */
-	__le32 capture;	 /* supports capture mode */
-	__le32 compress; /* 1 = compressed; 0 = PCM */
-	struct snd_soc_tplg_stream
-		stream[SND_SOC_TPLG_STREAM_CONFIG_MAX]; /* for
-							   DAI
-							   link
-							 */
-	__le32 num_streams;				/* number of streams */
-	struct snd_soc_tplg_stream_caps caps[2]; /* playback and capture for DAI
-						  */
-	__le32 flag_mask; /* bitmask of flags to configure */
-	__le32 flags;	  /* SND_SOC_TPLG_LNK_FLGBIT_* flag value */
+	__le32 pcm_id;							   /* unique ID - used to match with DAI link */
+	__le32 dai_id;							   /* unique ID - used to match */
+	__le32 playback;						   /* supports playback mode */
+	__le32 capture;							   /* supports capture mode */
+	__le32 compress;						   /* 1 = compressed; 0 = PCM */
+	struct snd_soc_tplg_stream stream[SND_SOC_TPLG_STREAM_CONFIG_MAX]; /* for
+									      DAI
+									      link
+									    */
+	__le32 num_streams;						   /* number of streams */
+	struct snd_soc_tplg_stream_caps caps[2];			   /* playback and capture for DAI
+									    */
+	__le32 flag_mask;						   /* bitmask of flags to configure */
+	__le32 flags;							   /* SND_SOC_TPLG_LNK_FLGBIT_* flag value */
 	struct snd_soc_tplg_private priv;
 } __attribute__((packed));
 
@@ -544,25 +539,23 @@ struct snd_soc_tplg_pcm {
  * +-----------------------------------+-----+
  */
 struct snd_soc_tplg_link_config {
-	__le32 size; /* in bytes of this structure */
-	__le32 id;   /* unique ID - used to match */
-	char name[SNDRV_CTL_ELEM_ID_NAME_MAXLEN]; /* name - used to match */
-	char stream_name[SNDRV_CTL_ELEM_ID_NAME_MAXLEN]; /* stream name - used
-							    to match */
-	struct snd_soc_tplg_stream
-		stream[SND_SOC_TPLG_STREAM_CONFIG_MAX]; /* supported
-							   configs
-							   playback
-							   and
-							   captrure
-							 */
-	__le32 num_streams;				/* number of streams */
-	struct snd_soc_tplg_hw_config
-		hw_config[SND_SOC_TPLG_HW_CONFIG_MAX]; /* hw configs */
-	__le32 num_hw_configs;	     /* number of hw configs */
-	__le32 default_hw_config_id; /* default hw config ID for init */
-	__le32 flag_mask;	     /* bitmask of flags to configure */
-	__le32 flags;		     /* SND_SOC_TPLG_LNK_FLGBIT_* flag value */
+	__le32 size;							     /* in bytes of this structure */
+	__le32 id;							     /* unique ID - used to match */
+	char name[SNDRV_CTL_ELEM_ID_NAME_MAXLEN];			     /* name - used to match */
+	char stream_name[SNDRV_CTL_ELEM_ID_NAME_MAXLEN];		     /* stream name - used
+										to match */
+	struct snd_soc_tplg_stream stream[SND_SOC_TPLG_STREAM_CONFIG_MAX];   /* supported
+										configs
+										playback
+										and
+										captrure
+									      */
+	__le32 num_streams;						     /* number of streams */
+	struct snd_soc_tplg_hw_config hw_config[SND_SOC_TPLG_HW_CONFIG_MAX]; /* hw configs */
+	__le32 num_hw_configs;						     /* number of hw configs */
+	__le32 default_hw_config_id;					     /* default hw config ID for init */
+	__le32 flag_mask;						     /* bitmask of flags to configure */
+	__le32 flags;							     /* SND_SOC_TPLG_LNK_FLGBIT_* flag value */
 	struct snd_soc_tplg_private priv;
 } __attribute__((packed));
 
@@ -578,15 +571,15 @@ struct snd_soc_tplg_link_config {
  * +-----------------------------------+-----+
  */
 struct snd_soc_tplg_dai {
-	__le32 size; /* in bytes of this structure */
+	__le32 size;				      /* in bytes of this structure */
 	char dai_name[SNDRV_CTL_ELEM_ID_NAME_MAXLEN]; /* name - used to match */
-	__le32 dai_id;				 /* unique ID - used to match */
-	__le32 playback;			 /* supports playback mode */
-	__le32 capture;				 /* supports capture mode */
-	struct snd_soc_tplg_stream_caps caps[2]; /* playback and capture for DAI
-						  */
-	__le32 flag_mask; /* bitmask of flags to configure */
-	__le32 flags;	  /* SND_SOC_TPLG_DAI_FLGBIT_* */
+	__le32 dai_id;				      /* unique ID - used to match */
+	__le32 playback;			      /* supports playback mode */
+	__le32 capture;				      /* supports capture mode */
+	struct snd_soc_tplg_stream_caps caps[2];      /* playback and capture for DAI
+						       */
+	__le32 flag_mask;			      /* bitmask of flags to configure */
+	__le32 flags;				      /* SND_SOC_TPLG_DAI_FLGBIT_* */
 	struct snd_soc_tplg_private priv;
 } __attribute__((packed));
 

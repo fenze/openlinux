@@ -51,8 +51,7 @@
 #define FAN_CLASS_PRE_CONTENT 0x00000008
 
 /* Deprecated - do not use this in programs and do not add new flags here! */
-#define FAN_ALL_CLASS_BITS \
-	(FAN_CLASS_NOTIF | FAN_CLASS_CONTENT | FAN_CLASS_PRE_CONTENT)
+#define FAN_ALL_CLASS_BITS (FAN_CLASS_NOTIF | FAN_CLASS_CONTENT | FAN_CLASS_PRE_CONTENT)
 
 #define FAN_UNLIMITED_QUEUE 0x00000010
 #define FAN_UNLIMITED_MARKS 0x00000020
@@ -71,13 +70,10 @@
 /* Convenience macro - FAN_REPORT_NAME requires FAN_REPORT_DIR_FID */
 #define FAN_REPORT_DFID_NAME (FAN_REPORT_DIR_FID | FAN_REPORT_NAME)
 /* Convenience macro - FAN_REPORT_TARGET_FID requires all other FID flags */
-#define FAN_REPORT_DFID_NAME_TARGET \
-	(FAN_REPORT_DFID_NAME | FAN_REPORT_FID | FAN_REPORT_TARGET_FID)
+#define FAN_REPORT_DFID_NAME_TARGET (FAN_REPORT_DFID_NAME | FAN_REPORT_FID | FAN_REPORT_TARGET_FID)
 
 /* Deprecated - do not use this in programs and do not add new flags here! */
-#define FAN_ALL_INIT_FLAGS                                 \
-	(FAN_CLOEXEC | FAN_NONBLOCK | FAN_ALL_CLASS_BITS | \
-	 FAN_UNLIMITED_QUEUE | FAN_UNLIMITED_MARKS)
+#define FAN_ALL_INIT_FLAGS (FAN_CLOEXEC | FAN_NONBLOCK | FAN_ALL_CLASS_BITS | FAN_UNLIMITED_QUEUE | FAN_UNLIMITED_MARKS)
 
 /* flags used for fanotify_modify_mark() */
 #define FAN_MARK_ADD	     0x00000001
@@ -106,10 +102,9 @@
 #define FAN_MARK_IGNORE_SURV (FAN_MARK_IGNORE | FAN_MARK_IGNORED_SURV_MODIFY)
 
 /* Deprecated - do not use this in programs and do not add new flags here! */
-#define FAN_ALL_MARK_FLAGS                                           \
-	(FAN_MARK_ADD | FAN_MARK_REMOVE | FAN_MARK_DONT_FOLLOW |     \
-	 FAN_MARK_ONLYDIR | FAN_MARK_MOUNT | FAN_MARK_IGNORED_MASK | \
-	 FAN_MARK_IGNORED_SURV_MODIFY | FAN_MARK_FLUSH)
+#define FAN_ALL_MARK_FLAGS                                                                           \
+	(FAN_MARK_ADD | FAN_MARK_REMOVE | FAN_MARK_DONT_FOLLOW | FAN_MARK_ONLYDIR | FAN_MARK_MOUNT | \
+	 FAN_MARK_IGNORED_MASK | FAN_MARK_IGNORED_SURV_MODIFY | FAN_MARK_FLUSH)
 
 /* Deprecated - do not use this in programs and do not add new flags here! */
 #define FAN_ALL_EVENTS (FAN_ACCESS | FAN_MODIFY | FAN_CLOSE | FAN_OPEN)
@@ -121,8 +116,7 @@
 #define FAN_ALL_PERM_EVENTS (FAN_OPEN_PERM | FAN_ACCESS_PERM)
 
 /* Deprecated - do not use this in programs and do not add new flags here! */
-#define FAN_ALL_OUTGOING_EVENTS \
-	(FAN_ALL_EVENTS | FAN_ALL_PERM_EVENTS | FAN_Q_OVERFLOW)
+#define FAN_ALL_OUTGOING_EVENTS (FAN_ALL_EVENTS | FAN_ALL_PERM_EVENTS | FAN_Q_OVERFLOW)
 
 #define FANOTIFY_METADATA_VERSION 3
 
@@ -237,11 +231,10 @@ struct fanotify_response_info_audit_rule {
 #define FAN_ALLOW 0x01
 #define FAN_DENY  0x02
 /* errno other than EPERM can specified in upper byte of deny response */
-#define FAN_ERRNO_BITS	8
-#define FAN_ERRNO_SHIFT (32 - FAN_ERRNO_BITS)
-#define FAN_ERRNO_MASK	((1 << FAN_ERRNO_BITS) - 1)
-#define FAN_DENY_ERRNO(err) \
-	(FAN_DENY | ((((__u32)(err)) & FAN_ERRNO_MASK) << FAN_ERRNO_SHIFT))
+#define FAN_ERRNO_BITS	    8
+#define FAN_ERRNO_SHIFT	    (32 - FAN_ERRNO_BITS)
+#define FAN_ERRNO_MASK	    ((1 << FAN_ERRNO_BITS) - 1)
+#define FAN_DENY_ERRNO(err) (FAN_DENY | ((((__u32)(err)) & FAN_ERRNO_MASK) << FAN_ERRNO_SHIFT))
 
 #define FAN_AUDIT 0x10 /* Bitmask to create audit record for result */
 #define FAN_INFO  0x20 /* Bitmask to indicate additional information */
@@ -254,14 +247,11 @@ struct fanotify_response_info_audit_rule {
 /* Helper functions to deal with fanotify_event_metadata buffers */
 #define FAN_EVENT_METADATA_LEN (sizeof(struct fanotify_event_metadata))
 
-#define FAN_EVENT_NEXT(meta, len)                              \
-	((len) -= (meta)->event_len,                           \
-	 (struct fanotify_event_metadata *)(((char *)(meta)) + \
-					    (meta)->event_len))
+#define FAN_EVENT_NEXT(meta, len) \
+	((len) -= (meta)->event_len, (struct fanotify_event_metadata *)(((char *)(meta)) + (meta)->event_len))
 
-#define FAN_EVENT_OK(meta, len)                                     \
-	((long)(len) >= (long)FAN_EVENT_METADATA_LEN &&             \
-	 (long)(meta)->event_len >= (long)FAN_EVENT_METADATA_LEN && \
+#define FAN_EVENT_OK(meta, len)                                                                                    \
+	((long)(len) >= (long)FAN_EVENT_METADATA_LEN && (long)(meta)->event_len >= (long)FAN_EVENT_METADATA_LEN && \
 	 (long)(meta)->event_len <= (long)(len))
 
 #endif /* _LINUX_FANOTIFY_H */

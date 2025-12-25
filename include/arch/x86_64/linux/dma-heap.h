@@ -47,7 +47,6 @@ struct dma_heap_allocation_data {
  * Takes a dma_heap_allocation_data struct and returns it with the fd field
  * populated with the dmabuf handle of the allocation.
  */
-#define DMA_HEAP_IOCTL_ALLOC \
-	_IOWR(DMA_HEAP_IOC_MAGIC, 0x0, struct dma_heap_allocation_data)
+#define DMA_HEAP_IOCTL_ALLOC _IOWR(DMA_HEAP_IOC_MAGIC, 0x0, struct dma_heap_allocation_data)
 
 #endif /* _LINUX_DMABUF_POOL_H */

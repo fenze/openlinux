@@ -104,8 +104,7 @@ struct sockaddr_pn {
 	__u8 spn_obj;
 	__u8 spn_dev;
 	__u8 spn_resource;
-	__u8 spn_zero[sizeof(struct sockaddr) - sizeof(__kernel_sa_family_t) -
-		      3];
+	__u8 spn_zero[sizeof(struct sockaddr) - sizeof(__kernel_sa_family_t) - 3];
 } __attribute__((packed));
 
 /* Well known address */
@@ -149,15 +148,13 @@ static __inline__ void pn_sockaddr_set_port(struct sockaddr_pn *spn, __u16 port)
 	spn->spn_obj = port & 0xff;
 }
 
-static __inline__ void pn_sockaddr_set_object(struct sockaddr_pn *spn,
-					      __u16 handle)
+static __inline__ void pn_sockaddr_set_object(struct sockaddr_pn *spn, __u16 handle)
 {
 	spn->spn_dev = pn_dev(handle);
 	spn->spn_obj = pn_obj(handle);
 }
 
-static __inline__ void pn_sockaddr_set_resource(struct sockaddr_pn *spn,
-						__u8 resource)
+static __inline__ void pn_sockaddr_set_resource(struct sockaddr_pn *spn, __u8 resource)
 {
 	spn->spn_resource = resource;
 }

@@ -131,8 +131,7 @@ struct apml_reg_xfer_msg {
  * - returning "-EFAULT" if none of the above
  * "-EPROTOTYPE" error is returned to provide additional error details
  */
-#define SBRMI_IOCTL_MCAMSR_CMD \
-	_IOWR(SB_BASE_IOCTL_NR, 2, struct apml_mcamsr_msg)
+#define SBRMI_IOCTL_MCAMSR_CMD _IOWR(SB_BASE_IOCTL_NR, 2, struct apml_mcamsr_msg)
 
 /**
  * DOC: SBRMI_IOCTL_REG_XFER_CMD
@@ -148,7 +147,6 @@ struct apml_reg_xfer_msg {
  * The IOCTL provides userspace access to AMD sideband register xfer protocol
  * - Register xfer protocol to get/set hardware register for given offset
  */
-#define SBRMI_IOCTL_REG_XFER_CMD \
-	_IOWR(SB_BASE_IOCTL_NR, 3, struct apml_reg_xfer_msg)
+#define SBRMI_IOCTL_REG_XFER_CMD _IOWR(SB_BASE_IOCTL_NR, 3, struct apml_reg_xfer_msg)
 
 #endif /*_AMD_APML_H_*/

@@ -103,8 +103,7 @@ long double remquol(long double x, long double y, int *quo)
 		if ((xhi | xlo) == 0)
 			ex = -120;
 		else
-			for (; xhi >> 48 == 0;
-			     xhi = 2 * xhi + (xlo >> 63), xlo = 2 * xlo, ex--)
+			for (; xhi >> 48 == 0; xhi = 2 * xhi + (xlo >> 63), xlo = 2 * xlo, ex--)
 				;
 		ux.i2.hi = xhi;
 		ux.i2.lo = xlo;
@@ -120,8 +119,7 @@ long double remquol(long double x, long double y, int *quo)
 	x = ux.f;
 	if (sy)
 		y = -y;
-	if (ex == ey ||
-	    (ex + 1 == ey && (2 * x > y || (2 * x == y && q % 2)))) {
+	if (ex == ey || (ex + 1 == ey && (2 * x > y || (2 * x == y && q % 2)))) {
 		x -= y;
 		q++;
 	}

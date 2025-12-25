@@ -24,14 +24,12 @@
 	-3			 /* - key ID for session-specific keyring \
 				  */
 #define KEY_SPEC_USER_KEYRING -4 /* - key ID for UID-specific keyring */
-#define KEY_SPEC_USER_SESSION_KEYRING                                 \
-	-5			  /* - key ID for UID-session keyring \
-				   */
-#define KEY_SPEC_GROUP_KEYRING -6 /* - key ID for GID-specific keyring */
-#define KEY_SPEC_REQKEY_AUTH_KEY \
-	-7 /* - key ID for assumed request_key auth key */
-#define KEY_SPEC_REQUESTOR_KEYRING \
-	-8 /* - key ID for request_key() dest keyring */
+#define KEY_SPEC_USER_SESSION_KEYRING                                     \
+	-5			      /* - key ID for UID-session keyring \
+				       */
+#define KEY_SPEC_GROUP_KEYRING	   -6 /* - key ID for GID-specific keyring */
+#define KEY_SPEC_REQKEY_AUTH_KEY   -7 /* - key ID for assumed request_key auth key */
+#define KEY_SPEC_REQUESTOR_KEYRING -8 /* - key ID for request_key() dest keyring */
 
 /* request-key default keyrings */
 #define KEY_REQKEY_DEFL_NO_CHANGE	     -1
@@ -65,25 +63,23 @@
 #define KEYCTL_SET_TIMEOUT	  15 /* set key timeout */
 #define KEYCTL_ASSUME_AUTHORITY	  16 /* assume request_key() authorisation */
 #define KEYCTL_GET_SECURITY	  17 /* get key security label */
-#define KEYCTL_SESSION_TO_PARENT \
-	18		 /* apply session keyring to parent process */
-#define KEYCTL_REJECT 19 /* reject a partially constructed key */
-#define KEYCTL_INSTANTIATE_IOV                                              \
-	20			 /* instantiate a partially constructed key \
-				  */
-#define KEYCTL_INVALIDATE     21 /* invalidate a key */
-#define KEYCTL_GET_PERSISTENT 22 /* get a user's persistent keyring */
-#define KEYCTL_DH_COMPUTE     23 /* Compute Diffie-Hellman values */
-#define KEYCTL_PKEY_QUERY     24 /* Query public key parameters */
-#define KEYCTL_PKEY_ENCRYPT   25 /* Encrypt a blob using a public key */
-#define KEYCTL_PKEY_DECRYPT   26 /* Decrypt a blob using a public key */
-#define KEYCTL_PKEY_SIGN      27 /* Create a public key signature */
-#define KEYCTL_PKEY_VERIFY    28 /* Verify a public key signature */
-#define KEYCTL_RESTRICT_KEYRING \
-	29		       /* Restrict keys allowed to link to a keyring */
-#define KEYCTL_MOVE	    30 /* Move keys between keyrings */
-#define KEYCTL_CAPABILITIES 31 /* Find capabilities of keyrings subsystem */
-#define KEYCTL_WATCH_KEY    32 /* Watch a key or ring of keys for changes */
+#define KEYCTL_SESSION_TO_PARENT  18 /* apply session keyring to parent process */
+#define KEYCTL_REJECT		  19 /* reject a partially constructed key */
+#define KEYCTL_INSTANTIATE_IOV                                                \
+	20			   /* instantiate a partially constructed key \
+				    */
+#define KEYCTL_INVALIDATE	21 /* invalidate a key */
+#define KEYCTL_GET_PERSISTENT	22 /* get a user's persistent keyring */
+#define KEYCTL_DH_COMPUTE	23 /* Compute Diffie-Hellman values */
+#define KEYCTL_PKEY_QUERY	24 /* Query public key parameters */
+#define KEYCTL_PKEY_ENCRYPT	25 /* Encrypt a blob using a public key */
+#define KEYCTL_PKEY_DECRYPT	26 /* Decrypt a blob using a public key */
+#define KEYCTL_PKEY_SIGN	27 /* Create a public key signature */
+#define KEYCTL_PKEY_VERIFY	28 /* Verify a public key signature */
+#define KEYCTL_RESTRICT_KEYRING 29 /* Restrict keys allowed to link to a keyring */
+#define KEYCTL_MOVE		30 /* Move keys between keyrings */
+#define KEYCTL_CAPABILITIES	31 /* Find capabilities of keyrings subsystem */
+#define KEYCTL_WATCH_KEY	32 /* Watch a key or ring of keys for changes */
 
 /* keyctl structures */
 struct keyctl_dh_params {
@@ -136,22 +132,17 @@ struct keyctl_pkey_params {
  * each integer can carry up to 8 flags.
  */
 #define KEYCTL_CAPS0_CAPABILITIES 0x01 /* KEYCTL_CAPABILITIES supported */
-#define KEYCTL_CAPS0_PERSISTENT_KEYRINGS    \
-	0x02 /* Persistent keyrings enabled \
-	      */
-#define KEYCTL_CAPS0_DIFFIE_HELLMAN \
-	0x04			     /* Diffie-Hellman computation enabled */
-#define KEYCTL_CAPS0_PUBLIC_KEY 0x08 /* Public key ops enabled */
-#define KEYCTL_CAPS0_BIG_KEY	0x10 /* big_key-type enabled */
-#define KEYCTL_CAPS0_INVALIDATE 0x20 /* KEYCTL_INVALIDATE supported */
-#define KEYCTL_CAPS0_RESTRICT_KEYRING \
-	0x40		       /* KEYCTL_RESTRICT_KEYRING supported */
-#define KEYCTL_CAPS0_MOVE 0x80 /* KEYCTL_MOVE supported */
-#define KEYCTL_CAPS1_NS_KEYRING_NAME \
-	0x01 /* Keyring names are per-user_namespace */
-#define KEYCTL_CAPS1_NS_KEY_TAG \
-	0x02 /* Key indexing can include a namespace tag */
-#define KEYCTL_CAPS1_NOTIFICATIONS \
-	0x04 /* Keys generate watchable notifications */
+#define KEYCTL_CAPS0_PERSISTENT_KEYRINGS                                  \
+	0x02				   /* Persistent keyrings enabled \
+					    */
+#define KEYCTL_CAPS0_DIFFIE_HELLMAN   0x04 /* Diffie-Hellman computation enabled */
+#define KEYCTL_CAPS0_PUBLIC_KEY	      0x08 /* Public key ops enabled */
+#define KEYCTL_CAPS0_BIG_KEY	      0x10 /* big_key-type enabled */
+#define KEYCTL_CAPS0_INVALIDATE	      0x20 /* KEYCTL_INVALIDATE supported */
+#define KEYCTL_CAPS0_RESTRICT_KEYRING 0x40 /* KEYCTL_RESTRICT_KEYRING supported */
+#define KEYCTL_CAPS0_MOVE	      0x80 /* KEYCTL_MOVE supported */
+#define KEYCTL_CAPS1_NS_KEYRING_NAME  0x01 /* Keyring names are per-user_namespace */
+#define KEYCTL_CAPS1_NS_KEY_TAG	      0x02 /* Key indexing can include a namespace tag */
+#define KEYCTL_CAPS1_NOTIFICATIONS    0x04 /* Keys generate watchable notifications */
 
 #endif /*  _LINUX_KEYCTL_H */

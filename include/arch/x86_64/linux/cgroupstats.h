@@ -44,8 +44,8 @@ struct cgroupstats {
 
 enum {
 	CGROUPSTATS_CMD_UNSPEC = __TASKSTATS_CMD_MAX, /* Reserved */
-	CGROUPSTATS_CMD_GET, /* user->kernel request/get-response */
-	CGROUPSTATS_CMD_NEW, /* kernel->user event */
+	CGROUPSTATS_CMD_GET,			      /* user->kernel request/get-response */
+	CGROUPSTATS_CMD_NEW,			      /* kernel->user event */
 	__CGROUPSTATS_CMD_MAX,
 };
 

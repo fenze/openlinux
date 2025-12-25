@@ -67,7 +67,7 @@ struct vmclock_abi {
 #define VMCLOCK_MAGIC 0x4b4c4356 /* "VCLK" */
 	__le32 size;		 /* Size of region containing this structure */
 	__le16 version;		 /* 1 */
-	__u8 counter_id; /* Matches VIRTIO_RTC_COUNTER_xxx except INVALID */
+	__u8 counter_id;	 /* Matches VIRTIO_RTC_COUNTER_xxx except INVALID */
 #define VMCLOCK_COUNTER_ARM_VCNT 0
 #define VMCLOCK_COUNTER_X86_TSC	 1
 #define VMCLOCK_COUNTER_INVALID	 0xff

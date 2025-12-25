@@ -42,12 +42,11 @@
  */
 
 #define TCMU_MAILBOX_VERSION	       2
-#define ALIGN_SIZE		       64 /* Should be enough for most CPUs */
+#define ALIGN_SIZE		       64	/* Should be enough for most CPUs */
 #define TCMU_MAILBOX_FLAG_CAP_OOOC     (1 << 0) /* Out-of-order completions */
 #define TCMU_MAILBOX_FLAG_CAP_READ_LEN (1 << 1) /* Read data length */
 #define TCMU_MAILBOX_FLAG_CAP_TMR      (1 << 2) /* TMR notifications */
-#define TCMU_MAILBOX_FLAG_CAP_KEEP_BUF \
-	(1 << 3) /* Keep buf after cmd completion */
+#define TCMU_MAILBOX_FLAG_CAP_KEEP_BUF (1 << 3) /* Keep buf after cmd completion */
 
 struct tcmu_mailbox {
 	__u16 version;

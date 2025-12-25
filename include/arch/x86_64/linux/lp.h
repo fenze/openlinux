@@ -99,9 +99,7 @@
 #if __BITS_PER_LONG == 64
 #define LPSETTIMEOUT LPSETTIMEOUT_OLD
 #else
-#define LPSETTIMEOUT                                                   \
-	(sizeof(time_t) > sizeof(__kernel_long_t) ? LPSETTIMEOUT_NEW : \
-						    LPSETTIMEOUT_OLD)
+#define LPSETTIMEOUT (sizeof(time_t) > sizeof(__kernel_long_t) ? LPSETTIMEOUT_NEW : LPSETTIMEOUT_OLD)
 #endif
 
 /* timeout for printk'ing a timeout, in jiffies (100ths of a second).

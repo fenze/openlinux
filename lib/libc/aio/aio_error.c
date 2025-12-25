@@ -1,6 +1,8 @@
-#include <__aio.h>
-#include <errno.h>
-#include <stddef.h>
+#include "aio.h" // for aio_error, aiocb (ptr only)
+
+#include <__aio.h>  // for aio_request, __aio_lookup, AIO_REQUEST_STATUS_PE...
+#include <errno.h>  // for EINVAL, errno, EINPROGRESS
+#include <stddef.h> // for NULL
 
 int aio_error(const struct aiocb *aiocbp)
 {

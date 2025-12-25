@@ -1,7 +1,9 @@
-#include <atomic.h>
+#include "__stdio.h"
+#include "stddef.h"
 #include <fcntl.h>
 #include <libc.h>
 #include <stdio.h>
+#include <string.h>
 #include <unistd.h>
 
 struct __FILE *const stdout = (struct __FILE *)&__libc.stdout;

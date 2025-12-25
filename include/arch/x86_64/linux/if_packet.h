@@ -145,10 +145,8 @@ struct tpacket_hdr {
 };
 
 #define TPACKET_ALIGNMENT 16
-#define TPACKET_ALIGN(x) \
-	(((x) + TPACKET_ALIGNMENT - 1) & ~(TPACKET_ALIGNMENT - 1))
-#define TPACKET_HDRLEN \
-	(TPACKET_ALIGN(sizeof(struct tpacket_hdr)) + sizeof(struct sockaddr_ll))
+#define TPACKET_ALIGN(x)  (((x) + TPACKET_ALIGNMENT - 1) & ~(TPACKET_ALIGNMENT - 1))
+#define TPACKET_HDRLEN	  (TPACKET_ALIGN(sizeof(struct tpacket_hdr)) + sizeof(struct sockaddr_ll))
 
 struct tpacket2_hdr {
 	__u32 tp_status;
@@ -253,12 +251,8 @@ struct tpacket_block_desc {
 	union tpacket_bd_header_u hdr;
 };
 
-#define TPACKET2_HDRLEN                               \
-	(TPACKET_ALIGN(sizeof(struct tpacket2_hdr)) + \
-	 sizeof(struct sockaddr_ll))
-#define TPACKET3_HDRLEN                               \
-	(TPACKET_ALIGN(sizeof(struct tpacket3_hdr)) + \
-	 sizeof(struct sockaddr_ll))
+#define TPACKET2_HDRLEN (TPACKET_ALIGN(sizeof(struct tpacket2_hdr)) + sizeof(struct sockaddr_ll))
+#define TPACKET3_HDRLEN (TPACKET_ALIGN(sizeof(struct tpacket3_hdr)) + sizeof(struct sockaddr_ll))
 
 enum tpacket_versions { TPACKET_V1, TPACKET_V2, TPACKET_V3 };
 

@@ -12,12 +12,7 @@ enum {
 	RDMA_NL_NUM_CLIENTS
 };
 
-enum {
-	RDMA_NL_GROUP_IWPM = 2,
-	RDMA_NL_GROUP_LS,
-	RDMA_NL_GROUP_NOTIFY,
-	RDMA_NL_NUM_GROUPS
-};
+enum { RDMA_NL_GROUP_IWPM = 2, RDMA_NL_GROUP_LS, RDMA_NL_GROUP_NOTIFY, RDMA_NL_NUM_GROUPS };
 
 #define RDMA_NL_GET_CLIENT(type)     ((type & (((1 << 6) - 1) << 10)) >> 10)
 #define RDMA_NL_GET_OP(type)	     (type & ((1 << 10) - 1))
@@ -135,18 +130,9 @@ enum {
 	IWPM_NLA_MAPINFO_NUM_MAX
 };
 
-enum {
-	IWPM_NLA_ERR_UNSPEC = 0,
-	IWPM_NLA_ERR_SEQ,
-	IWPM_NLA_ERR_CODE,
-	IWPM_NLA_ERR_MAX
-};
+enum { IWPM_NLA_ERR_UNSPEC = 0, IWPM_NLA_ERR_SEQ, IWPM_NLA_ERR_CODE, IWPM_NLA_ERR_MAX };
 
-enum {
-	IWPM_NLA_HELLO_UNSPEC = 0,
-	IWPM_NLA_HELLO_ABI_VERSION,
-	IWPM_NLA_HELLO_MAX
-};
+enum { IWPM_NLA_HELLO_UNSPEC = 0, IWPM_NLA_HELLO_ABI_VERSION, IWPM_NLA_HELLO_MAX };
 
 /* For RDMA_NLDEV_ATTR_DEV_NODE_TYPE */
 enum {
@@ -166,12 +152,7 @@ enum {
  *   SET_TIMEOUT - The local service requests the client to set the timeout.
  *   IP_RESOLVE - The client requests the local service to resolve an IP to GID.
  */
-enum {
-	RDMA_NL_LS_OP_RESOLVE = 0,
-	RDMA_NL_LS_OP_SET_TIMEOUT,
-	RDMA_NL_LS_OP_IP_RESOLVE,
-	RDMA_NL_LS_NUM_OPS
-};
+enum { RDMA_NL_LS_OP_RESOLVE = 0, RDMA_NL_LS_OP_SET_TIMEOUT, RDMA_NL_LS_OP_IP_RESOLVE, RDMA_NL_LS_NUM_OPS };
 
 /* Local service netlink message flags */
 #define RDMA_NL_LS_F_ERR 0x0100 /* Failed response */
@@ -213,8 +194,7 @@ struct rdma_ls_ip_resolve_header {
 
 /* Local service attribute type */
 #define RDMA_NLA_F_MANDATORY (1 << 13)
-#define RDMA_NLA_TYPE_MASK \
-	(~(NLA_F_NESTED | NLA_F_NET_BYTEORDER | RDMA_NLA_F_MANDATORY))
+#define RDMA_NLA_TYPE_MASK   (~(NLA_F_NESTED | NLA_F_NET_BYTEORDER | RDMA_NLA_F_MANDATORY))
 
 /*
  * Local service attributes:

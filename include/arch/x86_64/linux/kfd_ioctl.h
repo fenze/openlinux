@@ -199,8 +199,7 @@ struct kfd_process_device_apertures {
  */
 #define NUM_OF_SUPPORTED_GPUS 7
 struct kfd_ioctl_get_process_apertures_args {
-	struct kfd_process_device_apertures
-		process_apertures[NUM_OF_SUPPORTED_GPUS]; /* from KFD */
+	struct kfd_process_device_apertures process_apertures[NUM_OF_SUPPORTED_GPUS]; /* from KFD */
 
 	/* from KFD, should be in the range [1 - NUM_OF_SUPPORTED_GPUS] */
 	__u32 num_of_nodes;
@@ -550,8 +549,8 @@ enum kfd_smi_event {
 
 /* The reason of the page migration event */
 enum KFD_MIGRATE_TRIGGERS {
-	KFD_MIGRATE_TRIGGER_PREFETCH, /* Prefetch to GPU VRAM or system memory
-				       */
+	KFD_MIGRATE_TRIGGER_PREFETCH,	   /* Prefetch to GPU VRAM or system memory
+					    */
 	KFD_MIGRATE_TRIGGER_PAGEFAULT_GPU, /* GPU page fault recover */
 	KFD_MIGRATE_TRIGGER_PAGEFAULT_CPU, /* CPU page fault recover */
 	KFD_MIGRATE_TRIGGER_TTM_EVICTION   /* TTM eviction */
@@ -569,7 +568,7 @@ enum KFD_QUEUE_EVICTION_TRIGGERS {
 
 /* The reason of unmap buffer from GPU event */
 enum KFD_SVM_UNMAP_TRIGGERS {
-	KFD_SVM_UNMAP_TRIGGER_MMU_NOTIFY, /* MMU notifier CPU buffer movement */
+	KFD_SVM_UNMAP_TRIGGER_MMU_NOTIFY,	  /* MMU notifier CPU buffer movement */
 	KFD_SVM_UNMAP_TRIGGER_MMU_NOTIFY_MIGRATE, /* MMU notifier page migration
 						   */
 	KFD_SVM_UNMAP_TRIGGER_UNMAP_FROM_CPU	  /* Unmap to free the buffer */
@@ -618,11 +617,9 @@ struct kfd_ioctl_smi_events_args {
  * if the queue restore failed and rescheduled to try again error_code: migrate
  * failure error code, 0 if no error
  */
-#define KFD_EVENT_FMT_UPDATE_GPU_RESET(reset_seq_num, reset_cause) \
-	"%x %s\n", (reset_seq_num), (reset_cause)
+#define KFD_EVENT_FMT_UPDATE_GPU_RESET(reset_seq_num, reset_cause) "%x %s\n", (reset_seq_num), (reset_cause)
 
-#define KFD_EVENT_FMT_THERMAL_THROTTLING(bitmask, counter) \
-	"%llx:%llx\n", (bitmask), (counter)
+#define KFD_EVENT_FMT_THERMAL_THROTTLING(bitmask, counter) "%llx:%llx\n", (bitmask), (counter)
 
 #define KFD_EVENT_FMT_VMFAULT(pid, task_name) "%x:%s\n", (pid), (task_name)
 
@@ -632,27 +629,20 @@ struct kfd_ioctl_smi_events_args {
 #define KFD_EVENT_FMT_PAGEFAULT_END(ns, pid, addr, node, migrate_update) \
 	"%lld -%d @%lx(%x) %c\n", (ns), (pid), (addr), (node), (migrate_update)
 
-#define KFD_EVENT_FMT_MIGRATE_START(ns, pid, start, size, from, to,           \
-				    prefetch_loc, preferred_loc,              \
-				    migrate_trigger)                          \
-	"%lld -%d @%lx(%lx) %x->%x %x:%x %d\n", (ns), (pid), (start), (size), \
-		(from), (to), (prefetch_loc), (preferred_loc),                \
-		(migrate_trigger)
+#define KFD_EVENT_FMT_MIGRATE_START(ns, pid, start, size, from, to, prefetch_loc, preferred_loc, migrate_trigger) \
+	"%lld -%d @%lx(%lx) %x->%x %x:%x %d\n", (ns), (pid), (start), (size), (from), (to), (prefetch_loc),       \
+		(preferred_loc), (migrate_trigger)
 
-#define KFD_EVENT_FMT_MIGRATE_END(ns, pid, start, size, from, to,          \
-				  migrate_trigger, error_code)             \
-	"%lld -%d @%lx(%lx) %x->%x %d %d\n", (ns), (pid), (start), (size), \
-		(from), (to), (migrate_trigger), (error_code)
+#define KFD_EVENT_FMT_MIGRATE_END(ns, pid, start, size, from, to, migrate_trigger, error_code) \
+	"%lld -%d @%lx(%lx) %x->%x %d %d\n", (ns), (pid), (start), (size), (from), (to), (migrate_trigger), (error_code)
 
 #define KFD_EVENT_FMT_QUEUE_EVICTION(ns, pid, node, evict_trigger) \
 	"%lld -%d %x %d\n", (ns), (pid), (node), (evict_trigger)
 
-#define KFD_EVENT_FMT_QUEUE_RESTORE(ns, pid, node, rescheduled) \
-	"%lld -%d %x %c\n", (ns), (pid), (node), (rescheduled)
+#define KFD_EVENT_FMT_QUEUE_RESTORE(ns, pid, node, rescheduled) "%lld -%d %x %c\n", (ns), (pid), (node), (rescheduled)
 
 #define KFD_EVENT_FMT_UNMAP_FROM_GPU(ns, pid, addr, size, node, unmap_trigger) \
-	"%lld -%d @%lx(%lx) %x %d\n", (ns), (pid), (addr), (size), (node),     \
-		(unmap_trigger)
+	"%lld -%d @%lx(%lx) %x %d\n", (ns), (pid), (addr), (size), (node), (unmap_trigger)
 
 #define KFD_EVENT_FMT_PROCESS(pid, task_name) "%x %s\n", (pid), (task_name)
 
@@ -775,10 +765,7 @@ enum kfd_ioctl_svm_op { KFD_IOCTL_SVM_OP_SET_ATTR, KFD_IOCTL_SVM_OP_GET_ATTR };
  * Below definitions are used for system memory or for leaving the preferred
  * location unspecified.
  */
-enum kfd_ioctl_svm_location {
-	KFD_IOCTL_SVM_LOCATION_SYSMEM = 0,
-	KFD_IOCTL_SVM_LOCATION_UNDEFINED = 0xffffffff
-};
+enum kfd_ioctl_svm_location { KFD_IOCTL_SVM_LOCATION_SYSMEM = 0, KFD_IOCTL_SVM_LOCATION_UNDEFINED = 0xffffffff };
 
 /**
  * kfd_ioctl_svm_attr_type - SVM attribute types
@@ -908,10 +895,7 @@ struct kfd_ioctl_set_xnack_mode_args {
 };
 
 /* Wave launch override modes */
-enum kfd_dbg_trap_override_mode {
-	KFD_DBG_TRAP_OVERRIDE_OR = 0,
-	KFD_DBG_TRAP_OVERRIDE_REPLACE = 1
-};
+enum kfd_dbg_trap_override_mode { KFD_DBG_TRAP_OVERRIDE_OR = 0, KFD_DBG_TRAP_OVERRIDE_REPLACE = 1 };
 
 /* Wave launch overrides */
 enum kfd_dbg_trap_mask {
@@ -985,53 +969,32 @@ enum kfd_dbg_trap_exception_code {
 #define KFD_EC_MASK(ecode) (1ULL << (ecode - 1))
 
 /* Masks for exception code type checks below */
-#define KFD_EC_MASK_QUEUE                                                     \
-	(KFD_EC_MASK(EC_QUEUE_WAVE_ABORT) | KFD_EC_MASK(EC_QUEUE_WAVE_TRAP) | \
-	 KFD_EC_MASK(EC_QUEUE_WAVE_MATH_ERROR) |                              \
-	 KFD_EC_MASK(EC_QUEUE_WAVE_ILLEGAL_INSTRUCTION) |                     \
-	 KFD_EC_MASK(EC_QUEUE_WAVE_MEMORY_VIOLATION) |                        \
-	 KFD_EC_MASK(EC_QUEUE_WAVE_APERTURE_VIOLATION) |                      \
-	 KFD_EC_MASK(EC_QUEUE_PACKET_DISPATCH_DIM_INVALID) |                  \
-	 KFD_EC_MASK(EC_QUEUE_PACKET_DISPATCH_GROUP_SEGMENT_SIZE_INVALID) |   \
-	 KFD_EC_MASK(EC_QUEUE_PACKET_DISPATCH_CODE_INVALID) |                 \
-	 KFD_EC_MASK(EC_QUEUE_PACKET_RESERVED) |                              \
-	 KFD_EC_MASK(EC_QUEUE_PACKET_UNSUPPORTED) |                           \
-	 KFD_EC_MASK(EC_QUEUE_PACKET_DISPATCH_WORK_GROUP_SIZE_INVALID) |      \
-	 KFD_EC_MASK(EC_QUEUE_PACKET_DISPATCH_REGISTER_INVALID) |             \
-	 KFD_EC_MASK(EC_QUEUE_PACKET_VENDOR_UNSUPPORTED) |                    \
+#define KFD_EC_MASK_QUEUE                                                                                             \
+	(KFD_EC_MASK(EC_QUEUE_WAVE_ABORT) | KFD_EC_MASK(EC_QUEUE_WAVE_TRAP) | KFD_EC_MASK(EC_QUEUE_WAVE_MATH_ERROR) | \
+	 KFD_EC_MASK(EC_QUEUE_WAVE_ILLEGAL_INSTRUCTION) | KFD_EC_MASK(EC_QUEUE_WAVE_MEMORY_VIOLATION) |               \
+	 KFD_EC_MASK(EC_QUEUE_WAVE_APERTURE_VIOLATION) | KFD_EC_MASK(EC_QUEUE_PACKET_DISPATCH_DIM_INVALID) |          \
+	 KFD_EC_MASK(EC_QUEUE_PACKET_DISPATCH_GROUP_SEGMENT_SIZE_INVALID) |                                           \
+	 KFD_EC_MASK(EC_QUEUE_PACKET_DISPATCH_CODE_INVALID) | KFD_EC_MASK(EC_QUEUE_PACKET_RESERVED) |                 \
+	 KFD_EC_MASK(EC_QUEUE_PACKET_UNSUPPORTED) | KFD_EC_MASK(EC_QUEUE_PACKET_DISPATCH_WORK_GROUP_SIZE_INVALID) |   \
+	 KFD_EC_MASK(EC_QUEUE_PACKET_DISPATCH_REGISTER_INVALID) | KFD_EC_MASK(EC_QUEUE_PACKET_VENDOR_UNSUPPORTED) |   \
 	 KFD_EC_MASK(EC_QUEUE_PREEMPTION_ERROR) | KFD_EC_MASK(EC_QUEUE_NEW))
-#define KFD_EC_MASK_DEVICE                     \
-	(KFD_EC_MASK(EC_DEVICE_QUEUE_DELETE) | \
-	 KFD_EC_MASK(EC_DEVICE_RAS_ERROR) |    \
-	 KFD_EC_MASK(EC_DEVICE_FATAL_HALT) |   \
+#define KFD_EC_MASK_DEVICE                                                                                            \
+	(KFD_EC_MASK(EC_DEVICE_QUEUE_DELETE) | KFD_EC_MASK(EC_DEVICE_RAS_ERROR) | KFD_EC_MASK(EC_DEVICE_FATAL_HALT) | \
 	 KFD_EC_MASK(EC_DEVICE_MEMORY_VIOLATION) | KFD_EC_MASK(EC_DEVICE_NEW))
-#define KFD_EC_MASK_PROCESS                \
-	(KFD_EC_MASK(EC_PROCESS_RUNTIME) | \
-	 KFD_EC_MASK(EC_PROCESS_DEVICE_REMOVE))
-#define KFD_EC_MASK_PACKET                                                  \
-	(KFD_EC_MASK(EC_QUEUE_PACKET_DISPATCH_DIM_INVALID) |                \
-	 KFD_EC_MASK(EC_QUEUE_PACKET_DISPATCH_GROUP_SEGMENT_SIZE_INVALID) | \
-	 KFD_EC_MASK(EC_QUEUE_PACKET_DISPATCH_CODE_INVALID) |               \
-	 KFD_EC_MASK(EC_QUEUE_PACKET_RESERVED) |                            \
-	 KFD_EC_MASK(EC_QUEUE_PACKET_UNSUPPORTED) |                         \
-	 KFD_EC_MASK(EC_QUEUE_PACKET_DISPATCH_WORK_GROUP_SIZE_INVALID) |    \
-	 KFD_EC_MASK(EC_QUEUE_PACKET_DISPATCH_REGISTER_INVALID) |           \
-	 KFD_EC_MASK(EC_QUEUE_PACKET_VENDOR_UNSUPPORTED))
+#define KFD_EC_MASK_PROCESS (KFD_EC_MASK(EC_PROCESS_RUNTIME) | KFD_EC_MASK(EC_PROCESS_DEVICE_REMOVE))
+#define KFD_EC_MASK_PACKET                                                                                          \
+	(KFD_EC_MASK(EC_QUEUE_PACKET_DISPATCH_DIM_INVALID) |                                                        \
+	 KFD_EC_MASK(EC_QUEUE_PACKET_DISPATCH_GROUP_SEGMENT_SIZE_INVALID) |                                         \
+	 KFD_EC_MASK(EC_QUEUE_PACKET_DISPATCH_CODE_INVALID) | KFD_EC_MASK(EC_QUEUE_PACKET_RESERVED) |               \
+	 KFD_EC_MASK(EC_QUEUE_PACKET_UNSUPPORTED) | KFD_EC_MASK(EC_QUEUE_PACKET_DISPATCH_WORK_GROUP_SIZE_INVALID) | \
+	 KFD_EC_MASK(EC_QUEUE_PACKET_DISPATCH_REGISTER_INVALID) | KFD_EC_MASK(EC_QUEUE_PACKET_VENDOR_UNSUPPORTED))
 
 /* Checks for exception code types for KFD search */
-#define KFD_DBG_EC_IS_VALID(ecode) (ecode > EC_NONE && ecode < EC_MAX)
-#define KFD_DBG_EC_TYPE_IS_QUEUE(ecode) \
-	(KFD_DBG_EC_IS_VALID(ecode) &&  \
-	 !!(KFD_EC_MASK(ecode) & KFD_EC_MASK_QUEUE))
-#define KFD_DBG_EC_TYPE_IS_DEVICE(ecode) \
-	(KFD_DBG_EC_IS_VALID(ecode) &&   \
-	 !!(KFD_EC_MASK(ecode) & KFD_EC_MASK_DEVICE))
-#define KFD_DBG_EC_TYPE_IS_PROCESS(ecode) \
-	(KFD_DBG_EC_IS_VALID(ecode) &&    \
-	 !!(KFD_EC_MASK(ecode) & KFD_EC_MASK_PROCESS))
-#define KFD_DBG_EC_TYPE_IS_PACKET(ecode) \
-	(KFD_DBG_EC_IS_VALID(ecode) &&   \
-	 !!(KFD_EC_MASK(ecode) & KFD_EC_MASK_PACKET))
+#define KFD_DBG_EC_IS_VALID(ecode)	  (ecode > EC_NONE && ecode < EC_MAX)
+#define KFD_DBG_EC_TYPE_IS_QUEUE(ecode)	  (KFD_DBG_EC_IS_VALID(ecode) && !!(KFD_EC_MASK(ecode) & KFD_EC_MASK_QUEUE))
+#define KFD_DBG_EC_TYPE_IS_DEVICE(ecode)  (KFD_DBG_EC_IS_VALID(ecode) && !!(KFD_EC_MASK(ecode) & KFD_EC_MASK_DEVICE))
+#define KFD_DBG_EC_TYPE_IS_PROCESS(ecode) (KFD_DBG_EC_IS_VALID(ecode) && !!(KFD_EC_MASK(ecode) & KFD_EC_MASK_PROCESS))
+#define KFD_DBG_EC_TYPE_IS_PACKET(ecode)  (KFD_DBG_EC_IS_VALID(ecode) && !!(KFD_EC_MASK(ecode) & KFD_EC_MASK_PACKET))
 
 /* Runtime enable states */
 enum kfd_dbg_runtime_state {
@@ -1548,24 +1511,17 @@ struct kfd_ioctl_dbg_trap_args {
 
 	union {
 		struct kfd_ioctl_dbg_trap_enable_args enable;
-		struct kfd_ioctl_dbg_trap_send_runtime_event_args
-			send_runtime_event;
-		struct kfd_ioctl_dbg_trap_set_exceptions_enabled_args
-			set_exceptions_enabled;
-		struct kfd_ioctl_dbg_trap_set_wave_launch_override_args
-			launch_override;
+		struct kfd_ioctl_dbg_trap_send_runtime_event_args send_runtime_event;
+		struct kfd_ioctl_dbg_trap_set_exceptions_enabled_args set_exceptions_enabled;
+		struct kfd_ioctl_dbg_trap_set_wave_launch_override_args launch_override;
 		struct kfd_ioctl_dbg_trap_set_wave_launch_mode_args launch_mode;
 		struct kfd_ioctl_dbg_trap_suspend_queues_args suspend_queues;
 		struct kfd_ioctl_dbg_trap_resume_queues_args resume_queues;
-		struct kfd_ioctl_dbg_trap_set_node_address_watch_args
-			set_node_address_watch;
-		struct kfd_ioctl_dbg_trap_clear_node_address_watch_args
-			clear_node_address_watch;
+		struct kfd_ioctl_dbg_trap_set_node_address_watch_args set_node_address_watch;
+		struct kfd_ioctl_dbg_trap_clear_node_address_watch_args clear_node_address_watch;
 		struct kfd_ioctl_dbg_trap_set_flags_args set_flags;
-		struct kfd_ioctl_dbg_trap_query_debug_event_args
-			query_debug_event;
-		struct kfd_ioctl_dbg_trap_query_exception_info_args
-			query_exception_info;
+		struct kfd_ioctl_dbg_trap_query_debug_event_args query_debug_event;
+		struct kfd_ioctl_dbg_trap_query_exception_info_args query_exception_info;
 		struct kfd_ioctl_dbg_trap_queue_snapshot_args queue_snapshot;
 		struct kfd_ioctl_dbg_trap_device_snapshot_args device_snapshot;
 	};
@@ -1577,112 +1533,79 @@ struct kfd_ioctl_dbg_trap_args {
 #define AMDKFD_IOW(nr, type)  _IOW(AMDKFD_IOCTL_BASE, nr, type)
 #define AMDKFD_IOWR(nr, type) _IOWR(AMDKFD_IOCTL_BASE, nr, type)
 
-#define AMDKFD_IOC_GET_VERSION \
-	AMDKFD_IOR(0x01, struct kfd_ioctl_get_version_args)
+#define AMDKFD_IOC_GET_VERSION AMDKFD_IOR(0x01, struct kfd_ioctl_get_version_args)
 
-#define AMDKFD_IOC_CREATE_QUEUE \
-	AMDKFD_IOWR(0x02, struct kfd_ioctl_create_queue_args)
+#define AMDKFD_IOC_CREATE_QUEUE AMDKFD_IOWR(0x02, struct kfd_ioctl_create_queue_args)
 
-#define AMDKFD_IOC_DESTROY_QUEUE \
-	AMDKFD_IOWR(0x03, struct kfd_ioctl_destroy_queue_args)
+#define AMDKFD_IOC_DESTROY_QUEUE AMDKFD_IOWR(0x03, struct kfd_ioctl_destroy_queue_args)
 
-#define AMDKFD_IOC_SET_MEMORY_POLICY \
-	AMDKFD_IOW(0x04, struct kfd_ioctl_set_memory_policy_args)
+#define AMDKFD_IOC_SET_MEMORY_POLICY AMDKFD_IOW(0x04, struct kfd_ioctl_set_memory_policy_args)
 
-#define AMDKFD_IOC_GET_CLOCK_COUNTERS \
-	AMDKFD_IOWR(0x05, struct kfd_ioctl_get_clock_counters_args)
+#define AMDKFD_IOC_GET_CLOCK_COUNTERS AMDKFD_IOWR(0x05, struct kfd_ioctl_get_clock_counters_args)
 
-#define AMDKFD_IOC_GET_PROCESS_APERTURES \
-	AMDKFD_IOR(0x06, struct kfd_ioctl_get_process_apertures_args)
+#define AMDKFD_IOC_GET_PROCESS_APERTURES AMDKFD_IOR(0x06, struct kfd_ioctl_get_process_apertures_args)
 
-#define AMDKFD_IOC_UPDATE_QUEUE \
-	AMDKFD_IOW(0x07, struct kfd_ioctl_update_queue_args)
+#define AMDKFD_IOC_UPDATE_QUEUE AMDKFD_IOW(0x07, struct kfd_ioctl_update_queue_args)
 
-#define AMDKFD_IOC_CREATE_EVENT \
-	AMDKFD_IOWR(0x08, struct kfd_ioctl_create_event_args)
+#define AMDKFD_IOC_CREATE_EVENT AMDKFD_IOWR(0x08, struct kfd_ioctl_create_event_args)
 
-#define AMDKFD_IOC_DESTROY_EVENT \
-	AMDKFD_IOW(0x09, struct kfd_ioctl_destroy_event_args)
+#define AMDKFD_IOC_DESTROY_EVENT AMDKFD_IOW(0x09, struct kfd_ioctl_destroy_event_args)
 
 #define AMDKFD_IOC_SET_EVENT AMDKFD_IOW(0x0A, struct kfd_ioctl_set_event_args)
 
-#define AMDKFD_IOC_RESET_EVENT \
-	AMDKFD_IOW(0x0B, struct kfd_ioctl_reset_event_args)
+#define AMDKFD_IOC_RESET_EVENT AMDKFD_IOW(0x0B, struct kfd_ioctl_reset_event_args)
 
-#define AMDKFD_IOC_WAIT_EVENTS \
-	AMDKFD_IOWR(0x0C, struct kfd_ioctl_wait_events_args)
+#define AMDKFD_IOC_WAIT_EVENTS AMDKFD_IOWR(0x0C, struct kfd_ioctl_wait_events_args)
 
-#define AMDKFD_IOC_DBG_REGISTER_DEPRECATED \
-	AMDKFD_IOW(0x0D, struct kfd_ioctl_dbg_register_args)
+#define AMDKFD_IOC_DBG_REGISTER_DEPRECATED AMDKFD_IOW(0x0D, struct kfd_ioctl_dbg_register_args)
 
-#define AMDKFD_IOC_DBG_UNREGISTER_DEPRECATED \
-	AMDKFD_IOW(0x0E, struct kfd_ioctl_dbg_unregister_args)
+#define AMDKFD_IOC_DBG_UNREGISTER_DEPRECATED AMDKFD_IOW(0x0E, struct kfd_ioctl_dbg_unregister_args)
 
-#define AMDKFD_IOC_DBG_ADDRESS_WATCH_DEPRECATED \
-	AMDKFD_IOW(0x0F, struct kfd_ioctl_dbg_address_watch_args)
+#define AMDKFD_IOC_DBG_ADDRESS_WATCH_DEPRECATED AMDKFD_IOW(0x0F, struct kfd_ioctl_dbg_address_watch_args)
 
-#define AMDKFD_IOC_DBG_WAVE_CONTROL_DEPRECATED \
-	AMDKFD_IOW(0x10, struct kfd_ioctl_dbg_wave_control_args)
+#define AMDKFD_IOC_DBG_WAVE_CONTROL_DEPRECATED AMDKFD_IOW(0x10, struct kfd_ioctl_dbg_wave_control_args)
 
-#define AMDKFD_IOC_SET_SCRATCH_BACKING_VA \
-	AMDKFD_IOWR(0x11, struct kfd_ioctl_set_scratch_backing_va_args)
+#define AMDKFD_IOC_SET_SCRATCH_BACKING_VA AMDKFD_IOWR(0x11, struct kfd_ioctl_set_scratch_backing_va_args)
 
-#define AMDKFD_IOC_GET_TILE_CONFIG \
-	AMDKFD_IOWR(0x12, struct kfd_ioctl_get_tile_config_args)
+#define AMDKFD_IOC_GET_TILE_CONFIG AMDKFD_IOWR(0x12, struct kfd_ioctl_get_tile_config_args)
 
-#define AMDKFD_IOC_SET_TRAP_HANDLER \
-	AMDKFD_IOW(0x13, struct kfd_ioctl_set_trap_handler_args)
+#define AMDKFD_IOC_SET_TRAP_HANDLER AMDKFD_IOW(0x13, struct kfd_ioctl_set_trap_handler_args)
 
-#define AMDKFD_IOC_GET_PROCESS_APERTURES_NEW \
-	AMDKFD_IOWR(0x14, struct kfd_ioctl_get_process_apertures_new_args)
+#define AMDKFD_IOC_GET_PROCESS_APERTURES_NEW AMDKFD_IOWR(0x14, struct kfd_ioctl_get_process_apertures_new_args)
 
 #define AMDKFD_IOC_ACQUIRE_VM AMDKFD_IOW(0x15, struct kfd_ioctl_acquire_vm_args)
 
-#define AMDKFD_IOC_ALLOC_MEMORY_OF_GPU \
-	AMDKFD_IOWR(0x16, struct kfd_ioctl_alloc_memory_of_gpu_args)
+#define AMDKFD_IOC_ALLOC_MEMORY_OF_GPU AMDKFD_IOWR(0x16, struct kfd_ioctl_alloc_memory_of_gpu_args)
 
-#define AMDKFD_IOC_FREE_MEMORY_OF_GPU \
-	AMDKFD_IOW(0x17, struct kfd_ioctl_free_memory_of_gpu_args)
+#define AMDKFD_IOC_FREE_MEMORY_OF_GPU AMDKFD_IOW(0x17, struct kfd_ioctl_free_memory_of_gpu_args)
 
-#define AMDKFD_IOC_MAP_MEMORY_TO_GPU \
-	AMDKFD_IOWR(0x18, struct kfd_ioctl_map_memory_to_gpu_args)
+#define AMDKFD_IOC_MAP_MEMORY_TO_GPU AMDKFD_IOWR(0x18, struct kfd_ioctl_map_memory_to_gpu_args)
 
-#define AMDKFD_IOC_UNMAP_MEMORY_FROM_GPU \
-	AMDKFD_IOWR(0x19, struct kfd_ioctl_unmap_memory_from_gpu_args)
+#define AMDKFD_IOC_UNMAP_MEMORY_FROM_GPU AMDKFD_IOWR(0x19, struct kfd_ioctl_unmap_memory_from_gpu_args)
 
-#define AMDKFD_IOC_SET_CU_MASK \
-	AMDKFD_IOW(0x1A, struct kfd_ioctl_set_cu_mask_args)
+#define AMDKFD_IOC_SET_CU_MASK AMDKFD_IOW(0x1A, struct kfd_ioctl_set_cu_mask_args)
 
-#define AMDKFD_IOC_GET_QUEUE_WAVE_STATE \
-	AMDKFD_IOWR(0x1B, struct kfd_ioctl_get_queue_wave_state_args)
+#define AMDKFD_IOC_GET_QUEUE_WAVE_STATE AMDKFD_IOWR(0x1B, struct kfd_ioctl_get_queue_wave_state_args)
 
-#define AMDKFD_IOC_GET_DMABUF_INFO \
-	AMDKFD_IOWR(0x1C, struct kfd_ioctl_get_dmabuf_info_args)
+#define AMDKFD_IOC_GET_DMABUF_INFO AMDKFD_IOWR(0x1C, struct kfd_ioctl_get_dmabuf_info_args)
 
-#define AMDKFD_IOC_IMPORT_DMABUF \
-	AMDKFD_IOWR(0x1D, struct kfd_ioctl_import_dmabuf_args)
+#define AMDKFD_IOC_IMPORT_DMABUF AMDKFD_IOWR(0x1D, struct kfd_ioctl_import_dmabuf_args)
 
-#define AMDKFD_IOC_ALLOC_QUEUE_GWS \
-	AMDKFD_IOWR(0x1E, struct kfd_ioctl_alloc_queue_gws_args)
+#define AMDKFD_IOC_ALLOC_QUEUE_GWS AMDKFD_IOWR(0x1E, struct kfd_ioctl_alloc_queue_gws_args)
 
-#define AMDKFD_IOC_SMI_EVENTS \
-	AMDKFD_IOWR(0x1F, struct kfd_ioctl_smi_events_args)
+#define AMDKFD_IOC_SMI_EVENTS AMDKFD_IOWR(0x1F, struct kfd_ioctl_smi_events_args)
 
 #define AMDKFD_IOC_SVM AMDKFD_IOWR(0x20, struct kfd_ioctl_svm_args)
 
-#define AMDKFD_IOC_SET_XNACK_MODE \
-	AMDKFD_IOWR(0x21, struct kfd_ioctl_set_xnack_mode_args)
+#define AMDKFD_IOC_SET_XNACK_MODE AMDKFD_IOWR(0x21, struct kfd_ioctl_set_xnack_mode_args)
 
 #define AMDKFD_IOC_CRIU_OP AMDKFD_IOWR(0x22, struct kfd_ioctl_criu_args)
 
-#define AMDKFD_IOC_AVAILABLE_MEMORY \
-	AMDKFD_IOWR(0x23, struct kfd_ioctl_get_available_memory_args)
+#define AMDKFD_IOC_AVAILABLE_MEMORY AMDKFD_IOWR(0x23, struct kfd_ioctl_get_available_memory_args)
 
-#define AMDKFD_IOC_EXPORT_DMABUF \
-	AMDKFD_IOWR(0x24, struct kfd_ioctl_export_dmabuf_args)
+#define AMDKFD_IOC_EXPORT_DMABUF AMDKFD_IOWR(0x24, struct kfd_ioctl_export_dmabuf_args)
 
-#define AMDKFD_IOC_RUNTIME_ENABLE \
-	AMDKFD_IOWR(0x25, struct kfd_ioctl_runtime_enable_args)
+#define AMDKFD_IOC_RUNTIME_ENABLE AMDKFD_IOWR(0x25, struct kfd_ioctl_runtime_enable_args)
 
 #define AMDKFD_IOC_DBG_TRAP AMDKFD_IOWR(0x26, struct kfd_ioctl_dbg_trap_args)
 

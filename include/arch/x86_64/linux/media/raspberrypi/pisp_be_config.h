@@ -88,11 +88,7 @@ enum pisp_be_rgb_enable {
  * We use the enable flags to show when blocks are "dirty", but we need some
  * extra ones too.
  */
-enum pisp_be_dirty {
-	PISP_BE_DIRTY_GLOBAL = 0x0001,
-	PISP_BE_DIRTY_SH_FC_COMBINE = 0x0002,
-	PISP_BE_DIRTY_CROP = 0x0004
-};
+enum pisp_be_dirty { PISP_BE_DIRTY_GLOBAL = 0x0001, PISP_BE_DIRTY_SH_FC_COMBINE = 0x0002, PISP_BE_DIRTY_CROP = 0x0004 };
 
 /**
  * struct pisp_be_global_config - PiSP global enable bitmaps
@@ -683,8 +679,7 @@ enum pisp_be_transform {
 	PISP_BE_TRANSFORM_NONE = 0x0,
 	PISP_BE_TRANSFORM_HFLIP = 0x1,
 	PISP_BE_TRANSFORM_VFLIP = 0x2,
-	PISP_BE_TRANSFORM_ROT180 =
-		(PISP_BE_TRANSFORM_HFLIP | PISP_BE_TRANSFORM_VFLIP)
+	PISP_BE_TRANSFORM_ROT180 = (PISP_BE_TRANSFORM_HFLIP | PISP_BE_TRANSFORM_VFLIP)
 };
 
 struct pisp_be_output_format_config {
@@ -782,8 +777,7 @@ struct pisp_be_config {
 	struct pisp_be_stitch_input_buffer_config stitch_input_buffer;
 	struct pisp_be_tdn_output_buffer_config tdn_output_buffer;
 	struct pisp_be_stitch_output_buffer_config stitch_output_buffer;
-	struct pisp_be_output_buffer_config
-		output_buffer[PISP_BACK_END_NUM_OUTPUTS];
+	struct pisp_be_output_buffer_config output_buffer[PISP_BACK_END_NUM_OUTPUTS];
 	struct pisp_be_hog_buffer_config hog_buffer;
 	/* Processing configuration: */
 	struct pisp_be_global_config global;
@@ -821,15 +815,13 @@ struct pisp_be_config {
 	struct pisp_be_ccm_config csc[PISP_BACK_END_NUM_OUTPUTS];
 	struct pisp_be_downscale_config downscale[PISP_BACK_END_NUM_OUTPUTS];
 	struct pisp_be_resample_config resample[PISP_BACK_END_NUM_OUTPUTS];
-	struct pisp_be_output_format_config
-		output_format[PISP_BACK_END_NUM_OUTPUTS];
+	struct pisp_be_output_format_config output_format[PISP_BACK_END_NUM_OUTPUTS];
 	struct pisp_be_hog_config hog;
 	struct pisp_be_axi_config axi;
 	/* Non-register fields: */
 	struct pisp_be_lsc_extra lsc_extra;
 	struct pisp_be_cac_extra cac_extra;
-	struct pisp_be_downscale_extra
-		downscale_extra[PISP_BACK_END_NUM_OUTPUTS];
+	struct pisp_be_downscale_extra downscale_extra[PISP_BACK_END_NUM_OUTPUTS];
 	struct pisp_be_resample_extra resample_extra[PISP_BACK_END_NUM_OUTPUTS];
 	struct pisp_be_crop_config crop;
 	struct pisp_image_format_config hog_format;

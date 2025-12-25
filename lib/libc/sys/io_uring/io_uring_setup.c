@@ -1,6 +1,8 @@
-#include <sys/eventfd.h>
+#include "linux/io_uring.h"
+#include "stddef.h"
 #include <io_uring.h>
 #include <string.h>
+#include <sys/eventfd.h>
 #include <sys/mman.h>
 #include <syscall.h>
 
@@ -21,12 +23,9 @@ int __io_uring_setup(void)
 	if (__io_uring.fd < 0)
 		return -1;
 
-	__io_uring.sq.ring_size =
-		p.sq_off.array + p.sq_entries * sizeof(unsigned int);
-	__io_uring.sq.ring = mmap(NULL, __io_uring.sq.ring_size,
-				  PROT_READ | PROT_WRITE,
-				  MAP_SHARED | MAP_POPULATE, __io_uring.fd,
-				  IORING_OFF_SQ_RING);
+	__io_uring.sq.ring_size = p.sq_off.array + p.sq_entries * sizeof(unsigned int);
+	__io_uring.sq.ring = mmap(NULL, __io_uring.sq.ring_size, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_POPULATE,
+				  __io_uring.fd, IORING_OFF_SQ_RING);
 
 	if (__io_uring.sq.ring == MAP_FAILED)
 		return -1;
@@ -38,27 +37,21 @@ int __io_uring_setup(void)
 	__io_uring.sq.flags = __io_uring.sq.ring + p.sq_off.flags;
 	__io_uring.sq.dropped = __io_uring.sq.ring + p.sq_off.dropped;
 	__io_uring.sq.array = __io_uring.sq.ring + p.sq_off.array;
-	__io_uring.sq.sqes =
-		mmap(NULL, p.sq_entries * sizeof(struct io_uring_sqe),
-		     PROT_READ | PROT_WRITE, MAP_SHARED | MAP_POPULATE,
-		     __io_uring.fd, IORING_OFF_SQES);
+	__io_uring.sq.sqes = mmap(NULL, p.sq_entries * sizeof(struct io_uring_sqe), PROT_READ | PROT_WRITE,
+				  MAP_SHARED | MAP_POPULATE, __io_uring.fd, IORING_OFF_SQES);
 
 	if (__io_uring.sq.sqes == MAP_FAILED) {
 		munmap(__io_uring.sq.ring, __io_uring.sq.ring_size);
 		return -1;
 	}
 
-	__io_uring.cq.ring_size =
-		p.cq_off.cqes + p.cq_entries * sizeof(struct io_uring_cqe);
-	__io_uring.cq.ring = mmap(NULL, __io_uring.cq.ring_size,
-				  PROT_READ | PROT_WRITE,
-				  MAP_SHARED | MAP_POPULATE, __io_uring.fd,
-				  IORING_OFF_CQ_RING);
+	__io_uring.cq.ring_size = p.cq_off.cqes + p.cq_entries * sizeof(struct io_uring_cqe);
+	__io_uring.cq.ring = mmap(NULL, __io_uring.cq.ring_size, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_POPULATE,
+				  __io_uring.fd, IORING_OFF_CQ_RING);
 
 	if (__io_uring.cq.ring == MAP_FAILED) {
 		munmap(__io_uring.sq.ring, __io_uring.sq.ring_size);
-		munmap(__io_uring.sq.sqes,
-		       p.sq_entries * sizeof(struct io_uring_sqe));
+		munmap(__io_uring.sq.sqes, p.sq_entries * sizeof(struct io_uring_sqe));
 		return -1;
 	}
 
@@ -66,8 +59,7 @@ int __io_uring_setup(void)
 	if (__io_uring.eventfd < 0)
 		return -1;
 
-	io_uring_register(__io_uring.fd, IORING_REGISTER_EVENTFD,
-			  &__io_uring.eventfd, 1);
+	io_uring_register(__io_uring.fd, IORING_REGISTER_EVENTFD, &__io_uring.eventfd, 1);
 
 	__io_uring.cq.head = __io_uring.cq.ring + p.cq_off.head;
 	__io_uring.cq.tail = __io_uring.cq.ring + p.cq_off.tail;

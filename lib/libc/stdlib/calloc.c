@@ -1,3 +1,4 @@
+#include "stddef.h"
 #include <errno.h>  // for errno, EINVAL, ENOMEM
 #include <stdlib.h> // for calloc, malloc
 #include <string.h> // for size_t, memset

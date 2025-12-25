@@ -82,9 +82,8 @@
 
 #define FAT_FSINFO_SIG1 0x41615252
 #define FAT_FSINFO_SIG2 0x61417272
-#define IS_FSINFO(x)                                        \
-	(le32_to_cpu((x)->signature1) == FAT_FSINFO_SIG1 && \
-	 le32_to_cpu((x)->signature2) == FAT_FSINFO_SIG2)
+#define IS_FSINFO(x) \
+	(le32_to_cpu((x)->signature1) == FAT_FSINFO_SIG1 && le32_to_cpu((x)->signature2) == FAT_FSINFO_SIG2)
 
 #define FAT_STATE_DIRTY 0x01
 
@@ -126,14 +125,14 @@ struct fat_boot_sector {
 	union {
 		struct {
 			/*  Extended BPB Fields for FAT16 */
-			__u8 drive_number; /* Physical drive number */
-			__u8 state;	   /* undocumented, but used
-					      for mount state. */
-			__u8 signature;	   /* extended boot signature */
-			__u8 vol_id[4];	   /* volume ID */
+			__u8 drive_number;	    /* Physical drive number */
+			__u8 state;		    /* undocumented, but used
+						       for mount state. */
+			__u8 signature;		    /* extended boot signature */
+			__u8 vol_id[4];		    /* volume ID */
 			__u8 vol_label[MSDOS_NAME]; /* volume label */
 			__u8 fs_type[8];	    /* file system type */
-			/* other fields are not added here */
+						    /* other fields are not added here */
 		} fat16;
 
 		struct {
@@ -149,14 +148,14 @@ struct fat_boot_sector {
 			__le16 backup_boot;  /* backup boot sector */
 			__le16 reserved2[6]; /* Unused */
 			/* Extended BPB Fields for FAT32 */
-			__u8 drive_number; /* Physical drive number */
-			__u8 state;	   /* undocumented, but used
-					      for mount state. */
-			__u8 signature;	   /* extended boot signature */
-			__u8 vol_id[4];	   /* volume ID */
+			__u8 drive_number;	    /* Physical drive number */
+			__u8 state;		    /* undocumented, but used
+						       for mount state. */
+			__u8 signature;		    /* extended boot signature */
+			__u8 vol_id[4];		    /* volume ID */
 			__u8 vol_label[MSDOS_NAME]; /* volume label */
 			__u8 fs_type[8];	    /* file system type */
-			/* other fields are not added here */
+						    /* other fields are not added here */
 		} fat32;
 	};
 };

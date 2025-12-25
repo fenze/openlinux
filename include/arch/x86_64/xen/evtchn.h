@@ -38,8 +38,7 @@
  * Bind a fresh port to VIRQ @virq.
  * Return allocated port.
  */
-#define IOCTL_EVTCHN_BIND_VIRQ \
-	_IOC(_IOC_NONE, 'E', 0, sizeof(struct ioctl_evtchn_bind_virq))
+#define IOCTL_EVTCHN_BIND_VIRQ _IOC(_IOC_NONE, 'E', 0, sizeof(struct ioctl_evtchn_bind_virq))
 struct ioctl_evtchn_bind_virq {
 	unsigned int virq;
 };
@@ -48,8 +47,7 @@ struct ioctl_evtchn_bind_virq {
  * Bind a fresh port to remote <@remote_domain, @remote_port>.
  * Return allocated port.
  */
-#define IOCTL_EVTCHN_BIND_INTERDOMAIN \
-	_IOC(_IOC_NONE, 'E', 1, sizeof(struct ioctl_evtchn_bind_interdomain))
+#define IOCTL_EVTCHN_BIND_INTERDOMAIN _IOC(_IOC_NONE, 'E', 1, sizeof(struct ioctl_evtchn_bind_interdomain))
 struct ioctl_evtchn_bind_interdomain {
 	unsigned int remote_domain, remote_port;
 };
@@ -58,8 +56,7 @@ struct ioctl_evtchn_bind_interdomain {
  * Allocate a fresh port for binding to @remote_domain.
  * Return allocated port.
  */
-#define IOCTL_EVTCHN_BIND_UNBOUND_PORT \
-	_IOC(_IOC_NONE, 'E', 2, sizeof(struct ioctl_evtchn_bind_unbound_port))
+#define IOCTL_EVTCHN_BIND_UNBOUND_PORT _IOC(_IOC_NONE, 'E', 2, sizeof(struct ioctl_evtchn_bind_unbound_port))
 struct ioctl_evtchn_bind_unbound_port {
 	unsigned int remote_domain;
 };
@@ -67,8 +64,7 @@ struct ioctl_evtchn_bind_unbound_port {
 /*
  * Unbind previously allocated @port.
  */
-#define IOCTL_EVTCHN_UNBIND \
-	_IOC(_IOC_NONE, 'E', 3, sizeof(struct ioctl_evtchn_unbind))
+#define IOCTL_EVTCHN_UNBIND _IOC(_IOC_NONE, 'E', 3, sizeof(struct ioctl_evtchn_unbind))
 struct ioctl_evtchn_unbind {
 	unsigned int port;
 };
@@ -76,8 +72,7 @@ struct ioctl_evtchn_unbind {
 /*
  * Unbind previously allocated @port.
  */
-#define IOCTL_EVTCHN_NOTIFY \
-	_IOC(_IOC_NONE, 'E', 4, sizeof(struct ioctl_evtchn_notify))
+#define IOCTL_EVTCHN_NOTIFY _IOC(_IOC_NONE, 'E', 4, sizeof(struct ioctl_evtchn_notify))
 struct ioctl_evtchn_notify {
 	unsigned int port;
 };
@@ -94,8 +89,7 @@ struct ioctl_evtchn_notify {
  * which were bound before restricting remain bound afterwards, and
  * can be notified as usual.
  */
-#define IOCTL_EVTCHN_RESTRICT_DOMID \
-	_IOC(_IOC_NONE, 'E', 6, sizeof(struct ioctl_evtchn_restrict_domid))
+#define IOCTL_EVTCHN_RESTRICT_DOMID _IOC(_IOC_NONE, 'E', 6, sizeof(struct ioctl_evtchn_restrict_domid))
 struct ioctl_evtchn_restrict_domid {
 	domid_t domid;
 };
@@ -103,8 +97,7 @@ struct ioctl_evtchn_restrict_domid {
 /*
  * Bind statically allocated @port.
  */
-#define IOCTL_EVTCHN_BIND_STATIC \
-	_IOC(_IOC_NONE, 'E', 7, sizeof(struct ioctl_evtchn_bind))
+#define IOCTL_EVTCHN_BIND_STATIC _IOC(_IOC_NONE, 'E', 7, sizeof(struct ioctl_evtchn_bind))
 struct ioctl_evtchn_bind {
 	unsigned int port;
 };

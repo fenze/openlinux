@@ -1,7 +1,9 @@
-#include <__aio.h>
-#include <aio.h>
-#include <io_uring.h>
-#include <stdlib.h>
+#include "linux/io_uring.h" // for io_uring_op
+#include "stddef.h"	    // for NULL
+
+#include <__aio.h>  // for __aio_request, aio_request
+#include <aio.h>    // for aio_write
+#include <stdlib.h> // for malloc
 
 int aio_write(struct aiocb *aiocbp)
 {

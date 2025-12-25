@@ -1,8 +1,10 @@
-#include <__aio.h>
-#include <aio.h>
-#include <errno.h>
-#include <fcntl.h>
-#include <io_uring.h>
+#include "linux/io_uring.h" // for io_uring_op, IORING_FSYNC_DATASYNC
+#include "stddef.h"	    // for NULL
+
+#include <__aio.h> // for __aio_lookup, __aio_request
+#include <aio.h>   // for aio_fsync
+#include <errno.h> // for EINVAL, errno
+#include <fcntl.h> // for O_DSYNC
 
 int aio_fsync(int op, struct aiocb *aiocbp)
 {

@@ -27,8 +27,6 @@ struct fsl_mc_command {
 #define FSL_MC_SEND_CMD_IOCTL_TYPE 'R'
 #define FSL_MC_SEND_CMD_IOCTL_SEQ  0xE0
 
-#define FSL_MC_SEND_MC_COMMAND                                       \
-	_IOWR(FSL_MC_SEND_CMD_IOCTL_TYPE, FSL_MC_SEND_CMD_IOCTL_SEQ, \
-	      struct fsl_mc_command)
+#define FSL_MC_SEND_MC_COMMAND _IOWR(FSL_MC_SEND_CMD_IOCTL_TYPE, FSL_MC_SEND_CMD_IOCTL_SEQ, struct fsl_mc_command)
 
 #endif /* _FSL_MC_H_ */

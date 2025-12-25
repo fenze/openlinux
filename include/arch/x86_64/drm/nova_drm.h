@@ -86,13 +86,9 @@ struct drm_nova_gem_info {
 
 /* Note: this is an enum so that it can be resolved by Rust bindgen. */
 enum {
-	DRM_IOCTL_NOVA_GETPARAM = DRM_IOWR(DRM_COMMAND_BASE + DRM_NOVA_GETPARAM,
-					   struct drm_nova_getparam),
-	DRM_IOCTL_NOVA_GEM_CREATE =
-		DRM_IOWR(DRM_COMMAND_BASE + DRM_NOVA_GEM_CREATE,
-			 struct drm_nova_gem_create),
-	DRM_IOCTL_NOVA_GEM_INFO = DRM_IOWR(DRM_COMMAND_BASE + DRM_NOVA_GEM_INFO,
-					   struct drm_nova_gem_info),
+	DRM_IOCTL_NOVA_GETPARAM = DRM_IOWR(DRM_COMMAND_BASE + DRM_NOVA_GETPARAM, struct drm_nova_getparam),
+	DRM_IOCTL_NOVA_GEM_CREATE = DRM_IOWR(DRM_COMMAND_BASE + DRM_NOVA_GEM_CREATE, struct drm_nova_gem_create),
+	DRM_IOCTL_NOVA_GEM_INFO = DRM_IOWR(DRM_COMMAND_BASE + DRM_NOVA_GEM_INFO, struct drm_nova_gem_info),
 };
 
 #if defined(__cplusplus)

@@ -11,7 +11,6 @@ struct x86_xfeat_component {
 	__u32 flags;
 } __attribute__((packed));
 
-_Static_assert(sizeof(struct x86_xfeat_component) % 4 == 0,
-	       "x86_xfeat_component is not aligned");
+_Static_assert(sizeof(struct x86_xfeat_component) % 4 == 0, "x86_xfeat_component is not aligned");
 
 #endif /* _ASM_X86_ELF_H */

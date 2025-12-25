@@ -353,8 +353,7 @@ struct uvc_extension_unit_descriptor {
 
 #define UVC_DT_EXTENSION_UNIT_SIZE(p, n) (24 + (p) + (n))
 
-#define UVC_EXTENSION_UNIT_DESCRIPTOR(p, n) \
-	uvc_extension_unit_descriptor_##p_##n
+#define UVC_EXTENSION_UNIT_DESCRIPTOR(p, n) uvc_extension_unit_descriptor_##p_##n
 
 #define DECLARE_UVC_EXTENSION_UNIT_DESCRIPTOR(p, n)  \
 	struct UVC_EXTENSION_UNIT_DESCRIPTOR(p, n) { \

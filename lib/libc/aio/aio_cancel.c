@@ -1,11 +1,14 @@
-#include <__aio.h>
-#include <errno.h>
-#include <io_uring.h>
-#include <stddef.h>
-#include <stdint.h>
-#include <stdlib.h>
-#include <string.h>
-#include <sys/cdefs.h>
+#include "aio.h"	    // for AIO_ALLDONE, AIO_CANCELED, aio_cancel
+#include "linux/io_uring.h" // for io_uring_sqe, IORING_ENTER_GETEVENTS
+
+#include <__aio.h>     // for __aio_lookup, __aio_remove, AIO_REQUEST_...
+#include <errno.h>     // for EINVAL, errno
+#include <io_uring.h>  // for __io_uring, io_uring, io_uring_sq, IO_UR...
+#include <stddef.h>    // for NULL
+#include <stdint.h>    // for uint64_t
+#include <stdlib.h>    // for free
+#include <string.h>    // for memset
+#include <sys/cdefs.h> // for __unused
 
 int aio_cancel(int __unused fildes, struct aiocb *aiocbp)
 {

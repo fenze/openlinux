@@ -23,8 +23,7 @@ long double sinhl(long double x)
 	absx = u.f;
 
 	/* |x| < log(LDBL_MAX) */
-	if (ex < 0x3fff + 13 ||
-	    (ex == 0x3fff + 13 && u.i.m >> 32 < 0xb17217f7)) {
+	if (ex < 0x3fff + 13 || (ex == 0x3fff + 13 && u.i.m >> 32 < 0xb17217f7)) {
 		t = expm1l(absx);
 		if (ex < 0x3fff) {
 			if (ex < 0x3fff - 32)

@@ -106,9 +106,7 @@ struct ebt_entries {
 #define EBT_802_3     0x04
 #define EBT_SOURCEMAC 0x08
 #define EBT_DESTMAC   0x10
-#define EBT_F_MASK                                               \
-	(EBT_NOPROTO | EBT_802_3 | EBT_SOURCEMAC | EBT_DESTMAC | \
-	 EBT_ENTRY_OR_ENTRIES)
+#define EBT_F_MASK    (EBT_NOPROTO | EBT_802_3 | EBT_SOURCEMAC | EBT_DESTMAC | EBT_ENTRY_OR_ENTRIES)
 
 #define EBT_IPROTO	0x01
 #define EBT_IIN		0x02
@@ -117,9 +115,7 @@ struct ebt_entries {
 #define EBT_IDEST	0x10
 #define EBT_ILOGICALIN	0x20
 #define EBT_ILOGICALOUT 0x40
-#define EBT_INV_MASK                                                          \
-	(EBT_IPROTO | EBT_IIN | EBT_IOUT | EBT_ILOGICALIN | EBT_ILOGICALOUT | \
-	 EBT_ISOURCE | EBT_IDEST)
+#define EBT_INV_MASK	(EBT_IPROTO | EBT_IIN | EBT_IOUT | EBT_ILOGICALIN | EBT_ILOGICALOUT | EBT_ISOURCE | EBT_IDEST)
 
 struct ebt_entry_match {
 	union {
@@ -131,8 +127,7 @@ struct ebt_entry_match {
 	} u;
 	/* size of data */
 	unsigned int match_size;
-	unsigned char data[]
-		__attribute__((aligned(__alignof__(struct ebt_replace))));
+	unsigned char data[] __attribute__((aligned(__alignof__(struct ebt_replace))));
 };
 
 struct ebt_entry_watcher {
@@ -145,8 +140,7 @@ struct ebt_entry_watcher {
 	} u;
 	/* size of data */
 	unsigned int watcher_size;
-	unsigned char data[]
-		__attribute__((aligned(__alignof__(struct ebt_replace))));
+	unsigned char data[] __attribute__((aligned(__alignof__(struct ebt_replace))));
 };
 
 struct ebt_entry_target {
@@ -159,8 +153,7 @@ struct ebt_entry_target {
 	} u;
 	/* size of data */
 	unsigned int target_size;
-	unsigned char data[0]
-		__attribute__((aligned(__alignof__(struct ebt_replace))));
+	unsigned char data[0] __attribute__((aligned(__alignof__(struct ebt_replace))));
 };
 
 #define EBT_STANDARD_TARGET "standard"
@@ -194,8 +187,7 @@ struct ebt_entry {
 		       unsigned int target_offset;
 		       /* sizeof ebt_entry + matches + watchers + target */
 		       unsigned int next_offset;);
-	unsigned char elems[]
-		__attribute__((aligned(__alignof__(struct ebt_replace))));
+	unsigned char elems[] __attribute__((aligned(__alignof__(struct ebt_replace))));
 };
 
 static __inline__ struct ebt_entry_target *ebt_get_target(struct ebt_entry *e)
@@ -218,49 +210,46 @@ static __inline__ struct ebt_entry_target *ebt_get_target(struct ebt_entry *e)
 
 /* blatently stolen from ip_tables.h
  * fn returns 0 to continue iteration */
-#define EBT_MATCH_ITERATE(e, fn, args...)                                    \
-	({                                                                   \
-		unsigned int __i;                                            \
-		int __ret = 0;                                               \
-		struct ebt_entry_match *__match;                             \
-                                                                             \
-		for (__i = sizeof(struct ebt_entry);                         \
-		     __i < (e)->watchers_offset;                             \
-		     __i +=                                                  \
-		     __match->match_size + sizeof(struct ebt_entry_match)) { \
-			__match = (void *)(e) + __i;                         \
-                                                                             \
-			__ret = fn(__match, ##args);                         \
-			if (__ret != 0)                                      \
-				break;                                       \
-		}                                                            \
-		if (__ret == 0) {                                            \
-			if (__i != (e)->watchers_offset)                     \
-				__ret = -EINVAL;                             \
-		}                                                            \
-		__ret;                                                       \
+#define EBT_MATCH_ITERATE(e, fn, args...)                                           \
+	({                                                                          \
+		unsigned int __i;                                                   \
+		int __ret = 0;                                                      \
+		struct ebt_entry_match *__match;                                    \
+                                                                                    \
+		for (__i = sizeof(struct ebt_entry); __i < (e)->watchers_offset;    \
+		     __i += __match->match_size + sizeof(struct ebt_entry_match)) { \
+			__match = (void *)(e) + __i;                                \
+                                                                                    \
+			__ret = fn(__match, ##args);                                \
+			if (__ret != 0)                                             \
+				break;                                              \
+		}                                                                   \
+		if (__ret == 0) {                                                   \
+			if (__i != (e)->watchers_offset)                            \
+				__ret = -EINVAL;                                    \
+		}                                                                   \
+		__ret;                                                              \
 	})
 
-#define EBT_WATCHER_ITERATE(e, fn, args...)                              \
-	({                                                               \
-		unsigned int __i;                                        \
-		int __ret = 0;                                           \
-		struct ebt_entry_watcher *__watcher;                     \
-                                                                         \
-		for (__i = e->watchers_offset; __i < (e)->target_offset; \
-		     __i += __watcher->watcher_size +                    \
-			    sizeof(struct ebt_entry_watcher)) {          \
-			__watcher = (void *)(e) + __i;                   \
-                                                                         \
-			__ret = fn(__watcher, ##args);                   \
-			if (__ret != 0)                                  \
-				break;                                   \
-		}                                                        \
-		if (__ret == 0) {                                        \
-			if (__i != (e)->target_offset)                   \
-				__ret = -EINVAL;                         \
-		}                                                        \
-		__ret;                                                   \
+#define EBT_WATCHER_ITERATE(e, fn, args...)                                               \
+	({                                                                                \
+		unsigned int __i;                                                         \
+		int __ret = 0;                                                            \
+		struct ebt_entry_watcher *__watcher;                                      \
+                                                                                          \
+		for (__i = e->watchers_offset; __i < (e)->target_offset;                  \
+		     __i += __watcher->watcher_size + sizeof(struct ebt_entry_watcher)) { \
+			__watcher = (void *)(e) + __i;                                    \
+                                                                                          \
+			__ret = fn(__watcher, ##args);                                    \
+			if (__ret != 0)                                                   \
+				break;                                                    \
+		}                                                                         \
+		if (__ret == 0) {                                                         \
+			if (__i != (e)->target_offset)                                    \
+				__ret = -EINVAL;                                          \
+		}                                                                         \
+		__ret;                                                                    \
 	})
 
 #define EBT_ENTRY_ITERATE(entries, size, fn, args...)              \

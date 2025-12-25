@@ -101,8 +101,7 @@ static inline long double add_adjusted(long double a, long double b)
  * that the result will be subnormal, and care is taken to ensure that
  * double rounding does not occur.
  */
-static inline long double add_and_denormalize(long double a, long double b,
-					      int scale)
+static inline long double add_and_denormalize(long double a, long double b, int scale)
 {
 	struct dd sum;
 	int bits_lost;

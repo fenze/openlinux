@@ -26,52 +26,35 @@ extern "C" {
 #define DRM_IVPU_CMDQ_DESTROY		  0x0c
 #define DRM_IVPU_CMDQ_SUBMIT		  0x0d
 
-#define DRM_IOCTL_IVPU_GET_PARAM \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_IVPU_GET_PARAM, struct drm_ivpu_param)
+#define DRM_IOCTL_IVPU_GET_PARAM DRM_IOWR(DRM_COMMAND_BASE + DRM_IVPU_GET_PARAM, struct drm_ivpu_param)
 
-#define DRM_IOCTL_IVPU_SET_PARAM \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_IVPU_SET_PARAM, struct drm_ivpu_param)
+#define DRM_IOCTL_IVPU_SET_PARAM DRM_IOW(DRM_COMMAND_BASE + DRM_IVPU_SET_PARAM, struct drm_ivpu_param)
 
-#define DRM_IOCTL_IVPU_BO_CREATE                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_IVPU_BO_CREATE, \
-		 struct drm_ivpu_bo_create)
+#define DRM_IOCTL_IVPU_BO_CREATE DRM_IOWR(DRM_COMMAND_BASE + DRM_IVPU_BO_CREATE, struct drm_ivpu_bo_create)
 
-#define DRM_IOCTL_IVPU_BO_INFO \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_IVPU_BO_INFO, struct drm_ivpu_bo_info)
+#define DRM_IOCTL_IVPU_BO_INFO DRM_IOWR(DRM_COMMAND_BASE + DRM_IVPU_BO_INFO, struct drm_ivpu_bo_info)
 
-#define DRM_IOCTL_IVPU_SUBMIT \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_IVPU_SUBMIT, struct drm_ivpu_submit)
+#define DRM_IOCTL_IVPU_SUBMIT DRM_IOW(DRM_COMMAND_BASE + DRM_IVPU_SUBMIT, struct drm_ivpu_submit)
 
-#define DRM_IOCTL_IVPU_BO_WAIT \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_IVPU_BO_WAIT, struct drm_ivpu_bo_wait)
+#define DRM_IOCTL_IVPU_BO_WAIT DRM_IOWR(DRM_COMMAND_BASE + DRM_IVPU_BO_WAIT, struct drm_ivpu_bo_wait)
 
-#define DRM_IOCTL_IVPU_METRIC_STREAMER_START                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_IVPU_METRIC_STREAMER_START, \
-		 struct drm_ivpu_metric_streamer_start)
+#define DRM_IOCTL_IVPU_METRIC_STREAMER_START \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_IVPU_METRIC_STREAMER_START, struct drm_ivpu_metric_streamer_start)
 
-#define DRM_IOCTL_IVPU_METRIC_STREAMER_STOP                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_IVPU_METRIC_STREAMER_STOP, \
-		struct drm_ivpu_metric_streamer_stop)
+#define DRM_IOCTL_IVPU_METRIC_STREAMER_STOP \
+	DRM_IOW(DRM_COMMAND_BASE + DRM_IVPU_METRIC_STREAMER_STOP, struct drm_ivpu_metric_streamer_stop)
 
-#define DRM_IOCTL_IVPU_METRIC_STREAMER_GET_DATA                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_IVPU_METRIC_STREAMER_GET_DATA, \
-		 struct drm_ivpu_metric_streamer_get_data)
+#define DRM_IOCTL_IVPU_METRIC_STREAMER_GET_DATA \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_IVPU_METRIC_STREAMER_GET_DATA, struct drm_ivpu_metric_streamer_get_data)
 
-#define DRM_IOCTL_IVPU_METRIC_STREAMER_GET_INFO                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_IVPU_METRIC_STREAMER_GET_INFO, \
-		 struct drm_ivpu_metric_streamer_get_data)
+#define DRM_IOCTL_IVPU_METRIC_STREAMER_GET_INFO \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_IVPU_METRIC_STREAMER_GET_INFO, struct drm_ivpu_metric_streamer_get_data)
 
-#define DRM_IOCTL_IVPU_CMDQ_CREATE                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_IVPU_CMDQ_CREATE, \
-		 struct drm_ivpu_cmdq_create)
+#define DRM_IOCTL_IVPU_CMDQ_CREATE DRM_IOWR(DRM_COMMAND_BASE + DRM_IVPU_CMDQ_CREATE, struct drm_ivpu_cmdq_create)
 
-#define DRM_IOCTL_IVPU_CMDQ_DESTROY                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_IVPU_CMDQ_DESTROY, \
-		struct drm_ivpu_cmdq_destroy)
+#define DRM_IOCTL_IVPU_CMDQ_DESTROY DRM_IOW(DRM_COMMAND_BASE + DRM_IVPU_CMDQ_DESTROY, struct drm_ivpu_cmdq_destroy)
 
-#define DRM_IOCTL_IVPU_CMDQ_SUBMIT                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_IVPU_CMDQ_SUBMIT, \
-		struct drm_ivpu_cmdq_submit)
+#define DRM_IOCTL_IVPU_CMDQ_SUBMIT DRM_IOW(DRM_COMMAND_BASE + DRM_IVPU_CMDQ_SUBMIT, struct drm_ivpu_cmdq_submit)
 
 /**
  * DOC: contexts
@@ -202,9 +185,7 @@ struct drm_ivpu_param {
 #define DRM_IVPU_BO_WC	       0x00020000
 #define DRM_IVPU_BO_CACHE_MASK 0x00030000
 
-#define DRM_IVPU_BO_FLAGS                                                    \
-	(DRM_IVPU_BO_HIGH_MEM | DRM_IVPU_BO_MAPPABLE | DRM_IVPU_BO_DMA_MEM | \
-	 DRM_IVPU_BO_CACHE_MASK)
+#define DRM_IVPU_BO_FLAGS (DRM_IVPU_BO_HIGH_MEM | DRM_IVPU_BO_MAPPABLE | DRM_IVPU_BO_DMA_MEM | DRM_IVPU_BO_CACHE_MASK)
 
 /**
  * struct drm_ivpu_bo_create - Create BO backed by SHMEM

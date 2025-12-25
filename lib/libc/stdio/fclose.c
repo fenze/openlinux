@@ -1,6 +1,5 @@
-#include <__stdio.h> // for __FILE
-#include <stdio.h>   // for fflush, FILE, fclose, stderr, stdin, stdout
-#include <unistd.h>  // for close
+#include <stdio.h>  // for fflush, FILE, fclose, stderr, stdin, stdout
+#include <unistd.h> // for close
 
 int fclose(FILE *stream)
 {

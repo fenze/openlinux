@@ -2,8 +2,7 @@
 
 #include <string.h> // for memcmp, size_t, memmem
 
-void *memmem(const void *haystack, size_t haystacklen, const void *needle,
-	     size_t needlelen)
+void *memmem(const void *haystack, size_t haystacklen, const void *needle, size_t needlelen)
 {
 	const unsigned char *p1 = haystack;
 	const unsigned char *p2 = needle;

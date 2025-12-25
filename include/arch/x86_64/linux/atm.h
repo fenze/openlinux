@@ -141,12 +141,12 @@ struct atm_trafprm {
 	unsigned int trm_pres : 1;  /* rm present bit */
 	unsigned int adtf_pres : 1; /* adtf present bit */
 	unsigned int cdf_pres : 1;  /* cdf present bit*/
-	unsigned int nrm : 3; /* Max # of Cells for each forward RM cell (3-bit)
-			       */
-	unsigned int trm : 3; /* Time between forward RM cells (3-bit) */
-	unsigned int adtf : 10; /* ACR Decrease Time Factor (10-bit) */
-	unsigned int cdf : 3;	/* Cutoff Decrease Factor (3-bit) */
-	unsigned int spare : 9; /* spare bits */
+	unsigned int nrm : 3;	    /* Max # of Cells for each forward RM cell (3-bit)
+				     */
+	unsigned int trm : 3;	    /* Time between forward RM cells (3-bit) */
+	unsigned int adtf : 10;	    /* ACR Decrease Time Factor (10-bit) */
+	unsigned int cdf : 3;	    /* Cutoff Decrease Factor (3-bit) */
+	unsigned int spare : 9;	    /* spare bits */
 };
 
 struct atm_qos {

@@ -11,13 +11,7 @@ enum nft_target_attributes {
 };
 #define NFTA_TARGET_MAX (__NFTA_TARGET_MAX - 1)
 
-enum nft_match_attributes {
-	NFTA_MATCH_UNSPEC,
-	NFTA_MATCH_NAME,
-	NFTA_MATCH_REV,
-	NFTA_MATCH_INFO,
-	__NFTA_MATCH_MAX
-};
+enum nft_match_attributes { NFTA_MATCH_UNSPEC, NFTA_MATCH_NAME, NFTA_MATCH_REV, NFTA_MATCH_INFO, __NFTA_MATCH_MAX };
 #define NFTA_MATCH_MAX (__NFTA_MATCH_MAX - 1)
 
 #define NFT_COMPAT_NAME_MAX 32

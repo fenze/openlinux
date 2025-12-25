@@ -1,14 +1,14 @@
-#include "stddef.h" // for NULL
+#include <__stdio.h>
+#include <stddef.h> // for NULL
 
-#include <__stdio.h> // for __FILE
-#include <errno.h>   // for EINVAL, errno
-#include <fcntl.h>   // for O_RDONLY, O_CLOEXEC, O_WRONLY
-#include <stdio.h>   // for FILE, fclose, fdopen, popen
-#include <unistd.h>  // for close, dup2, _exit, execl, fork, pipe2, STDIN_F...
+#include <errno.h>  // for EINVAL, errno
+#include <fcntl.h>  // for O_RDONLY, O_CLOEXEC, O_WRONLY
+#include <stdio.h>  // for FILE, fclose, fdopen, popen
+#include <unistd.h> // for close, dup2, _exit, execl, fork, pipe2, STDIN_F...
 
 FILE *popen(const char *command, const char *mode)
 {
-	FILE *stream;
+	struct __FILE *stream;
 	int oflag;
 	int pipefd[2];
 

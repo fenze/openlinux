@@ -10,20 +10,18 @@
 #define CSIGNAL	 0x000000ff /* signal mask to be sent at exit */
 #define CLONE_VM 0x00000100 /* set if VM shared between processes */
 #define CLONE_FS 0x00000200 /* set if fs info shared between processes */
-#define CLONE_FILES                                              \
-	0x00000400 /* set if open files shared between processes \
-		    */
-#define CLONE_SIGHAND \
-	0x00000800 /* set if signal handlers and blocked signals shared */
-#define CLONE_PIDFD 0x00001000 /* set if a pidfd should be placed in parent */
+#define CLONE_FILES                                                            \
+	0x00000400		 /* set if open files shared between processes \
+				  */
+#define CLONE_SIGHAND 0x00000800 /* set if signal handlers and blocked signals shared */
+#define CLONE_PIDFD   0x00001000 /* set if a pidfd should be placed in parent */
 #define CLONE_PTRACE                                                          \
 	0x00002000 /* set if we want to let tracing continue on the child too \
 		    */
-#define CLONE_VFORK                                                      \
-	0x00004000 /* set if the parent wants the child to wake it up on \
-		      mm_release */
-#define CLONE_PARENT \
-	0x00008000 /* set if we want to have the same parent as the cloner */
+#define CLONE_VFORK                                                                           \
+	0x00004000			/* set if the parent wants the child to wake it up on \
+					   mm_release */
+#define CLONE_PARENT	     0x00008000 /* set if we want to have the same parent as the cloner */
 #define CLONE_THREAD	     0x00010000 /* Same thread group? */
 #define CLONE_NEWNS	     0x00020000 /* New mount namespace group */
 #define CLONE_SYSVSEM	     0x00040000 /* share system V SEM_UNDO semantics */
@@ -31,9 +29,9 @@
 #define CLONE_PARENT_SETTID  0x00100000 /* set the TID in the parent */
 #define CLONE_CHILD_CLEARTID 0x00200000 /* clear the TID in the child */
 #define CLONE_DETACHED	     0x00400000 /* Unused, ignored */
-#define CLONE_UNTRACED                                                       \
-	0x00800000 /* set if the tracing process can't force CLONE_PTRACE on \
-		      this clone */
+#define CLONE_UNTRACED                                                                          \
+	0x00800000		      /* set if the tracing process can't force CLONE_PTRACE on \
+					 this clone */
 #define CLONE_CHILD_SETTID 0x01000000 /* set the TID in the child */
 #define CLONE_NEWCGROUP	   0x02000000 /* New cgroup namespace */
 #define CLONE_NEWUTS	   0x04000000 /* New utsname namespace */
@@ -44,8 +42,7 @@
 #define CLONE_IO	   0x80000000 /* Clone io context */
 
 /* Flags for the clone3() syscall. */
-#define CLONE_CLEAR_SIGHAND \
-	0x100000000ULL /* Clear any signal handler and reset to SIG_DFL. */
+#define CLONE_CLEAR_SIGHAND 0x100000000ULL /* Clear any signal handler and reset to SIG_DFL. */
 #define CLONE_INTO_CGROUP                                              \
 	0x200000000ULL /* Clone into a specific cgroup given the right \
 			  permissions. */
@@ -150,11 +147,10 @@ struct clone_args {
 
 #define SCHED_FLAG_KEEP_ALL (SCHED_FLAG_KEEP_POLICY | SCHED_FLAG_KEEP_PARAMS)
 
-#define SCHED_FLAG_UTIL_CLAMP \
-	(SCHED_FLAG_UTIL_CLAMP_MIN | SCHED_FLAG_UTIL_CLAMP_MAX)
+#define SCHED_FLAG_UTIL_CLAMP (SCHED_FLAG_UTIL_CLAMP_MIN | SCHED_FLAG_UTIL_CLAMP_MAX)
 
-#define SCHED_FLAG_ALL                                   \
-	(SCHED_FLAG_RESET_ON_FORK | SCHED_FLAG_RECLAIM | \
-	 SCHED_FLAG_DL_OVERRUN | SCHED_FLAG_KEEP_ALL | SCHED_FLAG_UTIL_CLAMP)
+#define SCHED_FLAG_ALL                                                                                 \
+	(SCHED_FLAG_RESET_ON_FORK | SCHED_FLAG_RECLAIM | SCHED_FLAG_DL_OVERRUN | SCHED_FLAG_KEEP_ALL | \
+	 SCHED_FLAG_UTIL_CLAMP)
 
 #endif /* _LINUX_SCHED_H */

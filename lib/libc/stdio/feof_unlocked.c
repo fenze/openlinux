@@ -3,5 +3,5 @@
 
 int feof_unlocked(FILE *stream)
 {
-	return (stream) ? stream->eof : 0;
+	return (stream) ? ((struct __FILE *)stream)->eof : 0;
 }

@@ -38,9 +38,9 @@
  * pio2_3:   third  33 bit of pi/2
  * pio2_3t:  pi/2 - (pio2_1+pio2_2+pio2_3)
  */
-static const double toint = 1.5 / EPS, pio4 = 0x1.921fb54442d18p-1,
-		    invpio2 = 6.36619772367581382433e-01, /* 0x3FE45F30,
-							     0x6DC9C883 */
+static const double toint = 1.5 / EPS, pio4 = 0x1.921fb54442d18p-1, invpio2 = 6.36619772367581382433e-01, /* 0x3FE45F30,
+													     0x6DC9C883
+													   */
 	pio2_1 = 1.57079632673412561417e+00,  /* 0x3FF921FB, 0x54400000 */
 	pio2_1t = 6.07710050650619224932e-11, /* 0x3DD0B461, 0x1A626331 */
 	pio2_2 = 6.07710050630396597660e-11,  /* 0x3DD0B461, 0x1A600000 */
@@ -64,8 +64,8 @@ int __rem_pio2(double x, double *y)
 	ix = u.i >> 32 & 0x7fffffff;
 	if (ix <= 0x400f6a7a) {		       /* |x| ~<= 5pi/4 */
 		if ((ix & 0xfffff) == 0x921fb) /* |x| ~= pi/2 or 2pi/2 */
-			goto medium;	/* cancellation -- use medium case */
-		if (ix <= 0x4002d97c) { /* |x| ~<= 3pi/4 */
+			goto medium;	       /* cancellation -- use medium case */
+		if (ix <= 0x4002d97c) {	       /* |x| ~<= 3pi/4 */
 			if (!sign) {
 				z = x - pio2_1; /* one round good to 85 bits */
 				y[0] = z - pio2_1t;

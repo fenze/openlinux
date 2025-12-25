@@ -94,8 +94,7 @@ static inline double_t log_inline(uint64_t ix, double_t *tail)
 	lo4 = t2 - hi + arhi2;
 #endif
 	/* p = log1p(r) - r - A[0]*r*r.  */
-	p = (ar3 * (A[1] + r * A[2] +
-		    ar2 * (A[3] + r * A[4] + ar2 * (A[5] + r * A[6]))));
+	p = (ar3 * (A[1] + r * A[2] + ar2 * (A[3] + r * A[4] + ar2 * (A[5] + r * A[6]))));
 	lo = lo1 + lo2 + lo3 + lo4 + p;
 	y = hi + lo;
 	*tail = hi - y + lo;
@@ -176,8 +175,7 @@ static inline double exp_inline(double_t x, double_t xtail, uint32_t sign_bias)
 	double_t kd, z, r, r2, scale, tail, tmp;
 
 	abstop = top12(x) & 0x7ff;
-	if (predict_false(abstop - top12(0x1p-54) >=
-			  top12(512.0) - top12(0x1p-54))) {
+	if (predict_false(abstop - top12(0x1p-54) >= top12(512.0) - top12(0x1p-54))) {
 		if (abstop - top12(0x1p-54) >= 0x80000000) {
 			/* Avoid spurious underflow for tiny x.  */
 			/* Note: 0 is common input.  */
@@ -267,8 +265,7 @@ double pow(double x, double y)
 	iy = asuint64(y);
 	topx = top12(x);
 	topy = top12(y);
-	if (predict_false(topx - 0x001 >= 0x7ff - 0x001 ||
-			  (topy & 0x7ff) - 0x3be >= 0x43e - 0x3be)) {
+	if (predict_false(topx - 0x001 >= 0x7ff - 0x001 || (topy & 0x7ff) - 0x3be >= 0x43e - 0x3be)) {
 		/* Note: if |y| > 1075 * ln2 * 2^53 ~= 0x1.749p62 then pow(x,y)
 		   = inf/0 and if |y| < 2^-54 / 1075 ~= 0x1.e7b6p-65 then
 		   pow(x,y) = +-1.  */
@@ -279,8 +276,7 @@ double pow(double x, double y)
 				return issignaling_inline(x) ? x + y : 1.0;
 			if (ix == asuint64(1.0))
 				return issignaling_inline(y) ? x + y : 1.0;
-			if (2 * ix > 2 * asuint64(INFINITY) ||
-			    2 * iy > 2 * asuint64(INFINITY))
+			if (2 * ix > 2 * asuint64(INFINITY) || 2 * iy > 2 * asuint64(INFINITY))
 				return x + y;
 			if (2 * ix == 2 * asuint64(1.0))
 				return 1.0;
@@ -316,13 +312,10 @@ double pow(double x, double y)
 			if ((topy & 0x7ff) < 0x3be) {
 				/* |y| < 2^-65, x^y ~= 1 + y*log(x).  */
 				if (WANT_ROUNDING)
-					return ix > asuint64(1.0) ? 1.0 + y :
-								    1.0 - y;
+					return ix > asuint64(1.0) ? 1.0 + y : 1.0 - y;
 				return 1.0;
 			}
-			return (ix > asuint64(1.0)) == (topy < 0x800) ?
-				       __math_oflow(0) :
-				       __math_uflow(0);
+			return (ix > asuint64(1.0)) == (topy < 0x800) ? __math_oflow(0) : __math_uflow(0);
 		}
 		if (topx == 0) {
 			/* Normalize subnormal x so exponent becomes negative.

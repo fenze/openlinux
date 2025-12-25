@@ -1,5 +1,4 @@
 #include <sys/eventfd.h>
-#include <syscall.h>
 #include <unistd.h>
 
 int eventfd_read(int fildes, eventfd_t *value)

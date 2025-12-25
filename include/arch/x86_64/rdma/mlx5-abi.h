@@ -127,14 +127,10 @@ enum mlx5_user_inline_mode {
 
 enum {
 	MLX5_USER_ALLOC_UCONTEXT_FLOW_ACTION_FLAGS_ESP_AES_GCM = 1 << 0,
-	MLX5_USER_ALLOC_UCONTEXT_FLOW_ACTION_FLAGS_ESP_AES_GCM_REQ_METADATA =
-		1 << 1,
-	MLX5_USER_ALLOC_UCONTEXT_FLOW_ACTION_FLAGS_ESP_AES_GCM_SPI_STEERING =
-		1 << 2,
-	MLX5_USER_ALLOC_UCONTEXT_FLOW_ACTION_FLAGS_ESP_AES_GCM_FULL_OFFLOAD =
-		1 << 3,
-	MLX5_USER_ALLOC_UCONTEXT_FLOW_ACTION_FLAGS_ESP_AES_GCM_TX_IV_IS_ESN =
-		1 << 4,
+	MLX5_USER_ALLOC_UCONTEXT_FLOW_ACTION_FLAGS_ESP_AES_GCM_REQ_METADATA = 1 << 1,
+	MLX5_USER_ALLOC_UCONTEXT_FLOW_ACTION_FLAGS_ESP_AES_GCM_SPI_STEERING = 1 << 2,
+	MLX5_USER_ALLOC_UCONTEXT_FLOW_ACTION_FLAGS_ESP_AES_GCM_FULL_OFFLOAD = 1 << 3,
+	MLX5_USER_ALLOC_UCONTEXT_FLOW_ACTION_FLAGS_ESP_AES_GCM_TX_IV_IS_ESN = 1 << 4,
 };
 
 struct mlx5_ib_alloc_ucontext_resp {
@@ -178,7 +174,7 @@ struct mlx5_ib_tso_caps {
 
 struct mlx5_ib_rss_caps {
 	__aligned_u64 rx_hash_fields_mask; /* enum mlx5_rx_hash_fields */
-	__u8 rx_hash_function; /* enum mlx5_rx_hash_function_flags */
+	__u8 rx_hash_function;		   /* enum mlx5_rx_hash_function_flags */
 	__u8 reserved[7];
 };
 
@@ -381,8 +377,8 @@ enum mlx5_rx_hash_fields {
 
 struct mlx5_ib_create_qp_rss {
 	__aligned_u64 rx_hash_fields_mask; /* enum mlx5_rx_hash_fields */
-	__u8 rx_hash_function; /* enum mlx5_rx_hash_function_flags */
-	__u8 rx_key_len;       /* valid only for Toeplitz */
+	__u8 rx_hash_function;		   /* enum mlx5_rx_hash_function_flags */
+	__u8 rx_key_len;		   /* valid only for Toeplitz */
 	__u8 reserved[6];
 	__u8 rx_hash_key[128]; /* valid only for Toeplitz */
 	__u32 comp_mask;

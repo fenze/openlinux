@@ -179,8 +179,7 @@ struct pisp_fe_floating_stats_region {
 } __attribute__((packed));
 
 struct pisp_fe_floating_stats_config {
-	struct pisp_fe_floating_stats_region
-		regions[PISP_FLOATING_STATS_NUM_ZONES];
+	struct pisp_fe_floating_stats_region regions[PISP_FLOATING_STATS_NUM_ZONES];
 } __attribute__((packed));
 
 #define PISP_FE_CDAF_NUM_WEIGHTS 8

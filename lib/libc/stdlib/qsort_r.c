@@ -38,8 +38,7 @@ typedef int (*cmpfun)(const void *, const void *, void *);
 static inline int pntz(size_t p[2])
 {
 	int r = ntz(p[0] - 1);
-	if (r != 0 ||
-	    (r = 8 * sizeof(size_t) + ntz(p[1])) != 8 * sizeof(size_t)) {
+	if (r != 0 || (r = 8 * sizeof(size_t) + ntz(p[1])) != 8 * sizeof(size_t)) {
 		return r;
 	}
 	return 0;
@@ -98,8 +97,7 @@ static inline void shr(size_t p[2], int n)
 	p[1] >>= n;
 }
 
-static void sift(unsigned char *head, size_t width, cmpfun cmp, void *arg,
-		 int pshift, size_t lp[], int max_lp_index)
+static void sift(unsigned char *head, size_t width, cmpfun cmp, void *arg, int pshift, size_t lp[], int max_lp_index)
 {
 	unsigned char *rt, *lf;
 	unsigned char *ar[14 * sizeof(size_t) + 1];
@@ -129,9 +127,8 @@ static void sift(unsigned char *head, size_t width, cmpfun cmp, void *arg,
 	cycle(width, ar, i);
 }
 
-static void trinkle(unsigned char *head, size_t width, cmpfun cmp, void *arg,
-		    size_t pp[2], int pshift, int trusty, size_t lp[],
-		    int max_lp_index)
+static void trinkle(unsigned char *head, size_t width, cmpfun cmp, void *arg, size_t pp[2], int pshift, int trusty,
+		    size_t lp[], int max_lp_index)
 {
 	unsigned char *stepson, *rt, *lf;
 	size_t p[2];
@@ -151,12 +148,10 @@ static void trinkle(unsigned char *head, size_t width, cmpfun cmp, void *arg,
 		if (cmp(stepson, ar[0], arg) <= 0) {
 			break;
 		}
-		if (!trusty && pshift > 1 && pshift - 2 >= 0 &&
-		    pshift - 2 <= max_lp_index) {
+		if (!trusty && pshift > 1 && pshift - 2 >= 0 && pshift - 2 <= max_lp_index) {
 			rt = head - width;
 			lf = head - width - lp[pshift - 2];
-			if (cmp(rt, stepson, arg) >= 0 ||
-			    cmp(lf, stepson, arg) >= 0) {
+			if (cmp(rt, stepson, arg) >= 0 || cmp(lf, stepson, arg) >= 0) {
 				break;
 			}
 		}
@@ -191,8 +186,7 @@ void qsort_r(void *base, size_t nel, size_t width, cmpfun cmp, void *arg)
 	high = head + size - width;
 
 	/* Precompute Leonardo numbers, scaled by element width */
-	for (lp[0] = lp[1] = width, i = 2;
-	     (lp[i] = lp[i - 2] + lp[i - 1] + width) < size && i < 63; i++)
+	for (lp[0] = lp[1] = width, i = 2; (lp[i] = lp[i - 2] + lp[i - 1] + width) < size && i < 63; i++)
 		;
 	max_lp_index = i - 1;
 
@@ -202,13 +196,10 @@ void qsort_r(void *base, size_t nel, size_t width, cmpfun cmp, void *arg)
 			shr(p, 2);
 			pshift += 2;
 		} else {
-			if (pshift - 1 >= 0 && pshift - 1 <= max_lp_index &&
-			    lp[pshift - 1] >= (size_t)(high - head)) {
-				trinkle(head, width, cmp, arg, p, pshift, 0, lp,
-					max_lp_index);
+			if (pshift - 1 >= 0 && pshift - 1 <= max_lp_index && lp[pshift - 1] >= (size_t)(high - head)) {
+				trinkle(head, width, cmp, arg, p, pshift, 0, lp, max_lp_index);
 			} else {
-				sift(head, width, cmp, arg, pshift, lp,
-				     max_lp_index);
+				sift(head, width, cmp, arg, pshift, lp, max_lp_index);
 			}
 
 			if (pshift == 1) {
@@ -236,16 +227,12 @@ void qsort_r(void *base, size_t nel, size_t width, cmpfun cmp, void *arg)
 			pshift -= 2;
 			p[0] ^= 7;
 			shr(p, 1);
-			if (pshift >= 0 && pshift <= max_lp_index &&
-			    pshift < 64) {
-				trinkle(head - lp[pshift] - width, width, cmp,
-					arg, p, pshift + 1, 1, lp,
-					max_lp_index);
+			if (pshift >= 0 && pshift <= max_lp_index && pshift < 64) {
+				trinkle(head - lp[pshift] - width, width, cmp, arg, p, pshift + 1, 1, lp, max_lp_index);
 			}
 			shl(p, 1);
 			p[0] |= 1;
-			trinkle(head - width, width, cmp, arg, p, pshift, 1, lp,
-				max_lp_index);
+			trinkle(head - width, width, cmp, arg, p, pshift, 1, lp, max_lp_index);
 		}
 		head -= width;
 	}

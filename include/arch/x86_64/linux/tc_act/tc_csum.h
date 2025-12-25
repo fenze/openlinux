@@ -5,13 +5,7 @@
 #include <linux/types.h>
 #include <linux/pkt_cls.h>
 
-enum {
-	TCA_CSUM_UNSPEC,
-	TCA_CSUM_PARMS,
-	TCA_CSUM_TM,
-	TCA_CSUM_PAD,
-	__TCA_CSUM_MAX
-};
+enum { TCA_CSUM_UNSPEC, TCA_CSUM_PARMS, TCA_CSUM_TM, TCA_CSUM_PAD, __TCA_CSUM_MAX };
 #define TCA_CSUM_MAX (__TCA_CSUM_MAX - 1)
 
 enum {

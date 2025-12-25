@@ -102,12 +102,9 @@ extern "C" {
  * stacks should approve additions.
  */
 
-#define fourcc_code(a, b, c, d)                                \
-	((__u32)(a) | ((__u32)(b) << 8) | ((__u32)(c) << 16) | \
-	 ((__u32)(d) << 24))
+#define fourcc_code(a, b, c, d) ((__u32)(a) | ((__u32)(b) << 8) | ((__u32)(c) << 16) | ((__u32)(d) << 24))
 
-#define DRM_FORMAT_BIG_ENDIAN \
-	(1U << 31) /* format is big endian instead of little endian */
+#define DRM_FORMAT_BIG_ENDIAN (1U << 31) /* format is big endian instead of little endian */
 
 /* Reserve 0 for the invalid format specifier */
 #define DRM_FORMAT_INVALID 0
@@ -117,11 +114,10 @@ extern "C" {
 	fourcc_code('C', '1', ' ', ' ') /* [7:0] C0:C1:C2:C3:C4:C5:C6:C7     \
 					   1:1:1:1:1:1:1:1 eight pixels/byte \
 					 */
-#define DRM_FORMAT_C2                                                     \
-	fourcc_code('C', '2', ' ', ' ') /* [7:0] C0:C1:C2:C3 2:2:2:2 four \
-					   pixels/byte */
-#define DRM_FORMAT_C4 \
-	fourcc_code('C', '4', ' ', ' ') /* [7:0] C0:C1 4:4 two pixels/byte */
+#define DRM_FORMAT_C2                                                                   \
+	fourcc_code('C', '2', ' ', ' ')		      /* [7:0] C0:C1:C2:C3 2:2:2:2 four \
+							 pixels/byte */
+#define DRM_FORMAT_C4 fourcc_code('C', '4', ' ', ' ') /* [7:0] C0:C1 4:4 two pixels/byte */
 #define DRM_FORMAT_C8 fourcc_code('C', '8', ' ', ' ') /* [7:0] C */
 
 /* 1 bpp Darkness (inverse relationship between channel value and brightness) */
@@ -136,8 +132,7 @@ extern "C" {
 					   pixels/byte */
 
 /* 4 bpp Darkness (inverse relationship between channel value and brightness) */
-#define DRM_FORMAT_D4 \
-	fourcc_code('D', '4', ' ', ' ') /* [7:0] D0:D1 4:4 two pixels/byte */
+#define DRM_FORMAT_D4 fourcc_code('D', '4', ' ', ' ') /* [7:0] D0:D1 4:4 two pixels/byte */
 
 /* 8 bpp Darkness (inverse relationship between channel value and brightness) */
 #define DRM_FORMAT_D8 fourcc_code('D', '8', ' ', ' ') /* [7:0] D */
@@ -154,41 +149,31 @@ extern "C" {
 					   pixels/byte */
 
 /* 4 bpp Red (direct relationship between channel value and brightness) */
-#define DRM_FORMAT_R4 \
-	fourcc_code('R', '4', ' ', ' ') /* [7:0] R0:R1 4:4 two pixels/byte */
+#define DRM_FORMAT_R4 fourcc_code('R', '4', ' ', ' ') /* [7:0] R0:R1 4:4 two pixels/byte */
 
 /* 8 bpp Red (direct relationship between channel value and brightness) */
 #define DRM_FORMAT_R8 fourcc_code('R', '8', ' ', ' ') /* [7:0] R */
 
 /* 10 bpp Red (direct relationship between channel value and brightness) */
-#define DRM_FORMAT_R10 \
-	fourcc_code('R', '1', '0', ' ') /* [15:0] x:R 6:10 little endian */
+#define DRM_FORMAT_R10 fourcc_code('R', '1', '0', ' ') /* [15:0] x:R 6:10 little endian */
 
 /* 12 bpp Red (direct relationship between channel value and brightness) */
-#define DRM_FORMAT_R12 \
-	fourcc_code('R', '1', '2', ' ') /* [15:0] x:R 4:12 little endian */
+#define DRM_FORMAT_R12 fourcc_code('R', '1', '2', ' ') /* [15:0] x:R 4:12 little endian */
 
 /* 16 bpp Red (direct relationship between channel value and brightness) */
-#define DRM_FORMAT_R16 \
-	fourcc_code('R', '1', '6', ' ') /* [15:0] R little endian */
+#define DRM_FORMAT_R16 fourcc_code('R', '1', '6', ' ') /* [15:0] R little endian */
 
 /* 16 bpp RG */
-#define DRM_FORMAT_RG88 \
-	fourcc_code('R', 'G', '8', '8') /* [15:0] R:G 8:8 little endian */
-#define DRM_FORMAT_GR88 \
-	fourcc_code('G', 'R', '8', '8') /* [15:0] G:R 8:8 little endian */
+#define DRM_FORMAT_RG88 fourcc_code('R', 'G', '8', '8') /* [15:0] R:G 8:8 little endian */
+#define DRM_FORMAT_GR88 fourcc_code('G', 'R', '8', '8') /* [15:0] G:R 8:8 little endian */
 
 /* 32 bpp RG */
-#define DRM_FORMAT_RG1616 \
-	fourcc_code('R', 'G', '3', '2') /* [31:0] R:G 16:16 little endian */
-#define DRM_FORMAT_GR1616 \
-	fourcc_code('G', 'R', '3', '2') /* [31:0] G:R 16:16 little endian */
+#define DRM_FORMAT_RG1616 fourcc_code('R', 'G', '3', '2') /* [31:0] R:G 16:16 little endian */
+#define DRM_FORMAT_GR1616 fourcc_code('G', 'R', '3', '2') /* [31:0] G:R 16:16 little endian */
 
 /* 8 bpp RGB */
-#define DRM_FORMAT_RGB332 \
-	fourcc_code('R', 'G', 'B', '8') /* [7:0] R:G:B 3:3:2 */
-#define DRM_FORMAT_BGR233 \
-	fourcc_code('B', 'G', 'R', '8') /* [7:0] B:G:R 2:3:3 */
+#define DRM_FORMAT_RGB332 fourcc_code('R', 'G', 'B', '8') /* [7:0] R:G:B 3:3:2 */
+#define DRM_FORMAT_BGR233 fourcc_code('B', 'G', 'R', '8') /* [7:0] B:G:R 2:3:3 */
 
 /* 16 bpp RGB */
 #define DRM_FORMAT_XRGB4444                                              \
@@ -243,16 +228,12 @@ extern "C" {
 	fourcc_code('B', 'A', '1', '5') /* [15:0] B:G:R:A 5:5:5:1 little \
 					   endian */
 
-#define DRM_FORMAT_RGB565 \
-	fourcc_code('R', 'G', '1', '6') /* [15:0] R:G:B 5:6:5 little endian */
-#define DRM_FORMAT_BGR565 \
-	fourcc_code('B', 'G', '1', '6') /* [15:0] B:G:R 5:6:5 little endian */
+#define DRM_FORMAT_RGB565 fourcc_code('R', 'G', '1', '6') /* [15:0] R:G:B 5:6:5 little endian */
+#define DRM_FORMAT_BGR565 fourcc_code('B', 'G', '1', '6') /* [15:0] B:G:R 5:6:5 little endian */
 
 /* 24 bpp RGB */
-#define DRM_FORMAT_RGB888 \
-	fourcc_code('R', 'G', '2', '4') /* [23:0] R:G:B little endian */
-#define DRM_FORMAT_BGR888 \
-	fourcc_code('B', 'G', '2', '4') /* [23:0] B:G:R little endian */
+#define DRM_FORMAT_RGB888 fourcc_code('R', 'G', '2', '4') /* [23:0] R:G:B little endian */
+#define DRM_FORMAT_BGR888 fourcc_code('B', 'G', '2', '4') /* [23:0] B:G:R little endian */
 
 /* 32 bpp RGB */
 #define DRM_FORMAT_XRGB8888                                              \
@@ -349,10 +330,8 @@ extern "C" {
 	fourcc_code('A', 'B', '4', 'H') /* [63:0] A:B:G:R 16:16:16:16 little \
 					   endian */
 
-#define DRM_FORMAT_R16F \
-	fourcc_code('R', ' ', ' ', 'H') /* [15:0] R 16 little endian */
-#define DRM_FORMAT_GR1616F \
-	fourcc_code('G', 'R', ' ', 'H') /* [31:0] G:R 16:16 little endian */
+#define DRM_FORMAT_R16F	   fourcc_code('R', ' ', ' ', 'H') /* [15:0] R 16 little endian */
+#define DRM_FORMAT_GR1616F fourcc_code('G', 'R', ' ', 'H') /* [31:0] G:R 16:16 little endian */
 #define DRM_FORMAT_BGR161616F                                                  \
 	fourcc_code('B', 'G', 'R', 'H') /* [47:0] B:G:R 16:16:16 little endian \
 					 */
@@ -362,10 +341,8 @@ extern "C" {
  * IEEE 754-2008 binary32 float
  * [31:0] sign:exponent:mantissa 1:8:23
  */
-#define DRM_FORMAT_R32F \
-	fourcc_code('R', ' ', ' ', 'F') /* [31:0] R 32 little endian */
-#define DRM_FORMAT_GR3232F \
-	fourcc_code('G', 'R', ' ', 'F') /* [63:0] R:G 32:32 little endian */
+#define DRM_FORMAT_R32F	   fourcc_code('R', ' ', ' ', 'F') /* [31:0] R 32 little endian */
+#define DRM_FORMAT_GR3232F fourcc_code('G', 'R', ' ', 'F') /* [63:0] R:G 32:32 little endian */
 #define DRM_FORMAT_BGR323232F                                                  \
 	fourcc_code('B', 'G', 'R', 'F') /* [95:0] R:G:B 32:32:32 little endian \
 					 */
@@ -505,29 +482,20 @@ extern "C" {
  * or
  * index 1 = Cb:Cr plane, [15:0] Cb:Cr little endian
  */
-#define DRM_FORMAT_NV12 \
-	fourcc_code('N', 'V', '1', '2') /* 2x2 subsampled Cr:Cb plane */
-#define DRM_FORMAT_NV21 \
-	fourcc_code('N', 'V', '2', '1') /* 2x2 subsampled Cb:Cr plane */
-#define DRM_FORMAT_NV16 \
-	fourcc_code('N', 'V', '1', '6') /* 2x1 subsampled Cr:Cb plane */
-#define DRM_FORMAT_NV61 \
-	fourcc_code('N', 'V', '6', '1') /* 2x1 subsampled Cb:Cr plane */
-#define DRM_FORMAT_NV24 \
-	fourcc_code('N', 'V', '2', '4') /* non-subsampled Cr:Cb plane */
-#define DRM_FORMAT_NV42 \
-	fourcc_code('N', 'V', '4', '2') /* non-subsampled Cb:Cr plane */
+#define DRM_FORMAT_NV12 fourcc_code('N', 'V', '1', '2') /* 2x2 subsampled Cr:Cb plane */
+#define DRM_FORMAT_NV21 fourcc_code('N', 'V', '2', '1') /* 2x2 subsampled Cb:Cr plane */
+#define DRM_FORMAT_NV16 fourcc_code('N', 'V', '1', '6') /* 2x1 subsampled Cr:Cb plane */
+#define DRM_FORMAT_NV61 fourcc_code('N', 'V', '6', '1') /* 2x1 subsampled Cb:Cr plane */
+#define DRM_FORMAT_NV24 fourcc_code('N', 'V', '2', '4') /* non-subsampled Cr:Cb plane */
+#define DRM_FORMAT_NV42 fourcc_code('N', 'V', '4', '2') /* non-subsampled Cb:Cr plane */
 /*
  * 2 plane YCbCr
  * index 0 = Y plane, [39:0] Y3:Y2:Y1:Y0 little endian
  * index 1 = Cr:Cb plane, [39:0] Cr1:Cb1:Cr0:Cb0 little endian
  */
-#define DRM_FORMAT_NV15 \
-	fourcc_code('N', 'V', '1', '5') /* 2x2 subsampled Cr:Cb plane */
-#define DRM_FORMAT_NV20 \
-	fourcc_code('N', 'V', '2', '0') /* 2x1 subsampled Cr:Cb plane */
-#define DRM_FORMAT_NV30 \
-	fourcc_code('N', 'V', '3', '0') /* non-subsampled Cr:Cb plane */
+#define DRM_FORMAT_NV15 fourcc_code('N', 'V', '1', '5') /* 2x2 subsampled Cr:Cb plane */
+#define DRM_FORMAT_NV20 fourcc_code('N', 'V', '2', '0') /* 2x1 subsampled Cr:Cb plane */
+#define DRM_FORMAT_NV30 fourcc_code('N', 'V', '3', '0') /* non-subsampled Cr:Cb plane */
 
 /*
  * 2 plane YCbCr MSB aligned
@@ -717,12 +685,9 @@ extern "C" {
 
 #define fourcc_mod_get_vendor(modifier) (((modifier) >> 56) & 0xff)
 
-#define fourcc_mod_is_vendor(modifier, vendor) \
-	(fourcc_mod_get_vendor(modifier) == DRM_FORMAT_MOD_VENDOR_##vendor)
+#define fourcc_mod_is_vendor(modifier, vendor) (fourcc_mod_get_vendor(modifier) == DRM_FORMAT_MOD_VENDOR_##vendor)
 
-#define fourcc_mod_code(vendor, val)                       \
-	((((__u64)DRM_FORMAT_MOD_VENDOR_##vendor) << 56) | \
-	 ((val) & 0x00ffffffffffffffULL))
+#define fourcc_mod_code(vendor, val) ((((__u64)DRM_FORMAT_MOD_VENDOR_##vendor) << 56) | ((val) & 0x00ffffffffffffffULL))
 
 /*
  * Format Modifier tokens:
@@ -1242,10 +1207,9 @@ extern "C" {
  *
  * 55:28 -     Reserved for future use.  Must be zero.
  */
-#define DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(c, s, g, k, h)                 \
-	fourcc_mod_code(NVIDIA, (0x10 | ((h) & 0xf) | (((k) & 0xff) << 12) | \
-				 (((g) & 0x3) << 20) | (((s) & 0x1) << 22) | \
-				 (((s) & 0x6) << 25) | (((c) & 0x7) << 23)))
+#define DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(c, s, g, k, h)                                       \
+	fourcc_mod_code(NVIDIA, (0x10 | ((h) & 0xf) | (((k) & 0xff) << 12) | (((g) & 0x3) << 20) | \
+				 (((s) & 0x1) << 22) | (((s) & 0x6) << 25) | (((c) & 0x7) << 23)))
 
 /* To grandfather in prior block linear format modifiers to the above layout,
  * the page kind "0", which corresponds to "pitch/linear" and hence is unusable
@@ -1253,8 +1217,7 @@ extern "C" {
  * which corresponds to the "generic" kind used for simple single-sample
  * uncompressed color formats on Fermi - Volta GPUs.
  */
-static __inline__ __u64
-drm_fourcc_canonicalize_nvidia_format_mod(__u64 modifier)
+static __inline__ __u64 drm_fourcc_canonicalize_nvidia_format_mod(__u64 modifier)
 {
 	if (!(modifier & 0x10) || (modifier & (0xff << 12)))
 		return modifier;
@@ -1283,21 +1246,14 @@ drm_fourcc_canonicalize_nvidia_format_mod(__u64 modifier)
  * Chapter 20 "Pixel Memory Formats" of the Tegra X1 TRM describes this format
  * in full detail.
  */
-#define DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(v) \
-	DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 0, 0, 0, (v))
+#define DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(v) DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D(0, 0, 0, 0, (v))
 
-#define DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK_ONE_GOB \
-	DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(0)
-#define DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK_TWO_GOB \
-	DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(1)
-#define DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK_FOUR_GOB \
-	DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(2)
-#define DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK_EIGHT_GOB \
-	DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(3)
-#define DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK_SIXTEEN_GOB \
-	DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(4)
-#define DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK_THIRTYTWO_GOB \
-	DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(5)
+#define DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK_ONE_GOB	DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(0)
+#define DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK_TWO_GOB	DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(1)
+#define DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK_FOUR_GOB	DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(2)
+#define DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK_EIGHT_GOB	DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(3)
+#define DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK_SIXTEEN_GOB	DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(4)
+#define DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK_THIRTYTWO_GOB DRM_FORMAT_MOD_NVIDIA_16BX2_BLOCK(5)
 
 /*
  * Some Broadcom modifiers take parameters, for example the number of
@@ -1307,16 +1263,12 @@ drm_fourcc_canonicalize_nvidia_format_mod(__u64 modifier)
  */
 #define __fourcc_mod_broadcom_param_shift 8
 #define __fourcc_mod_broadcom_param_bits  48
-#define fourcc_mod_broadcom_code(val, params)                               \
-	fourcc_mod_code(BROADCOM, ((((__u64)params)                         \
-				    << __fourcc_mod_broadcom_param_shift) | \
-				   val))
-#define fourcc_mod_broadcom_param(m)                        \
-	((int)(((m) >> __fourcc_mod_broadcom_param_shift) & \
-	       ((1ULL << __fourcc_mod_broadcom_param_bits) - 1)))
-#define fourcc_mod_broadcom_mod(m)                                \
-	((m) & ~(((1ULL << __fourcc_mod_broadcom_param_bits) - 1) \
-		 << __fourcc_mod_broadcom_param_shift))
+#define fourcc_mod_broadcom_code(val, params) \
+	fourcc_mod_code(BROADCOM, ((((__u64)params) << __fourcc_mod_broadcom_param_shift) | val))
+#define fourcc_mod_broadcom_param(m) \
+	((int)(((m) >> __fourcc_mod_broadcom_param_shift) & ((1ULL << __fourcc_mod_broadcom_param_bits) - 1)))
+#define fourcc_mod_broadcom_mod(m) \
+	((m) & ~(((1ULL << __fourcc_mod_broadcom_param_bits) - 1) << __fourcc_mod_broadcom_param_shift))
 
 /*
  * Broadcom VC4 "T" format
@@ -1367,23 +1319,15 @@ drm_fourcc_canonicalize_nvidia_format_mod(__u64 modifier)
  * wide, but as this is a 10 bpp format that translates to 96 pixels.
  */
 
-#define DRM_FORMAT_MOD_BROADCOM_SAND32_COL_HEIGHT(v) \
-	fourcc_mod_broadcom_code(2, v)
-#define DRM_FORMAT_MOD_BROADCOM_SAND64_COL_HEIGHT(v) \
-	fourcc_mod_broadcom_code(3, v)
-#define DRM_FORMAT_MOD_BROADCOM_SAND128_COL_HEIGHT(v) \
-	fourcc_mod_broadcom_code(4, v)
-#define DRM_FORMAT_MOD_BROADCOM_SAND256_COL_HEIGHT(v) \
-	fourcc_mod_broadcom_code(5, v)
+#define DRM_FORMAT_MOD_BROADCOM_SAND32_COL_HEIGHT(v)  fourcc_mod_broadcom_code(2, v)
+#define DRM_FORMAT_MOD_BROADCOM_SAND64_COL_HEIGHT(v)  fourcc_mod_broadcom_code(3, v)
+#define DRM_FORMAT_MOD_BROADCOM_SAND128_COL_HEIGHT(v) fourcc_mod_broadcom_code(4, v)
+#define DRM_FORMAT_MOD_BROADCOM_SAND256_COL_HEIGHT(v) fourcc_mod_broadcom_code(5, v)
 
-#define DRM_FORMAT_MOD_BROADCOM_SAND32 \
-	DRM_FORMAT_MOD_BROADCOM_SAND32_COL_HEIGHT(0)
-#define DRM_FORMAT_MOD_BROADCOM_SAND64 \
-	DRM_FORMAT_MOD_BROADCOM_SAND64_COL_HEIGHT(0)
-#define DRM_FORMAT_MOD_BROADCOM_SAND128 \
-	DRM_FORMAT_MOD_BROADCOM_SAND128_COL_HEIGHT(0)
-#define DRM_FORMAT_MOD_BROADCOM_SAND256 \
-	DRM_FORMAT_MOD_BROADCOM_SAND256_COL_HEIGHT(0)
+#define DRM_FORMAT_MOD_BROADCOM_SAND32	DRM_FORMAT_MOD_BROADCOM_SAND32_COL_HEIGHT(0)
+#define DRM_FORMAT_MOD_BROADCOM_SAND64	DRM_FORMAT_MOD_BROADCOM_SAND64_COL_HEIGHT(0)
+#define DRM_FORMAT_MOD_BROADCOM_SAND128 DRM_FORMAT_MOD_BROADCOM_SAND128_COL_HEIGHT(0)
+#define DRM_FORMAT_MOD_BROADCOM_SAND256 DRM_FORMAT_MOD_BROADCOM_SAND256_COL_HEIGHT(0)
 
 /* Broadcom UIF format
  *
@@ -1427,15 +1371,13 @@ drm_fourcc_canonicalize_nvidia_format_mod(__u64 modifier)
  * categories of modifiers ie AFBC, MISC and AFRC. We can have a maximum of
  * sixteen different categories.
  */
-#define DRM_FORMAT_MOD_ARM_CODE(__type, __val)         \
-	fourcc_mod_code(ARM, ((__u64)(__type) << 52) | \
-				     ((__val) & 0x000fffffffffffffULL))
+#define DRM_FORMAT_MOD_ARM_CODE(__type, __val) \
+	fourcc_mod_code(ARM, ((__u64)(__type) << 52) | ((__val) & 0x000fffffffffffffULL))
 
 #define DRM_FORMAT_MOD_ARM_TYPE_AFBC 0x00
 #define DRM_FORMAT_MOD_ARM_TYPE_MISC 0x01
 
-#define DRM_FORMAT_MOD_ARM_AFBC(__afbc_mode) \
-	DRM_FORMAT_MOD_ARM_CODE(DRM_FORMAT_MOD_ARM_TYPE_AFBC, __afbc_mode)
+#define DRM_FORMAT_MOD_ARM_AFBC(__afbc_mode) DRM_FORMAT_MOD_ARM_CODE(DRM_FORMAT_MOD_ARM_TYPE_AFBC, __afbc_mode)
 
 /*
  * AFBC superblock size
@@ -1606,8 +1548,7 @@ drm_fourcc_canonicalize_nvidia_format_mod(__u64 modifier)
 
 #define DRM_FORMAT_MOD_ARM_TYPE_AFRC 0x02
 
-#define DRM_FORMAT_MOD_ARM_AFRC(__afrc_mode) \
-	DRM_FORMAT_MOD_ARM_CODE(DRM_FORMAT_MOD_ARM_TYPE_AFRC, __afrc_mode)
+#define DRM_FORMAT_MOD_ARM_AFRC(__afrc_mode) DRM_FORMAT_MOD_ARM_CODE(DRM_FORMAT_MOD_ARM_TYPE_AFRC, __afrc_mode)
 
 /*
  * AFRC coding unit size modifier.
@@ -1656,8 +1597,7 @@ drm_fourcc_canonicalize_nvidia_format_mod(__u64 modifier)
  * into 16x16 pixel blocks. Blocks are stored linearly in order, but pixels
  * in the block are reordered.
  */
-#define DRM_FORMAT_MOD_ARM_16X16_BLOCK_U_INTERLEAVED \
-	DRM_FORMAT_MOD_ARM_CODE(DRM_FORMAT_MOD_ARM_TYPE_MISC, 1ULL)
+#define DRM_FORMAT_MOD_ARM_16X16_BLOCK_U_INTERLEAVED DRM_FORMAT_MOD_ARM_CODE(DRM_FORMAT_MOD_ARM_TYPE_MISC, 1ULL)
 
 /*
  * Allwinner tiled modifier
@@ -1698,12 +1638,10 @@ drm_fourcc_canonicalize_nvidia_format_mod(__u64 modifier)
 #define __fourcc_mod_amlogic_options_shift 8
 #define __fourcc_mod_amlogic_options_mask  0xff
 
-#define DRM_FORMAT_MOD_AMLOGIC_FBC(__layout, __options)                    \
-	fourcc_mod_code(                                                   \
-		AMLOGIC,                                                   \
-		((__layout) & __fourcc_mod_amlogic_layout_mask) |          \
-			(((__options) & __fourcc_mod_amlogic_options_mask) \
-			 << __fourcc_mod_amlogic_options_shift))
+#define DRM_FORMAT_MOD_AMLOGIC_FBC(__layout, __options)                                     \
+	fourcc_mod_code(AMLOGIC, ((__layout) & __fourcc_mod_amlogic_layout_mask) |          \
+					 (((__options) & __fourcc_mod_amlogic_options_mask) \
+					  << __fourcc_mod_amlogic_options_shift))
 
 /* Amlogic FBC Layouts */
 
@@ -1792,8 +1730,7 @@ drm_fourcc_canonicalize_nvidia_format_mod(__u64 modifier)
 #define MTK_FMT_MOD_10BIT_LAYOUT_LSBRASTER (0x2 << 16)
 
 /* alias for the most common tiling format */
-#define DRM_FORMAT_MOD_MTK_16L_32S_TILE \
-	DRM_FORMAT_MOD_MTK(MTK_FMT_MOD_TILE_16L32S)
+#define DRM_FORMAT_MOD_MTK_16L_32S_TILE DRM_FORMAT_MOD_MTK(MTK_FMT_MOD_TILE_16L32S)
 
 /*
  * Apple GPU-tiled layouts.
@@ -1988,12 +1925,9 @@ drm_fourcc_canonicalize_nvidia_format_mod(__u64 modifier)
 #define AMD_FMT_MOD_PIPE_SHIFT		33
 #define AMD_FMT_MOD_PIPE_MASK		0x7
 
-#define AMD_FMT_MOD_SET(field, value) \
-	((__u64)(value) << AMD_FMT_MOD_##field##_SHIFT)
-#define AMD_FMT_MOD_GET(field, value) \
-	(((value) >> AMD_FMT_MOD_##field##_SHIFT) & AMD_FMT_MOD_##field##_MASK)
-#define AMD_FMT_MOD_CLEAR(field) \
-	(~((__u64)AMD_FMT_MOD_##field##_MASK << AMD_FMT_MOD_##field##_SHIFT))
+#define AMD_FMT_MOD_SET(field, value) ((__u64)(value) << AMD_FMT_MOD_##field##_SHIFT)
+#define AMD_FMT_MOD_GET(field, value) (((value) >> AMD_FMT_MOD_##field##_SHIFT) & AMD_FMT_MOD_##field##_MASK)
+#define AMD_FMT_MOD_CLEAR(field)      (~((__u64)AMD_FMT_MOD_##field##_MASK << AMD_FMT_MOD_##field##_SHIFT))
 
 #if defined(__cplusplus)
 }

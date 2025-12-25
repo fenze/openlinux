@@ -2,7 +2,7 @@
 #include <errno.h>
 #include <stdio.h>
 
-int fileno_unlocked(FILE *stream)
+int fileno_unlocked(struct __FILE *stream)
 {
 	if (stream->fd < 0) {
 		errno = EBADF;

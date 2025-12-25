@@ -172,8 +172,7 @@ struct dfl_fpga_irq_set {
  * feature. Currently hardware supports up to 1 irq.
  * Return: 0 on success, -errno on failure.
  */
-#define DFL_FPGA_PORT_ERR_GET_IRQ_NUM \
-	_IOR(DFL_FPGA_MAGIC, DFL_PORT_BASE + 5, __u32)
+#define DFL_FPGA_PORT_ERR_GET_IRQ_NUM _IOR(DFL_FPGA_MAGIC, DFL_PORT_BASE + 5, __u32)
 
 /**
  * DFL_FPGA_PORT_ERR_SET_IRQ - _IOW(DFL_FPGA_MAGIC, DFL_PORT_BASE + 6,
@@ -183,8 +182,7 @@ struct dfl_fpga_irq_set {
  * Unset related interrupt trigger if evtfds[n] is a negative value.
  * Return: 0 on success, -errno on failure.
  */
-#define DFL_FPGA_PORT_ERR_SET_IRQ \
-	_IOW(DFL_FPGA_MAGIC, DFL_PORT_BASE + 6, struct dfl_fpga_irq_set)
+#define DFL_FPGA_PORT_ERR_SET_IRQ _IOW(DFL_FPGA_MAGIC, DFL_PORT_BASE + 6, struct dfl_fpga_irq_set)
 
 /**
  * DFL_FPGA_PORT_UINT_GET_IRQ_NUM - _IOR(DFL_FPGA_MAGIC, DFL_PORT_BASE + 7,
@@ -194,8 +192,7 @@ struct dfl_fpga_irq_set {
  * feature.
  * Return: 0 on success, -errno on failure.
  */
-#define DFL_FPGA_PORT_UINT_GET_IRQ_NUM \
-	_IOR(DFL_FPGA_MAGIC, DFL_PORT_BASE + 7, __u32)
+#define DFL_FPGA_PORT_UINT_GET_IRQ_NUM _IOR(DFL_FPGA_MAGIC, DFL_PORT_BASE + 7, __u32)
 
 /**
  * DFL_FPGA_PORT_UINT_SET_IRQ - _IOW(DFL_FPGA_MAGIC, DFL_PORT_BASE + 8,
@@ -205,8 +202,7 @@ struct dfl_fpga_irq_set {
  * Unset related interrupt trigger if evtfds[n] is a negative value.
  * Return: 0 on success, -errno on failure.
  */
-#define DFL_FPGA_PORT_UINT_SET_IRQ \
-	_IOW(DFL_FPGA_MAGIC, DFL_PORT_BASE + 8, struct dfl_fpga_irq_set)
+#define DFL_FPGA_PORT_UINT_SET_IRQ _IOW(DFL_FPGA_MAGIC, DFL_PORT_BASE + 8, struct dfl_fpga_irq_set)
 
 /* IOCTLs for FME file descriptor */
 
@@ -259,8 +255,7 @@ struct dfl_fpga_fme_port_pr {
  * feature. Currently hardware supports up to 1 irq.
  * Return: 0 on success, -errno on failure.
  */
-#define DFL_FPGA_FME_ERR_GET_IRQ_NUM \
-	_IOR(DFL_FPGA_MAGIC, DFL_FME_BASE + 3, __u32)
+#define DFL_FPGA_FME_ERR_GET_IRQ_NUM _IOR(DFL_FPGA_MAGIC, DFL_FME_BASE + 3, __u32)
 
 /**
  * DFL_FPGA_FME_ERR_SET_IRQ - _IOW(DFL_FPGA_MAGIC, DFL_FME_BASE + 4,
@@ -270,7 +265,6 @@ struct dfl_fpga_fme_port_pr {
  * Unset related interrupt trigger if evtfds[n] is a negative value.
  * Return: 0 on success, -errno on failure.
  */
-#define DFL_FPGA_FME_ERR_SET_IRQ \
-	_IOW(DFL_FPGA_MAGIC, DFL_FME_BASE + 4, struct dfl_fpga_irq_set)
+#define DFL_FPGA_FME_ERR_SET_IRQ _IOW(DFL_FPGA_MAGIC, DFL_FME_BASE + 4, struct dfl_fpga_irq_set)
 
 #endif /* _LINUX_FPGA_DFL_H */

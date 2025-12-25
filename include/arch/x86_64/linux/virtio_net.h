@@ -60,21 +60,18 @@
 	22			      /* Device supports Receive Flow \
 				       * Steering */
 #define VIRTIO_NET_F_CTRL_MAC_ADDR 23 /* Set MAC address */
-#define VIRTIO_NET_F_DEVICE_STATS \
-	50 /* Device can provide device-level statistics. */
-#define VIRTIO_NET_F_VQ_NOTF_COAL \
-	52 /* Device supports virtqueue notification coalescing */
-#define VIRTIO_NET_F_NOTF_COAL                         \
-	53 /* Device supports notifications coalescing \
-	    */
-#define VIRTIO_NET_F_GUEST_USO4	 54 /* Guest can handle USOv4 in. */
-#define VIRTIO_NET_F_GUEST_USO6	 55 /* Guest can handle USOv6 in. */
-#define VIRTIO_NET_F_HOST_USO	 56 /* Host can handle USO in. */
-#define VIRTIO_NET_F_HASH_REPORT 57 /* Supports hash report */
-#define VIRTIO_NET_F_GUEST_HDRLEN \
-	59			/* Guest provides the exact hdr_len value. */
-#define VIRTIO_NET_F_RSS     60 /* Supports RSS RX steering */
-#define VIRTIO_NET_F_RSC_EXT 61 /* extended coalescing info */
+#define VIRTIO_NET_F_DEVICE_STATS  50 /* Device can provide device-level statistics. */
+#define VIRTIO_NET_F_VQ_NOTF_COAL  52 /* Device supports virtqueue notification coalescing */
+#define VIRTIO_NET_F_NOTF_COAL                                                   \
+	53			     /* Device supports notifications coalescing \
+				      */
+#define VIRTIO_NET_F_GUEST_USO4	  54 /* Guest can handle USOv4 in. */
+#define VIRTIO_NET_F_GUEST_USO6	  55 /* Guest can handle USOv6 in. */
+#define VIRTIO_NET_F_HOST_USO	  56 /* Host can handle USO in. */
+#define VIRTIO_NET_F_HASH_REPORT  57 /* Supports hash report */
+#define VIRTIO_NET_F_GUEST_HDRLEN 59 /* Guest provides the exact hdr_len value. */
+#define VIRTIO_NET_F_RSS	  60 /* Supports RSS RX steering */
+#define VIRTIO_NET_F_RSC_EXT	  61 /* extended coalescing info */
 #define VIRTIO_NET_F_STANDBY                                              \
 	62			     /* Act as standby for another device \
 				      * with the same MAC.                \
@@ -169,17 +166,15 @@ struct virtio_net_hdr_v1 {
 #define VIRTIO_NET_HDR_F_RSC_INFO	 4 /* rsc info in csum_ fields */
 #define VIRTIO_NET_HDR_F_UDP_TUNNEL_CSUM 8 /* UDP tunnel csum offload */
 	__u8 flags;
-#define VIRTIO_NET_HDR_GSO_NONE		   0 /* Not a GSO frame */
-#define VIRTIO_NET_HDR_GSO_TCPV4	   1 /* GSO frame, IPv4 TCP (TSO) */
-#define VIRTIO_NET_HDR_GSO_UDP		   3 /* GSO frame, IPv4 UDP (UFO) */
-#define VIRTIO_NET_HDR_GSO_TCPV6	   4 /* GSO frame, IPv6 TCP */
-#define VIRTIO_NET_HDR_GSO_UDP_L4	   5 /* GSO frame, IPv4& IPv6 UDP (USO) */
+#define VIRTIO_NET_HDR_GSO_NONE		   0	/* Not a GSO frame */
+#define VIRTIO_NET_HDR_GSO_TCPV4	   1	/* GSO frame, IPv4 TCP (TSO) */
+#define VIRTIO_NET_HDR_GSO_UDP		   3	/* GSO frame, IPv4 UDP (UFO) */
+#define VIRTIO_NET_HDR_GSO_TCPV6	   4	/* GSO frame, IPv6 TCP */
+#define VIRTIO_NET_HDR_GSO_UDP_L4	   5	/* GSO frame, IPv4& IPv6 UDP (USO) */
 #define VIRTIO_NET_HDR_GSO_UDP_TUNNEL_IPV4 0x20 /* UDPv4 tunnel present */
 #define VIRTIO_NET_HDR_GSO_UDP_TUNNEL_IPV6 0x40 /* UDPv6 tunnel present */
-#define VIRTIO_NET_HDR_GSO_UDP_TUNNEL         \
-	(VIRTIO_NET_HDR_GSO_UDP_TUNNEL_IPV4 | \
-	 VIRTIO_NET_HDR_GSO_UDP_TUNNEL_IPV6)
-#define VIRTIO_NET_HDR_GSO_ECN 0x80 /* TCP has ECN set */
+#define VIRTIO_NET_HDR_GSO_UDP_TUNNEL	   (VIRTIO_NET_HDR_GSO_UDP_TUNNEL_IPV4 | VIRTIO_NET_HDR_GSO_UDP_TUNNEL_IPV6)
+#define VIRTIO_NET_HDR_GSO_ECN		   0x80 /* TCP has ECN set */
 	__u8 gso_type;
 	__virtio16 hdr_len;  /* Ethernet + IP + tcp/udp hdrs */
 	__virtio16 gso_size; /* Bytes to append to hdr_len per frame */

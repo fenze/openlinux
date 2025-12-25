@@ -1,5 +1,4 @@
 #include "__stdio.h"
-#include <atomic.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <stddef.h>

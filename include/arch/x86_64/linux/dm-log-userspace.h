@@ -380,9 +380,8 @@
  * User-space should always use DM_ULOG_REQUEST_TYPE to acquire the
  * request type from the 'request_type' field to maintain forward compatibility.
  */
-#define DM_ULOG_REQUEST_MASK 0xFF
-#define DM_ULOG_REQUEST_TYPE(request_type) \
-	(DM_ULOG_REQUEST_MASK & (request_type))
+#define DM_ULOG_REQUEST_MASK		   0xFF
+#define DM_ULOG_REQUEST_TYPE(request_type) (DM_ULOG_REQUEST_MASK & (request_type))
 
 /*
  * DM_ULOG_REQUEST_VERSION is incremented when there is a

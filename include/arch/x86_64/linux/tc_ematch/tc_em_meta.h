@@ -5,13 +5,7 @@
 #include <linux/types.h>
 #include <linux/pkt_cls.h>
 
-enum {
-	TCA_EM_META_UNSPEC,
-	TCA_EM_META_HDR,
-	TCA_EM_META_LVALUE,
-	TCA_EM_META_RVALUE,
-	__TCA_EM_META_MAX
-};
+enum { TCA_EM_META_UNSPEC, TCA_EM_META_HDR, TCA_EM_META_LVALUE, TCA_EM_META_RVALUE, __TCA_EM_META_MAX };
 #define TCA_EM_META_MAX (__TCA_EM_META_MAX - 1)
 
 struct tcf_meta_val {

@@ -34,45 +34,36 @@
 #define IPV6_MULTICAST_IF   17
 #define IPV6_UNICAST_HOPS   16
 
-#define IN6_IS_ADDR_UNSPECIFIED(a)                                   \
-	((((a)->s6_addr32[0]) == 0) && (((a)->s6_addr32[1]) == 0) && \
-	 (((a)->s6_addr32[2]) == 0) && (((a)->s6_addr32[3]) == 0))
+#define IN6_IS_ADDR_UNSPECIFIED(a)                                                                 \
+	((((a)->s6_addr32[0]) == 0) && (((a)->s6_addr32[1]) == 0) && (((a)->s6_addr32[2]) == 0) && \
+	 (((a)->s6_addr32[3]) == 0))
 
-#define IN6_IS_ADDR_LOOPBACK(a)                                      \
-	((((a)->s6_addr32[0]) == 0) && (((a)->s6_addr32[1]) == 0) && \
-	 (((a)->s6_addr32[2]) == 0) && (((a)->s6_addr32[3]) == ntohl(1)))
+#define IN6_IS_ADDR_LOOPBACK(a)                                                                    \
+	((((a)->s6_addr32[0]) == 0) && (((a)->s6_addr32[1]) == 0) && (((a)->s6_addr32[2]) == 0) && \
+	 (((a)->s6_addr32[3]) == ntohl(1)))
 
 #define IN6_IS_ADDR_MULTICAST(a) (((uint8_t *)(a))[0] == 0xff)
 
-#define IN6_IS_ADDR_LINKLOCAL(a) \
-	((((uint8_t *)(a))[0]) == 0xfe && (((uint8_t *)(a))[1] & 0xc0) == 0x80)
+#define IN6_IS_ADDR_LINKLOCAL(a) ((((uint8_t *)(a))[0]) == 0xfe && (((uint8_t *)(a))[1] & 0xc0) == 0x80)
 
-#define IN6_IS_ADDR_SITELOCAL(a) \
-	((((uint8_t *)(a))[0]) == 0xfe && (((uint8_t *)(a))[1] & 0xc0) == 0xc0)
+#define IN6_IS_ADDR_SITELOCAL(a) ((((uint8_t *)(a))[0]) == 0xfe && (((uint8_t *)(a))[1] & 0xc0) == 0xc0)
 
-#define IN6_IS_ADDR_V4MAPPED(a)                                      \
-	((((a)->s6_addr32[0]) == 0) && (((a)->s6_addr32[1]) == 0) && \
-	 (((a)->s6_addr32[2]) == ntohl(0x0000ffff)))
+#define IN6_IS_ADDR_V4MAPPED(a) \
+	((((a)->s6_addr32[0]) == 0) && (((a)->s6_addr32[1]) == 0) && (((a)->s6_addr32[2]) == ntohl(0x0000ffff)))
 
-#define IN6_IS_ADDR_V4COMPAT(a)                                      \
-	((((a)->s6_addr32[0]) == 0) && (((a)->s6_addr32[1]) == 0) && \
-	 (((a)->s6_addr32[2]) == 0) && (((a)->s6_addr32[3]) != 0) && \
-	 (((a)->s6_addr32[3]) != ntohl(1)))
+#define IN6_IS_ADDR_V4COMPAT(a)                                                                    \
+	((((a)->s6_addr32[0]) == 0) && (((a)->s6_addr32[1]) == 0) && (((a)->s6_addr32[2]) == 0) && \
+	 (((a)->s6_addr32[3]) != 0) && (((a)->s6_addr32[3]) != ntohl(1)))
 
-#define IN6_IS_ADDR_MC_NODELOCAL(a) \
-	(IN6_IS_ADDR_MULTICAST(a) && ((((uint8_t *)(a))[1] & 0xf) == 0x1))
+#define IN6_IS_ADDR_MC_NODELOCAL(a) (IN6_IS_ADDR_MULTICAST(a) && ((((uint8_t *)(a))[1] & 0xf) == 0x1))
 
-#define IN6_IS_ADDR_MC_LINKLOCAL(a) \
-	(IN6_IS_ADDR_MULTICAST(a) && ((((uint8_t *)(a))[1] & 0xf) == 0x2))
+#define IN6_IS_ADDR_MC_LINKLOCAL(a) (IN6_IS_ADDR_MULTICAST(a) && ((((uint8_t *)(a))[1] & 0xf) == 0x2))
 
-#define IN6_IS_ADDR_MC_SITELOCAL(a) \
-	(IN6_IS_ADDR_MULTICAST(a) && ((((uint8_t *)(a))[1] & 0xf) == 0x5))
+#define IN6_IS_ADDR_MC_SITELOCAL(a) (IN6_IS_ADDR_MULTICAST(a) && ((((uint8_t *)(a))[1] & 0xf) == 0x5))
 
-#define IN6_IS_ADDR_MC_ORGLOCAL(a) \
-	(IN6_IS_ADDR_MULTICAST(a) && ((((uint8_t *)(a))[1] & 0xf) == 0x8))
+#define IN6_IS_ADDR_MC_ORGLOCAL(a) (IN6_IS_ADDR_MULTICAST(a) && ((((uint8_t *)(a))[1] & 0xf) == 0x8))
 
-#define IN6_IS_ADDR_MC_GLOBAL(a) \
-	(IN6_IS_ADDR_MULTICAST(a) && ((((uint8_t *)(a))[1] & 0xf) == 0xe))
+#define IN6_IS_ADDR_MC_GLOBAL(a) (IN6_IS_ADDR_MULTICAST(a) && ((((uint8_t *)(a))[1] & 0xf) == 0xe))
 
 typedef __UINT8_TYPE__ uint8_t;
 typedef __UINT16_TYPE__ in_port_t;

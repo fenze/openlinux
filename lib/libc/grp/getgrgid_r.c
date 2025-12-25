@@ -8,8 +8,7 @@
 #include <string.h>    // for strtok, memcpy, strlen
 #include <sys/types.h> // for gid_t, size_t
 
-int getgrgid_r(gid_t gid, struct group *grp, char *buf, size_t buflen,
-	       struct group **result)
+int getgrgid_r(gid_t gid, struct group *grp, char *buf, size_t buflen, struct group **result)
 {
 	FILE *f = fopen("/etc/group", "r");
 	if (!f) {

@@ -454,8 +454,7 @@ typedef struct {
 	unsigned int last_dispatch;
 	unsigned int last_clear;
 
-	struct drm_tex_region tex_list[RADEON_NR_TEX_HEAPS]
-				      [RADEON_NR_TEX_REGIONS + 1];
+	struct drm_tex_region tex_list[RADEON_NR_TEX_HEAPS][RADEON_NR_TEX_REGIONS + 1];
 	unsigned int tex_age[RADEON_NR_TEX_HEAPS];
 	int ctx_owner;
 	int pfState;	    /* number of 3d windows (0,1,2ormore) */
@@ -518,100 +517,53 @@ typedef struct {
 #define DRM_RADEON_GEM_OP	  0x2c
 #define DRM_RADEON_GEM_USERPTR	  0x2d
 
-#define DRM_IOCTL_RADEON_CP_INIT \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_RADEON_CP_INIT, drm_radeon_init_t)
-#define DRM_IOCTL_RADEON_CP_START DRM_IO(DRM_COMMAND_BASE + DRM_RADEON_CP_START)
-#define DRM_IOCTL_RADEON_CP_STOP \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_RADEON_CP_STOP, drm_radeon_cp_stop_t)
-#define DRM_IOCTL_RADEON_CP_RESET DRM_IO(DRM_COMMAND_BASE + DRM_RADEON_CP_RESET)
-#define DRM_IOCTL_RADEON_CP_IDLE  DRM_IO(DRM_COMMAND_BASE + DRM_RADEON_CP_IDLE)
-#define DRM_IOCTL_RADEON_RESET	  DRM_IO(DRM_COMMAND_BASE + DRM_RADEON_RESET)
-#define DRM_IOCTL_RADEON_FULLSCREEN                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_RADEON_FULLSCREEN, \
-		drm_radeon_fullscreen_t)
-#define DRM_IOCTL_RADEON_SWAP DRM_IO(DRM_COMMAND_BASE + DRM_RADEON_SWAP)
-#define DRM_IOCTL_RADEON_CLEAR \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_RADEON_CLEAR, drm_radeon_clear_t)
-#define DRM_IOCTL_RADEON_VERTEX \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_RADEON_VERTEX, drm_radeon_vertex_t)
-#define DRM_IOCTL_RADEON_INDICES \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_RADEON_INDICES, drm_radeon_indices_t)
-#define DRM_IOCTL_RADEON_STIPPLE \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_RADEON_STIPPLE, drm_radeon_stipple_t)
-#define DRM_IOCTL_RADEON_INDIRECT \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_RADEON_INDIRECT, drm_radeon_indirect_t)
-#define DRM_IOCTL_RADEON_TEXTURE \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_RADEON_TEXTURE, drm_radeon_texture_t)
-#define DRM_IOCTL_RADEON_VERTEX2 \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_RADEON_VERTEX2, drm_radeon_vertex2_t)
-#define DRM_IOCTL_RADEON_CMDBUF \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_RADEON_CMDBUF, drm_radeon_cmd_buffer_t)
-#define DRM_IOCTL_RADEON_GETPARAM \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_RADEON_GETPARAM, drm_radeon_getparam_t)
-#define DRM_IOCTL_RADEON_FLIP DRM_IO(DRM_COMMAND_BASE + DRM_RADEON_FLIP)
-#define DRM_IOCTL_RADEON_ALLOC \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_RADEON_ALLOC, drm_radeon_mem_alloc_t)
-#define DRM_IOCTL_RADEON_FREE \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_RADEON_FREE, drm_radeon_mem_free_t)
-#define DRM_IOCTL_RADEON_INIT_HEAP                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_RADEON_INIT_HEAP, \
-		drm_radeon_mem_init_heap_t)
-#define DRM_IOCTL_RADEON_IRQ_EMIT \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_RADEON_IRQ_EMIT, drm_radeon_irq_emit_t)
-#define DRM_IOCTL_RADEON_IRQ_WAIT \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_RADEON_IRQ_WAIT, drm_radeon_irq_wait_t)
-#define DRM_IOCTL_RADEON_CP_RESUME \
-	DRM_IO(DRM_COMMAND_BASE + DRM_RADEON_CP_RESUME)
-#define DRM_IOCTL_RADEON_SETPARAM \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_RADEON_SETPARAM, drm_radeon_setparam_t)
-#define DRM_IOCTL_RADEON_SURF_ALLOC                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_RADEON_SURF_ALLOC, \
-		drm_radeon_surface_alloc_t)
-#define DRM_IOCTL_RADEON_SURF_FREE                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_RADEON_SURF_FREE, \
-		drm_radeon_surface_free_t)
+#define DRM_IOCTL_RADEON_CP_INIT    DRM_IOW(DRM_COMMAND_BASE + DRM_RADEON_CP_INIT, drm_radeon_init_t)
+#define DRM_IOCTL_RADEON_CP_START   DRM_IO(DRM_COMMAND_BASE + DRM_RADEON_CP_START)
+#define DRM_IOCTL_RADEON_CP_STOP    DRM_IOW(DRM_COMMAND_BASE + DRM_RADEON_CP_STOP, drm_radeon_cp_stop_t)
+#define DRM_IOCTL_RADEON_CP_RESET   DRM_IO(DRM_COMMAND_BASE + DRM_RADEON_CP_RESET)
+#define DRM_IOCTL_RADEON_CP_IDLE    DRM_IO(DRM_COMMAND_BASE + DRM_RADEON_CP_IDLE)
+#define DRM_IOCTL_RADEON_RESET	    DRM_IO(DRM_COMMAND_BASE + DRM_RADEON_RESET)
+#define DRM_IOCTL_RADEON_FULLSCREEN DRM_IOW(DRM_COMMAND_BASE + DRM_RADEON_FULLSCREEN, drm_radeon_fullscreen_t)
+#define DRM_IOCTL_RADEON_SWAP	    DRM_IO(DRM_COMMAND_BASE + DRM_RADEON_SWAP)
+#define DRM_IOCTL_RADEON_CLEAR	    DRM_IOW(DRM_COMMAND_BASE + DRM_RADEON_CLEAR, drm_radeon_clear_t)
+#define DRM_IOCTL_RADEON_VERTEX	    DRM_IOW(DRM_COMMAND_BASE + DRM_RADEON_VERTEX, drm_radeon_vertex_t)
+#define DRM_IOCTL_RADEON_INDICES    DRM_IOW(DRM_COMMAND_BASE + DRM_RADEON_INDICES, drm_radeon_indices_t)
+#define DRM_IOCTL_RADEON_STIPPLE    DRM_IOW(DRM_COMMAND_BASE + DRM_RADEON_STIPPLE, drm_radeon_stipple_t)
+#define DRM_IOCTL_RADEON_INDIRECT   DRM_IOWR(DRM_COMMAND_BASE + DRM_RADEON_INDIRECT, drm_radeon_indirect_t)
+#define DRM_IOCTL_RADEON_TEXTURE    DRM_IOWR(DRM_COMMAND_BASE + DRM_RADEON_TEXTURE, drm_radeon_texture_t)
+#define DRM_IOCTL_RADEON_VERTEX2    DRM_IOW(DRM_COMMAND_BASE + DRM_RADEON_VERTEX2, drm_radeon_vertex2_t)
+#define DRM_IOCTL_RADEON_CMDBUF	    DRM_IOW(DRM_COMMAND_BASE + DRM_RADEON_CMDBUF, drm_radeon_cmd_buffer_t)
+#define DRM_IOCTL_RADEON_GETPARAM   DRM_IOWR(DRM_COMMAND_BASE + DRM_RADEON_GETPARAM, drm_radeon_getparam_t)
+#define DRM_IOCTL_RADEON_FLIP	    DRM_IO(DRM_COMMAND_BASE + DRM_RADEON_FLIP)
+#define DRM_IOCTL_RADEON_ALLOC	    DRM_IOWR(DRM_COMMAND_BASE + DRM_RADEON_ALLOC, drm_radeon_mem_alloc_t)
+#define DRM_IOCTL_RADEON_FREE	    DRM_IOW(DRM_COMMAND_BASE + DRM_RADEON_FREE, drm_radeon_mem_free_t)
+#define DRM_IOCTL_RADEON_INIT_HEAP  DRM_IOW(DRM_COMMAND_BASE + DRM_RADEON_INIT_HEAP, drm_radeon_mem_init_heap_t)
+#define DRM_IOCTL_RADEON_IRQ_EMIT   DRM_IOWR(DRM_COMMAND_BASE + DRM_RADEON_IRQ_EMIT, drm_radeon_irq_emit_t)
+#define DRM_IOCTL_RADEON_IRQ_WAIT   DRM_IOW(DRM_COMMAND_BASE + DRM_RADEON_IRQ_WAIT, drm_radeon_irq_wait_t)
+#define DRM_IOCTL_RADEON_CP_RESUME  DRM_IO(DRM_COMMAND_BASE + DRM_RADEON_CP_RESUME)
+#define DRM_IOCTL_RADEON_SETPARAM   DRM_IOW(DRM_COMMAND_BASE + DRM_RADEON_SETPARAM, drm_radeon_setparam_t)
+#define DRM_IOCTL_RADEON_SURF_ALLOC DRM_IOW(DRM_COMMAND_BASE + DRM_RADEON_SURF_ALLOC, drm_radeon_surface_alloc_t)
+#define DRM_IOCTL_RADEON_SURF_FREE  DRM_IOW(DRM_COMMAND_BASE + DRM_RADEON_SURF_FREE, drm_radeon_surface_free_t)
 /* KMS */
-#define DRM_IOCTL_RADEON_GEM_INFO                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_RADEON_GEM_INFO, \
-		 struct drm_radeon_gem_info)
-#define DRM_IOCTL_RADEON_GEM_CREATE                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_RADEON_GEM_CREATE, \
-		 struct drm_radeon_gem_create)
-#define DRM_IOCTL_RADEON_GEM_MMAP                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_RADEON_GEM_MMAP, \
-		 struct drm_radeon_gem_mmap)
-#define DRM_IOCTL_RADEON_GEM_PREAD                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_RADEON_GEM_PREAD, \
-		 struct drm_radeon_gem_pread)
-#define DRM_IOCTL_RADEON_GEM_PWRITE                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_RADEON_GEM_PWRITE, \
-		 struct drm_radeon_gem_pwrite)
-#define DRM_IOCTL_RADEON_GEM_SET_DOMAIN                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_RADEON_GEM_SET_DOMAIN, \
-		 struct drm_radeon_gem_set_domain)
-#define DRM_IOCTL_RADEON_GEM_WAIT_IDLE                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_RADEON_GEM_WAIT_IDLE, \
-		struct drm_radeon_gem_wait_idle)
-#define DRM_IOCTL_RADEON_CS \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_RADEON_CS, struct drm_radeon_cs)
-#define DRM_IOCTL_RADEON_INFO \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_RADEON_INFO, struct drm_radeon_info)
-#define DRM_IOCTL_RADEON_GEM_SET_TILING                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_RADEON_GEM_SET_TILING, \
-		 struct drm_radeon_gem_set_tiling)
-#define DRM_IOCTL_RADEON_GEM_GET_TILING                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_RADEON_GEM_GET_TILING, \
-		 struct drm_radeon_gem_get_tiling)
-#define DRM_IOCTL_RADEON_GEM_BUSY                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_RADEON_GEM_BUSY, \
-		 struct drm_radeon_gem_busy)
-#define DRM_IOCTL_RADEON_GEM_VA \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_RADEON_GEM_VA, struct drm_radeon_gem_va)
-#define DRM_IOCTL_RADEON_GEM_OP \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_RADEON_GEM_OP, struct drm_radeon_gem_op)
-#define DRM_IOCTL_RADEON_GEM_USERPTR                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_RADEON_GEM_USERPTR, \
-		 struct drm_radeon_gem_userptr)
+#define DRM_IOCTL_RADEON_GEM_INFO   DRM_IOWR(DRM_COMMAND_BASE + DRM_RADEON_GEM_INFO, struct drm_radeon_gem_info)
+#define DRM_IOCTL_RADEON_GEM_CREATE DRM_IOWR(DRM_COMMAND_BASE + DRM_RADEON_GEM_CREATE, struct drm_radeon_gem_create)
+#define DRM_IOCTL_RADEON_GEM_MMAP   DRM_IOWR(DRM_COMMAND_BASE + DRM_RADEON_GEM_MMAP, struct drm_radeon_gem_mmap)
+#define DRM_IOCTL_RADEON_GEM_PREAD  DRM_IOWR(DRM_COMMAND_BASE + DRM_RADEON_GEM_PREAD, struct drm_radeon_gem_pread)
+#define DRM_IOCTL_RADEON_GEM_PWRITE DRM_IOWR(DRM_COMMAND_BASE + DRM_RADEON_GEM_PWRITE, struct drm_radeon_gem_pwrite)
+#define DRM_IOCTL_RADEON_GEM_SET_DOMAIN \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_RADEON_GEM_SET_DOMAIN, struct drm_radeon_gem_set_domain)
+#define DRM_IOCTL_RADEON_GEM_WAIT_IDLE \
+	DRM_IOW(DRM_COMMAND_BASE + DRM_RADEON_GEM_WAIT_IDLE, struct drm_radeon_gem_wait_idle)
+#define DRM_IOCTL_RADEON_CS   DRM_IOWR(DRM_COMMAND_BASE + DRM_RADEON_CS, struct drm_radeon_cs)
+#define DRM_IOCTL_RADEON_INFO DRM_IOWR(DRM_COMMAND_BASE + DRM_RADEON_INFO, struct drm_radeon_info)
+#define DRM_IOCTL_RADEON_GEM_SET_TILING \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_RADEON_GEM_SET_TILING, struct drm_radeon_gem_set_tiling)
+#define DRM_IOCTL_RADEON_GEM_GET_TILING \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_RADEON_GEM_GET_TILING, struct drm_radeon_gem_get_tiling)
+#define DRM_IOCTL_RADEON_GEM_BUSY    DRM_IOWR(DRM_COMMAND_BASE + DRM_RADEON_GEM_BUSY, struct drm_radeon_gem_busy)
+#define DRM_IOCTL_RADEON_GEM_VA	     DRM_IOWR(DRM_COMMAND_BASE + DRM_RADEON_GEM_VA, struct drm_radeon_gem_va)
+#define DRM_IOCTL_RADEON_GEM_OP	     DRM_IOWR(DRM_COMMAND_BASE + DRM_RADEON_GEM_OP, struct drm_radeon_gem_op)
+#define DRM_IOCTL_RADEON_GEM_USERPTR DRM_IOWR(DRM_COMMAND_BASE + DRM_RADEON_GEM_USERPTR, struct drm_radeon_gem_userptr)
 
 typedef struct drm_radeon_init {
 	enum {
@@ -648,10 +600,7 @@ typedef struct drm_radeon_cp_stop {
 } drm_radeon_cp_stop_t;
 
 typedef struct drm_radeon_fullscreen {
-	enum {
-		RADEON_INIT_FULLSCREEN = 0x01,
-		RADEON_CLEANUP_FULLSCREEN = 0x02
-	} func;
+	enum { RADEON_INIT_FULLSCREEN = 0x01, RADEON_CLEANUP_FULLSCREEN = 0x02 } func;
 } drm_radeon_fullscreen_t;
 
 #define CLEAR_X1    0
@@ -1006,8 +955,7 @@ struct drm_radeon_gem_va {
 /* The first dword of RADEON_CHUNK_ID_FLAGS is a uint32 of these flags: */
 #define RADEON_CS_KEEP_TILING_FLAGS 0x01
 #define RADEON_CS_USE_VM	    0x02
-#define RADEON_CS_END_OF_FRAME \
-	0x04 /* a hint from userspace which CS is the last one */
+#define RADEON_CS_END_OF_FRAME	    0x04 /* a hint from userspace which CS is the last one */
 /* The second dword of RADEON_CHUNK_ID_FLAGS is a uint32 that sets the ring type
  */
 #define RADEON_CS_RING_GFX     0
@@ -1055,13 +1003,12 @@ struct drm_radeon_cs {
 #define RADEON_INFO_WANT_HYPERZ	       0x07
 #define RADEON_INFO_WANT_CMASK	       0x08 /* get access to CMASK on r300 */
 #define RADEON_INFO_CLOCK_CRYSTAL_FREQ 0x09 /* clock crystal frequency */
-#define RADEON_INFO_NUM_BACKENDS                                               \
-	0x0a				/* DB/backends for r600+ - need for OQ \
-					 */
-#define RADEON_INFO_NUM_TILE_PIPES 0x0b /* tile pipes for r600+ */
-#define RADEON_INFO_FUSION_GART_WORKING \
-	0x0c /* fusion writes to GTT were broken before this */
-#define RADEON_INFO_BACKEND_MAP 0x0d /* pipe to backend map, needed by mesa */
+#define RADEON_INFO_NUM_BACKENDS                                                    \
+	0x0a				     /* DB/backends for r600+ - need for OQ \
+					      */
+#define RADEON_INFO_NUM_TILE_PIPES	0x0b /* tile pipes for r600+ */
+#define RADEON_INFO_FUSION_GART_WORKING 0x0c /* fusion writes to GTT were broken before this */
+#define RADEON_INFO_BACKEND_MAP		0x0d /* pipe to backend map, needed by mesa */
 /* virtual address start, va < start are reserved by the kernel */
 #define RADEON_INFO_VA_START 0x0e
 /* maximum size of ib using the virtual memory cs */

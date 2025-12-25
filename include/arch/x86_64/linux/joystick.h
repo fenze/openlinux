@@ -52,10 +52,9 @@ struct js_event {
 
 #define JSIOCGVERSION _IOR('j', 0x01, __u32) /* get driver version */
 
-#define JSIOCGAXES    _IOR('j', 0x11, __u8) /* get number of axes */
-#define JSIOCGBUTTONS _IOR('j', 0x12, __u8) /* get number of buttons */
-#define JSIOCGNAME(len) \
-	_IOC(_IOC_READ, 'j', 0x13, len) /* get identifier string */
+#define JSIOCGAXES	_IOR('j', 0x11, __u8)		/* get number of axes */
+#define JSIOCGBUTTONS	_IOR('j', 0x12, __u8)		/* get number of buttons */
+#define JSIOCGNAME(len) _IOC(_IOC_READ, 'j', 0x13, len) /* get identifier string */
 
 #define JSIOCSCORR _IOW('j', 0x21, struct js_corr) /* set correction values */
 #define JSIOCGCORR _IOR('j', 0x22, struct js_corr) /* get correction values */

@@ -60,8 +60,7 @@ Mellon the rights to redistribute these changes without encumbrance.
 #define _CODA_HEADER_
 
 /* Catch new _KERNEL defn for NetBSD and DJGPP/__CYGWIN32__ */
-#if defined(__NetBSD__) || \
-	((defined(DJGPP) || defined(__CYGWIN32__)) && !defined(KERNEL))
+#if defined(__NetBSD__) || ((defined(DJGPP) || defined(__CYGWIN32__)) && !defined(KERNEL))
 #include <sys/types.h>
 #endif
 
@@ -149,9 +148,7 @@ struct venus_dirent {
 	char d_name[CODA_MAXNAMLEN + 1]; /* name must be no longer than this */
 };
 #undef DIRSIZ
-#define DIRSIZ(dp)                                              \
-	((sizeof(struct venus_dirent) - (CODA_MAXNAMLEN + 1)) + \
-	 (((dp)->d_namlen + 1 + 3) & ~3))
+#define DIRSIZ(dp) ((sizeof(struct venus_dirent) - (CODA_MAXNAMLEN + 1)) + (((dp)->d_namlen + 1 + 3) & ~3))
 
 /*
  * File types
@@ -184,27 +181,14 @@ struct CodaFid {
 	u_int32_t opaque[4];
 };
 
-#define coda_f2i(fid)                                      \
-	(fid ? (fid->opaque[3] ^ (fid->opaque[2] << 10) ^  \
-		(fid->opaque[1] << 20) ^ fid->opaque[0]) : \
-	       0)
+#define coda_f2i(fid) (fid ? (fid->opaque[3] ^ (fid->opaque[2] << 10) ^ (fid->opaque[1] << 20) ^ fid->opaque[0]) : 0)
 
 #ifndef _VENUS_VATTR_T_
 #define _VENUS_VATTR_T_
 /*
  * Vnode types.  VNON means no type.
  */
-enum coda_vtype {
-	C_VNON,
-	C_VREG,
-	C_VDIR,
-	C_VBLK,
-	C_VCHR,
-	C_VLNK,
-	C_VSOCK,
-	C_VFIFO,
-	C_VBAD
-};
+enum coda_vtype { C_VNON, C_VREG, C_VDIR, C_VBLK, C_VCHR, C_VLNK, C_VSOCK, C_VFIFO, C_VBAD };
 
 struct coda_timespec {
 	int64_t tv_sec; /* seconds */
@@ -283,8 +267,7 @@ struct coda_statfs {
 #define DOWNCALL(opcode) (opcode >= CODA_REPLACE && opcode <= CODA_PURGEFID)
 
 #define VC_MAXDATASIZE 8192
-#define VC_MAXMSGSIZE \
-	sizeof(union inputArgs) + sizeof(union outputArgs) + VC_MAXDATASIZE
+#define VC_MAXMSGSIZE  sizeof(union inputArgs) + sizeof(union outputArgs) + VC_MAXDATASIZE
 
 #define CIOC_KERNEL_VERSION _IOWR('c', 10, size_t)
 

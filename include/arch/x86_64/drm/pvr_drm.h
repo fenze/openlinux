@@ -71,10 +71,7 @@ struct drm_pvr_obj_array {
  *
  * Return: Literal of type &struct drm_pvr_obj_array.
  */
-#define DRM_PVR_OBJ_ARRAY(cnt, ptr)   \
-	{ .stride = sizeof((ptr)[0]), \
-	  .count = (cnt),             \
-	  .array = (__u64)(uintptr_t)(ptr) }
+#define DRM_PVR_OBJ_ARRAY(cnt, ptr) { .stride = sizeof((ptr)[0]), .count = (cnt), .array = (__u64)(uintptr_t)(ptr) }
 
 /**
  * DOC: PowerVR IOCTL interface
@@ -94,30 +91,22 @@ struct drm_pvr_obj_array {
  *
  * Return: An IOCTL number to be passed to ioctl() from userspace.
  */
-#define PVR_IOCTL(_ioctl, _mode, _data) \
-	_mode(DRM_COMMAND_BASE + (_ioctl), struct drm_pvr_ioctl_##_data##_args)
+#define PVR_IOCTL(_ioctl, _mode, _data) _mode(DRM_COMMAND_BASE + (_ioctl), struct drm_pvr_ioctl_##_data##_args)
 
-#define DRM_IOCTL_PVR_DEV_QUERY PVR_IOCTL(0x00, DRM_IOWR, dev_query)
-#define DRM_IOCTL_PVR_CREATE_BO PVR_IOCTL(0x01, DRM_IOWR, create_bo)
-#define DRM_IOCTL_PVR_GET_BO_MMAP_OFFSET \
-	PVR_IOCTL(0x02, DRM_IOWR, get_bo_mmap_offset)
-#define DRM_IOCTL_PVR_CREATE_VM_CONTEXT \
-	PVR_IOCTL(0x03, DRM_IOWR, create_vm_context)
-#define DRM_IOCTL_PVR_DESTROY_VM_CONTEXT \
-	PVR_IOCTL(0x04, DRM_IOW, destroy_vm_context)
-#define DRM_IOCTL_PVR_VM_MAP	      PVR_IOCTL(0x05, DRM_IOW, vm_map)
-#define DRM_IOCTL_PVR_VM_UNMAP	      PVR_IOCTL(0x06, DRM_IOW, vm_unmap)
-#define DRM_IOCTL_PVR_CREATE_CONTEXT  PVR_IOCTL(0x07, DRM_IOWR, create_context)
-#define DRM_IOCTL_PVR_DESTROY_CONTEXT PVR_IOCTL(0x08, DRM_IOW, destroy_context)
-#define DRM_IOCTL_PVR_CREATE_FREE_LIST \
-	PVR_IOCTL(0x09, DRM_IOWR, create_free_list)
-#define DRM_IOCTL_PVR_DESTROY_FREE_LIST \
-	PVR_IOCTL(0x0a, DRM_IOW, destroy_free_list)
-#define DRM_IOCTL_PVR_CREATE_HWRT_DATASET \
-	PVR_IOCTL(0x0b, DRM_IOWR, create_hwrt_dataset)
-#define DRM_IOCTL_PVR_DESTROY_HWRT_DATASET \
-	PVR_IOCTL(0x0c, DRM_IOW, destroy_hwrt_dataset)
-#define DRM_IOCTL_PVR_SUBMIT_JOBS PVR_IOCTL(0x0d, DRM_IOW, submit_jobs)
+#define DRM_IOCTL_PVR_DEV_QUERY		   PVR_IOCTL(0x00, DRM_IOWR, dev_query)
+#define DRM_IOCTL_PVR_CREATE_BO		   PVR_IOCTL(0x01, DRM_IOWR, create_bo)
+#define DRM_IOCTL_PVR_GET_BO_MMAP_OFFSET   PVR_IOCTL(0x02, DRM_IOWR, get_bo_mmap_offset)
+#define DRM_IOCTL_PVR_CREATE_VM_CONTEXT	   PVR_IOCTL(0x03, DRM_IOWR, create_vm_context)
+#define DRM_IOCTL_PVR_DESTROY_VM_CONTEXT   PVR_IOCTL(0x04, DRM_IOW, destroy_vm_context)
+#define DRM_IOCTL_PVR_VM_MAP		   PVR_IOCTL(0x05, DRM_IOW, vm_map)
+#define DRM_IOCTL_PVR_VM_UNMAP		   PVR_IOCTL(0x06, DRM_IOW, vm_unmap)
+#define DRM_IOCTL_PVR_CREATE_CONTEXT	   PVR_IOCTL(0x07, DRM_IOWR, create_context)
+#define DRM_IOCTL_PVR_DESTROY_CONTEXT	   PVR_IOCTL(0x08, DRM_IOW, destroy_context)
+#define DRM_IOCTL_PVR_CREATE_FREE_LIST	   PVR_IOCTL(0x09, DRM_IOWR, create_free_list)
+#define DRM_IOCTL_PVR_DESTROY_FREE_LIST	   PVR_IOCTL(0x0a, DRM_IOW, destroy_free_list)
+#define DRM_IOCTL_PVR_CREATE_HWRT_DATASET  PVR_IOCTL(0x0b, DRM_IOWR, create_hwrt_dataset)
+#define DRM_IOCTL_PVR_DESTROY_HWRT_DATASET PVR_IOCTL(0x0c, DRM_IOW, destroy_hwrt_dataset)
+#define DRM_IOCTL_PVR_SUBMIT_JOBS	   PVR_IOCTL(0x0d, DRM_IOW, submit_jobs)
 
 /**
  * DOC: PowerVR IOCTL DEV_QUERY interface
@@ -557,9 +546,8 @@ struct drm_pvr_ioctl_dev_query_args {
 #define DRM_PVR_BO_ALLOW_CPU_USERSPACE_ACCESS _BITULL(2)
 /* Bits 3..63 are reserved. */
 
-#define DRM_PVR_BO_FLAGS_MASK                                        \
-	(DRM_PVR_BO_BYPASS_DEVICE_CACHE | DRM_PVR_BO_PM_FW_PROTECT | \
-	 DRM_PVR_BO_ALLOW_CPU_USERSPACE_ACCESS)
+#define DRM_PVR_BO_FLAGS_MASK \
+	(DRM_PVR_BO_BYPASS_DEVICE_CACHE | DRM_PVR_BO_PM_FW_PROTECT | DRM_PVR_BO_ALLOW_CPU_USERSPACE_ACCESS)
 
 /**
  * struct drm_pvr_ioctl_create_bo_args - Arguments for %DRM_IOCTL_PVR_CREATE_BO
@@ -1092,8 +1080,7 @@ struct drm_pvr_ioctl_destroy_hwrt_dataset_args {
 #define DRM_PVR_SYNC_OP_FLAG_SIGNAL			  _BITULL(31)
 #define DRM_PVR_SYNC_OP_FLAG_WAIT			  0
 
-#define DRM_PVR_SYNC_OP_FLAGS_MASK \
-	(DRM_PVR_SYNC_OP_FLAG_HANDLE_TYPE_MASK | DRM_PVR_SYNC_OP_FLAG_SIGNAL)
+#define DRM_PVR_SYNC_OP_FLAGS_MASK (DRM_PVR_SYNC_OP_FLAG_HANDLE_TYPE_MASK | DRM_PVR_SYNC_OP_FLAG_SIGNAL)
 
 /**
  * struct drm_pvr_sync_op - Object describing a sync operation
@@ -1133,9 +1120,7 @@ struct drm_pvr_sync_op {
 #define DRM_PVR_SUBMIT_JOB_GEOM_CMD_LAST	_BITULL(1)
 #define DRM_PVR_SUBMIT_JOB_GEOM_CMD_SINGLE_CORE _BITULL(2)
 #define DRM_PVR_SUBMIT_JOB_GEOM_CMD_FLAGS_MASK \
-	(DRM_PVR_SUBMIT_JOB_GEOM_CMD_FIRST |   \
-	 DRM_PVR_SUBMIT_JOB_GEOM_CMD_LAST |    \
-	 DRM_PVR_SUBMIT_JOB_GEOM_CMD_SINGLE_CORE)
+	(DRM_PVR_SUBMIT_JOB_GEOM_CMD_FIRST | DRM_PVR_SUBMIT_JOB_GEOM_CMD_LAST | DRM_PVR_SUBMIT_JOB_GEOM_CMD_SINGLE_CORE)
 
 /**
  * DOC: Flags for SUBMIT_JOB ioctl fragment command.
@@ -1182,15 +1167,11 @@ struct drm_pvr_sync_op {
 #define DRM_PVR_SUBMIT_JOB_FRAG_CMD_GET_VIS_RESULTS	_BITULL(5)
 #define DRM_PVR_SUBMIT_JOB_FRAG_CMD_PARTIAL_RENDER	_BITULL(6)
 #define DRM_PVR_SUBMIT_JOB_FRAG_CMD_DISABLE_PIXELMERGE	_BITULL(7)
-#define DRM_PVR_SUBMIT_JOB_FRAG_CMD_FLAGS_MASK             \
-	(DRM_PVR_SUBMIT_JOB_FRAG_CMD_SINGLE_CORE |         \
-	 DRM_PVR_SUBMIT_JOB_FRAG_CMD_DEPTHBUFFER |         \
-	 DRM_PVR_SUBMIT_JOB_FRAG_CMD_STENCILBUFFER |       \
-	 DRM_PVR_SUBMIT_JOB_FRAG_CMD_PREVENT_CDM_OVERLAP | \
-	 DRM_PVR_SUBMIT_JOB_FRAG_CMD_SCRATCHBUFFER |       \
-	 DRM_PVR_SUBMIT_JOB_FRAG_CMD_GET_VIS_RESULTS |     \
-	 DRM_PVR_SUBMIT_JOB_FRAG_CMD_PARTIAL_RENDER |      \
-	 DRM_PVR_SUBMIT_JOB_FRAG_CMD_DISABLE_PIXELMERGE)
+#define DRM_PVR_SUBMIT_JOB_FRAG_CMD_FLAGS_MASK                                                         \
+	(DRM_PVR_SUBMIT_JOB_FRAG_CMD_SINGLE_CORE | DRM_PVR_SUBMIT_JOB_FRAG_CMD_DEPTHBUFFER |           \
+	 DRM_PVR_SUBMIT_JOB_FRAG_CMD_STENCILBUFFER | DRM_PVR_SUBMIT_JOB_FRAG_CMD_PREVENT_CDM_OVERLAP | \
+	 DRM_PVR_SUBMIT_JOB_FRAG_CMD_SCRATCHBUFFER | DRM_PVR_SUBMIT_JOB_FRAG_CMD_GET_VIS_RESULTS |     \
+	 DRM_PVR_SUBMIT_JOB_FRAG_CMD_PARTIAL_RENDER | DRM_PVR_SUBMIT_JOB_FRAG_CMD_DISABLE_PIXELMERGE)
 
 /**
  * DOC: Flags for SUBMIT_JOB ioctl compute command.
@@ -1209,9 +1190,8 @@ struct drm_pvr_sync_op {
  */
 #define DRM_PVR_SUBMIT_JOB_COMPUTE_CMD_PREVENT_ALL_OVERLAP _BITULL(0)
 #define DRM_PVR_SUBMIT_JOB_COMPUTE_CMD_SINGLE_CORE	   _BITULL(1)
-#define DRM_PVR_SUBMIT_JOB_COMPUTE_CMD_FLAGS_MASK             \
-	(DRM_PVR_SUBMIT_JOB_COMPUTE_CMD_PREVENT_ALL_OVERLAP | \
-	 DRM_PVR_SUBMIT_JOB_COMPUTE_CMD_SINGLE_CORE)
+#define DRM_PVR_SUBMIT_JOB_COMPUTE_CMD_FLAGS_MASK \
+	(DRM_PVR_SUBMIT_JOB_COMPUTE_CMD_PREVENT_ALL_OVERLAP | DRM_PVR_SUBMIT_JOB_COMPUTE_CMD_SINGLE_CORE)
 
 /**
  * DOC: Flags for SUBMIT_JOB ioctl transfer command.
@@ -1226,8 +1206,7 @@ struct drm_pvr_sync_op {
  */
 #define DRM_PVR_SUBMIT_JOB_TRANSFER_CMD_SINGLE_CORE _BITULL(0)
 
-#define DRM_PVR_SUBMIT_JOB_TRANSFER_CMD_FLAGS_MASK \
-	DRM_PVR_SUBMIT_JOB_TRANSFER_CMD_SINGLE_CORE
+#define DRM_PVR_SUBMIT_JOB_TRANSFER_CMD_FLAGS_MASK DRM_PVR_SUBMIT_JOB_TRANSFER_CMD_SINGLE_CORE
 
 /**
  * enum drm_pvr_job_type - Arguments for &struct drm_pvr_job.job_type

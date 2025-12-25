@@ -1,3 +1,5 @@
+#include "stddef.h"
+#include "sys/cdefs.h"
 #include <libc.h>
 #include <sys/mman.h>
 

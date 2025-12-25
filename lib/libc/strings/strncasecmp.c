@@ -1,5 +1,4 @@
 #include <ctype.h>  // for tolower
-#include <libc.h>   // for __unused
 #include <locale.h> // for locale_t
 #include <stddef.h> // for size_t
 #include <sys/cdefs.h>

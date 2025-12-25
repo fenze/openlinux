@@ -35,8 +35,7 @@
 #include <linux/hdlc/ioctl.h>
 
 /* For glibc compatibility. An empty enum does not compile. */
-#if __UAPI_DEF_IF_NET_DEVICE_FLAGS_LOWER_UP_DORMANT_ECHO != 0 || \
-	__UAPI_DEF_IF_NET_DEVICE_FLAGS != 0
+#if __UAPI_DEF_IF_NET_DEVICE_FLAGS_LOWER_UP_DORMANT_ECHO != 0 || __UAPI_DEF_IF_NET_DEVICE_FLAGS != 0
 /**
  * enum net_device_flags - &struct net_device flags
  *
@@ -101,7 +100,7 @@ enum net_device_flags {
 	IFF_LOWER_UP = 1 << 16, /* __volatile__ */
 	IFF_DORMANT = 1 << 17,	/* __volatile__ */
 	IFF_ECHO = 1 << 18,	/* __volatile__ */
-#endif /* __UAPI_DEF_IF_NET_DEVICE_FLAGS_LOWER_UP_DORMANT_ECHO */
+#endif				/* __UAPI_DEF_IF_NET_DEVICE_FLAGS_LOWER_UP_DORMANT_ECHO */
 };
 #endif /* __UAPI_DEF_IF_NET_DEVICE_FLAGS_LOWER_UP_DORMANT_ECHO != 0 || \
 	  __UAPI_DEF_IF_NET_DEVICE_FLAGS != 0 */
@@ -132,9 +131,9 @@ enum net_device_flags {
 #define IFF_ECHO     IFF_ECHO
 #endif /* __UAPI_DEF_IF_NET_DEVICE_FLAGS_LOWER_UP_DORMANT_ECHO */
 
-#define IFF_VOLATILE                                                 \
-	(IFF_LOOPBACK | IFF_POINTOPOINT | IFF_BROADCAST | IFF_ECHO | \
-	 IFF_MASTER | IFF_SLAVE | IFF_RUNNING | IFF_LOWER_UP | IFF_DORMANT)
+#define IFF_VOLATILE                                                                                        \
+	(IFF_LOOPBACK | IFF_POINTOPOINT | IFF_BROADCAST | IFF_ECHO | IFF_MASTER | IFF_SLAVE | IFF_RUNNING | \
+	 IFF_LOWER_UP | IFF_DORMANT)
 
 #define IF_GET_IFACE 0x0001 /* for querying only */
 #define IF_GET_PROTO 0x0002

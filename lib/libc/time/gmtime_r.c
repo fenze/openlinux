@@ -26,9 +26,7 @@ struct tm *gmtime_r(const time_t *timer, struct tm *result)
 	long z = days + 719468;
 	long era = (z >= 0 ? z : z - 146096) / 146097;
 	long day_of_era = z - era * 146097;
-	long yoe = (day_of_era - day_of_era / 1460 + day_of_era / 36524 -
-		    day_of_era / 146096) /
-		   365;
+	long yoe = (day_of_era - day_of_era / 1460 + day_of_era / 36524 - day_of_era / 146096) / 365;
 	year = (int)(yoe + era * 400);
 	long doy = day_of_era - (365 * yoe + yoe / 4 - yoe / 100);
 	result->tm_yday = (int)doy;

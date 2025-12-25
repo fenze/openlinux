@@ -45,19 +45,14 @@ enum machine_type {
 #endif
 #define N_MACHTYPE(exec) ((enum machine_type)(((exec).a_info >> 16) & 0xff))
 #define N_FLAGS(exec)	 (((exec).a_info >> 24) & 0xff)
-#define N_SET_INFO(exec, magic, type, flags)                                 \
-	((exec).a_info = ((magic) & 0xffff) | (((int)(type) & 0xff) << 16) | \
-			 (((flags) & 0xff) << 24))
-#define N_SET_MAGIC(exec, magic) \
-	((exec).a_info = (((exec).a_info & 0xffff0000) | ((magic) & 0xffff)))
+#define N_SET_INFO(exec, magic, type, flags) \
+	((exec).a_info = ((magic) & 0xffff) | (((int)(type) & 0xff) << 16) | (((flags) & 0xff) << 24))
+#define N_SET_MAGIC(exec, magic) ((exec).a_info = (((exec).a_info & 0xffff0000) | ((magic) & 0xffff)))
 
-#define N_SET_MACHTYPE(exec, machtype)                  \
-	((exec).a_info = ((exec).a_info & 0xff00ffff) | \
-			 ((((int)(machtype)) & 0xff) << 16))
+#define N_SET_MACHTYPE(exec, machtype) \
+	((exec).a_info = ((exec).a_info & 0xff00ffff) | ((((int)(machtype)) & 0xff) << 16))
 
-#define N_SET_FLAGS(exec, flags)                        \
-	((exec).a_info = ((exec).a_info & 0x00ffffff) | \
-			 (((flags) & 0xff) << 24))
+#define N_SET_FLAGS(exec, flags) ((exec).a_info = ((exec).a_info & 0x00ffffff) | (((flags) & 0xff) << 24))
 
 /* Code indicating object file or impure executable.  */
 #define OMAGIC 0407
@@ -73,18 +68,14 @@ enum machine_type {
 #define CMAGIC 0421
 
 #if !defined(N_BADMAG)
-#define N_BADMAG(x)                                      \
-	(N_MAGIC(x) != OMAGIC && N_MAGIC(x) != NMAGIC && \
-	 N_MAGIC(x) != ZMAGIC && N_MAGIC(x) != QMAGIC)
+#define N_BADMAG(x) (N_MAGIC(x) != OMAGIC && N_MAGIC(x) != NMAGIC && N_MAGIC(x) != ZMAGIC && N_MAGIC(x) != QMAGIC)
 #endif
 
 #define _N_HDROFF(x) (1024 - sizeof(struct exec))
 
 #if !defined(N_TXTOFF)
-#define N_TXTOFF(x)                                     \
-	(N_MAGIC(x) == ZMAGIC ?                         \
-		 _N_HDROFF((x)) + sizeof(struct exec) : \
-		 (N_MAGIC(x) == QMAGIC ? 0 : sizeof(struct exec)))
+#define N_TXTOFF(x) \
+	(N_MAGIC(x) == ZMAGIC ? _N_HDROFF((x)) + sizeof(struct exec) : (N_MAGIC(x) == QMAGIC ? 0 : sizeof(struct exec)))
 #endif
 
 #if !defined(N_DATOFF)
@@ -127,9 +118,7 @@ enum machine_type {
 #define _N_TXTENDADDR(x) (N_TXTADDR(x) + (x).a_text)
 
 #ifndef N_DATADDR
-#define N_DATADDR(x)                                 \
-	(N_MAGIC(x) == OMAGIC ? (_N_TXTENDADDR(x)) : \
-				(_N_SEGMENT_ROUND(_N_TXTENDADDR(x))))
+#define N_DATADDR(x) (N_MAGIC(x) == OMAGIC ? (_N_TXTENDADDR(x)) : (_N_SEGMENT_ROUND(_N_TXTENDADDR(x))))
 #endif
 
 /* Address of bss segment in memory after it is loaded.  */

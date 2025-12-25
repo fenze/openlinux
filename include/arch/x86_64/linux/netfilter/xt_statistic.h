@@ -4,11 +4,7 @@
 
 #include <linux/types.h>
 
-enum xt_statistic_mode {
-	XT_STATISTIC_MODE_RANDOM,
-	XT_STATISTIC_MODE_NTH,
-	__XT_STATISTIC_MODE_MAX
-};
+enum xt_statistic_mode { XT_STATISTIC_MODE_RANDOM, XT_STATISTIC_MODE_NTH, __XT_STATISTIC_MODE_MAX };
 #define XT_STATISTIC_MODE_MAX (__XT_STATISTIC_MODE_MAX - 1)
 
 enum xt_statistic_flags {

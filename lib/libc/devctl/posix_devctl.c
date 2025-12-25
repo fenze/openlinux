@@ -1,5 +1,6 @@
 #include <devctl.h>
 #include <errno.h>
+#include <stddef.h>
 #include <sys/cdefs.h>
 #include <syscall.h>
 

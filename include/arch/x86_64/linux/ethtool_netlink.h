@@ -12,9 +12,7 @@
 #include <linux/ethtool.h>
 #include <linux/ethtool_netlink_generated.h>
 
-#define ETHTOOL_FLAG_ALL                                          \
-	(ETHTOOL_FLAG_COMPACT_BITSETS | ETHTOOL_FLAG_OMIT_REPLY | \
-	 ETHTOOL_FLAG_STATS)
+#define ETHTOOL_FLAG_ALL (ETHTOOL_FLAG_COMPACT_BITSETS | ETHTOOL_FLAG_OMIT_REPLY | ETHTOOL_FLAG_STATS)
 
 /* CABLE TEST NOTIFY */
 enum {

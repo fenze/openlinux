@@ -1,3 +1,4 @@
+#include "stddef.h"
 #include <__thread.h>
 #include <libc/futex.h>
 #include <stdatomic.h>

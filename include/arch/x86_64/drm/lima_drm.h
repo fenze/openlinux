@@ -121,8 +121,8 @@ struct drm_lima_gem_submit {
 	__u64 bos;	  /* in, array of drm_lima_gem_submit_bo */
 	__u64 frame;	  /* in, GP/PP frame */
 	__u32 flags;	  /* in, submit flags */
-	__u32 out_sync; /* in, drm_syncobj handle used to wait task finish after
-			   submission */
+	__u32 out_sync;	  /* in, drm_syncobj handle used to wait task finish after
+			     submission */
 	__u32 in_sync[2]; /* in, drm_syncobj handle used to wait before start
 			     this task */
 };
@@ -163,24 +163,13 @@ struct drm_lima_ctx_free {
 #define DRM_LIMA_CTX_CREATE 0x05
 #define DRM_LIMA_CTX_FREE   0x06
 
-#define DRM_IOCTL_LIMA_GET_PARAM                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_LIMA_GET_PARAM, \
-		 struct drm_lima_get_param)
-#define DRM_IOCTL_LIMA_GEM_CREATE                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_LIMA_GEM_CREATE, \
-		 struct drm_lima_gem_create)
-#define DRM_IOCTL_LIMA_GEM_INFO \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_LIMA_GEM_INFO, struct drm_lima_gem_info)
-#define DRM_IOCTL_LIMA_GEM_SUBMIT                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_LIMA_GEM_SUBMIT, \
-		struct drm_lima_gem_submit)
-#define DRM_IOCTL_LIMA_GEM_WAIT \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_LIMA_GEM_WAIT, struct drm_lima_gem_wait)
-#define DRM_IOCTL_LIMA_CTX_CREATE                       \
-	DRM_IOR(DRM_COMMAND_BASE + DRM_LIMA_CTX_CREATE, \
-		struct drm_lima_ctx_create)
-#define DRM_IOCTL_LIMA_CTX_FREE \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_LIMA_CTX_FREE, struct drm_lima_ctx_free)
+#define DRM_IOCTL_LIMA_GET_PARAM  DRM_IOWR(DRM_COMMAND_BASE + DRM_LIMA_GET_PARAM, struct drm_lima_get_param)
+#define DRM_IOCTL_LIMA_GEM_CREATE DRM_IOWR(DRM_COMMAND_BASE + DRM_LIMA_GEM_CREATE, struct drm_lima_gem_create)
+#define DRM_IOCTL_LIMA_GEM_INFO	  DRM_IOWR(DRM_COMMAND_BASE + DRM_LIMA_GEM_INFO, struct drm_lima_gem_info)
+#define DRM_IOCTL_LIMA_GEM_SUBMIT DRM_IOW(DRM_COMMAND_BASE + DRM_LIMA_GEM_SUBMIT, struct drm_lima_gem_submit)
+#define DRM_IOCTL_LIMA_GEM_WAIT	  DRM_IOW(DRM_COMMAND_BASE + DRM_LIMA_GEM_WAIT, struct drm_lima_gem_wait)
+#define DRM_IOCTL_LIMA_CTX_CREATE DRM_IOR(DRM_COMMAND_BASE + DRM_LIMA_CTX_CREATE, struct drm_lima_ctx_create)
+#define DRM_IOCTL_LIMA_CTX_FREE	  DRM_IOW(DRM_COMMAND_BASE + DRM_LIMA_CTX_FREE, struct drm_lima_ctx_free)
 
 #if defined(__cplusplus)
 }

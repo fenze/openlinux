@@ -106,21 +106,16 @@ union snd_firewire_event {
 	struct snd_firewire_event_digi00x_message digi00x_message;
 	struct snd_firewire_event_tascam_control tascam_control;
 	struct snd_firewire_event_motu_notification motu_notification;
-	struct snd_firewire_event_motu_register_dsp_change
-		motu_register_dsp_change;
+	struct snd_firewire_event_motu_register_dsp_change motu_register_dsp_change;
 	struct snd_firewire_event_ff400_message ff400_message;
 };
 
-#define SNDRV_FIREWIRE_IOCTL_GET_INFO \
-	_IOR('H', 0xf8, struct snd_firewire_get_info)
-#define SNDRV_FIREWIRE_IOCTL_LOCK   _IO('H', 0xf9)
-#define SNDRV_FIREWIRE_IOCTL_UNLOCK _IO('H', 0xfa)
-#define SNDRV_FIREWIRE_IOCTL_TASCAM_STATE \
-	_IOR('H', 0xfb, struct snd_firewire_tascam_state)
-#define SNDRV_FIREWIRE_IOCTL_MOTU_REGISTER_DSP_METER \
-	_IOR('H', 0xfc, struct snd_firewire_motu_register_dsp_meter)
-#define SNDRV_FIREWIRE_IOCTL_MOTU_COMMAND_DSP_METER \
-	_IOR('H', 0xfd, struct snd_firewire_motu_command_dsp_meter)
+#define SNDRV_FIREWIRE_IOCTL_GET_INFO		     _IOR('H', 0xf8, struct snd_firewire_get_info)
+#define SNDRV_FIREWIRE_IOCTL_LOCK		     _IO('H', 0xf9)
+#define SNDRV_FIREWIRE_IOCTL_UNLOCK		     _IO('H', 0xfa)
+#define SNDRV_FIREWIRE_IOCTL_TASCAM_STATE	     _IOR('H', 0xfb, struct snd_firewire_tascam_state)
+#define SNDRV_FIREWIRE_IOCTL_MOTU_REGISTER_DSP_METER _IOR('H', 0xfc, struct snd_firewire_motu_register_dsp_meter)
+#define SNDRV_FIREWIRE_IOCTL_MOTU_COMMAND_DSP_METER  _IOR('H', 0xfd, struct snd_firewire_motu_command_dsp_meter)
 #define SNDRV_FIREWIRE_IOCTL_MOTU_REGISTER_DSP_PARAMETER \
 	_IOR('H', 0xfe, struct snd_firewire_motu_register_dsp_parameter)
 
@@ -179,9 +174,8 @@ struct snd_firewire_tascam_state {
 
 #define SNDRV_FIREWIRE_MOTU_REGISTER_DSP_METER_INPUT_COUNT  24
 #define SNDRV_FIREWIRE_MOTU_REGISTER_DSP_METER_OUTPUT_COUNT 24
-#define SNDRV_FIREWIRE_MOTU_REGISTER_DSP_METER_COUNT          \
-	(SNDRV_FIREWIRE_MOTU_REGISTER_DSP_METER_INPUT_COUNT + \
-	 SNDRV_FIREWIRE_MOTU_REGISTER_DSP_METER_OUTPUT_COUNT)
+#define SNDRV_FIREWIRE_MOTU_REGISTER_DSP_METER_COUNT \
+	(SNDRV_FIREWIRE_MOTU_REGISTER_DSP_METER_INPUT_COUNT + SNDRV_FIREWIRE_MOTU_REGISTER_DSP_METER_OUTPUT_COUNT)
 
 /**
  * struct snd_firewire_motu_register_dsp_meter - the container for meter
@@ -196,11 +190,10 @@ struct snd_firewire_motu_register_dsp_meter {
 	__u8 data[SNDRV_FIREWIRE_MOTU_REGISTER_DSP_METER_COUNT];
 };
 
-#define SNDRV_FIREWIRE_MOTU_REGISTER_DSP_MIXER_COUNT	 4
-#define SNDRV_FIREWIRE_MOTU_REGISTER_DSP_MIXER_SRC_COUNT 20
-#define SNDRV_FIREWIRE_MOTU_REGISTER_DSP_INPUT_COUNT	 10
-#define SNDRV_FIREWIRE_MOTU_REGISTER_DSP_ALIGNED_INPUT_COUNT \
-	(SNDRV_FIREWIRE_MOTU_REGISTER_DSP_INPUT_COUNT + 2)
+#define SNDRV_FIREWIRE_MOTU_REGISTER_DSP_MIXER_COUNT	     4
+#define SNDRV_FIREWIRE_MOTU_REGISTER_DSP_MIXER_SRC_COUNT     20
+#define SNDRV_FIREWIRE_MOTU_REGISTER_DSP_INPUT_COUNT	     10
+#define SNDRV_FIREWIRE_MOTU_REGISTER_DSP_ALIGNED_INPUT_COUNT (SNDRV_FIREWIRE_MOTU_REGISTER_DSP_INPUT_COUNT + 2)
 
 /**
  * snd_firewire_motu_register_dsp_parameter - the container for parameters of
@@ -239,16 +232,12 @@ struct snd_firewire_motu_register_dsp_parameter {
 			__u8 gain[SNDRV_FIREWIRE_MOTU_REGISTER_DSP_MIXER_SRC_COUNT];
 			__u8 pan[SNDRV_FIREWIRE_MOTU_REGISTER_DSP_MIXER_SRC_COUNT];
 			__u8 flag[SNDRV_FIREWIRE_MOTU_REGISTER_DSP_MIXER_SRC_COUNT];
-			__u8 paired_balance
-				[SNDRV_FIREWIRE_MOTU_REGISTER_DSP_MIXER_SRC_COUNT];
-			__u8 paired_width
-				[SNDRV_FIREWIRE_MOTU_REGISTER_DSP_MIXER_SRC_COUNT];
+			__u8 paired_balance[SNDRV_FIREWIRE_MOTU_REGISTER_DSP_MIXER_SRC_COUNT];
+			__u8 paired_width[SNDRV_FIREWIRE_MOTU_REGISTER_DSP_MIXER_SRC_COUNT];
 		} source[SNDRV_FIREWIRE_MOTU_REGISTER_DSP_MIXER_COUNT];
 		struct {
-			__u8 paired_volume
-				[SNDRV_FIREWIRE_MOTU_REGISTER_DSP_MIXER_COUNT];
-			__u8 paired_flag
-				[SNDRV_FIREWIRE_MOTU_REGISTER_DSP_MIXER_COUNT];
+			__u8 paired_volume[SNDRV_FIREWIRE_MOTU_REGISTER_DSP_MIXER_COUNT];
+			__u8 paired_flag[SNDRV_FIREWIRE_MOTU_REGISTER_DSP_MIXER_COUNT];
 		} output;
 	} mixer;
 	struct {
@@ -263,8 +252,7 @@ struct snd_firewire_motu_register_dsp_parameter {
 		__u8 reserved[6];
 	} line_input;
 	struct {
-		__u8 gain_and_invert
-			[SNDRV_FIREWIRE_MOTU_REGISTER_DSP_ALIGNED_INPUT_COUNT];
+		__u8 gain_and_invert[SNDRV_FIREWIRE_MOTU_REGISTER_DSP_ALIGNED_INPUT_COUNT];
 		__u8 flag[SNDRV_FIREWIRE_MOTU_REGISTER_DSP_ALIGNED_INPUT_COUNT];
 	} input;
 	__u8 reserved[64];

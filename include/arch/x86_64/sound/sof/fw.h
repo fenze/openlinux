@@ -73,9 +73,9 @@ struct snd_sof_mod_hdr {
  */
 struct snd_sof_fw_header {
 	unsigned char sig[SND_SOF_FW_SIG_SIZE]; /* "Reef" */
-	__u32 file_size;   /* size of file minus this header */
-	__u32 num_modules; /* number of modules */
-	__u32 abi;	   /* version of header format */
+	__u32 file_size;			/* size of file minus this header */
+	__u32 num_modules;			/* number of modules */
+	__u32 abi;				/* version of header format */
 } __attribute__((packed));
 
 #endif

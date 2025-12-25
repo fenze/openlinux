@@ -32,12 +32,7 @@
  * @DMX_OUT_TSDEMUX_TAP:
  *	Like @DMX_OUT_TS_TAP but retrieved from the DMX device.
  */
-enum dmx_output {
-	DMX_OUT_DECODER,
-	DMX_OUT_TAP,
-	DMX_OUT_TS_TAP,
-	DMX_OUT_TSDEMUX_TAP
-};
+enum dmx_output { DMX_OUT_DECODER, DMX_OUT_TAP, DMX_OUT_TS_TAP, DMX_OUT_TSDEMUX_TAP };
 
 /**
  * enum dmx_input - Input from the demux.

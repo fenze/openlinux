@@ -22,8 +22,7 @@ static __inline uint16_t __bswap16(uint16_t __x)
 
 static __inline uint32_t __bswap32(uint32_t __x)
 {
-	return __x >> 24 | (__x >> 8 & 0xff00) | (__x << 8 & 0xff0000) |
-	       __x << 24;
+	return __x >> 24 | (__x >> 8 & 0xff00) | (__x << 8 & 0xff0000) | __x << 24;
 }
 
 static __inline uint64_t __bswap64(uint64_t __x)
@@ -60,8 +59,7 @@ static __inline uint64_t __bswap64(uint64_t __x)
 #endif
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
-#elif LDBL_MANT_DIG == 64 && LDBL_MAX_EXP == 16384 && \
-	__BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
+#elif LDBL_MANT_DIG == 64 && LDBL_MAX_EXP == 16384 && __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
 union ldshape {
 	long double f;
 	struct {
@@ -69,8 +67,7 @@ union ldshape {
 		uint16_t se;
 	} i;
 };
-#elif LDBL_MANT_DIG == 64 && LDBL_MAX_EXP == 16384 && \
-	__BYTE_ORDER__ == __ORDER_BIG_ENDIAN__
+#elif LDBL_MANT_DIG == 64 && LDBL_MAX_EXP == 16384 && __BYTE_ORDER__ == __ORDER_BIG_ENDIAN__
 /* This is the m68k variant of 80-bit long double, and this definition only
  * works on archs where the alignment requirement of uint64_t is <= 4. */
 union ldshape {
@@ -81,8 +78,7 @@ union ldshape {
 		uint64_t m;
 	} i;
 };
-#elif LDBL_MANT_DIG == 113 && LDBL_MAX_EXP == 16384 && \
-	__BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
+#elif LDBL_MANT_DIG == 113 && LDBL_MAX_EXP == 16384 && __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
 union ldshape {
 	long double f;
 	struct {
@@ -96,8 +92,7 @@ union ldshape {
 		uint64_t hi;
 	} i2;
 };
-#elif LDBL_MANT_DIG == 113 && LDBL_MAX_EXP == 16384 && \
-	__BYTE_ORDER == __BIG_ENDIAN
+#elif LDBL_MANT_DIG == 113 && LDBL_MAX_EXP == 16384 && __BYTE_ORDER == __BIG_ENDIAN
 union ldshape {
 	long double f;
 	struct {
@@ -343,7 +338,6 @@ hidden double __math_invalid(double);
 hidden long double __math_invalidl(long double);
 #endif
 
-#define weak_alias(old, new) \
-	extern __typeof(old)(new) __attribute__((__weak__, __alias__(#old)))
+#define weak_alias(old, new) extern __typeof(old)(new) __attribute__((__weak__, __alias__(#old)))
 
 #endif

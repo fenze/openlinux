@@ -97,7 +97,7 @@ struct xdp_statistics {
 	__u64 rx_ring_full;		/* Dropped due to rx ring being full */
 	__u64 rx_fill_ring_empty_descs; /* Failed to retrieve item from fill
 					   ring */
-	__u64 tx_ring_empty_descs; /* Failed to retrieve item from tx ring */
+	__u64 tx_ring_empty_descs;	/* Failed to retrieve item from tx ring */
 };
 
 struct xdp_options {
@@ -115,8 +115,7 @@ struct xdp_options {
 
 /* Masks for unaligned chunks mode */
 #define XSK_UNALIGNED_BUF_OFFSET_SHIFT 48
-#define XSK_UNALIGNED_BUF_ADDR_MASK \
-	((1ULL << XSK_UNALIGNED_BUF_OFFSET_SHIFT) - 1)
+#define XSK_UNALIGNED_BUF_ADDR_MASK    ((1ULL << XSK_UNALIGNED_BUF_OFFSET_SHIFT) - 1)
 
 /* Request transmit timestamp. Upon completion, put it into tx_timestamp
  * field of struct xsk_tx_metadata.

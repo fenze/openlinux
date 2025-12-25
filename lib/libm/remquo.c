@@ -78,8 +78,7 @@ end:
 	x = ux.f;
 	if (sy)
 		y = -y;
-	if (ex == ey ||
-	    (ex + 1 == ey && (2 * x > y || (2 * x == y && q % 2)))) {
+	if (ex == ey || (ex + 1 == ey && (2 * x > y || (2 * x == y && q % 2)))) {
 		x -= y;
 		q++;
 	}

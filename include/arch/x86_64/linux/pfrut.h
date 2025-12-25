@@ -69,8 +69,7 @@
  * Retrieve information on the Platform Firmware Runtime Update capability.
  * The information is a struct pfru_update_cap_info.
  */
-#define PFRU_IOC_QUERY_CAP \
-	_IOR(PFRUT_IOCTL_MAGIC, 0x05, struct pfru_update_cap_info)
+#define PFRU_IOC_QUERY_CAP _IOR(PFRUT_IOCTL_MAGIC, 0x05, struct pfru_update_cap_info)
 
 /**
  * struct pfru_payload_hdr - Capsule file payload header.
@@ -233,8 +232,7 @@ struct pfrt_log_info {
  * Set the PFRT log level and log type. The input information is
  * a struct pfrt_log_info.
  */
-#define PFRT_LOG_IOC_SET_INFO \
-	_IOW(PFRUT_IOCTL_MAGIC, 0x06, struct pfrt_log_info)
+#define PFRT_LOG_IOC_SET_INFO _IOW(PFRUT_IOCTL_MAGIC, 0x06, struct pfrt_log_info)
 
 /**
  * PFRT_LOG_IOC_GET_INFO - _IOR(PFRUT_IOCTL_MAGIC, 0x07,
@@ -248,8 +246,7 @@ struct pfrt_log_info {
  * Retrieve log level and log type of the telemetry. The information is
  * a struct pfrt_log_info.
  */
-#define PFRT_LOG_IOC_GET_INFO \
-	_IOR(PFRUT_IOCTL_MAGIC, 0x07, struct pfrt_log_info)
+#define PFRT_LOG_IOC_GET_INFO _IOR(PFRUT_IOCTL_MAGIC, 0x07, struct pfrt_log_info)
 
 /**
  * PFRT_LOG_IOC_GET_DATA_INFO - _IOR(PFRUT_IOCTL_MAGIC, 0x08,
@@ -263,7 +260,6 @@ struct pfrt_log_info {
  * Retrieve data information about the telemetry. The information
  * is a struct pfrt_log_data_info.
  */
-#define PFRT_LOG_IOC_GET_DATA_INFO \
-	_IOR(PFRUT_IOCTL_MAGIC, 0x08, struct pfrt_log_data_info)
+#define PFRT_LOG_IOC_GET_DATA_INFO _IOR(PFRUT_IOCTL_MAGIC, 0x08, struct pfrt_log_data_info)
 
 #endif /* __PFRUT_H__ */

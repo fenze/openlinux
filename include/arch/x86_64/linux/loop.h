@@ -25,9 +25,7 @@ enum {
 #define LOOP_SET_STATUS_CLEARABLE_FLAGS (LO_FLAGS_AUTOCLEAR)
 
 /* LO_FLAGS that can be set using LOOP_CONFIGURE */
-#define LOOP_CONFIGURE_SETTABLE_FLAGS                                  \
-	(LO_FLAGS_READ_ONLY | LO_FLAGS_AUTOCLEAR | LO_FLAGS_PARTSCAN | \
-	 LO_FLAGS_DIRECT_IO)
+#define LOOP_CONFIGURE_SETTABLE_FLAGS (LO_FLAGS_READ_ONLY | LO_FLAGS_AUTOCLEAR | LO_FLAGS_PARTSCAN | LO_FLAGS_DIRECT_IO)
 
 #include <asm/posix_types.h> /* for __kernel_old_dev_t */
 #include <linux/types.h>     /* for __u64 */

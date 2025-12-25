@@ -16,14 +16,7 @@ struct tc_mirred {
 	__u32 ifindex; /* ifindex of egress port */
 };
 
-enum {
-	TCA_MIRRED_UNSPEC,
-	TCA_MIRRED_TM,
-	TCA_MIRRED_PARMS,
-	TCA_MIRRED_PAD,
-	TCA_MIRRED_BLOCKID,
-	__TCA_MIRRED_MAX
-};
+enum { TCA_MIRRED_UNSPEC, TCA_MIRRED_TM, TCA_MIRRED_PARMS, TCA_MIRRED_PAD, TCA_MIRRED_BLOCKID, __TCA_MIRRED_MAX };
 #define TCA_MIRRED_MAX (__TCA_MIRRED_MAX - 1)
 
 #endif

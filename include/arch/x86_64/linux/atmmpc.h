@@ -96,10 +96,9 @@ struct llc_snap_hdr {
 
 /* Message types - to MPOA daemon */
 
-#define SND_MPOA_RES_RQST 201
-#define SET_MPS_CTRL_ADDR 202
-#define SND_MPOA_RES_RTRY \
-	203 /* Different type in a retry due to req id         */
+#define SND_MPOA_RES_RQST    201
+#define SET_MPS_CTRL_ADDR    202
+#define SND_MPOA_RES_RTRY    203 /* Different type in a retry due to req id         */
 #define STOP_KEEP_ALIVE_SM   204
 #define EGRESS_ENTRY_REMOVED 205
 #define SND_EGRESS_PURGE     206

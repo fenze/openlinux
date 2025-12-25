@@ -30,31 +30,19 @@ int main(int argc, char **argv)
 	if (sysinfo(&info) < 0)
 		perror("sysinfo");
 
-	printf("     %13s%13s%13s%13s%13s\n", "total", "used", "free", "shared",
-	       "buffers");
+	printf("     %13s%13s%13s%13s%13s\n", "total", "used", "free", "shared", "buffers");
 
-	printf("Mem: %13llu%13llu%13llu%13llu%13llu\n",
-	       (unsigned long long)((info.totalram * info.mem_unit) >> shift),
-	       (unsigned long long)(((info.totalram - info.freeram) *
-				     info.mem_unit) >>
-				    shift),
+	printf("Mem: %13llu%13llu%13llu%13llu%13llu\n", (unsigned long long)((info.totalram * info.mem_unit) >> shift),
+	       (unsigned long long)(((info.totalram - info.freeram) * info.mem_unit) >> shift),
 	       (unsigned long long)((info.freeram * info.mem_unit) >> shift),
 	       (unsigned long long)((info.sharedram * info.mem_unit) >> shift),
 	       (unsigned long long)((info.bufferram * info.mem_unit) >> shift));
 
 	printf("-/+ buffers/cache:%13llu%13llu\n",
-	       (unsigned long long)(((info.totalram - info.freeram -
-				      info.bufferram) *
-				     info.mem_unit) >>
-				    shift),
-	       (unsigned long long)(((info.freeram + info.bufferram) *
-				     info.mem_unit) >>
-				    shift));
-	printf("Swap:%13llu%13llu%13llu\n",
-	       (unsigned long long)((info.totalswap * info.mem_unit) >> shift),
-	       (unsigned long long)(((info.totalswap - info.freeswap) *
-				     info.mem_unit) >>
-				    shift),
+	       (unsigned long long)(((info.totalram - info.freeram - info.bufferram) * info.mem_unit) >> shift),
+	       (unsigned long long)(((info.freeram + info.bufferram) * info.mem_unit) >> shift));
+	printf("Swap:%13llu%13llu%13llu\n", (unsigned long long)((info.totalswap * info.mem_unit) >> shift),
+	       (unsigned long long)(((info.totalswap - info.freeswap) * info.mem_unit) >> shift),
 	       (unsigned long long)((info.freeswap * info.mem_unit) >> shift));
 
 	return 0;

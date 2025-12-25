@@ -20,8 +20,7 @@ extern "C" {
 #define DRM_ARMADA_GEM_MMAP   0x02
 #define DRM_ARMADA_GEM_PWRITE 0x03
 
-#define ARMADA_IOCTL(dir, name, str) \
-	DRM_##dir(DRM_COMMAND_BASE + DRM_ARMADA_##name, struct drm_armada_##str)
+#define ARMADA_IOCTL(dir, name, str) DRM_##dir(DRM_COMMAND_BASE + DRM_ARMADA_##name, struct drm_armada_##str)
 
 struct drm_armada_gem_create {
 	__u32 handle;

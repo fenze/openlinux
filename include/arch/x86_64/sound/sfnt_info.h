@@ -71,10 +71,10 @@ struct soundfont_open_parm {
 
 /* wave table envelope & effect parameters to control EMU8000 */
 struct soundfont_voice_parm {
-	unsigned short moddelay;   /* modulation delay (0x8000) */
-	unsigned short modatkhld;  /* modulation attack & hold time (0x7f7f) */
-	unsigned short moddcysus;  /* modulation decay & sustain (0x7f7f) */
-	unsigned short modrelease; /* modulation release time (0x807f) */
+	unsigned short moddelay;       /* modulation delay (0x8000) */
+	unsigned short modatkhld;      /* modulation attack & hold time (0x7f7f) */
+	unsigned short moddcysus;      /* modulation decay & sustain (0x7f7f) */
+	unsigned short modrelease;     /* modulation release time (0x807f) */
 	short modkeyhold, modkeydecay; /* envelope change per key (not used) */
 	unsigned short voldelay;       /* volume delay (0x8000) */
 	unsigned short volatkhld;      /* volume attack & hold time (0x7f7f) */
@@ -108,16 +108,16 @@ struct soundfont_voice_info {
 #define SNDRV_SFNT_MODE_NORELEASE 4 /* obsolete */
 #define SNDRV_SFNT_MODE_INIT_PARM 8
 
-	short root;		       /* midi root key */
-	short tune;		       /* pitch tuning (in cents) */
-	unsigned char low, high;       /* key note range */
-	unsigned char vellow, velhigh; /* velocity range */
-	signed char fixkey, fixvel;    /* fixed key, velocity */
-	signed char pan, fixpan;       /* panning, fixed panning */
-	short exclusiveClass;	       /* exclusive class (0 = none) */
-	unsigned char amplitude;       /* sample volume (127 max) */
-	unsigned char attenuation;     /* attenuation (0.375dB) */
-	short scaleTuning;	       /* pitch scale tuning(%), normally 100 */
+	short root;			  /* midi root key */
+	short tune;			  /* pitch tuning (in cents) */
+	unsigned char low, high;	  /* key note range */
+	unsigned char vellow, velhigh;	  /* velocity range */
+	signed char fixkey, fixvel;	  /* fixed key, velocity */
+	signed char pan, fixpan;	  /* panning, fixed panning */
+	short exclusiveClass;		  /* exclusive class (0 = none) */
+	unsigned char amplitude;	  /* sample volume (127 max) */
+	unsigned char attenuation;	  /* attenuation (0.375dB) */
+	short scaleTuning;		  /* pitch scale tuning(%), normally 100 */
 	struct soundfont_voice_parm parm; /* voice envelope parameters */
 	unsigned short sample_mode;	  /* sample mode_flag (set by driver) */
 };
@@ -154,7 +154,7 @@ struct soundfont_sample_info {
 #define SNDRV_SFNT_SAMPLE_STEREO_LEFT  32  /* stereo left sound */
 #define SNDRV_SFNT_SAMPLE_STEREO_RIGHT 64  /* stereo right sound */
 #define SNDRV_SFNT_SAMPLE_REVERSE_LOOP 128 /* reverse looping */
-	unsigned int truesize; /* used memory size (set by driver) */
+	unsigned int truesize;		   /* used memory size (set by driver) */
 };
 
 /*
@@ -181,9 +181,8 @@ struct snd_emux_misc_mode {
 	int value2; /* reserved */
 };
 
-#define SNDRV_EMUX_IOCTL_VERSION _IOR('H', 0x80, unsigned int)
-#define SNDRV_EMUX_IOCTL_LOAD_PATCH \
-	_IOWR('H', 0x81, struct soundfont_patch_info)
+#define SNDRV_EMUX_IOCTL_VERSION	     _IOR('H', 0x80, unsigned int)
+#define SNDRV_EMUX_IOCTL_LOAD_PATCH	     _IOWR('H', 0x81, struct soundfont_patch_info)
 #define SNDRV_EMUX_IOCTL_RESET_SAMPLES	     _IO('H', 0x82)
 #define SNDRV_EMUX_IOCTL_REMOVE_LAST_SAMPLES _IO('H', 0x83)
 #define SNDRV_EMUX_IOCTL_MEM_AVAIL	     _IOW('H', 0x84, int)

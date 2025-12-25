@@ -123,10 +123,7 @@ extern "C" {
  * enum drm_vmw_handle_type - handle type for ref ioctls
  *
  */
-enum drm_vmw_handle_type {
-	DRM_VMW_HANDLE_LEGACY = 0,
-	DRM_VMW_HANDLE_PRIME = 1
-};
+enum drm_vmw_handle_type { DRM_VMW_HANDLE_LEGACY = 0, DRM_VMW_HANDLE_PRIME = 1 };
 
 /**
  * struct drm_vmw_getparam_arg

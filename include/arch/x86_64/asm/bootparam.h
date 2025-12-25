@@ -155,12 +155,12 @@ struct boot_params {
 	__u8 _pad6[1];				    /* 0x1f0 */
 	struct setup_header hdr; /* setup header */ /* 0x1f1 */
 	__u8 _pad7[0x290 - 0x1f1 - sizeof(struct setup_header)];
-	__u32 edd_mbr_sig_buffer[EDD_MBR_SIG_MAX]; /* 0x290 */
+	__u32 edd_mbr_sig_buffer[EDD_MBR_SIG_MAX];		      /* 0x290 */
 	struct boot_e820_entry e820_table[E820_MAX_ENTRIES_ZEROPAGE]; /* 0x2d0
 								       */
-	__u8 _pad8[48];			  /* 0xcd0 */
-	struct edd_info eddbuf[EDDMAXNR]; /* 0xd00 */
-	__u8 _pad9[276];		  /* 0xeec */
+	__u8 _pad8[48];						      /* 0xcd0 */
+	struct edd_info eddbuf[EDDMAXNR];			      /* 0xd00 */
+	__u8 _pad9[276];					      /* 0xeec */
 } __attribute__((packed));
 
 /**

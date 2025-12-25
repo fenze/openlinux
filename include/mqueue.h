@@ -1,7 +1,9 @@
 #ifndef __MQUEUE_H
 #define __MQUEUE_H
 
+#include <stddef.h>
 #include <sys/cdefs.h>
+#include <time.h>
 
 __BEGIN_DECLS
 
@@ -39,10 +41,8 @@ mqd_t mq_open(const char *, int, ...);
 ssize_t mq_receive(mqd_t, char *, size_t, unsigned *);
 int mq_send(mqd_t, const char *, size_t, unsigned);
 int mq_setattr(mqd_t, const struct mq_attr *restrict, struct mq_attr *restrict);
-ssize_t mq_timedreceive(mqd_t, char *restrict, size_t, unsigned *restrict,
-			const struct timespec *restrict);
-int mq_timedsend(mqd_t, const char *, size_t, unsigned,
-		 const struct timespec *);
+ssize_t mq_timedreceive(mqd_t, char *restrict, size_t, unsigned *restrict, const struct timespec *restrict);
+int mq_timedsend(mqd_t, const char *, size_t, unsigned, const struct timespec *);
 int mq_unlink(const char *);
 
 __END_DECLS

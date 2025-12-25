@@ -6,8 +6,7 @@
 #include <linux/fcntl.h>
 #include <linux/ioctl.h>
 
-#define O_NOTIFICATION_PIPE \
-	O_EXCL /* Parameter to pipe2() selecting notification pipe */
+#define O_NOTIFICATION_PIPE O_EXCL /* Parameter to pipe2() selecting notification pipe */
 
 #define IOC_WATCH_QUEUE_SET_SIZE   _IO('W', 0x60) /* Set the size in pages */
 #define IOC_WATCH_QUEUE_SET_FILTER _IO('W', 0x61) /* Set the filter */
@@ -83,13 +82,13 @@ enum key_notification_subtype {
 	NOTIFY_KEY_INSTANTIATED = 0, /* Key was instantiated (aux is error code)
 				      */
 	NOTIFY_KEY_UPDATED = 1,	     /* Key was updated */
-	NOTIFY_KEY_LINKED = 2,	 /* Key (aux) was added to watched keyring */
-	NOTIFY_KEY_UNLINKED = 3, /* Key (aux) was removed from watched keyring
-				  */
-	NOTIFY_KEY_CLEARED = 4,	 /* Keyring was cleared */
-	NOTIFY_KEY_REVOKED = 5,	 /* Key was revoked */
-	NOTIFY_KEY_INVALIDATED = 6, /* Key was invalidated */
-	NOTIFY_KEY_SETATTR = 7,	    /* Key's attributes got changed */
+	NOTIFY_KEY_LINKED = 2,	     /* Key (aux) was added to watched keyring */
+	NOTIFY_KEY_UNLINKED = 3,     /* Key (aux) was removed from watched keyring
+				      */
+	NOTIFY_KEY_CLEARED = 4,	     /* Keyring was cleared */
+	NOTIFY_KEY_REVOKED = 5,	     /* Key was revoked */
+	NOTIFY_KEY_INVALIDATED = 6,  /* Key was invalidated */
+	NOTIFY_KEY_SETATTR = 7,	     /* Key's attributes got changed */
 };
 
 /*

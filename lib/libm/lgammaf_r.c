@@ -176,48 +176,32 @@ float __lgammaf_r(float x, int *signgamp)
 		switch (i) {
 		case 0:
 			z = y * y;
-			p1 = a0 +
-			     z * (a2 +
-				  z * (a4 + z * (a6 + z * (a8 + z * a10))));
-			p2 = z *
-			     (a1 +
-			      z * (a3 +
-				   z * (a5 + z * (a7 + z * (a9 + z * a11)))));
+			p1 = a0 + z * (a2 + z * (a4 + z * (a6 + z * (a8 + z * a10))));
+			p2 = z * (a1 + z * (a3 + z * (a5 + z * (a7 + z * (a9 + z * a11)))));
 			p = y * p1 + p2;
 			r += p - 0.5f * y;
 			break;
 		case 1:
 			z = y * y;
 			w = z * y;
-			p1 = t0 +
-			     w * (t3 +
-				  w * (t6 + w * (t9 + w * t12))); /* parallel
-								     comp
-								   */
+			p1 = t0 + w * (t3 + w * (t6 + w * (t9 + w * t12))); /* parallel
+									       comp
+									     */
 			p2 = t1 + w * (t4 + w * (t7 + w * (t10 + w * t13)));
 			p3 = t2 + w * (t5 + w * (t8 + w * (t11 + w * t14)));
 			p = z * p1 - (tt - w * (p2 + y * p3));
 			r += (tf + p);
 			break;
 		case 2:
-			p1 = y *
-			     (u0 +
-			      y * (u1 +
-				   y * (u2 + y * (u3 + y * (u4 + y * u5)))));
-			p2 = 1.0f +
-			     y * (v1 + y * (v2 + y * (v3 + y * (v4 + y * v5))));
+			p1 = y * (u0 + y * (u1 + y * (u2 + y * (u3 + y * (u4 + y * u5)))));
+			p2 = 1.0f + y * (v1 + y * (v2 + y * (v3 + y * (v4 + y * v5))));
 			r += -0.5f * y + p1 / p2;
 		}
 	} else if (ix < 0x41000000) { /* x < 8.0 */
 		i = (int)x;
 		y = x - (float)i;
-		p = y *
-		    (s0 +
-		     y * (s1 +
-			  y * (s2 + y * (s3 + y * (s4 + y * (s5 + y * s6))))));
-		q = 1.0f +
-		    y * (r1 +
-			 y * (r2 + y * (r3 + y * (r4 + y * (r5 + y * r6)))));
+		p = y * (s0 + y * (s1 + y * (s2 + y * (s3 + y * (s4 + y * (s5 + y * s6))))));
+		q = 1.0f + y * (r1 + y * (r2 + y * (r3 + y * (r4 + y * (r5 + y * r6)))));
 		r = 0.5f * y + p / q;
 		z = 1.0f; /* lgamma(1+s) = log(s) + lgamma(s) */
 		switch (i) {
@@ -238,9 +222,7 @@ float __lgammaf_r(float x, int *signgamp)
 		t = logf(x);
 		z = 1.0f / x;
 		y = z * z;
-		w = w0 +
-		    z * (w1 +
-			 y * (w2 + y * (w3 + y * (w4 + y * (w5 + y * w6)))));
+		w = w0 + z * (w1 + y * (w2 + y * (w3 + y * (w4 + y * (w5 + y * w6)))));
 		r = (x - 0.5f) * (t - 1.0f) + w;
 	} else /* 2**58 <= x <= inf */
 		r = x * (logf(x) - 1.0f);

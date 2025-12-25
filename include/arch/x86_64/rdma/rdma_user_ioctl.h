@@ -50,24 +50,20 @@
  */
 
 /* MAD specific section */
-#define IB_USER_MAD_REGISTER_AGENT \
-	_IOWR(RDMA_IOCTL_MAGIC, 0x01, struct ib_user_mad_reg_req)
+#define IB_USER_MAD_REGISTER_AGENT   _IOWR(RDMA_IOCTL_MAGIC, 0x01, struct ib_user_mad_reg_req)
 #define IB_USER_MAD_UNREGISTER_AGENT _IOW(RDMA_IOCTL_MAGIC, 0x02, __u32)
 #define IB_USER_MAD_ENABLE_PKEY	     _IO(RDMA_IOCTL_MAGIC, 0x03)
-#define IB_USER_MAD_REGISTER_AGENT2 \
-	_IOWR(RDMA_IOCTL_MAGIC, 0x04, struct ib_user_mad_reg_req2)
+#define IB_USER_MAD_REGISTER_AGENT2  _IOWR(RDMA_IOCTL_MAGIC, 0x04, struct ib_user_mad_reg_req2)
 
 /* HFI specific section */
 /* allocate HFI and context */
-#define HFI1_IOCTL_ASSIGN_CTXT \
-	_IOWR(RDMA_IOCTL_MAGIC, 0xE1, struct hfi1_user_info)
+#define HFI1_IOCTL_ASSIGN_CTXT _IOWR(RDMA_IOCTL_MAGIC, 0xE1, struct hfi1_user_info)
 /* find out what resources we got */
 #define HFI1_IOCTL_CTXT_INFO _IOW(RDMA_IOCTL_MAGIC, 0xE2, struct hfi1_ctxt_info)
 /* set up userspace */
 #define HFI1_IOCTL_USER_INFO _IOW(RDMA_IOCTL_MAGIC, 0xE3, struct hfi1_base_info)
 /* update expected TID entries */
-#define HFI1_IOCTL_TID_UPDATE \
-	_IOWR(RDMA_IOCTL_MAGIC, 0xE4, struct hfi1_tid_info)
+#define HFI1_IOCTL_TID_UPDATE _IOWR(RDMA_IOCTL_MAGIC, 0xE4, struct hfi1_tid_info)
 /* free expected TID entries */
 #define HFI1_IOCTL_TID_FREE _IOWR(RDMA_IOCTL_MAGIC, 0xE5, struct hfi1_tid_info)
 /* force an update of PIO credit */
@@ -83,8 +79,7 @@
 /* reset context's HW send context */
 #define HFI1_IOCTL_CTXT_RESET _IO(RDMA_IOCTL_MAGIC, 0xEC)
 /* read TID cache invalidations */
-#define HFI1_IOCTL_TID_INVAL_READ \
-	_IOWR(RDMA_IOCTL_MAGIC, 0xED, struct hfi1_tid_info)
+#define HFI1_IOCTL_TID_INVAL_READ _IOWR(RDMA_IOCTL_MAGIC, 0xED, struct hfi1_tid_info)
 /* get the version of the user cdev */
 #define HFI1_IOCTL_GET_VERS _IOR(RDMA_IOCTL_MAGIC, 0xEE, int)
 

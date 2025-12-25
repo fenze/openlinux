@@ -174,31 +174,23 @@ static __inline__ const char *nvdimm_cmd_name(unsigned cmd)
 
 #define ND_IOCTL 'N'
 
-#define ND_IOCTL_DIMM_FLAGS \
-	_IOWR(ND_IOCTL, ND_CMD_DIMM_FLAGS, struct nd_cmd_dimm_flags)
+#define ND_IOCTL_DIMM_FLAGS _IOWR(ND_IOCTL, ND_CMD_DIMM_FLAGS, struct nd_cmd_dimm_flags)
 
-#define ND_IOCTL_GET_CONFIG_SIZE \
-	_IOWR(ND_IOCTL, ND_CMD_GET_CONFIG_SIZE, struct nd_cmd_get_config_size)
+#define ND_IOCTL_GET_CONFIG_SIZE _IOWR(ND_IOCTL, ND_CMD_GET_CONFIG_SIZE, struct nd_cmd_get_config_size)
 
-#define ND_IOCTL_GET_CONFIG_DATA                \
-	_IOWR(ND_IOCTL, ND_CMD_GET_CONFIG_DATA, \
-	      struct nd_cmd_get_config_data_hdr)
+#define ND_IOCTL_GET_CONFIG_DATA _IOWR(ND_IOCTL, ND_CMD_GET_CONFIG_DATA, struct nd_cmd_get_config_data_hdr)
 
-#define ND_IOCTL_SET_CONFIG_DATA \
-	_IOWR(ND_IOCTL, ND_CMD_SET_CONFIG_DATA, struct nd_cmd_set_config_hdr)
+#define ND_IOCTL_SET_CONFIG_DATA _IOWR(ND_IOCTL, ND_CMD_SET_CONFIG_DATA, struct nd_cmd_set_config_hdr)
 
 #define ND_IOCTL_VENDOR _IOWR(ND_IOCTL, ND_CMD_VENDOR, struct nd_cmd_vendor_hdr)
 
 #define ND_IOCTL_ARS_CAP _IOWR(ND_IOCTL, ND_CMD_ARS_CAP, struct nd_cmd_ars_cap)
 
-#define ND_IOCTL_ARS_START \
-	_IOWR(ND_IOCTL, ND_CMD_ARS_START, struct nd_cmd_ars_start)
+#define ND_IOCTL_ARS_START _IOWR(ND_IOCTL, ND_CMD_ARS_START, struct nd_cmd_ars_start)
 
-#define ND_IOCTL_ARS_STATUS \
-	_IOWR(ND_IOCTL, ND_CMD_ARS_STATUS, struct nd_cmd_ars_status)
+#define ND_IOCTL_ARS_STATUS _IOWR(ND_IOCTL, ND_CMD_ARS_STATUS, struct nd_cmd_ars_status)
 
-#define ND_IOCTL_CLEAR_ERROR \
-	_IOWR(ND_IOCTL, ND_CMD_CLEAR_ERROR, struct nd_cmd_clear_error)
+#define ND_IOCTL_CLEAR_ERROR _IOWR(ND_IOCTL, ND_CMD_CLEAR_ERROR, struct nd_cmd_clear_error)
 
 #define ND_DEVICE_DIMM		 1 /* nd_dimm: container for "config data" */
 #define ND_DEVICE_REGION_PMEM	 2 /* nd_region: (parent of PMEM namespaces) */

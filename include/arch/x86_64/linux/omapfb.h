@@ -171,11 +171,7 @@ struct omapfb_color_key {
 	__u8 key_type;
 };
 
-enum omapfb_update_mode {
-	OMAPFB_UPDATE_DISABLED = 0,
-	OMAPFB_AUTO_UPDATE,
-	OMAPFB_MANUAL_UPDATE
-};
+enum omapfb_update_mode { OMAPFB_UPDATE_DISABLED = 0, OMAPFB_AUTO_UPDATE, OMAPFB_MANUAL_UPDATE };
 
 struct omapfb_memory_read {
 	__u16 x;

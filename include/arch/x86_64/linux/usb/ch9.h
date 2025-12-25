@@ -444,8 +444,7 @@ struct usb_endpoint_descriptor {
 #define USB_ENDPOINT_MAXP_MASK 0x07ff
 #define USB_EP_MAXP_MULT_SHIFT 11
 #define USB_EP_MAXP_MULT_MASK  (3 << USB_EP_MAXP_MULT_SHIFT)
-#define USB_EP_MAXP_MULT(m) \
-	(((m) & USB_EP_MAXP_MULT_MASK) >> USB_EP_MAXP_MULT_SHIFT)
+#define USB_EP_MAXP_MULT(m)    (((m) & USB_EP_MAXP_MULT_MASK) >> USB_EP_MAXP_MULT_SHIFT)
 
 /* The USB 3.0 spec redefines bits 5:4 of bmAttributes as interrupt ep type. */
 #define USB_ENDPOINT_INTRTYPE	       0x30
@@ -458,11 +457,10 @@ struct usb_endpoint_descriptor {
 #define USB_ENDPOINT_SYNC_ADAPTIVE (2 << 2)
 #define USB_ENDPOINT_SYNC_SYNC	   (3 << 2)
 
-#define USB_ENDPOINT_USAGE_MASK	    0x30
-#define USB_ENDPOINT_USAGE_DATA	    0x00
-#define USB_ENDPOINT_USAGE_FEEDBACK 0x10
-#define USB_ENDPOINT_USAGE_IMPLICIT_FB \
-	0x20 /* Implicit feedback Data endpoint */
+#define USB_ENDPOINT_USAGE_MASK	       0x30
+#define USB_ENDPOINT_USAGE_DATA	       0x00
+#define USB_ENDPOINT_USAGE_FEEDBACK    0x10
+#define USB_ENDPOINT_USAGE_IMPLICIT_FB 0x20 /* Implicit feedback Data endpoint */
 
 /*-------------------------------------------------------------------------*/
 
@@ -472,8 +470,7 @@ struct usb_endpoint_descriptor {
  *
  * Returns @epd's number: 0 to 15.
  */
-static __inline__ int
-usb_endpoint_num(const struct usb_endpoint_descriptor *epd)
+static __inline__ int usb_endpoint_num(const struct usb_endpoint_descriptor *epd)
 {
 	return epd->bEndpointAddress & USB_ENDPOINT_NUMBER_MASK;
 }
@@ -485,8 +482,7 @@ usb_endpoint_num(const struct usb_endpoint_descriptor *epd)
  * Returns one of USB_ENDPOINT_XFER_{CONTROL, ISOC, BULK, INT} according
  * to @epd's transfer type.
  */
-static __inline__ int
-usb_endpoint_type(const struct usb_endpoint_descriptor *epd)
+static __inline__ int usb_endpoint_type(const struct usb_endpoint_descriptor *epd)
 {
 	return epd->bmAttributes & USB_ENDPOINT_XFERTYPE_MASK;
 }
@@ -497,8 +493,7 @@ usb_endpoint_type(const struct usb_endpoint_descriptor *epd)
  *
  * Returns true if the endpoint is of type IN, otherwise it returns false.
  */
-static __inline__ int
-usb_endpoint_dir_in(const struct usb_endpoint_descriptor *epd)
+static __inline__ int usb_endpoint_dir_in(const struct usb_endpoint_descriptor *epd)
 {
 	return ((epd->bEndpointAddress & USB_ENDPOINT_DIR_MASK) == USB_DIR_IN);
 }
@@ -509,8 +504,7 @@ usb_endpoint_dir_in(const struct usb_endpoint_descriptor *epd)
  *
  * Returns true if the endpoint is of type OUT, otherwise it returns false.
  */
-static __inline__ int
-usb_endpoint_dir_out(const struct usb_endpoint_descriptor *epd)
+static __inline__ int usb_endpoint_dir_out(const struct usb_endpoint_descriptor *epd)
 {
 	return ((epd->bEndpointAddress & USB_ENDPOINT_DIR_MASK) == USB_DIR_OUT);
 }
@@ -521,11 +515,9 @@ usb_endpoint_dir_out(const struct usb_endpoint_descriptor *epd)
  *
  * Returns true if the endpoint is of type bulk, otherwise it returns false.
  */
-static __inline__ int
-usb_endpoint_xfer_bulk(const struct usb_endpoint_descriptor *epd)
+static __inline__ int usb_endpoint_xfer_bulk(const struct usb_endpoint_descriptor *epd)
 {
-	return ((epd->bmAttributes & USB_ENDPOINT_XFERTYPE_MASK) ==
-		USB_ENDPOINT_XFER_BULK);
+	return ((epd->bmAttributes & USB_ENDPOINT_XFERTYPE_MASK) == USB_ENDPOINT_XFER_BULK);
 }
 
 /**
@@ -534,11 +526,9 @@ usb_endpoint_xfer_bulk(const struct usb_endpoint_descriptor *epd)
  *
  * Returns true if the endpoint is of type control, otherwise it returns false.
  */
-static __inline__ int
-usb_endpoint_xfer_control(const struct usb_endpoint_descriptor *epd)
+static __inline__ int usb_endpoint_xfer_control(const struct usb_endpoint_descriptor *epd)
 {
-	return ((epd->bmAttributes & USB_ENDPOINT_XFERTYPE_MASK) ==
-		USB_ENDPOINT_XFER_CONTROL);
+	return ((epd->bmAttributes & USB_ENDPOINT_XFERTYPE_MASK) == USB_ENDPOINT_XFER_CONTROL);
 }
 
 /**
@@ -548,11 +538,9 @@ usb_endpoint_xfer_control(const struct usb_endpoint_descriptor *epd)
  * Returns true if the endpoint is of type interrupt, otherwise it returns
  * false.
  */
-static __inline__ int
-usb_endpoint_xfer_int(const struct usb_endpoint_descriptor *epd)
+static __inline__ int usb_endpoint_xfer_int(const struct usb_endpoint_descriptor *epd)
 {
-	return ((epd->bmAttributes & USB_ENDPOINT_XFERTYPE_MASK) ==
-		USB_ENDPOINT_XFER_INT);
+	return ((epd->bmAttributes & USB_ENDPOINT_XFERTYPE_MASK) == USB_ENDPOINT_XFER_INT);
 }
 
 /**
@@ -562,11 +550,9 @@ usb_endpoint_xfer_int(const struct usb_endpoint_descriptor *epd)
  * Returns true if the endpoint is of type isochronous, otherwise it returns
  * false.
  */
-static __inline__ int
-usb_endpoint_xfer_isoc(const struct usb_endpoint_descriptor *epd)
+static __inline__ int usb_endpoint_xfer_isoc(const struct usb_endpoint_descriptor *epd)
 {
-	return ((epd->bmAttributes & USB_ENDPOINT_XFERTYPE_MASK) ==
-		USB_ENDPOINT_XFER_ISOC);
+	return ((epd->bmAttributes & USB_ENDPOINT_XFERTYPE_MASK) == USB_ENDPOINT_XFER_ISOC);
 }
 
 /**
@@ -576,8 +562,7 @@ usb_endpoint_xfer_isoc(const struct usb_endpoint_descriptor *epd)
  * Returns true if the endpoint has bulk transfer type and IN direction,
  * otherwise it returns false.
  */
-static __inline__ int
-usb_endpoint_is_bulk_in(const struct usb_endpoint_descriptor *epd)
+static __inline__ int usb_endpoint_is_bulk_in(const struct usb_endpoint_descriptor *epd)
 {
 	return usb_endpoint_xfer_bulk(epd) && usb_endpoint_dir_in(epd);
 }
@@ -589,8 +574,7 @@ usb_endpoint_is_bulk_in(const struct usb_endpoint_descriptor *epd)
  * Returns true if the endpoint has bulk transfer type and OUT direction,
  * otherwise it returns false.
  */
-static __inline__ int
-usb_endpoint_is_bulk_out(const struct usb_endpoint_descriptor *epd)
+static __inline__ int usb_endpoint_is_bulk_out(const struct usb_endpoint_descriptor *epd)
 {
 	return usb_endpoint_xfer_bulk(epd) && usb_endpoint_dir_out(epd);
 }
@@ -602,8 +586,7 @@ usb_endpoint_is_bulk_out(const struct usb_endpoint_descriptor *epd)
  * Returns true if the endpoint has interrupt transfer type and IN direction,
  * otherwise it returns false.
  */
-static __inline__ int
-usb_endpoint_is_int_in(const struct usb_endpoint_descriptor *epd)
+static __inline__ int usb_endpoint_is_int_in(const struct usb_endpoint_descriptor *epd)
 {
 	return usb_endpoint_xfer_int(epd) && usb_endpoint_dir_in(epd);
 }
@@ -615,8 +598,7 @@ usb_endpoint_is_int_in(const struct usb_endpoint_descriptor *epd)
  * Returns true if the endpoint has interrupt transfer type and OUT direction,
  * otherwise it returns false.
  */
-static __inline__ int
-usb_endpoint_is_int_out(const struct usb_endpoint_descriptor *epd)
+static __inline__ int usb_endpoint_is_int_out(const struct usb_endpoint_descriptor *epd)
 {
 	return usb_endpoint_xfer_int(epd) && usb_endpoint_dir_out(epd);
 }
@@ -628,8 +610,7 @@ usb_endpoint_is_int_out(const struct usb_endpoint_descriptor *epd)
  * Returns true if the endpoint has isochronous transfer type and IN direction,
  * otherwise it returns false.
  */
-static __inline__ int
-usb_endpoint_is_isoc_in(const struct usb_endpoint_descriptor *epd)
+static __inline__ int usb_endpoint_is_isoc_in(const struct usb_endpoint_descriptor *epd)
 {
 	return usb_endpoint_xfer_isoc(epd) && usb_endpoint_dir_in(epd);
 }
@@ -641,8 +622,7 @@ usb_endpoint_is_isoc_in(const struct usb_endpoint_descriptor *epd)
  * Returns true if the endpoint has isochronous transfer type and OUT direction,
  * otherwise it returns false.
  */
-static __inline__ int
-usb_endpoint_is_isoc_out(const struct usb_endpoint_descriptor *epd)
+static __inline__ int usb_endpoint_is_isoc_out(const struct usb_endpoint_descriptor *epd)
 {
 	return usb_endpoint_xfer_isoc(epd) && usb_endpoint_dir_out(epd);
 }
@@ -653,8 +633,7 @@ usb_endpoint_is_isoc_out(const struct usb_endpoint_descriptor *epd)
  *
  * Returns @epd's max packet bits [10:0]
  */
-static __inline__ int
-usb_endpoint_maxp(const struct usb_endpoint_descriptor *epd)
+static __inline__ int usb_endpoint_maxp(const struct usb_endpoint_descriptor *epd)
 {
 	return __le16_to_cpu(epd->wMaxPacketSize) & USB_ENDPOINT_MAXP_MASK;
 }
@@ -665,16 +644,14 @@ usb_endpoint_maxp(const struct usb_endpoint_descriptor *epd)
  *
  * Return @epd's wMaxPacketSize[12:11] + 1
  */
-static __inline__ int
-usb_endpoint_maxp_mult(const struct usb_endpoint_descriptor *epd)
+static __inline__ int usb_endpoint_maxp_mult(const struct usb_endpoint_descriptor *epd)
 {
 	int maxp = __le16_to_cpu(epd->wMaxPacketSize);
 
 	return USB_EP_MAXP_MULT(maxp) + 1;
 }
 
-static __inline__ int
-usb_endpoint_interrupt_type(const struct usb_endpoint_descriptor *epd)
+static __inline__ int usb_endpoint_interrupt_type(const struct usb_endpoint_descriptor *epd)
 {
 	return epd->bmAttributes & USB_ENDPOINT_INTRTYPE;
 }
@@ -720,8 +697,7 @@ struct usb_ss_ep_comp_descriptor {
 #define USB_DT_SS_EP_COMP_SIZE 6
 
 /* Bits 4:0 of bmAttributes if this is a bulk endpoint */
-static __inline__ int
-usb_ss_max_streams(const struct usb_ss_ep_comp_descriptor *comp)
+static __inline__ int usb_ss_max_streams(const struct usb_ss_ep_comp_descriptor *comp)
 {
 	int max_streams;
 
@@ -983,8 +959,7 @@ struct usb_plat_dev_cap_descriptor {
 	__u8 CapabilityData[];
 } __attribute__((packed));
 
-#define USB_DT_USB_PLAT_DEV_CAP_SIZE(capability_data_size) \
-	(20 + capability_data_size)
+#define USB_DT_USB_PLAT_DEV_CAP_SIZE(capability_data_size) (20 + capability_data_size)
 
 /*
  * SuperSpeed Plus USB Capability descriptor: Defines the set of
@@ -1049,14 +1024,11 @@ struct usb_pd_cap_descriptor {
 	__u8 bDevCapabilityType; /* set to USB_PD_POWER_DELIVERY_CAPABILITY */
 	__u8 bReserved;
 	__le32 bmAttributes;
-#define USB_PD_CAP_BATTERY_CHARGING \
-	(1 << 1) /* supports Battery Charging specification */
-#define USB_PD_CAP_USB_PD \
-	(1 << 2) /* supports USB Power Delivery specification */
-#define USB_PD_CAP_PROVIDER (1 << 3) /* can provide power */
-#define USB_PD_CAP_CONSUMER (1 << 4) /* can consume power */
-#define USB_PD_CAP_CHARGING_POLICY \
-	(1 << 5) /* supports CHARGING_POLICY feature */
+#define USB_PD_CAP_BATTERY_CHARGING (1 << 1) /* supports Battery Charging specification */
+#define USB_PD_CAP_USB_PD	    (1 << 2) /* supports USB Power Delivery specification */
+#define USB_PD_CAP_PROVIDER	    (1 << 3) /* can provide power */
+#define USB_PD_CAP_CONSUMER	    (1 << 4) /* can consume power */
+#define USB_PD_CAP_CHARGING_POLICY  (1 << 5) /* supports CHARGING_POLICY feature */
 #define USB_PD_CAP_TYPE_C_CURRENT                                         \
 	(1 << 6) /* supports power capabilities defined in the USB Type-C \
 		    Specification */
@@ -1116,8 +1088,8 @@ struct usb_pd_cap_consumer_port_descriptor {
 	__le16 wMaxVoltage;		    /* in 50mV units */
 	__u16 wReserved;
 	__le32 dwMaxOperatingPower; /* in 10 mW - operating at steady state */
-	__le32 dwMaxPeakPower;	   /* in 10mW units - operating at peak power */
-	__le32 dwMaxPeakPowerTime; /* in 100ms units - duration of peak */
+	__le32 dwMaxPeakPower;	    /* in 10mW units - operating at peak power */
+	__le32 dwMaxPeakPowerTime;  /* in 100ms units - duration of peak */
 #define USB_PD_CAP_CONSUMER_UNKNOWN_PEAK_POWER_TIME 0xffff
 } __attribute__((packed));
 

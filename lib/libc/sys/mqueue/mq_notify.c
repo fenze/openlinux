@@ -1,3 +1,4 @@
+#include "stddef.h"
 #include <errno.h>
 #include <mqueue.h>
 #include <signal.h>

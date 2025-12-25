@@ -145,11 +145,7 @@ struct rdma_ucm_resolve_route {
 	__u32 timeout_ms;
 };
 
-enum {
-	RDMA_USER_CM_QUERY_ADDR,
-	RDMA_USER_CM_QUERY_PATH,
-	RDMA_USER_CM_QUERY_GID
-};
+enum { RDMA_USER_CM_QUERY_ADDR, RDMA_USER_CM_QUERY_PATH, RDMA_USER_CM_QUERY_GID };
 
 struct rdma_ucm_query {
 	__aligned_u64 response;

@@ -146,11 +146,10 @@ struct uinput_abs_setup {
 #define UI_SET_SWBIT   _IOW(UINPUT_IOCTL_BASE, 109, int)
 #define UI_SET_PROPBIT _IOW(UINPUT_IOCTL_BASE, 110, int)
 
-#define UI_BEGIN_FF_UPLOAD \
-	_IOWR(UINPUT_IOCTL_BASE, 200, struct uinput_ff_upload)
-#define UI_END_FF_UPLOAD  _IOW(UINPUT_IOCTL_BASE, 201, struct uinput_ff_upload)
-#define UI_BEGIN_FF_ERASE _IOWR(UINPUT_IOCTL_BASE, 202, struct uinput_ff_erase)
-#define UI_END_FF_ERASE	  _IOW(UINPUT_IOCTL_BASE, 203, struct uinput_ff_erase)
+#define UI_BEGIN_FF_UPLOAD _IOWR(UINPUT_IOCTL_BASE, 200, struct uinput_ff_upload)
+#define UI_END_FF_UPLOAD   _IOW(UINPUT_IOCTL_BASE, 201, struct uinput_ff_upload)
+#define UI_BEGIN_FF_ERASE  _IOWR(UINPUT_IOCTL_BASE, 202, struct uinput_ff_erase)
+#define UI_END_FF_ERASE	   _IOW(UINPUT_IOCTL_BASE, 203, struct uinput_ff_erase)
 
 /**
  * UI_GET_SYSNAME - get the sysfs name of the created uinput device

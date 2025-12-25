@@ -1,5 +1,3 @@
-
-
 #include <stdarg.h>  // for va_arg, va_end, va_list, va_start
 #include <stddef.h>  // for NULL
 #include <sys/ipc.h> // for IPC_SET, IPC_STAT
@@ -20,6 +18,8 @@ int semctl(int semid, int semnum, int cmd, ...)
 		va_start(ap, cmd);
 		buf = va_arg(ap, struct semid_ds *);
 		va_end(ap);
+	default:
+		break;
 	}
 
 	return syscall(semctl, semid, semnum, cmd, buf);

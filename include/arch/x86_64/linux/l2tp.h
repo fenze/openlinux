@@ -29,8 +29,7 @@ struct sockaddr_l2tpip {
 	__u32 l2tp_conn_id; /* Connection ID of tunnel */
 
 	/* Pad to size of `struct sockaddr'. */
-	unsigned char __pad[__SOCK_SIZE__ - sizeof(__kernel_sa_family_t) -
-			    sizeof(__be16) - sizeof(struct in_addr) -
+	unsigned char __pad[__SOCK_SIZE__ - sizeof(__kernel_sa_family_t) - sizeof(__be16) - sizeof(struct in_addr) -
 			    sizeof(__u32)];
 };
 

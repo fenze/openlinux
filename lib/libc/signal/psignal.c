@@ -4,6 +4,5 @@
 
 void psignal(int signum, const char *message)
 {
-	fprintf(stderr, "%s%s%s\n", message ? message : "", message ? ": " : "",
-		strsignal(signum));
+	fprintf(stderr, "%s%s%s\n", message ? message : "", message ? ": " : "", strsignal(signum));
 }

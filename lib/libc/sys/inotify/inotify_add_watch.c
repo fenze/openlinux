@@ -1,3 +1,4 @@
+#include <stdint.h>
 #include <sys/inotify.h>
 #include <syscall.h>
 

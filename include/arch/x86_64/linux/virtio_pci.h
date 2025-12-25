@@ -310,8 +310,7 @@ struct virtio_admin_cmd_notify_info_data {
 };
 
 struct virtio_admin_cmd_notify_info_result {
-	struct virtio_admin_cmd_notify_info_data
-		entries[VIRTIO_ADMIN_CMD_MAX_NOTIFY_INFO];
+	struct virtio_admin_cmd_notify_info_data entries[VIRTIO_ADMIN_CMD_MAX_NOTIFY_INFO];
 };
 
 #define VIRTIO_DEV_PARTS_CAP 0x0000

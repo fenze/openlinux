@@ -103,7 +103,6 @@ struct j1939_filter {
 	__u8 addr_mask;
 };
 
-#define J1939_FILTER_MAX \
-	512 /* maximum number of j1939_filter set via setsockopt() */
+#define J1939_FILTER_MAX 512 /* maximum number of j1939_filter set via setsockopt() */
 
 #endif /* !_UAPI_CAN_J1939_H_ */

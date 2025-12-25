@@ -375,10 +375,8 @@ struct usb_cdc_ncm_nth32 {
 #define USB_CDC_NCM_NDP32_CRC_SIGN   0x316D636E /* ncm1 */
 #define USB_CDC_NCM_NDP32_NOCRC_SIGN 0x306D636E /* ncm0 */
 
-#define USB_CDC_MBIM_NDP16_IPS_SIGN \
-	0x00535049 /* IPS<sessionID> : IPS0 for now */
-#define USB_CDC_MBIM_NDP32_IPS_SIGN \
-	0x00737069 /* ips<sessionID> : ips0 for now */
+#define USB_CDC_MBIM_NDP16_IPS_SIGN 0x00535049 /* IPS<sessionID> : IPS0 for now */
+#define USB_CDC_MBIM_NDP32_IPS_SIGN 0x00737069 /* ips<sessionID> : ips0 for now */
 #define USB_CDC_MBIM_NDP16_DSS_SIGN 0x00535344 /* DSS<sessionID> */
 #define USB_CDC_MBIM_NDP32_DSS_SIGN 0x00737364 /* dss<sessionID> */
 

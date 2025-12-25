@@ -3,7 +3,7 @@
 #include <time.h>
 
 extern void __libc_init_vdso(void);
-void *__libc_force_vdso_init = (void *) __libc_init_vdso;
+void *__libc_force_vdso_init = (void *)__libc_init_vdso;
 
 int clock_gettime(clockid_t clock_id, struct timespec *tp)
 {

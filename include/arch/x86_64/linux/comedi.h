@@ -53,10 +53,8 @@
 
 /* packs and unpacks a channel/range number */
 
-#define CR_PACK(chan, rng, aref) \
-	((((aref) & 0x3) << 24) | (((rng) & 0xff) << 16) | (chan))
-#define CR_PACK_FLAGS(chan, range, aref, flags) \
-	(CR_PACK(chan, range, aref) | ((flags) & CR_FLAGS_MASK))
+#define CR_PACK(chan, rng, aref)		((((aref) & 0x3) << 24) | (((rng) & 0xff) << 16) | (chan))
+#define CR_PACK_FLAGS(chan, range, aref, flags) (CR_PACK(chan, range, aref) | ((flags) & CR_FLAGS_MASK))
 
 #define CR_CHAN(a)  ((a) & 0xffff)
 #define CR_RANGE(a) (((a) >> 16) & 0xff)
@@ -246,11 +244,7 @@ enum comedi_subdevice_type {
  * report a direction.  They may also be used in other places where a direction
  * needs to be specified.
  */
-enum comedi_io_direction {
-	COMEDI_INPUT = 0,
-	COMEDI_OUTPUT = 1,
-	COMEDI_OPENDRAIN = 2
-};
+enum comedi_io_direction { COMEDI_INPUT = 0, COMEDI_OUTPUT = 1, COMEDI_OPENDRAIN = 2 };
 
 /**
  * enum configuration_ids - COMEDI configuration instruction codes
@@ -430,11 +424,7 @@ enum comedi_digital_trig_op {
  * @COMEDI_SUPPORTED:		Feature is supported.
  * @COMEDI_UNSUPPORTED:		Feature is unsupported.
  */
-enum comedi_support_level {
-	COMEDI_UNKNOWN_SUPPORT = 0,
-	COMEDI_SUPPORTED,
-	COMEDI_UNSUPPORTED
-};
+enum comedi_support_level { COMEDI_UNKNOWN_SUPPORT = 0, COMEDI_SUPPORTED, COMEDI_UNSUPPORTED };
 
 /**
  * enum comedi_counter_status_flags - counter status bits
@@ -1030,8 +1020,7 @@ enum i8254_mode {
 #define NI_CtrZ(x)		 _TERM_N(NI_CtrB(-1) + 1, NI_MAX_COUNTERS, x)
 #define NI_GATES_NAMES_MAX	 NI_CtrZ(-1)
 #define NI_CtrArmStartTrigger(x) _TERM_N(NI_CtrZ(-1) + 1, NI_MAX_COUNTERS, x)
-#define NI_CtrInternalOutput(x) \
-	_TERM_N(NI_CtrArmStartTrigger(-1) + 1, NI_MAX_COUNTERS, x)
+#define NI_CtrInternalOutput(x)	 _TERM_N(NI_CtrArmStartTrigger(-1) + 1, NI_MAX_COUNTERS, x)
 /** external pin(s) labeled conveniently as Ctr<i>Out. */
 #define NI_CtrOut(x) _TERM_N(NI_CtrInternalOutput(-1) + 1, NI_MAX_COUNTERS, x)
 /** For Buffered sampling of ctr -- x series capability. */
@@ -1138,36 +1127,22 @@ enum ni_gpct_mode_bits {
 	NI_GPCT_LOADING_ON_GATE_BIT = 0x4000,
 	NI_GPCT_COUNTING_MODE_MASK = 0x7 << NI_GPCT_COUNTING_MODE_SHIFT,
 	NI_GPCT_COUNTING_MODE_NORMAL_BITS = 0x0 << NI_GPCT_COUNTING_MODE_SHIFT,
-	NI_GPCT_COUNTING_MODE_QUADRATURE_X1_BITS =
-		0x1 << NI_GPCT_COUNTING_MODE_SHIFT,
-	NI_GPCT_COUNTING_MODE_QUADRATURE_X2_BITS =
-		0x2 << NI_GPCT_COUNTING_MODE_SHIFT,
-	NI_GPCT_COUNTING_MODE_QUADRATURE_X4_BITS =
-		0x3 << NI_GPCT_COUNTING_MODE_SHIFT,
-	NI_GPCT_COUNTING_MODE_TWO_PULSE_BITS = 0x4
-					       << NI_GPCT_COUNTING_MODE_SHIFT,
-	NI_GPCT_COUNTING_MODE_SYNC_SOURCE_BITS = 0x6
-						 << NI_GPCT_COUNTING_MODE_SHIFT,
+	NI_GPCT_COUNTING_MODE_QUADRATURE_X1_BITS = 0x1 << NI_GPCT_COUNTING_MODE_SHIFT,
+	NI_GPCT_COUNTING_MODE_QUADRATURE_X2_BITS = 0x2 << NI_GPCT_COUNTING_MODE_SHIFT,
+	NI_GPCT_COUNTING_MODE_QUADRATURE_X4_BITS = 0x3 << NI_GPCT_COUNTING_MODE_SHIFT,
+	NI_GPCT_COUNTING_MODE_TWO_PULSE_BITS = 0x4 << NI_GPCT_COUNTING_MODE_SHIFT,
+	NI_GPCT_COUNTING_MODE_SYNC_SOURCE_BITS = 0x6 << NI_GPCT_COUNTING_MODE_SHIFT,
 	NI_GPCT_INDEX_PHASE_MASK = 0x3 << NI_GPCT_INDEX_PHASE_BITSHIFT,
-	NI_GPCT_INDEX_PHASE_LOW_A_LOW_B_BITS = 0x0
-					       << NI_GPCT_INDEX_PHASE_BITSHIFT,
-	NI_GPCT_INDEX_PHASE_LOW_A_HIGH_B_BITS = 0x1
-						<< NI_GPCT_INDEX_PHASE_BITSHIFT,
-	NI_GPCT_INDEX_PHASE_HIGH_A_LOW_B_BITS = 0x2
-						<< NI_GPCT_INDEX_PHASE_BITSHIFT,
-	NI_GPCT_INDEX_PHASE_HIGH_A_HIGH_B_BITS =
-		0x3 << NI_GPCT_INDEX_PHASE_BITSHIFT,
+	NI_GPCT_INDEX_PHASE_LOW_A_LOW_B_BITS = 0x0 << NI_GPCT_INDEX_PHASE_BITSHIFT,
+	NI_GPCT_INDEX_PHASE_LOW_A_HIGH_B_BITS = 0x1 << NI_GPCT_INDEX_PHASE_BITSHIFT,
+	NI_GPCT_INDEX_PHASE_HIGH_A_LOW_B_BITS = 0x2 << NI_GPCT_INDEX_PHASE_BITSHIFT,
+	NI_GPCT_INDEX_PHASE_HIGH_A_HIGH_B_BITS = 0x3 << NI_GPCT_INDEX_PHASE_BITSHIFT,
 	NI_GPCT_INDEX_ENABLE_BIT = 0x400000,
-	NI_GPCT_COUNTING_DIRECTION_MASK = 0x3
-					  << NI_GPCT_COUNTING_DIRECTION_SHIFT,
-	NI_GPCT_COUNTING_DIRECTION_DOWN_BITS =
-		0x00 << NI_GPCT_COUNTING_DIRECTION_SHIFT,
-	NI_GPCT_COUNTING_DIRECTION_UP_BITS =
-		0x1 << NI_GPCT_COUNTING_DIRECTION_SHIFT,
-	NI_GPCT_COUNTING_DIRECTION_HW_UP_DOWN_BITS =
-		0x2 << NI_GPCT_COUNTING_DIRECTION_SHIFT,
-	NI_GPCT_COUNTING_DIRECTION_HW_GATE_BITS =
-		0x3 << NI_GPCT_COUNTING_DIRECTION_SHIFT,
+	NI_GPCT_COUNTING_DIRECTION_MASK = 0x3 << NI_GPCT_COUNTING_DIRECTION_SHIFT,
+	NI_GPCT_COUNTING_DIRECTION_DOWN_BITS = 0x00 << NI_GPCT_COUNTING_DIRECTION_SHIFT,
+	NI_GPCT_COUNTING_DIRECTION_UP_BITS = 0x1 << NI_GPCT_COUNTING_DIRECTION_SHIFT,
+	NI_GPCT_COUNTING_DIRECTION_HW_UP_DOWN_BITS = 0x2 << NI_GPCT_COUNTING_DIRECTION_SHIFT,
+	NI_GPCT_COUNTING_DIRECTION_HW_GATE_BITS = 0x3 << NI_GPCT_COUNTING_DIRECTION_SHIFT,
 	NI_GPCT_RELOAD_SOURCE_MASK = 0xc000000,
 	NI_GPCT_RELOAD_SOURCE_FIXED_BITS = 0x0,
 	NI_GPCT_RELOAD_SOURCE_SWITCHING_BITS = 0x4000000,
@@ -1248,11 +1223,7 @@ enum ni_gpct_gate_select {
  * Possibilities for setting a source with
  * INSN_CONFIG_SET_OTHER_SRC when using NI general-purpose counters.
  */
-enum ni_gpct_other_index {
-	NI_GPCT_SOURCE_ENCODER_A,
-	NI_GPCT_SOURCE_ENCODER_B,
-	NI_GPCT_SOURCE_ENCODER_Z
-};
+enum ni_gpct_other_index { NI_GPCT_SOURCE_ENCODER_A, NI_GPCT_SOURCE_ENCODER_B, NI_GPCT_SOURCE_ENCODER_Z };
 
 enum ni_gpct_other_select {
 	/* m-series gates */

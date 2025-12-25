@@ -532,61 +532,46 @@ union fw_cdev_event {
 	struct fw_cdev_event_iso_interrupt iso_interrupt;
 	struct fw_cdev_event_iso_interrupt_mc iso_interrupt_mc; /* added
 								   in 2.6.36 */
-	struct fw_cdev_event_iso_resource iso_resource; /* added in 2.6.30 */
-	struct fw_cdev_event_phy_packet phy_packet;	/* added in 2.6.36 */
-	struct fw_cdev_event_request3 request3;		/* added in 6.5 */
-	struct fw_cdev_event_response2 response2;	/* added in 6.5 */
-	struct fw_cdev_event_phy_packet2 phy_packet2;	/* added in 6.5 */
+	struct fw_cdev_event_iso_resource iso_resource;		/* added in 2.6.30 */
+	struct fw_cdev_event_phy_packet phy_packet;		/* added in 2.6.36 */
+	struct fw_cdev_event_request3 request3;			/* added in 6.5 */
+	struct fw_cdev_event_response2 response2;		/* added in 6.5 */
+	struct fw_cdev_event_phy_packet2 phy_packet2;		/* added in 6.5 */
 };
 
 /* available since kernel version 2.6.22 */
-#define FW_CDEV_IOC_GET_INFO	  _IOWR('#', 0x00, struct fw_cdev_get_info)
-#define FW_CDEV_IOC_SEND_REQUEST  _IOW('#', 0x01, struct fw_cdev_send_request)
-#define FW_CDEV_IOC_ALLOCATE	  _IOWR('#', 0x02, struct fw_cdev_allocate)
-#define FW_CDEV_IOC_DEALLOCATE	  _IOW('#', 0x03, struct fw_cdev_deallocate)
-#define FW_CDEV_IOC_SEND_RESPONSE _IOW('#', 0x04, struct fw_cdev_send_response)
-#define FW_CDEV_IOC_INITIATE_BUS_RESET \
-	_IOW('#', 0x05, struct fw_cdev_initiate_bus_reset)
-#define FW_CDEV_IOC_ADD_DESCRIPTOR \
-	_IOWR('#', 0x06, struct fw_cdev_add_descriptor)
-#define FW_CDEV_IOC_REMOVE_DESCRIPTOR \
-	_IOW('#', 0x07, struct fw_cdev_remove_descriptor)
-#define FW_CDEV_IOC_CREATE_ISO_CONTEXT \
-	_IOWR('#', 0x08, struct fw_cdev_create_iso_context)
-#define FW_CDEV_IOC_QUEUE_ISO _IOWR('#', 0x09, struct fw_cdev_queue_iso)
-#define FW_CDEV_IOC_START_ISO _IOW('#', 0x0a, struct fw_cdev_start_iso)
-#define FW_CDEV_IOC_STOP_ISO  _IOW('#', 0x0b, struct fw_cdev_stop_iso)
+#define FW_CDEV_IOC_GET_INFO	       _IOWR('#', 0x00, struct fw_cdev_get_info)
+#define FW_CDEV_IOC_SEND_REQUEST       _IOW('#', 0x01, struct fw_cdev_send_request)
+#define FW_CDEV_IOC_ALLOCATE	       _IOWR('#', 0x02, struct fw_cdev_allocate)
+#define FW_CDEV_IOC_DEALLOCATE	       _IOW('#', 0x03, struct fw_cdev_deallocate)
+#define FW_CDEV_IOC_SEND_RESPONSE      _IOW('#', 0x04, struct fw_cdev_send_response)
+#define FW_CDEV_IOC_INITIATE_BUS_RESET _IOW('#', 0x05, struct fw_cdev_initiate_bus_reset)
+#define FW_CDEV_IOC_ADD_DESCRIPTOR     _IOWR('#', 0x06, struct fw_cdev_add_descriptor)
+#define FW_CDEV_IOC_REMOVE_DESCRIPTOR  _IOW('#', 0x07, struct fw_cdev_remove_descriptor)
+#define FW_CDEV_IOC_CREATE_ISO_CONTEXT _IOWR('#', 0x08, struct fw_cdev_create_iso_context)
+#define FW_CDEV_IOC_QUEUE_ISO	       _IOWR('#', 0x09, struct fw_cdev_queue_iso)
+#define FW_CDEV_IOC_START_ISO	       _IOW('#', 0x0a, struct fw_cdev_start_iso)
+#define FW_CDEV_IOC_STOP_ISO	       _IOW('#', 0x0b, struct fw_cdev_stop_iso)
 
 /* available since kernel version 2.6.24 */
-#define FW_CDEV_IOC_GET_CYCLE_TIMER \
-	_IOR('#', 0x0c, struct fw_cdev_get_cycle_timer)
+#define FW_CDEV_IOC_GET_CYCLE_TIMER _IOR('#', 0x0c, struct fw_cdev_get_cycle_timer)
 
 /* available since kernel version 2.6.30 */
-#define FW_CDEV_IOC_ALLOCATE_ISO_RESOURCE \
-	_IOWR('#', 0x0d, struct fw_cdev_allocate_iso_resource)
-#define FW_CDEV_IOC_DEALLOCATE_ISO_RESOURCE \
-	_IOW('#', 0x0e, struct fw_cdev_deallocate)
-#define FW_CDEV_IOC_ALLOCATE_ISO_RESOURCE_ONCE \
-	_IOW('#', 0x0f, struct fw_cdev_allocate_iso_resource)
-#define FW_CDEV_IOC_DEALLOCATE_ISO_RESOURCE_ONCE \
-	_IOW('#', 0x10, struct fw_cdev_allocate_iso_resource)
-#define FW_CDEV_IOC_GET_SPEED _IO('#', 0x11) /* returns speed code */
-#define FW_CDEV_IOC_SEND_BROADCAST_REQUEST \
-	_IOW('#', 0x12, struct fw_cdev_send_request)
-#define FW_CDEV_IOC_SEND_STREAM_PACKET \
-	_IOW('#', 0x13, struct fw_cdev_send_stream_packet)
+#define FW_CDEV_IOC_ALLOCATE_ISO_RESOURCE	 _IOWR('#', 0x0d, struct fw_cdev_allocate_iso_resource)
+#define FW_CDEV_IOC_DEALLOCATE_ISO_RESOURCE	 _IOW('#', 0x0e, struct fw_cdev_deallocate)
+#define FW_CDEV_IOC_ALLOCATE_ISO_RESOURCE_ONCE	 _IOW('#', 0x0f, struct fw_cdev_allocate_iso_resource)
+#define FW_CDEV_IOC_DEALLOCATE_ISO_RESOURCE_ONCE _IOW('#', 0x10, struct fw_cdev_allocate_iso_resource)
+#define FW_CDEV_IOC_GET_SPEED			 _IO('#', 0x11) /* returns speed code */
+#define FW_CDEV_IOC_SEND_BROADCAST_REQUEST	 _IOW('#', 0x12, struct fw_cdev_send_request)
+#define FW_CDEV_IOC_SEND_STREAM_PACKET		 _IOW('#', 0x13, struct fw_cdev_send_stream_packet)
 
 /* available since kernel version 2.6.34 */
-#define FW_CDEV_IOC_GET_CYCLE_TIMER2 \
-	_IOWR('#', 0x14, struct fw_cdev_get_cycle_timer2)
+#define FW_CDEV_IOC_GET_CYCLE_TIMER2 _IOWR('#', 0x14, struct fw_cdev_get_cycle_timer2)
 
 /* available since kernel version 2.6.36 */
-#define FW_CDEV_IOC_SEND_PHY_PACKET \
-	_IOWR('#', 0x15, struct fw_cdev_send_phy_packet)
-#define FW_CDEV_IOC_RECEIVE_PHY_PACKETS \
-	_IOW('#', 0x16, struct fw_cdev_receive_phy_packets)
-#define FW_CDEV_IOC_SET_ISO_CHANNELS \
-	_IOW('#', 0x17, struct fw_cdev_set_iso_channels)
+#define FW_CDEV_IOC_SEND_PHY_PACKET	_IOWR('#', 0x15, struct fw_cdev_send_phy_packet)
+#define FW_CDEV_IOC_RECEIVE_PHY_PACKETS _IOW('#', 0x16, struct fw_cdev_receive_phy_packets)
+#define FW_CDEV_IOC_SET_ISO_CHANNELS	_IOW('#', 0x17, struct fw_cdev_set_iso_channels)
 
 /* available since kernel version 3.4 */
 #define FW_CDEV_IOC_FLUSH_ISO _IOW('#', 0x18, struct fw_cdev_flush_iso)

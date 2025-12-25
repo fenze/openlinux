@@ -622,21 +622,18 @@
 #define KEY_ASSISTANT	    0x247 /* AL Context-aware desktop assistant */
 #define KEY_KBD_LAYOUT_NEXT 0x248 /* AC Next Keyboard Layout Select */
 #define KEY_EMOJI_PICKER    0x249 /* Show/hide emoji picker (HUTRR101) */
-#define KEY_DICTATE                                              \
-	0x24a /* Start or Stop Voice Dictation Session (HUTRR99) \
-	       */
-#define KEY_CAMERA_ACCESS_ENABLE \
-	0x24b /* Enables programmatic access to camera devices. (HUTRR72) */
-#define KEY_CAMERA_ACCESS_DISABLE \
-	0x24c /* Disables programmatic access to camera devices. (HUTRR72) */
+#define KEY_DICTATE                                                                        \
+	0x24a				/* Start or Stop Voice Dictation Session (HUTRR99) \
+					 */
+#define KEY_CAMERA_ACCESS_ENABLE  0x24b /* Enables programmatic access to camera devices. (HUTRR72) */
+#define KEY_CAMERA_ACCESS_DISABLE 0x24c /* Disables programmatic access to camera devices. (HUTRR72) */
 #define KEY_CAMERA_ACCESS_TOGGLE                                         \
 	0x24d /* Toggles the current state of the camera access control. \
 		 (HUTRR72) */
-#define KEY_ACCESSIBILITY                                                     \
-	0x24e /* Toggles the system bound accessibility UI/command (HUTRR116) \
-	       */
-#define KEY_DO_NOT_DISTURB \
-	0x24f /* Toggles the system-wide "Do Not Disturb" control (HUTRR94)*/
+#define KEY_ACCESSIBILITY                                                                        \
+	0x24e			 /* Toggles the system bound accessibility UI/command (HUTRR116) \
+				  */
+#define KEY_DO_NOT_DISTURB 0x24f /* Toggles the system-wide "Do Not Disturb" control (HUTRR94)*/
 
 #define KEY_BRIGHTNESS_MIN 0x250 /* Set Brightness to Minimum */
 #define KEY_BRIGHTNESS_MAX 0x251 /* Set Brightness to Maximum */
@@ -928,9 +925,9 @@
 #define SW_LID		    0x00 /* set = lid shut */
 #define SW_TABLET_MODE	    0x01 /* set = tablet mode */
 #define SW_HEADPHONE_INSERT 0x02 /* set = inserted */
-#define SW_RFKILL_ALL                            \
-	0x03 /* rfkill master switch, type "any" \
-		set = radio enabled */
+#define SW_RFKILL_ALL                                                             \
+	0x03				      /* rfkill master switch, type "any" \
+						 set = radio enabled */
 #define SW_RADIO		SW_RFKILL_ALL /* deprecated */
 #define SW_MICROPHONE_INSERT	0x04	      /* set = inserted */
 #define SW_DOCK			0x05	      /* set = plugged into dock */
@@ -939,13 +936,13 @@
 #define SW_VIDEOOUT_INSERT	0x08	      /* set = inserted */
 #define SW_CAMERA_LENS_COVER	0x09	      /* set = lens covered */
 #define SW_KEYPAD_SLIDE		0x0a	      /* set = keypad slide out */
-#define SW_FRONT_PROXIMITY	0x0b /* set = front proximity sensor active */
-#define SW_ROTATE_LOCK		0x0c /* set = rotate locked/disabled */
-#define SW_LINEIN_INSERT	0x0d /* set = inserted */
-#define SW_MUTE_DEVICE		0x0e /* set = device disabled */
-#define SW_PEN_INSERTED		0x0f /* set = pen inserted */
-#define SW_MACHINE_COVER	0x10 /* set = cover closed */
-#define SW_USB_INSERT		0x11 /* set = USB audio device connected */
+#define SW_FRONT_PROXIMITY	0x0b	      /* set = front proximity sensor active */
+#define SW_ROTATE_LOCK		0x0c	      /* set = rotate locked/disabled */
+#define SW_LINEIN_INSERT	0x0d	      /* set = inserted */
+#define SW_MUTE_DEVICE		0x0e	      /* set = device disabled */
+#define SW_PEN_INSERTED		0x0f	      /* set = pen inserted */
+#define SW_MACHINE_COVER	0x10	      /* set = cover closed */
+#define SW_USB_INSERT		0x11	      /* set = USB audio device connected */
 #define SW_MAX			0x11
 #define SW_CNT			(SW_MAX + 1)
 

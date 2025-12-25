@@ -23,8 +23,7 @@
  */
 
 struct input_event {
-#if (__BITS_PER_LONG != 32 || !defined(__USE_TIME_BITS64)) && \
-	!defined(__KERNEL__)
+#if (__BITS_PER_LONG != 32 || !defined(__USE_TIME_BITS64)) && !defined(__KERNEL__)
 	struct timeval time;
 #define input_event_sec	 time.tv_sec
 #define input_event_usec time.tv_usec
@@ -138,12 +137,9 @@ struct input_mask {
 #define EVIOCSKEYCODE_V2 _IOW('E', 0x04, struct input_keymap_entry)
 
 #define EVIOCGNAME(len) _IOC(_IOC_READ, 'E', 0x06, len) /* get device name */
-#define EVIOCGPHYS(len) \
-	_IOC(_IOC_READ, 'E', 0x07, len) /* get physical location */
-#define EVIOCGUNIQ(len) \
-	_IOC(_IOC_READ, 'E', 0x08, len) /* get unique identifier */
-#define EVIOCGPROP(len) \
-	_IOC(_IOC_READ, 'E', 0x09, len) /* get device properties */
+#define EVIOCGPHYS(len) _IOC(_IOC_READ, 'E', 0x07, len) /* get physical location */
+#define EVIOCGUNIQ(len) _IOC(_IOC_READ, 'E', 0x08, len) /* get unique identifier */
+#define EVIOCGPROP(len) _IOC(_IOC_READ, 'E', 0x09, len) /* get device properties */
 
 /**
  * EVIOCGMTSLOTS(len) - get MT slot values
@@ -171,16 +167,12 @@ struct input_mask {
  */
 #define EVIOCGMTSLOTS(len) _IOC(_IOC_READ, 'E', 0x0a, len)
 
-#define EVIOCGKEY(len) \
-	_IOC(_IOC_READ, 'E', 0x18, len) /* get global key state */
+#define EVIOCGKEY(len) _IOC(_IOC_READ, 'E', 0x18, len) /* get global key state */
 #define EVIOCGLED(len) _IOC(_IOC_READ, 'E', 0x19, len) /* get all LEDs */
-#define EVIOCGSND(len) \
-	_IOC(_IOC_READ, 'E', 0x1a, len) /* get all sounds status */
-#define EVIOCGSW(len) \
-	_IOC(_IOC_READ, 'E', 0x1b, len) /* get all switch states */
+#define EVIOCGSND(len) _IOC(_IOC_READ, 'E', 0x1a, len) /* get all sounds status */
+#define EVIOCGSW(len)  _IOC(_IOC_READ, 'E', 0x1b, len) /* get all switch states */
 
-#define EVIOCGBIT(ev, len) \
-	_IOC(_IOC_READ, 'E', 0x20 + (ev), len) /* get event bits */
+#define EVIOCGBIT(ev, len) _IOC(_IOC_READ, 'E', 0x20 + (ev), len) /* get event bits */
 #define EVIOCGABS(abs)                                                        \
 	_IOR('E', 0x40 + (abs), struct input_absinfo) /* get abs value/limits \
 						       */
@@ -253,8 +245,7 @@ struct input_mask {
  */
 #define EVIOCSMASK _IOW('E', 0x93, struct input_mask) /* Set event-masks */
 
-#define EVIOCSCLOCKID \
-	_IOW('E', 0xa0, int) /* Set clockid to be used for timestamps */
+#define EVIOCSCLOCKID _IOW('E', 0xa0, int) /* Set clockid to be used for timestamps */
 
 /*
  * IDs.

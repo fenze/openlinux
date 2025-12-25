@@ -23,9 +23,9 @@
 	(MRT_BASE + 3)		   /* Delete a virtual interface \
 				    */
 #define MRT_ADD_MFC (MRT_BASE + 4) /* Add a multicast forwarding entry	*/
-#define MRT_DEL_MFC                                           \
-	(MRT_BASE + 5) /* Delete a multicast forwarding entry \
-			*/
+#define MRT_DEL_MFC                                                              \
+	(MRT_BASE + 5)			  /* Delete a multicast forwarding entry \
+					   */
 #define MRT_VERSION	  (MRT_BASE + 6)  /* Get the kernel multicast version	*/
 #define MRT_ASSERT	  (MRT_BASE + 7)  /* Activate PIM assert mode		*/
 #define MRT_PIM		  (MRT_BASE + 8)  /* enable PIM code			*/

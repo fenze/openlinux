@@ -87,8 +87,7 @@ struct tee_ioctl_version_data {
  * Takes a tee_ioctl_version_data struct and returns with the TEE version
  * data filled in.
  */
-#define TEE_IOC_VERSION \
-	_IOR(TEE_IOC_MAGIC, TEE_IOC_BASE + 0, struct tee_ioctl_version_data)
+#define TEE_IOC_VERSION _IOR(TEE_IOC_MAGIC, TEE_IOC_BASE + 0, struct tee_ioctl_version_data)
 
 /**
  * struct tee_ioctl_shm_alloc_data - Shared memory allocate argument
@@ -117,8 +116,7 @@ struct tee_ioctl_shm_alloc_data {
  * space. The shared memory is freed when the descriptor is closed and the
  * memory is unmapped.
  */
-#define TEE_IOC_SHM_ALLOC \
-	_IOWR(TEE_IOC_MAGIC, TEE_IOC_BASE + 1, struct tee_ioctl_shm_alloc_data)
+#define TEE_IOC_SHM_ALLOC _IOWR(TEE_IOC_MAGIC, TEE_IOC_BASE + 1, struct tee_ioctl_shm_alloc_data)
 
 /**
  * struct tee_ioctl_buf_data - Variable sized buffer
@@ -162,8 +160,7 @@ struct tee_ioctl_buf_data {
 #define TEE_IOCTL_PARAM_ATTR_META 0x100
 
 /* Mask of all known attr bits */
-#define TEE_IOCTL_PARAM_ATTR_MASK \
-	(TEE_IOCTL_PARAM_ATTR_TYPE_MASK | TEE_IOCTL_PARAM_ATTR_META)
+#define TEE_IOCTL_PARAM_ATTR_MASK (TEE_IOCTL_PARAM_ATTR_TYPE_MASK | TEE_IOCTL_PARAM_ATTR_META)
 
 /*
  * Matches TEEC_LOGIN_* in GP TEE Client API
@@ -253,8 +250,7 @@ struct tee_ioctl_open_session_arg {
  * tee_ioctl_open_session_arg followed by any array of struct
  * tee_ioctl_param
  */
-#define TEE_IOC_OPEN_SESSION \
-	_IOR(TEE_IOC_MAGIC, TEE_IOC_BASE + 2, struct tee_ioctl_buf_data)
+#define TEE_IOC_OPEN_SESSION _IOR(TEE_IOC_MAGIC, TEE_IOC_BASE + 2, struct tee_ioctl_buf_data)
 
 /**
  * struct tee_ioctl_invoke_func_arg - Invokes a function in a Trusted
@@ -283,8 +279,7 @@ struct tee_ioctl_invoke_arg {
  * Takes a struct tee_ioctl_buf_data which contains a struct
  * tee_invoke_func_arg followed by any array of struct tee_param
  */
-#define TEE_IOC_INVOKE \
-	_IOR(TEE_IOC_MAGIC, TEE_IOC_BASE + 3, struct tee_ioctl_buf_data)
+#define TEE_IOC_INVOKE _IOR(TEE_IOC_MAGIC, TEE_IOC_BASE + 3, struct tee_ioctl_buf_data)
 
 /**
  * struct tee_ioctl_cancel_arg - Cancels an open session or invoke ioctl
@@ -299,8 +294,7 @@ struct tee_ioctl_cancel_arg {
 /**
  * TEE_IOC_CANCEL - Cancels an open session or invoke
  */
-#define TEE_IOC_CANCEL \
-	_IOR(TEE_IOC_MAGIC, TEE_IOC_BASE + 4, struct tee_ioctl_cancel_arg)
+#define TEE_IOC_CANCEL _IOR(TEE_IOC_MAGIC, TEE_IOC_BASE + 4, struct tee_ioctl_cancel_arg)
 
 /**
  * struct tee_ioctl_close_session_arg - Closes an open session
@@ -313,9 +307,7 @@ struct tee_ioctl_close_session_arg {
 /**
  * TEE_IOC_CLOSE_SESSION - Closes a session
  */
-#define TEE_IOC_CLOSE_SESSION                 \
-	_IOR(TEE_IOC_MAGIC, TEE_IOC_BASE + 5, \
-	     struct tee_ioctl_close_session_arg)
+#define TEE_IOC_CLOSE_SESSION _IOR(TEE_IOC_MAGIC, TEE_IOC_BASE + 5, struct tee_ioctl_close_session_arg)
 
 /**
  * struct tee_iocl_supp_recv_arg - Receive a request for a supplicant function
@@ -339,8 +331,7 @@ struct tee_iocl_supp_recv_arg {
  * Takes a struct tee_ioctl_buf_data which contains a struct
  * tee_iocl_supp_recv_arg followed by any array of struct tee_param
  */
-#define TEE_IOC_SUPPL_RECV \
-	_IOR(TEE_IOC_MAGIC, TEE_IOC_BASE + 6, struct tee_ioctl_buf_data)
+#define TEE_IOC_SUPPL_RECV _IOR(TEE_IOC_MAGIC, TEE_IOC_BASE + 6, struct tee_ioctl_buf_data)
 
 /**
  * struct tee_iocl_supp_send_arg - Send a response to a received request
@@ -360,8 +351,7 @@ struct tee_iocl_supp_send_arg {
  * Takes a struct tee_ioctl_buf_data which contains a struct
  * tee_iocl_supp_send_arg followed by any array of struct tee_param
  */
-#define TEE_IOC_SUPPL_SEND \
-	_IOR(TEE_IOC_MAGIC, TEE_IOC_BASE + 7, struct tee_ioctl_buf_data)
+#define TEE_IOC_SUPPL_SEND _IOR(TEE_IOC_MAGIC, TEE_IOC_BASE + 7, struct tee_ioctl_buf_data)
 
 /**
  * struct tee_ioctl_shm_register_data - Shared memory register argument
@@ -390,9 +380,7 @@ struct tee_ioctl_shm_register_data {
  *
  * The shared memory is unregisterred when the descriptor is closed.
  */
-#define TEE_IOC_SHM_REGISTER                   \
-	_IOWR(TEE_IOC_MAGIC, TEE_IOC_BASE + 9, \
-	      struct tee_ioctl_shm_register_data)
+#define TEE_IOC_SHM_REGISTER _IOWR(TEE_IOC_MAGIC, TEE_IOC_BASE + 9, struct tee_ioctl_shm_register_data)
 /*
  * Five syscalls are used when communicating with the TEE driver.
  * open(): opens the device associated with the driver

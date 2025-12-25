@@ -1,7 +1,8 @@
+#include "stddef.h"
 #include <__thread.h>
-#include <asm/prctl.h>
 #include <elf.h>
 #include <libc.h>
+#include <stdint.h>
 #include <string.h>
 #include <sys/mman.h>
 #include <syscall.h>

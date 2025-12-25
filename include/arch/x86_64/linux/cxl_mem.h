@@ -24,31 +24,19 @@
  * NOTE: New defines must be added to the end of the list to preserve
  * compatibility because this enum is exported to user space.
  */
-#define CXL_CMDS                                                              \
-	___C(INVALID, "Invalid Command"), ___C(IDENTIFY, "Identify Command"), \
-		___C(RAW, "Raw device command"),                              \
-		___C(GET_SUPPORTED_LOGS, "Get Supported Logs"),               \
-		___C(GET_FW_INFO, "Get FW Info"),                             \
-		___C(GET_PARTITION_INFO, "Get Partition Information"),        \
-		___C(GET_LSA, "Get Label Storage Area"),                      \
-		___C(GET_HEALTH_INFO, "Get Health Info"),                     \
-		___C(GET_LOG, "Get Log"),                                     \
-		___C(SET_PARTITION_INFO, "Set Partition Information"),        \
-		___C(SET_LSA, "Set Label Storage Area"),                      \
-		___C(GET_ALERT_CONFIG, "Get Alert Configuration"),            \
-		___C(SET_ALERT_CONFIG, "Set Alert Configuration"),            \
-		___C(GET_SHUTDOWN_STATE, "Get Shutdown State"),               \
-		___C(SET_SHUTDOWN_STATE, "Set Shutdown State"),               \
-		___DEPRECATED(GET_POISON, "Get Poison List"),                 \
-		___DEPRECATED(INJECT_POISON, "Inject Poison"),                \
-		___DEPRECATED(CLEAR_POISON, "Clear Poison"),                  \
-		___C(GET_SCAN_MEDIA_CAPS, "Get Scan Media Capabilities"),     \
-		___DEPRECATED(SCAN_MEDIA, "Scan Media"),                      \
-		___DEPRECATED(GET_SCAN_MEDIA, "Get Scan Media Results"),      \
-		___C(GET_TIMESTAMP, "Get Timestamp"),                         \
-		___C(GET_LOG_CAPS, "Get Log Capabilities"),                   \
-		___C(CLEAR_LOG, "Clear Log"),                                 \
-		___C(GET_SUP_LOG_SUBLIST, "Get Supported Logs Sub-List"),     \
+#define CXL_CMDS                                                                                                       \
+	___C(INVALID, "Invalid Command"), ___C(IDENTIFY, "Identify Command"), ___C(RAW, "Raw device command"),         \
+		___C(GET_SUPPORTED_LOGS, "Get Supported Logs"), ___C(GET_FW_INFO, "Get FW Info"),                      \
+		___C(GET_PARTITION_INFO, "Get Partition Information"), ___C(GET_LSA, "Get Label Storage Area"),        \
+		___C(GET_HEALTH_INFO, "Get Health Info"), ___C(GET_LOG, "Get Log"),                                    \
+		___C(SET_PARTITION_INFO, "Set Partition Information"), ___C(SET_LSA, "Set Label Storage Area"),        \
+		___C(GET_ALERT_CONFIG, "Get Alert Configuration"), ___C(SET_ALERT_CONFIG, "Set Alert Configuration"),  \
+		___C(GET_SHUTDOWN_STATE, "Get Shutdown State"), ___C(SET_SHUTDOWN_STATE, "Set Shutdown State"),        \
+		___DEPRECATED(GET_POISON, "Get Poison List"), ___DEPRECATED(INJECT_POISON, "Inject Poison"),           \
+		___DEPRECATED(CLEAR_POISON, "Clear Poison"), ___C(GET_SCAN_MEDIA_CAPS, "Get Scan Media Capabilities"), \
+		___DEPRECATED(SCAN_MEDIA, "Scan Media"), ___DEPRECATED(GET_SCAN_MEDIA, "Get Scan Media Results"),      \
+		___C(GET_TIMESTAMP, "Get Timestamp"), ___C(GET_LOG_CAPS, "Get Log Capabilities"),                      \
+		___C(CLEAR_LOG, "Clear Log"), ___C(GET_SUP_LOG_SUBLIST, "Get Supported Logs Sub-List"),                \
 		___C(MAX, "invalid / last command")
 
 #define ___C(a, b)	    CXL_MEM_COMMAND_ID_##a
@@ -78,8 +66,7 @@ static const struct {
 #define ___C(a, b)	    (0)
 #define ___DEPRECATED(a, b) (1)
 
-static const __u8 cxl_deprecated_commands[]
-	__attribute__((__unused__)) = { CXL_CMDS };
+static const __u8 cxl_deprecated_commands[] __attribute__((__unused__)) = { CXL_CMDS };
 
 /*
  * Here's how this actually breaks out:

@@ -24,11 +24,7 @@ enum ctattr_timeout {
 };
 #define CTA_TIMEOUT_MAX (__CTA_TIMEOUT_MAX - 1)
 
-enum ctattr_timeout_generic {
-	CTA_TIMEOUT_GENERIC_UNSPEC,
-	CTA_TIMEOUT_GENERIC_TIMEOUT,
-	__CTA_TIMEOUT_GENERIC_MAX
-};
+enum ctattr_timeout_generic { CTA_TIMEOUT_GENERIC_UNSPEC, CTA_TIMEOUT_GENERIC_TIMEOUT, __CTA_TIMEOUT_GENERIC_MAX };
 #define CTA_TIMEOUT_GENERIC_MAX (__CTA_TIMEOUT_GENERIC_MAX - 1)
 
 enum ctattr_timeout_tcp {
@@ -64,11 +60,7 @@ enum ctattr_timeout_udplite {
 };
 #define CTA_TIMEOUT_UDPLITE_MAX (__CTA_TIMEOUT_UDPLITE_MAX - 1)
 
-enum ctattr_timeout_icmp {
-	CTA_TIMEOUT_ICMP_UNSPEC,
-	CTA_TIMEOUT_ICMP_TIMEOUT,
-	__CTA_TIMEOUT_ICMP_MAX
-};
+enum ctattr_timeout_icmp { CTA_TIMEOUT_ICMP_UNSPEC, CTA_TIMEOUT_ICMP_TIMEOUT, __CTA_TIMEOUT_ICMP_MAX };
 #define CTA_TIMEOUT_ICMP_MAX (__CTA_TIMEOUT_ICMP_MAX - 1)
 
 enum ctattr_timeout_dccp {
@@ -99,11 +91,7 @@ enum ctattr_timeout_sctp {
 };
 #define CTA_TIMEOUT_SCTP_MAX (__CTA_TIMEOUT_SCTP_MAX - 1)
 
-enum ctattr_timeout_icmpv6 {
-	CTA_TIMEOUT_ICMPV6_UNSPEC,
-	CTA_TIMEOUT_ICMPV6_TIMEOUT,
-	__CTA_TIMEOUT_ICMPV6_MAX
-};
+enum ctattr_timeout_icmpv6 { CTA_TIMEOUT_ICMPV6_UNSPEC, CTA_TIMEOUT_ICMPV6_TIMEOUT, __CTA_TIMEOUT_ICMPV6_MAX };
 #define CTA_TIMEOUT_ICMPV6_MAX (__CTA_TIMEOUT_ICMPV6_MAX - 1)
 
 enum ctattr_timeout_gre {

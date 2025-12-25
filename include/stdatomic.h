@@ -1,6 +1,7 @@
 #ifndef __STDATOMIC_H
 #define __STDATOMIC_H
 
+#include <stdatomic.h>
 #define atomic_bool	      _Atomic _Bool
 #define atomic_char	      _Atomic char
 #define atomic_schar	      _Atomic signed char

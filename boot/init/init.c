@@ -1,8 +1,9 @@
+#include "stddef.h"
+#include "linux/mount.h"
 #include <dirent.h>
 #include <err.h>
 #include <errno.h>
 #include <fcntl.h>
-#include <linux/fs.h>
 #include <stdio.h>
 #include <string.h>
 #include <sys/mount.h>

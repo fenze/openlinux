@@ -2,8 +2,7 @@
 
 #include <string.h> // for strchr, strtok_r
 
-char *strtok_r(char *restrict s, const char *restrict sep,
-	       char **restrict state)
+char *strtok_r(char *restrict s, const char *restrict sep, char **restrict state)
 {
 	if (s == NULL) {
 		s = *state;

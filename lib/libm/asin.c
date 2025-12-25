@@ -46,7 +46,7 @@
 
 static const double pio2_hi = 1.57079632679489655800e+00, /* 0x3FF921FB,
 							     0x54442D18 */
-	pio2_lo = 6.12323399573676603587e-17, /* 0x3C91A626, 0x33145C07 */
+	pio2_lo = 6.12323399573676603587e-17,		  /* 0x3C91A626, 0x33145C07 */
 	/* coefficients for R(x^2) */
 	pS0 = 1.66666666666666657415e-01,  /* 0x3FC55555, 0x55555555 */
 	pS1 = -3.25565818622400915405e-01, /* 0xBFD4D612, 0x03EB6F7D */
@@ -102,8 +102,7 @@ double asin(double x)
 		f = s;
 		SET_LOW_WORD(f, 0);
 		c = (z - f * f) / (s + f);
-		x = 0.5 * pio2_hi -
-		    (2 * s * r - (pio2_lo - 2 * c) - (0.5 * pio2_hi - 2 * f));
+		x = 0.5 * pio2_hi - (2 * s * r - (pio2_lo - 2 * c) - (0.5 * pio2_hi - 2 * f));
 	}
 	if (hx >> 31)
 		return -x;

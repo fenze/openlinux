@@ -16,8 +16,7 @@
 /*
  * Allocates a new page and creates a new grant reference.
  */
-#define IOCTL_GNTALLOC_ALLOC_GREF \
-	_IOC(_IOC_NONE, 'G', 5, sizeof(struct ioctl_gntalloc_alloc_gref))
+#define IOCTL_GNTALLOC_ALLOC_GREF _IOC(_IOC_NONE, 'G', 5, sizeof(struct ioctl_gntalloc_alloc_gref))
 struct ioctl_gntalloc_alloc_gref {
 	/* IN parameters */
 	/* The ID of the domain to be given access to the grants. */
@@ -43,8 +42,7 @@ struct ioctl_gntalloc_alloc_gref {
  * Deallocates the grant reference, allowing the associated page to be freed if
  * no other domains are using it.
  */
-#define IOCTL_GNTALLOC_DEALLOC_GREF \
-	_IOC(_IOC_NONE, 'G', 6, sizeof(struct ioctl_gntalloc_dealloc_gref))
+#define IOCTL_GNTALLOC_DEALLOC_GREF _IOC(_IOC_NONE, 'G', 6, sizeof(struct ioctl_gntalloc_dealloc_gref))
 struct ioctl_gntalloc_dealloc_gref {
 	/* IN parameters */
 	/* The offset returned in the map operation */
@@ -63,8 +61,7 @@ struct ioctl_gntalloc_dealloc_gref {
  * notification prior to the IOCTL_GNTALLOC_DEALLOC_GREF if you do not want it
  * to occur.
  */
-#define IOCTL_GNTALLOC_SET_UNMAP_NOTIFY \
-	_IOC(_IOC_NONE, 'G', 7, sizeof(struct ioctl_gntalloc_unmap_notify))
+#define IOCTL_GNTALLOC_SET_UNMAP_NOTIFY _IOC(_IOC_NONE, 'G', 7, sizeof(struct ioctl_gntalloc_unmap_notify))
 struct ioctl_gntalloc_unmap_notify {
 	/* IN parameters */
 	/* Offset in the file descriptor for a byte within the page (same as

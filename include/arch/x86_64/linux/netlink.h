@@ -65,9 +65,9 @@ struct nlmsghdr {
 #define NLM_F_MULTI   0x02 /* Multipart message, terminated by NLMSG_DONE */
 #define NLM_F_ACK     0x04 /* Reply with ack, with zero or error code */
 #define NLM_F_ECHO    0x08 /* Receive resulting notifications */
-#define NLM_F_DUMP_INTR                                      \
-	0x10 /* Dump was inconsistent due to sequence change \
-	      */
+#define NLM_F_DUMP_INTR                                                          \
+	0x10			 /* Dump was inconsistent due to sequence change \
+				  */
 #define NLM_F_DUMP_FILTERED 0x20 /* Dump was filtered as requested */
 
 /* Modifiers to GET request */
@@ -105,12 +105,10 @@ struct nlmsghdr {
 #define NLMSG_LENGTH(len) ((len) + NLMSG_HDRLEN)
 #define NLMSG_SPACE(len)  NLMSG_ALIGN(NLMSG_LENGTH(len))
 #define NLMSG_DATA(nlh)	  ((void *)(((char *)nlh) + NLMSG_HDRLEN))
-#define NLMSG_NEXT(nlh, len)                     \
-	((len) -= NLMSG_ALIGN((nlh)->nlmsg_len), \
-	 (struct nlmsghdr *)(((char *)(nlh)) + NLMSG_ALIGN((nlh)->nlmsg_len)))
-#define NLMSG_OK(nlh, len)                              \
-	((len) >= (int)sizeof(struct nlmsghdr) &&       \
-	 (nlh)->nlmsg_len >= sizeof(struct nlmsghdr) && \
+#define NLMSG_NEXT(nlh, len) \
+	((len) -= NLMSG_ALIGN((nlh)->nlmsg_len), (struct nlmsghdr *)(((char *)(nlh)) + NLMSG_ALIGN((nlh)->nlmsg_len)))
+#define NLMSG_OK(nlh, len)                                                                       \
+	((len) >= (int)sizeof(struct nlmsghdr) && (nlh)->nlmsg_len >= sizeof(struct nlmsghdr) && \
 	 (nlh)->nlmsg_len <= (len))
 #define NLMSG_PAYLOAD(nlh, len) ((nlh)->nlmsg_len - NLMSG_SPACE((len)))
 

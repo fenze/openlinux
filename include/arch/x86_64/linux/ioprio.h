@@ -13,9 +13,8 @@
 #define IOPRIO_CLASS_MASK  (IOPRIO_NR_CLASSES - 1)
 #define IOPRIO_PRIO_MASK   ((1UL << IOPRIO_CLASS_SHIFT) - 1)
 
-#define IOPRIO_PRIO_CLASS(ioprio) \
-	(((ioprio) >> IOPRIO_CLASS_SHIFT) & IOPRIO_CLASS_MASK)
-#define IOPRIO_PRIO_DATA(ioprio) ((ioprio) & IOPRIO_PRIO_MASK)
+#define IOPRIO_PRIO_CLASS(ioprio) (((ioprio) >> IOPRIO_CLASS_SHIFT) & IOPRIO_CLASS_MASK)
+#define IOPRIO_PRIO_DATA(ioprio)  ((ioprio) & IOPRIO_PRIO_MASK)
 
 /*
  * These are the io priority classes as implemented by the BFQ and mq-deadline
@@ -70,12 +69,11 @@ enum {
  * without affecting the I/O scheduling ordering defined by the I/O priority
  * class and level.
  */
-#define IOPRIO_HINT_SHIFT   IOPRIO_LEVEL_NR_BITS
-#define IOPRIO_HINT_NR_BITS 10
-#define IOPRIO_NR_HINTS	    (1 << IOPRIO_HINT_NR_BITS)
-#define IOPRIO_HINT_MASK    (IOPRIO_NR_HINTS - 1)
-#define IOPRIO_PRIO_HINT(ioprio) \
-	(((ioprio) >> IOPRIO_HINT_SHIFT) & IOPRIO_HINT_MASK)
+#define IOPRIO_HINT_SHIFT	 IOPRIO_LEVEL_NR_BITS
+#define IOPRIO_HINT_NR_BITS	 10
+#define IOPRIO_NR_HINTS		 (1 << IOPRIO_HINT_NR_BITS)
+#define IOPRIO_HINT_MASK	 (IOPRIO_NR_HINTS - 1)
+#define IOPRIO_PRIO_HINT(ioprio) (((ioprio) >> IOPRIO_HINT_SHIFT) & IOPRIO_HINT_MASK)
 
 /*
  * I/O hints.
@@ -107,21 +105,16 @@ enum {
 /*
  * Return an I/O priority value based on a class, a level and a hint.
  */
-static __always_inline __u16 ioprio_value(int prioclass, int priolevel,
-					  int priohint)
+static __always_inline __u16 ioprio_value(int prioclass, int priolevel, int priohint)
 {
-	if (IOPRIO_BAD_VALUE(prioclass, IOPRIO_NR_CLASSES) ||
-	    IOPRIO_BAD_VALUE(priolevel, IOPRIO_NR_LEVELS) ||
+	if (IOPRIO_BAD_VALUE(prioclass, IOPRIO_NR_CLASSES) || IOPRIO_BAD_VALUE(priolevel, IOPRIO_NR_LEVELS) ||
 	    IOPRIO_BAD_VALUE(priohint, IOPRIO_NR_HINTS))
 		return IOPRIO_CLASS_INVALID << IOPRIO_CLASS_SHIFT;
 
-	return (prioclass << IOPRIO_CLASS_SHIFT) |
-	       (priohint << IOPRIO_HINT_SHIFT) | priolevel;
+	return (prioclass << IOPRIO_CLASS_SHIFT) | (priohint << IOPRIO_HINT_SHIFT) | priolevel;
 }
 
-#define IOPRIO_PRIO_VALUE(prioclass, priolevel) \
-	ioprio_value(prioclass, priolevel, IOPRIO_HINT_NONE)
-#define IOPRIO_PRIO_VALUE_HINT(prioclass, priolevel, priohint) \
-	ioprio_value(prioclass, priolevel, priohint)
+#define IOPRIO_PRIO_VALUE(prioclass, priolevel)		       ioprio_value(prioclass, priolevel, IOPRIO_HINT_NONE)
+#define IOPRIO_PRIO_VALUE_HINT(prioclass, priolevel, priohint) ioprio_value(prioclass, priolevel, priohint)
 
 #endif /* _LINUX_IOPRIO_H */

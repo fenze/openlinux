@@ -29,15 +29,13 @@ enum {
 /* Flags for set_mempolicy */
 #define MPOL_F_STATIC_NODES   (1 << 15)
 #define MPOL_F_RELATIVE_NODES (1 << 14)
-#define MPOL_F_NUMA_BALANCING \
-	(1 << 13) /* Optimize with NUMA balancing if possible */
+#define MPOL_F_NUMA_BALANCING (1 << 13) /* Optimize with NUMA balancing if possible */
 
 /*
  * MPOL_MODE_FLAGS is the union of all possible optional mode flags passed to
  * either set_mempolicy() or mbind().
  */
-#define MPOL_MODE_FLAGS \
-	(MPOL_F_STATIC_NODES | MPOL_F_RELATIVE_NODES | MPOL_F_NUMA_BALANCING)
+#define MPOL_MODE_FLAGS (MPOL_F_STATIC_NODES | MPOL_F_RELATIVE_NODES | MPOL_F_NUMA_BALANCING)
 
 /* Flags for get_mempolicy */
 #define MPOL_F_NODE	    (1 << 0) /* return next IL mode instead of node mask */
@@ -46,9 +44,9 @@ enum {
 
 /* Flags for mbind */
 #define MPOL_MF_STRICT (1 << 0) /* Verify existing pages in the mapping */
-#define MPOL_MF_MOVE                                            \
-	(1 << 1) /* Move pages owned by this process to conform \
-		    to policy */
+#define MPOL_MF_MOVE                                                             \
+	(1 << 1)		  /* Move pages owned by this process to conform \
+				     to policy */
 #define MPOL_MF_MOVE_ALL (1 << 2) /* Move every page to conform to policy */
 #define MPOL_MF_LAZY	 (1 << 3) /* UNSUPPORTED FLAG: Lazy migrate on fault */
 #define MPOL_MF_INTERNAL (1 << 4) /* Internal flags start here */

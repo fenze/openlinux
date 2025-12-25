@@ -33,21 +33,18 @@
 /** control messages (channel specific)
  * event data type = #snd_seq_ev_ctrl
  */
-#define SNDRV_SEQ_EVENT_CONTROLLER 10
-#define SNDRV_SEQ_EVENT_PGMCHANGE  11
-#define SNDRV_SEQ_EVENT_CHANPRESS  12
-#define SNDRV_SEQ_EVENT_PITCHBEND  13 /**< from -8192 to 8191 */
-#define SNDRV_SEQ_EVENT_CONTROL14  14 /**< 14 bit controller value */
-#define SNDRV_SEQ_EVENT_NONREGPARAM \
-	15 /**< 14 bit NRPN address + 14 bit unsigned value */
-#define SNDRV_SEQ_EVENT_REGPARAM \
-	16 /**< 14 bit RPN address + 14 bit unsigned value */
+#define SNDRV_SEQ_EVENT_CONTROLLER  10
+#define SNDRV_SEQ_EVENT_PGMCHANGE   11
+#define SNDRV_SEQ_EVENT_CHANPRESS   12
+#define SNDRV_SEQ_EVENT_PITCHBEND   13 /**< from -8192 to 8191 */
+#define SNDRV_SEQ_EVENT_CONTROL14   14 /**< 14 bit controller value */
+#define SNDRV_SEQ_EVENT_NONREGPARAM 15 /**< 14 bit NRPN address + 14 bit unsigned value */
+#define SNDRV_SEQ_EVENT_REGPARAM    16 /**< 14 bit RPN address + 14 bit unsigned value */
 
 /** synchronisation messages
  * event data type = #snd_seq_ev_ctrl
  */
-#define SNDRV_SEQ_EVENT_SONGPOS \
-	20 /* Song Position Pointer with LSB and MSB values */
+#define SNDRV_SEQ_EVENT_SONGPOS	 20 /* Song Position Pointer with LSB and MSB values */
 #define SNDRV_SEQ_EVENT_SONGSEL	 21 /* Song Select with song ID number */
 #define SNDRV_SEQ_EVENT_QFRAME	 22 /* midi time code quarter frame */
 #define SNDRV_SEQ_EVENT_TIMESIGN 23 /* SMF Time Signature event */
@@ -149,8 +146,8 @@ typedef unsigned char snd_seq_event_type_t;
 struct snd_seq_addr {
 	unsigned char client; /**< Client number:         0..255, 255 =
 				 broadcast to all clients */
-	unsigned char port; /**< Port within client:    0..255, 255 = broadcast
-			       to all ports */
+	unsigned char port;   /**< Port within client:    0..255, 255 = broadcast
+				 to all ports */
 };
 
 /** port connection */
@@ -159,12 +156,10 @@ struct snd_seq_connect {
 	struct snd_seq_addr dest;
 };
 
-#define SNDRV_SEQ_ADDRESS_UNKNOWN 253 /* unknown source */
-#define SNDRV_SEQ_ADDRESS_SUBSCRIBERS \
-	254 /* send event to all subscribed ports */
-#define SNDRV_SEQ_ADDRESS_BROADCAST \
-	255 /* send event to all queues/clients/ports/channels */
-#define SNDRV_SEQ_QUEUE_DIRECT 253 /* direct dispatch */
+#define SNDRV_SEQ_ADDRESS_UNKNOWN     253 /* unknown source */
+#define SNDRV_SEQ_ADDRESS_SUBSCRIBERS 254 /* send event to all subscribed ports */
+#define SNDRV_SEQ_ADDRESS_BROADCAST   255 /* send event to all queues/clients/ports/channels */
+#define SNDRV_SEQ_QUEUE_DIRECT	      253 /* direct dispatch */
 
 /* event mode flag - NOTE: only 8 bits available! */
 #define SNDRV_SEQ_TIME_STAMP_TICK (0 << 0) /* timestamp in clock ticks */
@@ -177,14 +172,12 @@ struct snd_seq_connect {
 
 #define SNDRV_SEQ_EVENT_LENGTH_FIXED	(0 << 2) /* fixed event size */
 #define SNDRV_SEQ_EVENT_LENGTH_VARIABLE (1 << 2) /* variable event size */
-#define SNDRV_SEQ_EVENT_LENGTH_VARUSR \
-	(2 << 2) /* variable event size - user memory space */
-#define SNDRV_SEQ_EVENT_LENGTH_MASK (3 << 2)
+#define SNDRV_SEQ_EVENT_LENGTH_VARUSR	(2 << 2) /* variable event size - user memory space */
+#define SNDRV_SEQ_EVENT_LENGTH_MASK	(3 << 2)
 
 #define SNDRV_SEQ_PRIORITY_NORMAL (0 << 4) /* normal priority */
-#define SNDRV_SEQ_PRIORITY_HIGH \
-	(1 << 4) /* event should be processed before others */
-#define SNDRV_SEQ_PRIORITY_MASK (1 << 4)
+#define SNDRV_SEQ_PRIORITY_HIGH	  (1 << 4) /* event should be processed before others */
+#define SNDRV_SEQ_PRIORITY_MASK	  (1 << 4)
 
 #define SNDRV_SEQ_EVENT_UMP (1 << 5) /* event holds a UMP packet */
 
@@ -358,9 +351,9 @@ typedef int __bitwise snd_seq_client_type_t;
 #define KERNEL_CLIENT ((snd_seq_client_type_t)2)
 
 /* event filter flags */
-#define SNDRV_SEQ_FILTER_BROADCAST  (1U << 0) /* accept broadcast messages */
-#define SNDRV_SEQ_FILTER_MULTICAST  (1U << 1) /* accept multicast messages */
-#define SNDRV_SEQ_FILTER_BOUNCE	    (1U << 2) /* accept bounce event in error */
+#define SNDRV_SEQ_FILTER_BROADCAST  (1U << 0)  /* accept broadcast messages */
+#define SNDRV_SEQ_FILTER_MULTICAST  (1U << 1)  /* accept multicast messages */
+#define SNDRV_SEQ_FILTER_BOUNCE	    (1U << 2)  /* accept bounce event in error */
 #define SNDRV_SEQ_FILTER_NO_CONVERT (1U << 30) /* don't convert UMP events */
 #define SNDRV_SEQ_FILTER_USE_EVENT  (1U << 31) /* use event filter */
 
@@ -401,18 +394,16 @@ struct snd_seq_client_pool {
 
 /* Remove events by specified criteria */
 
-#define SNDRV_SEQ_REMOVE_INPUT	(1 << 0) /* Flush input queues */
-#define SNDRV_SEQ_REMOVE_OUTPUT (1 << 1) /* Flush output queues */
-#define SNDRV_SEQ_REMOVE_DEST \
-	(1 << 2) /* Restrict by destination q:client:port */
+#define SNDRV_SEQ_REMOVE_INPUT	      (1 << 0) /* Flush input queues */
+#define SNDRV_SEQ_REMOVE_OUTPUT	      (1 << 1) /* Flush output queues */
+#define SNDRV_SEQ_REMOVE_DEST	      (1 << 2) /* Restrict by destination q:client:port */
 #define SNDRV_SEQ_REMOVE_DEST_CHANNEL (1 << 3) /* Restrict by channel */
 #define SNDRV_SEQ_REMOVE_TIME_BEFORE  (1 << 4) /* Restrict to before time */
 #define SNDRV_SEQ_REMOVE_TIME_AFTER   (1 << 5) /* Restrict to time or after */
 #define SNDRV_SEQ_REMOVE_TIME_TICK    (1 << 6) /* Time is in ticks */
 #define SNDRV_SEQ_REMOVE_EVENT_TYPE   (1 << 7) /* Restrict to event type */
 #define SNDRV_SEQ_REMOVE_IGNORE_OFF   (1 << 8) /* Do not flush off events */
-#define SNDRV_SEQ_REMOVE_TAG_MATCH \
-	(1 << 9) /* Restrict to events with given tag */
+#define SNDRV_SEQ_REMOVE_TAG_MATCH    (1 << 9) /* Restrict to events with given tag */
 
 struct snd_seq_remove_events {
 	unsigned int remove_mode; /* Flags that determine what gets removed */
@@ -442,40 +433,32 @@ struct snd_seq_remove_events {
 
 #define SNDRV_SEQ_PORT_CAP_DUPLEX (1 << 4)
 
-#define SNDRV_SEQ_PORT_CAP_SUBS_READ  (1 << 5) /* allow read subscription */
-#define SNDRV_SEQ_PORT_CAP_SUBS_WRITE (1 << 6) /* allow write subscription */
-#define SNDRV_SEQ_PORT_CAP_NO_EXPORT  (1 << 7) /* routing not allowed */
-#define SNDRV_SEQ_PORT_CAP_INACTIVE   (1 << 8) /* inactive port */
-#define SNDRV_SEQ_PORT_CAP_UMP_ENDPOINT \
-	(1 << 9) /* MIDI 2.0 UMP Endpoint port */
+#define SNDRV_SEQ_PORT_CAP_SUBS_READ	(1 << 5) /* allow read subscription */
+#define SNDRV_SEQ_PORT_CAP_SUBS_WRITE	(1 << 6) /* allow write subscription */
+#define SNDRV_SEQ_PORT_CAP_NO_EXPORT	(1 << 7) /* routing not allowed */
+#define SNDRV_SEQ_PORT_CAP_INACTIVE	(1 << 8) /* inactive port */
+#define SNDRV_SEQ_PORT_CAP_UMP_ENDPOINT (1 << 9) /* MIDI 2.0 UMP Endpoint port */
 
 /* port type */
 #define SNDRV_SEQ_PORT_TYPE_SPECIFIC	 (1 << 0) /* hardware specific */
 #define SNDRV_SEQ_PORT_TYPE_MIDI_GENERIC (1 << 1) /* generic MIDI device */
-#define SNDRV_SEQ_PORT_TYPE_MIDI_GM \
-	(1 << 2) /* General MIDI compatible device */
-#define SNDRV_SEQ_PORT_TYPE_MIDI_GS   (1 << 3) /* GS compatible device */
-#define SNDRV_SEQ_PORT_TYPE_MIDI_XG   (1 << 4) /* XG compatible device */
-#define SNDRV_SEQ_PORT_TYPE_MIDI_MT32 (1 << 5) /* MT-32 compatible device */
-#define SNDRV_SEQ_PORT_TYPE_MIDI_GM2 \
-	(1 << 6) /* General MIDI 2 compatible device */
-#define SNDRV_SEQ_PORT_TYPE_MIDI_UMP (1 << 7) /* UMP */
+#define SNDRV_SEQ_PORT_TYPE_MIDI_GM	 (1 << 2) /* General MIDI compatible device */
+#define SNDRV_SEQ_PORT_TYPE_MIDI_GS	 (1 << 3) /* GS compatible device */
+#define SNDRV_SEQ_PORT_TYPE_MIDI_XG	 (1 << 4) /* XG compatible device */
+#define SNDRV_SEQ_PORT_TYPE_MIDI_MT32	 (1 << 5) /* MT-32 compatible device */
+#define SNDRV_SEQ_PORT_TYPE_MIDI_GM2	 (1 << 6) /* General MIDI 2 compatible device */
+#define SNDRV_SEQ_PORT_TYPE_MIDI_UMP	 (1 << 7) /* UMP */
 
 /* other standards...*/
-#define SNDRV_SEQ_PORT_TYPE_SYNTH \
-	(1 << 10) /* Synth device (no MIDI compatible - direct wavetable) */
-#define SNDRV_SEQ_PORT_TYPE_DIRECT_SAMPLE \
-	(1 << 11) /* Sampling device (support sample download) */
-#define SNDRV_SEQ_PORT_TYPE_SAMPLE \
-	(1 << 12) /* Sampling device (sample can be downloaded at any time) */
+#define SNDRV_SEQ_PORT_TYPE_SYNTH	  (1 << 10) /* Synth device (no MIDI compatible - direct wavetable) */
+#define SNDRV_SEQ_PORT_TYPE_DIRECT_SAMPLE (1 << 11) /* Sampling device (support sample download) */
+#define SNDRV_SEQ_PORT_TYPE_SAMPLE	  (1 << 12) /* Sampling device (sample can be downloaded at any time) */
 /*...*/
-#define SNDRV_SEQ_PORT_TYPE_HARDWARE \
-	(1 << 16) /* driver for a hardware device */
+#define SNDRV_SEQ_PORT_TYPE_HARDWARE	(1 << 16) /* driver for a hardware device */
 #define SNDRV_SEQ_PORT_TYPE_SOFTWARE	(1 << 17) /* implemented in software */
 #define SNDRV_SEQ_PORT_TYPE_SYNTHESIZER (1 << 18) /* generates sound */
 #define SNDRV_SEQ_PORT_TYPE_PORT	(1 << 19) /* connects to other device(s) */
-#define SNDRV_SEQ_PORT_TYPE_APPLICATION \
-	(1 << 20) /* application (sequencer/editor) */
+#define SNDRV_SEQ_PORT_TYPE_APPLICATION (1 << 20) /* application (sequencer/editor) */
 
 /* misc. conditioning flags */
 #define SNDRV_SEQ_PORT_FLG_GIVEN_PORT (1 << 0)
@@ -507,9 +490,9 @@ struct snd_seq_port_info {
 	unsigned int flags;	  /* misc. conditioning */
 	unsigned char time_queue; /* queue # for timestamping */
 	unsigned char direction;  /* port usage direction (r/w/bidir) */
-	unsigned char ump_group; /* 0 = UMP EP (no conversion), 1-16 = UMP group
-				    number */
-	char reserved[57];	 /* for future use */
+	unsigned char ump_group;  /* 0 = UMP EP (no conversion), 1-16 = UMP group
+				     number */
+	char reserved[57];	  /* for future use */
 };
 
 /* queue flags */
@@ -543,10 +526,10 @@ struct snd_seq_queue_status {
 
 /* queue tempo */
 struct snd_seq_queue_tempo {
-	int queue;	    /* sequencer queue */
-	unsigned int tempo; /* current tempo, us/tick (or different time-base
-			       below) */
-	int ppq;	    /* time resolution, ticks/quarter */
+	int queue;		   /* sequencer queue */
+	unsigned int tempo;	   /* current tempo, us/tick (or different time-base
+				      below) */
+	int ppq;		   /* time resolution, ticks/quarter */
 	unsigned int skew_value;   /* queue skew */
 	unsigned int skew_base;	   /* queue skew base */
 	unsigned short tempo_base; /* tempo base in nsec unit; either 10 or 1000
@@ -588,11 +571,11 @@ struct snd_seq_queue_client {
 struct snd_seq_port_subscribe {
 	struct snd_seq_addr sender; /* sender address */
 	struct snd_seq_addr dest;   /* destination address */
-	unsigned int voices;  /* number of voices to be allocated (0 = don't
-				 care) */
-	unsigned int flags;   /* modes */
-	unsigned char queue;  /* input time-stamp queue (optional) */
-	unsigned char pad[3]; /* reserved */
+	unsigned int voices;	    /* number of voices to be allocated (0 = don't
+				       care) */
+	unsigned int flags;	    /* modes */
+	unsigned char queue;	    /* input time-stamp queue (optional) */
+	unsigned char pad[3];	    /* reserved */
 	char reserved[64];
 };
 
@@ -604,7 +587,7 @@ struct snd_seq_query_subs {
 	struct snd_seq_addr root; /* client/port id to be searched */
 	int type;		  /* READ or WRITE */
 	int index;		  /* 0..N-1 */
-	int num_subs; /* R/O: number of subscriptions on this port */
+	int num_subs;		  /* R/O: number of subscriptions on this port */
 	struct snd_seq_addr addr; /* R/O: result */
 	unsigned char queue;	  /* R/O: result */
 	unsigned int flags;	  /* R/O: result */
@@ -628,66 +611,43 @@ struct snd_seq_client_ump_info {
  *  IOCTL commands
  */
 
-#define SNDRV_SEQ_IOCTL_PVERSION    _IOR('S', 0x00, int)
-#define SNDRV_SEQ_IOCTL_CLIENT_ID   _IOR('S', 0x01, int)
-#define SNDRV_SEQ_IOCTL_SYSTEM_INFO _IOWR('S', 0x02, struct snd_seq_system_info)
-#define SNDRV_SEQ_IOCTL_RUNNING_MODE \
-	_IOWR('S', 0x03, struct snd_seq_running_info)
+#define SNDRV_SEQ_IOCTL_PVERSION      _IOR('S', 0x00, int)
+#define SNDRV_SEQ_IOCTL_CLIENT_ID     _IOR('S', 0x01, int)
+#define SNDRV_SEQ_IOCTL_SYSTEM_INFO   _IOWR('S', 0x02, struct snd_seq_system_info)
+#define SNDRV_SEQ_IOCTL_RUNNING_MODE  _IOWR('S', 0x03, struct snd_seq_running_info)
 #define SNDRV_SEQ_IOCTL_USER_PVERSION _IOW('S', 0x04, int)
 
-#define SNDRV_SEQ_IOCTL_GET_CLIENT_INFO \
-	_IOWR('S', 0x10, struct snd_seq_client_info)
-#define SNDRV_SEQ_IOCTL_SET_CLIENT_INFO \
-	_IOW('S', 0x11, struct snd_seq_client_info)
-#define SNDRV_SEQ_IOCTL_GET_CLIENT_UMP_INFO \
-	_IOWR('S', 0x12, struct snd_seq_client_ump_info)
-#define SNDRV_SEQ_IOCTL_SET_CLIENT_UMP_INFO \
-	_IOWR('S', 0x13, struct snd_seq_client_ump_info)
+#define SNDRV_SEQ_IOCTL_GET_CLIENT_INFO	    _IOWR('S', 0x10, struct snd_seq_client_info)
+#define SNDRV_SEQ_IOCTL_SET_CLIENT_INFO	    _IOW('S', 0x11, struct snd_seq_client_info)
+#define SNDRV_SEQ_IOCTL_GET_CLIENT_UMP_INFO _IOWR('S', 0x12, struct snd_seq_client_ump_info)
+#define SNDRV_SEQ_IOCTL_SET_CLIENT_UMP_INFO _IOWR('S', 0x13, struct snd_seq_client_ump_info)
 
 #define SNDRV_SEQ_IOCTL_CREATE_PORT   _IOWR('S', 0x20, struct snd_seq_port_info)
 #define SNDRV_SEQ_IOCTL_DELETE_PORT   _IOW('S', 0x21, struct snd_seq_port_info)
 #define SNDRV_SEQ_IOCTL_GET_PORT_INFO _IOWR('S', 0x22, struct snd_seq_port_info)
 #define SNDRV_SEQ_IOCTL_SET_PORT_INFO _IOW('S', 0x23, struct snd_seq_port_info)
 
-#define SNDRV_SEQ_IOCTL_SUBSCRIBE_PORT \
-	_IOW('S', 0x30, struct snd_seq_port_subscribe)
-#define SNDRV_SEQ_IOCTL_UNSUBSCRIBE_PORT \
-	_IOW('S', 0x31, struct snd_seq_port_subscribe)
+#define SNDRV_SEQ_IOCTL_SUBSCRIBE_PORT	 _IOW('S', 0x30, struct snd_seq_port_subscribe)
+#define SNDRV_SEQ_IOCTL_UNSUBSCRIBE_PORT _IOW('S', 0x31, struct snd_seq_port_subscribe)
 
-#define SNDRV_SEQ_IOCTL_CREATE_QUEUE _IOWR('S', 0x32, struct snd_seq_queue_info)
-#define SNDRV_SEQ_IOCTL_DELETE_QUEUE _IOW('S', 0x33, struct snd_seq_queue_info)
-#define SNDRV_SEQ_IOCTL_GET_QUEUE_INFO \
-	_IOWR('S', 0x34, struct snd_seq_queue_info)
-#define SNDRV_SEQ_IOCTL_SET_QUEUE_INFO \
-	_IOWR('S', 0x35, struct snd_seq_queue_info)
-#define SNDRV_SEQ_IOCTL_GET_NAMED_QUEUE \
-	_IOWR('S', 0x36, struct snd_seq_queue_info)
-#define SNDRV_SEQ_IOCTL_GET_QUEUE_STATUS \
-	_IOWR('S', 0x40, struct snd_seq_queue_status)
-#define SNDRV_SEQ_IOCTL_GET_QUEUE_TEMPO \
-	_IOWR('S', 0x41, struct snd_seq_queue_tempo)
-#define SNDRV_SEQ_IOCTL_SET_QUEUE_TEMPO \
-	_IOW('S', 0x42, struct snd_seq_queue_tempo)
-#define SNDRV_SEQ_IOCTL_GET_QUEUE_TIMER \
-	_IOWR('S', 0x45, struct snd_seq_queue_timer)
-#define SNDRV_SEQ_IOCTL_SET_QUEUE_TIMER \
-	_IOW('S', 0x46, struct snd_seq_queue_timer)
-#define SNDRV_SEQ_IOCTL_GET_QUEUE_CLIENT \
-	_IOWR('S', 0x49, struct snd_seq_queue_client)
-#define SNDRV_SEQ_IOCTL_SET_QUEUE_CLIENT \
-	_IOW('S', 0x4a, struct snd_seq_queue_client)
-#define SNDRV_SEQ_IOCTL_GET_CLIENT_POOL \
-	_IOWR('S', 0x4b, struct snd_seq_client_pool)
-#define SNDRV_SEQ_IOCTL_SET_CLIENT_POOL \
-	_IOW('S', 0x4c, struct snd_seq_client_pool)
-#define SNDRV_SEQ_IOCTL_REMOVE_EVENTS \
-	_IOW('S', 0x4e, struct snd_seq_remove_events)
-#define SNDRV_SEQ_IOCTL_QUERY_SUBS _IOWR('S', 0x4f, struct snd_seq_query_subs)
-#define SNDRV_SEQ_IOCTL_GET_SUBSCRIPTION \
-	_IOWR('S', 0x50, struct snd_seq_port_subscribe)
-#define SNDRV_SEQ_IOCTL_QUERY_NEXT_CLIENT \
-	_IOWR('S', 0x51, struct snd_seq_client_info)
-#define SNDRV_SEQ_IOCTL_QUERY_NEXT_PORT \
-	_IOWR('S', 0x52, struct snd_seq_port_info)
+#define SNDRV_SEQ_IOCTL_CREATE_QUEUE	  _IOWR('S', 0x32, struct snd_seq_queue_info)
+#define SNDRV_SEQ_IOCTL_DELETE_QUEUE	  _IOW('S', 0x33, struct snd_seq_queue_info)
+#define SNDRV_SEQ_IOCTL_GET_QUEUE_INFO	  _IOWR('S', 0x34, struct snd_seq_queue_info)
+#define SNDRV_SEQ_IOCTL_SET_QUEUE_INFO	  _IOWR('S', 0x35, struct snd_seq_queue_info)
+#define SNDRV_SEQ_IOCTL_GET_NAMED_QUEUE	  _IOWR('S', 0x36, struct snd_seq_queue_info)
+#define SNDRV_SEQ_IOCTL_GET_QUEUE_STATUS  _IOWR('S', 0x40, struct snd_seq_queue_status)
+#define SNDRV_SEQ_IOCTL_GET_QUEUE_TEMPO	  _IOWR('S', 0x41, struct snd_seq_queue_tempo)
+#define SNDRV_SEQ_IOCTL_SET_QUEUE_TEMPO	  _IOW('S', 0x42, struct snd_seq_queue_tempo)
+#define SNDRV_SEQ_IOCTL_GET_QUEUE_TIMER	  _IOWR('S', 0x45, struct snd_seq_queue_timer)
+#define SNDRV_SEQ_IOCTL_SET_QUEUE_TIMER	  _IOW('S', 0x46, struct snd_seq_queue_timer)
+#define SNDRV_SEQ_IOCTL_GET_QUEUE_CLIENT  _IOWR('S', 0x49, struct snd_seq_queue_client)
+#define SNDRV_SEQ_IOCTL_SET_QUEUE_CLIENT  _IOW('S', 0x4a, struct snd_seq_queue_client)
+#define SNDRV_SEQ_IOCTL_GET_CLIENT_POOL	  _IOWR('S', 0x4b, struct snd_seq_client_pool)
+#define SNDRV_SEQ_IOCTL_SET_CLIENT_POOL	  _IOW('S', 0x4c, struct snd_seq_client_pool)
+#define SNDRV_SEQ_IOCTL_REMOVE_EVENTS	  _IOW('S', 0x4e, struct snd_seq_remove_events)
+#define SNDRV_SEQ_IOCTL_QUERY_SUBS	  _IOWR('S', 0x4f, struct snd_seq_query_subs)
+#define SNDRV_SEQ_IOCTL_GET_SUBSCRIPTION  _IOWR('S', 0x50, struct snd_seq_port_subscribe)
+#define SNDRV_SEQ_IOCTL_QUERY_NEXT_CLIENT _IOWR('S', 0x51, struct snd_seq_client_info)
+#define SNDRV_SEQ_IOCTL_QUERY_NEXT_PORT	  _IOWR('S', 0x52, struct snd_seq_port_info)
 
 #endif /* __SOUND_ASEQUENCER_H */

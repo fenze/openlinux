@@ -205,10 +205,9 @@ struct kvm_msr_list {
 
 /* for KVM_X86_SET_MSR_FILTER */
 struct kvm_msr_filter_range {
-#define KVM_MSR_FILTER_READ  (1 << 0)
-#define KVM_MSR_FILTER_WRITE (1 << 1)
-#define KVM_MSR_FILTER_RANGE_VALID_MASK \
-	(KVM_MSR_FILTER_READ | KVM_MSR_FILTER_WRITE)
+#define KVM_MSR_FILTER_READ		(1 << 0)
+#define KVM_MSR_FILTER_WRITE		(1 << 1)
+#define KVM_MSR_FILTER_RANGE_VALID_MASK (KVM_MSR_FILTER_READ | KVM_MSR_FILTER_WRITE)
 	__u32 flags;
 	__u32 nmsrs;  /* number of msrs in bitmap */
 	__u32 base;   /* MSR index the bitmap starts at */
@@ -412,8 +411,7 @@ struct kvm_xcrs {
 #define KVM_SYNC_X86_SREGS  (1UL << 1)
 #define KVM_SYNC_X86_EVENTS (1UL << 2)
 
-#define KVM_SYNC_X86_VALID_FIELDS \
-	(KVM_SYNC_X86_REGS | KVM_SYNC_X86_SREGS | KVM_SYNC_X86_EVENTS)
+#define KVM_SYNC_X86_VALID_FIELDS (KVM_SYNC_X86_REGS | KVM_SYNC_X86_SREGS | KVM_SYNC_X86_EVENTS)
 
 /* kvm_sync_regs struct included by kvm_run struct */
 struct kvm_sync_regs {
@@ -899,13 +897,11 @@ struct kvm_hyperv_eventfd {
  * 63:56  umask mask
  */
 
-#define KVM_PMU_ENCODE_MASKED_ENTRY(event_select, mask, match, exclude)     \
-	(((event_select) & 0xFFULL) | (((event_select) & 0XF00ULL) << 24) | \
-	 (((mask) & 0xFFULL) << 56) | (((match) & 0xFFULL) << 8) |          \
-	 ((__u64)(!!(exclude)) << 55))
+#define KVM_PMU_ENCODE_MASKED_ENTRY(event_select, mask, match, exclude)                                  \
+	(((event_select) & 0xFFULL) | (((event_select) & 0XF00ULL) << 24) | (((mask) & 0xFFULL) << 56) | \
+	 (((match) & 0xFFULL) << 8) | ((__u64)(!!(exclude)) << 55))
 
-#define KVM_PMU_MASKED_ENTRY_EVENT_SELECT \
-	(__GENMASK_ULL(7, 0) | __GENMASK_ULL(35, 32))
+#define KVM_PMU_MASKED_ENTRY_EVENT_SELECT     (__GENMASK_ULL(7, 0) | __GENMASK_ULL(35, 32))
 #define KVM_PMU_MASKED_ENTRY_UMASK_MASK	      (__GENMASK_ULL(63, 56))
 #define KVM_PMU_MASKED_ENTRY_UMASK_MATCH      (__GENMASK_ULL(15, 8))
 #define KVM_PMU_MASKED_ENTRY_EXCLUDE	      (_BITULL(55))

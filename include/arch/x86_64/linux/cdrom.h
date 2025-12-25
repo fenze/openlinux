@@ -159,8 +159,7 @@
 #define CDROM_NEXT_WRITABLE 0x5394 /* get next writable block */
 #define CDROM_LAST_WRITTEN  0x5395 /* get last block written on disc */
 
-#define CDROM_TIMED_MEDIA_CHANGE \
-	0x5396 /* get the timestamp of the last media change */
+#define CDROM_TIMED_MEDIA_CHANGE 0x5396 /* get the timestamp of the last media change */
 
 /*******************************************************
  * CDROM IOCTL structures
@@ -365,17 +364,14 @@ struct cdrom_timed_media_change_info {
 #define CD_FRAMESIZE_RAW   2352 /* bytes per frame, "raw" mode */
 #define CD_FRAMESIZE_RAWER 2646 /* The maximum possible returned bytes */
 /* most drives don't deliver everything: */
-#define CD_FRAMESIZE_RAW1 (CD_FRAMESIZE_RAW - CD_SYNC_SIZE) /*2340*/
-#define CD_FRAMESIZE_RAW0 \
-	(CD_FRAMESIZE_RAW - CD_SYNC_SIZE - CD_HEAD_SIZE) /*2336*/
+#define CD_FRAMESIZE_RAW1 (CD_FRAMESIZE_RAW - CD_SYNC_SIZE)		   /*2340*/
+#define CD_FRAMESIZE_RAW0 (CD_FRAMESIZE_RAW - CD_SYNC_SIZE - CD_HEAD_SIZE) /*2336*/
 
-#define CD_XA_HEAD                                                             \
-	(CD_HEAD_SIZE + CD_SUBHEAD_SIZE) /* "before data" part of raw XA frame \
-					  */
-#define CD_XA_TAIL \
-	(CD_EDC_SIZE + CD_ECC_SIZE) /* "after data" part of raw XA frame */
-#define CD_XA_SYNC_HEAD \
-	(CD_SYNC_SIZE + CD_XA_HEAD) /* sync bytes + header of XA frame */
+#define CD_XA_HEAD                                                                        \
+	(CD_HEAD_SIZE + CD_SUBHEAD_SIZE)	    /* "before data" part of raw XA frame \
+						     */
+#define CD_XA_TAIL	(CD_EDC_SIZE + CD_ECC_SIZE) /* "after data" part of raw XA frame */
+#define CD_XA_SYNC_HEAD (CD_SYNC_SIZE + CD_XA_HEAD) /* sync bytes + header of XA frame */
 
 /* CD-ROM address types (cdrom_tocentry.cdte_format) */
 #define CDROM_LBA 0x01 /* "logical block": first frame is #0 */

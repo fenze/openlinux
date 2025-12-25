@@ -85,9 +85,8 @@ struct cxl_feat_entry {
  * Get supported Features Output Payload
  */
 struct cxl_mbox_get_sup_feats_out {
-	__struct_group(cxl_mbox_get_sup_feats_out_hdr, hdr, /* no attrs */,
-		       __le16 num_entries;
-		       __le16 supported_feats; __u8 reserved[4];);
+	__struct_group(cxl_mbox_get_sup_feats_out_hdr, hdr, /* no attrs */, __le16 num_entries; __le16 supported_feats;
+		       __u8 reserved[4];);
 	struct cxl_feat_entry ents[] __counted_by_le(num_entries);
 } __attribute__((__packed__));
 
@@ -137,10 +136,8 @@ enum cxl_get_feat_selection {
  * CXL spec r3.2 section 8.2.9.6.3 Table 8-101
  */
 struct cxl_mbox_set_feat_in {
-	__struct_group(cxl_mbox_set_feat_hdr, hdr, /* no attrs */,
-		       __uapi_uuid_t uuid;
-		       __le32 flags; __le16 offset; __u8 version;
-		       __u8 rsvd[9];);
+	__struct_group(cxl_mbox_set_feat_hdr, hdr, /* no attrs */, __uapi_uuid_t uuid; __le32 flags; __le16 offset;
+		       __u8 version; __u8 rsvd[9];);
 	__u8 feat_data[];
 } __attribute__((packed));
 

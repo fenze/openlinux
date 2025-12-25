@@ -25,30 +25,21 @@
 #define UBLK_CMD_GET_DEV_INFO2	     0x12
 
 /* Any new ctrl command should encode by __IO*() */
-#define UBLK_U_CMD_GET_QUEUE_AFFINITY \
-	_IOR('u', UBLK_CMD_GET_QUEUE_AFFINITY, struct ublksrv_ctrl_cmd)
-#define UBLK_U_CMD_GET_DEV_INFO \
-	_IOR('u', UBLK_CMD_GET_DEV_INFO, struct ublksrv_ctrl_cmd)
-#define UBLK_U_CMD_ADD_DEV _IOWR('u', UBLK_CMD_ADD_DEV, struct ublksrv_ctrl_cmd)
-#define UBLK_U_CMD_DEL_DEV _IOWR('u', UBLK_CMD_DEL_DEV, struct ublksrv_ctrl_cmd)
-#define UBLK_U_CMD_START_DEV \
-	_IOWR('u', UBLK_CMD_START_DEV, struct ublksrv_ctrl_cmd)
-#define UBLK_U_CMD_STOP_DEV \
-	_IOWR('u', UBLK_CMD_STOP_DEV, struct ublksrv_ctrl_cmd)
-#define UBLK_U_CMD_SET_PARAMS \
-	_IOWR('u', UBLK_CMD_SET_PARAMS, struct ublksrv_ctrl_cmd)
-#define UBLK_U_CMD_GET_PARAMS \
-	_IOR('u', UBLK_CMD_GET_PARAMS, struct ublksrv_ctrl_cmd)
-#define UBLK_U_CMD_START_USER_RECOVERY \
-	_IOWR('u', UBLK_CMD_START_USER_RECOVERY, struct ublksrv_ctrl_cmd)
-#define UBLK_U_CMD_END_USER_RECOVERY \
-	_IOWR('u', UBLK_CMD_END_USER_RECOVERY, struct ublksrv_ctrl_cmd)
-#define UBLK_U_CMD_GET_DEV_INFO2 \
-	_IOR('u', UBLK_CMD_GET_DEV_INFO2, struct ublksrv_ctrl_cmd)
-#define UBLK_U_CMD_GET_FEATURES	 _IOR('u', 0x13, struct ublksrv_ctrl_cmd)
-#define UBLK_U_CMD_DEL_DEV_ASYNC _IOR('u', 0x14, struct ublksrv_ctrl_cmd)
-#define UBLK_U_CMD_UPDATE_SIZE	 _IOWR('u', 0x15, struct ublksrv_ctrl_cmd)
-#define UBLK_U_CMD_QUIESCE_DEV	 _IOWR('u', 0x16, struct ublksrv_ctrl_cmd)
+#define UBLK_U_CMD_GET_QUEUE_AFFINITY  _IOR('u', UBLK_CMD_GET_QUEUE_AFFINITY, struct ublksrv_ctrl_cmd)
+#define UBLK_U_CMD_GET_DEV_INFO	       _IOR('u', UBLK_CMD_GET_DEV_INFO, struct ublksrv_ctrl_cmd)
+#define UBLK_U_CMD_ADD_DEV	       _IOWR('u', UBLK_CMD_ADD_DEV, struct ublksrv_ctrl_cmd)
+#define UBLK_U_CMD_DEL_DEV	       _IOWR('u', UBLK_CMD_DEL_DEV, struct ublksrv_ctrl_cmd)
+#define UBLK_U_CMD_START_DEV	       _IOWR('u', UBLK_CMD_START_DEV, struct ublksrv_ctrl_cmd)
+#define UBLK_U_CMD_STOP_DEV	       _IOWR('u', UBLK_CMD_STOP_DEV, struct ublksrv_ctrl_cmd)
+#define UBLK_U_CMD_SET_PARAMS	       _IOWR('u', UBLK_CMD_SET_PARAMS, struct ublksrv_ctrl_cmd)
+#define UBLK_U_CMD_GET_PARAMS	       _IOR('u', UBLK_CMD_GET_PARAMS, struct ublksrv_ctrl_cmd)
+#define UBLK_U_CMD_START_USER_RECOVERY _IOWR('u', UBLK_CMD_START_USER_RECOVERY, struct ublksrv_ctrl_cmd)
+#define UBLK_U_CMD_END_USER_RECOVERY   _IOWR('u', UBLK_CMD_END_USER_RECOVERY, struct ublksrv_ctrl_cmd)
+#define UBLK_U_CMD_GET_DEV_INFO2       _IOR('u', UBLK_CMD_GET_DEV_INFO2, struct ublksrv_ctrl_cmd)
+#define UBLK_U_CMD_GET_FEATURES	       _IOR('u', 0x13, struct ublksrv_ctrl_cmd)
+#define UBLK_U_CMD_DEL_DEV_ASYNC       _IOR('u', 0x14, struct ublksrv_ctrl_cmd)
+#define UBLK_U_CMD_UPDATE_SIZE	       _IOWR('u', 0x15, struct ublksrv_ctrl_cmd)
+#define UBLK_U_CMD_QUIESCE_DEV	       _IOWR('u', 0x16, struct ublksrv_ctrl_cmd)
 
 /*
  * 64bits are enough now, and it should be easy to extend in case of
@@ -86,13 +77,11 @@
 #define UBLK_IO_NEED_GET_DATA	     0x22
 
 /* Any new IO command should encode by __IOWR() */
-#define UBLK_U_IO_FETCH_REQ _IOWR('u', UBLK_IO_FETCH_REQ, struct ublksrv_io_cmd)
-#define UBLK_U_IO_COMMIT_AND_FETCH_REQ \
-	_IOWR('u', UBLK_IO_COMMIT_AND_FETCH_REQ, struct ublksrv_io_cmd)
-#define UBLK_U_IO_NEED_GET_DATA \
-	_IOWR('u', UBLK_IO_NEED_GET_DATA, struct ublksrv_io_cmd)
-#define UBLK_U_IO_REGISTER_IO_BUF   _IOWR('u', 0x23, struct ublksrv_io_cmd)
-#define UBLK_U_IO_UNREGISTER_IO_BUF _IOWR('u', 0x24, struct ublksrv_io_cmd)
+#define UBLK_U_IO_FETCH_REQ	       _IOWR('u', UBLK_IO_FETCH_REQ, struct ublksrv_io_cmd)
+#define UBLK_U_IO_COMMIT_AND_FETCH_REQ _IOWR('u', UBLK_IO_COMMIT_AND_FETCH_REQ, struct ublksrv_io_cmd)
+#define UBLK_U_IO_NEED_GET_DATA	       _IOWR('u', UBLK_IO_NEED_GET_DATA, struct ublksrv_io_cmd)
+#define UBLK_U_IO_REGISTER_IO_BUF      _IOWR('u', 0x23, struct ublksrv_io_cmd)
+#define UBLK_U_IO_UNREGISTER_IO_BUF    _IOWR('u', 0x24, struct ublksrv_io_cmd)
 
 /* only ABORT means that no re-fetch */
 #define UBLK_IO_RES_OK		  0
@@ -467,8 +456,7 @@ struct ublk_auto_buf_reg {
  * 	- bit24 ~ bit31: reserved0
  * 	- bit32 ~ bit63: reserved1
  */
-static __inline__ struct ublk_auto_buf_reg
-ublk_sqe_addr_to_auto_buf_reg(__u64 sqe_addr)
+static __inline__ struct ublk_auto_buf_reg ublk_sqe_addr_to_auto_buf_reg(__u64 sqe_addr)
 {
 	struct ublk_auto_buf_reg reg = {
 		.index = (__u16)sqe_addr,
@@ -480,11 +468,9 @@ ublk_sqe_addr_to_auto_buf_reg(__u64 sqe_addr)
 	return reg;
 }
 
-static __inline__ __u64
-ublk_auto_buf_reg_to_sqe_addr(const struct ublk_auto_buf_reg *buf)
+static __inline__ __u64 ublk_auto_buf_reg_to_sqe_addr(const struct ublk_auto_buf_reg *buf)
 {
-	__u64 addr = buf->index | (__u64)buf->flags << 16 |
-		     (__u64)buf->reserved0 << 24 | (__u64)buf->reserved1 << 32;
+	__u64 addr = buf->index | (__u64)buf->flags << 16 | (__u64)buf->reserved0 << 24 | (__u64)buf->reserved1 << 32;
 
 	return addr;
 }

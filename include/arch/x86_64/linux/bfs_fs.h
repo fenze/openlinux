@@ -61,23 +61,15 @@ struct bfs_super_block {
 	__u32 s_padding[118];
 };
 
-#define BFS_OFF2INO(offset) \
-	((((offset) - BFS_BSIZE) / sizeof(struct bfs_inode)) + BFS_ROOT_INO)
+#define BFS_OFF2INO(offset) ((((offset) - BFS_BSIZE) / sizeof(struct bfs_inode)) + BFS_ROOT_INO)
 
-#define BFS_INO2OFF(ino) \
-	((__u32)(((ino) - BFS_ROOT_INO) * sizeof(struct bfs_inode)) + BFS_BSIZE)
-#define BFS_NZFILESIZE(ip)                    \
-	((le32_to_cpu((ip)->i_eoffset) + 1) - \
-	 le32_to_cpu((ip)->i_sblock) * BFS_BSIZE)
+#define BFS_INO2OFF(ino)   ((__u32)(((ino) - BFS_ROOT_INO) * sizeof(struct bfs_inode)) + BFS_BSIZE)
+#define BFS_NZFILESIZE(ip) ((le32_to_cpu((ip)->i_eoffset) + 1) - le32_to_cpu((ip)->i_sblock) * BFS_BSIZE)
 
 #define BFS_FILESIZE(ip) ((ip)->i_sblock == 0 ? 0 : BFS_NZFILESIZE(ip))
 
-#define BFS_FILEBLOCKS(ip)                                         \
-	((ip)->i_sblock == 0 ? 0 :                                 \
-			       (le32_to_cpu((ip)->i_eblock) + 1) - \
-				       le32_to_cpu((ip)->i_sblock))
-#define BFS_UNCLEAN(bfs_sb, sb)                 \
-	((le32_to_cpu(bfs_sb->s_from) != -1) && \
-	 (le32_to_cpu(bfs_sb->s_to) != -1) && !(sb->s_flags & SB_RDONLY))
+#define BFS_FILEBLOCKS(ip) ((ip)->i_sblock == 0 ? 0 : (le32_to_cpu((ip)->i_eblock) + 1) - le32_to_cpu((ip)->i_sblock))
+#define BFS_UNCLEAN(bfs_sb, sb) \
+	((le32_to_cpu(bfs_sb->s_from) != -1) && (le32_to_cpu(bfs_sb->s_to) != -1) && !(sb->s_flags & SB_RDONLY))
 
 #endif /* _LINUX_BFS_FS_H */

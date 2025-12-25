@@ -741,8 +741,7 @@ struct iommu_hwpt_set_dirty_tracking {
 	__u32 hwpt_id;
 	__u32 __reserved;
 };
-#define IOMMU_HWPT_SET_DIRTY_TRACKING \
-	_IO(IOMMUFD_TYPE, IOMMUFD_CMD_HWPT_SET_DIRTY_TRACKING)
+#define IOMMU_HWPT_SET_DIRTY_TRACKING _IO(IOMMUFD_TYPE, IOMMUFD_CMD_HWPT_SET_DIRTY_TRACKING)
 
 /**
  * enum iommufd_hwpt_get_dirty_bitmap_flags - Flags for getting dirty bits
@@ -787,8 +786,7 @@ struct iommu_hwpt_get_dirty_bitmap {
 	__aligned_u64 page_size;
 	__aligned_u64 data;
 };
-#define IOMMU_HWPT_GET_DIRTY_BITMAP \
-	_IO(IOMMUFD_TYPE, IOMMUFD_CMD_HWPT_GET_DIRTY_BITMAP)
+#define IOMMU_HWPT_GET_DIRTY_BITMAP _IO(IOMMUFD_TYPE, IOMMUFD_CMD_HWPT_GET_DIRTY_BITMAP)
 
 /**
  * enum iommu_hwpt_invalidate_data_type - IOMMU HWPT Cache Invalidation
@@ -1104,8 +1102,7 @@ struct iommu_ioas_change_process {
 	__u32 __reserved;
 };
 
-#define IOMMU_IOAS_CHANGE_PROCESS \
-	_IO(IOMMUFD_TYPE, IOMMUFD_CMD_IOAS_CHANGE_PROCESS)
+#define IOMMU_IOAS_CHANGE_PROCESS _IO(IOMMUFD_TYPE, IOMMUFD_CMD_IOAS_CHANGE_PROCESS)
 
 /**
  * enum iommu_veventq_flag - flag for struct iommufd_vevent_header

@@ -22,8 +22,8 @@
  * @set_feat_in: Set Feature input
  */
 struct fwctl_rpc_cxl {
-	__struct_group(fwctl_rpc_cxl_hdr, hdr, /* no attrs */, __u32 opcode;
-		       __u32 flags; __u32 op_size; __u32 reserved1;);
+	__struct_group(fwctl_rpc_cxl_hdr, hdr, /* no attrs */, __u32 opcode; __u32 flags; __u32 op_size;
+		       __u32 reserved1;);
 	union {
 		struct cxl_mbox_get_sup_feats_in get_sup_feats_in;
 		struct cxl_mbox_get_feat_in get_feat_in;
@@ -39,8 +39,7 @@ struct fwctl_rpc_cxl {
  * @payload: raw byte stream of payload
  */
 struct fwctl_rpc_cxl_out {
-	__struct_group(fwctl_rpc_cxl_out_hdr, hdr, /* no attrs */, __u32 size;
-		       __u32 retval;);
+	__struct_group(fwctl_rpc_cxl_out_hdr, hdr, /* no attrs */, __u32 size; __u32 retval;);
 	union {
 		struct cxl_mbox_get_sup_feats_out get_sup_feats_out;
 		__DECLARE_FLEX_ARRAY(__u8, payload);

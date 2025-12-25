@@ -1,4 +1,3 @@
-#include <libc.h>   // for __unused
 #include <string.h> // for strlcpy, strlen
 #include <sys/cdefs.h>
 #include <time.h> // for tm, size_t, locale_t, strftime, strftime_l

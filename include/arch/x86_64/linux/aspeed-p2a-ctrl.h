@@ -48,16 +48,13 @@ struct aspeed_p2a_ctrl_mapping {
  * starting address and length to be readable by the host, or
  * readable-writeable.
  */
-#define ASPEED_P2A_CTRL_IOCTL_SET_WINDOW          \
-	_IOW(__ASPEED_P2A_CTRL_IOCTL_MAGIC, 0x00, \
-	     struct aspeed_p2a_ctrl_mapping)
+#define ASPEED_P2A_CTRL_IOCTL_SET_WINDOW _IOW(__ASPEED_P2A_CTRL_IOCTL_MAGIC, 0x00, struct aspeed_p2a_ctrl_mapping)
 
 /*
  * This IOCTL is meant to read back to the user the base address and length of
  * the memory-region specified to the driver for use with mmap.
  */
-#define ASPEED_P2A_CTRL_IOCTL_GET_MEMORY_CONFIG    \
-	_IOWR(__ASPEED_P2A_CTRL_IOCTL_MAGIC, 0x01, \
-	      struct aspeed_p2a_ctrl_mapping)
+#define ASPEED_P2A_CTRL_IOCTL_GET_MEMORY_CONFIG \
+	_IOWR(__ASPEED_P2A_CTRL_IOCTL_MAGIC, 0x01, struct aspeed_p2a_ctrl_mapping)
 
 #endif /* _LINUX_ASPEED_P2A_CTRL_H */

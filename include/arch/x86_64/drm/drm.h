@@ -167,12 +167,7 @@ struct drm_block {
  * \sa drmCtlInstHandler() and drmCtlUninstHandler().
  */
 struct drm_control {
-	enum {
-		DRM_ADD_COMMAND,
-		DRM_RM_COMMAND,
-		DRM_INST_HANDLER,
-		DRM_UNINST_HANDLER
-	} func;
+	enum { DRM_ADD_COMMAND, DRM_RM_COMMAND, DRM_INST_HANDLER, DRM_UNINST_HANDLER } func;
 	int irq;
 };
 
@@ -214,9 +209,9 @@ struct drm_ctx_priv_map {
  * \sa drmAddMap().
  */
 struct drm_map {
-	unsigned long offset;	/**< Requested physical address (0 for SAREA)*/
-	unsigned long size;	/**< Requested physical size (bytes) */
-	enum drm_map_type type; /**< Type of memory to map */
+	unsigned long offset;	  /**< Requested physical address (0 for SAREA)*/
+	unsigned long size;	  /**< Requested physical size (bytes) */
+	enum drm_map_type type;	  /**< Type of memory to map */
 	enum drm_map_flags flags; /**< Flags */
 	void *handle;		  /**< User-space: "Handle" to pass to mmap() */
 				  /**< Kernel-space: kernel-virtual address */
@@ -253,7 +248,7 @@ enum drm_stat_type {
 	_DRM_STAT_DMA,	     /**< DMA */
 	_DRM_STAT_SPECIAL,   /**< Special DMA (e.g., priority or polled) */
 	_DRM_STAT_MISSED     /**< Missed DMA opportunity */
-	/* Add to the *END* of the list */
+			     /* Add to the *END* of the list */
 };
 
 /*
@@ -332,10 +327,10 @@ struct drm_buf_desc {
 	int low_mark;  /**< Low water mark */
 	int high_mark; /**< High water mark */
 	enum {
-		_DRM_PAGE_ALIGN = 0x01, /**< Align on page boundaries for DMA */
-		_DRM_AGP_BUFFER = 0x02, /**< Buffer is in AGP space */
-		_DRM_SG_BUFFER = 0x04,	/**< Scatter/gather memory buffer */
-		_DRM_FB_BUFFER = 0x08,	/**< Buffer is in frame buffer */
+		_DRM_PAGE_ALIGN = 0x01,	  /**< Align on page boundaries for DMA */
+		_DRM_AGP_BUFFER = 0x02,	  /**< Buffer is in AGP space */
+		_DRM_SG_BUFFER = 0x04,	  /**< Scatter/gather memory buffer */
+		_DRM_FB_BUFFER = 0x08,	  /**< Buffer is in frame buffer */
 		_DRM_PCI_BUFFER_RO = 0x10 /**< Map PCI DMA buffer read-only */
 	} flags;
 	unsigned long agp_start; /**<
@@ -405,10 +400,7 @@ struct drm_dma {
 	int granted_count; /**< Number of buffers granted */
 };
 
-enum drm_ctx_flags {
-	_DRM_CONTEXT_PRESERVED = 0x01,
-	_DRM_CONTEXT_2DONLY = 0x02
-};
+enum drm_ctx_flags { _DRM_CONTEXT_PRESERVED = 0x01, _DRM_CONTEXT_2DONLY = 0x02 };
 
 /*
  * DRM_IOCTL_ADD_CTX ioctl argument type.
@@ -472,20 +464,18 @@ enum drm_vblank_seq_type {
 	_DRM_VBLANK_RELATIVE = 0x1, /**< Wait for given number of vblanks */
 	/* bits 1-6 are reserved for high crtcs */
 	_DRM_VBLANK_HIGH_CRTC_MASK = 0x0000003e,
-	_DRM_VBLANK_EVENT = 0x4000000, /**< Send event instead of blocking */
-	_DRM_VBLANK_FLIP = 0x8000000,  /**< Scheduled buffer swap should flip */
+	_DRM_VBLANK_EVENT = 0x4000000,	     /**< Send event instead of blocking */
+	_DRM_VBLANK_FLIP = 0x8000000,	     /**< Scheduled buffer swap should flip */
 	_DRM_VBLANK_NEXTONMISS = 0x10000000, /**< If missed, wait for next
 						vblank */
-	_DRM_VBLANK_SECONDARY = 0x20000000, /**< Secondary display controller */
-	_DRM_VBLANK_SIGNAL = 0x40000000 /**< Send signal instead of blocking,
-					   unsupported */
+	_DRM_VBLANK_SECONDARY = 0x20000000,  /**< Secondary display controller */
+	_DRM_VBLANK_SIGNAL = 0x40000000	     /**< Send signal instead of blocking,
+						unsupported */
 };
 #define _DRM_VBLANK_HIGH_CRTC_SHIFT 1
 
 #define _DRM_VBLANK_TYPES_MASK (_DRM_VBLANK_ABSOLUTE | _DRM_VBLANK_RELATIVE)
-#define _DRM_VBLANK_FLAGS_MASK                                            \
-	(_DRM_VBLANK_EVENT | _DRM_VBLANK_SIGNAL | _DRM_VBLANK_SECONDARY | \
-	 _DRM_VBLANK_NEXTONMISS)
+#define _DRM_VBLANK_FLAGS_MASK (_DRM_VBLANK_EVENT | _DRM_VBLANK_SIGNAL | _DRM_VBLANK_SECONDARY | _DRM_VBLANK_NEXTONMISS)
 
 struct drm_wait_vblank_request {
 	enum drm_vblank_seq_type type;
@@ -925,10 +915,8 @@ struct drm_syncobj_transfer {
 
 #define DRM_SYNCOBJ_WAIT_FLAGS_WAIT_ALL	       (1 << 0)
 #define DRM_SYNCOBJ_WAIT_FLAGS_WAIT_FOR_SUBMIT (1 << 1)
-#define DRM_SYNCOBJ_WAIT_FLAGS_WAIT_AVAILABLE \
-	(1 << 2) /* wait for time point to become available */
-#define DRM_SYNCOBJ_WAIT_FLAGS_WAIT_DEADLINE \
-	(1 << 3) /* set fence deadline to deadline_nsec */
+#define DRM_SYNCOBJ_WAIT_FLAGS_WAIT_AVAILABLE  (1 << 2) /* wait for time point to become available */
+#define DRM_SYNCOBJ_WAIT_FLAGS_WAIT_DEADLINE   (1 << 3) /* set fence deadline to deadline_nsec */
 struct drm_syncobj_wait {
 	__u64 handles;
 	/* absolute timeout */
@@ -994,8 +982,7 @@ struct drm_syncobj_array {
 	__u32 pad;
 };
 
-#define DRM_SYNCOBJ_QUERY_FLAGS_LAST_SUBMITTED \
-	(1 << 0) /* last available point on timeline syncobj */
+#define DRM_SYNCOBJ_QUERY_FLAGS_LAST_SUBMITTED (1 << 0) /* last available point on timeline syncobj */
 struct drm_syncobj_timeline_array {
 	__u64 handles;
 	__u64 points;
@@ -1015,16 +1002,14 @@ struct drm_crtc_get_sequence {
  * when the first pixel of the refresh cycle leaves the display engine
  * for the display
  */
-#define DRM_CRTC_SEQUENCE_RELATIVE \
-	0x00000001 /* sequence is relative to current */
-#define DRM_CRTC_SEQUENCE_NEXT_ON_MISS \
-	0x00000002 /* Use next sequence if we've missed */
+#define DRM_CRTC_SEQUENCE_RELATIVE     0x00000001 /* sequence is relative to current */
+#define DRM_CRTC_SEQUENCE_NEXT_ON_MISS 0x00000002 /* Use next sequence if we've missed */
 
 struct drm_crtc_queue_sequence {
 	__u32 crtc_id;
 	__u32 flags;
-	__u64 sequence; /* on input, target sequence. on output, actual sequence
-			 */
+	__u64 sequence;	 /* on input, target sequence. on output, actual sequence
+			  */
 	__u64 user_data; /* user data passed to event */
 };
 
@@ -1159,9 +1144,8 @@ extern "C" {
 
 #define DRM_IOCTL_WAIT_VBLANK DRM_IOWR(0x3a, union drm_wait_vblank)
 
-#define DRM_IOCTL_CRTC_GET_SEQUENCE DRM_IOWR(0x3b, struct drm_crtc_get_sequence)
-#define DRM_IOCTL_CRTC_QUEUE_SEQUENCE \
-	DRM_IOWR(0x3c, struct drm_crtc_queue_sequence)
+#define DRM_IOCTL_CRTC_GET_SEQUENCE   DRM_IOWR(0x3b, struct drm_crtc_get_sequence)
+#define DRM_IOCTL_CRTC_QUEUE_SEQUENCE DRM_IOWR(0x3c, struct drm_crtc_queue_sequence)
 
 #define DRM_IOCTL_UPDATE_DRAW DRM_IOW(0x3f, struct drm_update_draw)
 
@@ -1172,8 +1156,7 @@ extern "C" {
 #define DRM_IOCTL_MODE_GETGAMMA	    DRM_IOWR(0xA4, struct drm_mode_crtc_lut)
 #define DRM_IOCTL_MODE_SETGAMMA	    DRM_IOWR(0xA5, struct drm_mode_crtc_lut)
 #define DRM_IOCTL_MODE_GETENCODER   DRM_IOWR(0xA6, struct drm_mode_get_encoder)
-#define DRM_IOCTL_MODE_GETCONNECTOR \
-	DRM_IOWR(0xA7, struct drm_mode_get_connector)
+#define DRM_IOCTL_MODE_GETCONNECTOR DRM_IOWR(0xA7, struct drm_mode_get_connector)
 #define DRM_IOCTL_MODE_ATTACHMODE                                             \
 	DRM_IOWR(0xA8, struct drm_mode_mode_cmd) /* deprecated (never worked) \
 						  */
@@ -1182,8 +1165,7 @@ extern "C" {
 						  */
 
 #define DRM_IOCTL_MODE_GETPROPERTY DRM_IOWR(0xAA, struct drm_mode_get_property)
-#define DRM_IOCTL_MODE_SETPROPERTY \
-	DRM_IOWR(0xAB, struct drm_mode_connector_set_property)
+#define DRM_IOCTL_MODE_SETPROPERTY DRM_IOWR(0xAB, struct drm_mode_connector_set_property)
 #define DRM_IOCTL_MODE_GETPROPBLOB DRM_IOWR(0xAC, struct drm_mode_get_blob)
 #define DRM_IOCTL_MODE_GETFB	   DRM_IOWR(0xAD, struct drm_mode_fb_cmd)
 #define DRM_IOCTL_MODE_ADDFB	   DRM_IOWR(0xAE, struct drm_mode_fb_cmd)
@@ -1221,24 +1203,19 @@ extern "C" {
  * &DRM_CAP_DUMB_PREFERRED_DEPTH and &DRM_CAP_DUMB_PREFER_SHADOW indicate
  * driver preferences for dumb buffers.
  */
-#define DRM_IOCTL_MODE_CREATE_DUMB  DRM_IOWR(0xB2, struct drm_mode_create_dumb)
-#define DRM_IOCTL_MODE_MAP_DUMB	    DRM_IOWR(0xB3, struct drm_mode_map_dumb)
-#define DRM_IOCTL_MODE_DESTROY_DUMB DRM_IOWR(0xB4, struct drm_mode_destroy_dumb)
-#define DRM_IOCTL_MODE_GETPLANERESOURCES \
-	DRM_IOWR(0xB5, struct drm_mode_get_plane_res)
-#define DRM_IOCTL_MODE_GETPLANE DRM_IOWR(0xB6, struct drm_mode_get_plane)
-#define DRM_IOCTL_MODE_SETPLANE DRM_IOWR(0xB7, struct drm_mode_set_plane)
-#define DRM_IOCTL_MODE_ADDFB2	DRM_IOWR(0xB8, struct drm_mode_fb_cmd2)
-#define DRM_IOCTL_MODE_OBJ_GETPROPERTIES \
-	DRM_IOWR(0xB9, struct drm_mode_obj_get_properties)
-#define DRM_IOCTL_MODE_OBJ_SETPROPERTY \
-	DRM_IOWR(0xBA, struct drm_mode_obj_set_property)
-#define DRM_IOCTL_MODE_CURSOR2 DRM_IOWR(0xBB, struct drm_mode_cursor2)
-#define DRM_IOCTL_MODE_ATOMIC  DRM_IOWR(0xBC, struct drm_mode_atomic)
-#define DRM_IOCTL_MODE_CREATEPROPBLOB \
-	DRM_IOWR(0xBD, struct drm_mode_create_blob)
-#define DRM_IOCTL_MODE_DESTROYPROPBLOB \
-	DRM_IOWR(0xBE, struct drm_mode_destroy_blob)
+#define DRM_IOCTL_MODE_CREATE_DUMB	 DRM_IOWR(0xB2, struct drm_mode_create_dumb)
+#define DRM_IOCTL_MODE_MAP_DUMB		 DRM_IOWR(0xB3, struct drm_mode_map_dumb)
+#define DRM_IOCTL_MODE_DESTROY_DUMB	 DRM_IOWR(0xB4, struct drm_mode_destroy_dumb)
+#define DRM_IOCTL_MODE_GETPLANERESOURCES DRM_IOWR(0xB5, struct drm_mode_get_plane_res)
+#define DRM_IOCTL_MODE_GETPLANE		 DRM_IOWR(0xB6, struct drm_mode_get_plane)
+#define DRM_IOCTL_MODE_SETPLANE		 DRM_IOWR(0xB7, struct drm_mode_set_plane)
+#define DRM_IOCTL_MODE_ADDFB2		 DRM_IOWR(0xB8, struct drm_mode_fb_cmd2)
+#define DRM_IOCTL_MODE_OBJ_GETPROPERTIES DRM_IOWR(0xB9, struct drm_mode_obj_get_properties)
+#define DRM_IOCTL_MODE_OBJ_SETPROPERTY	 DRM_IOWR(0xBA, struct drm_mode_obj_set_property)
+#define DRM_IOCTL_MODE_CURSOR2		 DRM_IOWR(0xBB, struct drm_mode_cursor2)
+#define DRM_IOCTL_MODE_ATOMIC		 DRM_IOWR(0xBC, struct drm_mode_atomic)
+#define DRM_IOCTL_MODE_CREATEPROPBLOB	 DRM_IOWR(0xBD, struct drm_mode_create_blob)
+#define DRM_IOCTL_MODE_DESTROYPROPBLOB	 DRM_IOWR(0xBE, struct drm_mode_destroy_blob)
 
 #define DRM_IOCTL_SYNCOBJ_CREATE       DRM_IOWR(0xBF, struct drm_syncobj_create)
 #define DRM_IOCTL_SYNCOBJ_DESTROY      DRM_IOWR(0xC0, struct drm_syncobj_destroy)
@@ -1253,13 +1230,10 @@ extern "C" {
 #define DRM_IOCTL_MODE_GET_LEASE    DRM_IOWR(0xC8, struct drm_mode_get_lease)
 #define DRM_IOCTL_MODE_REVOKE_LEASE DRM_IOWR(0xC9, struct drm_mode_revoke_lease)
 
-#define DRM_IOCTL_SYNCOBJ_TIMELINE_WAIT \
-	DRM_IOWR(0xCA, struct drm_syncobj_timeline_wait)
-#define DRM_IOCTL_SYNCOBJ_QUERY \
-	DRM_IOWR(0xCB, struct drm_syncobj_timeline_array)
-#define DRM_IOCTL_SYNCOBJ_TRANSFER DRM_IOWR(0xCC, struct drm_syncobj_transfer)
-#define DRM_IOCTL_SYNCOBJ_TIMELINE_SIGNAL \
-	DRM_IOWR(0xCD, struct drm_syncobj_timeline_array)
+#define DRM_IOCTL_SYNCOBJ_TIMELINE_WAIT	  DRM_IOWR(0xCA, struct drm_syncobj_timeline_wait)
+#define DRM_IOCTL_SYNCOBJ_QUERY		  DRM_IOWR(0xCB, struct drm_syncobj_timeline_array)
+#define DRM_IOCTL_SYNCOBJ_TRANSFER	  DRM_IOWR(0xCC, struct drm_syncobj_transfer)
+#define DRM_IOCTL_SYNCOBJ_TIMELINE_SIGNAL DRM_IOWR(0xCD, struct drm_syncobj_timeline_array)
 
 /**
  * DRM_IOCTL_MODE_GETFB2 - Get framebuffer metadata.

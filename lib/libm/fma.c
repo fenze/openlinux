@@ -86,8 +86,7 @@ double fma(double x, double y, double z)
 			d -= 64;
 			if (d == 0) {
 			} else if (d < 64) {
-				rlo = rhi << (64 - d) | rlo >> d |
-				      !!(rlo << (64 - d));
+				rlo = rhi << (64 - d) | rlo >> d | !!(rlo << (64 - d));
 				rhi = rhi >> d;
 			} else {
 				rlo = 1;
@@ -162,16 +161,14 @@ double fma(double x, double y, double z)
 							on arch behaviour which
 				   can be imitated by a double to float
 				   conversion */
-				float fltmin = (float)(0x0.ffffff8p-63) *
-					       FLT_MIN * (float)r;
+				float fltmin = (float)(0x0.ffffff8p-63) * FLT_MIN * (float)r;
 				return DBL_MIN / FLT_MIN * fltmin;
 			}
 			/* one bit is lost when scaled, add another top bit to
 						only round once at conversion if
 			   it is inexact */
 			if (rhi << 53) {
-				i = (int64_t)(rhi >> 1 | (rhi & 1) |
-					      1ull << 62);
+				i = (int64_t)(rhi >> 1 | (rhi & 1) | 1ull << 62);
 				if (sign)
 					i = -i;
 				r = (double)i;

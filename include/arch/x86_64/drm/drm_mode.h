@@ -46,9 +46,8 @@ extern "C" {
 #define DRM_DISPLAY_MODE_LEN   32
 #define DRM_PROP_NAME_LEN      32
 
-#define DRM_MODE_TYPE_BUILTIN (1 << 0) /* deprecated */
-#define DRM_MODE_TYPE_CLOCK_C \
-	((1 << 1) | DRM_MODE_TYPE_BUILTIN) /* deprecated */
+#define DRM_MODE_TYPE_BUILTIN (1 << 0)				 /* deprecated */
+#define DRM_MODE_TYPE_CLOCK_C ((1 << 1) | DRM_MODE_TYPE_BUILTIN) /* deprecated */
 #define DRM_MODE_TYPE_CRTC_C                             \
 	((1 << 2) | DRM_MODE_TYPE_BUILTIN) /* deprecated \
 					    */
@@ -57,8 +56,7 @@ extern "C" {
 #define DRM_MODE_TYPE_USERDEF	(1 << 5)
 #define DRM_MODE_TYPE_DRIVER	(1 << 6)
 
-#define DRM_MODE_TYPE_ALL \
-	(DRM_MODE_TYPE_PREFERRED | DRM_MODE_TYPE_USERDEF | DRM_MODE_TYPE_DRIVER)
+#define DRM_MODE_TYPE_ALL (DRM_MODE_TYPE_PREFERRED | DRM_MODE_TYPE_USERDEF | DRM_MODE_TYPE_DRIVER)
 
 /* Video mode flags */
 /* bit compatible with the xrandr RR_ definitions (bits 0-13)
@@ -121,12 +119,11 @@ extern "C" {
 #define DRM_MODE_FLAG_PIC_AR_64_27   (DRM_MODE_PICTURE_ASPECT_64_27 << 19)
 #define DRM_MODE_FLAG_PIC_AR_256_135 (DRM_MODE_PICTURE_ASPECT_256_135 << 19)
 
-#define DRM_MODE_FLAG_ALL                                                     \
-	(DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_PVSYNC | \
-	 DRM_MODE_FLAG_NVSYNC | DRM_MODE_FLAG_INTERLACE |                     \
-	 DRM_MODE_FLAG_DBLSCAN | DRM_MODE_FLAG_CSYNC | DRM_MODE_FLAG_PCSYNC | \
-	 DRM_MODE_FLAG_NCSYNC | DRM_MODE_FLAG_HSKEW | DRM_MODE_FLAG_DBLCLK |  \
-	 DRM_MODE_FLAG_CLKDIV2 | DRM_MODE_FLAG_3D_MASK)
+#define DRM_MODE_FLAG_ALL                                                                               \
+	(DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_PVSYNC | DRM_MODE_FLAG_NVSYNC |    \
+	 DRM_MODE_FLAG_INTERLACE | DRM_MODE_FLAG_DBLSCAN | DRM_MODE_FLAG_CSYNC | DRM_MODE_FLAG_PCSYNC | \
+	 DRM_MODE_FLAG_NCSYNC | DRM_MODE_FLAG_HSKEW | DRM_MODE_FLAG_DBLCLK | DRM_MODE_FLAG_CLKDIV2 |    \
+	 DRM_MODE_FLAG_3D_MASK)
 
 /* DPMS flags */
 /* bit compatible with the xorg definitions. */
@@ -176,9 +173,7 @@ extern "C" {
  *
  * Bitmask used to look for drm plane rotations.
  */
-#define DRM_MODE_ROTATE_MASK                                            \
-	(DRM_MODE_ROTATE_0 | DRM_MODE_ROTATE_90 | DRM_MODE_ROTATE_180 | \
-	 DRM_MODE_ROTATE_270)
+#define DRM_MODE_ROTATE_MASK (DRM_MODE_ROTATE_0 | DRM_MODE_ROTATE_90 | DRM_MODE_ROTATE_180 | DRM_MODE_ROTATE_270)
 
 /*
  * DRM_MODE_REFLECT_<axis>
@@ -510,9 +505,8 @@ struct drm_mode_get_connector {
 #define DRM_MODE_PROP_BITMASK	(1 << 5) /* bitmask of enumerated types */
 
 /* non-extended types: legacy bitmask, one bit per type: */
-#define DRM_MODE_PROP_LEGACY_TYPE                                        \
-	(DRM_MODE_PROP_RANGE | DRM_MODE_PROP_ENUM | DRM_MODE_PROP_BLOB | \
-	 DRM_MODE_PROP_BITMASK)
+#define DRM_MODE_PROP_LEGACY_TYPE \
+	(DRM_MODE_PROP_RANGE | DRM_MODE_PROP_ENUM | DRM_MODE_PROP_BLOB | DRM_MODE_PROP_BITMASK)
 
 /* extended-types: rather than continue to consume a bit per type,
  * grab a chunk of the bits to use as integer type id.
@@ -968,17 +962,13 @@ struct hdr_output_metadata {
 #define DRM_MODE_PAGE_FLIP_ASYNC	   0x02
 #define DRM_MODE_PAGE_FLIP_TARGET_ABSOLUTE 0x4
 #define DRM_MODE_PAGE_FLIP_TARGET_RELATIVE 0x8
-#define DRM_MODE_PAGE_FLIP_TARGET             \
-	(DRM_MODE_PAGE_FLIP_TARGET_ABSOLUTE | \
-	 DRM_MODE_PAGE_FLIP_TARGET_RELATIVE)
+#define DRM_MODE_PAGE_FLIP_TARGET	   (DRM_MODE_PAGE_FLIP_TARGET_ABSOLUTE | DRM_MODE_PAGE_FLIP_TARGET_RELATIVE)
 /**
  * DRM_MODE_PAGE_FLIP_FLAGS
  *
  * Bitmask of flags suitable for &drm_mode_crtc_page_flip_target.flags.
  */
-#define DRM_MODE_PAGE_FLIP_FLAGS                               \
-	(DRM_MODE_PAGE_FLIP_EVENT | DRM_MODE_PAGE_FLIP_ASYNC | \
-	 DRM_MODE_PAGE_FLIP_TARGET)
+#define DRM_MODE_PAGE_FLIP_FLAGS (DRM_MODE_PAGE_FLIP_EVENT | DRM_MODE_PAGE_FLIP_ASYNC | DRM_MODE_PAGE_FLIP_TARGET)
 
 /*
  * Request a page flip on the specified crtc.
@@ -1128,9 +1118,8 @@ struct drm_mode_destroy_dumb {
  * Bitfield of flags accepted by the &DRM_IOCTL_MODE_ATOMIC IOCTL in
  * &drm_mode_atomic.flags.
  */
-#define DRM_MODE_ATOMIC_FLAGS                                   \
-	(DRM_MODE_PAGE_FLIP_EVENT | DRM_MODE_PAGE_FLIP_ASYNC |  \
-	 DRM_MODE_ATOMIC_TEST_ONLY | DRM_MODE_ATOMIC_NONBLOCK | \
+#define DRM_MODE_ATOMIC_FLAGS                                                                                         \
+	(DRM_MODE_PAGE_FLIP_EVENT | DRM_MODE_PAGE_FLIP_ASYNC | DRM_MODE_ATOMIC_TEST_ONLY | DRM_MODE_ATOMIC_NONBLOCK | \
 	 DRM_MODE_ATOMIC_ALLOW_MODESET)
 
 struct drm_mode_atomic {

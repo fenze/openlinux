@@ -42,8 +42,7 @@ void sincosf(float x, float *sin, float *cos)
 		/* |x| < 2**-12 */
 		if (ix < 0x39800000) {
 			/* raise inexact if x!=0 and underflow if subnormal */
-			FORCE_EVAL(ix < 0x00100000 ? x / 0x1p120f :
-						     x + 0x1p120f);
+			FORCE_EVAL(ix < 0x00100000 ? x / 0x1p120f : x + 0x1p120f);
 			*sin = x;
 			*cos = 1.0f;
 			return;

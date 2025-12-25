@@ -26,28 +26,22 @@
  */
 
 /* Load a short int from the following tables with little-endian formats */
-#define COFF_SHORT_L(ps)                                         \
-	((short)(((unsigned short)((unsigned char)ps[1]) << 8) | \
-		 ((unsigned short)((unsigned char)ps[0]))))
+#define COFF_SHORT_L(ps) \
+	((short)(((unsigned short)((unsigned char)ps[1]) << 8) | ((unsigned short)((unsigned char)ps[0]))))
 
 /* Load a long int from the following tables with little-endian formats */
-#define COFF_LONG_L(ps)                                          \
-	(((long)(((unsigned long)((unsigned char)ps[3]) << 24) | \
-		 ((unsigned long)((unsigned char)ps[2]) << 16) | \
-		 ((unsigned long)((unsigned char)ps[1]) << 8) |  \
-		 ((unsigned long)((unsigned char)ps[0])))))
+#define COFF_LONG_L(ps)                                                                                          \
+	(((long)(((unsigned long)((unsigned char)ps[3]) << 24) | ((unsigned long)((unsigned char)ps[2]) << 16) | \
+		 ((unsigned long)((unsigned char)ps[1]) << 8) | ((unsigned long)((unsigned char)ps[0])))))
 
 /* Load a short int from the following tables with big-endian formats */
-#define COFF_SHORT_H(ps)                                         \
-	((short)(((unsigned short)((unsigned char)ps[0]) << 8) | \
-		 ((unsigned short)((unsigned char)ps[1]))))
+#define COFF_SHORT_H(ps) \
+	((short)(((unsigned short)((unsigned char)ps[0]) << 8) | ((unsigned short)((unsigned char)ps[1]))))
 
 /* Load a long int from the following tables with big-endian formats */
-#define COFF_LONG_H(ps)                                          \
-	(((long)(((unsigned long)((unsigned char)ps[0]) << 24) | \
-		 ((unsigned long)((unsigned char)ps[1]) << 16) | \
-		 ((unsigned long)((unsigned char)ps[2]) << 8) |  \
-		 ((unsigned long)((unsigned char)ps[3])))))
+#define COFF_LONG_H(ps)                                                                                          \
+	(((long)(((unsigned long)((unsigned char)ps[0]) << 24) | ((unsigned long)((unsigned char)ps[1]) << 16) | \
+		 ((unsigned long)((unsigned char)ps[2]) << 8) | ((unsigned long)((unsigned char)ps[3])))))
 
 /* These may be overridden later by brain dead implementations which generate
    a big-endian header with little-endian data. In that case, generate a
@@ -111,9 +105,8 @@ struct COFF_filehdr {
 #if 0 /* Perhaps, someday, these formats may be used.      */
 #define COFF_I386PTXMAGIC 0x154
 #define COFF_I386AIXMAGIC 0x175 /* IBM's AIX system  */
-#define COFF_I386BADMAG(x)                               \
-	((COFF_SHORT((x).f_magic) != COFF_I386MAGIC) &&  \
-	 COFF_SHORT((x).f_magic) != COFF_I386PTXMAGIC && \
+#define COFF_I386BADMAG(x)                                                                              \
+	((COFF_SHORT((x).f_magic) != COFF_I386MAGIC) && COFF_SHORT((x).f_magic) != COFF_I386PTXMAGIC && \
 	 COFF_SHORT((x).f_magic) != COFF_I386AIXMAGIC)
 #else
 #define COFF_I386BADMAG(x) (COFF_SHORT((x).f_magic) != COFF_I386MAGIC)
@@ -288,7 +281,7 @@ union COFF_auxent {
 		union {
 			struct {		   /* if ISFCN, tag, or .bb */
 				char x_lnnoptr[4]; /* ptr to fcn line # */
-				char x_endndx[4]; /* entry ndx past block end */
+				char x_endndx[4];  /* entry ndx past block end */
 			} x_fcn;
 
 			struct { /* if ISARY, up to 4 dimen. */
@@ -329,7 +322,7 @@ union COFF_auxent {
 		char x_tvfill[4];   /* tv fill value */
 		char x_tvlen[2];    /* length of .tv */
 		char x_tvran[2][2]; /* tv range */
-	} x_tv; /* info about .tv section (in auxent of symbol .tv)) */
+	} x_tv;			    /* info about .tv section (in auxent of symbol .tv)) */
 };
 
 #define COFF_SYMENT struct COFF_syment

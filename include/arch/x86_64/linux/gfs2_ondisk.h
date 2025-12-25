@@ -311,10 +311,9 @@ struct gfs2_dinode {
  * directory structure - many of these per directory file
  */
 
-#define GFS2_FNAMESIZE 255
-#define GFS2_DIRENT_SIZE(name_len) \
-	((sizeof(struct gfs2_dirent) + (name_len) + 7) & ~7)
-#define GFS2_MIN_DIRENT_SIZE (GFS2_DIRENT_SIZE(1))
+#define GFS2_FNAMESIZE		   255
+#define GFS2_DIRENT_SIZE(name_len) ((sizeof(struct gfs2_dirent) + (name_len) + 7) & ~7)
+#define GFS2_MIN_DIRENT_SIZE	   (GFS2_DIRENT_SIZE(1))
 
 struct gfs2_dirent {
 	struct gfs2_inum de_inum;

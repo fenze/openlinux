@@ -58,12 +58,10 @@
 #define IPT_ERROR_TARGET XT_ERROR_TARGET
 
 /* fn returns 0 to continue iteration */
-#define IPT_MATCH_ITERATE(e, fn, args...) \
-	XT_MATCH_ITERATE(struct ipt_entry, e, fn, ##args)
+#define IPT_MATCH_ITERATE(e, fn, args...) XT_MATCH_ITERATE(struct ipt_entry, e, fn, ##args)
 
 /* fn returns 0 to continue iteration */
-#define IPT_ENTRY_ITERATE(entries, size, fn, args...) \
-	XT_ENTRY_ITERATE(struct ipt_entry, entries, size, fn, ##args)
+#define IPT_ENTRY_ITERATE(entries, size, fn, args...) XT_ENTRY_ITERATE(struct ipt_entry, entries, size, fn, ##args)
 
 /* Yes, Virginia, you have to zero the padding. */
 struct ipt_ip {

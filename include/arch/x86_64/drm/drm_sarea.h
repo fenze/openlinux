@@ -79,7 +79,7 @@ struct drm_sarea {
 	struct drm_sarea_drawable drawableTable[SAREA_MAX_DRAWABLES]; /**<
 									 drawables
 								       */
-	struct drm_sarea_frame frame; /**< frame */
+	struct drm_sarea_frame frame;				      /**< frame */
 	drm_context_t dummy_context;
 };
 

@@ -35,9 +35,9 @@ struct zatm_pool_req {
 	struct zatm_pool_info info; /* actual information */
 };
 
-#define ZATM_OAM_POOL	    0 /* free buffer pool for OAM cells */
-#define ZATM_AAL0_POOL	    1 /* free buffer pool for AAL0 cells */
-#define ZATM_AAL5_POOL_BASE 2 /* first AAL5 free buffer pool */
+#define ZATM_OAM_POOL	    0			     /* free buffer pool for OAM cells */
+#define ZATM_AAL0_POOL	    1			     /* free buffer pool for AAL0 cells */
+#define ZATM_AAL5_POOL_BASE 2			     /* first AAL5 free buffer pool */
 #define ZATM_LAST_POOL	    ZATM_AAL5_POOL_BASE + 10 /* max. 64 kB */
 
 #define ZATM_TIMER_HISTORY_SIZE              \

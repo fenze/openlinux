@@ -96,8 +96,7 @@ struct usb_os_desc_header {
 struct usb_ext_compat_desc {
 	__u8 bFirstInterfaceNumber;
 	__u8 Reserved1;
-	__struct_group(/* no tag */, IDs, /* no attrs */, __u8 CompatibleID[8];
-		       __u8 SubCompatibleID[8];);
+	__struct_group(/* no tag */, IDs, /* no attrs */, __u8 CompatibleID[8]; __u8 SubCompatibleID[8];);
 	__u8 Reserved2[6];
 };
 
@@ -398,7 +397,6 @@ struct usb_functionfs_event {
  * for now. Returns zero on success, and a negative errno value on
  * error.
  */
-#define FUNCTIONFS_DMABUF_TRANSFER \
-	_IOW('g', 133, struct usb_ffs_dmabuf_transfer_req)
+#define FUNCTIONFS_DMABUF_TRANSFER _IOW('g', 133, struct usb_ffs_dmabuf_transfer_req)
 
 #endif /* __LINUX_FUNCTIONFS_H__ */

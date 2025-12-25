@@ -35,12 +35,7 @@ enum nfnl_acct_type {
 };
 #define NFACCT_MAX (__NFACCT_MAX - 1)
 
-enum nfnl_attr_filter_type {
-	NFACCT_FILTER_UNSPEC,
-	NFACCT_FILTER_MASK,
-	NFACCT_FILTER_VALUE,
-	__NFACCT_FILTER_MAX
-};
+enum nfnl_attr_filter_type { NFACCT_FILTER_UNSPEC, NFACCT_FILTER_MASK, NFACCT_FILTER_VALUE, __NFACCT_FILTER_MAX };
 #define NFACCT_FILTER_MAX (__NFACCT_FILTER_MAX - 1)
 
 #endif /* _NFNL_ACCT_H_ */

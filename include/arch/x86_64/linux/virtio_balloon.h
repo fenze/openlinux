@@ -73,16 +73,13 @@ struct virtio_balloon_config {
 #define VIRTIO_BALLOON_S_HTLB_PGFAIL  9	 /* Hugetlb page allocation failures */
 #define VIRTIO_BALLOON_S_OOM_KILL     10 /* OOM killer invocations */
 #define VIRTIO_BALLOON_S_ALLOC_STALL  11 /* Stall count of memory allocatoin */
-#define VIRTIO_BALLOON_S_ASYNC_SCAN \
-	12 /* Amount of memory scanned asynchronously */
-#define VIRTIO_BALLOON_S_DIRECT_SCAN            \
-	13 /* Amount of memory scanned directly \
-	    */
-#define VIRTIO_BALLOON_S_ASYNC_RECLAIM \
-	14 /* Amount of memory reclaimed asynchronously */
-#define VIRTIO_BALLOON_S_DIRECT_RECLAIM \
-	15 /* Amount of memory reclaimed directly */
-#define VIRTIO_BALLOON_S_NR 16
+#define VIRTIO_BALLOON_S_ASYNC_SCAN   12 /* Amount of memory scanned asynchronously */
+#define VIRTIO_BALLOON_S_DIRECT_SCAN                                            \
+	13				   /* Amount of memory scanned directly \
+					    */
+#define VIRTIO_BALLOON_S_ASYNC_RECLAIM	14 /* Amount of memory reclaimed asynchronously */
+#define VIRTIO_BALLOON_S_DIRECT_RECLAIM 15 /* Amount of memory reclaimed directly */
+#define VIRTIO_BALLOON_S_NR		16
 
 #define VIRTIO_BALLOON_S_NAMES_WITH_PREFIX(VIRTIO_BALLOON_S_NAMES_prefix) \
 	{ VIRTIO_BALLOON_S_NAMES_prefix "swap-in",                        \

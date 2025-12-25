@@ -105,7 +105,7 @@ struct io_uring_sqe {
 			__u64 __pad2[1];
 		};
 		struct {
-			__u64 attr_ptr; /* pointer to attribute information */
+			__u64 attr_ptr;	      /* pointer to attribute information */
 			__u64 attr_type_mask; /* bit mask of attributes */
 		};
 		__u64 optval;
@@ -317,10 +317,8 @@ enum io_uring_op {
 #define IORING_LINK_TIMEOUT_UPDATE   (1U << 4)
 #define IORING_TIMEOUT_ETIME_SUCCESS (1U << 5)
 #define IORING_TIMEOUT_MULTISHOT     (1U << 6)
-#define IORING_TIMEOUT_CLOCK_MASK \
-	(IORING_TIMEOUT_BOOTTIME | IORING_TIMEOUT_REALTIME)
-#define IORING_TIMEOUT_UPDATE_MASK \
-	(IORING_TIMEOUT_UPDATE | IORING_LINK_TIMEOUT_UPDATE)
+#define IORING_TIMEOUT_CLOCK_MASK    (IORING_TIMEOUT_BOOTTIME | IORING_TIMEOUT_REALTIME)
+#define IORING_TIMEOUT_UPDATE_MASK   (IORING_TIMEOUT_UPDATE | IORING_LINK_TIMEOUT_UPDATE)
 /*
  * sqe->splice_flags
  * extends splice(2) flags

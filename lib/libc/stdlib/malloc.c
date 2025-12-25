@@ -1,3 +1,4 @@
+#include "stddef.h"
 #include <atomic.h>    // for LIBC_UNLOCK, LIBC_LOCK
 #include <libc.h>      // for libc, libc::(anonymous)
 #include <malloc.h>    // for page, page::(anonymous), class, global_size_c...

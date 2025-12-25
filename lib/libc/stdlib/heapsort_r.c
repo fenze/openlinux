@@ -68,21 +68,19 @@
  * There two cases.  If j == nmemb, select largest of Ki and Kj.  If
  * j < nmemb, select largest of Ki, Kj and Kj+1.
  */
-#define CREATE(initval, nmemb, par_i, child_i, par, child, size, count, tmp)  \
-	{                                                                     \
-		for ((par_i) = initval; ((child_i) = (par_i) * 2) <= (nmemb); \
-		     (par_i) = (child_i)) {                                   \
-			(child) = base + (child_i) * (size);                  \
-			if ((child_i) < (nmemb) &&                            \
-			    compar(thunk, child, (child) + (size)) < 0) {     \
-				(child) += (size);                            \
-				++(child_i);                                  \
-			}                                                     \
-			(par) = base + (par_i) * (size);                      \
-			if (compar(thunk, child, par) <= 0)                   \
-				break;                                        \
-			SWAP(par, child, count, size, tmp);                   \
-		}                                                             \
+#define CREATE(initval, nmemb, par_i, child_i, par, child, size, count, tmp)                         \
+	{                                                                                            \
+		for ((par_i) = initval; ((child_i) = (par_i) * 2) <= (nmemb); (par_i) = (child_i)) { \
+			(child) = base + (child_i) * (size);                                         \
+			if ((child_i) < (nmemb) && compar(thunk, child, (child) + (size)) < 0) {     \
+				(child) += (size);                                                   \
+				++(child_i);                                                         \
+			}                                                                            \
+			(par) = base + (par_i) * (size);                                             \
+			if (compar(thunk, child, par) <= 0)                                          \
+				break;                                                               \
+			SWAP(par, child, count, size, tmp);                                          \
+		}                                                                                    \
 	}
 
 /*
@@ -102,30 +100,28 @@
  *
  * XXX Don't break the #define SELECT line, below.  Reiser cpp gets upset.
  */
-#define SELECT(par_i, child_i, nmemb, par, child, size, k, count, tmp1, tmp2) \
-	{                                                                     \
-		for ((par_i) = 1; ((child_i) = (par_i) * 2) <= (nmemb);       \
-		     (par_i) = (child_i)) {                                   \
-			(child) = base + (child_i) * (size);                  \
-			if ((child_i) < (nmemb) &&                            \
-			    compar(thunk, child, (child) + (size)) < 0) {     \
-				(child) += (size);                            \
-				++(child_i);                                  \
-			}                                                     \
-			(par) = base + (par_i) * (size);                      \
-			COPY(par, child, count, size, tmp1, tmp2);            \
-		}                                                             \
-		for (;;) {                                                    \
-			(child_i) = par_i;                                    \
-			(par_i) = (child_i) / 2;                              \
-			(child) = base + (child_i) * (size);                  \
-			(par) = base + (par_i) * (size);                      \
-			if ((child_i) == 1 || compar(thunk, k, par) < 0) {    \
-				COPY(child, k, count, size, tmp1, tmp2);      \
-				break;                                        \
-			}                                                     \
-			COPY(child, par, count, size, tmp1, tmp2);            \
-		}                                                             \
+#define SELECT(par_i, child_i, nmemb, par, child, size, k, count, tmp1, tmp2)                    \
+	{                                                                                        \
+		for ((par_i) = 1; ((child_i) = (par_i) * 2) <= (nmemb); (par_i) = (child_i)) {   \
+			(child) = base + (child_i) * (size);                                     \
+			if ((child_i) < (nmemb) && compar(thunk, child, (child) + (size)) < 0) { \
+				(child) += (size);                                               \
+				++(child_i);                                                     \
+			}                                                                        \
+			(par) = base + (par_i) * (size);                                         \
+			COPY(par, child, count, size, tmp1, tmp2);                               \
+		}                                                                                \
+		for (;;) {                                                                       \
+			(child_i) = par_i;                                                       \
+			(par_i) = (child_i) / 2;                                                 \
+			(child) = base + (child_i) * (size);                                     \
+			(par) = base + (par_i) * (size);                                         \
+			if ((child_i) == 1 || compar(thunk, k, par) < 0) {                       \
+				COPY(child, k, count, size, tmp1, tmp2);                         \
+				break;                                                           \
+			}                                                                        \
+			COPY(child, par, count, size, tmp1, tmp2);                               \
+		}                                                                                \
 	}
 
 /*
@@ -135,8 +131,7 @@
  * a data set that will trigger the worst case is nonexistent.  Heapsort's
  * only advantage over quicksort is that it requires little additional memory.
  */
-int heapsort_r(void *vbase, size_t nmemb, size_t size, void *thunk,
-	       int (*compar)(void *, const void *, const void *))
+int heapsort_r(void *vbase, size_t nmemb, size_t size, void *thunk, int (*compar)(void *, const void *, const void *))
 {
 	size_t cnt;
 	size_t i;

@@ -79,11 +79,10 @@ void endprotoent(void);
 void endservent(void);
 void freeaddrinfo(struct addrinfo *);
 const char *gai_strerror(int);
-int getaddrinfo(const char *restrict, const char *restrict,
-		const struct addrinfo *restrict, struct addrinfo **restrict);
+int getaddrinfo(const char *restrict, const char *restrict, const struct addrinfo *restrict,
+		struct addrinfo **restrict);
 struct hostent *gethostent(void);
-int getnameinfo(const struct sockaddr *restrict, socklen_t, char *restrict,
-		socklen_t, char *restrict, socklen_t, int);
+int getnameinfo(const struct sockaddr *restrict, socklen_t, char *restrict, socklen_t, char *restrict, socklen_t, int);
 struct netent *getnetbyaddr(uint32_t, int);
 struct netent *getnetbyname(const char *);
 struct netent *getnetent(void);

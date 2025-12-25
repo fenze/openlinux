@@ -2,11 +2,9 @@
 #include <stdio.h>  // for fprintf, stderr
 #include <stdlib.h> // for abort
 
-_Noreturn void __assert(const char *_Nonnull __file, int __line,
-			const char *_Nonnull __func,
+_Noreturn void __assert(const char *_Nonnull __file, int __line, const char *_Nonnull __func,
 			const char *_Nonnull __expr)
 {
-	fprintf(stderr, "%s:%d: %s: assertion \"%s\" failed\n", __file, __line,
-		__func, __expr);
+	fprintf(stderr, "%s:%d: %s: assertion \"%s\" failed\n", __file, __line, __func, __expr);
 	abort();
 }

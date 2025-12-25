@@ -118,8 +118,7 @@ float y1f(float x)
 		return -tpi / x;
 	z = x * x;
 	u = U0[0] + z * (U0[1] + z * (U0[2] + z * (U0[3] + z * U0[4])));
-	v = 1.0f +
-	    z * (V0[0] + z * (V0[1] + z * (V0[2] + z * (V0[3] + z * V0[4]))));
+	v = 1.0f + z * (V0[0] + z * (V0[1] + z * (V0[2] + z * (V0[3] + z * V0[4]))));
 	return x * (u / v) + tpi * (j1f(x) * logf(x) - 1.0f / x);
 }
 
@@ -331,8 +330,6 @@ static float qonef(float x)
 	}
 	z = 1.0f / (x * x);
 	r = p[0] + z * (p[1] + z * (p[2] + z * (p[3] + z * (p[4] + z * p[5]))));
-	s = 1.0f +
-	    z * (q[0] +
-		 z * (q[1] + z * (q[2] + z * (q[3] + z * (q[4] + z * q[5])))));
+	s = 1.0f + z * (q[0] + z * (q[1] + z * (q[2] + z * (q[3] + z * (q[4] + z * q[5])))));
 	return (.375f + r / s) / x;
 }

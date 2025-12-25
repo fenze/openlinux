@@ -144,9 +144,8 @@ struct usb_port_status {
 #define USB_PORT_STAT_SPEED_5GBPS 0x0000
 /* Valid only if port is enabled */
 /* Bits that are the same from USB 2.0 */
-#define USB_SS_PORT_STAT_MASK                              \
-	(USB_PORT_STAT_CONNECTION | USB_PORT_STAT_ENABLE | \
-	 USB_PORT_STAT_OVERCURRENT | USB_PORT_STAT_RESET)
+#define USB_SS_PORT_STAT_MASK \
+	(USB_PORT_STAT_CONNECTION | USB_PORT_STAT_ENABLE | USB_PORT_STAT_OVERCURRENT | USB_PORT_STAT_RESET)
 
 /*
  * Definitions for PORT_LINK_STATE values

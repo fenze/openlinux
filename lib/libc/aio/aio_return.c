@@ -1,7 +1,9 @@
-#include <__aio.h>
-#include <errno.h>
-#include <stddef.h>
-#include <stdlib.h>
+#include "aio.h" // for ssize_t, aio_return, aiocb (ptr only)
+
+#include <__aio.h>  // for __aio_remove, aio_request, AIO_REQUEST_STATUS_PE...
+#include <errno.h>  // for EINVAL, errno
+#include <stddef.h> // for NULL
+#include <stdlib.h> // for free
 
 ssize_t aio_return(struct aiocb *aiocbp)
 {

@@ -71,18 +71,17 @@ struct drm_msm_timespec {
  * "RW" indicates a param that can be both read (GET_PARAM) and written
  * (SET_PARAM)
  */
-#define MSM_PARAM_GPU_ID     0x01 /* RO */
-#define MSM_PARAM_GMEM_SIZE  0x02 /* RO */
-#define MSM_PARAM_CHIP_ID    0x03 /* RO */
-#define MSM_PARAM_MAX_FREQ   0x04 /* RO */
-#define MSM_PARAM_TIMESTAMP  0x05 /* RO */
-#define MSM_PARAM_GMEM_BASE  0x06 /* RO */
-#define MSM_PARAM_PRIORITIES 0x07 /* RO: The # of priority levels */
-#define MSM_PARAM_PP_PGTABLE 0x08 /* RO: Deprecated, always returns zero */
-#define MSM_PARAM_FAULTS     0x09 /* RO */
-#define MSM_PARAM_SUSPENDS   0x0a /* RO */
-#define MSM_PARAM_SYSPROF \
-	0x0b /* WO: 1 preserves perfcntrs, 2 also disables suspend */
+#define MSM_PARAM_GPU_ID	   0x01 /* RO */
+#define MSM_PARAM_GMEM_SIZE	   0x02 /* RO */
+#define MSM_PARAM_CHIP_ID	   0x03 /* RO */
+#define MSM_PARAM_MAX_FREQ	   0x04 /* RO */
+#define MSM_PARAM_TIMESTAMP	   0x05 /* RO */
+#define MSM_PARAM_GMEM_BASE	   0x06 /* RO */
+#define MSM_PARAM_PRIORITIES	   0x07 /* RO: The # of priority levels */
+#define MSM_PARAM_PP_PGTABLE	   0x08 /* RO: Deprecated, always returns zero */
+#define MSM_PARAM_FAULTS	   0x09 /* RO */
+#define MSM_PARAM_SUSPENDS	   0x0a /* RO */
+#define MSM_PARAM_SYSPROF	   0x0b /* WO: 1 preserves perfcntrs, 2 also disables suspend */
 #define MSM_PARAM_COMM		   0x0c /* WO: override for task->comm */
 #define MSM_PARAM_CMDLINE	   0x0d /* WO: override for task cmdline */
 #define MSM_PARAM_VA_START	   0x0e /* RO: start of valid GPU iova range */
@@ -161,9 +160,7 @@ struct drm_msm_param {
 #define MSM_BO_UNCACHED	       0x00040000 /* deprecated, use MSM_BO_WC */
 #define MSM_BO_CACHED_COHERENT 0x080000
 
-#define MSM_BO_FLAGS                                              \
-	(MSM_BO_SCANOUT | MSM_BO_GPU_READONLY | MSM_BO_NO_SHARE | \
-	 MSM_BO_CACHE_MASK)
+#define MSM_BO_FLAGS (MSM_BO_SCANOUT | MSM_BO_GPU_READONLY | MSM_BO_NO_SHARE | MSM_BO_CACHE_MASK)
 
 struct drm_msm_gem_new {
 	__u64 size;   /* in */
@@ -200,8 +197,7 @@ struct drm_msm_gem_info {
 #define MSM_PREP_NOSYNC 0x04
 #define MSM_PREP_BOOST	0x08
 
-#define MSM_PREP_FLAGS \
-	(MSM_PREP_READ | MSM_PREP_WRITE | MSM_PREP_NOSYNC | MSM_PREP_BOOST | 0)
+#define MSM_PREP_FLAGS (MSM_PREP_READ | MSM_PREP_WRITE | MSM_PREP_NOSYNC | MSM_PREP_BOOST | 0)
 
 struct drm_msm_gem_cpu_prep {
 	__u32 handle;			 /* in */
@@ -289,9 +285,7 @@ struct drm_msm_gem_submit_cmd {
 #define MSM_SUBMIT_BO_DUMP	  0x0004
 #define MSM_SUBMIT_BO_NO_IMPLICIT 0x0008
 
-#define MSM_SUBMIT_BO_FLAGS                                              \
-	(MSM_SUBMIT_BO_READ | MSM_SUBMIT_BO_WRITE | MSM_SUBMIT_BO_DUMP | \
-	 MSM_SUBMIT_BO_NO_IMPLICIT)
+#define MSM_SUBMIT_BO_FLAGS (MSM_SUBMIT_BO_READ | MSM_SUBMIT_BO_WRITE | MSM_SUBMIT_BO_DUMP | MSM_SUBMIT_BO_NO_IMPLICIT)
 
 struct drm_msm_gem_submit_bo {
 	__u32 flags;	/* in, mask of MSM_SUBMIT_BO_x */
@@ -309,24 +303,23 @@ struct drm_msm_gem_submit_bo {
 #define MSM_SUBMIT_FENCE_SN_IN                        \
 	0x02000000 /* userspace passes in seqno fence \
 		    */
-#define MSM_SUBMIT_FLAGS                                                     \
-	(MSM_SUBMIT_NO_IMPLICIT | MSM_SUBMIT_FENCE_FD_IN |                   \
-	 MSM_SUBMIT_FENCE_FD_OUT | MSM_SUBMIT_SUDO | MSM_SUBMIT_SYNCOBJ_IN | \
-	 MSM_SUBMIT_SYNCOBJ_OUT | MSM_SUBMIT_FENCE_SN_IN | 0)
+#define MSM_SUBMIT_FLAGS                                                                               \
+	(MSM_SUBMIT_NO_IMPLICIT | MSM_SUBMIT_FENCE_FD_IN | MSM_SUBMIT_FENCE_FD_OUT | MSM_SUBMIT_SUDO | \
+	 MSM_SUBMIT_SYNCOBJ_IN | MSM_SUBMIT_SYNCOBJ_OUT | MSM_SUBMIT_FENCE_SN_IN | 0)
 
 /* Each cmdstream submit consists of a table of buffers involved, and
  * one or more cmdstream buffers.  This allows for conditional execution
  * (context-restore), and IB buffers needed for per tile/bin draw cmds.
  */
 struct drm_msm_gem_submit {
-	__u32 flags;	/* MSM_PIPE_x | MSM_SUBMIT_x */
-	__u32 fence;	/* out (or in with MSM_SUBMIT_FENCE_SN_IN flag) */
-	__u32 nr_bos;	/* in, number of submit_bo's */
-	__u32 nr_cmds;	/* in, number of submit_cmd's */
-	__u64 bos;	/* in, ptr to array of submit_bo's */
-	__u64 cmds;	/* in, ptr to array of submit_cmd's */
-	__s32 fence_fd; /* in/out fence fd (see MSM_SUBMIT_FENCE_FD_IN/OUT) */
-	__u32 queueid;	/* in, submitqueue id */
+	__u32 flags;	       /* MSM_PIPE_x | MSM_SUBMIT_x */
+	__u32 fence;	       /* out (or in with MSM_SUBMIT_FENCE_SN_IN flag) */
+	__u32 nr_bos;	       /* in, number of submit_bo's */
+	__u32 nr_cmds;	       /* in, number of submit_cmd's */
+	__u64 bos;	       /* in, ptr to array of submit_bo's */
+	__u64 cmds;	       /* in, ptr to array of submit_cmd's */
+	__s32 fence_fd;	       /* in/out fence fd (see MSM_SUBMIT_FENCE_FD_IN/OUT) */
+	__u32 queueid;	       /* in, submitqueue id */
 	__u64 in_syncobjs;     /* in, ptr to array of drm_msm_syncobj */
 	__u64 out_syncobjs;    /* in, ptr to array of drm_msm_syncobj */
 	__u32 nr_in_syncobjs;  /* in, number of entries in in_syncobj */
@@ -364,8 +357,7 @@ struct drm_msm_vm_bind_op {
 
 #define MSM_VM_BIND_FENCE_FD_IN	 0x00000001
 #define MSM_VM_BIND_FENCE_FD_OUT 0x00000002
-#define MSM_VM_BIND_FLAGS \
-	(MSM_VM_BIND_FENCE_FD_IN | MSM_VM_BIND_FENCE_FD_OUT | 0)
+#define MSM_VM_BIND_FLAGS	 (MSM_VM_BIND_FENCE_FD_IN | MSM_VM_BIND_FENCE_FD_OUT | 0)
 
 /**
  * struct drm_msm_vm_bind - Input of &DRM_IOCTL_MSM_VM_BIND
@@ -428,8 +420,7 @@ struct drm_msm_wait_fence {
  * In the WILLNEED case, 'retained' indicates to userspace whether the
  * backing pages still exist.
  */
-#define MSM_MADV_WILLNEED \
-	0 /* backing pages are needed, status returned in 'retained' */
+#define MSM_MADV_WILLNEED 0 /* backing pages are needed, status returned in 'retained' */
 #define MSM_MADV_DONTNEED 1 /* backing pages not needed */
 #define __MSM_MADV_PURGED 2 /* internal state */
 
@@ -452,8 +443,7 @@ struct drm_msm_gem_madvise {
 #define MSM_SUBMITQUEUE_ALLOW_PREEMPT 0x00000001
 #define MSM_SUBMITQUEUE_VM_BIND	      0x00000002 /* virtual queue for VM_BIND ops */
 
-#define MSM_SUBMITQUEUE_FLAGS \
-	(MSM_SUBMITQUEUE_ALLOW_PREEMPT | MSM_SUBMITQUEUE_VM_BIND | 0)
+#define MSM_SUBMITQUEUE_FLAGS (MSM_SUBMITQUEUE_ALLOW_PREEMPT | MSM_SUBMITQUEUE_VM_BIND | 0)
 
 /*
  * The submitqueue priority should be between 0 and MSM_PARAM_PRIORITIES-1,
@@ -492,39 +482,20 @@ struct drm_msm_submitqueue_query {
 #define DRM_MSM_SUBMITQUEUE_QUERY 0x0C
 #define DRM_MSM_VM_BIND		  0x0D
 
-#define DRM_IOCTL_MSM_GET_PARAM \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_MSM_GET_PARAM, struct drm_msm_param)
-#define DRM_IOCTL_MSM_SET_PARAM \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_MSM_SET_PARAM, struct drm_msm_param)
-#define DRM_IOCTL_MSM_GEM_NEW \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_MSM_GEM_NEW, struct drm_msm_gem_new)
-#define DRM_IOCTL_MSM_GEM_INFO \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_MSM_GEM_INFO, struct drm_msm_gem_info)
-#define DRM_IOCTL_MSM_GEM_CPU_PREP                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_MSM_GEM_CPU_PREP, \
-		struct drm_msm_gem_cpu_prep)
-#define DRM_IOCTL_MSM_GEM_CPU_FINI                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_MSM_GEM_CPU_FINI, \
-		struct drm_msm_gem_cpu_fini)
-#define DRM_IOCTL_MSM_GEM_SUBMIT                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_MSM_GEM_SUBMIT, \
-		 struct drm_msm_gem_submit)
-#define DRM_IOCTL_MSM_WAIT_FENCE                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_MSM_WAIT_FENCE, \
-		struct drm_msm_wait_fence)
-#define DRM_IOCTL_MSM_GEM_MADVISE                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_MSM_GEM_MADVISE, \
-		 struct drm_msm_gem_madvise)
-#define DRM_IOCTL_MSM_SUBMITQUEUE_NEW                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_MSM_SUBMITQUEUE_NEW, \
-		 struct drm_msm_submitqueue)
-#define DRM_IOCTL_MSM_SUBMITQUEUE_CLOSE \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_MSM_SUBMITQUEUE_CLOSE, __u32)
-#define DRM_IOCTL_MSM_SUBMITQUEUE_QUERY                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_MSM_SUBMITQUEUE_QUERY, \
-		struct drm_msm_submitqueue_query)
-#define DRM_IOCTL_MSM_VM_BIND \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_MSM_VM_BIND, struct drm_msm_vm_bind)
+#define DRM_IOCTL_MSM_GET_PARAM		DRM_IOWR(DRM_COMMAND_BASE + DRM_MSM_GET_PARAM, struct drm_msm_param)
+#define DRM_IOCTL_MSM_SET_PARAM		DRM_IOW(DRM_COMMAND_BASE + DRM_MSM_SET_PARAM, struct drm_msm_param)
+#define DRM_IOCTL_MSM_GEM_NEW		DRM_IOWR(DRM_COMMAND_BASE + DRM_MSM_GEM_NEW, struct drm_msm_gem_new)
+#define DRM_IOCTL_MSM_GEM_INFO		DRM_IOWR(DRM_COMMAND_BASE + DRM_MSM_GEM_INFO, struct drm_msm_gem_info)
+#define DRM_IOCTL_MSM_GEM_CPU_PREP	DRM_IOW(DRM_COMMAND_BASE + DRM_MSM_GEM_CPU_PREP, struct drm_msm_gem_cpu_prep)
+#define DRM_IOCTL_MSM_GEM_CPU_FINI	DRM_IOW(DRM_COMMAND_BASE + DRM_MSM_GEM_CPU_FINI, struct drm_msm_gem_cpu_fini)
+#define DRM_IOCTL_MSM_GEM_SUBMIT	DRM_IOWR(DRM_COMMAND_BASE + DRM_MSM_GEM_SUBMIT, struct drm_msm_gem_submit)
+#define DRM_IOCTL_MSM_WAIT_FENCE	DRM_IOW(DRM_COMMAND_BASE + DRM_MSM_WAIT_FENCE, struct drm_msm_wait_fence)
+#define DRM_IOCTL_MSM_GEM_MADVISE	DRM_IOWR(DRM_COMMAND_BASE + DRM_MSM_GEM_MADVISE, struct drm_msm_gem_madvise)
+#define DRM_IOCTL_MSM_SUBMITQUEUE_NEW	DRM_IOWR(DRM_COMMAND_BASE + DRM_MSM_SUBMITQUEUE_NEW, struct drm_msm_submitqueue)
+#define DRM_IOCTL_MSM_SUBMITQUEUE_CLOSE DRM_IOW(DRM_COMMAND_BASE + DRM_MSM_SUBMITQUEUE_CLOSE, __u32)
+#define DRM_IOCTL_MSM_SUBMITQUEUE_QUERY \
+	DRM_IOW(DRM_COMMAND_BASE + DRM_MSM_SUBMITQUEUE_QUERY, struct drm_msm_submitqueue_query)
+#define DRM_IOCTL_MSM_VM_BIND DRM_IOWR(DRM_COMMAND_BASE + DRM_MSM_VM_BIND, struct drm_msm_vm_bind)
 
 #if defined(__cplusplus)
 }

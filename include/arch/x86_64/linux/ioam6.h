@@ -50,22 +50,20 @@ struct ioam6_trace_hdr {
 		__be32 type_be32;
 
 		struct {
-			__u32 bit7 : 1, bit6 : 1, bit5 : 1, bit4 : 1, bit3 : 1,
-				bit2 : 1, bit1 : 1, bit0 : 1,
-				bit15 : 1, /* unused
-					    */
-				bit14 : 1, /* unused */
-				bit13 : 1, /* unused */
-				bit12 : 1, /* unused */
-				bit11 : 1, bit10 : 1, bit9 : 1, bit8 : 1,
-				bit23 : 1,	      /* reserved */
-				bit22 : 1, bit21 : 1, /* unused */
-				bit20 : 1,	      /* unused */
-				bit19 : 1,	      /* unused */
-				bit18 : 1,	      /* unused */
-				bit17 : 1,	      /* unused */
-				bit16 : 1,	      /* unused */
-				: 8;		      /* reserved */
+			__u32 bit7 : 1, bit6 : 1, bit5 : 1, bit4 : 1, bit3 : 1, bit2 : 1, bit1 : 1, bit0 : 1,
+				bit15 : 1,					     /* unused
+										      */
+				bit14 : 1,					     /* unused */
+				bit13 : 1,					     /* unused */
+				bit12 : 1,					     /* unused */
+				bit11 : 1, bit10 : 1, bit9 : 1, bit8 : 1, bit23 : 1, /* reserved */
+				bit22 : 1, bit21 : 1,				     /* unused */
+				bit20 : 1,					     /* unused */
+				bit19 : 1,					     /* unused */
+				bit18 : 1,					     /* unused */
+				bit17 : 1,					     /* unused */
+				bit16 : 1,					     /* unused */
+				: 8;						     /* reserved */
 		} type;
 	};
 
@@ -81,22 +79,20 @@ struct ioam6_trace_hdr {
 		__be32 type_be32;
 
 		struct {
-			__u32 bit0 : 1, bit1 : 1, bit2 : 1, bit3 : 1, bit4 : 1,
-				bit5 : 1, bit6 : 1, bit7 : 1, bit8 : 1,
-				bit9 : 1, bit10 : 1, bit11 : 1,
-				bit12 : 1,	      /* unused
-						       */
-				bit13 : 1,	      /* unused */
-				bit14 : 1,	      /* unused */
-				bit15 : 1,	      /* unused */
-				bit16 : 1,	      /* unused */
-				bit17 : 1,	      /* unused */
-				bit18 : 1,	      /* unused */
-				bit19 : 1,	      /* unused */
-				bit20 : 1,	      /* unused */
-				bit21 : 1,	      /* unused */
-				bit22 : 1, bit23 : 1, /* reserved */
-				: 8;		      /* reserved */
+			__u32 bit0 : 1, bit1 : 1, bit2 : 1, bit3 : 1, bit4 : 1, bit5 : 1, bit6 : 1, bit7 : 1, bit8 : 1,
+				bit9 : 1, bit10 : 1, bit11 : 1, bit12 : 1, /* unused
+									    */
+				bit13 : 1,				   /* unused */
+				bit14 : 1,				   /* unused */
+				bit15 : 1,				   /* unused */
+				bit16 : 1,				   /* unused */
+				bit17 : 1,				   /* unused */
+				bit18 : 1,				   /* unused */
+				bit19 : 1,				   /* unused */
+				bit20 : 1,				   /* unused */
+				bit21 : 1,				   /* unused */
+				bit22 : 1, bit23 : 1,			   /* reserved */
+				: 8;					   /* reserved */
 		} type;
 	};
 

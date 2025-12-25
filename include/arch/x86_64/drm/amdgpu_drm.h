@@ -58,55 +58,29 @@ extern "C" {
 #define DRM_AMDGPU_USERQ_SIGNAL	   0x17
 #define DRM_AMDGPU_USERQ_WAIT	   0x18
 
-#define DRM_IOCTL_AMDGPU_GEM_CREATE                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_CREATE, \
-		 union drm_amdgpu_gem_create)
-#define DRM_IOCTL_AMDGPU_GEM_MMAP                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_MMAP, \
-		 union drm_amdgpu_gem_mmap)
-#define DRM_IOCTL_AMDGPU_CTX \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_CTX, union drm_amdgpu_ctx)
-#define DRM_IOCTL_AMDGPU_BO_LIST                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_BO_LIST, \
-		 union drm_amdgpu_bo_list)
-#define DRM_IOCTL_AMDGPU_CS \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_CS, union drm_amdgpu_cs)
-#define DRM_IOCTL_AMDGPU_INFO \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_AMDGPU_INFO, struct drm_amdgpu_info)
-#define DRM_IOCTL_AMDGPU_GEM_METADATA                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_METADATA, \
-		 struct drm_amdgpu_gem_metadata)
-#define DRM_IOCTL_AMDGPU_GEM_WAIT_IDLE                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_WAIT_IDLE, \
-		 union drm_amdgpu_gem_wait_idle)
-#define DRM_IOCTL_AMDGPU_GEM_VA \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_VA, struct drm_amdgpu_gem_va)
-#define DRM_IOCTL_AMDGPU_WAIT_CS                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_WAIT_CS, \
-		 union drm_amdgpu_wait_cs)
-#define DRM_IOCTL_AMDGPU_GEM_OP \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_OP, struct drm_amdgpu_gem_op)
-#define DRM_IOCTL_AMDGPU_GEM_USERPTR                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_USERPTR, \
-		 struct drm_amdgpu_gem_userptr)
-#define DRM_IOCTL_AMDGPU_WAIT_FENCES                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_WAIT_FENCES, \
-		 union drm_amdgpu_wait_fences)
-#define DRM_IOCTL_AMDGPU_VM \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_VM, union drm_amdgpu_vm)
-#define DRM_IOCTL_AMDGPU_FENCE_TO_HANDLE                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_FENCE_TO_HANDLE, \
-		 union drm_amdgpu_fence_to_handle)
-#define DRM_IOCTL_AMDGPU_SCHED \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_AMDGPU_SCHED, union drm_amdgpu_sched)
-#define DRM_IOCTL_AMDGPU_USERQ \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_USERQ, union drm_amdgpu_userq)
-#define DRM_IOCTL_AMDGPU_USERQ_SIGNAL                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_USERQ_SIGNAL, \
-		 struct drm_amdgpu_userq_signal)
-#define DRM_IOCTL_AMDGPU_USERQ_WAIT                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_USERQ_WAIT, \
-		 struct drm_amdgpu_userq_wait)
+#define DRM_IOCTL_AMDGPU_GEM_CREATE DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_CREATE, union drm_amdgpu_gem_create)
+#define DRM_IOCTL_AMDGPU_GEM_MMAP   DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_MMAP, union drm_amdgpu_gem_mmap)
+#define DRM_IOCTL_AMDGPU_CTX	    DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_CTX, union drm_amdgpu_ctx)
+#define DRM_IOCTL_AMDGPU_BO_LIST    DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_BO_LIST, union drm_amdgpu_bo_list)
+#define DRM_IOCTL_AMDGPU_CS	    DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_CS, union drm_amdgpu_cs)
+#define DRM_IOCTL_AMDGPU_INFO	    DRM_IOW(DRM_COMMAND_BASE + DRM_AMDGPU_INFO, struct drm_amdgpu_info)
+#define DRM_IOCTL_AMDGPU_GEM_METADATA \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_METADATA, struct drm_amdgpu_gem_metadata)
+#define DRM_IOCTL_AMDGPU_GEM_WAIT_IDLE \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_WAIT_IDLE, union drm_amdgpu_gem_wait_idle)
+#define DRM_IOCTL_AMDGPU_GEM_VA	     DRM_IOW(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_VA, struct drm_amdgpu_gem_va)
+#define DRM_IOCTL_AMDGPU_WAIT_CS     DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_WAIT_CS, union drm_amdgpu_wait_cs)
+#define DRM_IOCTL_AMDGPU_GEM_OP	     DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_OP, struct drm_amdgpu_gem_op)
+#define DRM_IOCTL_AMDGPU_GEM_USERPTR DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_USERPTR, struct drm_amdgpu_gem_userptr)
+#define DRM_IOCTL_AMDGPU_WAIT_FENCES DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_WAIT_FENCES, union drm_amdgpu_wait_fences)
+#define DRM_IOCTL_AMDGPU_VM	     DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_VM, union drm_amdgpu_vm)
+#define DRM_IOCTL_AMDGPU_FENCE_TO_HANDLE \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_FENCE_TO_HANDLE, union drm_amdgpu_fence_to_handle)
+#define DRM_IOCTL_AMDGPU_SCHED DRM_IOW(DRM_COMMAND_BASE + DRM_AMDGPU_SCHED, union drm_amdgpu_sched)
+#define DRM_IOCTL_AMDGPU_USERQ DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_USERQ, union drm_amdgpu_userq)
+#define DRM_IOCTL_AMDGPU_USERQ_SIGNAL \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_USERQ_SIGNAL, struct drm_amdgpu_userq_signal)
+#define DRM_IOCTL_AMDGPU_USERQ_WAIT DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_USERQ_WAIT, struct drm_amdgpu_userq_wait)
 
 /**
  * DOC: memory domains
@@ -141,11 +115,9 @@ extern "C" {
 #define AMDGPU_GEM_DOMAIN_GWS	   0x10
 #define AMDGPU_GEM_DOMAIN_OA	   0x20
 #define AMDGPU_GEM_DOMAIN_DOORBELL 0x40
-#define AMDGPU_GEM_DOMAIN_MASK                            \
-	(AMDGPU_GEM_DOMAIN_CPU | AMDGPU_GEM_DOMAIN_GTT |  \
-	 AMDGPU_GEM_DOMAIN_VRAM | AMDGPU_GEM_DOMAIN_GDS | \
-	 AMDGPU_GEM_DOMAIN_GWS | AMDGPU_GEM_DOMAIN_OA |   \
-	 AMDGPU_GEM_DOMAIN_DOORBELL)
+#define AMDGPU_GEM_DOMAIN_MASK                                                                            \
+	(AMDGPU_GEM_DOMAIN_CPU | AMDGPU_GEM_DOMAIN_GTT | AMDGPU_GEM_DOMAIN_VRAM | AMDGPU_GEM_DOMAIN_GDS | \
+	 AMDGPU_GEM_DOMAIN_GWS | AMDGPU_GEM_DOMAIN_OA | AMDGPU_GEM_DOMAIN_DOORBELL)
 
 /* Flag that CPU access will be required for the case of VRAM domain */
 #define AMDGPU_GEM_CREATE_CPU_ACCESS_REQUIRED (1 << 0)
@@ -714,14 +686,11 @@ struct drm_amdgpu_gem_userptr {
 #define AMDGPU_TILING_GFX12_SWIZZLE_MODE_MASK  0x7
 /* These are DCC recompression settings for memory management: */
 #define AMDGPU_TILING_GFX12_DCC_MAX_COMPRESSED_BLOCK_SHIFT 3
-#define AMDGPU_TILING_GFX12_DCC_MAX_COMPRESSED_BLOCK_MASK \
-	0x3 /* 0:64B, 1:128B, 2:256B */
-#define AMDGPU_TILING_GFX12_DCC_NUMBER_TYPE_SHIFT 5
-#define AMDGPU_TILING_GFX12_DCC_NUMBER_TYPE_MASK \
-	0x7 /* CB_COLOR0_INFO.NUMBER_TYPE */
-#define AMDGPU_TILING_GFX12_DCC_DATA_FORMAT_SHIFT 8
-#define AMDGPU_TILING_GFX12_DCC_DATA_FORMAT_MASK \
-	0x3f /* [0:4]:CB_COLOR0_INFO.FORMAT, [5]:MM */
+#define AMDGPU_TILING_GFX12_DCC_MAX_COMPRESSED_BLOCK_MASK  0x3 /* 0:64B, 1:128B, 2:256B */
+#define AMDGPU_TILING_GFX12_DCC_NUMBER_TYPE_SHIFT	   5
+#define AMDGPU_TILING_GFX12_DCC_NUMBER_TYPE_MASK	   0x7 /* CB_COLOR0_INFO.NUMBER_TYPE */
+#define AMDGPU_TILING_GFX12_DCC_DATA_FORMAT_SHIFT	   8
+#define AMDGPU_TILING_GFX12_DCC_DATA_FORMAT_MASK	   0x3f /* [0:4]:CB_COLOR0_INFO.FORMAT, [5]:MM */
 /* When clearing the buffer or moving it from VRAM to GTT, don't compress and
  * set DCC metadata to uncompressed. Set when parts of an allocation bypass DCC
  * and read raw data. */
@@ -732,12 +701,10 @@ struct drm_amdgpu_gem_userptr {
 #define AMDGPU_TILING_GFX12_SCANOUT_MASK  0x1
 
 /* Set/Get helpers for tiling flags. */
-#define AMDGPU_TILING_SET(field, value)                  \
-	(((__u64)(value) & AMDGPU_TILING_##field##_MASK) \
-	 << AMDGPU_TILING_##field##_SHIFT)
-#define AMDGPU_TILING_GET(value, field)                      \
-	(((__u64)(value) >> AMDGPU_TILING_##field##_SHIFT) & \
-	 AMDGPU_TILING_##field##_MASK)
+#define AMDGPU_TILING_SET(field, value) \
+	(((__u64)(value) & AMDGPU_TILING_##field##_MASK) << AMDGPU_TILING_##field##_SHIFT)
+#define AMDGPU_TILING_GET(value, field) \
+	(((__u64)(value) >> AMDGPU_TILING_##field##_SHIFT) & AMDGPU_TILING_##field##_MASK)
 
 #define AMDGPU_GEM_METADATA_OP_SET_METADATA 1
 #define AMDGPU_GEM_METADATA_OP_GET_METADATA 2
@@ -1566,8 +1533,7 @@ struct drm_amdgpu_info_vce_clock_table_entry {
 };
 
 struct drm_amdgpu_info_vce_clock_table {
-	struct drm_amdgpu_info_vce_clock_table_entry
-		entries[AMDGPU_VCE_CLOCK_TABLE_ENTRIES];
+	struct drm_amdgpu_info_vce_clock_table_entry entries[AMDGPU_VCE_CLOCK_TABLE_ENTRIES];
 	__u32 num_valid_entries;
 	__u32 pad;
 };
@@ -1593,8 +1559,7 @@ struct drm_amdgpu_info_video_codec_info {
 };
 
 struct drm_amdgpu_info_video_caps {
-	struct drm_amdgpu_info_video_codec_info
-		codec_info[AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_COUNT];
+	struct drm_amdgpu_info_video_codec_info codec_info[AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_COUNT];
 };
 
 #define AMDGPU_VMHUB_TYPE_MASK	0xff

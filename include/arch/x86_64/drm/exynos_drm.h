@@ -324,9 +324,7 @@ enum drm_exynos_ipp_flag {
 	DRM_EXYNOS_IPP_FLAG_NONBLOCK = 0x04,
 };
 
-#define DRM_EXYNOS_IPP_FLAGS                                         \
-	(DRM_EXYNOS_IPP_FLAG_EVENT | DRM_EXYNOS_IPP_FLAG_TEST_ONLY | \
-	 DRM_EXYNOS_IPP_FLAG_NONBLOCK)
+#define DRM_EXYNOS_IPP_FLAGS (DRM_EXYNOS_IPP_FLAG_EVENT | DRM_EXYNOS_IPP_FLAG_TEST_ONLY | DRM_EXYNOS_IPP_FLAG_NONBLOCK)
 
 /**
  * Perform image processing described by array of drm_exynos_ipp_task_*
@@ -366,42 +364,26 @@ struct drm_exynos_ioctl_ipp_commit {
 #define DRM_EXYNOS_IPP_GET_LIMITS    0x42
 #define DRM_EXYNOS_IPP_COMMIT	     0x43
 
-#define DRM_IOCTL_EXYNOS_GEM_CREATE                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_EXYNOS_GEM_CREATE, \
-		 struct drm_exynos_gem_create)
-#define DRM_IOCTL_EXYNOS_GEM_MAP                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_EXYNOS_GEM_MAP, \
-		 struct drm_exynos_gem_map)
-#define DRM_IOCTL_EXYNOS_GEM_GET                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_EXYNOS_GEM_GET, \
-		 struct drm_exynos_gem_info)
+#define DRM_IOCTL_EXYNOS_GEM_CREATE DRM_IOWR(DRM_COMMAND_BASE + DRM_EXYNOS_GEM_CREATE, struct drm_exynos_gem_create)
+#define DRM_IOCTL_EXYNOS_GEM_MAP    DRM_IOWR(DRM_COMMAND_BASE + DRM_EXYNOS_GEM_MAP, struct drm_exynos_gem_map)
+#define DRM_IOCTL_EXYNOS_GEM_GET    DRM_IOWR(DRM_COMMAND_BASE + DRM_EXYNOS_GEM_GET, struct drm_exynos_gem_info)
 
-#define DRM_IOCTL_EXYNOS_VIDI_CONNECTION                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_EXYNOS_VIDI_CONNECTION, \
-		 struct drm_exynos_vidi_connection)
+#define DRM_IOCTL_EXYNOS_VIDI_CONNECTION \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_EXYNOS_VIDI_CONNECTION, struct drm_exynos_vidi_connection)
 
-#define DRM_IOCTL_EXYNOS_G2D_GET_VER                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_EXYNOS_G2D_GET_VER, \
-		 struct drm_exynos_g2d_get_ver)
-#define DRM_IOCTL_EXYNOS_G2D_SET_CMDLIST                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_EXYNOS_G2D_SET_CMDLIST, \
-		 struct drm_exynos_g2d_set_cmdlist)
-#define DRM_IOCTL_EXYNOS_G2D_EXEC                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_EXYNOS_G2D_EXEC, \
-		 struct drm_exynos_g2d_exec)
+#define DRM_IOCTL_EXYNOS_G2D_GET_VER DRM_IOWR(DRM_COMMAND_BASE + DRM_EXYNOS_G2D_GET_VER, struct drm_exynos_g2d_get_ver)
+#define DRM_IOCTL_EXYNOS_G2D_SET_CMDLIST \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_EXYNOS_G2D_SET_CMDLIST, struct drm_exynos_g2d_set_cmdlist)
+#define DRM_IOCTL_EXYNOS_G2D_EXEC DRM_IOWR(DRM_COMMAND_BASE + DRM_EXYNOS_G2D_EXEC, struct drm_exynos_g2d_exec)
 
-#define DRM_IOCTL_EXYNOS_IPP_GET_RESOURCES                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_EXYNOS_IPP_GET_RESOURCES, \
-		 struct drm_exynos_ioctl_ipp_get_res)
-#define DRM_IOCTL_EXYNOS_IPP_GET_CAPS                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_EXYNOS_IPP_GET_CAPS, \
-		 struct drm_exynos_ioctl_ipp_get_caps)
-#define DRM_IOCTL_EXYNOS_IPP_GET_LIMITS                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_EXYNOS_IPP_GET_LIMITS, \
-		 struct drm_exynos_ioctl_ipp_get_limits)
-#define DRM_IOCTL_EXYNOS_IPP_COMMIT                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_EXYNOS_IPP_COMMIT, \
-		 struct drm_exynos_ioctl_ipp_commit)
+#define DRM_IOCTL_EXYNOS_IPP_GET_RESOURCES \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_EXYNOS_IPP_GET_RESOURCES, struct drm_exynos_ioctl_ipp_get_res)
+#define DRM_IOCTL_EXYNOS_IPP_GET_CAPS \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_EXYNOS_IPP_GET_CAPS, struct drm_exynos_ioctl_ipp_get_caps)
+#define DRM_IOCTL_EXYNOS_IPP_GET_LIMITS \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_EXYNOS_IPP_GET_LIMITS, struct drm_exynos_ioctl_ipp_get_limits)
+#define DRM_IOCTL_EXYNOS_IPP_COMMIT \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_EXYNOS_IPP_COMMIT, struct drm_exynos_ioctl_ipp_commit)
 
 /* Exynos specific events */
 #define DRM_EXYNOS_G2D_EVENT 0x80000000

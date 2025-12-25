@@ -29,8 +29,7 @@ void *aligned_alloc(size_t alignment, size_t size)
 	}
 
 	uintptr_t raw_addr = (uintptr_t)raw_ptr;
-	uintptr_t aligned_addr = (raw_addr + sizeof(void *) + alignment - 1) &
-				 ~(alignment - 1);
+	uintptr_t aligned_addr = (raw_addr + sizeof(void *) + alignment - 1) & ~(alignment - 1);
 
 	void **orig_ptr_slot = (void **)(aligned_addr - sizeof(void *));
 	*orig_ptr_slot = raw_ptr;

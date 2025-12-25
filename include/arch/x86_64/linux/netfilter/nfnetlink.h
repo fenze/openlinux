@@ -72,11 +72,7 @@ struct nfgenmsg {
  *
  * @NFNL_BATCH_GENID: generation ID for this changeset (NLA_U32)
  */
-enum nfnl_batch_attributes {
-	NFNL_BATCH_UNSPEC,
-	NFNL_BATCH_GENID,
-	__NFNL_BATCH_MAX
-};
+enum nfnl_batch_attributes { NFNL_BATCH_UNSPEC, NFNL_BATCH_GENID, __NFNL_BATCH_MAX };
 #define NFNL_BATCH_MAX (__NFNL_BATCH_MAX - 1)
 
 #endif /* _NFNETLINK_H */

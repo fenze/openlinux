@@ -57,11 +57,11 @@ enum dns_record_source {
  * Status of record included in DNS resolver payload.
  */
 enum dns_lookup_status {
-	DNS_LOOKUP_NOT_DONE = 0,      /* No lookup has been made */
-	DNS_LOOKUP_GOOD = 1,	      /* Good records obtained */
-	DNS_LOOKUP_GOOD_WITH_BAD = 2, /* Good records, some decoding errors */
-	DNS_LOOKUP_BAD = 3,	      /* Couldn't decode results */
-	DNS_LOOKUP_GOT_NOT_FOUND = 4, /* Got a "Not Found" result */
+	DNS_LOOKUP_NOT_DONE = 0,	  /* No lookup has been made */
+	DNS_LOOKUP_GOOD = 1,		  /* Good records obtained */
+	DNS_LOOKUP_GOOD_WITH_BAD = 2,	  /* Good records, some decoding errors */
+	DNS_LOOKUP_BAD = 3,		  /* Couldn't decode results */
+	DNS_LOOKUP_GOT_NOT_FOUND = 4,	  /* Got a "Not Found" result */
 	DNS_LOOKUP_GOT_LOCAL_FAILURE = 5, /* Local failure during lookup */
 	DNS_LOOKUP_GOT_TEMP_FAILURE = 6,  /* Temporary failure during lookup */
 	DNS_LOOKUP_GOT_NS_FAILURE = 7,	  /* Name server failure */

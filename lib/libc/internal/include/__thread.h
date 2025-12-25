@@ -1,7 +1,6 @@
 #ifndef __LIBC_THREAD_H
 #define __LIBC_THREAD_H
 
-#include <stdatomic.h>
 #include <stddef.h>
 #include <stdint.h>
 

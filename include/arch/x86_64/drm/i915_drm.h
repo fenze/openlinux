@@ -254,39 +254,29 @@ struct i915_engine_class_instance {
  *
  */
 
-enum drm_i915_pmu_engine_sample {
-	I915_SAMPLE_BUSY = 0,
-	I915_SAMPLE_WAIT = 1,
-	I915_SAMPLE_SEMA = 2
-};
+enum drm_i915_pmu_engine_sample { I915_SAMPLE_BUSY = 0, I915_SAMPLE_WAIT = 1, I915_SAMPLE_SEMA = 2 };
 
 #define I915_PMU_SAMPLE_BITS	      (4)
 #define I915_PMU_SAMPLE_MASK	      (0xf)
 #define I915_PMU_SAMPLE_INSTANCE_BITS (8)
-#define I915_PMU_CLASS_SHIFT \
-	(I915_PMU_SAMPLE_BITS + I915_PMU_SAMPLE_INSTANCE_BITS)
+#define I915_PMU_CLASS_SHIFT	      (I915_PMU_SAMPLE_BITS + I915_PMU_SAMPLE_INSTANCE_BITS)
 
 #define __I915_PMU_ENGINE(class, instance, sample) \
-	((class) << I915_PMU_CLASS_SHIFT |         \
-	 (instance) << I915_PMU_SAMPLE_BITS | (sample))
+	((class) << I915_PMU_CLASS_SHIFT | (instance) << I915_PMU_SAMPLE_BITS | (sample))
 
-#define I915_PMU_ENGINE_BUSY(class, instance) \
-	__I915_PMU_ENGINE(class, instance, I915_SAMPLE_BUSY)
+#define I915_PMU_ENGINE_BUSY(class, instance) __I915_PMU_ENGINE(class, instance, I915_SAMPLE_BUSY)
 
-#define I915_PMU_ENGINE_WAIT(class, instance) \
-	__I915_PMU_ENGINE(class, instance, I915_SAMPLE_WAIT)
+#define I915_PMU_ENGINE_WAIT(class, instance) __I915_PMU_ENGINE(class, instance, I915_SAMPLE_WAIT)
 
-#define I915_PMU_ENGINE_SEMA(class, instance) \
-	__I915_PMU_ENGINE(class, instance, I915_SAMPLE_SEMA)
+#define I915_PMU_ENGINE_SEMA(class, instance) __I915_PMU_ENGINE(class, instance, I915_SAMPLE_SEMA)
 
 /*
  * Top 4 bits of every non-engine counter are GT id.
  */
 #define __I915_PMU_GT_SHIFT (60)
 
-#define ___I915_PMU_OTHER(gt, x)                                 \
-	(((__u64)__I915_PMU_ENGINE(0xff, 0xff, 0xf) + 1 + (x)) | \
-	 ((__u64)(gt) << __I915_PMU_GT_SHIFT))
+#define ___I915_PMU_OTHER(gt, x) \
+	(((__u64)__I915_PMU_ENGINE(0xff, 0xff, 0xf) + 1 + (x)) | ((__u64)(gt) << __I915_PMU_GT_SHIFT))
 
 #define __I915_PMU_OTHER(x) ___I915_PMU_OTHER(0, x)
 
@@ -312,11 +302,7 @@ enum drm_i915_pmu_engine_sample {
 #define I915_LOG_MIN_TEX_REGION_SIZE 14
 
 typedef struct _drm_i915_init {
-	enum {
-		I915_INIT_DMA = 0x01,
-		I915_CLEANUP_DMA = 0x02,
-		I915_RESUME_DMA = 0x03
-	} func;
+	enum { I915_INIT_DMA = 0x01, I915_CLEANUP_DMA = 0x02, I915_RESUME_DMA = 0x03 } func;
 	unsigned int mmio_offset;
 	int sarea_priv_offset;
 	unsigned int ring_start;
@@ -487,176 +473,100 @@ typedef struct _drm_i915_sarea {
 #define DRM_I915_GEM_CREATE_EXT	       0x3c
 /* Must be kept compact -- no holes */
 
-#define DRM_IOCTL_I915_INIT \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_I915_INIT, drm_i915_init_t)
-#define DRM_IOCTL_I915_FLUSH DRM_IO(DRM_COMMAND_BASE + DRM_I915_FLUSH)
-#define DRM_IOCTL_I915_FLIP  DRM_IO(DRM_COMMAND_BASE + DRM_I915_FLIP)
-#define DRM_IOCTL_I915_BATCHBUFFER \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_I915_BATCHBUFFER, drm_i915_batchbuffer_t)
-#define DRM_IOCTL_I915_IRQ_EMIT \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_IRQ_EMIT, drm_i915_irq_emit_t)
-#define DRM_IOCTL_I915_IRQ_WAIT \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_I915_IRQ_WAIT, drm_i915_irq_wait_t)
-#define DRM_IOCTL_I915_GETPARAM \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GETPARAM, drm_i915_getparam_t)
-#define DRM_IOCTL_I915_SETPARAM \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_I915_SETPARAM, drm_i915_setparam_t)
-#define DRM_IOCTL_I915_ALLOC \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_ALLOC, drm_i915_mem_alloc_t)
-#define DRM_IOCTL_I915_FREE \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_I915_FREE, drm_i915_mem_free_t)
-#define DRM_IOCTL_I915_INIT_HEAP \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_I915_INIT_HEAP, drm_i915_mem_init_heap_t)
-#define DRM_IOCTL_I915_CMDBUFFER \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_I915_CMDBUFFER, drm_i915_cmdbuffer_t)
-#define DRM_IOCTL_I915_DESTROY_HEAP                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_I915_DESTROY_HEAP, \
-		drm_i915_mem_destroy_heap_t)
-#define DRM_IOCTL_I915_SET_VBLANK_PIPE                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_I915_SET_VBLANK_PIPE, \
-		drm_i915_vblank_pipe_t)
-#define DRM_IOCTL_I915_GET_VBLANK_PIPE                       \
-	DRM_IOR(DRM_COMMAND_BASE + DRM_I915_GET_VBLANK_PIPE, \
-		drm_i915_vblank_pipe_t)
-#define DRM_IOCTL_I915_VBLANK_SWAP                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_VBLANK_SWAP, \
-		 drm_i915_vblank_swap_t)
-#define DRM_IOCTL_I915_HWS_ADDR \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_I915_HWS_ADDR, struct drm_i915_gem_init)
-#define DRM_IOCTL_I915_GEM_INIT \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_I915_GEM_INIT, struct drm_i915_gem_init)
-#define DRM_IOCTL_I915_GEM_EXECBUFFER                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_I915_GEM_EXECBUFFER, \
-		struct drm_i915_gem_execbuffer)
-#define DRM_IOCTL_I915_GEM_EXECBUFFER2                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_I915_GEM_EXECBUFFER2, \
-		struct drm_i915_gem_execbuffer2)
-#define DRM_IOCTL_I915_GEM_EXECBUFFER2_WR                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_EXECBUFFER2_WR, \
-		 struct drm_i915_gem_execbuffer2)
-#define DRM_IOCTL_I915_GEM_PIN \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_PIN, struct drm_i915_gem_pin)
-#define DRM_IOCTL_I915_GEM_UNPIN                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_I915_GEM_UNPIN, \
-		struct drm_i915_gem_unpin)
-#define DRM_IOCTL_I915_GEM_BUSY \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_BUSY, struct drm_i915_gem_busy)
-#define DRM_IOCTL_I915_GEM_SET_CACHING                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_I915_GEM_SET_CACHING, \
-		struct drm_i915_gem_caching)
-#define DRM_IOCTL_I915_GEM_GET_CACHING                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_GET_CACHING, \
-		 struct drm_i915_gem_caching)
-#define DRM_IOCTL_I915_GEM_THROTTLE \
-	DRM_IO(DRM_COMMAND_BASE + DRM_I915_GEM_THROTTLE)
-#define DRM_IOCTL_I915_GEM_ENTERVT \
-	DRM_IO(DRM_COMMAND_BASE + DRM_I915_GEM_ENTERVT)
-#define DRM_IOCTL_I915_GEM_LEAVEVT \
-	DRM_IO(DRM_COMMAND_BASE + DRM_I915_GEM_LEAVEVT)
-#define DRM_IOCTL_I915_GEM_CREATE                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_CREATE, \
-		 struct drm_i915_gem_create)
-#define DRM_IOCTL_I915_GEM_CREATE_EXT                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_CREATE_EXT, \
-		 struct drm_i915_gem_create_ext)
-#define DRM_IOCTL_I915_GEM_PREAD                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_I915_GEM_PREAD, \
-		struct drm_i915_gem_pread)
-#define DRM_IOCTL_I915_GEM_PWRITE                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_I915_GEM_PWRITE, \
-		struct drm_i915_gem_pwrite)
-#define DRM_IOCTL_I915_GEM_MMAP \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_MMAP, struct drm_i915_gem_mmap)
-#define DRM_IOCTL_I915_GEM_MMAP_GTT                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_MMAP_GTT, \
-		 struct drm_i915_gem_mmap_gtt)
-#define DRM_IOCTL_I915_GEM_MMAP_OFFSET                     \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_MMAP_GTT, \
-		 struct drm_i915_gem_mmap_offset)
-#define DRM_IOCTL_I915_GEM_SET_DOMAIN                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_I915_GEM_SET_DOMAIN, \
-		struct drm_i915_gem_set_domain)
-#define DRM_IOCTL_I915_GEM_SW_FINISH                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_I915_GEM_SW_FINISH, \
-		struct drm_i915_gem_sw_finish)
-#define DRM_IOCTL_I915_GEM_SET_TILING                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_SET_TILING, \
-		 struct drm_i915_gem_set_tiling)
-#define DRM_IOCTL_I915_GEM_GET_TILING                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_GET_TILING, \
-		 struct drm_i915_gem_get_tiling)
-#define DRM_IOCTL_I915_GEM_GET_APERTURE                       \
-	DRM_IOR(DRM_COMMAND_BASE + DRM_I915_GEM_GET_APERTURE, \
-		struct drm_i915_gem_get_aperture)
-#define DRM_IOCTL_I915_GET_PIPE_FROM_CRTC_ID                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GET_PIPE_FROM_CRTC_ID, \
-		 struct drm_i915_get_pipe_from_crtc_id)
-#define DRM_IOCTL_I915_GEM_MADVISE                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_MADVISE, \
-		 struct drm_i915_gem_madvise)
-#define DRM_IOCTL_I915_OVERLAY_PUT_IMAGE                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_I915_OVERLAY_PUT_IMAGE, \
-		struct drm_intel_overlay_put_image)
-#define DRM_IOCTL_I915_OVERLAY_ATTRS                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_OVERLAY_ATTRS, \
-		 struct drm_intel_overlay_attrs)
-#define DRM_IOCTL_I915_SET_SPRITE_COLORKEY                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_SET_SPRITE_COLORKEY, \
-		 struct drm_intel_sprite_colorkey)
-#define DRM_IOCTL_I915_GET_SPRITE_COLORKEY                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GET_SPRITE_COLORKEY, \
-		 struct drm_intel_sprite_colorkey)
-#define DRM_IOCTL_I915_GEM_WAIT \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_WAIT, struct drm_i915_gem_wait)
-#define DRM_IOCTL_I915_GEM_CONTEXT_CREATE                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_CONTEXT_CREATE, \
-		 struct drm_i915_gem_context_create)
-#define DRM_IOCTL_I915_GEM_CONTEXT_CREATE_EXT                    \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_CONTEXT_CREATE, \
-		 struct drm_i915_gem_context_create_ext)
-#define DRM_IOCTL_I915_GEM_CONTEXT_DESTROY                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_I915_GEM_CONTEXT_DESTROY, \
-		struct drm_i915_gem_context_destroy)
-#define DRM_IOCTL_I915_REG_READ \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_REG_READ, struct drm_i915_reg_read)
-#define DRM_IOCTL_I915_GET_RESET_STATS                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GET_RESET_STATS, \
-		 struct drm_i915_reset_stats)
-#define DRM_IOCTL_I915_GEM_USERPTR                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_USERPTR, \
-		 struct drm_i915_gem_userptr)
-#define DRM_IOCTL_I915_GEM_CONTEXT_GETPARAM                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_CONTEXT_GETPARAM, \
-		 struct drm_i915_gem_context_param)
-#define DRM_IOCTL_I915_GEM_CONTEXT_SETPARAM                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_CONTEXT_SETPARAM, \
-		 struct drm_i915_gem_context_param)
-#define DRM_IOCTL_I915_PERF_OPEN                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_I915_PERF_OPEN, \
-		struct drm_i915_perf_open_param)
-#define DRM_IOCTL_I915_PERF_ADD_CONFIG                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_I915_PERF_ADD_CONFIG, \
-		struct drm_i915_perf_oa_config)
-#define DRM_IOCTL_I915_PERF_REMOVE_CONFIG \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_I915_PERF_REMOVE_CONFIG, __u64)
-#define DRM_IOCTL_I915_QUERY \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_QUERY, struct drm_i915_query)
-#define DRM_IOCTL_I915_GEM_VM_CREATE                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_VM_CREATE, \
-		 struct drm_i915_gem_vm_control)
-#define DRM_IOCTL_I915_GEM_VM_DESTROY                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_I915_GEM_VM_DESTROY, \
-		struct drm_i915_gem_vm_control)
+#define DRM_IOCTL_I915_INIT	       DRM_IOW(DRM_COMMAND_BASE + DRM_I915_INIT, drm_i915_init_t)
+#define DRM_IOCTL_I915_FLUSH	       DRM_IO(DRM_COMMAND_BASE + DRM_I915_FLUSH)
+#define DRM_IOCTL_I915_FLIP	       DRM_IO(DRM_COMMAND_BASE + DRM_I915_FLIP)
+#define DRM_IOCTL_I915_BATCHBUFFER     DRM_IOW(DRM_COMMAND_BASE + DRM_I915_BATCHBUFFER, drm_i915_batchbuffer_t)
+#define DRM_IOCTL_I915_IRQ_EMIT	       DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_IRQ_EMIT, drm_i915_irq_emit_t)
+#define DRM_IOCTL_I915_IRQ_WAIT	       DRM_IOW(DRM_COMMAND_BASE + DRM_I915_IRQ_WAIT, drm_i915_irq_wait_t)
+#define DRM_IOCTL_I915_GETPARAM	       DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GETPARAM, drm_i915_getparam_t)
+#define DRM_IOCTL_I915_SETPARAM	       DRM_IOW(DRM_COMMAND_BASE + DRM_I915_SETPARAM, drm_i915_setparam_t)
+#define DRM_IOCTL_I915_ALLOC	       DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_ALLOC, drm_i915_mem_alloc_t)
+#define DRM_IOCTL_I915_FREE	       DRM_IOW(DRM_COMMAND_BASE + DRM_I915_FREE, drm_i915_mem_free_t)
+#define DRM_IOCTL_I915_INIT_HEAP       DRM_IOW(DRM_COMMAND_BASE + DRM_I915_INIT_HEAP, drm_i915_mem_init_heap_t)
+#define DRM_IOCTL_I915_CMDBUFFER       DRM_IOW(DRM_COMMAND_BASE + DRM_I915_CMDBUFFER, drm_i915_cmdbuffer_t)
+#define DRM_IOCTL_I915_DESTROY_HEAP    DRM_IOW(DRM_COMMAND_BASE + DRM_I915_DESTROY_HEAP, drm_i915_mem_destroy_heap_t)
+#define DRM_IOCTL_I915_SET_VBLANK_PIPE DRM_IOW(DRM_COMMAND_BASE + DRM_I915_SET_VBLANK_PIPE, drm_i915_vblank_pipe_t)
+#define DRM_IOCTL_I915_GET_VBLANK_PIPE DRM_IOR(DRM_COMMAND_BASE + DRM_I915_GET_VBLANK_PIPE, drm_i915_vblank_pipe_t)
+#define DRM_IOCTL_I915_VBLANK_SWAP     DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_VBLANK_SWAP, drm_i915_vblank_swap_t)
+#define DRM_IOCTL_I915_HWS_ADDR	       DRM_IOW(DRM_COMMAND_BASE + DRM_I915_HWS_ADDR, struct drm_i915_gem_init)
+#define DRM_IOCTL_I915_GEM_INIT	       DRM_IOW(DRM_COMMAND_BASE + DRM_I915_GEM_INIT, struct drm_i915_gem_init)
+#define DRM_IOCTL_I915_GEM_EXECBUFFER \
+	DRM_IOW(DRM_COMMAND_BASE + DRM_I915_GEM_EXECBUFFER, struct drm_i915_gem_execbuffer)
+#define DRM_IOCTL_I915_GEM_EXECBUFFER2 \
+	DRM_IOW(DRM_COMMAND_BASE + DRM_I915_GEM_EXECBUFFER2, struct drm_i915_gem_execbuffer2)
+#define DRM_IOCTL_I915_GEM_EXECBUFFER2_WR \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_EXECBUFFER2_WR, struct drm_i915_gem_execbuffer2)
+#define DRM_IOCTL_I915_GEM_PIN	       DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_PIN, struct drm_i915_gem_pin)
+#define DRM_IOCTL_I915_GEM_UNPIN       DRM_IOW(DRM_COMMAND_BASE + DRM_I915_GEM_UNPIN, struct drm_i915_gem_unpin)
+#define DRM_IOCTL_I915_GEM_BUSY	       DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_BUSY, struct drm_i915_gem_busy)
+#define DRM_IOCTL_I915_GEM_SET_CACHING DRM_IOW(DRM_COMMAND_BASE + DRM_I915_GEM_SET_CACHING, struct drm_i915_gem_caching)
+#define DRM_IOCTL_I915_GEM_GET_CACHING \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_GET_CACHING, struct drm_i915_gem_caching)
+#define DRM_IOCTL_I915_GEM_THROTTLE DRM_IO(DRM_COMMAND_BASE + DRM_I915_GEM_THROTTLE)
+#define DRM_IOCTL_I915_GEM_ENTERVT  DRM_IO(DRM_COMMAND_BASE + DRM_I915_GEM_ENTERVT)
+#define DRM_IOCTL_I915_GEM_LEAVEVT  DRM_IO(DRM_COMMAND_BASE + DRM_I915_GEM_LEAVEVT)
+#define DRM_IOCTL_I915_GEM_CREATE   DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_CREATE, struct drm_i915_gem_create)
+#define DRM_IOCTL_I915_GEM_CREATE_EXT \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_CREATE_EXT, struct drm_i915_gem_create_ext)
+#define DRM_IOCTL_I915_GEM_PREAD    DRM_IOW(DRM_COMMAND_BASE + DRM_I915_GEM_PREAD, struct drm_i915_gem_pread)
+#define DRM_IOCTL_I915_GEM_PWRITE   DRM_IOW(DRM_COMMAND_BASE + DRM_I915_GEM_PWRITE, struct drm_i915_gem_pwrite)
+#define DRM_IOCTL_I915_GEM_MMAP	    DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_MMAP, struct drm_i915_gem_mmap)
+#define DRM_IOCTL_I915_GEM_MMAP_GTT DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_MMAP_GTT, struct drm_i915_gem_mmap_gtt)
+#define DRM_IOCTL_I915_GEM_MMAP_OFFSET \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_MMAP_GTT, struct drm_i915_gem_mmap_offset)
+#define DRM_IOCTL_I915_GEM_SET_DOMAIN \
+	DRM_IOW(DRM_COMMAND_BASE + DRM_I915_GEM_SET_DOMAIN, struct drm_i915_gem_set_domain)
+#define DRM_IOCTL_I915_GEM_SW_FINISH DRM_IOW(DRM_COMMAND_BASE + DRM_I915_GEM_SW_FINISH, struct drm_i915_gem_sw_finish)
+#define DRM_IOCTL_I915_GEM_SET_TILING \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_SET_TILING, struct drm_i915_gem_set_tiling)
+#define DRM_IOCTL_I915_GEM_GET_TILING \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_GET_TILING, struct drm_i915_gem_get_tiling)
+#define DRM_IOCTL_I915_GEM_GET_APERTURE \
+	DRM_IOR(DRM_COMMAND_BASE + DRM_I915_GEM_GET_APERTURE, struct drm_i915_gem_get_aperture)
+#define DRM_IOCTL_I915_GET_PIPE_FROM_CRTC_ID \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GET_PIPE_FROM_CRTC_ID, struct drm_i915_get_pipe_from_crtc_id)
+#define DRM_IOCTL_I915_GEM_MADVISE DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_MADVISE, struct drm_i915_gem_madvise)
+#define DRM_IOCTL_I915_OVERLAY_PUT_IMAGE \
+	DRM_IOW(DRM_COMMAND_BASE + DRM_I915_OVERLAY_PUT_IMAGE, struct drm_intel_overlay_put_image)
+#define DRM_IOCTL_I915_OVERLAY_ATTRS DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_OVERLAY_ATTRS, struct drm_intel_overlay_attrs)
+#define DRM_IOCTL_I915_SET_SPRITE_COLORKEY \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_SET_SPRITE_COLORKEY, struct drm_intel_sprite_colorkey)
+#define DRM_IOCTL_I915_GET_SPRITE_COLORKEY \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GET_SPRITE_COLORKEY, struct drm_intel_sprite_colorkey)
+#define DRM_IOCTL_I915_GEM_WAIT DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_WAIT, struct drm_i915_gem_wait)
+#define DRM_IOCTL_I915_GEM_CONTEXT_CREATE \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_CONTEXT_CREATE, struct drm_i915_gem_context_create)
+#define DRM_IOCTL_I915_GEM_CONTEXT_CREATE_EXT \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_CONTEXT_CREATE, struct drm_i915_gem_context_create_ext)
+#define DRM_IOCTL_I915_GEM_CONTEXT_DESTROY \
+	DRM_IOW(DRM_COMMAND_BASE + DRM_I915_GEM_CONTEXT_DESTROY, struct drm_i915_gem_context_destroy)
+#define DRM_IOCTL_I915_REG_READ DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_REG_READ, struct drm_i915_reg_read)
+#define DRM_IOCTL_I915_GET_RESET_STATS \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GET_RESET_STATS, struct drm_i915_reset_stats)
+#define DRM_IOCTL_I915_GEM_USERPTR DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_USERPTR, struct drm_i915_gem_userptr)
+#define DRM_IOCTL_I915_GEM_CONTEXT_GETPARAM \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_CONTEXT_GETPARAM, struct drm_i915_gem_context_param)
+#define DRM_IOCTL_I915_GEM_CONTEXT_SETPARAM \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_CONTEXT_SETPARAM, struct drm_i915_gem_context_param)
+#define DRM_IOCTL_I915_PERF_OPEN DRM_IOW(DRM_COMMAND_BASE + DRM_I915_PERF_OPEN, struct drm_i915_perf_open_param)
+#define DRM_IOCTL_I915_PERF_ADD_CONFIG \
+	DRM_IOW(DRM_COMMAND_BASE + DRM_I915_PERF_ADD_CONFIG, struct drm_i915_perf_oa_config)
+#define DRM_IOCTL_I915_PERF_REMOVE_CONFIG DRM_IOW(DRM_COMMAND_BASE + DRM_I915_PERF_REMOVE_CONFIG, __u64)
+#define DRM_IOCTL_I915_QUERY		  DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_QUERY, struct drm_i915_query)
+#define DRM_IOCTL_I915_GEM_VM_CREATE	  DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_VM_CREATE, struct drm_i915_gem_vm_control)
+#define DRM_IOCTL_I915_GEM_VM_DESTROY \
+	DRM_IOW(DRM_COMMAND_BASE + DRM_I915_GEM_VM_DESTROY, struct drm_i915_gem_vm_control)
 
 /* Allow drivers to submit batchbuffers directly to hardware, relying
  * on the security mechanisms provided by hardware.
  */
 typedef struct drm_i915_batchbuffer {
-	int start;	   /* agp offset */
-	int used;	   /* nr bytes in use */
-	int DR1;	   /* hw flags for GFX_OP_DRAWRECT_INFO */
-	int DR4;	   /* window origin for GFX_OP_DRAWRECT_INFO */
-	int num_cliprects; /* mulitpass with multiple cliprects? */
+	int start;			 /* agp offset */
+	int used;			 /* nr bytes in use */
+	int DR1;			 /* hw flags for GFX_OP_DRAWRECT_INFO */
+	int DR4;			 /* window origin for GFX_OP_DRAWRECT_INFO */
+	int num_cliprects;		 /* mulitpass with multiple cliprects? */
 	struct drm_clip_rect *cliprects; /* pointer to userspace cliprects */
 } drm_i915_batchbuffer_t;
 
@@ -664,11 +574,11 @@ typedef struct drm_i915_batchbuffer {
  * validated by the kernel prior to sending to hardware.
  */
 typedef struct _drm_i915_cmdbuffer {
-	char *buf;	   /* pointer to userspace command buffer */
-	int sz;		   /* nr bytes in buf */
-	int DR1;	   /* hw flags for GFX_OP_DRAWRECT_INFO */
-	int DR4;	   /* window origin for GFX_OP_DRAWRECT_INFO */
-	int num_cliprects; /* mulitpass with multiple cliprects? */
+	char *buf;			 /* pointer to userspace command buffer */
+	int sz;				 /* nr bytes in buf */
+	int DR1;			 /* hw flags for GFX_OP_DRAWRECT_INFO */
+	int DR4;			 /* window origin for GFX_OP_DRAWRECT_INFO */
+	int num_cliprects;		 /* mulitpass with multiple cliprects? */
 	struct drm_clip_rect *cliprects; /* pointer to userspace cliprects */
 } drm_i915_cmdbuffer_t;
 
@@ -1669,11 +1579,9 @@ struct drm_i915_gem_execbuffer2 {
 	__u64 rsvd2;
 };
 
-#define I915_EXEC_CONTEXT_ID_MASK (0xffffffff)
-#define i915_execbuffer2_set_context_id(eb2, context) \
-	(eb2).rsvd1 = context & I915_EXEC_CONTEXT_ID_MASK
-#define i915_execbuffer2_get_context_id(eb2) \
-	((eb2).rsvd1 & I915_EXEC_CONTEXT_ID_MASK)
+#define I915_EXEC_CONTEXT_ID_MASK		      (0xffffffff)
+#define i915_execbuffer2_set_context_id(eb2, context) (eb2).rsvd1 = context & I915_EXEC_CONTEXT_ID_MASK
+#define i915_execbuffer2_get_context_id(eb2)	      ((eb2).rsvd1 & I915_EXEC_CONTEXT_ID_MASK)
 
 struct drm_i915_gem_pin {
 	/** Handle of the buffer to be pinned. */
@@ -2071,8 +1979,7 @@ struct drm_i915_gem_context_create_ext {
 	__u32 flags;
 #define I915_CONTEXT_CREATE_FLAGS_USE_EXTENSIONS  (1u << 0)
 #define I915_CONTEXT_CREATE_FLAGS_SINGLE_TIMELINE (1u << 1)
-#define I915_CONTEXT_CREATE_FLAGS_UNKNOWN \
-	(-(I915_CONTEXT_CREATE_FLAGS_SINGLE_TIMELINE << 1))
+#define I915_CONTEXT_CREATE_FLAGS_UNKNOWN	  (-(I915_CONTEXT_CREATE_FLAGS_SINGLE_TIMELINE << 1))
 
 	/**
 	 * @extensions: Zero-terminated chain of extensions.
@@ -2115,10 +2022,10 @@ struct drm_i915_gem_context_param {
 #define I915_CONTEXT_MAX_USER_PRIORITY	    1023 /* inclusive */
 #define I915_CONTEXT_DEFAULT_PRIORITY	    0
 #define I915_CONTEXT_MIN_USER_PRIORITY	    -1023 /* inclusive */
-	/*
-	 * When using the following param, value should be a pointer to
-	 * drm_i915_gem_context_param_sseu.
-	 */
+						  /*
+						   * When using the following param, value should be a pointer to
+						   * drm_i915_gem_context_param_sseu.
+						   */
 #define I915_CONTEXT_PARAM_SSEU 0x7
 
 /*
@@ -2671,12 +2578,10 @@ struct i915_context_engines_parallel_submit {
  */
 
 struct i915_context_param_engines {
-	__u64 extensions; /* linked chain of extension blocks, 0 terminates */
-#define I915_CONTEXT_ENGINES_EXT_LOAD_BALANCE \
-	0 /* see i915_context_engines_load_balance */
-#define I915_CONTEXT_ENGINES_EXT_BOND 1 /* see i915_context_engines_bond */
-#define I915_CONTEXT_ENGINES_EXT_PARALLEL_SUBMIT \
-	2 /* see i915_context_engines_parallel_submit */
+	__u64 extensions;			   /* linked chain of extension blocks, 0 terminates */
+#define I915_CONTEXT_ENGINES_EXT_LOAD_BALANCE	 0 /* see i915_context_engines_load_balance */
+#define I915_CONTEXT_ENGINES_EXT_BOND		 1 /* see i915_context_engines_bond */
+#define I915_CONTEXT_ENGINES_EXT_PARALLEL_SUBMIT 2 /* see i915_context_engines_parallel_submit */
 	struct i915_engine_class_instance engines[];
 } __attribute__((packed));
 

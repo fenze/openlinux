@@ -71,15 +71,12 @@ struct ocxl_ioctl_irq_fd {
 /* ioctl numbers */
 #define OCXL_MAGIC 0xCA
 /* AFU devices */
-#define OCXL_IOCTL_ATTACH     _IOW(OCXL_MAGIC, 0x10, struct ocxl_ioctl_attach)
-#define OCXL_IOCTL_IRQ_ALLOC  _IOR(OCXL_MAGIC, 0x11, __u64)
-#define OCXL_IOCTL_IRQ_FREE   _IOW(OCXL_MAGIC, 0x12, __u64)
-#define OCXL_IOCTL_IRQ_SET_FD _IOW(OCXL_MAGIC, 0x13, struct ocxl_ioctl_irq_fd)
-#define OCXL_IOCTL_GET_METADATA \
-	_IOR(OCXL_MAGIC, 0x14, struct ocxl_ioctl_metadata)
-#define OCXL_IOCTL_ENABLE_P9_WAIT \
-	_IOR(OCXL_MAGIC, 0x15, struct ocxl_ioctl_p9_wait)
-#define OCXL_IOCTL_GET_FEATURES \
-	_IOR(OCXL_MAGIC, 0x16, struct ocxl_ioctl_features)
+#define OCXL_IOCTL_ATTACH	  _IOW(OCXL_MAGIC, 0x10, struct ocxl_ioctl_attach)
+#define OCXL_IOCTL_IRQ_ALLOC	  _IOR(OCXL_MAGIC, 0x11, __u64)
+#define OCXL_IOCTL_IRQ_FREE	  _IOW(OCXL_MAGIC, 0x12, __u64)
+#define OCXL_IOCTL_IRQ_SET_FD	  _IOW(OCXL_MAGIC, 0x13, struct ocxl_ioctl_irq_fd)
+#define OCXL_IOCTL_GET_METADATA	  _IOR(OCXL_MAGIC, 0x14, struct ocxl_ioctl_metadata)
+#define OCXL_IOCTL_ENABLE_P9_WAIT _IOR(OCXL_MAGIC, 0x15, struct ocxl_ioctl_p9_wait)
+#define OCXL_IOCTL_GET_FEATURES	  _IOR(OCXL_MAGIC, 0x16, struct ocxl_ioctl_features)
 
 #endif /* _MISC_OCXL_H */

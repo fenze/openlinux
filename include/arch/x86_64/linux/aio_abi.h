@@ -74,12 +74,10 @@ struct iocb {
 	/* these are internal to the kernel/libc. */
 	__u64 aio_data; /* data to be returned in event's data */
 
-#if defined(__BYTE_ORDER) ? __BYTE_ORDER == __LITTLE_ENDIAN : \
-			    defined(__LITTLE_ENDIAN)
+#if defined(__BYTE_ORDER) ? __BYTE_ORDER == __LITTLE_ENDIAN : defined(__LITTLE_ENDIAN)
 	__u32 aio_key;		     /* the kernel sets aio_key to the req # */
 	__kernel_rwf_t aio_rw_flags; /* RWF_* flags */
-#elif defined(__BYTE_ORDER) ? __BYTE_ORDER == __BIG_ENDIAN : \
-			    defined(__BIG_ENDIAN)
+#elif defined(__BYTE_ORDER) ? __BYTE_ORDER == __BIG_ENDIAN : defined(__BIG_ENDIAN)
 	__kernel_rwf_t aio_rw_flags; /* RWF_* flags */
 	__u32 aio_key;		     /* the kernel sets aio_key to the req # */
 #else

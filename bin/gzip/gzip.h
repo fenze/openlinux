@@ -85,12 +85,11 @@ extern int method; /* compression method */
 #ifdef DYN_ALLOC
 #define EXTERN(type, array)	   extern type *near array
 #define DECLARE(type, array, size) type *near array
-#define ALLOC(type, array, size)                                     \
-	{                                                            \
-		array = (type *)fcalloc((size_t)(((size) + 1L) / 2), \
-					2 * sizeof(type));           \
-		if (array == NULL)                                   \
-			error("insufficient memory");                \
+#define ALLOC(type, array, size)                                                        \
+	{                                                                               \
+		array = (type *)fcalloc((size_t)(((size) + 1L) / 2), 2 * sizeof(type)); \
+		if (array == NULL)                                                      \
+			error("insufficient memory");                                   \
 	}
 #define FREE(array)                                  \
 	{                                            \
@@ -143,10 +142,10 @@ extern long ifile_size;	  /* input file size, -1 for devices (debug only) */
 typedef int file_t;  /* Do not use stdio */
 #define NO_FILE (-1) /* in memory compression */
 
-#define PACK_MAGIC     "\037\036" /* Magic header for packed files */
-#define GZIP_MAGIC     "\037\213" /* Magic header for gzip files, 1F 8B */
-#define OLD_GZIP_MAGIC "\037\236" /* Magic header for gzip 0.5 = freeze 1.x */
-#define LZH_MAGIC      "\037\240" /* Magic header for SCO LZH Compress files*/
+#define PACK_MAGIC     "\037\036"	  /* Magic header for packed files */
+#define GZIP_MAGIC     "\037\213"	  /* Magic header for gzip files, 1F 8B */
+#define OLD_GZIP_MAGIC "\037\236"	  /* Magic header for gzip 0.5 = freeze 1.x */
+#define LZH_MAGIC      "\037\240"	  /* Magic header for SCO LZH Compress files*/
 #define PKZIP_MAGIC    "\120\113\003\004" /* Magic header for pkzip files */
 
 /* gzip flag byte */

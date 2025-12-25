@@ -1,7 +1,9 @@
+#include "stddef.h"
 #include <asm/vdso.h>
 #include <elf.h>
 #include <string.h>
 #include <sys/auxv.h>
+#include <time.h>
 
 int (*__vdso_clock_gettime)(int, struct timespec *) = 0;
 int (*__vdso_getcpu)(unsigned *, unsigned *, void *) = 0;

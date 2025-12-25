@@ -17,10 +17,10 @@
 
 /* Structure for SCOM read/write */
 struct scom_access {
-	__u64 addr;	   /* SCOM address, supports indirect */
-	__u64 data;	   /* SCOM data (in for write, out for read) */
-	__u64 mask;	   /* Data mask for writes */
-	__u32 intf_errors; /* Interface error flags */
+	__u64 addr;			    /* SCOM address, supports indirect */
+	__u64 data;			    /* SCOM data (in for write, out for read) */
+	__u64 mask;			    /* Data mask for writes */
+	__u32 intf_errors;		    /* Interface error flags */
 #define SCOM_INTF_ERR_PARITY	 0x00000001 /* Parity error */
 #define SCOM_INTF_ERR_PROTECTION 0x00000002 /* Blocked by secure boot */
 #define SCOM_INTF_ERR_ABORT	 0x00000004 /* PIB reset during access */

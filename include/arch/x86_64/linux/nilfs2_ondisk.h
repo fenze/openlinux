@@ -92,9 +92,7 @@ struct nilfs_super_root {
 	struct nilfs_inode sr_sufile;
 };
 
-#define NILFS_SR_MDT_OFFSET(inode_size, i)                        \
-	((unsigned long)&((struct nilfs_super_root *)0)->sr_dat + \
-	 (inode_size) * (i))
+#define NILFS_SR_MDT_OFFSET(inode_size, i) ((unsigned long)&((struct nilfs_super_root *)0)->sr_dat + (inode_size) * (i))
 #define NILFS_SR_DAT_OFFSET(inode_size)	   NILFS_SR_MDT_OFFSET(inode_size, 0)
 #define NILFS_SR_CPFILE_OFFSET(inode_size) NILFS_SR_MDT_OFFSET(inode_size, 1)
 #define NILFS_SR_SUFILE_OFFSET(inode_size) NILFS_SR_MDT_OFFSET(inode_size, 2)
@@ -149,21 +147,21 @@ struct nilfs_super_block {
 	__le32 s_crc_seed;   /* Seed value of CRC calculation */
 	/*10*/ __le32 s_sum; /* Check sum of super block */
 
-	__le32 s_log_block_size;   /*
-				    * Block size represented as follows
-				    * blocksize =
-				    *     1 << (s_log_block_size + 10)
-				    */
-	__le64 s_nsegments;	   /* Number of segments in filesystem */
-	/*20*/ __le64 s_dev_size;  /* block device size in bytes */
-	__le64 s_first_data_block; /* 1st seg disk block number */
+	__le32 s_log_block_size;	    /*
+					     * Block size represented as follows
+					     * blocksize =
+					     *     1 << (s_log_block_size + 10)
+					     */
+	__le64 s_nsegments;		    /* Number of segments in filesystem */
+	/*20*/ __le64 s_dev_size;	    /* block device size in bytes */
+	__le64 s_first_data_block;	    /* 1st seg disk block number */
 	/*30*/ __le32 s_blocks_per_segment; /* number of blocks per full segment
 					     */
 	__le32 s_r_segments_percentage;	    /* Reserved segments percentage */
 
-	__le64 s_last_cno;	   /* Last checkpoint number */
-	/*40*/ __le64 s_last_pseg; /* disk block addr pseg written last */
-	__le64 s_last_seq;	   /* seq. number of seg written last */
+	__le64 s_last_cno;		   /* Last checkpoint number */
+	/*40*/ __le64 s_last_pseg;	   /* disk block addr pseg written last */
+	__le64 s_last_seq;		   /* seq. number of seg written last */
 	/*50*/ __le64 s_free_blocks_count; /* Free blocks count */
 
 	__le64 s_ctime;		   /*
@@ -270,8 +268,7 @@ struct nilfs_super_block {
  * these files are written in super root block instead of ifile, and
  * garbage collector doesn't keep any past versions of these files.
  */
-#define NILFS_ROOT_METADATA_FILE(ino) \
-	((ino) >= NILFS_DAT_INO && (ino) <= NILFS_SUFILE_INO)
+#define NILFS_ROOT_METADATA_FILE(ino) ((ino) >= NILFS_DAT_INO && (ino) <= NILFS_SUFILE_INO)
 
 /*
  * bytes offset of secondary super block
@@ -332,11 +329,10 @@ enum {
  *
  * NOTE: It must be a multiple of 8
  */
-#define NILFS_DIR_PAD	8
-#define NILFS_DIR_ROUND (NILFS_DIR_PAD - 1)
-#define NILFS_DIR_REC_LEN(name_len) \
-	(((name_len) + 12 + NILFS_DIR_ROUND) & ~NILFS_DIR_ROUND)
-#define NILFS_MAX_REC_LEN ((1 << 16) - 1)
+#define NILFS_DIR_PAD		    8
+#define NILFS_DIR_ROUND		    (NILFS_DIR_PAD - 1)
+#define NILFS_DIR_REC_LEN(name_len) (((name_len) + 12 + NILFS_DIR_ROUND) & ~NILFS_DIR_ROUND)
+#define NILFS_MAX_REC_LEN	    ((1 << 16) - 1)
 
 /**
  * struct nilfs_finfo - file information
@@ -534,26 +530,18 @@ enum {
 	NILFS_CHECKPOINT_MINOR,
 };
 
-#define NILFS_CHECKPOINT_FNS(flag, name)                                  \
-	static __inline__ void nilfs_checkpoint_set_##name(               \
-		struct nilfs_checkpoint *cp)                              \
-	{                                                                 \
-		cp->cp_flags =                                            \
-			__cpu_to_le32(__le32_to_cpu(cp->cp_flags) |       \
-				      (1UL << NILFS_CHECKPOINT_##flag));  \
-	}                                                                 \
-	static __inline__ void nilfs_checkpoint_clear_##name(             \
-		struct nilfs_checkpoint *cp)                              \
-	{                                                                 \
-		cp->cp_flags =                                            \
-			__cpu_to_le32(__le32_to_cpu(cp->cp_flags) &       \
-				      ~(1UL << NILFS_CHECKPOINT_##flag)); \
-	}                                                                 \
-	static __inline__ int nilfs_checkpoint_##name(                    \
-		const struct nilfs_checkpoint *cp)                        \
-	{                                                                 \
-		return !!(__le32_to_cpu(cp->cp_flags) &                   \
-			  (1UL << NILFS_CHECKPOINT_##flag));              \
+#define NILFS_CHECKPOINT_FNS(flag, name)                                                                       \
+	static __inline__ void nilfs_checkpoint_set_##name(struct nilfs_checkpoint *cp)                        \
+	{                                                                                                      \
+		cp->cp_flags = __cpu_to_le32(__le32_to_cpu(cp->cp_flags) | (1UL << NILFS_CHECKPOINT_##flag));  \
+	}                                                                                                      \
+	static __inline__ void nilfs_checkpoint_clear_##name(struct nilfs_checkpoint *cp)                      \
+	{                                                                                                      \
+		cp->cp_flags = __cpu_to_le32(__le32_to_cpu(cp->cp_flags) & ~(1UL << NILFS_CHECKPOINT_##flag)); \
+	}                                                                                                      \
+	static __inline__ int nilfs_checkpoint_##name(const struct nilfs_checkpoint *cp)                       \
+	{                                                                                                      \
+		return !!(__le32_to_cpu(cp->cp_flags) & (1UL << NILFS_CHECKPOINT_##flag));                     \
 	}
 
 NILFS_CHECKPOINT_FNS(SNAPSHOT, snapshot)
@@ -572,10 +560,8 @@ struct nilfs_cpfile_header {
 	struct nilfs_snapshot_list ch_snapshot_list;
 };
 
-#define NILFS_CPFILE_FIRST_CHECKPOINT_OFFSET     \
-	((sizeof(struct nilfs_cpfile_header) +   \
-	  sizeof(struct nilfs_checkpoint) - 1) / \
-	 sizeof(struct nilfs_checkpoint))
+#define NILFS_CPFILE_FIRST_CHECKPOINT_OFFSET \
+	((sizeof(struct nilfs_cpfile_header) + sizeof(struct nilfs_checkpoint) - 1) / sizeof(struct nilfs_checkpoint))
 
 /**
  * struct nilfs_segment_usage - segment usage
@@ -598,42 +584,32 @@ enum {
 	NILFS_SEGMENT_USAGE_ERROR,
 };
 
-#define NILFS_SEGMENT_USAGE_FNS(flag, name)                                  \
-	static __inline__ void nilfs_segment_usage_set_##name(               \
-		struct nilfs_segment_usage *su)                              \
-	{                                                                    \
-		su->su_flags =                                               \
-			__cpu_to_le32(__le32_to_cpu(su->su_flags) |          \
-				      (1UL << NILFS_SEGMENT_USAGE_##flag));  \
-	}                                                                    \
-	static __inline__ void nilfs_segment_usage_clear_##name(             \
-		struct nilfs_segment_usage *su)                              \
-	{                                                                    \
-		su->su_flags =                                               \
-			__cpu_to_le32(__le32_to_cpu(su->su_flags) &          \
-				      ~(1UL << NILFS_SEGMENT_USAGE_##flag)); \
-	}                                                                    \
-	static __inline__ int nilfs_segment_usage_##name(                    \
-		const struct nilfs_segment_usage *su)                        \
-	{                                                                    \
-		return !!(__le32_to_cpu(su->su_flags) &                      \
-			  (1UL << NILFS_SEGMENT_USAGE_##flag));              \
+#define NILFS_SEGMENT_USAGE_FNS(flag, name)                                                                       \
+	static __inline__ void nilfs_segment_usage_set_##name(struct nilfs_segment_usage *su)                     \
+	{                                                                                                         \
+		su->su_flags = __cpu_to_le32(__le32_to_cpu(su->su_flags) | (1UL << NILFS_SEGMENT_USAGE_##flag));  \
+	}                                                                                                         \
+	static __inline__ void nilfs_segment_usage_clear_##name(struct nilfs_segment_usage *su)                   \
+	{                                                                                                         \
+		su->su_flags = __cpu_to_le32(__le32_to_cpu(su->su_flags) & ~(1UL << NILFS_SEGMENT_USAGE_##flag)); \
+	}                                                                                                         \
+	static __inline__ int nilfs_segment_usage_##name(const struct nilfs_segment_usage *su)                    \
+	{                                                                                                         \
+		return !!(__le32_to_cpu(su->su_flags) & (1UL << NILFS_SEGMENT_USAGE_##flag));                     \
 	}
 
 NILFS_SEGMENT_USAGE_FNS(ACTIVE, active)
 NILFS_SEGMENT_USAGE_FNS(DIRTY, dirty)
 NILFS_SEGMENT_USAGE_FNS(ERROR, error)
 
-static __inline__ void
-nilfs_segment_usage_set_clean(struct nilfs_segment_usage *su)
+static __inline__ void nilfs_segment_usage_set_clean(struct nilfs_segment_usage *su)
 {
 	su->su_lastmod = __cpu_to_le64(0);
 	su->su_nblocks = __cpu_to_le32(0);
 	su->su_flags = __cpu_to_le32(0);
 }
 
-static __inline__ int
-nilfs_segment_usage_clean(const struct nilfs_segment_usage *su)
+static __inline__ int nilfs_segment_usage_clean(const struct nilfs_segment_usage *su)
 {
 	return !__le32_to_cpu(su->su_flags);
 }
@@ -651,9 +627,8 @@ struct nilfs_sufile_header {
 	/* ... */
 };
 
-#define NILFS_SUFILE_FIRST_SEGMENT_USAGE_OFFSET     \
-	((sizeof(struct nilfs_sufile_header) +      \
-	  sizeof(struct nilfs_segment_usage) - 1) / \
+#define NILFS_SUFILE_FIRST_SEGMENT_USAGE_OFFSET                                          \
+	((sizeof(struct nilfs_sufile_header) + sizeof(struct nilfs_segment_usage) - 1) / \
 	 sizeof(struct nilfs_segment_usage))
 
 #endif /* _LINUX_NILFS2_ONDISK_H */

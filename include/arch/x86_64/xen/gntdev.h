@@ -55,8 +55,7 @@ struct ioctl_gntdev_grant_ref {
  * mmap()'d at offset 0, such as Wayland. If @count is set to 0, this
  * ioctl will fail.
  */
-#define IOCTL_GNTDEV_MAP_GRANT_REF \
-	_IOC(_IOC_NONE, 'G', 0, sizeof(struct ioctl_gntdev_map_grant_ref))
+#define IOCTL_GNTDEV_MAP_GRANT_REF _IOC(_IOC_NONE, 'G', 0, sizeof(struct ioctl_gntdev_map_grant_ref))
 struct ioctl_gntdev_map_grant_ref {
 	/* IN parameters */
 	/* The number of grants to be mapped. */
@@ -75,8 +74,7 @@ struct ioctl_gntdev_map_grant_ref {
  * gntdev. N.B. munmap() must be called on the relevant virtual address(es)
  * before this ioctl is called, or an error will result.
  */
-#define IOCTL_GNTDEV_UNMAP_GRANT_REF \
-	_IOC(_IOC_NONE, 'G', 1, sizeof(struct ioctl_gntdev_unmap_grant_ref))
+#define IOCTL_GNTDEV_UNMAP_GRANT_REF _IOC(_IOC_NONE, 'G', 1, sizeof(struct ioctl_gntdev_unmap_grant_ref))
 struct ioctl_gntdev_unmap_grant_ref {
 	/* IN parameters */
 	/* The offset was returned by the corresponding map operation. */
@@ -98,9 +96,7 @@ struct ioctl_gntdev_unmap_grant_ref {
  *      an error will result. It is only possible to munmap() the entire
  *      contiguously-allocated range at once, and not any subrange thereof.
  */
-#define IOCTL_GNTDEV_GET_OFFSET_FOR_VADDR \
-	_IOC(_IOC_NONE, 'G', 2,           \
-	     sizeof(struct ioctl_gntdev_get_offset_for_vaddr))
+#define IOCTL_GNTDEV_GET_OFFSET_FOR_VADDR _IOC(_IOC_NONE, 'G', 2, sizeof(struct ioctl_gntdev_get_offset_for_vaddr))
 struct ioctl_gntdev_get_offset_for_vaddr {
 	/* IN parameters */
 	/* The virtual address of the first mapped page in a range. */
@@ -119,8 +115,7 @@ struct ioctl_gntdev_get_offset_for_vaddr {
  *
  * N.B. This must be called before any other ioctl is performed on the device.
  */
-#define IOCTL_GNTDEV_SET_MAX_GRANTS \
-	_IOC(_IOC_NONE, 'G', 3, sizeof(struct ioctl_gntdev_set_max_grants))
+#define IOCTL_GNTDEV_SET_MAX_GRANTS _IOC(_IOC_NONE, 'G', 3, sizeof(struct ioctl_gntdev_set_max_grants))
 struct ioctl_gntdev_set_max_grants {
 	/* IN parameter */
 	/* The maximum number of grants that may be mapped at once. */
@@ -137,8 +132,7 @@ struct ioctl_gntdev_set_max_grants {
  * notification prior to the IOCTL_GNTALLOC_DEALLOC_GREF if you do not want it
  * to occur.
  */
-#define IOCTL_GNTDEV_SET_UNMAP_NOTIFY \
-	_IOC(_IOC_NONE, 'G', 7, sizeof(struct ioctl_gntdev_unmap_notify))
+#define IOCTL_GNTDEV_SET_UNMAP_NOTIFY _IOC(_IOC_NONE, 'G', 7, sizeof(struct ioctl_gntdev_unmap_notify))
 struct ioctl_gntdev_unmap_notify {
 	/* IN parameters */
 	/* Offset in the file descriptor for a byte within the page (same as
@@ -196,8 +190,7 @@ struct gntdev_grant_copy_segment {
  * EINVAL: A segment crosses the boundary of a foreign page.
  * EFAULT: A segment's local buffer is not accessible.
  */
-#define IOCTL_GNTDEV_GRANT_COPY \
-	_IOC(_IOC_NONE, 'G', 8, sizeof(struct ioctl_gntdev_grant_copy))
+#define IOCTL_GNTDEV_GRANT_COPY _IOC(_IOC_NONE, 'G', 8, sizeof(struct ioctl_gntdev_grant_copy))
 struct ioctl_gntdev_grant_copy {
 	unsigned int count;
 	struct gntdev_grant_copy_segment *segments;
@@ -238,9 +231,7 @@ struct ioctl_gntdev_grant_copy {
  * [1] Documentation/driver-api/dma-buf.rst
  */
 
-#define IOCTL_GNTDEV_DMABUF_EXP_FROM_REFS \
-	_IOC(_IOC_NONE, 'G', 9,           \
-	     sizeof(struct ioctl_gntdev_dmabuf_exp_from_refs))
+#define IOCTL_GNTDEV_DMABUF_EXP_FROM_REFS _IOC(_IOC_NONE, 'G', 9, sizeof(struct ioctl_gntdev_dmabuf_exp_from_refs))
 struct ioctl_gntdev_dmabuf_exp_from_refs {
 	/* IN parameters. */
 	/* Specific options for this dma-buf: see GNTDEV_DMA_FLAG_XXX. */
@@ -269,8 +260,7 @@ struct ioctl_gntdev_dmabuf_exp_from_refs {
  * this must not be treated as error.
  */
 #define IOCTL_GNTDEV_DMABUF_EXP_WAIT_RELEASED \
-	_IOC(_IOC_NONE, 'G', 10,              \
-	     sizeof(struct ioctl_gntdev_dmabuf_exp_wait_released))
+	_IOC(_IOC_NONE, 'G', 10, sizeof(struct ioctl_gntdev_dmabuf_exp_wait_released))
 struct ioctl_gntdev_dmabuf_exp_wait_released {
 	/* IN parameters */
 	__u32 fd;
@@ -281,8 +271,7 @@ struct ioctl_gntdev_dmabuf_exp_wait_released {
  * Import a dma-buf with file descriptor @fd and export granted references
  * to the pages of that dma-buf into array @refs of size @count.
  */
-#define IOCTL_GNTDEV_DMABUF_IMP_TO_REFS \
-	_IOC(_IOC_NONE, 'G', 11, sizeof(struct ioctl_gntdev_dmabuf_imp_to_refs))
+#define IOCTL_GNTDEV_DMABUF_IMP_TO_REFS _IOC(_IOC_NONE, 'G', 11, sizeof(struct ioctl_gntdev_dmabuf_imp_to_refs))
 struct ioctl_gntdev_dmabuf_imp_to_refs {
 	/* IN parameters. */
 	/* File descriptor of the dma-buf. */
@@ -303,8 +292,7 @@ struct ioctl_gntdev_dmabuf_imp_to_refs {
  * @fd, so it can be released by the owner. This is only valid for buffers
  * created with IOCTL_GNTDEV_DMABUF_IMP_TO_REFS.
  */
-#define IOCTL_GNTDEV_DMABUF_IMP_RELEASE \
-	_IOC(_IOC_NONE, 'G', 12, sizeof(struct ioctl_gntdev_dmabuf_imp_release))
+#define IOCTL_GNTDEV_DMABUF_IMP_RELEASE _IOC(_IOC_NONE, 'G', 12, sizeof(struct ioctl_gntdev_dmabuf_imp_release))
 struct ioctl_gntdev_dmabuf_imp_release {
 	/* IN parameters */
 	__u32 fd;

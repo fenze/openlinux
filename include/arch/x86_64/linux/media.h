@@ -274,8 +274,7 @@ struct media_links_enum {
  * The media_version argument comes from the media_version field in
  * struct media_device_info.
  */
-#define MEDIA_V2_ENTITY_HAS_FLAGS(media_version) \
-	((media_version) >= ((4U << 16) | (19U << 8) | 0U))
+#define MEDIA_V2_ENTITY_HAS_FLAGS(media_version) ((media_version) >= ((4U << 16) | (19U << 8) | 0U))
 
 struct media_v2_entity {
 	__u32 id;
@@ -309,8 +308,7 @@ struct media_v2_interface {
  * The media_version argument comes from the media_version field in
  * struct media_device_info.
  */
-#define MEDIA_V2_PAD_HAS_INDEX(media_version) \
-	((media_version) >= ((4U << 16) | (19U << 8) | 0U))
+#define MEDIA_V2_PAD_HAS_INDEX(media_version) ((media_version) >= ((4U << 16) | (19U << 8) | 0U))
 
 struct media_v2_pad {
 	__u32 id;
@@ -376,8 +374,7 @@ struct media_v2_topology {
 #define MEDIA_ENT_TYPE_MASK    0x00ff0000
 #define MEDIA_ENT_SUBTYPE_MASK 0x0000ffff
 
-#define MEDIA_ENT_T_DEVNODE_UNKNOWN \
-	(MEDIA_ENT_F_OLD_BASE | MEDIA_ENT_SUBTYPE_MASK)
+#define MEDIA_ENT_T_DEVNODE_UNKNOWN (MEDIA_ENT_F_OLD_BASE | MEDIA_ENT_SUBTYPE_MASK)
 
 #define MEDIA_ENT_T_DEVNODE	 MEDIA_ENT_F_OLD_BASE
 #define MEDIA_ENT_T_DEVNODE_V4L	 MEDIA_ENT_F_IO_V4L

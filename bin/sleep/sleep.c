@@ -1,3 +1,4 @@
+#include "stddef.h"
 #include <err.h>
 #include <stdlib.h>
 #include <time.h>

@@ -96,8 +96,7 @@ static __inline__ void fsmap_advance(struct fsmap_head *head)
 #define FMR_OF_LAST	     0x20 /* segment is the last in the dataset */
 
 /* Each FS gets to define its own special owner codes. */
-#define FMR_OWNER(type, code) \
-	(((__u64)type << 32) | ((__u64)code & 0xFFFFFFFFULL))
+#define FMR_OWNER(type, code) (((__u64)type << 32) | ((__u64)code & 0xFFFFFFFFULL))
 #define FMR_OWNER_TYPE(owner) ((__u32)((__u64)owner >> 32))
 #define FMR_OWNER_CODE(owner) ((__u32)(((__u64)owner & 0xFFFFFFFFULL)))
 #define FMR_OWN_FREE	      FMR_OWNER(0, 1) /* free space */

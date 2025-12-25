@@ -51,6 +51,5 @@ double complex ctan(double complex z)
 		return HUGE_VAL + HUGE_VAL * (double complex)I;
 	}
 
-	return sin(2.0 * creal(z)) / d +
-	       (sinh(2.0 * cimag(z)) / d) * (double complex)I;
+	return sin(2.0 * creal(z)) / d + (sinh(2.0 * cimag(z)) / d) * (double complex)I;
 }

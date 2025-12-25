@@ -53,19 +53,19 @@ enum ipset_cmd {
 /* Attributes at command level */
 enum {
 	IPSET_ATTR_UNSPEC,
-	IPSET_ATTR_PROTOCOL,			   /* 1: Protocol version */
-	IPSET_ATTR_SETNAME,			   /* 2: Name of the set */
-	IPSET_ATTR_TYPENAME,			   /* 3: Typename */
-	IPSET_ATTR_SETNAME2 = IPSET_ATTR_TYPENAME, /* Setname at rename/swap */
-	IPSET_ATTR_REVISION,			   /* 4: Settype revision */
-	IPSET_ATTR_FAMILY,			   /* 5: Settype family */
-	IPSET_ATTR_FLAGS,	 /* 6: Flags at command level */
-	IPSET_ATTR_DATA,	 /* 7: Nested attributes */
-	IPSET_ATTR_ADT,		 /* 8: Multiple data containers */
-	IPSET_ATTR_LINENO,	 /* 9: Restore lineno */
-	IPSET_ATTR_PROTOCOL_MIN, /* 10: Minimal supported version number */
+	IPSET_ATTR_PROTOCOL,				   /* 1: Protocol version */
+	IPSET_ATTR_SETNAME,				   /* 2: Name of the set */
+	IPSET_ATTR_TYPENAME,				   /* 3: Typename */
+	IPSET_ATTR_SETNAME2 = IPSET_ATTR_TYPENAME,	   /* Setname at rename/swap */
+	IPSET_ATTR_REVISION,				   /* 4: Settype revision */
+	IPSET_ATTR_FAMILY,				   /* 5: Settype family */
+	IPSET_ATTR_FLAGS,				   /* 6: Flags at command level */
+	IPSET_ATTR_DATA,				   /* 7: Nested attributes */
+	IPSET_ATTR_ADT,					   /* 8: Multiple data containers */
+	IPSET_ATTR_LINENO,				   /* 9: Restore lineno */
+	IPSET_ATTR_PROTOCOL_MIN,			   /* 10: Minimal supported version number */
 	IPSET_ATTR_REVISION_MIN = IPSET_ATTR_PROTOCOL_MIN, /* type rev min */
-	IPSET_ATTR_INDEX, /* 11: Kernel index of set */
+	IPSET_ATTR_INDEX,				   /* 11: Kernel index of set */
 	__IPSET_ATTR_CMD_MAX,
 };
 #define IPSET_ATTR_CMD_MAX (__IPSET_ATTR_CMD_MAX - 1)
@@ -169,11 +169,9 @@ enum ipset_cmd_flags {
 	IPSET_FLAG_BIT_LIST_HEADER = 2,
 	IPSET_FLAG_LIST_HEADER = (1 << IPSET_FLAG_BIT_LIST_HEADER),
 	IPSET_FLAG_BIT_SKIP_COUNTER_UPDATE = 3,
-	IPSET_FLAG_SKIP_COUNTER_UPDATE =
-		(1 << IPSET_FLAG_BIT_SKIP_COUNTER_UPDATE),
+	IPSET_FLAG_SKIP_COUNTER_UPDATE = (1 << IPSET_FLAG_BIT_SKIP_COUNTER_UPDATE),
 	IPSET_FLAG_BIT_SKIP_SUBCOUNTER_UPDATE = 4,
-	IPSET_FLAG_SKIP_SUBCOUNTER_UPDATE =
-		(1 << IPSET_FLAG_BIT_SKIP_SUBCOUNTER_UPDATE),
+	IPSET_FLAG_SKIP_SUBCOUNTER_UPDATE = (1 << IPSET_FLAG_BIT_SKIP_SUBCOUNTER_UPDATE),
 	IPSET_FLAG_BIT_MATCH_COUNTERS = 5,
 	IPSET_FLAG_MATCH_COUNTERS = (1 << IPSET_FLAG_BIT_MATCH_COUNTERS),
 	IPSET_FLAG_BIT_RETURN_NOMATCH = 7,

@@ -31,8 +31,7 @@
 #define ZORRO_PROD(id)	(((id) >> 8) & 0xff)
 #define ZORRO_EPC(id)	((id) & 0xff)
 
-#define ZORRO_ID(manuf, prod, epc) \
-	((ZORRO_MANUF_##manuf << 16) | ((prod) << 8) | (epc))
+#define ZORRO_ID(manuf, prod, epc) ((ZORRO_MANUF_##manuf << 16) | ((prod) << 8) | (epc))
 
 typedef __u32 zorro_id;
 

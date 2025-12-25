@@ -1,6 +1,5 @@
 #include "__stdio.h" // for __FILE, _IO_EOF, _IO_ERR
 
-#include <atomic.h>
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>

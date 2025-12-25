@@ -72,8 +72,7 @@ int in, out; /* input and output file descriptors */
 	 */
 	if (ifile_size != -1L && isize != (ulg)ifile_size) {
 		Trace((stderr, " actual=%ld, read=%ld ", ifile_size, isize));
-		fprintf(stderr, "%s: %s: file size changed while zipping\n",
-			progname, ifname);
+		fprintf(stderr, "%s: %s: file size changed while zipping\n", progname, ifname);
 	}
 #endif
 

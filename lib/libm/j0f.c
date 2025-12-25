@@ -120,10 +120,7 @@ float y0f(float x)
 	if (ix >= 0x39000000) { /* x >= 2**-13 */
 		/* large ulp error at x ~= 0.89 */
 		z = x * x;
-		u = u00 +
-		    z * (u01 +
-			 z * (u02 +
-			      z * (u03 + z * (u04 + z * (u05 + z * u06)))));
+		u = u00 + z * (u01 + z * (u02 + z * (u03 + z * (u04 + z * (u05 + z * u06)))));
 		v = 1 + z * (v01 + z * (v02 + z * (v03 + z * v04)));
 		return u / v + tpi * (j0f(x) * logf(x));
 	}
@@ -337,8 +334,6 @@ static float qzerof(float x)
 	}
 	z = 1.0f / (x * x);
 	r = p[0] + z * (p[1] + z * (p[2] + z * (p[3] + z * (p[4] + z * p[5]))));
-	s = 1.0f +
-	    z * (q[0] +
-		 z * (q[1] + z * (q[2] + z * (q[3] + z * (q[4] + z * q[5])))));
+	s = 1.0f + z * (q[0] + z * (q[1] + z * (q[2] + z * (q[3] + z * (q[4] + z * q[5])))));
 	return (-.125f + r / s) / x;
 }

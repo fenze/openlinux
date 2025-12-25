@@ -63,8 +63,7 @@ float fmaf(float x, float y, float z)
 		fmaf(0x1p-120f, 0x1p-120f, 0x1p-149f)
 		*/
 #if defined(FE_INEXACT) && defined(FE_UNDERFLOW)
-		if (e < 0x3ff - 126 && e >= 0x3ff - 149 &&
-		    fetestexcept(FE_INEXACT)) {
+		if (e < 0x3ff - 126 && e >= 0x3ff - 149 && fetestexcept(FE_INEXACT)) {
 			feclearexcept(FE_INEXACT);
 			/* TODO: gcc and clang bug workaround */
 			volatile float vz = z;

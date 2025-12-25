@@ -83,9 +83,9 @@ struct cramfs_super {
  * if (flags & ~CRAMFS_SUPPORTED_FLAGS).  Maybe that should be
  * changed to test super.future instead.
  */
-#define CRAMFS_SUPPORTED_FLAGS                                          \
-	(0x000000ff | CRAMFS_FLAG_HOLES | CRAMFS_FLAG_WRONG_SIGNATURE | \
-	 CRAMFS_FLAG_SHIFTED_ROOT_OFFSET | CRAMFS_FLAG_EXT_BLOCK_POINTERS)
+#define CRAMFS_SUPPORTED_FLAGS                                                                            \
+	(0x000000ff | CRAMFS_FLAG_HOLES | CRAMFS_FLAG_WRONG_SIGNATURE | CRAMFS_FLAG_SHIFTED_ROOT_OFFSET | \
+	 CRAMFS_FLAG_EXT_BLOCK_POINTERS)
 
 /*
  * Block pointer flags
@@ -101,8 +101,7 @@ struct cramfs_super {
 #define CRAMFS_BLK_FLAG_UNCOMPRESSED (1 << 31)
 #define CRAMFS_BLK_FLAG_DIRECT_PTR   (1 << 30)
 
-#define CRAMFS_BLK_FLAGS \
-	(CRAMFS_BLK_FLAG_UNCOMPRESSED | CRAMFS_BLK_FLAG_DIRECT_PTR)
+#define CRAMFS_BLK_FLAGS (CRAMFS_BLK_FLAG_UNCOMPRESSED | CRAMFS_BLK_FLAG_DIRECT_PTR)
 
 /*
  * Direct blocks are at least 4-byte aligned.

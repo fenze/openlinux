@@ -85,15 +85,13 @@ typedef struct fs_disk_quota {
 /*
  * These fields are sent to Q_XSETQLIM to specify fields that need to change.
  */
-#define FS_DQ_ISOFT   (1 << 0)
-#define FS_DQ_IHARD   (1 << 1)
-#define FS_DQ_BSOFT   (1 << 2)
-#define FS_DQ_BHARD   (1 << 3)
-#define FS_DQ_RTBSOFT (1 << 4)
-#define FS_DQ_RTBHARD (1 << 5)
-#define FS_DQ_LIMIT_MASK                                         \
-	(FS_DQ_ISOFT | FS_DQ_IHARD | FS_DQ_BSOFT | FS_DQ_BHARD | \
-	 FS_DQ_RTBSOFT | FS_DQ_RTBHARD)
+#define FS_DQ_ISOFT	 (1 << 0)
+#define FS_DQ_IHARD	 (1 << 1)
+#define FS_DQ_BSOFT	 (1 << 2)
+#define FS_DQ_BHARD	 (1 << 3)
+#define FS_DQ_RTBSOFT	 (1 << 4)
+#define FS_DQ_RTBHARD	 (1 << 5)
+#define FS_DQ_LIMIT_MASK (FS_DQ_ISOFT | FS_DQ_IHARD | FS_DQ_BSOFT | FS_DQ_BHARD | FS_DQ_RTBSOFT | FS_DQ_RTBHARD)
 /*
  * These timers can only be set in super user's dquot. For others, timers are
  * automatically started and stopped. Superusers timer values set the limits

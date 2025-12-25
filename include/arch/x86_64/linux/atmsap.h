@@ -99,40 +99,40 @@ struct atm_blli {
 	unsigned char l2_proto; /* layer 2 protocol */
 	union {
 		struct {
-			unsigned char mode; /* mode of operation (ATM_IMD_xxx),
-					       0 if */
-					    /* absent */
+			unsigned char mode;   /* mode of operation (ATM_IMD_xxx),
+						 0 if */
+					      /* absent */
 			unsigned char window; /* window size (k), 1-127 (0 to
 						 omit) */
 		} itu;			      /* ITU-T encoding */
-		unsigned char user; /* user-specified l2 information */
+		unsigned char user;	      /* user-specified l2 information */
 	} l2;
 	unsigned char l3_proto; /* layer 3 protocol */
 	union {
 		struct {
-			unsigned char mode; /* mode of operation (ATM_IMD_xxx),
-					       0 if */
-					    /* absent */
-			unsigned char def_size; /* default packet size (log2),
-						   4-12 (0 to */
-						/* omit) */
-			unsigned char window; /* packet window size, 1-127 (0 to
-						 omit) */
-		} itu;			      /* ITU-T encoding */
-		unsigned char user; /* user specified l3 information */
-		struct {	    /* if l3_proto = ATM_L3_H310 */
+			unsigned char mode;	  /* mode of operation (ATM_IMD_xxx),
+						     0 if */
+						  /* absent */
+			unsigned char def_size;	  /* default packet size (log2),
+						     4-12 (0 to */
+						  /* omit) */
+			unsigned char window;	  /* packet window size, 1-127 (0 to
+						     omit) */
+		} itu;				  /* ITU-T encoding */
+		unsigned char user;		  /* user specified l3 information */
+		struct {			  /* if l3_proto = ATM_L3_H310 */
 			unsigned char term_type;  /* terminal type */
 			unsigned char fw_mpx_cap; /* forward multiplexing
 						     capability */
 			/* only if term_type != ATM_TT_NONE */
 			unsigned char bw_mpx_cap; /* backward multiplexing
 						     capability */
-			/* only if term_type != ATM_TT_NONE */
+						  /* only if term_type != ATM_TT_NONE */
 		} h310;
 		struct {		       /* if l3_proto = ATM_L3_TR9577 */
 			unsigned char ipi;     /* initial protocol id */
 			unsigned char snap[5]; /* IEEE 802.1 SNAP identifier */
-			/* (only if ipi == NLPID_IEEE802_1_SNAP) */
+					       /* (only if ipi == NLPID_IEEE802_1_SNAP) */
 		} tr9577;
 	} l3;
 } __ATM_API_ALIGN;

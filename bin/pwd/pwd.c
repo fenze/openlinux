@@ -36,8 +36,7 @@ int main(int argc, char **argv)
 		const char *pwd;
 		struct stat cst, pst;
 
-		if ((pwd = getenv("PWD")) == NULL || *pwd != '/' ||
-		    stat(pwd, &pst) < 0) {
+		if ((pwd = getenv("PWD")) == NULL || *pwd != '/' || stat(pwd, &pst) < 0) {
 			out = cwd;
 		}
 
@@ -45,9 +44,7 @@ int main(int argc, char **argv)
 			perror("pwd: stat");
 		}
 
-		out = (pst.st_dev == cst.st_dev && pst.st_ino == cst.st_ino) ?
-			      pwd :
-			      cwd;
+		out = (pst.st_dev == cst.st_dev && pst.st_ino == cst.st_ino) ? pwd : cwd;
 	}
 
 	iov[0].iov_base = (char *)out;

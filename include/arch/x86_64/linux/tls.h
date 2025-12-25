@@ -47,8 +47,7 @@
 #define TLS_VERSION_MINOR(ver) ((ver) & 0xFF)
 #define TLS_VERSION_MAJOR(ver) (((ver) >> 8) & 0xFF)
 
-#define TLS_VERSION_NUMBER(id) \
-	((((id##_VERSION_MAJOR) & 0xFF) << 8) | ((id##_VERSION_MINOR) & 0xFF))
+#define TLS_VERSION_NUMBER(id) ((((id##_VERSION_MAJOR) & 0xFF) << 8) | ((id##_VERSION_MINOR) & 0xFF))
 
 #define TLS_1_2_VERSION_MAJOR 0x3
 #define TLS_1_2_VERSION_MINOR 0x3

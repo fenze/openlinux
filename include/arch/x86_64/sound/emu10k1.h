@@ -22,8 +22,7 @@
  * this header file in userspace since they are not generally available for
  * uapi headers.
  */
-#define __EMU10K1_DECLARE_BITMAP(name, bits) \
-	unsigned long name[(bits) / (sizeof(unsigned long) * 8)]
+#define __EMU10K1_DECLARE_BITMAP(name, bits) unsigned long name[(bits) / (sizeof(unsigned long) * 8)]
 
 /* instruction set */
 #define iMAC0	 0x00 /* R = A + (X * Y >> 31)   ; saturation */
@@ -38,23 +37,16 @@
 #define iTSTNEG	 0x09 /* R = (A >= Y) ? X : ~X */
 #define iLIMITGE 0x0a /* R = (A >= Y) ? X : Y */
 #define iLIMITLT 0x0b /* R = (A < Y) ? X : Y */
-#define iLOG \
-	0x0c /* R = linear_data, A (log_data), X (max_exp), Y (format_word) */
-#define iEXP \
-	0x0d /* R = log_data, A (linear_data), X (max_exp), Y (format_word) */
-#define iINTERP 0x0e /* R = A + (X * (Y - A) >> 31)  ; saturation */
-#define iSKIP	0x0f /* R = A (cc_reg), X (count), Y (cc_test) */
+#define iLOG	 0x0c /* R = linear_data, A (log_data), X (max_exp), Y (format_word) */
+#define iEXP	 0x0d /* R = log_data, A (linear_data), X (max_exp), Y (format_word) */
+#define iINTERP	 0x0e /* R = A + (X * (Y - A) >> 31)  ; saturation */
+#define iSKIP	 0x0f /* R = A (cc_reg), X (count), Y (cc_test) */
 
-#define LOWORD_OPX_MASK \
-	0x000ffc00 /* Instruction operand X			*/
-#define LOWORD_OPY_MASK \
-	0x000003ff /* Instruction operand Y			*/
-#define HIWORD_OPCODE_MASK \
-	0x00f00000 /* Instruction opcode				*/
-#define HIWORD_RESULT_MASK \
-	0x000ffc00 /* Instruction result				*/
-#define HIWORD_OPA_MASK \
-	0x000003ff /* Instruction operand A			*/
+#define LOWORD_OPX_MASK	   0x000ffc00 /* Instruction operand X			*/
+#define LOWORD_OPY_MASK	   0x000003ff /* Instruction operand Y			*/
+#define HIWORD_OPCODE_MASK 0x00f00000 /* Instruction opcode				*/
+#define HIWORD_RESULT_MASK 0x000ffc00 /* Instruction result				*/
+#define HIWORD_OPA_MASK	   0x000003ff /* Instruction operand A			*/
 
 /* Audigy Soundcards have a different instruction format */
 #define A_LOWORD_OPX_MASK    0x007ff000
@@ -64,25 +56,23 @@
 #define A_HIWORD_OPA_MASK    0x000007ff
 
 /* GPRs */
-#define FXBUS(x) (0x00 + (x)) /* x = 0x00 - 0x0f */
-#define EXTIN(x) (0x10 + (x)) /* x = 0x00 - 0x0f */
-#define EXTOUT(x) \
-	(0x20 + (x)) /* x = 0x00 - 0x0f physical outs -> FXWC low 16 bits */
+#define FXBUS(x)  (0x00 + (x)) /* x = 0x00 - 0x0f */
+#define EXTIN(x)  (0x10 + (x)) /* x = 0x00 - 0x0f */
+#define EXTOUT(x) (0x20 + (x)) /* x = 0x00 - 0x0f physical outs -> FXWC low 16 bits */
 #define FXBUS2(x)                                                              \
 	(0x30 + (x)) /* x = 0x00 - 0x0f copies of fx buses for capture -> FXWC \
 			high 16 bits */
 /* NB: 0x31 and 0x32 are shared with Center/LFE on SB live 5.1 */
 
-#define A_FXBUS(x) (0x00 + (x)) /* x = 0x00 - 0x3f FX buses */
-#define A_EXTIN(x) (0x40 + (x)) /* x = 0x00 - 0x0f physical ins */
-#define A_P16VIN(x) \
-	(0x50 + (x)) /* x = 0x00 - 0x0f p16v ins (A2 only) "EMU32 inputs" */
+#define A_FXBUS(x)  (0x00 + (x)) /* x = 0x00 - 0x3f FX buses */
+#define A_EXTIN(x)  (0x40 + (x)) /* x = 0x00 - 0x0f physical ins */
+#define A_P16VIN(x) (0x50 + (x)) /* x = 0x00 - 0x0f p16v ins (A2 only) "EMU32 inputs" */
 #define A_EXTOUT(x)                                                      \
 	(0x60 + (x)) /* x = 0x00 - 0x1f physical outs -> A_FXWC1 0x79-7f \
 			unknown   */
-#define A_FXBUS2(x)                                                        \
-	(0x80 + (x)) /* x = 0x00 - 0x1f extra outs used for EFX capture -> \
-			A_FXWC2 */
+#define A_FXBUS2(x)                                                                       \
+	(0x80 + (x))		    /* x = 0x00 - 0x1f extra outs used for EFX capture -> \
+				       A_FXWC2 */
 #define A_EMU32OUTH(x) (0xa0 + (x)) /* x = 0x00 - 0x0f "EMU32_OUT_10 - _1F" */
 #define A_EMU32OUTL(x) (0xb0 + (x)) /* x = 0x00 - 0x0f "EMU32_OUT_01 - _0F" */
 #define A3_EMU32IN(x)                                                    \
@@ -159,9 +149,8 @@
 	0x400 /* Audigy GPRs, 0x400 to 0x5ff \
 	       */
 
-#define A_TANKMEMCTLREGBASE \
-	0x100 /* Tank memory control registers base - only for Audigy */
-#define A_TANKMEMCTLREG_MASK 0x1f /* only 5 bits used - only for Audigy */
+#define A_TANKMEMCTLREGBASE  0x100 /* Tank memory control registers base - only for Audigy */
+#define A_TANKMEMCTLREG_MASK 0x1f  /* only 5 bits used - only for Audigy */
 
 /* Tank audio data is logarithmically compressed down to 16 bits before writing
  * to TRAM and is	*/
@@ -169,27 +158,19 @@
  * the last 32	*/
 /* locations are for external TRAM.
  */
-#define TANKMEMDATAREGBASE \
-	0x200 /* Tank memory data registers base     		*/
-#define TANKMEMDATAREG_MASK \
-	0x000fffff /* 20 bit tank audio data field			*/
+#define TANKMEMDATAREGBASE  0x200      /* Tank memory data registers base     		*/
+#define TANKMEMDATAREG_MASK 0x000fffff /* 20 bit tank audio data field			*/
 
 /* Combined address field and memory opcode or flag field.  160 locations, last
  * 32 are external	*/
-#define TANKMEMADDRREGBASE \
-	0x300 /* Tank memory address registers base		*/
-#define TANKMEMADDRREG_ADDR_MASK \
-	0x000fffff /* 20 bit tank address field			*/
-#define TANKMEMADDRREG_CLEAR \
-	0x00800000 /* Clear tank memory				*/
-#define TANKMEMADDRREG_ALIGN \
-	0x00400000 /* Align read or write relative to tank access	*/
-#define TANKMEMADDRREG_WRITE \
-	0x00200000 /* Write to tank memory				*/
-#define TANKMEMADDRREG_READ \
-	0x00100000 /* Read from tank memory			*/
+#define TANKMEMADDRREGBASE	 0x300	    /* Tank memory address registers base		*/
+#define TANKMEMADDRREG_ADDR_MASK 0x000fffff /* 20 bit tank address field			*/
+#define TANKMEMADDRREG_CLEAR	 0x00800000 /* Clear tank memory				*/
+#define TANKMEMADDRREG_ALIGN	 0x00400000 /* Align read or write relative to tank access	*/
+#define TANKMEMADDRREG_WRITE	 0x00200000 /* Write to tank memory				*/
+#define TANKMEMADDRREG_READ	 0x00100000 /* Read from tank memory			*/
 
-#define GPR(x)	      (FXGPREGBASE + (x)) /* free GPRs: x = 0x00 - 0xff */
+#define GPR(x)	      (FXGPREGBASE + (x))		/* free GPRs: x = 0x00 - 0xff */
 #define ITRAM_DATA(x) (TANKMEMDATAREGBASE + 0x00 + (x)) /* x = 0x00 - 0x7f */
 #define ETRAM_DATA(x) (TANKMEMDATAREGBASE + 0x80 + (x)) /* x = 0x00 - 0x1f */
 #define ITRAM_ADDR(x) (TANKMEMADDRREGBASE + 0x00 + (x)) /* x = 0x00 - 0x7f */
@@ -380,8 +361,8 @@ struct snd_emu10k1_fx8010_control_gpr {
 	int value[32];		       /* initial values */
 	int min;		       /* minimum range */
 	int max;		       /* maximum range */
-	unsigned int translation; /* translation type (EMU10K1_GPR_TRANSLATION*)
-				   */
+	unsigned int translation;      /* translation type (EMU10K1_GPR_TRANSLATION*)
+					*/
 	const unsigned int *tlv;
 };
 
@@ -404,20 +385,20 @@ struct snd_emu10k1_fx8010_code {
 						       initializers */
 	__u32 *gpr_map;				    /* initializers */
 
-	unsigned int gpr_add_control_count; /* count of GPR controls to
-					       add/replace */
+	unsigned int gpr_add_control_count;			 /* count of GPR controls to
+								    add/replace */
 	struct snd_emu10k1_fx8010_control_gpr *gpr_add_controls; /* GPR controls
 								    to
 								    add/replace
 								  */
 
-	unsigned int gpr_del_control_count; /* count of GPR controls to remove
-					     */
+	unsigned int gpr_del_control_count;	      /* count of GPR controls to remove
+						       */
 	struct emu10k1_ctl_elem_id *gpr_del_controls; /* IDs of GPR controls to
 							 remove */
 
-	unsigned int gpr_list_control_count; /* count of GPR controls to list */
-	unsigned int gpr_list_control_total; /* total count of GPR controls */
+	unsigned int gpr_list_control_count;			  /* count of GPR controls to list */
+	unsigned int gpr_list_control_total;			  /* total count of GPR controls */
 	struct snd_emu10k1_fx8010_control_gpr *gpr_list_controls; /* listed GPR
 								     controls */
 
@@ -428,7 +409,7 @@ struct snd_emu10k1_fx8010_code {
 
 	__EMU10K1_DECLARE_BITMAP(code_valid, 1024); /* bitmask of valid
 						       instructions */
-	__u32 *code; /* one instruction - 64 bits */
+	__u32 *code;				    /* one instruction - 64 bits */
 };
 
 struct snd_emu10k1_fx8010_tram {
@@ -439,18 +420,18 @@ struct snd_emu10k1_fx8010_tram {
 };
 
 struct snd_emu10k1_fx8010_pcm_rec {
-	unsigned int substream;	 /* substream number */
-	unsigned int res1;	 /* reserved */
-	unsigned int channels;	 /* 16-bit channels count, zero = remove this
-				    substream */
-	unsigned int tram_start; /* ring buffer position in TRAM (in samples) */
-	unsigned int buffer_size; /* count of buffered samples */
-	unsigned short gpr_size; /* GPR containing size of ringbuffer in samples
-				    (host) */
-	unsigned short gpr_ptr;	 /* GPR containing current pointer in the ring
-				    buffer (host = reset, FX8010) */
-	unsigned short gpr_count; /* GPR containing count of samples between two
-				     interrupts (host) */
+	unsigned int substream;	     /* substream number */
+	unsigned int res1;	     /* reserved */
+	unsigned int channels;	     /* 16-bit channels count, zero = remove this
+					substream */
+	unsigned int tram_start;     /* ring buffer position in TRAM (in samples) */
+	unsigned int buffer_size;    /* count of buffered samples */
+	unsigned short gpr_size;     /* GPR containing size of ringbuffer in samples
+					(host) */
+	unsigned short gpr_ptr;	     /* GPR containing current pointer in the ring
+					buffer (host = reset, FX8010) */
+	unsigned short gpr_count;    /* GPR containing count of samples between two
+					interrupts (host) */
 	unsigned short gpr_tmpcount; /* GPR containing current count of samples
 					to interrupt (host = set, FX8010) */
 	unsigned short gpr_trigger;  /* GPR containing trigger (activate)
@@ -465,20 +446,14 @@ struct snd_emu10k1_fx8010_pcm_rec {
 
 #define SNDRV_EMU10K1_VERSION SNDRV_PROTOCOL_VERSION(1, 0, 1)
 
-#define SNDRV_EMU10K1_IOCTL_INFO _IOR('H', 0x10, struct snd_emu10k1_fx8010_info)
-#define SNDRV_EMU10K1_IOCTL_CODE_POKE \
-	_IOW('H', 0x11, struct snd_emu10k1_fx8010_code)
-#define SNDRV_EMU10K1_IOCTL_CODE_PEEK \
-	_IOWR('H', 0x12, struct snd_emu10k1_fx8010_code)
-#define SNDRV_EMU10K1_IOCTL_TRAM_SETUP _IOW('H', 0x20, int)
-#define SNDRV_EMU10K1_IOCTL_TRAM_POKE \
-	_IOW('H', 0x21, struct snd_emu10k1_fx8010_tram)
-#define SNDRV_EMU10K1_IOCTL_TRAM_PEEK \
-	_IOWR('H', 0x22, struct snd_emu10k1_fx8010_tram)
-#define SNDRV_EMU10K1_IOCTL_PCM_POKE \
-	_IOW('H', 0x30, struct snd_emu10k1_fx8010_pcm_rec)
-#define SNDRV_EMU10K1_IOCTL_PCM_PEEK \
-	_IOWR('H', 0x31, struct snd_emu10k1_fx8010_pcm_rec)
+#define SNDRV_EMU10K1_IOCTL_INFO	      _IOR('H', 0x10, struct snd_emu10k1_fx8010_info)
+#define SNDRV_EMU10K1_IOCTL_CODE_POKE	      _IOW('H', 0x11, struct snd_emu10k1_fx8010_code)
+#define SNDRV_EMU10K1_IOCTL_CODE_PEEK	      _IOWR('H', 0x12, struct snd_emu10k1_fx8010_code)
+#define SNDRV_EMU10K1_IOCTL_TRAM_SETUP	      _IOW('H', 0x20, int)
+#define SNDRV_EMU10K1_IOCTL_TRAM_POKE	      _IOW('H', 0x21, struct snd_emu10k1_fx8010_tram)
+#define SNDRV_EMU10K1_IOCTL_TRAM_PEEK	      _IOWR('H', 0x22, struct snd_emu10k1_fx8010_tram)
+#define SNDRV_EMU10K1_IOCTL_PCM_POKE	      _IOW('H', 0x30, struct snd_emu10k1_fx8010_pcm_rec)
+#define SNDRV_EMU10K1_IOCTL_PCM_PEEK	      _IOWR('H', 0x31, struct snd_emu10k1_fx8010_pcm_rec)
 #define SNDRV_EMU10K1_IOCTL_PVERSION	      _IOR('H', 0x40, int)
 #define SNDRV_EMU10K1_IOCTL_STOP	      _IO('H', 0x80)
 #define SNDRV_EMU10K1_IOCTL_CONTINUE	      _IO('H', 0x81)

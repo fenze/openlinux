@@ -127,8 +127,7 @@ enum uverbs_attrs_create_flow_action_esp {
 };
 
 enum uverbs_attrs_modify_flow_action_esp {
-	UVERBS_ATTR_MODIFY_FLOW_ACTION_ESP_HANDLE =
-		UVERBS_ATTR_CREATE_FLOW_ACTION_ESP_HANDLE,
+	UVERBS_ATTR_MODIFY_FLOW_ACTION_ESP_HANDLE = UVERBS_ATTR_CREATE_FLOW_ACTION_ESP_HANDLE,
 };
 
 enum uverbs_attrs_destroy_flow_action_esp {

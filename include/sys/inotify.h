@@ -1,6 +1,7 @@
 #ifndef __SYS_INOTIFY_H
 #define __SYS_INOTIFY_H
 
+#include <stdint.h>
 typedef __UINT32_TYPE__ uint32_t;
 
 #define IN_ACCESS	 0x00000001

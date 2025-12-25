@@ -187,9 +187,8 @@ struct drm_etnaviv_gem_submit_pmr {
 #define ETNA_SUBMIT_FENCE_FD_IN	 0x0002
 #define ETNA_SUBMIT_FENCE_FD_OUT 0x0004
 #define ETNA_SUBMIT_SOFTPIN	 0x0008
-#define ETNA_SUBMIT_FLAGS                                    \
-	(ETNA_SUBMIT_NO_IMPLICIT | ETNA_SUBMIT_FENCE_FD_IN | \
-	 ETNA_SUBMIT_FENCE_FD_OUT | ETNA_SUBMIT_SOFTPIN)
+#define ETNA_SUBMIT_FLAGS \
+	(ETNA_SUBMIT_NO_IMPLICIT | ETNA_SUBMIT_FENCE_FD_IN | ETNA_SUBMIT_FENCE_FD_OUT | ETNA_SUBMIT_SOFTPIN)
 #define ETNA_PIPE_3D 0x00
 #define ETNA_PIPE_2D 0x01
 #define ETNA_PIPE_VG 0x02
@@ -280,39 +279,22 @@ struct drm_etnaviv_pm_signal {
 #define DRM_ETNAVIV_PM_QUERY_SIG 0x0b
 #define DRM_ETNAVIV_NUM_IOCTLS	 0x0c
 
-#define DRM_IOCTL_ETNAVIV_GET_PARAM                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_ETNAVIV_GET_PARAM, \
-		 struct drm_etnaviv_param)
-#define DRM_IOCTL_ETNAVIV_GEM_NEW                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_ETNAVIV_GEM_NEW, \
-		 struct drm_etnaviv_gem_new)
-#define DRM_IOCTL_ETNAVIV_GEM_INFO                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_ETNAVIV_GEM_INFO, \
-		 struct drm_etnaviv_gem_info)
-#define DRM_IOCTL_ETNAVIV_GEM_CPU_PREP                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_ETNAVIV_GEM_CPU_PREP, \
-		struct drm_etnaviv_gem_cpu_prep)
-#define DRM_IOCTL_ETNAVIV_GEM_CPU_FINI                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_ETNAVIV_GEM_CPU_FINI, \
-		struct drm_etnaviv_gem_cpu_fini)
-#define DRM_IOCTL_ETNAVIV_GEM_SUBMIT                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_ETNAVIV_GEM_SUBMIT, \
-		 struct drm_etnaviv_gem_submit)
-#define DRM_IOCTL_ETNAVIV_WAIT_FENCE                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_ETNAVIV_WAIT_FENCE, \
-		struct drm_etnaviv_wait_fence)
-#define DRM_IOCTL_ETNAVIV_GEM_USERPTR                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_ETNAVIV_GEM_USERPTR, \
-		 struct drm_etnaviv_gem_userptr)
-#define DRM_IOCTL_ETNAVIV_GEM_WAIT                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_ETNAVIV_GEM_WAIT, \
-		struct drm_etnaviv_gem_wait)
-#define DRM_IOCTL_ETNAVIV_PM_QUERY_DOM                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_ETNAVIV_PM_QUERY_DOM, \
-		 struct drm_etnaviv_pm_domain)
-#define DRM_IOCTL_ETNAVIV_PM_QUERY_SIG                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_ETNAVIV_PM_QUERY_SIG, \
-		 struct drm_etnaviv_pm_signal)
+#define DRM_IOCTL_ETNAVIV_GET_PARAM DRM_IOWR(DRM_COMMAND_BASE + DRM_ETNAVIV_GET_PARAM, struct drm_etnaviv_param)
+#define DRM_IOCTL_ETNAVIV_GEM_NEW   DRM_IOWR(DRM_COMMAND_BASE + DRM_ETNAVIV_GEM_NEW, struct drm_etnaviv_gem_new)
+#define DRM_IOCTL_ETNAVIV_GEM_INFO  DRM_IOWR(DRM_COMMAND_BASE + DRM_ETNAVIV_GEM_INFO, struct drm_etnaviv_gem_info)
+#define DRM_IOCTL_ETNAVIV_GEM_CPU_PREP \
+	DRM_IOW(DRM_COMMAND_BASE + DRM_ETNAVIV_GEM_CPU_PREP, struct drm_etnaviv_gem_cpu_prep)
+#define DRM_IOCTL_ETNAVIV_GEM_CPU_FINI \
+	DRM_IOW(DRM_COMMAND_BASE + DRM_ETNAVIV_GEM_CPU_FINI, struct drm_etnaviv_gem_cpu_fini)
+#define DRM_IOCTL_ETNAVIV_GEM_SUBMIT DRM_IOWR(DRM_COMMAND_BASE + DRM_ETNAVIV_GEM_SUBMIT, struct drm_etnaviv_gem_submit)
+#define DRM_IOCTL_ETNAVIV_WAIT_FENCE DRM_IOW(DRM_COMMAND_BASE + DRM_ETNAVIV_WAIT_FENCE, struct drm_etnaviv_wait_fence)
+#define DRM_IOCTL_ETNAVIV_GEM_USERPTR \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_ETNAVIV_GEM_USERPTR, struct drm_etnaviv_gem_userptr)
+#define DRM_IOCTL_ETNAVIV_GEM_WAIT DRM_IOW(DRM_COMMAND_BASE + DRM_ETNAVIV_GEM_WAIT, struct drm_etnaviv_gem_wait)
+#define DRM_IOCTL_ETNAVIV_PM_QUERY_DOM \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_ETNAVIV_PM_QUERY_DOM, struct drm_etnaviv_pm_domain)
+#define DRM_IOCTL_ETNAVIV_PM_QUERY_SIG \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_ETNAVIV_PM_QUERY_SIG, struct drm_etnaviv_pm_signal)
 
 #if defined(__cplusplus)
 }

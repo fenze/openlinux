@@ -1,5 +1,4 @@
 #include <__thread.h>
-#include <libc.h>
 
 #include <threads.h>
 

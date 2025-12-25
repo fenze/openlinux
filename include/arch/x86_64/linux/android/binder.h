@@ -24,9 +24,8 @@
 #include <linux/types.h>
 #include <linux/ioctl.h>
 
-#define B_PACK_CHARS(c1, c2, c3, c4) \
-	((((c1) << 24)) | (((c2) << 16)) | (((c3) << 8)) | (c4))
-#define B_TYPE_LARGE 0x85
+#define B_PACK_CHARS(c1, c2, c3, c4) ((((c1) << 24)) | (((c2) << 16)) | (((c3) << 8)) | (c4))
+#define B_TYPE_LARGE		     0x85
 
 enum {
 	BINDER_TYPE_BINDER = B_PACK_CHARS('s', 'b', '*', B_TYPE_LARGE),
@@ -265,17 +264,13 @@ enum {
 	BINDER_SET_CONTEXT_MGR = _IOW('b', 7, __s32),
 	BINDER_THREAD_EXIT = _IOW('b', 8, __s32),
 	BINDER_VERSION = _IOWR('b', 9, struct binder_version),
-	BINDER_GET_NODE_DEBUG_INFO =
-		_IOWR('b', 11, struct binder_node_debug_info),
-	BINDER_GET_NODE_INFO_FOR_REF =
-		_IOWR('b', 12, struct binder_node_info_for_ref),
+	BINDER_GET_NODE_DEBUG_INFO = _IOWR('b', 11, struct binder_node_debug_info),
+	BINDER_GET_NODE_INFO_FOR_REF = _IOWR('b', 12, struct binder_node_info_for_ref),
 	BINDER_SET_CONTEXT_MGR_EXT = _IOW('b', 13, struct flat_binder_object),
 	BINDER_FREEZE = _IOW('b', 14, struct binder_freeze_info),
-	BINDER_GET_FROZEN_INFO =
-		_IOWR('b', 15, struct binder_frozen_status_info),
+	BINDER_GET_FROZEN_INFO = _IOWR('b', 15, struct binder_frozen_status_info),
 	BINDER_ENABLE_ONEWAY_SPAM_DETECTION = _IOW('b', 16, __u32),
-	BINDER_GET_EXTENDED_ERROR =
-		_IOWR('b', 17, struct binder_extended_error),
+	BINDER_GET_EXTENDED_ERROR = _IOWR('b', 17, struct binder_extended_error),
 };
 
 /*
@@ -377,8 +372,7 @@ enum binder_driver_return_protocol {
 	BR_OK = _IO('r', 1),
 	/* No parameters! */
 
-	BR_TRANSACTION_SEC_CTX =
-		_IOR('r', 2, struct binder_transaction_data_secctx),
+	BR_TRANSACTION_SEC_CTX = _IOR('r', 2, struct binder_transaction_data_secctx),
 	/*
 	 * binder_transaction_data_secctx: the received command.
 	 */
@@ -547,15 +541,13 @@ enum binder_driver_command_protocol {
 	 * of looping threads it has available.
 	 */
 
-	BC_REQUEST_DEATH_NOTIFICATION =
-		_IOW('c', 14, struct binder_handle_cookie),
+	BC_REQUEST_DEATH_NOTIFICATION = _IOW('c', 14, struct binder_handle_cookie),
 	/*
 	 * int: handle
 	 * void *: cookie
 	 */
 
-	BC_CLEAR_DEATH_NOTIFICATION =
-		_IOW('c', 15, struct binder_handle_cookie),
+	BC_CLEAR_DEATH_NOTIFICATION = _IOW('c', 15, struct binder_handle_cookie),
 	/*
 	 * int: handle
 	 * void *: cookie
@@ -572,15 +564,13 @@ enum binder_driver_command_protocol {
 	 * binder_transaction_data_sg: the sent command.
 	 */
 
-	BC_REQUEST_FREEZE_NOTIFICATION =
-		_IOW('c', 19, struct binder_handle_cookie),
+	BC_REQUEST_FREEZE_NOTIFICATION = _IOW('c', 19, struct binder_handle_cookie),
 	/*
 	 * int: handle
 	 * void *: cookie
 	 */
 
-	BC_CLEAR_FREEZE_NOTIFICATION =
-		_IOW('c', 20, struct binder_handle_cookie),
+	BC_CLEAR_FREEZE_NOTIFICATION = _IOW('c', 20, struct binder_handle_cookie),
 	/*
 	 * int: handle
 	 * void *: cookie

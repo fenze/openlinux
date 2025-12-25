@@ -1008,11 +1008,7 @@ struct hl_info_pci_counters {
 	__u64 replay_cnt;
 };
 
-enum hl_clk_throttling_type {
-	HL_CLK_THROTTLE_TYPE_POWER,
-	HL_CLK_THROTTLE_TYPE_THERMAL,
-	HL_CLK_THROTTLE_TYPE_MAX
-};
+enum hl_clk_throttling_type { HL_CLK_THROTTLE_TYPE_POWER, HL_CLK_THROTTLE_TYPE_THERMAL, HL_CLK_THROTTLE_TYPE_MAX };
 
 /* clk_throttling_reason masks */
 #define HL_CLK_THROTTLE_POWER	(1 << HL_CLK_THROTTLE_TYPE_POWER)
@@ -1348,12 +1344,7 @@ struct hl_user_mapping {
 	__u64 size;
 };
 
-enum gaudi_dcores {
-	HL_GAUDI_WS_DCORE,
-	HL_GAUDI_WN_DCORE,
-	HL_GAUDI_EN_DCORE,
-	HL_GAUDI_ES_DCORE
-};
+enum gaudi_dcores { HL_GAUDI_WS_DCORE, HL_GAUDI_WN_DCORE, HL_GAUDI_EN_DCORE, HL_GAUDI_ES_DCORE };
 
 /**
  * struct hl_info_args - Main structure to retrieve device related information.
@@ -2237,8 +2228,7 @@ struct hl_debug_args {
  * definitions of structures in kernel and userspace, e.g. in case of old
  * userspace and new kernel driver
  */
-#define DRM_IOCTL_HL_INFO \
-	DRM_IOWR(DRM_COMMAND_BASE + HL_IOCTL_INFO, struct hl_info_args)
+#define DRM_IOCTL_HL_INFO DRM_IOWR(DRM_COMMAND_BASE + HL_IOCTL_INFO, struct hl_info_args)
 
 /*
  * Command Buffer
@@ -2259,8 +2249,7 @@ struct hl_debug_args {
  * and won't be returned to user.
  *
  */
-#define DRM_IOCTL_HL_CB \
-	DRM_IOWR(DRM_COMMAND_BASE + HL_IOCTL_CB, union hl_cb_args)
+#define DRM_IOCTL_HL_CB DRM_IOWR(DRM_COMMAND_BASE + HL_IOCTL_CB, union hl_cb_args)
 
 /*
  * Command Submission
@@ -2312,8 +2301,7 @@ struct hl_debug_args {
  * and only if CS N and CS N-1 are exactly the same (same CBs for the same
  * queues).
  */
-#define DRM_IOCTL_HL_CS \
-	DRM_IOWR(DRM_COMMAND_BASE + HL_IOCTL_CS, union hl_cs_args)
+#define DRM_IOCTL_HL_CS DRM_IOWR(DRM_COMMAND_BASE + HL_IOCTL_CS, union hl_cs_args)
 
 /*
  * Wait for Command Submission
@@ -2345,8 +2333,7 @@ struct hl_debug_args {
  * HL_WAIT_CS_STATUS_ABORTED     - The CS was aborted, usually because the
  *                                 device was reset (EIO)
  */
-#define DRM_IOCTL_HL_WAIT_CS \
-	DRM_IOWR(DRM_COMMAND_BASE + HL_IOCTL_WAIT_CS, union hl_wait_cs_args)
+#define DRM_IOCTL_HL_WAIT_CS DRM_IOWR(DRM_COMMAND_BASE + HL_IOCTL_WAIT_CS, union hl_wait_cs_args)
 
 /*
  * Memory
@@ -2363,8 +2350,7 @@ struct hl_debug_args {
  * There is an option for the user to specify the requested virtual address.
  *
  */
-#define DRM_IOCTL_HL_MEMORY \
-	DRM_IOWR(DRM_COMMAND_BASE + HL_IOCTL_MEMORY, union hl_mem_args)
+#define DRM_IOCTL_HL_MEMORY DRM_IOWR(DRM_COMMAND_BASE + HL_IOCTL_MEMORY, union hl_mem_args)
 
 /*
  * Debug
@@ -2390,8 +2376,7 @@ struct hl_debug_args {
  * The driver can decide to "kick out" the user if he abuses this interface.
  *
  */
-#define DRM_IOCTL_HL_DEBUG \
-	DRM_IOWR(DRM_COMMAND_BASE + HL_IOCTL_DEBUG, struct hl_debug_args)
+#define DRM_IOCTL_HL_DEBUG DRM_IOWR(DRM_COMMAND_BASE + HL_IOCTL_DEBUG, struct hl_debug_args)
 
 #define HL_COMMAND_START (DRM_COMMAND_BASE + HL_IOCTL_INFO)
 #define HL_COMMAND_END	 (DRM_COMMAND_BASE + HL_IOCTL_DEBUG + 1)

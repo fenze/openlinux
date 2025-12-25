@@ -475,39 +475,26 @@ struct isst_turbo_freq_info {
 	__u16 trl_freq_mhz[TRL_MAX_LEVELS][TRL_MAX_BUCKETS];
 };
 
-#define ISST_IF_MAGIC 0xFE
-#define ISST_IF_GET_PLATFORM_INFO \
-	_IOR(ISST_IF_MAGIC, 0, struct isst_if_platform_info *)
-#define ISST_IF_GET_PHY_ID   _IOWR(ISST_IF_MAGIC, 1, struct isst_if_cpu_map *)
-#define ISST_IF_IO_CMD	     _IOW(ISST_IF_MAGIC, 2, struct isst_if_io_regs *)
-#define ISST_IF_MBOX_COMMAND _IOWR(ISST_IF_MAGIC, 3, struct isst_if_mbox_cmds *)
-#define ISST_IF_MSR_COMMAND  _IOWR(ISST_IF_MAGIC, 4, struct isst_if_msr_cmds *)
+#define ISST_IF_MAGIC		  0xFE
+#define ISST_IF_GET_PLATFORM_INFO _IOR(ISST_IF_MAGIC, 0, struct isst_if_platform_info *)
+#define ISST_IF_GET_PHY_ID	  _IOWR(ISST_IF_MAGIC, 1, struct isst_if_cpu_map *)
+#define ISST_IF_IO_CMD		  _IOW(ISST_IF_MAGIC, 2, struct isst_if_io_regs *)
+#define ISST_IF_MBOX_COMMAND	  _IOWR(ISST_IF_MAGIC, 3, struct isst_if_mbox_cmds *)
+#define ISST_IF_MSR_COMMAND	  _IOWR(ISST_IF_MAGIC, 4, struct isst_if_msr_cmds *)
 
-#define ISST_IF_COUNT_TPMI_INSTANCES \
-	_IOR(ISST_IF_MAGIC, 5, struct isst_tpmi_instance_count *)
-#define ISST_IF_CORE_POWER_STATE \
-	_IOWR(ISST_IF_MAGIC, 6, struct isst_core_power *)
-#define ISST_IF_CLOS_PARAM _IOWR(ISST_IF_MAGIC, 7, struct isst_clos_param *)
-#define ISST_IF_CLOS_ASSOC \
-	_IOWR(ISST_IF_MAGIC, 8, struct isst_if_clos_assoc_cmds *)
+#define ISST_IF_COUNT_TPMI_INSTANCES _IOR(ISST_IF_MAGIC, 5, struct isst_tpmi_instance_count *)
+#define ISST_IF_CORE_POWER_STATE     _IOWR(ISST_IF_MAGIC, 6, struct isst_core_power *)
+#define ISST_IF_CLOS_PARAM	     _IOWR(ISST_IF_MAGIC, 7, struct isst_clos_param *)
+#define ISST_IF_CLOS_ASSOC	     _IOWR(ISST_IF_MAGIC, 8, struct isst_if_clos_assoc_cmds *)
 
-#define ISST_IF_PERF_LEVELS \
-	_IOWR(ISST_IF_MAGIC, 9, struct isst_perf_level_info *)
-#define ISST_IF_PERF_SET_LEVEL \
-	_IOW(ISST_IF_MAGIC, 10, struct isst_perf_level_control *)
-#define ISST_IF_PERF_SET_FEATURE \
-	_IOW(ISST_IF_MAGIC, 11, struct isst_perf_feature_control *)
-#define ISST_IF_GET_PERF_LEVEL_INFO \
-	_IOR(ISST_IF_MAGIC, 12, struct isst_perf_level_data_info *)
-#define ISST_IF_GET_PERF_LEVEL_CPU_MASK \
-	_IOR(ISST_IF_MAGIC, 13, struct isst_perf_level_cpu_mask *)
-#define ISST_IF_GET_BASE_FREQ_INFO \
-	_IOR(ISST_IF_MAGIC, 14, struct isst_base_freq_info *)
-#define ISST_IF_GET_BASE_FREQ_CPU_MASK \
-	_IOR(ISST_IF_MAGIC, 15, struct isst_perf_level_cpu_mask *)
-#define ISST_IF_GET_TURBO_FREQ_INFO \
-	_IOR(ISST_IF_MAGIC, 16, struct isst_turbo_freq_info *)
-#define ISST_IF_GET_PERF_LEVEL_FABRIC_INFO \
-	_IOR(ISST_IF_MAGIC, 17, struct isst_perf_level_fabric_info *)
+#define ISST_IF_PERF_LEVELS		   _IOWR(ISST_IF_MAGIC, 9, struct isst_perf_level_info *)
+#define ISST_IF_PERF_SET_LEVEL		   _IOW(ISST_IF_MAGIC, 10, struct isst_perf_level_control *)
+#define ISST_IF_PERF_SET_FEATURE	   _IOW(ISST_IF_MAGIC, 11, struct isst_perf_feature_control *)
+#define ISST_IF_GET_PERF_LEVEL_INFO	   _IOR(ISST_IF_MAGIC, 12, struct isst_perf_level_data_info *)
+#define ISST_IF_GET_PERF_LEVEL_CPU_MASK	   _IOR(ISST_IF_MAGIC, 13, struct isst_perf_level_cpu_mask *)
+#define ISST_IF_GET_BASE_FREQ_INFO	   _IOR(ISST_IF_MAGIC, 14, struct isst_base_freq_info *)
+#define ISST_IF_GET_BASE_FREQ_CPU_MASK	   _IOR(ISST_IF_MAGIC, 15, struct isst_perf_level_cpu_mask *)
+#define ISST_IF_GET_TURBO_FREQ_INFO	   _IOR(ISST_IF_MAGIC, 16, struct isst_turbo_freq_info *)
+#define ISST_IF_GET_PERF_LEVEL_FABRIC_INFO _IOR(ISST_IF_MAGIC, 17, struct isst_perf_level_fabric_info *)
 
 #endif

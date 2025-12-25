@@ -4,7 +4,6 @@
 #include <libc/futex.h>
 #include <sched.h>
 #include <stdatomic.h>
-#include <unistd.h>
 
 #define LIBC_LOCK(__lock)   __libc_lock(&((__lock)))
 #define LIBC_UNLOCK(__lock) __libc_unlock(&((__lock)))

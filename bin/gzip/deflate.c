@@ -102,8 +102,7 @@ static char rcsid[] = "$Id: deflate.c,v 1.1 2002/08/18 00:59:21 hpa Exp $";
 error : cannot overlay window with tab_suffix and prev with tab_prefix0
 #endif
 #if HASH_BITS > BITS - 1
-		error
-	: cannot overlay head with tab_prefix1
+		error : cannot overlay head with tab_prefix1
 #endif
 
 #define HASH_SIZE (unsigned)(1 << HASH_BITS)
@@ -121,14 +120,14 @@ error : cannot overlay window with tab_suffix and prev with tab_prefix0
 #ifndef TOO_FAR
 #define TOO_FAR 4096
 #endif
-	  /* Matches of length 3 are discarded if their distance exceeds TOO_FAR
-	   */
+			/* Matches of length 3 are discarded if their distance exceeds TOO_FAR
+			 */
 
-	  /* ===========================================================================
-	   * Local data used by the "longest match" routines.
-	   */
+			/* ===========================================================================
+			 * Local data used by the "longest match" routines.
+			 */
 
-	  typedef ush Pos;
+			typedef ush Pos;
 typedef unsigned IPos;
 /* A Pos is an index in the character window. We use short instead of int to
  * save space in the various tables. IPos is used only for parameter passing.
@@ -213,7 +212,7 @@ unsigned good_match;
 
 typedef struct config {
 	ush good_length; /* reduce lazy search above this match length */
-	ush max_lazy; /* do not perform lazy search above this match length */
+	ush max_lazy;	 /* do not perform lazy search above this match length */
 	ush nice_length; /* quit search above this match length */
 	ush max_chain;
 } config;
@@ -278,9 +277,9 @@ local void check_match OF((IPos start, IPos match, int length));
  *    input characters and the first MIN_MATCH bytes of s are valid
  *    (except for the last MIN_MATCH-1 bytes of the input file).
  */
-#define INSERT_STRING(s, match_head)                      \
-	(UPDATE_HASH(ins_h, window[(s) + MIN_MATCH - 1]), \
-	 prev[(s) & WMASK] = (match_head) = head[ins_h], head[ins_h] = (s))
+#define INSERT_STRING(s, match_head)                                                                      \
+	(UPDATE_HASH(ins_h, window[(s) + MIN_MATCH - 1]), prev[(s) & WMASK] = (match_head) = head[ins_h], \
+	 head[ins_h] = (s))
 
 /* ===========================================================================
  * Initialize the "longest match" routines for a new file
@@ -319,8 +318,7 @@ void lm_init(int pack_level, ush *flags)
 	match_init(); /* initialize the asm code */
 #endif
 
-	lookahead = read_buf((char *)window,
-			     sizeof(int) <= 2 ? (unsigned)WSIZE : 2 * WSIZE);
+	lookahead = read_buf((char *)window, sizeof(int) <= 2 ? (unsigned)WSIZE : 2 * WSIZE);
 
 	if (lookahead == 0 || lookahead == (unsigned)EOF) {
 		eofile = 1, lookahead = 0;
@@ -362,8 +360,7 @@ IPos cur_match; /* current match */
 	register uch *match;			  /* matched string */
 	register int len;			  /* length of current match */
 	int best_len = prev_length;		  /* best match length so far */
-	IPos limit = strstart > (IPos)MAX_DIST ? strstart - (IPos)MAX_DIST :
-						 NIL;
+	IPos limit = strstart > (IPos)MAX_DIST ? strstart - (IPos)MAX_DIST : NIL;
 	/* Stop when cur_match becomes <= limit. To simplify the code,
 	 * we prevent matches with the string of window index 0.
 	 */
@@ -393,8 +390,7 @@ error:
 	if (prev_length >= good_match) {
 		chain_length >>= 2;
 	}
-	Assert(strstart <= window_size - MIN_LOOKAHEAD,
-	       "insufficient lookahead");
+	Assert(strstart <= window_size - MIN_LOOKAHEAD, "insufficient lookahead");
 
 	do {
 		Assert(cur_match < strstart, "no future");
@@ -407,8 +403,7 @@ error:
 		/* This code assumes sizeof(unsigned short) == 2. Do not use
 		 * UNALIGNED_OK if your compiler uses a different size.
 		 */
-		if (*(ush *)(match + best_len - 1) != scan_end ||
-		    *(ush *)match != scan_start)
+		if (*(ush *)(match + best_len - 1) != scan_end || *(ush *)match != scan_start)
 			continue;
 
 		/* It is not necessary to compare scan[2] and match[2] since
@@ -423,16 +418,13 @@ error:
 		 */
 		scan++, match++;
 		do {
-		} while (*(ush *)(scan += 2) == *(ush *)(match += 2) &&
-			 *(ush *)(scan += 2) == *(ush *)(match += 2) &&
-			 *(ush *)(scan += 2) == *(ush *)(match += 2) &&
-			 *(ush *)(scan += 2) == *(ush *)(match += 2) &&
+		} while (*(ush *)(scan += 2) == *(ush *)(match += 2) && *(ush *)(scan += 2) == *(ush *)(match += 2) &&
+			 *(ush *)(scan += 2) == *(ush *)(match += 2) && *(ush *)(scan += 2) == *(ush *)(match += 2) &&
 			 scan < strend);
 		/* The funny "do {}" generates better code on most compilers */
 
 		/* Here, scan <= window+strstart+257 */
-		Assert(scan <= window + (unsigned)(window_size - 1),
-		       "wild scan");
+		Assert(scan <= window + (unsigned)(window_size - 1), "wild scan");
 		if (*scan == *match)
 			scan++;
 
@@ -441,8 +433,7 @@ error:
 
 #else /* UNALIGNED_OK */
 
-		if (match[best_len] != scan_end ||
-		    match[best_len - 1] != scan_end1 || *match != *scan ||
+		if (match[best_len] != scan_end || match[best_len - 1] != scan_end1 || *match != *scan ||
 		    *++match != scan[1])
 			continue;
 
@@ -458,10 +449,8 @@ error:
 		 * comparison; the 256th check will be made at strstart+258.
 		 */
 		do {
-		} while (*++scan == *++match && *++scan == *++match &&
-			 *++scan == *++match && *++scan == *++match &&
-			 *++scan == *++match && *++scan == *++match &&
-			 *++scan == *++match && *++scan == *++match &&
+		} while (*++scan == *++match && *++scan == *++match && *++scan == *++match && *++scan == *++match &&
+			 *++scan == *++match && *++scan == *++match && *++scan == *++match && *++scan == *++match &&
 			 scan < strend);
 
 		len = MAX_MATCH - (int)(strend - scan);
@@ -481,8 +470,7 @@ error:
 			scan_end = scan[best_len];
 #endif
 		}
-	} while ((cur_match = prev[cur_match & WMASK]) > limit &&
-		 --chain_length != 0);
+	} while ((cur_match = prev[cur_match & WMASK]) > limit && --chain_length != 0);
 
 	return best_len;
 }
@@ -496,10 +484,8 @@ local void check_match(start, match, length) IPos start, match;
 int length;
 {
 	/* check that the match is indeed a match */
-	if (memcmp((char *)window + match, (char *)window + start, length) !=
-	    EQUAL) {
-		fprintf(stderr, " start %d, match %d, length %d\n", start,
-			match, length);
+	if (memcmp((char *)window + match, (char *)window + start, length) != EQUAL) {
+		fprintf(stderr, " start %d, match %d, length %d\n", start, match, length);
 		error("invalid match");
 	}
 	if (verbose > 1) {
@@ -524,8 +510,7 @@ int length;
 local void fill_window()
 {
 	register unsigned n, m;
-	unsigned more =
-		(unsigned)(window_size - (ulg)lookahead - (ulg)strstart);
+	unsigned more = (unsigned)(window_size - (ulg)lookahead - (ulg)strstart);
 	/* Amount of free space at the end of the window. */
 
 	/* If the window is almost full and there is insufficient lookahead,
@@ -540,8 +525,7 @@ local void fill_window()
 		/* By the IN assertion, the window is not empty so we can't
 		 * confuse more == 0 with more == 64K on a 16 bit machine.
 		 */
-		Assert(window_size == (ulg)2 * WSIZE,
-		       "no sliding with BIG_MEM");
+		Assert(window_size == (ulg)2 * WSIZE, "no sliding with BIG_MEM");
 
 		memcpy((char *)window, (char *)window + WSIZE, (unsigned)WSIZE);
 		match_start -= WSIZE;
@@ -577,10 +561,8 @@ local void fill_window()
  * Flush the current block, with given end-of-file flag.
  * IN assertion: strstart is set to the end of the current match.
  */
-#define FLUSH_BLOCK(eof)                                             \
-	flush_block(block_start >= 0L ?                              \
-			    (char *)&window[(unsigned)block_start] : \
-			    (char *)NULL,                            \
+#define FLUSH_BLOCK(eof)                                                                       \
+	flush_block(block_start >= 0L ? (char *)&window[(unsigned)block_start] : (char *)NULL, \
 		    (long)strstart - block_start, (eof))
 
 /* ===========================================================================
@@ -619,8 +601,7 @@ local ulg deflate_fast()
 		if (match_length >= MIN_MATCH) {
 			check_match(strstart, match_start, match_length);
 
-			flush = ct_tally(strstart - match_start,
-					 match_length - MIN_MATCH);
+			flush = ct_tally(strstart - match_start, match_length - MIN_MATCH);
 
 			lookahead -= match_length;
 
@@ -681,10 +662,10 @@ local ulg deflate_fast()
  */
 ulg deflate()
 {
-	IPos hash_head;		 /* head of hash chain */
-	IPos prev_match;	 /* previous match */
-	int flush;		 /* set if current block must be flushed */
-	int match_available = 0; /* set if previous match exists */
+	IPos hash_head;					/* head of hash chain */
+	IPos prev_match;				/* previous match */
+	int flush;					/* set if current block must be flushed */
+	int match_available = 0;			/* set if previous match exists */
 	register unsigned match_length = MIN_MATCH - 1; /* length of best match
 							 */
 #ifdef DEBUG
@@ -706,8 +687,7 @@ ulg deflate()
 		prev_length = match_length, prev_match = match_start;
 		match_length = MIN_MATCH - 1;
 
-		if (hash_head != NIL && prev_length < max_lazy_match &&
-		    strstart - hash_head <= MAX_DIST) {
+		if (hash_head != NIL && prev_length < max_lazy_match && strstart - hash_head <= MAX_DIST) {
 			/* To simplify the code, we prevent matches with the
 			 * string of window index 0 (in particular we have to
 			 * avoid a match of the string with itself at the start
@@ -719,8 +699,7 @@ ulg deflate()
 				match_length = lookahead;
 
 			/* Ignore a length 3 match if it is too distant: */
-			if (match_length == MIN_MATCH &&
-			    strstart - match_start > TOO_FAR) {
+			if (match_length == MIN_MATCH && strstart - match_start > TOO_FAR) {
 				/* If prev_match is also MIN_MATCH, match_start
 				 * is garbage but we will ignore the current
 				 * match anyway.
@@ -734,8 +713,7 @@ ulg deflate()
 		if (prev_length >= MIN_MATCH && match_length <= prev_length) {
 			check_match(strstart - 1, prev_match, prev_length);
 
-			flush = ct_tally(strstart - 1 - prev_match,
-					 prev_length - MIN_MATCH);
+			flush = ct_tally(strstart - 1 - prev_match, prev_length - MIN_MATCH);
 
 			/* Insert in hash table all strings up to the end of the
 			 * match. strstart-1 and strstart are already inserted.
@@ -779,8 +757,7 @@ ulg deflate()
 			strstart++;
 			lookahead--;
 		}
-		Assert(strstart <= isize && lookahead <= isize,
-		       "a bit too far");
+		Assert(strstart <= isize && lookahead <= isize, "a bit too far");
 
 		/* Make sure that we always have enough lookahead, except
 		 * at the end of the input file. We need MAX_MATCH bytes

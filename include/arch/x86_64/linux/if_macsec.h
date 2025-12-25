@@ -45,12 +45,12 @@ enum macsec_attrs {
 	MACSEC_ATTR_RXSC_CONFIG, /* config, nested macsec_rxsc_attrs */
 	MACSEC_ATTR_SA_CONFIG,	 /* config, nested macsec_sa_attrs */
 	MACSEC_ATTR_SECY,	 /* dump, nested macsec_secy_attrs */
-	MACSEC_ATTR_TXSA_LIST, /* dump, nested, macsec_sa_attrs for each TXSA */
-	MACSEC_ATTR_RXSC_LIST, /* dump, nested, macsec_rxsc_attrs for each RXSC
-				*/
-	MACSEC_ATTR_TXSC_STATS, /* dump, nested, macsec_txsc_stats_attr */
-	MACSEC_ATTR_SECY_STATS, /* dump, nested, macsec_secy_stats_attr */
-	MACSEC_ATTR_OFFLOAD,	/* config, nested, macsec_offload_attrs */
+	MACSEC_ATTR_TXSA_LIST,	 /* dump, nested, macsec_sa_attrs for each TXSA */
+	MACSEC_ATTR_RXSC_LIST,	 /* dump, nested, macsec_rxsc_attrs for each RXSC
+				  */
+	MACSEC_ATTR_TXSC_STATS,	 /* dump, nested, macsec_txsc_stats_attr */
+	MACSEC_ATTR_SECY_STATS,	 /* dump, nested, macsec_secy_stats_attr */
+	MACSEC_ATTR_OFFLOAD,	 /* config, nested, macsec_offload_attrs */
 	__MACSEC_ATTR_END,
 	NUM_MACSEC_ATTR = __MACSEC_ATTR_END,
 	MACSEC_ATTR_MAX = __MACSEC_ATTR_END - 1,

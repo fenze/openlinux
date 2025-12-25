@@ -32,9 +32,8 @@
 /* Control supports asynchronous reporting */
 #define UVC_CTRL_FLAG_ASYNCHRONOUS (1 << 8)
 
-#define UVC_CTRL_FLAG_GET_RANGE                          \
-	(UVC_CTRL_FLAG_GET_CUR | UVC_CTRL_FLAG_GET_MIN | \
-	 UVC_CTRL_FLAG_GET_MAX | UVC_CTRL_FLAG_GET_RES | \
+#define UVC_CTRL_FLAG_GET_RANGE                                                                          \
+	(UVC_CTRL_FLAG_GET_CUR | UVC_CTRL_FLAG_GET_MIN | UVC_CTRL_FLAG_GET_MAX | UVC_CTRL_FLAG_GET_RES | \
 	 UVC_CTRL_FLAG_GET_DEF)
 
 #define UVC_MENU_NAME_LEN 32

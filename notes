@@ -1,3 +1,0 @@
-
-
-in libc we need to init .tdata and .tbss

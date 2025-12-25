@@ -1,4 +1,3 @@
-#include <libc.h>   // for __unused
 #include <string.h> // for strcmp, locale_t, strcoll, strcoll_l
 #include <sys/cdefs.h>
 

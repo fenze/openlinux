@@ -90,8 +90,7 @@ struct snd_sb_csp_info {
  * As a workaround for skipping the size-limit check, here we don't use the
  * normal _IOW() macro but _IOC() with the manual argument.
  */
-#define SNDRV_SB_CSP_IOCTL_LOAD_CODE \
-	_IOC(_IOC_WRITE, 'H', 0x11, sizeof(struct snd_sb_csp_microcode))
+#define SNDRV_SB_CSP_IOCTL_LOAD_CODE _IOC(_IOC_WRITE, 'H', 0x11, sizeof(struct snd_sb_csp_microcode))
 /* unload microcode from CSP */
 #define SNDRV_SB_CSP_IOCTL_UNLOAD_CODE _IO('H', 0x12)
 /* start CSP */

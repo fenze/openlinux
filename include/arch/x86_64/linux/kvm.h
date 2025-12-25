@@ -406,9 +406,8 @@ struct kvm_run {
 #define KVM_MSR_EXIT_REASON_INVAL   (1 << 0)
 #define KVM_MSR_EXIT_REASON_UNKNOWN (1 << 1)
 #define KVM_MSR_EXIT_REASON_FILTER  (1 << 2)
-#define KVM_MSR_EXIT_REASON_VALID_MASK                             \
-	(KVM_MSR_EXIT_REASON_INVAL | KVM_MSR_EXIT_REASON_UNKNOWN | \
-	 KVM_MSR_EXIT_REASON_FILTER)
+#define KVM_MSR_EXIT_REASON_VALID_MASK \
+	(KVM_MSR_EXIT_REASON_INVAL | KVM_MSR_EXIT_REASON_UNKNOWN | KVM_MSR_EXIT_REASON_FILTER)
 			__u32 reason; /* kernel -> user */
 			__u32 index;  /* kernel -> user */
 			__u64 data;   /* kernel <-> user */
@@ -515,9 +514,8 @@ struct kvm_coalesced_mmio_ring {
 	struct kvm_coalesced_mmio coalesced_mmio[];
 };
 
-#define KVM_COALESCED_MMIO_MAX                                  \
-	((PAGE_SIZE - sizeof(struct kvm_coalesced_mmio_ring)) / \
-	 sizeof(struct kvm_coalesced_mmio))
+#define KVM_COALESCED_MMIO_MAX \
+	((PAGE_SIZE - sizeof(struct kvm_coalesced_mmio_ring)) / sizeof(struct kvm_coalesced_mmio))
 
 /* for KVM_TRANSLATE */
 struct kvm_translation {
@@ -616,11 +614,10 @@ enum {
 	kvm_ioeventfd_flag_nr_max,
 };
 
-#define KVM_IOEVENTFD_FLAG_DATAMATCH (1 << kvm_ioeventfd_flag_nr_datamatch)
-#define KVM_IOEVENTFD_FLAG_PIO	     (1 << kvm_ioeventfd_flag_nr_pio)
-#define KVM_IOEVENTFD_FLAG_DEASSIGN  (1 << kvm_ioeventfd_flag_nr_deassign)
-#define KVM_IOEVENTFD_FLAG_VIRTIO_CCW_NOTIFY \
-	(1 << kvm_ioeventfd_flag_nr_virtio_ccw_notify)
+#define KVM_IOEVENTFD_FLAG_DATAMATCH	     (1 << kvm_ioeventfd_flag_nr_datamatch)
+#define KVM_IOEVENTFD_FLAG_PIO		     (1 << kvm_ioeventfd_flag_nr_pio)
+#define KVM_IOEVENTFD_FLAG_DEASSIGN	     (1 << kvm_ioeventfd_flag_nr_deassign)
+#define KVM_IOEVENTFD_FLAG_VIRTIO_CCW_NOTIFY (1 << kvm_ioeventfd_flag_nr_virtio_ccw_notify)
 
 #define KVM_IOEVENTFD_VALID_FLAG_MASK ((1 << kvm_ioeventfd_flag_nr_max) - 1)
 
@@ -704,7 +701,7 @@ struct kvm_enable_cap {
 #define KVM_CAP_VAPIC			 6
 #define KVM_CAP_EXT_CPUID		 7
 #define KVM_CAP_CLOCKSOURCE		 8
-#define KVM_CAP_NR_VCPUS		 9 /* returns recommended max vcpus per vm */
+#define KVM_CAP_NR_VCPUS		 9  /* returns recommended max vcpus per vm */
 #define KVM_CAP_NR_MEMSLOTS		 10 /* returns max memory slots per vm */
 #define KVM_CAP_PIT			 11
 #define KVM_CAP_NOP_IO_DELAY		 12
@@ -1092,8 +1089,7 @@ struct kvm_dirty_tlb {
 #define KVM_REG_SIZE_SHIFT 52
 #define KVM_REG_SIZE_MASK  0x00f0000000000000ULL
 
-#define KVM_REG_SIZE(id) \
-	(1U << (((id) & KVM_REG_SIZE_MASK) >> KVM_REG_SIZE_SHIFT))
+#define KVM_REG_SIZE(id) (1U << (((id) & KVM_REG_SIZE_MASK) >> KVM_REG_SIZE_SHIFT))
 
 #define KVM_REG_SIZE_U8	   0x0000000000000000ULL
 #define KVM_REG_SIZE_U16   0x0010000000000000ULL
@@ -1203,16 +1199,14 @@ struct kvm_vfio_spapr_tce {
  * KVM_CREATE_VCPU receives as a parameter the vcpu slot, and returns
  * a vcpu fd.
  */
-#define KVM_CREATE_VCPU	     _IO(KVMIO, 0x41)
-#define KVM_GET_DIRTY_LOG    _IOW(KVMIO, 0x42, struct kvm_dirty_log)
-#define KVM_SET_NR_MMU_PAGES _IO(KVMIO, 0x44)
-#define KVM_GET_NR_MMU_PAGES _IO(KVMIO, 0x45) /* deprecated */
-#define KVM_SET_USER_MEMORY_REGION \
-	_IOW(KVMIO, 0x46, struct kvm_userspace_memory_region)
-#define KVM_SET_TSS_ADDR	  _IO(KVMIO, 0x47)
-#define KVM_SET_IDENTITY_MAP_ADDR _IOW(KVMIO, 0x48, __u64)
-#define KVM_SET_USER_MEMORY_REGION2 \
-	_IOW(KVMIO, 0x49, struct kvm_userspace_memory_region2)
+#define KVM_CREATE_VCPU		    _IO(KVMIO, 0x41)
+#define KVM_GET_DIRTY_LOG	    _IOW(KVMIO, 0x42, struct kvm_dirty_log)
+#define KVM_SET_NR_MMU_PAGES	    _IO(KVMIO, 0x44)
+#define KVM_GET_NR_MMU_PAGES	    _IO(KVMIO, 0x45) /* deprecated */
+#define KVM_SET_USER_MEMORY_REGION  _IOW(KVMIO, 0x46, struct kvm_userspace_memory_region)
+#define KVM_SET_TSS_ADDR	    _IO(KVMIO, 0x47)
+#define KVM_SET_IDENTITY_MAP_ADDR   _IOW(KVMIO, 0x48, __u64)
+#define KVM_SET_USER_MEMORY_REGION2 _IOW(KVMIO, 0x49, struct kvm_userspace_memory_region2)
 
 /* enable ucontrol for s390 */
 #define KVM_S390_UCAS_MAP   _IOW(KVMIO, 0x50, struct kvm_s390_ucas_mapping)
@@ -1220,27 +1214,25 @@ struct kvm_vfio_spapr_tce {
 #define KVM_S390_VCPU_FAULT _IOW(KVMIO, 0x52, unsigned long)
 
 /* Device model IOC */
-#define KVM_CREATE_IRQCHIP  _IO(KVMIO, 0x60)
-#define KVM_IRQ_LINE	    _IOW(KVMIO, 0x61, struct kvm_irq_level)
-#define KVM_GET_IRQCHIP	    _IOWR(KVMIO, 0x62, struct kvm_irqchip)
-#define KVM_SET_IRQCHIP	    _IOR(KVMIO, 0x63, struct kvm_irqchip)
-#define KVM_CREATE_PIT	    _IO(KVMIO, 0x64)
-#define KVM_GET_PIT	    _IOWR(KVMIO, 0x65, struct kvm_pit_state)
-#define KVM_SET_PIT	    _IOR(KVMIO, 0x66, struct kvm_pit_state)
-#define KVM_IRQ_LINE_STATUS _IOWR(KVMIO, 0x67, struct kvm_irq_level)
-#define KVM_REGISTER_COALESCED_MMIO \
-	_IOW(KVMIO, 0x67, struct kvm_coalesced_mmio_zone)
-#define KVM_UNREGISTER_COALESCED_MMIO \
-	_IOW(KVMIO, 0x68, struct kvm_coalesced_mmio_zone)
-#define KVM_SET_GSI_ROUTING  _IOW(KVMIO, 0x6a, struct kvm_irq_routing)
-#define KVM_REINJECT_CONTROL _IO(KVMIO, 0x71)
-#define KVM_IRQFD	     _IOW(KVMIO, 0x76, struct kvm_irqfd)
-#define KVM_CREATE_PIT2	     _IOW(KVMIO, 0x77, struct kvm_pit_config)
-#define KVM_SET_BOOT_CPU_ID  _IO(KVMIO, 0x78)
-#define KVM_IOEVENTFD	     _IOW(KVMIO, 0x79, struct kvm_ioeventfd)
-#define KVM_XEN_HVM_CONFIG   _IOW(KVMIO, 0x7a, struct kvm_xen_hvm_config)
-#define KVM_SET_CLOCK	     _IOW(KVMIO, 0x7b, struct kvm_clock_data)
-#define KVM_GET_CLOCK	     _IOR(KVMIO, 0x7c, struct kvm_clock_data)
+#define KVM_CREATE_IRQCHIP	      _IO(KVMIO, 0x60)
+#define KVM_IRQ_LINE		      _IOW(KVMIO, 0x61, struct kvm_irq_level)
+#define KVM_GET_IRQCHIP		      _IOWR(KVMIO, 0x62, struct kvm_irqchip)
+#define KVM_SET_IRQCHIP		      _IOR(KVMIO, 0x63, struct kvm_irqchip)
+#define KVM_CREATE_PIT		      _IO(KVMIO, 0x64)
+#define KVM_GET_PIT		      _IOWR(KVMIO, 0x65, struct kvm_pit_state)
+#define KVM_SET_PIT		      _IOR(KVMIO, 0x66, struct kvm_pit_state)
+#define KVM_IRQ_LINE_STATUS	      _IOWR(KVMIO, 0x67, struct kvm_irq_level)
+#define KVM_REGISTER_COALESCED_MMIO   _IOW(KVMIO, 0x67, struct kvm_coalesced_mmio_zone)
+#define KVM_UNREGISTER_COALESCED_MMIO _IOW(KVMIO, 0x68, struct kvm_coalesced_mmio_zone)
+#define KVM_SET_GSI_ROUTING	      _IOW(KVMIO, 0x6a, struct kvm_irq_routing)
+#define KVM_REINJECT_CONTROL	      _IO(KVMIO, 0x71)
+#define KVM_IRQFD		      _IOW(KVMIO, 0x76, struct kvm_irqfd)
+#define KVM_CREATE_PIT2		      _IOW(KVMIO, 0x77, struct kvm_pit_config)
+#define KVM_SET_BOOT_CPU_ID	      _IO(KVMIO, 0x78)
+#define KVM_IOEVENTFD		      _IOW(KVMIO, 0x79, struct kvm_ioeventfd)
+#define KVM_XEN_HVM_CONFIG	      _IOW(KVMIO, 0x7a, struct kvm_xen_hvm_config)
+#define KVM_SET_CLOCK		      _IOW(KVMIO, 0x7b, struct kvm_clock_data)
+#define KVM_GET_CLOCK		      _IOR(KVMIO, 0x7c, struct kvm_clock_data)
 /* Available with KVM_CAP_PIT_STATE2 */
 #define KVM_GET_PIT2 _IOR(KVMIO, 0x9f, struct kvm_pit_state2)
 #define KVM_SET_PIT2 _IOW(KVMIO, 0xa0, struct kvm_pit_state2)
@@ -1255,10 +1247,9 @@ struct kvm_vfio_spapr_tce {
 /* Available with KVM_CAP_PPC_GET_SMMU_INFO */
 #define KVM_PPC_GET_SMMU_INFO _IOR(KVMIO, 0xa6, struct kvm_ppc_smmu_info)
 /* Available with KVM_CAP_PPC_ALLOC_HTAB */
-#define KVM_PPC_ALLOCATE_HTAB _IOWR(KVMIO, 0xa7, __u32)
-#define KVM_CREATE_SPAPR_TCE  _IOW(KVMIO, 0xa8, struct kvm_create_spapr_tce)
-#define KVM_CREATE_SPAPR_TCE_64 \
-	_IOW(KVMIO, 0xa8, struct kvm_create_spapr_tce_64)
+#define KVM_PPC_ALLOCATE_HTAB	_IOWR(KVMIO, 0xa7, __u32)
+#define KVM_CREATE_SPAPR_TCE	_IOW(KVMIO, 0xa8, struct kvm_create_spapr_tce)
+#define KVM_CREATE_SPAPR_TCE_64 _IOW(KVMIO, 0xa8, struct kvm_create_spapr_tce_64)
 /* Available with KVM_CAP_RMA */
 #define KVM_ALLOCATE_RMA _IOR(KVMIO, 0xa9, struct kvm_allocate_rma)
 /* Available with KVM_CAP_PPC_HTAB_FD */
@@ -1281,8 +1272,7 @@ struct kvm_vfio_spapr_tce {
 #define KVM_PPC_SVM_OFF		 _IO(KVMIO, 0xb3)
 #define KVM_ARM_MTE_COPY_TAGS	 _IOR(KVMIO, 0xb4, struct kvm_arm_copy_mte_tags)
 /* Available with KVM_CAP_COUNTER_OFFSET */
-#define KVM_ARM_SET_COUNTER_OFFSET \
-	_IOW(KVMIO, 0xb5, struct kvm_arm_counter_offset)
+#define KVM_ARM_SET_COUNTER_OFFSET     _IOW(KVMIO, 0xb5, struct kvm_arm_counter_offset)
 #define KVM_ARM_GET_REG_WRITABLE_MASKS _IOR(KVMIO, 0xb6, struct reg_mask_range)
 
 /* ioctl for vm fd */
@@ -1429,8 +1419,7 @@ struct kvm_enc_region {
 #define KVM_XEN_VCPU_SET_ATTR _IOW(KVMIO, 0xcb, struct kvm_xen_vcpu_attr)
 
 /* Available with KVM_CAP_XEN_HVM / KVM_XEN_HVM_CONFIG_EVTCHN_SEND */
-#define KVM_XEN_HVM_EVTCHN_SEND \
-	_IOW(KVMIO, 0xd0, struct kvm_irq_routing_xen_evtchn)
+#define KVM_XEN_HVM_EVTCHN_SEND _IOW(KVMIO, 0xd0, struct kvm_irq_routing_xen_evtchn)
 
 #define KVM_GET_SREGS2 _IOR(KVMIO, 0xcc, struct kvm_sregs2)
 #define KVM_SET_SREGS2 _IOW(KVMIO, 0xcd, struct kvm_sregs2)
@@ -1581,8 +1570,7 @@ struct kvm_stats_desc {
 #define KVM_S390_ZPCI_OP _IOW(KVMIO, 0xd1, struct kvm_s390_zpci_op)
 
 /* Available with KVM_CAP_MEMORY_ATTRIBUTES */
-#define KVM_SET_MEMORY_ATTRIBUTES \
-	_IOW(KVMIO, 0xd2, struct kvm_memory_attributes)
+#define KVM_SET_MEMORY_ATTRIBUTES _IOW(KVMIO, 0xd2, struct kvm_memory_attributes)
 
 struct kvm_memory_attributes {
 	__u64 address;

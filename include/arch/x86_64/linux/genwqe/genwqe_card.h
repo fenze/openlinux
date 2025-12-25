@@ -388,11 +388,9 @@ struct genwqe_debug_data {
 #define ATS_TYPE_SGL_RD	   0x6ull /* sgl read only */
 #define ATS_TYPE_SGL_RDWR  0x7ull /* sgl read/write */
 
-#define ATS_SET_FLAGS(_struct, _field, _flags) \
-	(((_flags) & 0xf) << (44 - (4 * (offsetof(_struct, _field) / 8))))
+#define ATS_SET_FLAGS(_struct, _field, _flags) (((_flags) & 0xf) << (44 - (4 * (offsetof(_struct, _field) / 8))))
 
-#define ATS_GET_FLAGS(_ats, _byte_offs) \
-	(((_ats) >> (44 - (4 * ((_byte_offs) / 8)))) & 0xf)
+#define ATS_GET_FLAGS(_ats, _byte_offs) (((_ats) >> (44 - (4 * ((_byte_offs) / 8)))) & 0xf)
 
 /**
  * struct genwqe_ddcb_cmd - User parameter for generic DDCB commands
@@ -491,8 +489,7 @@ struct genwqe_mem {
  */
 #define GENWQE_EXECUTE_DDCB _IOWR(GENWQE_IOC_CODE, 50, struct genwqe_ddcb_cmd)
 
-#define GENWQE_EXECUTE_RAW_DDCB \
-	_IOWR(GENWQE_IOC_CODE, 51, struct genwqe_ddcb_cmd)
+#define GENWQE_EXECUTE_RAW_DDCB _IOWR(GENWQE_IOC_CODE, 51, struct genwqe_ddcb_cmd)
 
 /* Service Layer functions (PF only) */
 #define GENWQE_SLU_UPDATE _IOWR(GENWQE_IOC_CODE, 80, struct genwqe_bitstream)

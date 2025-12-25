@@ -50,18 +50,14 @@
 #define CRT1_LCDA	 0x00020000
 #define VGA2_CONNECTED	 0x00040000
 #define VB_DISPTYPE_CRT1 0x00080000 /* CRT1 connected and used */
-#define VB_SINGLE_MODE \
-	0x20000000 /* CRT1 or CRT2; determined by DISPTYPE_CRTx */
-#define VB_MIRROR_MODE 0x40000000 /* CRT1 + CRT2 identical (mirror mode) */
-#define VB_DUALVIEW_MODE \
-	0x80000000 /* CRT1 + CRT2 independent (dual head mode) */
+#define VB_SINGLE_MODE	 0x20000000 /* CRT1 or CRT2; determined by DISPTYPE_CRTx */
+#define VB_MIRROR_MODE	 0x40000000 /* CRT1 + CRT2 identical (mirror mode) */
+#define VB_DUALVIEW_MODE 0x80000000 /* CRT1 + CRT2 independent (dual head mode) */
 
 /* Aliases: */
-#define CRT2_ENABLE (CRT2_LCD | CRT2_TV | CRT2_VGA)
-#define TV_STANDARD (TV_NTSC | TV_PAL | TV_PALM | TV_PALN | TV_NTSCJ)
-#define TV_INTERFACE                                                 \
-	(TV_AVIDEO | TV_SVIDEO | TV_SCART | TV_HIVISION | TV_YPBPR | \
-	 TV_CHSCART | TV_CHYPBPR525I)
+#define CRT2_ENABLE  (CRT2_LCD | CRT2_TV | CRT2_VGA)
+#define TV_STANDARD  (TV_NTSC | TV_PAL | TV_PALM | TV_PALN | TV_NTSCJ)
+#define TV_INTERFACE (TV_AVIDEO | TV_SVIDEO | TV_SCART | TV_HIVISION | TV_YPBPR | TV_CHSCART | TV_CHYPBPR525I)
 
 /* Only if TV_YPBPR is set: */
 #define TV_YPBPR525I  TV_NTSC
@@ -139,17 +135,14 @@ struct sisfb_info {
 };
 
 #define SISFB_CMD_GETVBFLAGS 0x55AA0001 /* no arg; result[1] = vbflags */
-#define SISFB_CMD_SWITCHCRT1 \
-	0x55AA0010 /* arg[0]: 99 = query, 0 = off, 1 = on */
+#define SISFB_CMD_SWITCHCRT1 0x55AA0010 /* arg[0]: 99 = query, 0 = off, 1 = on */
 /* more to come */
 
 #define SISFB_CMD_ERR_OK     0x80000000 /* command succeeded */
 #define SISFB_CMD_ERR_LOCKED 0x80000001 /* sisfb is locked */
-#define SISFB_CMD_ERR_EARLY \
-	0x80000002 /* request before sisfb took over gfx system */
-#define SISFB_CMD_ERR_NOVB 0x80000003 /* No video bridge */
-#define SISFB_CMD_ERR_NOCRT2 \
-	0x80000004 /* can't change CRT1 status, CRT2 disabled */
+#define SISFB_CMD_ERR_EARLY  0x80000002 /* request before sisfb took over gfx system */
+#define SISFB_CMD_ERR_NOVB   0x80000003 /* No video bridge */
+#define SISFB_CMD_ERR_NOCRT2 0x80000004 /* can't change CRT1 status, CRT2 disabled */
 /* more to come */
 #define SISFB_CMD_ERR_UNKNOWN 0x8000ffff /* Unknown command */
 #define SISFB_CMD_ERR_OTHER   0x80010000 /* Other error */

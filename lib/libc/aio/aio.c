@@ -1,10 +1,14 @@
-#include <__aio.h>
-#include <io_uring.h>
-#include <signal.h>
-#include <stdint.h>
-#include <string.h>
-#include <sys/mman.h>
-#include <unistd.h>
+#include "aio.h"	    // for aiocb
+#include "linux/io_uring.h" // for io_uring_sqe, io_uring_cqe, io_uring_sqe...
+#include "stddef.h"	    // for NULL
+
+#include <__aio.h>    // for aio_request, aio_context, lio_group, AIO...
+#include <aio.h>      // for sigevent
+#include <io_uring.h> // for __io_uring, io_uring, io_uring_cq, io_ur...
+#include <signal.h>   // for kill, SIGEV_SIGNAL, SIGEV_THREAD
+#include <stdint.h>   // for uint64_t
+#include <string.h>   // for memset
+#include <unistd.h>   // for getpid, write
 
 struct aio_context __aio_context = { 0 };
 
@@ -103,8 +107,7 @@ void __aio_poll(void)
 	unsigned tail = *__io_uring.cq.tail;
 
 	while (head != tail) {
-		struct io_uring_cqe *cqe =
-			&__io_uring.cq.cqes[head & *__io_uring.cq.ring_mask];
+		struct io_uring_cqe *cqe = &__io_uring.cq.cqes[head & *__io_uring.cq.ring_mask];
 
 		struct aio_request *req = (struct aio_request *)cqe->user_data;
 

@@ -245,10 +245,9 @@ struct tipc_aead_key {
 	char key[];
 };
 
-#define TIPC_AEAD_KEYLEN_MIN (16 + 4)
-#define TIPC_AEAD_KEYLEN_MAX (32 + 4)
-#define TIPC_AEAD_KEY_SIZE_MAX \
-	(sizeof(struct tipc_aead_key) + TIPC_AEAD_KEYLEN_MAX)
+#define TIPC_AEAD_KEYLEN_MIN   (16 + 4)
+#define TIPC_AEAD_KEYLEN_MAX   (32 + 4)
+#define TIPC_AEAD_KEY_SIZE_MAX (sizeof(struct tipc_aead_key) + TIPC_AEAD_KEYLEN_MAX)
 
 static __inline__ int tipc_aead_key_size(struct tipc_aead_key *key)
 {
@@ -289,11 +288,9 @@ static __inline__ int tipc_aead_key_size(struct tipc_aead_key *key)
 #define tipc_name     tipc_service_addr
 #define tipc_name_seq tipc_service_range
 
-static __inline__ __u32 tipc_addr(unsigned int zone, unsigned int cluster,
-				  unsigned int node)
+static __inline__ __u32 tipc_addr(unsigned int zone, unsigned int cluster, unsigned int node)
 {
-	return (zone << TIPC_ZONE_OFFSET) | (cluster << TIPC_CLUSTER_OFFSET) |
-	       node;
+	return (zone << TIPC_ZONE_OFFSET) | (cluster << TIPC_CLUSTER_OFFSET) | node;
 }
 
 static __inline__ unsigned int tipc_zone(__u32 addr)

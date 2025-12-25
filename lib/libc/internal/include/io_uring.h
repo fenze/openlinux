@@ -3,6 +3,7 @@
 
 #include <linux/io_uring.h>
 #include <signal.h>
+#include <stddef.h>
 
 #define IO_URING_ENTRIES 256
 
@@ -47,7 +48,6 @@ int io_uring_setup(unsigned int, struct io_uring_params *);
 
 int io_uring_register(unsigned int, unsigned int, void *, unsigned int);
 
-int io_uring_enter(unsigned int, unsigned int, unsigned int, unsigned int,
-		   sigset_t *, size_t);
+int io_uring_enter(unsigned int, unsigned int, unsigned int, unsigned int, sigset_t *, size_t);
 
 #endif

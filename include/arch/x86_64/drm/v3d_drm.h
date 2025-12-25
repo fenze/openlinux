@@ -45,43 +45,24 @@ extern "C" {
 #define DRM_V3D_PERFMON_GET_COUNTER 0x0c
 #define DRM_V3D_PERFMON_SET_GLOBAL  0x0d
 
-#define DRM_IOCTL_V3D_SUBMIT_CL \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_V3D_SUBMIT_CL, struct drm_v3d_submit_cl)
-#define DRM_IOCTL_V3D_WAIT_BO \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_V3D_WAIT_BO, struct drm_v3d_wait_bo)
-#define DRM_IOCTL_V3D_CREATE_BO \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_V3D_CREATE_BO, struct drm_v3d_create_bo)
-#define DRM_IOCTL_V3D_MMAP_BO \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_V3D_MMAP_BO, struct drm_v3d_mmap_bo)
-#define DRM_IOCTL_V3D_GET_PARAM \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_V3D_GET_PARAM, struct drm_v3d_get_param)
-#define DRM_IOCTL_V3D_GET_BO_OFFSET                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_V3D_GET_BO_OFFSET, \
-		 struct drm_v3d_get_bo_offset)
-#define DRM_IOCTL_V3D_SUBMIT_TFU                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_V3D_SUBMIT_TFU, \
-		struct drm_v3d_submit_tfu)
-#define DRM_IOCTL_V3D_SUBMIT_CSD                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_V3D_SUBMIT_CSD, \
-		struct drm_v3d_submit_csd)
-#define DRM_IOCTL_V3D_PERFMON_CREATE                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_V3D_PERFMON_CREATE, \
-		 struct drm_v3d_perfmon_create)
-#define DRM_IOCTL_V3D_PERFMON_DESTROY                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_V3D_PERFMON_DESTROY, \
-		 struct drm_v3d_perfmon_destroy)
-#define DRM_IOCTL_V3D_PERFMON_GET_VALUES                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_V3D_PERFMON_GET_VALUES, \
-		 struct drm_v3d_perfmon_get_values)
-#define DRM_IOCTL_V3D_SUBMIT_CPU                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_V3D_SUBMIT_CPU, \
-		struct drm_v3d_submit_cpu)
-#define DRM_IOCTL_V3D_PERFMON_GET_COUNTER                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_V3D_PERFMON_GET_COUNTER, \
-		 struct drm_v3d_perfmon_get_counter)
-#define DRM_IOCTL_V3D_PERFMON_SET_GLOBAL                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_V3D_PERFMON_SET_GLOBAL, \
-		struct drm_v3d_perfmon_set_global)
+#define DRM_IOCTL_V3D_SUBMIT_CL	     DRM_IOWR(DRM_COMMAND_BASE + DRM_V3D_SUBMIT_CL, struct drm_v3d_submit_cl)
+#define DRM_IOCTL_V3D_WAIT_BO	     DRM_IOWR(DRM_COMMAND_BASE + DRM_V3D_WAIT_BO, struct drm_v3d_wait_bo)
+#define DRM_IOCTL_V3D_CREATE_BO	     DRM_IOWR(DRM_COMMAND_BASE + DRM_V3D_CREATE_BO, struct drm_v3d_create_bo)
+#define DRM_IOCTL_V3D_MMAP_BO	     DRM_IOWR(DRM_COMMAND_BASE + DRM_V3D_MMAP_BO, struct drm_v3d_mmap_bo)
+#define DRM_IOCTL_V3D_GET_PARAM	     DRM_IOWR(DRM_COMMAND_BASE + DRM_V3D_GET_PARAM, struct drm_v3d_get_param)
+#define DRM_IOCTL_V3D_GET_BO_OFFSET  DRM_IOWR(DRM_COMMAND_BASE + DRM_V3D_GET_BO_OFFSET, struct drm_v3d_get_bo_offset)
+#define DRM_IOCTL_V3D_SUBMIT_TFU     DRM_IOW(DRM_COMMAND_BASE + DRM_V3D_SUBMIT_TFU, struct drm_v3d_submit_tfu)
+#define DRM_IOCTL_V3D_SUBMIT_CSD     DRM_IOW(DRM_COMMAND_BASE + DRM_V3D_SUBMIT_CSD, struct drm_v3d_submit_csd)
+#define DRM_IOCTL_V3D_PERFMON_CREATE DRM_IOWR(DRM_COMMAND_BASE + DRM_V3D_PERFMON_CREATE, struct drm_v3d_perfmon_create)
+#define DRM_IOCTL_V3D_PERFMON_DESTROY \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_V3D_PERFMON_DESTROY, struct drm_v3d_perfmon_destroy)
+#define DRM_IOCTL_V3D_PERFMON_GET_VALUES \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_V3D_PERFMON_GET_VALUES, struct drm_v3d_perfmon_get_values)
+#define DRM_IOCTL_V3D_SUBMIT_CPU DRM_IOW(DRM_COMMAND_BASE + DRM_V3D_SUBMIT_CPU, struct drm_v3d_submit_cpu)
+#define DRM_IOCTL_V3D_PERFMON_GET_COUNTER \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_V3D_PERFMON_GET_COUNTER, struct drm_v3d_perfmon_get_counter)
+#define DRM_IOCTL_V3D_PERFMON_SET_GLOBAL \
+	DRM_IOW(DRM_COMMAND_BASE + DRM_V3D_PERFMON_SET_GLOBAL, struct drm_v3d_perfmon_set_global)
 
 #define DRM_V3D_SUBMIT_CL_FLUSH_CACHE 0x01
 #define DRM_V3D_SUBMIT_EXTENSION      0x02

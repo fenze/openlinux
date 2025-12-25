@@ -43,22 +43,14 @@
  * VIDIOC_OMAP3ISP_STAT_EN: Enable/disable a statistics module
  */
 
-#define VIDIOC_OMAP3ISP_CCDC_CFG \
-	_IOWR('V', BASE_VIDIOC_PRIVATE + 1, struct omap3isp_ccdc_update_config)
-#define VIDIOC_OMAP3ISP_PRV_CFG \
-	_IOWR('V', BASE_VIDIOC_PRIVATE + 2, struct omap3isp_prev_update_config)
-#define VIDIOC_OMAP3ISP_AEWB_CFG \
-	_IOWR('V', BASE_VIDIOC_PRIVATE + 3, struct omap3isp_h3a_aewb_config)
-#define VIDIOC_OMAP3ISP_HIST_CFG \
-	_IOWR('V', BASE_VIDIOC_PRIVATE + 4, struct omap3isp_hist_config)
-#define VIDIOC_OMAP3ISP_AF_CFG \
-	_IOWR('V', BASE_VIDIOC_PRIVATE + 5, struct omap3isp_h3a_af_config)
-#define VIDIOC_OMAP3ISP_STAT_REQ \
-	_IOWR('V', BASE_VIDIOC_PRIVATE + 6, struct omap3isp_stat_data)
-#define VIDIOC_OMAP3ISP_STAT_REQ_TIME32 \
-	_IOWR('V', BASE_VIDIOC_PRIVATE + 6, struct omap3isp_stat_data_time32)
-#define VIDIOC_OMAP3ISP_STAT_EN \
-	_IOWR('V', BASE_VIDIOC_PRIVATE + 7, unsigned long)
+#define VIDIOC_OMAP3ISP_CCDC_CFG	_IOWR('V', BASE_VIDIOC_PRIVATE + 1, struct omap3isp_ccdc_update_config)
+#define VIDIOC_OMAP3ISP_PRV_CFG		_IOWR('V', BASE_VIDIOC_PRIVATE + 2, struct omap3isp_prev_update_config)
+#define VIDIOC_OMAP3ISP_AEWB_CFG	_IOWR('V', BASE_VIDIOC_PRIVATE + 3, struct omap3isp_h3a_aewb_config)
+#define VIDIOC_OMAP3ISP_HIST_CFG	_IOWR('V', BASE_VIDIOC_PRIVATE + 4, struct omap3isp_hist_config)
+#define VIDIOC_OMAP3ISP_AF_CFG		_IOWR('V', BASE_VIDIOC_PRIVATE + 5, struct omap3isp_h3a_af_config)
+#define VIDIOC_OMAP3ISP_STAT_REQ	_IOWR('V', BASE_VIDIOC_PRIVATE + 6, struct omap3isp_stat_data)
+#define VIDIOC_OMAP3ISP_STAT_REQ_TIME32 _IOWR('V', BASE_VIDIOC_PRIVATE + 6, struct omap3isp_stat_data_time32)
+#define VIDIOC_OMAP3ISP_STAT_EN		_IOWR('V', BASE_VIDIOC_PRIVATE + 7, unsigned long)
 
 /*
  * Events
@@ -170,8 +162,7 @@ struct omap3isp_h3a_aewb_config {
 struct omap3isp_stat_data {
 	struct timeval ts;
 	void *buf;
-	__struct_group(/* no tag */, frame, /* no attrs */, __u32 buf_size;
-		       __u16 frame_number; __u16 cur_frame;
+	__struct_group(/* no tag */, frame, /* no attrs */, __u32 buf_size; __u16 frame_number; __u16 cur_frame;
 		       __u16 config_counter;);
 };
 
@@ -220,10 +211,10 @@ struct omap3isp_hist_config {
 	__u32 buf_size;
 	__u16 config_counter;
 
-	__u8 num_acc_frames; /* Num of image frames to be processed and
-				accumulated for each histogram frame */
-	__u16 hist_bins;     /* number of bins: 32, 64, 128, or 256 */
-	__u8 cfa;	     /* BAYER or FOVEON X3 */
+	__u8 num_acc_frames;	       /* Num of image frames to be processed and
+					  accumulated for each histogram frame */
+	__u16 hist_bins;	       /* number of bins: 32, 64, 128, or 256 */
+	__u8 cfa;		       /* BAYER or FOVEON X3 */
 	__u8 wg[OMAP3ISP_HIST_MAX_WG]; /* White Balance Gain */
 	__u8 num_regions;	       /* number of regions to be configured */
 	struct omap3isp_hist_region region[OMAP3ISP_HIST_MAX_REGIONS];
@@ -233,10 +224,7 @@ struct omap3isp_hist_config {
 
 #define OMAP3ISP_AF_NUM_COEF 11
 
-enum omap3isp_h3a_af_fvmode {
-	OMAP3ISP_AF_MODE_SUMMED = 0,
-	OMAP3ISP_AF_MODE_PEAK = 1
-};
+enum omap3isp_h3a_af_fvmode { OMAP3ISP_AF_MODE_SUMMED = 0, OMAP3ISP_AF_MODE_PEAK = 1 };
 
 /* Red, Green, and blue pixel location in the AF windows */
 enum omap3isp_h3a_af_rgbpos {

@@ -82,11 +82,9 @@
 #define X86_CR3_PCID_BITS 12
 #define X86_CR3_PCID_MASK (_AC((1UL << X86_CR3_PCID_BITS) - 1, UL))
 
-#define X86_CR3_LAM_U57_BIT \
-	61 /* Activate LAM for userspace, 62:57 bits masked */
-#define X86_CR3_LAM_U57 _BITULL(X86_CR3_LAM_U57_BIT)
-#define X86_CR3_LAM_U48_BIT \
-	62 /* Activate LAM for userspace, 62:48 bits masked */
+#define X86_CR3_LAM_U57_BIT	 61 /* Activate LAM for userspace, 62:57 bits masked */
+#define X86_CR3_LAM_U57		 _BITULL(X86_CR3_LAM_U57_BIT)
+#define X86_CR3_LAM_U48_BIT	 62 /* Activate LAM for userspace, 62:48 bits masked */
 #define X86_CR3_LAM_U48		 _BITULL(X86_CR3_LAM_U48_BIT)
 #define X86_CR3_PCID_NOFLUSH_BIT 63 /* Preserve old PCID */
 #define X86_CR3_PCID_NOFLUSH	 _BITULL(X86_CR3_PCID_NOFLUSH_BIT)
@@ -176,8 +174,6 @@
 #define CX86_ARR_BASE 0xc4
 #define CX86_RCR_BASE 0xdc
 
-#define CR0_STATE                                                         \
-	(X86_CR0_PE | X86_CR0_MP | X86_CR0_ET | X86_CR0_NE | X86_CR0_WP | \
-	 X86_CR0_AM | X86_CR0_PG)
+#define CR0_STATE (X86_CR0_PE | X86_CR0_MP | X86_CR0_ET | X86_CR0_NE | X86_CR0_WP | X86_CR0_AM | X86_CR0_PG)
 
 #endif /* _ASM_X86_PROCESSOR_FLAGS_H */

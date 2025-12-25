@@ -222,16 +222,14 @@ enum perf_branch_sample_type {
 
 	PERF_SAMPLE_BRANCH_ANY = 1U << PERF_SAMPLE_BRANCH_ANY_SHIFT,
 	PERF_SAMPLE_BRANCH_ANY_CALL = 1U << PERF_SAMPLE_BRANCH_ANY_CALL_SHIFT,
-	PERF_SAMPLE_BRANCH_ANY_RETURN = 1U
-					<< PERF_SAMPLE_BRANCH_ANY_RETURN_SHIFT,
+	PERF_SAMPLE_BRANCH_ANY_RETURN = 1U << PERF_SAMPLE_BRANCH_ANY_RETURN_SHIFT,
 	PERF_SAMPLE_BRANCH_IND_CALL = 1U << PERF_SAMPLE_BRANCH_IND_CALL_SHIFT,
 	PERF_SAMPLE_BRANCH_ABORT_TX = 1U << PERF_SAMPLE_BRANCH_ABORT_TX_SHIFT,
 	PERF_SAMPLE_BRANCH_IN_TX = 1U << PERF_SAMPLE_BRANCH_IN_TX_SHIFT,
 	PERF_SAMPLE_BRANCH_NO_TX = 1U << PERF_SAMPLE_BRANCH_NO_TX_SHIFT,
 	PERF_SAMPLE_BRANCH_COND = 1U << PERF_SAMPLE_BRANCH_COND_SHIFT,
 
-	PERF_SAMPLE_BRANCH_CALL_STACK = 1U
-					<< PERF_SAMPLE_BRANCH_CALL_STACK_SHIFT,
+	PERF_SAMPLE_BRANCH_CALL_STACK = 1U << PERF_SAMPLE_BRANCH_CALL_STACK_SHIFT,
 	PERF_SAMPLE_BRANCH_IND_JUMP = 1U << PERF_SAMPLE_BRANCH_IND_JUMP_SHIFT,
 	PERF_SAMPLE_BRANCH_CALL = 1U << PERF_SAMPLE_BRANCH_CALL_SHIFT,
 
@@ -309,9 +307,7 @@ enum {
 #define PERF_BR_ARM64_DEBUG_INST PERF_BR_NEW_ARCH_4
 #define PERF_BR_ARM64_DEBUG_DATA PERF_BR_NEW_ARCH_5
 
-#define PERF_SAMPLE_BRANCH_PLM_ALL                             \
-	(PERF_SAMPLE_BRANCH_USER | PERF_SAMPLE_BRANCH_KERNEL | \
-	 PERF_SAMPLE_BRANCH_HV)
+#define PERF_SAMPLE_BRANCH_PLM_ALL (PERF_SAMPLE_BRANCH_USER | PERF_SAMPLE_BRANCH_KERNEL | PERF_SAMPLE_BRANCH_HV)
 
 /*
  * Values to determine ABI of the registers dump.
@@ -376,8 +372,7 @@ enum perf_event_read_format {
 	PERF_FORMAT_MAX = 1U << 5, /* non-ABI */
 };
 
-#define PERF_ATTR_SIZE_VER0 \
-	64 /* Size of first published 'struct perf_event_attr' */
+#define PERF_ATTR_SIZE_VER0 64	/* Size of first published 'struct perf_event_attr' */
 #define PERF_ATTR_SIZE_VER1 72	/* Add: config2 */
 #define PERF_ATTR_SIZE_VER2 80	/* Add: branch_sample_type */
 #define PERF_ATTR_SIZE_VER3 96	/* Add: sample_regs_user */
@@ -452,23 +447,23 @@ struct perf_event_attr {
 
 		exclude_callchain_kernel : 1, /* exclude kernel callchains */
 		exclude_callchain_user : 1,   /* exclude user callchains */
-		mmap2 : 1,	 /* include mmap with inode data     */
-		comm_exec : 1,	 /* flag comm events that are due to an exec */
-		use_clockid : 1, /* use @clockid for time fields */
-		context_switch : 1, /* context switch data */
-		write_backward : 1, /* write ring buffer from end to beginning
-				     */
-		namespaces : 1,	    /* include namespaces data */
-		ksymbol : 1,	    /* include ksymbol events */
-		bpf_event : 1,	    /* include BPF events */
-		aux_output : 1,	    /* generate AUX records instead of events */
-		cgroup : 1,	    /* include cgroup events */
-		text_poke : 1,	    /* include text poke events */
-		build_id : 1,	    /* use build ID in mmap2 events */
-		inherit_thread : 1, /* children only inherit if cloned with
-				       CLONE_THREAD */
-		remove_on_exec : 1, /* event is removed from task on exec */
-		sigtrap : 1,	    /* send synchronous SIGTRAP on event */
+		mmap2 : 1,		      /* include mmap with inode data     */
+		comm_exec : 1,		      /* flag comm events that are due to an exec */
+		use_clockid : 1,	      /* use @clockid for time fields */
+		context_switch : 1,	      /* context switch data */
+		write_backward : 1,	      /* write ring buffer from end to beginning
+					       */
+		namespaces : 1,		      /* include namespaces data */
+		ksymbol : 1,		      /* include ksymbol events */
+		bpf_event : 1,		      /* include BPF events */
+		aux_output : 1,		      /* generate AUX records instead of events */
+		cgroup : 1,		      /* include cgroup events */
+		text_poke : 1,		      /* include text poke events */
+		build_id : 1,		      /* use build ID in mmap2 events */
+		inherit_thread : 1,	      /* children only inherit if cloned with
+						 CLONE_THREAD */
+		remove_on_exec : 1,	      /* event is removed from task on exec */
+		sigtrap : 1,		      /* send synchronous SIGTRAP on event */
 		__reserved_1 : 26;
 
 	union {
@@ -535,10 +530,10 @@ struct perf_event_attr {
 		struct {
 			__u32 aux_start_paused : 1, /* start AUX area tracing
 						       paused */
-				aux_pause : 1,	/* on overflow, pause AUX area
-						   tracing */
-				aux_resume : 1, /* on overflow, resume AUX area
-						   tracing */
+				aux_pause : 1,	    /* on overflow, pause AUX area
+						       tracing */
+				aux_resume : 1,	    /* on overflow, resume AUX area
+						       tracing */
 				__reserved_3 : 29;
 		};
 	};
@@ -645,17 +640,17 @@ struct perf_event_mmap_page {
 	union {
 		__u64 capabilities;
 		struct {
-			__u64 cap_bit0 : 1, /* Always 0, deprecated, see commit
-					       860f085b74e9 */
+			__u64 cap_bit0 : 1,		    /* Always 0, deprecated, see commit
+							       860f085b74e9 */
 				cap_bit0_is_deprecated : 1, /* Always 1, signals
 							       that bit 0 is
 							       zero */
 
-				cap_user_rdpmc : 1, /* The RDPMC instruction can
-						       be used to read counts */
-				cap_user_time : 1,  /* The
-						       time_{shift,mult,offset}
-						       fields are used */
+				cap_user_rdpmc : 1,	 /* The RDPMC instruction can
+							    be used to read counts */
+				cap_user_time : 1,	 /* The
+							    time_{shift,mult,offset}
+							    fields are used */
 				cap_user_time_zero : 1,	 /* The time_zero field
 							    is used */
 				cap_user_time_short : 1, /* the
@@ -1299,16 +1294,14 @@ enum perf_callchain_context {
 /**
  * PERF_RECORD_AUX::flags bits
  */
-#define PERF_AUX_FLAG_TRUNCATED 0x0001 /* Record was truncated to fit */
-#define PERF_AUX_FLAG_OVERWRITE 0x0002 /* Snapshot from overwrite mode */
-#define PERF_AUX_FLAG_PARTIAL	0x0004 /* Record contains gaps */
-#define PERF_AUX_FLAG_COLLISION 0x0008 /* Sample collided with another */
-#define PERF_AUX_FLAG_PMU_FORMAT_TYPE_MASK \
-	0xff00 /* PMU specific trace format type */
+#define PERF_AUX_FLAG_TRUNCATED		   0x0001 /* Record was truncated to fit */
+#define PERF_AUX_FLAG_OVERWRITE		   0x0002 /* Snapshot from overwrite mode */
+#define PERF_AUX_FLAG_PARTIAL		   0x0004 /* Record contains gaps */
+#define PERF_AUX_FLAG_COLLISION		   0x0008 /* Sample collided with another */
+#define PERF_AUX_FLAG_PMU_FORMAT_TYPE_MASK 0xff00 /* PMU specific trace format type */
 
 /* CoreSight PMU AUX buffer formats */
-#define PERF_AUX_FLAG_CORESIGHT_FORMAT_CORESIGHT \
-	0x0000 /* Default for backward compatibility */
+#define PERF_AUX_FLAG_CORESIGHT_FORMAT_CORESIGHT 0x0000 /* Default for backward compatibility */
 #define PERF_AUX_FLAG_CORESIGHT_FORMAT_RAW \
 	0x0100 /* Raw format of the source \
 		*/
@@ -1343,12 +1336,12 @@ union perf_mem_data_src {
 			mem_blk : 3,		   /* Access blocked */
 			mem_snoopx : 2,		   /* Snoop mode, ext */
 			mem_remote : 1,		   /* Remote */
-			mem_lvl_num : 4, /* Memory hierarchy level number */
-			mem_dtlb : 7,	 /* TLB access */
-			mem_lock : 2,	 /* Lock instr */
-			mem_snoop : 5,	 /* Snoop mode */
-			mem_lvl : 14,	 /* Memory hierarchy level */
-			mem_op : 5;	 /* Type of opcode */
+			mem_lvl_num : 4,	   /* Memory hierarchy level number */
+			mem_dtlb : 7,		   /* TLB access */
+			mem_lock : 2,		   /* Lock instr */
+			mem_snoop : 5,		   /* Snoop mode */
+			mem_lvl : 14,		   /* Memory hierarchy level */
+			mem_op : 5;		   /* Type of opcode */
 	};
 };
 #else

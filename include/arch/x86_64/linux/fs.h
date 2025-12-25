@@ -10,10 +10,10 @@
  * linux-api@vger.kernel.org.
  */
 
-#include <linux/limits.h>
-#include <linux/ioctl.h>
-#include <linux/types.h>
 #include <linux/fscrypt.h>
+#include <linux/ioctl.h>
+#include <linux/limits.h>
+#include <linux/types.h>
 
 /* Use of MS_* flags within the kernel is restricted to core mount(2) code. */
 #include <linux/mount.h>
@@ -41,9 +41,7 @@
 #define IO_INTEGRITY_CHK_REFTAG (1U << 1) /* enforce ref check */
 #define IO_INTEGRITY_CHK_APPTAG (1U << 2) /* enforce app check */
 
-#define IO_INTEGRITY_VALID_FLAGS                            \
-	(IO_INTEGRITY_CHK_GUARD | IO_INTEGRITY_CHK_REFTAG | \
-	 IO_INTEGRITY_CHK_APPTAG)
+#define IO_INTEGRITY_VALID_FLAGS (IO_INTEGRITY_CHK_GUARD | IO_INTEGRITY_CHK_REFTAG | IO_INTEGRITY_CHK_APPTAG)
 
 #define SEEK_SET  0 /* seek relative to beginning of file */
 #define SEEK_CUR  1 /* seek relative to current file position */
@@ -263,14 +261,12 @@ struct file_attr {
 #define BLKFRASET                                                  \
 	_IO(0x12, 100) /* set filesystem (mm/filemap.c) read-ahead \
 			*/
-#define BLKFRAGET                                                  \
-	_IO(0x12, 101) /* get filesystem (mm/filemap.c) read-ahead \
-			*/
-#define BLKSECTSET \
-	_IO(0x12, 102) /* set max sectors per request (ll_rw_blk.c) */
-#define BLKSECTGET \
-	_IO(0x12, 103)		 /* get max sectors per request (ll_rw_blk.c) */
-#define BLKSSZGET _IO(0x12, 104) /* get block device sector size */
+#define BLKFRAGET                                                             \
+	_IO(0x12, 101)		  /* get filesystem (mm/filemap.c) read-ahead \
+				   */
+#define BLKSECTSET _IO(0x12, 102) /* set max sectors per request (ll_rw_blk.c) */
+#define BLKSECTGET _IO(0x12, 103) /* get max sectors per request (ll_rw_blk.c) */
+#define BLKSSZGET  _IO(0x12, 104) /* get block device sector size */
 #if 0
 #define BLKPG _IO(0x12, 105) /* See blkpg.h */
 
@@ -282,10 +278,9 @@ struct file_attr {
    probably all these _IO(0x12,*) ioctls should be moved to blkpg.h. */
 #endif
 /* A jump here: 108-111 have been used for various private purposes. */
-#define BLKBSZGET _IOR(0x12, 112, size_t)
-#define BLKBSZSET _IOW(0x12, 113, size_t)
-#define BLKGETSIZE64 \
-	_IOR(0x12, 114, size_t) /* return device size in bytes (u64 *arg) */
+#define BLKBSZGET	 _IOR(0x12, 112, size_t)
+#define BLKBSZSET	 _IOW(0x12, 113, size_t)
+#define BLKGETSIZE64	 _IOR(0x12, 114, size_t) /* return device size in bytes (u64 *arg) */
 #define BLKTRACESETUP	 _IOWR(0x12, 115, struct blk_user_trace_setup)
 #define BLKTRACESTART	 _IO(0x12, 116)
 #define BLKTRACESTOP	 _IO(0x12, 117)
@@ -303,9 +298,9 @@ struct file_attr {
 /* 130-136 are used by zoned block device ioctls (uapi/linux/blkzoned.h) */
 /* 137-141 are used by blk-crypto ioctls (uapi/linux/blk-crypto.h) */
 
-#define BMAP_IOCTL    1		   /* obsolete - kept for compatibility */
-#define FIBMAP	      _IO(0x00, 1) /* bmap access */
-#define FIGETBSZ      _IO(0x00, 2) /* get the block size used for bmap */
+#define BMAP_IOCTL    1					   /* obsolete - kept for compatibility */
+#define FIBMAP	      _IO(0x00, 1)			   /* bmap access */
+#define FIGETBSZ      _IO(0x00, 2)			   /* get the block size used for bmap */
 #define FIFREEZE      _IOWR('X', 119, int)		   /* Freeze */
 #define FITHAW	      _IOWR('X', 120, int)		   /* Thaw */
 #define FITRIM	      _IOWR('X', 121, struct fstrim_range) /* Trim */
@@ -397,9 +392,8 @@ struct file_attr {
 #define SYNC_FILE_RANGE_WAIT_BEFORE 1
 #define SYNC_FILE_RANGE_WRITE	    2
 #define SYNC_FILE_RANGE_WAIT_AFTER  4
-#define SYNC_FILE_RANGE_WRITE_AND_WAIT                         \
-	(SYNC_FILE_RANGE_WRITE | SYNC_FILE_RANGE_WAIT_BEFORE | \
-	 SYNC_FILE_RANGE_WAIT_AFTER)
+#define SYNC_FILE_RANGE_WRITE_AND_WAIT \
+	(SYNC_FILE_RANGE_WRITE | SYNC_FILE_RANGE_WAIT_BEFORE | SYNC_FILE_RANGE_WAIT_AFTER)
 
 /*
  * Flags for preadv2/pwritev2:
@@ -432,9 +426,8 @@ typedef int __bitwise __kernel_rwf_t;
 #define RWF_DONTCACHE ((__kernel_rwf_t)0x00000080)
 
 /* mask of flags supported by the kernel */
-#define RWF_SUPPORTED                                                 \
-	(RWF_HIPRI | RWF_DSYNC | RWF_SYNC | RWF_NOWAIT | RWF_APPEND | \
-	 RWF_NOAPPEND | RWF_ATOMIC | RWF_DONTCACHE)
+#define RWF_SUPPORTED \
+	(RWF_HIPRI | RWF_DSYNC | RWF_SYNC | RWF_NOWAIT | RWF_APPEND | RWF_NOAPPEND | RWF_ATOMIC | RWF_DONTCACHE)
 
 #define PROCFS_IOCTL_MAGIC 'f'
 
@@ -466,9 +459,8 @@ struct page_region {
 };
 
 /* Flags for PAGEMAP_SCAN ioctl */
-#define PM_SCAN_WP_MATCHING (1 << 0) /* Write protect the pages matched. */
-#define PM_SCAN_CHECK_WPASYNC \
-	(1 << 1) /* Abort the scan when a non-WP-enabled page is found. */
+#define PM_SCAN_WP_MATCHING   (1 << 0) /* Write protect the pages matched. */
+#define PM_SCAN_CHECK_WPASYNC (1 << 1) /* Abort the scan when a non-WP-enabled page is found. */
 
 /*
  * struct pm_scan_arg - Pagemap ioctl argument

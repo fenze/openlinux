@@ -102,11 +102,10 @@ struct mtget {
 #define MT_ISARCHIVESC499	0x0A /* Archive SC-499 QIC-36 controller */
 #define MT_ISQIC02_ALL_FEATURES 0x0F /* Generic QIC-02 with all features */
 #define MT_ISWT5099EEN24	0x11 /* Wangtek 5099-een24, 60MB, QIC-24 */
-#define MT_ISTEAC_MT2ST \
-	0x12 /* Teac MT-2ST 155mb drive, Teac DC-1 card (Wangtek type) */
-#define MT_ISEVEREX_FT40A 0x32 /* Everex FT40A (QIC-40) */
-#define MT_ISDDS1	  0x51 /* DDS device without partitions */
-#define MT_ISDDS2	  0x52 /* DDS device with partitions */
+#define MT_ISTEAC_MT2ST		0x12 /* Teac MT-2ST 155mb drive, Teac DC-1 card (Wangtek type) */
+#define MT_ISEVEREX_FT40A	0x32 /* Everex FT40A (QIC-40) */
+#define MT_ISDDS1		0x51 /* DDS device without partitions */
+#define MT_ISDDS2		0x52 /* DDS device with partitions */
 #define MT_ISONSTREAM_SC                                     \
 	0x61		/* OnStream SCSI tape drives (SC-x0) \
 			   and SCSI emulated (DI, DP, USB) */

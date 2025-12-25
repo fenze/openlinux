@@ -54,20 +54,18 @@ struct inotify_event {
 #define IN_DONT_FOLLOW 0x02000000 /* don't follow a sym link */
 #define IN_EXCL_UNLINK 0x04000000 /* exclude events on unlinked objects */
 #define IN_MASK_CREATE 0x10000000 /* only create watches */
-#define IN_MASK_ADD \
-	0x20000000	      /* add to the mask of an already existing watch */
-#define IN_ISDIR   0x40000000 /* event occurred against dir */
-#define IN_ONESHOT 0x80000000 /* only send event once */
+#define IN_MASK_ADD    0x20000000 /* add to the mask of an already existing watch */
+#define IN_ISDIR       0x40000000 /* event occurred against dir */
+#define IN_ONESHOT     0x80000000 /* only send event once */
 
 /*
  * All of the events - we build the list by hand so that we can add flags in
  * the future and not break backward compatibility.  Apps will get only the
  * events that they originally wanted.  Be sure to add new events here!
  */
-#define IN_ALL_EVENTS                                               \
-	(IN_ACCESS | IN_MODIFY | IN_ATTRIB | IN_CLOSE_WRITE |       \
-	 IN_CLOSE_NOWRITE | IN_OPEN | IN_MOVED_FROM | IN_MOVED_TO | \
-	 IN_DELETE | IN_CREATE | IN_DELETE_SELF | IN_MOVE_SELF)
+#define IN_ALL_EVENTS                                                                                      \
+	(IN_ACCESS | IN_MODIFY | IN_ATTRIB | IN_CLOSE_WRITE | IN_CLOSE_NOWRITE | IN_OPEN | IN_MOVED_FROM | \
+	 IN_MOVED_TO | IN_DELETE | IN_CREATE | IN_DELETE_SELF | IN_MOVE_SELF)
 
 /* Flags for sys_inotify_init1.  */
 #define IN_CLOEXEC  O_CLOEXEC

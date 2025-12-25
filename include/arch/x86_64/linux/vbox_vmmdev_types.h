@@ -16,8 +16,7 @@
  * We cannot use linux' compiletime_assert here because it expects to be used
  * inside a function only. Use a typedef to a char array with a negative size.
  */
-#define VMMDEV_ASSERT_SIZE(type, size) \
-	typedef char type##_asrt_size[1 - 2 * !!(sizeof(struct type) != (size))]
+#define VMMDEV_ASSERT_SIZE(type, size) typedef char type##_asrt_size[1 - 2 * !!(sizeof(struct type) != (size))]
 
 /** enum vmmdev_request_type - VMMDev request types. */
 enum vmmdev_request_type {
@@ -283,8 +282,8 @@ struct vmmdev_hgcm_pagelist {
 	__u16 offset_first_page; /** Data offset in the first page. */
 	__u16 page_count;	 /** Number of pages. */
 	union {
-		__u64 unused; /** Deprecated place-holder for first "pages"
-				 entry. */
+		__u64 unused;			    /** Deprecated place-holder for first "pages"
+						       entry. */
 		__DECLARE_FLEX_ARRAY(__u64, pages); /** Page addresses. */
 	};
 };

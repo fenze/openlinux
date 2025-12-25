@@ -3,7 +3,6 @@
 #undef __ASSEMBLY__
 
 #include <errno.h>
-#include <libc.h>
 #include <stddef.h>
 #include <sys/cdefs.h>
 

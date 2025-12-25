@@ -76,7 +76,7 @@ KBUILD_CFLAGS += -ffreestanding
 KBUILD_CFLAGS += -I$(srctree)/include
 KBUILD_CFLAGS += -I$(srctree)/include/arch/$(ARCH)
 
-KBUILD_CFLAGS += -std=c11
+KBUILD_CFLAGS += -std=c23
 KBUILD_CFLAGS += -fno-common
 KBUILD_CFLAGS += -fno-PIE
 KBUILD_CFLAGS += -fstrict-aliasing

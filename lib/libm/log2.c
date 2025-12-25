@@ -60,8 +60,7 @@ double log2(double x)
 		p = r2 * (B[0] + r * B[1]);
 		y = hi + p;
 		lo += hi - y + p;
-		lo += r4 * (B[2] + r * B[3] + r2 * (B[4] + r * B[5]) +
-			    r4 * (B[6] + r * B[7] + r2 * (B[8] + r * B[9])));
+		lo += r4 * (B[2] + r * B[3] + r2 * (B[4] + r * B[5]) + r4 * (B[6] + r * B[7] + r2 * (B[8] + r * B[9])));
 		y += lo;
 		return eval_as_double(y);
 	}

@@ -78,24 +78,20 @@ struct snp_ext_report_req {
 #define SNP_GUEST_REQ_IOC_TYPE 'S'
 
 /* Get SNP attestation report */
-#define SNP_GET_REPORT \
-	_IOWR(SNP_GUEST_REQ_IOC_TYPE, 0x0, struct snp_guest_request_ioctl)
+#define SNP_GET_REPORT _IOWR(SNP_GUEST_REQ_IOC_TYPE, 0x0, struct snp_guest_request_ioctl)
 
 /* Get a derived key from the root */
-#define SNP_GET_DERIVED_KEY \
-	_IOWR(SNP_GUEST_REQ_IOC_TYPE, 0x1, struct snp_guest_request_ioctl)
+#define SNP_GET_DERIVED_KEY _IOWR(SNP_GUEST_REQ_IOC_TYPE, 0x1, struct snp_guest_request_ioctl)
 
 /* Get SNP extended report as defined in the GHCB specification version 2. */
-#define SNP_GET_EXT_REPORT \
-	_IOWR(SNP_GUEST_REQ_IOC_TYPE, 0x2, struct snp_guest_request_ioctl)
+#define SNP_GET_EXT_REPORT _IOWR(SNP_GUEST_REQ_IOC_TYPE, 0x2, struct snp_guest_request_ioctl)
 
 /* Guest message request EXIT_INFO_2 constants */
-#define SNP_GUEST_FW_ERR_MASK	GENMASK_ULL(31, 0)
-#define SNP_GUEST_VMM_ERR_SHIFT 32
-#define SNP_GUEST_VMM_ERR(x)	(((u64)x) << SNP_GUEST_VMM_ERR_SHIFT)
-#define SNP_GUEST_FW_ERR(x)	((x) & SNP_GUEST_FW_ERR_MASK)
-#define SNP_GUEST_ERR(vmm_err, fw_err) \
-	(SNP_GUEST_VMM_ERR(vmm_err) | SNP_GUEST_FW_ERR(fw_err))
+#define SNP_GUEST_FW_ERR_MASK	       GENMASK_ULL(31, 0)
+#define SNP_GUEST_VMM_ERR_SHIFT	       32
+#define SNP_GUEST_VMM_ERR(x)	       (((u64)x) << SNP_GUEST_VMM_ERR_SHIFT)
+#define SNP_GUEST_FW_ERR(x)	       ((x) & SNP_GUEST_FW_ERR_MASK)
+#define SNP_GUEST_ERR(vmm_err, fw_err) (SNP_GUEST_VMM_ERR(vmm_err) | SNP_GUEST_FW_ERR(fw_err))
 
 #define SNP_GUEST_VMM_ERR_INVALID_LEN 1
 #define SNP_GUEST_VMM_ERR_BUSY	      2

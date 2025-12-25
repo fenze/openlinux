@@ -1,5 +1,5 @@
-#include <ctype.h>
-#include <sys/cdefs.h>
+#include <ctype.h>     // for isalpha, isdigit, isalnum, isalnum_l, locale_t
+#include <sys/cdefs.h> // for __unused, __weak
 
 int isalnum(int c)
 {

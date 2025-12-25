@@ -177,7 +177,7 @@ void bi_windup()
  */
 void copy_block(buf, len, header) char *buf; /* the input data */
 unsigned len;				     /* its length */
-int header; /* true if block header must be written */
+int header;				     /* true if block header must be written */
 {
 	bi_windup(); /* align on byte boundary */
 

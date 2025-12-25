@@ -1,7 +1,6 @@
 #include "__stdio.h" // for __FILE, _IO_EOF, _IO_ERR
 #include "stddef.h"  // for NULL
 
-#include <atomic.h> // for LIBC_LOCK, LIBC_UNLOCK
 #include <stdio.h>  // for FILE, fseek
 #include <unistd.h> // for lseek, off_t
 

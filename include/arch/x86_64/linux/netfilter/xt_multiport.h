@@ -4,11 +4,7 @@
 
 #include <linux/types.h>
 
-enum xt_multiport_flags {
-	XT_MULTIPORT_SOURCE,
-	XT_MULTIPORT_DESTINATION,
-	XT_MULTIPORT_EITHER
-};
+enum xt_multiport_flags { XT_MULTIPORT_SOURCE, XT_MULTIPORT_DESTINATION, XT_MULTIPORT_EITHER };
 
 #define XT_MULTI_PORTS 15
 

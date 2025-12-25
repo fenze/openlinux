@@ -382,28 +382,15 @@ struct qaic_detach_slice {
 #define DRM_QAIC_PERF_STATS_BO	    0x07
 #define DRM_QAIC_DETACH_SLICE_BO    0x08
 
-#define DRM_IOCTL_QAIC_MANAGE \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_QAIC_MANAGE, struct qaic_manage_msg)
-#define DRM_IOCTL_QAIC_CREATE_BO \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_QAIC_CREATE_BO, struct qaic_create_bo)
-#define DRM_IOCTL_QAIC_MMAP_BO \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_QAIC_MMAP_BO, struct qaic_mmap_bo)
-#define DRM_IOCTL_QAIC_ATTACH_SLICE_BO                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_QAIC_ATTACH_SLICE_BO, \
-		struct qaic_attach_slice)
-#define DRM_IOCTL_QAIC_EXECUTE_BO \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_QAIC_EXECUTE_BO, struct qaic_execute)
-#define DRM_IOCTL_QAIC_PARTIAL_EXECUTE_BO                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_QAIC_PARTIAL_EXECUTE_BO, \
-		struct qaic_execute)
-#define DRM_IOCTL_QAIC_WAIT_BO \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_QAIC_WAIT_BO, struct qaic_wait)
-#define DRM_IOCTL_QAIC_PERF_STATS_BO                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_QAIC_PERF_STATS_BO, \
-		 struct qaic_perf_stats)
-#define DRM_IOCTL_QAIC_DETACH_SLICE_BO                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_QAIC_DETACH_SLICE_BO, \
-		struct qaic_detach_slice)
+#define DRM_IOCTL_QAIC_MANAGE		  DRM_IOWR(DRM_COMMAND_BASE + DRM_QAIC_MANAGE, struct qaic_manage_msg)
+#define DRM_IOCTL_QAIC_CREATE_BO	  DRM_IOWR(DRM_COMMAND_BASE + DRM_QAIC_CREATE_BO, struct qaic_create_bo)
+#define DRM_IOCTL_QAIC_MMAP_BO		  DRM_IOWR(DRM_COMMAND_BASE + DRM_QAIC_MMAP_BO, struct qaic_mmap_bo)
+#define DRM_IOCTL_QAIC_ATTACH_SLICE_BO	  DRM_IOW(DRM_COMMAND_BASE + DRM_QAIC_ATTACH_SLICE_BO, struct qaic_attach_slice)
+#define DRM_IOCTL_QAIC_EXECUTE_BO	  DRM_IOW(DRM_COMMAND_BASE + DRM_QAIC_EXECUTE_BO, struct qaic_execute)
+#define DRM_IOCTL_QAIC_PARTIAL_EXECUTE_BO DRM_IOW(DRM_COMMAND_BASE + DRM_QAIC_PARTIAL_EXECUTE_BO, struct qaic_execute)
+#define DRM_IOCTL_QAIC_WAIT_BO		  DRM_IOW(DRM_COMMAND_BASE + DRM_QAIC_WAIT_BO, struct qaic_wait)
+#define DRM_IOCTL_QAIC_PERF_STATS_BO	  DRM_IOWR(DRM_COMMAND_BASE + DRM_QAIC_PERF_STATS_BO, struct qaic_perf_stats)
+#define DRM_IOCTL_QAIC_DETACH_SLICE_BO	  DRM_IOW(DRM_COMMAND_BASE + DRM_QAIC_DETACH_SLICE_BO, struct qaic_detach_slice)
 
 #if defined(__cplusplus)
 }

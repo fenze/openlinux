@@ -6,22 +6,18 @@
 
 #define CMSG_DATA(cmsg) ((void *)(cmsg) + sizeof(struct cmsghdr))
 
-#define CMSG_NXTHDR(mhdr, cmsg)                                          \
-	((cmsg)->cmsg_len < sizeof(struct cmsghdr) ||                    \
-			 (((cmsg)->cmsg_len + sizeof(long) - 1) &        \
-			  ~(long)(sizeof(long) - 1)) +                   \
-					 sizeof(struct cmsghdr) >=       \
-				 ((unsigned char *)(mhdr)->msg_control + \
-				  (mhdr)->msg_controllen) -              \
-					 (unsigned char *)(cmsg) ?       \
-		 0 :                                                     \
-		 (struct cmsghdr *)((unsigned char *)(cmsg) +            \
-				    __CMSG_LEN(cmsg)))
+#define CMSG_NXTHDR(mhdr, cmsg)                                                                    \
+	((cmsg)->cmsg_len < sizeof(struct cmsghdr) ||                                              \
+			 (((cmsg)->cmsg_len + sizeof(long) - 1) & ~(long)(sizeof(long) - 1)) +     \
+					 sizeof(struct cmsghdr) >=                                 \
+				 ((unsigned char *)(mhdr)->msg_control + (mhdr)->msg_controllen) - \
+					 (unsigned char *)(cmsg) ?                                 \
+		 0 :                                                                               \
+		 (struct cmsghdr *)((unsigned char *)(cmsg) + __CMSG_LEN(cmsg)))
 
-#define CMSG_FIRSTHDR(mhdr)                                         \
-	((size_t)(mhdr)->msg_controllen >= sizeof(struct cmsghdr) ? \
-		 (struct cmsghdr *)(mhdr)->msg_control :            \
-		 (struct cmsghdr *)0)
+#define CMSG_FIRSTHDR(mhdr)                                                                                 \
+	((size_t)(mhdr)->msg_controllen >= sizeof(struct cmsghdr) ? (struct cmsghdr *)(mhdr)->msg_control : \
+								    (struct cmsghdr *)0)
 
 #define CMSG_SPACE(len) (CMSG_ALIGN(len) + CMSG_ALIGN(sizeof(struct cmsghdr)))
 
@@ -127,13 +123,11 @@ int getsockname(int, struct sockaddr *restrict, socklen_t *restrict);
 int getsockopt(int, int, int, void *restrict, socklen_t *restrict);
 int listen(int, int);
 ssize_t recv(int, void *, size_t, int);
-ssize_t recvfrom(int, void *restrict, size_t, int, struct sockaddr *restrict,
-		 socklen_t *restrict);
+ssize_t recvfrom(int, void *restrict, size_t, int, struct sockaddr *restrict, socklen_t *restrict);
 ssize_t recvmsg(int, struct msghdr *, int);
 ssize_t send(int, const void *, size_t, int);
 ssize_t sendmsg(int, const struct msghdr *, int);
-ssize_t sendto(int, const void *, size_t, int, const struct sockaddr *,
-	       socklen_t);
+ssize_t sendto(int, const void *, size_t, int, const struct sockaddr *, socklen_t);
 int setsockopt(int, int, int, const void *, socklen_t);
 int shutdown(int, int);
 int sockatmark(int);

@@ -2,8 +2,7 @@
 
 #include <setjmp.h> // for longjmp
 
-__attribute__((noreturn, naked, returns_twice)) void longjmp(jmp_buf env,
-							     int val)
+__attribute__((noreturn, naked, returns_twice)) void longjmp(jmp_buf env, int val)
 {
 	__asm__ __volatile__("mov 0(%rdi), %rbx\n"
 			     "mov 8(%rdi), %rbp\n"

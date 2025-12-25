@@ -1168,9 +1168,8 @@ struct drm_asahi_get_time {
  *
  * Return: An IOCTL number to be passed to ioctl() from userspace.
  */
-#define DRM_IOCTL_ASAHI(__access, __id, __type)               \
-	DRM_IO##__access(DRM_COMMAND_BASE + DRM_ASAHI_##__id, \
-			 struct drm_asahi_##__type)
+#define DRM_IOCTL_ASAHI(__access, __id, __type) \
+	DRM_IO##__access(DRM_COMMAND_BASE + DRM_ASAHI_##__id, struct drm_asahi_##__type)
 
 /* Note: this is an enum so that it can be resolved by Rust bindgen. */
 enum {
@@ -1179,16 +1178,11 @@ enum {
 	DRM_IOCTL_ASAHI_VM_CREATE = DRM_IOCTL_ASAHI(WR, VM_CREATE, vm_create),
 	DRM_IOCTL_ASAHI_VM_DESTROY = DRM_IOCTL_ASAHI(W, VM_DESTROY, vm_destroy),
 	DRM_IOCTL_ASAHI_VM_BIND = DRM_IOCTL_ASAHI(W, VM_BIND, vm_bind),
-	DRM_IOCTL_ASAHI_GEM_CREATE =
-		DRM_IOCTL_ASAHI(WR, GEM_CREATE, gem_create),
-	DRM_IOCTL_ASAHI_GEM_MMAP_OFFSET =
-		DRM_IOCTL_ASAHI(WR, GEM_MMAP_OFFSET, gem_mmap_offset),
-	DRM_IOCTL_ASAHI_GEM_BIND_OBJECT =
-		DRM_IOCTL_ASAHI(WR, GEM_BIND_OBJECT, gem_bind_object),
-	DRM_IOCTL_ASAHI_QUEUE_CREATE =
-		DRM_IOCTL_ASAHI(WR, QUEUE_CREATE, queue_create),
-	DRM_IOCTL_ASAHI_QUEUE_DESTROY =
-		DRM_IOCTL_ASAHI(W, QUEUE_DESTROY, queue_destroy),
+	DRM_IOCTL_ASAHI_GEM_CREATE = DRM_IOCTL_ASAHI(WR, GEM_CREATE, gem_create),
+	DRM_IOCTL_ASAHI_GEM_MMAP_OFFSET = DRM_IOCTL_ASAHI(WR, GEM_MMAP_OFFSET, gem_mmap_offset),
+	DRM_IOCTL_ASAHI_GEM_BIND_OBJECT = DRM_IOCTL_ASAHI(WR, GEM_BIND_OBJECT, gem_bind_object),
+	DRM_IOCTL_ASAHI_QUEUE_CREATE = DRM_IOCTL_ASAHI(WR, QUEUE_CREATE, queue_create),
+	DRM_IOCTL_ASAHI_QUEUE_DESTROY = DRM_IOCTL_ASAHI(W, QUEUE_DESTROY, queue_destroy),
 	DRM_IOCTL_ASAHI_SUBMIT = DRM_IOCTL_ASAHI(W, SUBMIT, submit),
 };
 

@@ -53,8 +53,7 @@ struct mshv_create_partition {
 };
 
 /* /dev/mshv */
-#define MSHV_CREATE_PARTITION \
-	_IOW(MSHV_IOCTL, 0x00, struct mshv_create_partition)
+#define MSHV_CREATE_PARTITION _IOW(MSHV_IOCTL, 0x00, struct mshv_create_partition)
 
 /*
  ************************
@@ -66,12 +65,7 @@ struct mshv_create_vp {
 	__u32 vp_index;
 };
 
-enum {
-	MSHV_SET_MEM_BIT_WRITABLE,
-	MSHV_SET_MEM_BIT_EXECUTABLE,
-	MSHV_SET_MEM_BIT_UNMAP,
-	MSHV_SET_MEM_BIT_COUNT
-};
+enum { MSHV_SET_MEM_BIT_WRITABLE, MSHV_SET_MEM_BIT_EXECUTABLE, MSHV_SET_MEM_BIT_UNMAP, MSHV_SET_MEM_BIT_COUNT };
 
 #define MSHV_SET_MEM_FLAGS_MASK ((1 << MSHV_SET_MEM_BIT_COUNT) - 1)
 
@@ -210,15 +204,13 @@ struct mshv_root_hvcall {
 };
 
 /* Partition fds created with MSHV_CREATE_PARTITION */
-#define MSHV_INITIALIZE_PARTITION _IO(MSHV_IOCTL, 0x00)
-#define MSHV_CREATE_VP		  _IOW(MSHV_IOCTL, 0x01, struct mshv_create_vp)
-#define MSHV_SET_GUEST_MEMORY \
-	_IOW(MSHV_IOCTL, 0x02, struct mshv_user_mem_region)
-#define MSHV_IRQFD	     _IOW(MSHV_IOCTL, 0x03, struct mshv_user_irqfd)
-#define MSHV_IOEVENTFD	     _IOW(MSHV_IOCTL, 0x04, struct mshv_user_ioeventfd)
-#define MSHV_SET_MSI_ROUTING _IOW(MSHV_IOCTL, 0x05, struct mshv_user_irq_table)
-#define MSHV_GET_GPAP_ACCESS_BITMAP \
-	_IOWR(MSHV_IOCTL, 0x06, struct mshv_gpap_access_bitmap)
+#define MSHV_INITIALIZE_PARTITION   _IO(MSHV_IOCTL, 0x00)
+#define MSHV_CREATE_VP		    _IOW(MSHV_IOCTL, 0x01, struct mshv_create_vp)
+#define MSHV_SET_GUEST_MEMORY	    _IOW(MSHV_IOCTL, 0x02, struct mshv_user_mem_region)
+#define MSHV_IRQFD		    _IOW(MSHV_IOCTL, 0x03, struct mshv_user_irqfd)
+#define MSHV_IOEVENTFD		    _IOW(MSHV_IOCTL, 0x04, struct mshv_user_ioeventfd)
+#define MSHV_SET_MSI_ROUTING	    _IOW(MSHV_IOCTL, 0x05, struct mshv_user_irq_table)
+#define MSHV_GET_GPAP_ACCESS_BITMAP _IOWR(MSHV_IOCTL, 0x06, struct mshv_gpap_access_bitmap)
 /* Generic hypercall */
 #define MSHV_ROOT_HVCALL _IOWR(MSHV_IOCTL, 0x07, struct mshv_root_hvcall)
 

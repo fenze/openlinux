@@ -452,13 +452,7 @@ enum fe_guard_interval {
  *
  * Please note that not all hierarchy types are supported by a given standard.
  */
-enum fe_hierarchy {
-	HIERARCHY_NONE,
-	HIERARCHY_1,
-	HIERARCHY_2,
-	HIERARCHY_4,
-	HIERARCHY_AUTO
-};
+enum fe_hierarchy { HIERARCHY_NONE, HIERARCHY_1, HIERARCHY_2, HIERARCHY_4, HIERARCHY_AUTO };
 
 /**
  * enum fe_interleaving - Interleaving
@@ -779,12 +773,7 @@ enum atscmh_rs_code_mode {
  * @FE_SCALE_COUNTER: The scale counts the occurrence of an event, like
  *		      bit error, block error, lapsed time.
  */
-enum fecap_scale_params {
-	FE_SCALE_NOT_AVAILABLE = 0,
-	FE_SCALE_DECIBEL,
-	FE_SCALE_RELATIVE,
-	FE_SCALE_COUNTER
-};
+enum fecap_scale_params { FE_SCALE_NOT_AVAILABLE = 0, FE_SCALE_DECIBEL, FE_SCALE_RELATIVE, FE_SCALE_COUNTER };
 
 /**
  * struct dtv_stats - Used for reading a DTV status property

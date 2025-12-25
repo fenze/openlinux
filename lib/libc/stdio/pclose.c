@@ -1,8 +1,8 @@
-#include <__stdio.h>  // for __FILE
+#include <__stdio.h>
 #include <stdio.h>    // for fclose, FILE, pclose
 #include <sys/wait.h> // for waitpid
 
-int pclose(FILE *stream)
+int pclose(struct __FILE *stream)
 {
 	int stat;
 	fclose(stream);

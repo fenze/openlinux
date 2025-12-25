@@ -1,14 +1,16 @@
-#include <__aio.h>
-#include <aio.h>
-#include <errno.h>
-#include <io_uring.h>
-#include <poll.h>
-#include <stdint.h>
-#include <time.h>
-#include <unistd.h>
+#include "linux/io_uring.h" // for IORING_ENTER_GETEVENTS
+#include "stddef.h"	    // for NULL
 
-int aio_suspend(const struct aiocb *const list[], int nent,
-		const struct timespec *timeout)
+#include <__aio.h>    // for __aio_lookup, __aio_poll, AIO_REQUEST_ST...
+#include <aio.h>      // for timespec, aio_suspend
+#include <errno.h>    // for errno, EAGAIN, EINVAL
+#include <io_uring.h> // for __io_uring, io_uring, io_uring_enter
+#include <poll.h>     // for pollfd, poll, POLLIN
+#include <stdint.h>   // for uint64_t
+#include <time.h>
+#include <unistd.h> // for read
+
+int aio_suspend(const struct aiocb *const list[], int nent, const struct timespec *timeout)
 {
 	struct pollfd pfd;
 	struct aio_request *req;
@@ -32,8 +34,7 @@ int aio_suspend(const struct aiocb *const list[], int nent,
 		pfd.events = POLLIN;
 
 		if (timeout) {
-			timeout_ms = timeout->tv_sec * 1000 +
-				     timeout->tv_nsec / 1000000;
+			timeout_ms = timeout->tv_sec * 1000 + timeout->tv_nsec / 1000000;
 		} else {
 			timeout_ms = -1;
 		}
@@ -51,7 +52,6 @@ int aio_suspend(const struct aiocb *const list[], int nent,
 
 		uint64_t val;
 		read(__io_uring.eventfd, &val, sizeof(val));
-		io_uring_enter(__io_uring.fd, 0, 0, IORING_ENTER_GETEVENTS,
-			       NULL, 0);
+		io_uring_enter(__io_uring.fd, 0, 0, IORING_ENTER_GETEVENTS, NULL, 0);
 	}
 }

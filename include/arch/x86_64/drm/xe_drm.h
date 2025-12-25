@@ -105,37 +105,21 @@ extern "C" {
 
 /* Must be kept compact -- no holes */
 
-#define DRM_IOCTL_XE_DEVICE_QUERY                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_DEVICE_QUERY, \
-		 struct drm_xe_device_query)
-#define DRM_IOCTL_XE_GEM_CREATE \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_GEM_CREATE, struct drm_xe_gem_create)
-#define DRM_IOCTL_XE_GEM_MMAP_OFFSET                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_GEM_MMAP_OFFSET, \
-		 struct drm_xe_gem_mmap_offset)
-#define DRM_IOCTL_XE_VM_CREATE \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_VM_CREATE, struct drm_xe_vm_create)
-#define DRM_IOCTL_XE_VM_DESTROY \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_XE_VM_DESTROY, struct drm_xe_vm_destroy)
-#define DRM_IOCTL_XE_VM_BIND \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_XE_VM_BIND, struct drm_xe_vm_bind)
-#define DRM_IOCTL_XE_EXEC_QUEUE_CREATE                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_CREATE, \
-		 struct drm_xe_exec_queue_create)
-#define DRM_IOCTL_XE_EXEC_QUEUE_DESTROY                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_DESTROY, \
-		struct drm_xe_exec_queue_destroy)
-#define DRM_IOCTL_XE_EXEC_QUEUE_GET_PROPERTY                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_GET_PROPERTY, \
-		 struct drm_xe_exec_queue_get_property)
-#define DRM_IOCTL_XE_EXEC \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC, struct drm_xe_exec)
-#define DRM_IOCTL_XE_WAIT_USER_FENCE                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_WAIT_USER_FENCE, \
-		 struct drm_xe_wait_user_fence)
-#define DRM_IOCTL_XE_OBSERVATION                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_XE_OBSERVATION, \
-		struct drm_xe_observation_param)
+#define DRM_IOCTL_XE_DEVICE_QUERY    DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_DEVICE_QUERY, struct drm_xe_device_query)
+#define DRM_IOCTL_XE_GEM_CREATE	     DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_GEM_CREATE, struct drm_xe_gem_create)
+#define DRM_IOCTL_XE_GEM_MMAP_OFFSET DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_GEM_MMAP_OFFSET, struct drm_xe_gem_mmap_offset)
+#define DRM_IOCTL_XE_VM_CREATE	     DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_VM_CREATE, struct drm_xe_vm_create)
+#define DRM_IOCTL_XE_VM_DESTROY	     DRM_IOW(DRM_COMMAND_BASE + DRM_XE_VM_DESTROY, struct drm_xe_vm_destroy)
+#define DRM_IOCTL_XE_VM_BIND	     DRM_IOW(DRM_COMMAND_BASE + DRM_XE_VM_BIND, struct drm_xe_vm_bind)
+#define DRM_IOCTL_XE_EXEC_QUEUE_CREATE \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_CREATE, struct drm_xe_exec_queue_create)
+#define DRM_IOCTL_XE_EXEC_QUEUE_DESTROY \
+	DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_DESTROY, struct drm_xe_exec_queue_destroy)
+#define DRM_IOCTL_XE_EXEC_QUEUE_GET_PROPERTY \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_GET_PROPERTY, struct drm_xe_exec_queue_get_property)
+#define DRM_IOCTL_XE_EXEC	     DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC, struct drm_xe_exec)
+#define DRM_IOCTL_XE_WAIT_USER_FENCE DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_WAIT_USER_FENCE, struct drm_xe_wait_user_fence)
+#define DRM_IOCTL_XE_OBSERVATION     DRM_IOW(DRM_COMMAND_BASE + DRM_XE_OBSERVATION, struct drm_xe_observation_param)
 
 /**
  * DOC: Xe IOCTL Extensions

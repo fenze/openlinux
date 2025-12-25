@@ -651,14 +651,14 @@ enum {
  */
 struct tc_sfb_qopt {
 	__u32 rehash_interval; /* delay between hash move, in ms */
-	__u32 warmup_time;  /* double buffering warmup time in ms (warmup_time <
-			       rehash_interval) */
-	__u32 max;	    /* max len of qlen_min */
-	__u32 bin_size;	    /* maximum queue length per bin */
-	__u32 increment;    /* probability increment, (d1 in Blue) */
-	__u32 decrement;    /* probability decrement, (d2 in Blue) */
-	__u32 limit;	    /* max SFB queue length */
-	__u32 penalty_rate; /* inelastic flows are rate limited to 'rate' pps */
+	__u32 warmup_time;     /* double buffering warmup time in ms (warmup_time <
+				  rehash_interval) */
+	__u32 max;	       /* max len of qlen_min */
+	__u32 bin_size;	       /* maximum queue length per bin */
+	__u32 increment;       /* probability increment, (d1 in Blue) */
+	__u32 decrement;       /* probability decrement, (d2 in Blue) */
+	__u32 limit;	       /* max SFB queue length */
+	__u32 penalty_rate;    /* inelastic flows are rate limited to 'rate' pps */
 	__u32 penalty_burst;
 };
 
@@ -701,18 +701,18 @@ enum {
 #define TCA_CODEL_MAX (__TCA_CODEL_MAX - 1)
 
 struct tc_codel_xstats {
-	__u32 maxpacket; /* largest packet we've seen so far */
-	__u32 count;	 /* how many drops we've done since the last time we
-			  * entered dropping state
-			  */
-	__u32 lastcount; /* count at entry to dropping state */
-	__u32 ldelay; /* in-queue delay seen by most recently dequeued packet */
+	__u32 maxpacket;      /* largest packet we've seen so far */
+	__u32 count;	      /* how many drops we've done since the last time we
+			       * entered dropping state
+			       */
+	__u32 lastcount;      /* count at entry to dropping state */
+	__u32 ldelay;	      /* in-queue delay seen by most recently dequeued packet */
 	__s32 drop_next;      /* time to drop next packet */
 	__u32 drop_overlimit; /* number of time max qdisc packet limit was hit
 			       */
-	__u32 ecn_mark; /* number of packets we ECN marked instead of dropped */
-	__u32 dropping; /* are we in dropping state ? */
-	__u32 ce_mark; /* number of CE marked packets because of ce_threshold */
+	__u32 ecn_mark;	      /* number of packets we ECN marked instead of dropped */
+	__u32 dropping;	      /* are we in dropping state ? */
+	__u32 ce_mark;	      /* number of CE marked packets because of ce_threshold */
 };
 
 /* FQ_CODEL */
@@ -1153,7 +1153,7 @@ enum {
 	TCA_TAPRIO_ATTR_SCHED_CLOCKID,	    /* s32 */
 	TCA_TAPRIO_PAD,
 	TCA_TAPRIO_ATTR_PAD = TCA_TAPRIO_PAD,
-	TCA_TAPRIO_ATTR_ADMIN_SCHED, /* The admin sched, only used in dump */
+	TCA_TAPRIO_ATTR_ADMIN_SCHED,		    /* The admin sched, only used in dump */
 	TCA_TAPRIO_ATTR_SCHED_CYCLE_TIME,	    /* s64 */
 	TCA_TAPRIO_ATTR_SCHED_CYCLE_TIME_EXTENSION, /* s64 */
 	TCA_TAPRIO_ATTR_FLAGS,			    /* u32 */

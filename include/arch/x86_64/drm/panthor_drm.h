@@ -67,9 +67,8 @@ extern "C" {
  */
 #define DRM_PANTHOR_USER_MMIO_OFFSET_32BIT (1ull << 43)
 #define DRM_PANTHOR_USER_MMIO_OFFSET_64BIT (1ull << 56)
-#define DRM_PANTHOR_USER_MMIO_OFFSET                                      \
-	(sizeof(unsigned long) < 8 ? DRM_PANTHOR_USER_MMIO_OFFSET_32BIT : \
-				     DRM_PANTHOR_USER_MMIO_OFFSET_64BIT)
+#define DRM_PANTHOR_USER_MMIO_OFFSET \
+	(sizeof(unsigned long) < 8 ? DRM_PANTHOR_USER_MMIO_OFFSET_32BIT : DRM_PANTHOR_USER_MMIO_OFFSET_64BIT)
 #define DRM_PANTHOR_USER_FLUSH_ID_MMIO_OFFSET (DRM_PANTHOR_USER_MMIO_OFFSET | 0)
 
 /**
@@ -184,10 +183,7 @@ struct drm_panthor_obj_array {
  * Macro initializing a drm_panthor_obj_array based on the object size as known
  * by userspace.
  */
-#define DRM_PANTHOR_OBJ_ARRAY(cnt, ptr) \
-	{ .stride = sizeof((ptr)[0]),   \
-	  .count = (cnt),               \
-	  .array = (__u64)(uintptr_t)(ptr) }
+#define DRM_PANTHOR_OBJ_ARRAY(cnt, ptr) { .stride = sizeof((ptr)[0]), .count = (cnt), .array = (__u64)(uintptr_t)(ptr) }
 
 /**
  * enum drm_panthor_sync_op_flags - Synchronization operation flags.
@@ -1097,40 +1093,25 @@ struct drm_panthor_set_user_mmio_offset {
  *
  * Return: An IOCTL number to be passed to ioctl() from userspace.
  */
-#define DRM_IOCTL_PANTHOR(__access, __id, __type)               \
-	DRM_IO##__access(DRM_COMMAND_BASE + DRM_PANTHOR_##__id, \
-			 struct drm_panthor_##__type)
+#define DRM_IOCTL_PANTHOR(__access, __id, __type) \
+	DRM_IO##__access(DRM_COMMAND_BASE + DRM_PANTHOR_##__id, struct drm_panthor_##__type)
 
 enum {
-	DRM_IOCTL_PANTHOR_DEV_QUERY =
-		DRM_IOCTL_PANTHOR(WR, DEV_QUERY, dev_query),
-	DRM_IOCTL_PANTHOR_VM_CREATE =
-		DRM_IOCTL_PANTHOR(WR, VM_CREATE, vm_create),
-	DRM_IOCTL_PANTHOR_VM_DESTROY =
-		DRM_IOCTL_PANTHOR(WR, VM_DESTROY, vm_destroy),
+	DRM_IOCTL_PANTHOR_DEV_QUERY = DRM_IOCTL_PANTHOR(WR, DEV_QUERY, dev_query),
+	DRM_IOCTL_PANTHOR_VM_CREATE = DRM_IOCTL_PANTHOR(WR, VM_CREATE, vm_create),
+	DRM_IOCTL_PANTHOR_VM_DESTROY = DRM_IOCTL_PANTHOR(WR, VM_DESTROY, vm_destroy),
 	DRM_IOCTL_PANTHOR_VM_BIND = DRM_IOCTL_PANTHOR(WR, VM_BIND, vm_bind),
-	DRM_IOCTL_PANTHOR_VM_GET_STATE =
-		DRM_IOCTL_PANTHOR(WR, VM_GET_STATE, vm_get_state),
-	DRM_IOCTL_PANTHOR_BO_CREATE =
-		DRM_IOCTL_PANTHOR(WR, BO_CREATE, bo_create),
-	DRM_IOCTL_PANTHOR_BO_MMAP_OFFSET =
-		DRM_IOCTL_PANTHOR(WR, BO_MMAP_OFFSET, bo_mmap_offset),
-	DRM_IOCTL_PANTHOR_GROUP_CREATE =
-		DRM_IOCTL_PANTHOR(WR, GROUP_CREATE, group_create),
-	DRM_IOCTL_PANTHOR_GROUP_DESTROY =
-		DRM_IOCTL_PANTHOR(WR, GROUP_DESTROY, group_destroy),
-	DRM_IOCTL_PANTHOR_GROUP_SUBMIT =
-		DRM_IOCTL_PANTHOR(WR, GROUP_SUBMIT, group_submit),
-	DRM_IOCTL_PANTHOR_GROUP_GET_STATE =
-		DRM_IOCTL_PANTHOR(WR, GROUP_GET_STATE, group_get_state),
-	DRM_IOCTL_PANTHOR_TILER_HEAP_CREATE =
-		DRM_IOCTL_PANTHOR(WR, TILER_HEAP_CREATE, tiler_heap_create),
-	DRM_IOCTL_PANTHOR_TILER_HEAP_DESTROY =
-		DRM_IOCTL_PANTHOR(WR, TILER_HEAP_DESTROY, tiler_heap_destroy),
-	DRM_IOCTL_PANTHOR_BO_SET_LABEL =
-		DRM_IOCTL_PANTHOR(WR, BO_SET_LABEL, bo_set_label),
-	DRM_IOCTL_PANTHOR_SET_USER_MMIO_OFFSET = DRM_IOCTL_PANTHOR(
-		WR, SET_USER_MMIO_OFFSET, set_user_mmio_offset),
+	DRM_IOCTL_PANTHOR_VM_GET_STATE = DRM_IOCTL_PANTHOR(WR, VM_GET_STATE, vm_get_state),
+	DRM_IOCTL_PANTHOR_BO_CREATE = DRM_IOCTL_PANTHOR(WR, BO_CREATE, bo_create),
+	DRM_IOCTL_PANTHOR_BO_MMAP_OFFSET = DRM_IOCTL_PANTHOR(WR, BO_MMAP_OFFSET, bo_mmap_offset),
+	DRM_IOCTL_PANTHOR_GROUP_CREATE = DRM_IOCTL_PANTHOR(WR, GROUP_CREATE, group_create),
+	DRM_IOCTL_PANTHOR_GROUP_DESTROY = DRM_IOCTL_PANTHOR(WR, GROUP_DESTROY, group_destroy),
+	DRM_IOCTL_PANTHOR_GROUP_SUBMIT = DRM_IOCTL_PANTHOR(WR, GROUP_SUBMIT, group_submit),
+	DRM_IOCTL_PANTHOR_GROUP_GET_STATE = DRM_IOCTL_PANTHOR(WR, GROUP_GET_STATE, group_get_state),
+	DRM_IOCTL_PANTHOR_TILER_HEAP_CREATE = DRM_IOCTL_PANTHOR(WR, TILER_HEAP_CREATE, tiler_heap_create),
+	DRM_IOCTL_PANTHOR_TILER_HEAP_DESTROY = DRM_IOCTL_PANTHOR(WR, TILER_HEAP_DESTROY, tiler_heap_destroy),
+	DRM_IOCTL_PANTHOR_BO_SET_LABEL = DRM_IOCTL_PANTHOR(WR, BO_SET_LABEL, bo_set_label),
+	DRM_IOCTL_PANTHOR_SET_USER_MMIO_OFFSET = DRM_IOCTL_PANTHOR(WR, SET_USER_MMIO_OFFSET, set_user_mmio_offset),
 };
 
 #if defined(__cplusplus)

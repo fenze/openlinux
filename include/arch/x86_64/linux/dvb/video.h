@@ -117,10 +117,10 @@ struct video_event {
 };
 
 struct video_status {
-	int video_blank;		     /* blank video on freeze? */
-	video_play_state_t play_state;	     /* current state of playback */
-	video_stream_source_t stream_source; /* current source (demux/memory) */
-	video_format_t video_format;	     /* current aspect ratio of stream*/
+	int video_blank;		      /* blank video on freeze? */
+	video_play_state_t play_state;	      /* current state of playback */
+	video_stream_source_t stream_source;  /* current source (demux/memory) */
+	video_format_t video_format;	      /* current aspect ratio of stream*/
 	video_displayformat_t display_format; /* selected cropping mode */
 };
 

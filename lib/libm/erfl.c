@@ -247,17 +247,8 @@ static long double erfc1(long double x)
 	long double s, P, Q;
 
 	s = fabsl(x) - 1;
-	P = pa[0] +
-	    s * (pa[1] +
-		 s * (pa[2] +
-		      s * (pa[3] +
-			   s * (pa[4] +
-				s * (pa[5] + s * (pa[6] + s * pa[7]))))));
-	Q = qa[0] +
-	    s * (qa[1] +
-		 s * (qa[2] +
-		      s * (qa[3] +
-			   s * (qa[4] + s * (qa[5] + s * (qa[6] + s))))));
+	P = pa[0] + s * (pa[1] + s * (pa[2] + s * (pa[3] + s * (pa[4] + s * (pa[5] + s * (pa[6] + s * pa[7]))))));
+	Q = qa[0] + s * (qa[1] + s * (qa[2] + s * (qa[3] + s * (qa[4] + s * (qa[5] + s * (qa[6] + s))))));
 	return 1 - erx - P / Q;
 }
 
@@ -274,41 +265,18 @@ static long double erfc2(uint32_t ix, long double x)
 	if (ix < 0x4000b6db) { /* 1.25 <= |x| < 2.857 ~ 1/.35 */
 		R = ra[0] +
 		    s * (ra[1] +
-			 s * (ra[2] +
-			      s * (ra[3] +
-				   s * (ra[4] +
-					s * (ra[5] +
-					     s * (ra[6] +
-						  s * (ra[7] + s * ra[8])))))));
+			 s * (ra[2] + s * (ra[3] + s * (ra[4] + s * (ra[5] + s * (ra[6] + s * (ra[7] + s * ra[8])))))));
 		S = sa[0] +
 		    s * (sa[1] +
 			 s * (sa[2] +
-			      s * (sa[3] +
-				   s * (sa[4] +
-					s * (sa[5] +
-					     s * (sa[6] +
-						  s * (sa[7] +
-						       s * (sa[8] + s))))))));
+			      s * (sa[3] + s * (sa[4] + s * (sa[5] + s * (sa[6] + s * (sa[7] + s * (sa[8] + s))))))));
 	} else if (ix < 0x4001d555) { /* 2.857 <= |x| < 6.6666259765625 */
 		R = rb[0] +
-		    s * (rb[1] +
-			 s * (rb[2] +
-			      s * (rb[3] +
-				   s * (rb[4] +
-					s * (rb[5] +
-					     s * (rb[6] + s * rb[7]))))));
-		S = sb[0] +
-		    s * (sb[1] +
-			 s * (sb[2] +
-			      s * (sb[3] +
-				   s * (sb[4] +
-					s * (sb[5] + s * (sb[6] + s))))));
+		    s * (rb[1] + s * (rb[2] + s * (rb[3] + s * (rb[4] + s * (rb[5] + s * (rb[6] + s * rb[7]))))));
+		S = sb[0] + s * (sb[1] + s * (sb[2] + s * (sb[3] + s * (sb[4] + s * (sb[5] + s * (sb[6] + s))))));
 	} else { /* 6.666 <= |x| < 107 (erfc only) */
-		R = rc[0] +
-		    s * (rc[1] +
-			 s * (rc[2] + s * (rc[3] + s * (rc[4] + s * rc[5]))));
-		S = sc[0] +
-		    s * (sc[1] + s * (sc[2] + s * (sc[3] + s * (sc[4] + s))));
+		R = rc[0] + s * (rc[1] + s * (rc[2] + s * (rc[3] + s * (rc[4] + s * rc[5]))));
+		S = sc[0] + s * (sc[1] + s * (sc[2] + s * (sc[3] + s * (sc[4] + s))));
 	}
 	u.f = x;
 	u.i.m &= -1ULL << 40;
@@ -331,13 +299,8 @@ long double erfl(long double x)
 			return 0.125 * (8 * x + efx8 * x); /* avoid underflow */
 		}
 		z = x * x;
-		r = pp[0] +
-		    z * (pp[1] +
-			 z * (pp[2] + z * (pp[3] + z * (pp[4] + z * pp[5]))));
-		s = qq[0] +
-		    z * (qq[1] +
-			 z * (qq[2] +
-			      z * (qq[3] + z * (qq[4] + z * (qq[5] + z)))));
+		r = pp[0] + z * (pp[1] + z * (pp[2] + z * (pp[3] + z * (pp[4] + z * pp[5]))));
+		s = qq[0] + z * (qq[1] + z * (qq[2] + z * (qq[3] + z * (qq[4] + z * (qq[5] + z)))));
 		y = r / s;
 		return x + x * y;
 	}
@@ -362,13 +325,8 @@ long double erfcl(long double x)
 		if (ix < 0x3fbe0000) /* |x| < 2**-65 */
 			return 1.0 - x;
 		z = x * x;
-		r = pp[0] +
-		    z * (pp[1] +
-			 z * (pp[2] + z * (pp[3] + z * (pp[4] + z * pp[5]))));
-		s = qq[0] +
-		    z * (qq[1] +
-			 z * (qq[2] +
-			      z * (qq[3] + z * (qq[4] + z * (qq[5] + z)))));
+		r = pp[0] + z * (pp[1] + z * (pp[2] + z * (pp[3] + z * (pp[4] + z * pp[5]))));
+		s = qq[0] + z * (qq[1] + z * (qq[2] + z * (qq[3] + z * (qq[4] + z * (qq[5] + z)))));
 		y = r / s;
 		if (ix < 0x3ffd8000) /* x < 1/4 */
 			return 1.0 - (x + x * y);

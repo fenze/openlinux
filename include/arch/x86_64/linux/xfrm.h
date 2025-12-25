@@ -126,20 +126,9 @@ struct xfrm_stats {
 	__u32 integrity_failed;
 };
 
-enum {
-	XFRM_POLICY_TYPE_MAIN = 0,
-	XFRM_POLICY_TYPE_SUB = 1,
-	XFRM_POLICY_TYPE_MAX = 2,
-	XFRM_POLICY_TYPE_ANY = 255
-};
+enum { XFRM_POLICY_TYPE_MAIN = 0, XFRM_POLICY_TYPE_SUB = 1, XFRM_POLICY_TYPE_MAX = 2, XFRM_POLICY_TYPE_ANY = 255 };
 
-enum {
-	XFRM_POLICY_IN = 0,
-	XFRM_POLICY_OUT = 1,
-	XFRM_POLICY_FWD = 2,
-	XFRM_POLICY_MASK = 3,
-	XFRM_POLICY_MAX = 3
-};
+enum { XFRM_POLICY_IN = 0, XFRM_POLICY_OUT = 1, XFRM_POLICY_FWD = 2, XFRM_POLICY_MASK = 3, XFRM_POLICY_MAX = 3 };
 
 enum xfrm_sa_dir { XFRM_SA_DIR_IN = 1, XFRM_SA_DIR_OUT = 2 };
 
@@ -324,10 +313,10 @@ enum xfrm_attr_type_t {
 	XFRMA_IPTFS_DROP_TIME,	      /* __u32 in: usec to wait for next seq */
 	XFRMA_IPTFS_REORDER_WINDOW,   /* __u16 in: reorder window size (pkts) */
 	XFRMA_IPTFS_DONT_FRAG,	      /* out: don't use fragmentation */
-	XFRMA_IPTFS_INIT_DELAY, /* __u32 out: initial packet wait delay (usec)
-				 */
-	XFRMA_IPTFS_MAX_QSIZE,	/* __u32 out: max ingress queue size (octets) */
-	XFRMA_IPTFS_PKT_SIZE, /* __u32 out: size of outer packet, 0 for PMTU */
+	XFRMA_IPTFS_INIT_DELAY,	      /* __u32 out: initial packet wait delay (usec)
+				       */
+	XFRMA_IPTFS_MAX_QSIZE,	      /* __u32 out: max ingress queue size (octets) */
+	XFRMA_IPTFS_PKT_SIZE,	      /* __u32 out: size of outer packet, 0 for PMTU */
 	__XFRMA_MAX
 
 #define XFRMA_OUTPUT_MARK XFRMA_SET_MARK /* Compatibility */
@@ -441,7 +430,7 @@ struct xfrm_userpolicy_info {
 #define XFRM_POLICY_BLOCK 1
 	__u8 flags;
 #define XFRM_POLICY_LOCALOK 1 /* Allow user to override global policy */
-	/* Automatically expand selector to include matching ICMP payloads. */
+			      /* Automatically expand selector to include matching ICMP payloads. */
 #define XFRM_POLICY_ICMP	2
 #define XFRM_POLICY_CPU_ACQUIRE 4
 	__u8 share;

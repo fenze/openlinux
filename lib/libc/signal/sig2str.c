@@ -6,8 +6,7 @@
 int sig2str(int signum, char *str)
 {
 	if (signum >= SIGHUP && signum <= SIGSYS) {
-		strlcpy(str, __sys_signame[signum - SIGHUP],
-			sizeof(__sys_signame[signum - SIGHUP]));
+		strlcpy(str, __sys_signame[signum - SIGHUP], sizeof(__sys_signame[signum - SIGHUP]));
 		return 0;
 	}
 
@@ -23,11 +22,9 @@ int sig2str(int signum, char *str)
 
 	if (signum > SIGRTMIN && signum < SIGRTMAX) {
 		if (signum - SIGRTMIN <= SIGRTMAX - signum) {
-			snprintf(str, sizeof("RTMIN+") + 1, "RTMIN+%d",
-				 signum - SIGRTMIN);
+			snprintf(str, sizeof("RTMIN+") + 1, "RTMIN+%d", signum - SIGRTMIN);
 		} else {
-			snprintf(str, sizeof("RTMAX-") + 1, "RTMAX-%d",
-				 SIGRTMAX - signum);
+			snprintf(str, sizeof("RTMAX-") + 1, "RTMAX-%d", SIGRTMAX - signum);
 		}
 		return 0;
 	}

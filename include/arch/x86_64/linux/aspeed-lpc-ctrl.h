@@ -53,12 +53,8 @@ struct aspeed_lpc_ctrl_mapping {
 
 #define __ASPEED_LPC_CTRL_IOCTL_MAGIC 0xb2
 
-#define ASPEED_LPC_CTRL_IOCTL_GET_SIZE             \
-	_IOWR(__ASPEED_LPC_CTRL_IOCTL_MAGIC, 0x00, \
-	      struct aspeed_lpc_ctrl_mapping)
+#define ASPEED_LPC_CTRL_IOCTL_GET_SIZE _IOWR(__ASPEED_LPC_CTRL_IOCTL_MAGIC, 0x00, struct aspeed_lpc_ctrl_mapping)
 
-#define ASPEED_LPC_CTRL_IOCTL_MAP                 \
-	_IOW(__ASPEED_LPC_CTRL_IOCTL_MAGIC, 0x01, \
-	     struct aspeed_lpc_ctrl_mapping)
+#define ASPEED_LPC_CTRL_IOCTL_MAP _IOW(__ASPEED_LPC_CTRL_IOCTL_MAGIC, 0x01, struct aspeed_lpc_ctrl_mapping)
 
 #endif /* _LINUX_ASPEED_LPC_CTRL_H */

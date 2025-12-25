@@ -1,9 +1,8 @@
+#include "stddef.h"
 #include <__thread.h>
-#include <libc/futex.h>
 #include <stdatomic.h>
 #include <sys/mman.h>
 #include <threads.h>
-#include <unistd.h>
 
 int thrd_detach(thrd_t thr)
 {

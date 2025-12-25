@@ -8,6 +8,5 @@ long double complex csinhl(long double complex z)
 	x = creall(z);
 	y = cimagl(z);
 
-	return sinhl(x) * cosl(y) +
-	       (coshl(x) * sinl(y)) * (long double complex)I;
+	return sinhl(x) * cosl(y) + (coshl(x) * sinl(y)) * (long double complex)I;
 }

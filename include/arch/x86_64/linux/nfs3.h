@@ -35,11 +35,7 @@
 #define NFS3_ACCESS_FULL    0x003f
 
 /* Flags for create mode */
-enum nfs3_createmode {
-	NFS3_CREATE_UNCHECKED = 0,
-	NFS3_CREATE_GUARDED = 1,
-	NFS3_CREATE_EXCLUSIVE = 2
-};
+enum nfs3_createmode { NFS3_CREATE_UNCHECKED = 0, NFS3_CREATE_GUARDED = 1, NFS3_CREATE_EXCLUSIVE = 2 };
 
 /* NFSv3 file system properties */
 #define NFS3_FSF_LINK	     0x0001

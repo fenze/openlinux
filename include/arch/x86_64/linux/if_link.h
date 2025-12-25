@@ -394,9 +394,7 @@ enum {
 };
 
 /* backwards compatibility for userspace */
-#define IFLA_RTA(r)                        \
-	((struct rtattr *)(((char *)(r)) + \
-			   NLMSG_ALIGN(sizeof(struct ifinfomsg))))
+#define IFLA_RTA(r)	((struct rtattr *)(((char *)(r)) + NLMSG_ALIGN(sizeof(struct ifinfomsg))))
 #define IFLA_PAYLOAD(n) NLMSG_PAYLOAD(n, sizeof(struct ifinfomsg))
 
 enum {
@@ -1217,13 +1215,7 @@ enum {
 #define IFLA_MACSEC_MAX (__IFLA_MACSEC_MAX - 1)
 
 /* XFRM section */
-enum {
-	IFLA_XFRM_UNSPEC,
-	IFLA_XFRM_LINK,
-	IFLA_XFRM_IF_ID,
-	IFLA_XFRM_COLLECT_METADATA,
-	__IFLA_XFRM_MAX
-};
+enum { IFLA_XFRM_UNSPEC, IFLA_XFRM_LINK, IFLA_XFRM_IF_ID, IFLA_XFRM_COLLECT_METADATA, __IFLA_XFRM_MAX };
 
 #define IFLA_XFRM_MAX (__IFLA_XFRM_MAX - 1)
 
@@ -1244,21 +1236,11 @@ enum macsec_offload {
 };
 
 /* IPVLAN section */
-enum {
-	IFLA_IPVLAN_UNSPEC,
-	IFLA_IPVLAN_MODE,
-	IFLA_IPVLAN_FLAGS,
-	__IFLA_IPVLAN_MAX
-};
+enum { IFLA_IPVLAN_UNSPEC, IFLA_IPVLAN_MODE, IFLA_IPVLAN_FLAGS, __IFLA_IPVLAN_MAX };
 
 #define IFLA_IPVLAN_MAX (__IFLA_IPVLAN_MAX - 1)
 
-enum ipvlan_mode {
-	IPVLAN_MODE_L2 = 0,
-	IPVLAN_MODE_L3,
-	IPVLAN_MODE_L3S,
-	IPVLAN_MODE_MAX
-};
+enum ipvlan_mode { IPVLAN_MODE_L2 = 0, IPVLAN_MODE_L3, IPVLAN_MODE_L3S, IPVLAN_MODE_MAX };
 
 #define IPVLAN_F_PRIVATE 0x01
 #define IPVLAN_F_VEPA	 0x02
@@ -1747,13 +1729,7 @@ struct ifla_port_vsi {
 
 /* IPoIB section */
 
-enum {
-	IFLA_IPOIB_UNSPEC,
-	IFLA_IPOIB_PKEY,
-	IFLA_IPOIB_MODE,
-	IFLA_IPOIB_UMCAST,
-	__IFLA_IPOIB_MAX
-};
+enum { IFLA_IPOIB_UNSPEC, IFLA_IPOIB_PKEY, IFLA_IPOIB_MODE, IFLA_IPOIB_UMCAST, __IFLA_IPOIB_MAX };
 
 enum {
 	IPOIB_MODE_DATAGRAM = 0,  /* using unreliable datagram QPs */
@@ -1817,9 +1793,9 @@ enum {
 
 enum {
 	IFLA_STATS_GETSET_UNSPEC,
-	IFLA_STATS_GET_FILTERS, /* Nest of IFLA_STATS_LINK_xxx, each a u32 with
-				 * a filter mask for the corresponding group.
-				 */
+	IFLA_STATS_GET_FILTERS,			/* Nest of IFLA_STATS_LINK_xxx, each a u32 with
+						 * a filter mask for the corresponding group.
+						 */
 	IFLA_STATS_SET_OFFLOAD_XSTATS_L3_STATS, /* 0 or 1 as u8 */
 	__IFLA_STATS_GETSET_MAX,
 };
@@ -1831,12 +1807,7 @@ enum {
  * -> [LINK_XSTATS_TYPE_xxx]
  *    -> [rtnl link type specific attributes]
  */
-enum {
-	LINK_XSTATS_TYPE_UNSPEC,
-	LINK_XSTATS_TYPE_BRIDGE,
-	LINK_XSTATS_TYPE_BOND,
-	__LINK_XSTATS_TYPE_MAX
-};
+enum { LINK_XSTATS_TYPE_UNSPEC, LINK_XSTATS_TYPE_BRIDGE, LINK_XSTATS_TYPE_BOND, __LINK_XSTATS_TYPE_MAX };
 #define LINK_XSTATS_TYPE_MAX (__LINK_XSTATS_TYPE_MAX - 1)
 
 /* These are stats embedded into IFLA_STATS_LINK_OFFLOAD_XSTATS */
@@ -1855,8 +1826,7 @@ enum {
 	IFLA_OFFLOAD_XSTATS_HW_S_INFO_USED,    /* u8 */
 	__IFLA_OFFLOAD_XSTATS_HW_S_INFO_MAX,
 };
-#define IFLA_OFFLOAD_XSTATS_HW_S_INFO_MAX \
-	(__IFLA_OFFLOAD_XSTATS_HW_S_INFO_MAX - 1)
+#define IFLA_OFFLOAD_XSTATS_HW_S_INFO_MAX (__IFLA_OFFLOAD_XSTATS_HW_S_INFO_MAX - 1)
 
 /* XDP section */
 
@@ -1865,10 +1835,8 @@ enum {
 #define XDP_FLAGS_DRV_MODE	    (1U << 2)
 #define XDP_FLAGS_HW_MODE	    (1U << 3)
 #define XDP_FLAGS_REPLACE	    (1U << 4)
-#define XDP_FLAGS_MODES \
-	(XDP_FLAGS_SKB_MODE | XDP_FLAGS_DRV_MODE | XDP_FLAGS_HW_MODE)
-#define XDP_FLAGS_MASK \
-	(XDP_FLAGS_UPDATE_IF_NOEXIST | XDP_FLAGS_MODES | XDP_FLAGS_REPLACE)
+#define XDP_FLAGS_MODES		    (XDP_FLAGS_SKB_MODE | XDP_FLAGS_DRV_MODE | XDP_FLAGS_HW_MODE)
+#define XDP_FLAGS_MASK		    (XDP_FLAGS_UPDATE_IF_NOEXIST | XDP_FLAGS_MODES | XDP_FLAGS_REPLACE)
 
 /* These are stored into IFLA_XDP_ATTACHED on dump. */
 enum {

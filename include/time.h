@@ -73,18 +73,15 @@ struct tm *localtime(const time_t *);
 struct tm *localtime_r(const time_t *restrict, struct tm *restrict);
 time_t mktime(struct tm *);
 int nanosleep(const struct timespec *, struct timespec *);
-size_t strftime(char *restrict, size_t, const char *restrict,
-		const struct tm *restrict);
-size_t strftime_l(char *restrict, size_t, const char *restrict,
-		  const struct tm *restrict, locale_t);
+size_t strftime(char *restrict, size_t, const char *restrict, const struct tm *restrict);
+size_t strftime_l(char *restrict, size_t, const char *restrict, const struct tm *restrict, locale_t);
 char *strptime(const char *restrict, const char *restrict, struct tm *restrict);
 time_t time(time_t *);
 int timer_create(clockid_t, struct sigevent *restrict, timer_t *restrict);
 int timer_delete(timer_t);
 int timer_getoverrun(timer_t);
 int timer_gettime(timer_t, struct itimerspec *);
-int timer_settime(timer_t, int, const struct itimerspec *restrict,
-		  struct itimerspec *restrict);
+int timer_settime(timer_t, int, const struct itimerspec *restrict, struct itimerspec *restrict);
 int timespec_get(struct timespec *, int);
 void tzset(void);
 

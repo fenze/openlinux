@@ -61,8 +61,7 @@ struct v4l2_mbus_framefmt {
  * v4l2_mbus_pixelcode enum is frozen.
  */
 
-#define V4L2_MBUS_FROM_MEDIA_BUS_FMT(name) \
-	V4L2_MBUS_FMT_##name = MEDIA_BUS_FMT_##name
+#define V4L2_MBUS_FROM_MEDIA_BUS_FMT(name) V4L2_MBUS_FMT_##name = MEDIA_BUS_FMT_##name
 
 enum v4l2_mbus_pixelcode {
 	V4L2_MBUS_FROM_MEDIA_BUS_FMT(FIXED),

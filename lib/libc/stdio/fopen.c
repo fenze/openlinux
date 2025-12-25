@@ -1,11 +1,12 @@
+#include "stddef.h"
 #include <__stdio.h>
 
-#include <errno.h>  // for EINVAL, errno
-#include <fcntl.h>  // for O_WRONLY, O_CREAT, O_RDONLY, open, O_APPEND
+#include <errno.h> // for EINVAL, errno
+#include <fcntl.h> // for O_WRONLY, O_CREAT, O_RDONLY, open, O_APPEND
+#include <stdatomic.h>
 #include <stdio.h>  // for FILE, BUFSIZ, fopen, _IOLBF
 #include <stdlib.h> // for calloc, free, malloc
 #include <string.h> // for strchr
-#include <sys/cdefs.h>
 #include <unistd.h> // for close
 
 FILE *fopen(const char *restrict pathname, const char *restrict mode)

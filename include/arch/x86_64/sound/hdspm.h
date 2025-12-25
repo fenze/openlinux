@@ -83,18 +83,11 @@ struct hdspm_ltc {
  * connection status.
  */
 
-enum hdspm_sync {
-	hdspm_sync_no_lock = 0,
-	hdspm_sync_lock = 1,
-	hdspm_sync_sync = 2
-};
+enum hdspm_sync { hdspm_sync_no_lock = 0, hdspm_sync_lock = 1, hdspm_sync_sync = 2 };
 
 enum hdspm_madi_input { hdspm_input_optical = 0, hdspm_input_coax = 1 };
 
-enum hdspm_madi_channel_format {
-	hdspm_format_ch_64 = 0,
-	hdspm_format_ch_56 = 1
-};
+enum hdspm_madi_channel_format { hdspm_format_ch_64 = 0, hdspm_format_ch_56 = 1 };
 
 enum hdspm_madi_frame_format { hdspm_frame_48 = 0, hdspm_frame_96 = 1 };
 

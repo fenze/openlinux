@@ -93,8 +93,7 @@ struct vbg_ioctl_driver_version_info {
 };
 VMMDEV_ASSERT_SIZE(vbg_ioctl_driver_version_info, 24 + 20);
 
-#define VBG_IOCTL_DRIVER_VERSION_INFO \
-	_IOWR('V', 0, struct vbg_ioctl_driver_version_info)
+#define VBG_IOCTL_DRIVER_VERSION_INFO _IOWR('V', 0, struct vbg_ioctl_driver_version_info)
 
 /* IOCTL to perform a VMM Device request less than 1KB in size. */
 #define VBG_IOCTL_VMMDEV_REQUEST(s) _IOC(_IOC_READ | _IOC_WRITE, 'V', 2, s)
@@ -129,8 +128,7 @@ struct vbg_ioctl_hgcm_disconnect {
 };
 VMMDEV_ASSERT_SIZE(vbg_ioctl_hgcm_disconnect, 24 + 4);
 
-#define VBG_IOCTL_HGCM_DISCONNECT \
-	_IOWR('V', 5, struct vbg_ioctl_hgcm_disconnect)
+#define VBG_IOCTL_HGCM_DISCONNECT _IOWR('V', 5, struct vbg_ioctl_hgcm_disconnect)
 
 /** VBG_IOCTL_HGCM_CALL data structure. */
 struct vbg_ioctl_hgcm_call {
@@ -211,8 +209,7 @@ struct vbg_ioctl_wait_for_events {
 };
 VMMDEV_ASSERT_SIZE(vbg_ioctl_wait_for_events, 24 + 8);
 
-#define VBG_IOCTL_WAIT_FOR_EVENTS \
-	_IOWR('V', 10, struct vbg_ioctl_wait_for_events)
+#define VBG_IOCTL_WAIT_FOR_EVENTS _IOWR('V', 10, struct vbg_ioctl_wait_for_events)
 
 /*
  * IOCTL to VBoxGuest to interrupt (cancel) any pending
@@ -223,8 +220,7 @@ VMMDEV_ASSERT_SIZE(vbg_ioctl_wait_for_events, 24 + 8);
  * the same session. Any VBOXGUEST_IOCTL_WAITEVENT calls in the same session
  * done after calling this will directly exit with -EINTR.
  */
-#define VBG_IOCTL_INTERRUPT_ALL_WAIT_FOR_EVENTS \
-	_IOWR('V', 11, struct vbg_ioctl_hdr)
+#define VBG_IOCTL_INTERRUPT_ALL_WAIT_FOR_EVENTS _IOWR('V', 11, struct vbg_ioctl_hdr)
 
 /** VBG_IOCTL_CHANGE_FILTER_MASK data structure. */
 struct vbg_ioctl_change_filter {
@@ -242,8 +238,7 @@ struct vbg_ioctl_change_filter {
 VMMDEV_ASSERT_SIZE(vbg_ioctl_change_filter, 24 + 8);
 
 /* IOCTL to VBoxGuest to control the event filter mask. */
-#define VBG_IOCTL_CHANGE_FILTER_MASK \
-	_IOWR('V', 12, struct vbg_ioctl_change_filter)
+#define VBG_IOCTL_CHANGE_FILTER_MASK _IOWR('V', 12, struct vbg_ioctl_change_filter)
 
 /** VBG_IOCTL_ACQUIRE_GUEST_CAPABILITIES data structure. */
 struct vbg_ioctl_acquire_guest_caps {
@@ -265,8 +260,7 @@ VMMDEV_ASSERT_SIZE(vbg_ioctl_acquire_guest_caps, 24 + 12);
 #define VBGL_IOC_AGC_FLAGS_CONFIG_ACQUIRE_MODE 0x00000001
 #define VBGL_IOC_AGC_FLAGS_VALID_MASK	       0x00000001
 
-#define VBG_IOCTL_ACQUIRE_GUEST_CAPABILITIES \
-	_IOWR('V', 13, struct vbg_ioctl_acquire_guest_caps)
+#define VBG_IOCTL_ACQUIRE_GUEST_CAPABILITIES _IOWR('V', 13, struct vbg_ioctl_acquire_guest_caps)
 
 /** VBG_IOCTL_CHANGE_GUEST_CAPABILITIES data structure. */
 struct vbg_ioctl_set_guest_caps {
@@ -289,8 +283,7 @@ struct vbg_ioctl_set_guest_caps {
 };
 VMMDEV_ASSERT_SIZE(vbg_ioctl_set_guest_caps, 24 + 8);
 
-#define VBG_IOCTL_CHANGE_GUEST_CAPABILITIES \
-	_IOWR('V', 14, struct vbg_ioctl_set_guest_caps)
+#define VBG_IOCTL_CHANGE_GUEST_CAPABILITIES _IOWR('V', 14, struct vbg_ioctl_set_guest_caps)
 
 /** VBG_IOCTL_CHECK_BALLOON data structure. */
 struct vbg_ioctl_check_balloon {
@@ -332,7 +325,6 @@ struct vbg_ioctl_write_coredump {
 };
 VMMDEV_ASSERT_SIZE(vbg_ioctl_write_coredump, 24 + 4);
 
-#define VBG_IOCTL_WRITE_CORE_DUMP \
-	_IOWR('V', 19, struct vbg_ioctl_write_coredump)
+#define VBG_IOCTL_WRITE_CORE_DUMP _IOWR('V', 19, struct vbg_ioctl_write_coredump)
 
 #endif

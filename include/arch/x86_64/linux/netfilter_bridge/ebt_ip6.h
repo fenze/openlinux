@@ -24,9 +24,8 @@
 #define EBT_IP6_DPORT  0x20
 #define EBT_IP6_ICMP6  0x40
 
-#define EBT_IP6_MASK                                                      \
-	(EBT_IP6_SOURCE | EBT_IP6_DEST | EBT_IP6_TCLASS | EBT_IP6_PROTO | \
-	 EBT_IP6_SPORT | EBT_IP6_DPORT | EBT_IP6_ICMP6)
+#define EBT_IP6_MASK \
+	(EBT_IP6_SOURCE | EBT_IP6_DEST | EBT_IP6_TCLASS | EBT_IP6_PROTO | EBT_IP6_SPORT | EBT_IP6_DPORT | EBT_IP6_ICMP6)
 #define EBT_IP6_MATCH "ip6"
 
 /* the same values are used for the invflags */

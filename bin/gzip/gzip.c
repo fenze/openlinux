@@ -14,23 +14,21 @@
 #include <stdio.h>  // for fprintf, stderr, perror, fileno, stdin, stdout
 #include <string.h> // for strcpy, strcmp, strlen, strcat, memcmp, strncmp
 
-static char *license_msg[] = {
-	"   Copyright (C) 1992-1993 Jean-loup Gailly",
-	"   This program is free software; you can redistribute it and/or modify",
-	"   it under the terms of the GNU General Public License as published by",
-	"   the Free Software Foundation; either version 2, or (at your option)",
-	"   any later version.",
-	"",
-	"   This program is distributed in the hope that it will be useful,",
-	"   but WITHOUT ANY WARRANTY; without even the implied warranty of",
-	"   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the",
-	"   GNU General Public License for more details.",
-	"",
-	"   You should have received a copy of the GNU General Public License",
-	"   along with this program; if not, write to the Free Software",
-	"   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.",
-	0
-};
+static char *license_msg[] = { "   Copyright (C) 1992-1993 Jean-loup Gailly",
+			       "   This program is free software; you can redistribute it and/or modify",
+			       "   it under the terms of the GNU General Public License as published by",
+			       "   the Free Software Foundation; either version 2, or (at your option)",
+			       "   any later version.",
+			       "",
+			       "   This program is distributed in the hope that it will be useful,",
+			       "   but WITHOUT ANY WARRANTY; without even the implied warranty of",
+			       "   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the",
+			       "   GNU General Public License for more details.",
+			       "",
+			       "   You should have received a copy of the GNU General Public License",
+			       "   along with this program; if not, write to the Free Software",
+			       "   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.",
+			       0 };
 
 /* Compress files with zip algorithm and 'compress' interface.
  * See usage() and help() functions below for all options.
@@ -98,23 +96,23 @@ int decompress_wanted;
 int decompress; /* decompress (-d) */
 #define decompress_wanted decompress
 #endif
-int force;	       /* don't ask questions, compress links (-f) */
-int no_name = -1;      /* don't save or restore the original file name */
-int no_time = -1;      /* don't save or restore the original file time */
-int verbose;	       /* be verbose (-v) */
-int quiet;	       /* be very quiet (-q) */
-int test;	       /* test .gz file integrity */
-int foreground;	       /* set if program run in foreground */
-char *progname;	       /* program name */
-int method = DEFLATED; /* compression method */
-int exit_code = OK;    /* program exit code */
-int save_orig_name;    /* set if original name must be saved */
-int last_member;       /* set for .zip and .Z files */
-int part_nb;	       /* number of parts in .gz file */
-time_t time_stamp;     /* original time stamp (modification time) */
-long ifile_size;       /* input file size, -1 for devices (debug only) */
-char *env;	       /* contents of GZIP env variable */
-char **args = NULL;    /* argv pointer if GZIP env variable defined */
+int force;		       /* don't ask questions, compress links (-f) */
+int no_name = -1;	       /* don't save or restore the original file name */
+int no_time = -1;	       /* don't save or restore the original file time */
+int verbose;		       /* be verbose (-v) */
+int quiet;		       /* be very quiet (-q) */
+int test;		       /* test .gz file integrity */
+int foreground;		       /* set if program run in foreground */
+char *progname;		       /* program name */
+int method = DEFLATED;	       /* compression method */
+int exit_code = OK;	       /* program exit code */
+int save_orig_name;	       /* set if original name must be saved */
+int last_member;	       /* set for .zip and .Z files */
+int part_nb;		       /* number of parts in .gz file */
+time_t time_stamp;	       /* original time stamp (modification time) */
+long ifile_size;	       /* input file size, -1 for devices (debug only) */
+char *env;		       /* contents of GZIP env variable */
+char **args = NULL;	       /* argv pointer if GZIP env variable defined */
 char z_suffix[MAX_SUFFIX + 1]; /* default suffix (can be set with --suffix) */
 int z_len;		       /* strlen(z_suffix) */
 
@@ -167,39 +165,36 @@ local void reset_times OF((char *name, struct stat *statb));
 /* ======================================================================== */
 local void usage()
 {
-	fprintf(stderr, "usage: %s [-cdfhlLnNtvV19] [-S suffix] [file ...]\n",
-		progname);
+	fprintf(stderr, "usage: %s [-cdfhlLnNtvV19] [-S suffix] [file ...]\n", progname);
 }
 
 /* ======================================================================== */
 local void help()
 {
-	static char *help_msg[] = {
-		" -c --stdout      write on standard output, keep original files unchanged",
-		" -d --decompress  decompress",
-		" -f --force       force overwrite of output file and compress links",
-		" -h --help        give this help",
-		" -L --license     display software license",
+	static char *help_msg[] = { " -c --stdout      write on standard output, keep original files unchanged",
+				    " -d --decompress  decompress",
+				    " -f --force       force overwrite of output file and compress links",
+				    " -h --help        give this help",
+				    " -L --license     display software license",
 #ifdef UNDOCUMENTED
-		" -m --no-time     do not save or restore the original modification time",
-		" -M --time        save or restore the original modification time",
+				    " -m --no-time     do not save or restore the original modification time",
+				    " -M --time        save or restore the original modification time",
 #endif
-		" -n --no-name     do not save or restore the original name and time stamp",
-		" -N --name        save or restore the original name and time stamp",
-		" -q --quiet       suppress all warnings",
-		" -S .suf  --suffix .suf     use suffix .suf on compressed files",
-		" -t --test        test compressed file integrity",
-		" -v --verbose     verbose mode",
-		" -V --version     display version number",
+				    " -n --no-name     do not save or restore the original name and time stamp",
+				    " -N --name        save or restore the original name and time stamp",
+				    " -q --quiet       suppress all warnings",
+				    " -S .suf  --suffix .suf     use suffix .suf on compressed files",
+				    " -t --test        test compressed file integrity",
+				    " -v --verbose     verbose mode",
+				    " -V --version     display version number",
 #ifdef SUPPORT_ZIP
-		" -1 --fast        compress faster",
-		" -9 --best        compress better",
-		" file...          files to (de)compress. If none given, use standard input.",
+				    " -1 --fast        compress faster",
+				    " -9 --best        compress better",
+				    " file...          files to (de)compress. If none given, use standard input.",
 #else
-		" file...          files to decompress. If none given, use standard input.",
+				    " file...          files to decompress. If none given, use standard input.",
 #endif
-		0
-	};
+				    0 };
 	char **p = help_msg;
 
 	fprintf(stderr, "%s %s (%s)\n", progname, VERSION, REVDATE);
@@ -280,8 +275,7 @@ int main(int argc, char **argv)
 	strncpy(z_suffix, Z_SUFFIX, sizeof(z_suffix) - 1);
 	z_len = strlen(z_suffix);
 
-	while ((optc = getopt(argc, argv, "cdfhH?LmMnNqrS:tvV123456789")) !=
-	       EOF) {
+	while ((optc = getopt(argc, argv, "cdfhH?LmMnNqrS:tvV123456789")) != EOF) {
 		switch (optc) {
 		case 'c':
 			to_stdout = 1;
@@ -356,9 +350,7 @@ int main(int argc, char **argv)
 
 #ifndef SUPPORT_ZIP
 	if (!decompress_wanted) {
-		fprintf(stderr,
-			"%s: this version does not support compression\n",
-			progname);
+		fprintf(stderr, "%s: this version does not support compression\n", progname);
 		do_exit(ERROR);
 	}
 #endif
@@ -374,8 +366,7 @@ int main(int argc, char **argv)
 	file_count = argc - optind;
 
 	if ((z_len == 0 && !decompress) || z_len > MAX_SUFFIX) {
-		fprintf(stderr, "%s: incorrect suffix '%s'\n", progname,
-			optarg);
+		fprintf(stderr, "%s: incorrect suffix '%s'\n", progname, optarg);
 		do_exit(ERROR);
 	}
 
@@ -418,10 +409,8 @@ local void treat_stdin()
 		 *
 		 * Here we use the --force option to get the other behavior.
 		 */
-		fprintf(stderr,
-			"%s: compressed data not %s a terminal. Use -f to force %scompression.\n",
-			progname, decompress ? "read from" : "written to",
-			decompress ? "de" : "");
+		fprintf(stderr, "%s: compressed data not %s a terminal. Use -f to force %scompression.\n", progname,
+			decompress ? "read from" : "written to", decompress ? "de" : "");
 		fprintf(stderr, "For help, type: %s -h\n", progname);
 		do_exit(ERROR);
 	}
@@ -472,13 +461,11 @@ local void treat_stdin()
 			fprintf(stderr, " OK\n");
 
 		} else if (!decompress) {
-			display_ratio(bytes_in - (bytes_out - header_bytes),
-				      bytes_in, stderr);
+			display_ratio(bytes_in - (bytes_out - header_bytes), bytes_in, stderr);
 			fprintf(stderr, "\n");
 #ifdef DISPLAY_STDIN_RATIO
 		} else {
-			display_ratio(bytes_out - (bytes_in - header_bytes),
-				      bytes_out, stderr);
+			display_ratio(bytes_out - (bytes_in - header_bytes), bytes_out, stderr);
 			fprintf(stderr, "\n");
 #endif
 		}
@@ -504,19 +491,15 @@ local void treat_file(char *iname)
 
 	/* If the input name is that of a directory, recurse or ignore: */
 	if (S_ISDIR(istat.st_mode)) {
-		WARN((stderr, "%s: %s is a directory -- ignored\n", progname,
-		      ifname));
+		WARN((stderr, "%s: %s is a directory -- ignored\n", progname, ifname));
 		return;
 	}
 	if (!S_ISREG(istat.st_mode)) {
-		WARN((stderr,
-		      "%s: %s is not a directory or a regular file - ignored\n",
-		      progname, ifname));
+		WARN((stderr, "%s: %s is not a directory or a regular file - ignored\n", progname, ifname));
 		return;
 	}
 	if (istat.st_nlink > 1 && !to_stdout && !force) {
-		WARN((stderr, "%s: %s has %d other link%c -- unchanged\n",
-		      progname, ifname, (int)istat.st_nlink - 1,
+		WARN((stderr, "%s: %s has %d other link%c -- unchanged\n", progname, ifname, (int)istat.st_nlink - 1,
 		      istat.st_nlink > 2 ? 's' : ' '));
 		return;
 	}
@@ -568,8 +551,7 @@ local void treat_file(char *iname)
 			return;
 
 		if (!decompress && save_orig_name && !verbose && !quiet) {
-			fprintf(stderr, "%s: %s compressed to %s\n", progname,
-				ifname, ofname);
+			fprintf(stderr, "%s: %s compressed to %s\n", progname, ifname, ofname);
 		}
 	}
 	/* Keep the name even if not truncated except with --no-name: */
@@ -578,9 +560,7 @@ local void treat_file(char *iname)
 
 	if (verbose) {
 		fprintf(stderr, "%s:\t%s", ifname,
-			(int)strlen(ifname) >= 15 ?
-				"" :
-				((int)strlen(ifname) >= 7 ? "\t" : "\t\t"));
+			(int)strlen(ifname) >= 15 ? "" : ((int)strlen(ifname) >= 7 ? "\t" : "\t\t"));
 	}
 
 	/* Actually do the compression/decompression. Loop over zipped members.
@@ -614,11 +594,9 @@ local void treat_file(char *iname)
 		if (test) {
 			fprintf(stderr, " OK");
 		} else if (decompress) {
-			display_ratio(bytes_out - (bytes_in - header_bytes),
-				      bytes_out, stderr);
+			display_ratio(bytes_out - (bytes_in - header_bytes), bytes_out, stderr);
 		} else {
-			display_ratio(bytes_in - (bytes_out - header_bytes),
-				      bytes_in, stderr);
+			display_ratio(bytes_in - (bytes_out - header_bytes), bytes_in, stderr);
 		}
 		if (!test && !to_stdout) {
 			fprintf(stderr, " -- replaced with %s", ofname);
@@ -677,8 +655,7 @@ local int create_outfile()
 		if (decompress) {
 			/* name might be too long if an original name was saved
 			 */
-			WARN((stderr, "%s: %s: warning, name truncated\n",
-			      progname, ofname));
+			WARN((stderr, "%s: %s: warning, name truncated\n", progname, ofname));
 			return OK;
 		}
 		close(ofd);
@@ -717,8 +694,7 @@ local char *get_suffix(char *name)
 	int nlen, slen;
 	char suffix[MAX_SUFFIX + 3]; /* last chars of name, forced to lower case
 				      */
-	static char *known_suffixes[] = { z_suffix, ".gz", ".z", ".taz", ".tgz",
-					  "-gz",    "-z",  "_z", NULL };
+	static char *known_suffixes[] = { z_suffix, ".gz", ".z", ".taz", ".tgz", "-gz", "-z", "_z", NULL };
 	char **suf = known_suffixes;
 
 	if (strequ(z_suffix, "z"))
@@ -734,8 +710,7 @@ local char *get_suffix(char *name)
 	slen = strlen(suffix);
 	do {
 		int s = strlen(*suf);
-		if (slen > s && suffix[slen - s - 1] != PATH_SEP &&
-		    strequ(suffix + slen - s, *suf)) {
+		if (slen > s && suffix[slen - s - 1] != PATH_SEP && strequ(suffix + slen - s, *suf)) {
 			return name + nlen - s;
 		}
 	} while (*++suf != NULL);
@@ -820,9 +795,7 @@ local int make_ofname()
 
 			/* Avoid annoying messages with -r */
 			if (verbose || !quiet) {
-				WARN((stderr,
-				      "%s: %s: unknown suffix -- ignored\n",
-				      progname, ifname));
+				WARN((stderr, "%s: %s: unknown suffix -- ignored\n", progname, ifname));
 			}
 			return WARNING;
 		}
@@ -839,9 +812,7 @@ local int make_ofname()
 	} else if (suff != NULL) {
 		/* Avoid annoying messages with -r (see treat_dir()) */
 		if (verbose || !quiet) {
-			fprintf(stderr,
-				"%s: %s already has %s suffix -- unchanged\n",
-				progname, ifname, suff);
+			fprintf(stderr, "%s: %s already has %s suffix -- unchanged\n", progname, ifname, suff);
 		}
 		if (exit_code == OK)
 			exit_code = WARNING;
@@ -889,13 +860,11 @@ local int get_method()
 	/* assume multiple members in gzip file except for record oriented I/O
 	 */
 
-	if (memcmp(magic, GZIP_MAGIC, 2) == 0 ||
-	    memcmp(magic, OLD_GZIP_MAGIC, 2) == 0) {
+	if (memcmp(magic, GZIP_MAGIC, 2) == 0 || memcmp(magic, OLD_GZIP_MAGIC, 2) == 0) {
 		method = (int)get_byte();
 		if (method != DEFLATED) {
-			fprintf(stderr,
-				"%s: %s: unknown method %d -- get newer version of gzip\n",
-				progname, ifname, method);
+			fprintf(stderr, "%s: %s: unknown method %d -- get newer version of gzip\n", progname, ifname,
+				method);
 			exit_code = ERROR;
 			return -1;
 		}
@@ -903,24 +872,20 @@ local int get_method()
 		flags = (uch)get_byte();
 
 		if ((flags & ENCRYPTED) != 0) {
-			fprintf(stderr,
-				"%s: %s is encrypted -- get newer version of gzip\n",
-				progname, ifname);
+			fprintf(stderr, "%s: %s is encrypted -- get newer version of gzip\n", progname, ifname);
 			exit_code = ERROR;
 			return -1;
 		}
 		if ((flags & CONTINUATION) != 0) {
-			fprintf(stderr,
-				"%s: %s is a a multi-part gzip file -- get newer version of gzip\n",
-				progname, ifname);
+			fprintf(stderr, "%s: %s is a a multi-part gzip file -- get newer version of gzip\n", progname,
+				ifname);
 			exit_code = ERROR;
 			if (force <= 1)
 				return -1;
 		}
 		if ((flags & RESERVED) != 0) {
-			fprintf(stderr,
-				"%s: %s has flags 0x%x -- get newer version of gzip\n",
-				progname, ifname, flags);
+			fprintf(stderr, "%s: %s has flags 0x%x -- get newer version of gzip\n", progname, ifname,
+				flags);
 			exit_code = ERROR;
 			if (force <= 1)
 				return -1;
@@ -939,17 +904,14 @@ local int get_method()
 			unsigned part = (unsigned)get_byte();
 			part |= ((unsigned)get_byte()) << 8;
 			if (verbose) {
-				fprintf(stderr, "%s: %s: part number %u\n",
-					progname, ifname, part);
+				fprintf(stderr, "%s: %s: part number %u\n", progname, ifname, part);
 			}
 		}
 		if ((flags & EXTRA_FIELD) != 0) {
 			unsigned len = (unsigned)get_byte();
 			len |= ((unsigned)get_byte()) << 8;
 			if (verbose) {
-				fprintf(stderr,
-					"%s: %s: extra field of %u bytes ignored\n",
-					progname, ifname, len);
+				fprintf(stderr, "%s: %s: extra field of %u bytes ignored\n", progname, ifname, len);
 			}
 			while (len--)
 				(void)get_byte();
@@ -998,13 +960,11 @@ local int get_method()
 		return method;
 
 	if (part_nb == 1) {
-		fprintf(stderr, "\n%s: %s: not in gzip format\n", progname,
-			ifname);
+		fprintf(stderr, "\n%s: %s: not in gzip format\n", progname, ifname);
 		exit_code = ERROR;
 		return -1;
 	}
-	WARN((stderr, "\n%s: %s: decompression OK, trailing garbage ignored\n",
-	      progname, ifname));
+	WARN((stderr, "\n%s: %s: decompression OK, trailing garbage ignored\n", progname, ifname));
 	return -2;
 }
 
@@ -1017,12 +977,9 @@ local int same_file(struct stat *stat1, struct stat *stat2)
 	       stat1->st_dev == stat2->st_dev
 #ifdef NO_ST_INO
 	       /* Can't rely on st_ino and st_dev, use other fields: */
-	       && stat1->st_mode == stat2->st_mode &&
-	       stat1->st_uid == stat2->st_uid &&
-	       stat1->st_gid == stat2->st_gid &&
-	       stat1->st_size == stat2->st_size &&
-	       stat1->st_atime == stat2->st_atime &&
-	       stat1->st_mtime == stat2->st_mtime &&
+	       && stat1->st_mode == stat2->st_mode && stat1->st_uid == stat2->st_uid &&
+	       stat1->st_gid == stat2->st_gid && stat1->st_size == stat2->st_size &&
+	       stat1->st_atime == stat2->st_atime && stat1->st_mtime == stat2->st_mtime &&
 	       stat1->st_ctime == stat2->st_ctime
 #endif
 		;
@@ -1160,12 +1117,10 @@ local int check_ofname()
 	 */
 	if (same_file(&istat, &ostat)) {
 		if (strequ(ifname, ofname)) {
-			fprintf(stderr,
-				"%s: %s: cannot %scompress onto itself\n",
-				progname, ifname, decompress ? "de" : "");
+			fprintf(stderr, "%s: %s: cannot %scompress onto itself\n", progname, ifname,
+				decompress ? "de" : "");
 		} else {
-			fprintf(stderr, "%s: %s and %s are the same file\n",
-				progname, ifname, ofname);
+			fprintf(stderr, "%s: %s and %s are the same file\n", progname, ifname, ofname);
 		}
 		exit_code = ERROR;
 		return ERROR;

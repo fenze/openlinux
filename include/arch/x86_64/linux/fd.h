@@ -29,13 +29,11 @@ struct floppy_struct {
 	unsigned char gap, /* gap1 size */
 
 		rate, /* data rate. |= 0x40 for perpendicular */
-#define FD_2M		0x4
-#define FD_SIZECODEMASK 0x38
-#define FD_SIZECODE(floppy) \
-	(((((floppy)->rate & FD_SIZECODEMASK) >> 3) + 2) % 8)
-#define FD_SECTSIZE(floppy) \
-	((floppy)->rate & FD_2M ? 512 : 128 << FD_SIZECODE(floppy))
-#define FD_PERP 0x40
+#define FD_2M		    0x4
+#define FD_SIZECODEMASK	    0x38
+#define FD_SIZECODE(floppy) (((((floppy)->rate & FD_SIZECODEMASK) >> 3) + 2) % 8)
+#define FD_SECTSIZE(floppy) ((floppy)->rate & FD_2M ? 512 : 128 << FD_SIZECODE(floppy))
+#define FD_PERP		    0x40
 
 		spec1,	  /* stepping rate, head unload time */
 		fmt_gap;  /* gap2 size */
@@ -85,9 +83,9 @@ struct floppy_max_errors {
 	unsigned int abort, /* number of errors to be reached before aborting */
 		read_track, /* maximal number of errors permitted to read an
 			     * entire track at once */
-		reset, /* maximal number of errors before a reset is tried */
-		recal, /* maximal number of errors before a recalibrate is
-			* tried */
+		reset,	    /* maximal number of errors before a reset is tried */
+		recal,	    /* maximal number of errors before a recalibrate is
+			     * tried */
 
 		/*
 		 * Threshold for reporting FDC errors to the console.
@@ -345,9 +343,9 @@ struct floppy_raw_cmd {
 	char *kernel_data;	     /* location of data buffer in the kernel */
 	struct floppy_raw_cmd *next; /* used for chaining of raw cmd's
 				      * within the kernel */
-	long length;	  /* in: length of dma transfer. out: remaining bytes */
-	long phys_length; /* physical length, if different from dma length */
-	int buffer_length; /* length of allocated buffer */
+	long length;		     /* in: length of dma transfer. out: remaining bytes */
+	long phys_length;	     /* physical length, if different from dma length */
+	int buffer_length;	     /* length of allocated buffer */
 
 	unsigned char rate;
 

@@ -31,31 +31,26 @@ int execvp(const char *file, char *const argv[])
 
 			ptr = strchr(path, ':');
 			if (ptr == NULL) {
-				if (snprintf(buf, PATH_MAX, "%s/%s", path,
-					     file) >= PATH_MAX) {
+				if (snprintf(buf, PATH_MAX, "%s/%s", path, file) >= PATH_MAX) {
 					errno = ENAMETOOLONG;
 					return -1;
 				}
 
 				/* Validate path doesn't contain dangerous
 				 * characters */
-				if (strstr(buf, "..") == NULL &&
-				    strchr(buf, '\0') == buf + strlen(buf)) {
+				if (strstr(buf, "..") == NULL && strchr(buf, '\0') == buf + strlen(buf)) {
 					execv(buf, argv);
 				}
 				break;
 			}
 
-			if (snprintf(buf, PATH_MAX, "%.*s/%s",
-				     (int)(ptr - path), path,
-				     file) >= PATH_MAX) {
+			if (snprintf(buf, PATH_MAX, "%.*s/%s", (int)(ptr - path), path, file) >= PATH_MAX) {
 				errno = ENAMETOOLONG;
 				return -1;
 			}
 
 			/* Validate path doesn't contain dangerous characters */
-			if (strstr(buf, "..") == NULL &&
-			    strchr(buf, '\0') == buf + strlen(buf)) {
+			if (strstr(buf, "..") == NULL && strchr(buf, '\0') == buf + strlen(buf)) {
 				execv(buf, argv);
 			}
 			path = ptr + 1;

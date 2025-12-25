@@ -225,12 +225,10 @@ struct rtattr {
 
 #define RTA_ALIGNTO    4U
 #define RTA_ALIGN(len) (((len) + RTA_ALIGNTO - 1) & ~(RTA_ALIGNTO - 1))
-#define RTA_OK(rta, len)                        \
-	((len) >= (int)sizeof(struct rtattr) && \
-	 (rta)->rta_len >= sizeof(struct rtattr) && (rta)->rta_len <= (len))
-#define RTA_NEXT(rta, attrlen)                   \
-	((attrlen) -= RTA_ALIGN((rta)->rta_len), \
-	 (struct rtattr *)(((char *)(rta)) + RTA_ALIGN((rta)->rta_len)))
+#define RTA_OK(rta, len) \
+	((len) >= (int)sizeof(struct rtattr) && (rta)->rta_len >= sizeof(struct rtattr) && (rta)->rta_len <= (len))
+#define RTA_NEXT(rta, attrlen) \
+	((attrlen) -= RTA_ALIGN((rta)->rta_len), (struct rtattr *)(((char *)(rta)) + RTA_ALIGN((rta)->rta_len)))
 #define RTA_LENGTH(len)	 (RTA_ALIGN(sizeof(struct rtattr)) + (len))
 #define RTA_SPACE(len)	 RTA_ALIGN(RTA_LENGTH(len))
 #define RTA_DATA(rta)	 ((void *)(((char *)(rta)) + RTA_LENGTH(0)))
@@ -402,8 +400,7 @@ enum rtattr_type_t {
 
 #define RTA_MAX (__RTA_MAX - 1)
 
-#define RTM_RTA(r) \
-	((struct rtattr *)(((char *)(r)) + NLMSG_ALIGN(sizeof(struct rtmsg))))
+#define RTM_RTA(r)     ((struct rtattr *)(((char *)(r)) + NLMSG_ALIGN(sizeof(struct rtmsg))))
 #define RTM_PAYLOAD(n) NLMSG_PAYLOAD(n, sizeof(struct rtmsg))
 
 /* RTM_MULTIPATH --- array of struct rtnexthop.
@@ -432,21 +429,17 @@ struct rtnexthop {
 #define RTNH_F_UNRESOLVED 32 /* The entry is unresolved (ipmr) */
 #define RTNH_F_TRAP	  64 /* Nexthop is trapping packets */
 
-#define RTNH_COMPARE_MASK \
-	(RTNH_F_DEAD | RTNH_F_LINKDOWN | RTNH_F_OFFLOAD | RTNH_F_TRAP)
+#define RTNH_COMPARE_MASK (RTNH_F_DEAD | RTNH_F_LINKDOWN | RTNH_F_OFFLOAD | RTNH_F_TRAP)
 
 /* Macros to handle hexthops */
 
-#define RTNH_ALIGNTO	4
-#define RTNH_ALIGN(len) (((len) + RTNH_ALIGNTO - 1) & ~(RTNH_ALIGNTO - 1))
-#define RTNH_OK(rtnh, len)                               \
-	((rtnh)->rtnh_len >= sizeof(struct rtnexthop) && \
-	 ((int)(rtnh)->rtnh_len) <= (len))
-#define RTNH_NEXT(rtnh) \
-	((struct rtnexthop *)(((char *)(rtnh)) + RTNH_ALIGN((rtnh)->rtnh_len)))
-#define RTNH_LENGTH(len) (RTNH_ALIGN(sizeof(struct rtnexthop)) + (len))
-#define RTNH_SPACE(len)	 RTNH_ALIGN(RTNH_LENGTH(len))
-#define RTNH_DATA(rtnh)	 ((struct rtattr *)(((char *)(rtnh)) + RTNH_LENGTH(0)))
+#define RTNH_ALIGNTO	   4
+#define RTNH_ALIGN(len)	   (((len) + RTNH_ALIGNTO - 1) & ~(RTNH_ALIGNTO - 1))
+#define RTNH_OK(rtnh, len) ((rtnh)->rtnh_len >= sizeof(struct rtnexthop) && ((int)(rtnh)->rtnh_len) <= (len))
+#define RTNH_NEXT(rtnh)	   ((struct rtnexthop *)(((char *)(rtnh)) + RTNH_ALIGN((rtnh)->rtnh_len)))
+#define RTNH_LENGTH(len)   (RTNH_ALIGN(sizeof(struct rtnexthop)) + (len))
+#define RTNH_SPACE(len)	   RTNH_ALIGN(RTNH_LENGTH(len))
+#define RTNH_DATA(rtnh)	   ((struct rtattr *)(((char *)(rtnh)) + RTNH_LENGTH(0)))
 
 /* RTA_VIA */
 struct rtvia {
@@ -519,9 +512,9 @@ enum {
 #define RTAX_FEATURE_ALLFRAG	 (1 << 3) /* unused */
 #define RTAX_FEATURE_TCP_USEC_TS (1 << 4)
 
-#define RTAX_FEATURE_MASK                                                \
-	(RTAX_FEATURE_ECN | RTAX_FEATURE_SACK | RTAX_FEATURE_TIMESTAMP | \
-	 RTAX_FEATURE_ALLFRAG | RTAX_FEATURE_TCP_USEC_TS)
+#define RTAX_FEATURE_MASK                                                                       \
+	(RTAX_FEATURE_ECN | RTAX_FEATURE_SACK | RTAX_FEATURE_TIMESTAMP | RTAX_FEATURE_ALLFRAG | \
+	 RTAX_FEATURE_TCP_USEC_TS)
 
 struct rta_session {
 	__u8 proto;
@@ -653,8 +646,7 @@ enum {
 		  * (handle, cookie, etc.) and stats.       \
 		  */
 
-#define TCA_RTA(r) \
-	((struct rtattr *)(((char *)(r)) + NLMSG_ALIGN(sizeof(struct tcmsg))))
+#define TCA_RTA(r)     ((struct rtattr *)(((char *)(r)) + NLMSG_ALIGN(sizeof(struct tcmsg))))
 #define TCA_PAYLOAD(n) NLMSG_PAYLOAD(n, sizeof(struct tcmsg))
 
 /********************************************************************
@@ -802,8 +794,7 @@ enum {
 #define TCA_ROOT_MAX (__TCA_ROOT_MAX - 1)
 };
 
-#define TA_RTA(r) \
-	((struct rtattr *)(((char *)(r)) + NLMSG_ALIGN(sizeof(struct tcamsg))))
+#define TA_RTA(r)     ((struct rtattr *)(((char *)(r)) + NLMSG_ALIGN(sizeof(struct tcamsg))))
 #define TA_PAYLOAD(n) NLMSG_PAYLOAD(n, sizeof(struct tcamsg))
 /* tcamsg flags stored in attribute TCA_ROOT_FLAGS
  *

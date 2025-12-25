@@ -92,9 +92,7 @@ struct virtio_iommu_req_detach {
 #define VIRTIO_IOMMU_MAP_F_WRITE (1 << 1)
 #define VIRTIO_IOMMU_MAP_F_MMIO	 (1 << 2)
 
-#define VIRTIO_IOMMU_MAP_F_MASK                               \
-	(VIRTIO_IOMMU_MAP_F_READ | VIRTIO_IOMMU_MAP_F_WRITE | \
-	 VIRTIO_IOMMU_MAP_F_MMIO)
+#define VIRTIO_IOMMU_MAP_F_MASK (VIRTIO_IOMMU_MAP_F_READ | VIRTIO_IOMMU_MAP_F_WRITE | VIRTIO_IOMMU_MAP_F_MMIO)
 
 struct virtio_iommu_req_map {
 	struct virtio_iommu_req_head head;

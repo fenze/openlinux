@@ -27,10 +27,9 @@
  */
 enum proc_cn_mcast_op { PROC_CN_MCAST_LISTEN = 1, PROC_CN_MCAST_IGNORE = 2 };
 
-#define PROC_EVENT_ALL                                                         \
-	(PROC_EVENT_FORK | PROC_EVENT_EXEC | PROC_EVENT_UID | PROC_EVENT_GID | \
-	 PROC_EVENT_SID | PROC_EVENT_PTRACE | PROC_EVENT_COMM |                \
-	 PROC_EVENT_NONZERO_EXIT | PROC_EVENT_COREDUMP | PROC_EVENT_EXIT)
+#define PROC_EVENT_ALL                                                                                              \
+	(PROC_EVENT_FORK | PROC_EVENT_EXEC | PROC_EVENT_UID | PROC_EVENT_GID | PROC_EVENT_SID | PROC_EVENT_PTRACE | \
+	 PROC_EVENT_COMM | PROC_EVENT_NONZERO_EXIT | PROC_EVENT_COREDUMP | PROC_EVENT_EXIT)
 
 /*
  * If you add an entry in proc_cn_event, make sure you add it in

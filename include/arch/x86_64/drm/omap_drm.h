@@ -113,20 +113,12 @@ struct drm_omap_gem_info {
 #define DRM_OMAP_GEM_INFO     0x06
 #define DRM_OMAP_NUM_IOCTLS   0x07
 
-#define DRM_IOCTL_OMAP_GET_PARAM \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_OMAP_GET_PARAM, struct drm_omap_param)
-#define DRM_IOCTL_OMAP_SET_PARAM \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_OMAP_SET_PARAM, struct drm_omap_param)
-#define DRM_IOCTL_OMAP_GEM_NEW \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_OMAP_GEM_NEW, struct drm_omap_gem_new)
-#define DRM_IOCTL_OMAP_GEM_CPU_PREP                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_OMAP_GEM_CPU_PREP, \
-		struct drm_omap_gem_cpu_prep)
-#define DRM_IOCTL_OMAP_GEM_CPU_FINI                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_OMAP_GEM_CPU_FINI, \
-		struct drm_omap_gem_cpu_fini)
-#define DRM_IOCTL_OMAP_GEM_INFO \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_OMAP_GEM_INFO, struct drm_omap_gem_info)
+#define DRM_IOCTL_OMAP_GET_PARAM    DRM_IOWR(DRM_COMMAND_BASE + DRM_OMAP_GET_PARAM, struct drm_omap_param)
+#define DRM_IOCTL_OMAP_SET_PARAM    DRM_IOW(DRM_COMMAND_BASE + DRM_OMAP_SET_PARAM, struct drm_omap_param)
+#define DRM_IOCTL_OMAP_GEM_NEW	    DRM_IOWR(DRM_COMMAND_BASE + DRM_OMAP_GEM_NEW, struct drm_omap_gem_new)
+#define DRM_IOCTL_OMAP_GEM_CPU_PREP DRM_IOW(DRM_COMMAND_BASE + DRM_OMAP_GEM_CPU_PREP, struct drm_omap_gem_cpu_prep)
+#define DRM_IOCTL_OMAP_GEM_CPU_FINI DRM_IOW(DRM_COMMAND_BASE + DRM_OMAP_GEM_CPU_FINI, struct drm_omap_gem_cpu_fini)
+#define DRM_IOCTL_OMAP_GEM_INFO	    DRM_IOWR(DRM_COMMAND_BASE + DRM_OMAP_GEM_INFO, struct drm_omap_gem_info)
 
 #if defined(__cplusplus)
 }

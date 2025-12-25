@@ -1,4 +1,3 @@
-#include <__stdio.h>
 #include <stdio.h>
 
 void clearerr(FILE *stream)

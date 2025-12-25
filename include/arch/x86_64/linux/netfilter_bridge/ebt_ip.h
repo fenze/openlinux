@@ -26,9 +26,9 @@
 #define EBT_IP_DPORT  0x20
 #define EBT_IP_ICMP   0x40
 #define EBT_IP_IGMP   0x80
-#define EBT_IP_MASK                                                \
-	(EBT_IP_SOURCE | EBT_IP_DEST | EBT_IP_TOS | EBT_IP_PROTO | \
-	 EBT_IP_SPORT | EBT_IP_DPORT | EBT_IP_ICMP | EBT_IP_IGMP)
+#define EBT_IP_MASK                                                                                            \
+	(EBT_IP_SOURCE | EBT_IP_DEST | EBT_IP_TOS | EBT_IP_PROTO | EBT_IP_SPORT | EBT_IP_DPORT | EBT_IP_ICMP | \
+	 EBT_IP_IGMP)
 #define EBT_IP_MATCH "ip"
 
 /* the same values are used for the invflags */

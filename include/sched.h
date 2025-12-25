@@ -2,6 +2,7 @@
 #define __SCHED_H
 
 #include <sys/cdefs.h>
+#include <time.h>
 
 #define __BITS_TIMESPEC_H_
 #include <bits/timespec.h>

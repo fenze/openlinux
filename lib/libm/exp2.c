@@ -76,8 +76,7 @@ double exp2(double x)
 	double_t kd, r, r2, scale, tail, tmp;
 
 	abstop = top12(x) & 0x7ff;
-	if (predict_false(abstop - top12(0x1p-54) >=
-			  top12(512.0) - top12(0x1p-54))) {
+	if (predict_false(abstop - top12(0x1p-54) >= top12(512.0) - top12(0x1p-54))) {
 		if (abstop - top12(0x1p-54) >= 0x80000000)
 			/* Avoid spurious underflow for tiny x.  */
 			/* Note: 0 is common input.  */

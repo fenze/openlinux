@@ -65,11 +65,7 @@ struct snd_compr_avail {
 	struct snd_compr_tstamp tstamp;
 } __attribute__((packed, aligned(4)));
 
-enum snd_compr_direction {
-	SND_COMPRESS_PLAYBACK = 0,
-	SND_COMPRESS_CAPTURE,
-	SND_COMPRESS_ACCEL
-};
+enum snd_compr_direction { SND_COMPRESS_PLAYBACK = 0, SND_COMPRESS_CAPTURE, SND_COMPRESS_ACCEL };
 
 /**
  * struct snd_compr_caps - caps descriptor
@@ -201,30 +197,28 @@ struct snd_compr_task_status {
  * SNDRV_COMPRESS_DRAIN: Play till end of buffers and stop after that
  * SNDRV_COMPRESS_IOCTL_VERSION: Query the API version
  */
-#define SNDRV_COMPRESS_IOCTL_VERSION _IOR('C', 0x00, int)
-#define SNDRV_COMPRESS_GET_CAPS	     _IOWR('C', 0x10, struct snd_compr_caps)
-#define SNDRV_COMPRESS_GET_CODEC_CAPS \
-	_IOWR('C', 0x11, struct snd_compr_codec_caps)
-#define SNDRV_COMPRESS_SET_PARAMS    _IOW('C', 0x12, struct snd_compr_params)
-#define SNDRV_COMPRESS_GET_PARAMS    _IOR('C', 0x13, struct snd_codec)
-#define SNDRV_COMPRESS_SET_METADATA  _IOW('C', 0x14, struct snd_compr_metadata)
-#define SNDRV_COMPRESS_GET_METADATA  _IOWR('C', 0x15, struct snd_compr_metadata)
-#define SNDRV_COMPRESS_TSTAMP	     _IOR('C', 0x20, struct snd_compr_tstamp)
-#define SNDRV_COMPRESS_AVAIL	     _IOR('C', 0x21, struct snd_compr_avail)
-#define SNDRV_COMPRESS_PAUSE	     _IO('C', 0x30)
-#define SNDRV_COMPRESS_RESUME	     _IO('C', 0x31)
-#define SNDRV_COMPRESS_START	     _IO('C', 0x32)
-#define SNDRV_COMPRESS_STOP	     _IO('C', 0x33)
-#define SNDRV_COMPRESS_DRAIN	     _IO('C', 0x34)
-#define SNDRV_COMPRESS_NEXT_TRACK    _IO('C', 0x35)
-#define SNDRV_COMPRESS_PARTIAL_DRAIN _IO('C', 0x36)
+#define SNDRV_COMPRESS_IOCTL_VERSION  _IOR('C', 0x00, int)
+#define SNDRV_COMPRESS_GET_CAPS	      _IOWR('C', 0x10, struct snd_compr_caps)
+#define SNDRV_COMPRESS_GET_CODEC_CAPS _IOWR('C', 0x11, struct snd_compr_codec_caps)
+#define SNDRV_COMPRESS_SET_PARAMS     _IOW('C', 0x12, struct snd_compr_params)
+#define SNDRV_COMPRESS_GET_PARAMS     _IOR('C', 0x13, struct snd_codec)
+#define SNDRV_COMPRESS_SET_METADATA   _IOW('C', 0x14, struct snd_compr_metadata)
+#define SNDRV_COMPRESS_GET_METADATA   _IOWR('C', 0x15, struct snd_compr_metadata)
+#define SNDRV_COMPRESS_TSTAMP	      _IOR('C', 0x20, struct snd_compr_tstamp)
+#define SNDRV_COMPRESS_AVAIL	      _IOR('C', 0x21, struct snd_compr_avail)
+#define SNDRV_COMPRESS_PAUSE	      _IO('C', 0x30)
+#define SNDRV_COMPRESS_RESUME	      _IO('C', 0x31)
+#define SNDRV_COMPRESS_START	      _IO('C', 0x32)
+#define SNDRV_COMPRESS_STOP	      _IO('C', 0x33)
+#define SNDRV_COMPRESS_DRAIN	      _IO('C', 0x34)
+#define SNDRV_COMPRESS_NEXT_TRACK     _IO('C', 0x35)
+#define SNDRV_COMPRESS_PARTIAL_DRAIN  _IO('C', 0x36)
 
 #define SNDRV_COMPRESS_TASK_CREATE _IOWR('C', 0x60, struct snd_compr_task)
 #define SNDRV_COMPRESS_TASK_FREE   _IOW('C', 0x61, __u64)
 #define SNDRV_COMPRESS_TASK_START  _IOWR('C', 0x62, struct snd_compr_task)
 #define SNDRV_COMPRESS_TASK_STOP   _IOW('C', 0x63, __u64)
-#define SNDRV_COMPRESS_TASK_STATUS \
-	_IOWR('C', 0x68, struct snd_compr_task_status)
+#define SNDRV_COMPRESS_TASK_STATUS _IOWR('C', 0x68, struct snd_compr_task_status)
 
 /*
  * TODO

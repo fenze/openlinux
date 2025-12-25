@@ -17,11 +17,7 @@
 
 /* Message types. */
 #define SELNL_MSG_BASE 0x10
-enum {
-	SELNL_MSG_SETENFORCE = SELNL_MSG_BASE,
-	SELNL_MSG_POLICYLOAD,
-	SELNL_MSG_MAX
-};
+enum { SELNL_MSG_SETENFORCE = SELNL_MSG_BASE, SELNL_MSG_POLICYLOAD, SELNL_MSG_MAX };
 
 /* Multicast groups - backwards compatiblility for userspace */
 #define SELNL_GRP_NONE 0x00000000

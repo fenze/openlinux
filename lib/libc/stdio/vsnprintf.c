@@ -6,8 +6,7 @@
 #include <stdio.h>     // for vfprintf, vsnprintf, _IONBF, size_t, va_list
 #include <string.h>    // for memset
 
-int vsnprintf(char *restrict s, size_t n, const char *restrict format,
-	      va_list ap)
+int vsnprintf(char *restrict s, size_t n, const char *restrict format, va_list ap)
 {
 	int r;
 	struct __FILE stream;

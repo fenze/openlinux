@@ -186,12 +186,10 @@ enum fc_fh_type {
  * FC_TYPE names initializer.
  * Please keep this matching the above definitions.
  */
-#define FC_TYPE_NAMES_INIT                                      \
-	{                                                       \
-		[FC_TYPE_BLS] = "BLS",	 [FC_TYPE_ELS] = "ELS", \
-		[FC_TYPE_IP] = "IP",	 [FC_TYPE_FCP] = "FCP", \
-		[FC_TYPE_CT] = "CT",	 [FC_TYPE_ILS] = "ILS", \
-		[FC_TYPE_NVME] = "NVME",                        \
+#define FC_TYPE_NAMES_INIT                                                                                    \
+	{                                                                                                     \
+		[FC_TYPE_BLS] = "BLS", [FC_TYPE_ELS] = "ELS", [FC_TYPE_IP] = "IP",     [FC_TYPE_FCP] = "FCP", \
+		[FC_TYPE_CT] = "CT",   [FC_TYPE_ILS] = "ILS", [FC_TYPE_NVME] = "NVME",                        \
 	}
 
 /*

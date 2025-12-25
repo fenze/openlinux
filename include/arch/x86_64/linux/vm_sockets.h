@@ -88,10 +88,9 @@
 #if __BITS_PER_LONG == 64 || (defined(__x86_64__) && defined(__ILP32__))
 #define SO_VM_SOCKETS_CONNECT_TIMEOUT SO_VM_SOCKETS_CONNECT_TIMEOUT_OLD
 #else
-#define SO_VM_SOCKETS_CONNECT_TIMEOUT                \
-	(sizeof(time_t) == sizeof(__kernel_long_t) ? \
-		 SO_VM_SOCKETS_CONNECT_TIMEOUT_OLD : \
-		 SO_VM_SOCKETS_CONNECT_TIMEOUT_NEW)
+#define SO_VM_SOCKETS_CONNECT_TIMEOUT                                                    \
+	(sizeof(time_t) == sizeof(__kernel_long_t) ? SO_VM_SOCKETS_CONNECT_TIMEOUT_OLD : \
+						     SO_VM_SOCKETS_CONNECT_TIMEOUT_NEW)
 #endif
 
 /* The vSocket equivalent of INADDR_ANY.  This works for the svm_cid field of
@@ -183,9 +182,8 @@ struct sockaddr_vm {
 	unsigned int svm_port;
 	unsigned int svm_cid;
 	__u8 svm_flags;
-	unsigned char svm_zero[sizeof(struct sockaddr) - sizeof(sa_family_t) -
-			       sizeof(unsigned short) - sizeof(unsigned int) -
-			       sizeof(unsigned int) - sizeof(__u8)];
+	unsigned char svm_zero[sizeof(struct sockaddr) - sizeof(sa_family_t) - sizeof(unsigned short) -
+			       sizeof(unsigned int) - sizeof(unsigned int) - sizeof(__u8)];
 };
 
 #define IOCTL_VM_SOCKETS_GET_LOCAL_CID _IO(7, 0xb9)

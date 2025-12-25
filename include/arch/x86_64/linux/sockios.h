@@ -42,10 +42,8 @@
 #define SIOCGSTAMP   SIOCGSTAMP_OLD
 #define SIOCGSTAMPNS SIOCGSTAMPNS_OLD
 #else
-#define SIOCGSTAMP \
-	((sizeof(struct timeval)) == 8 ? SIOCGSTAMP_OLD : SIOCGSTAMP_NEW)
-#define SIOCGSTAMPNS \
-	((sizeof(struct timespec)) == 8 ? SIOCGSTAMPNS_OLD : SIOCGSTAMPNS_NEW)
+#define SIOCGSTAMP   ((sizeof(struct timeval)) == 8 ? SIOCGSTAMP_OLD : SIOCGSTAMP_NEW)
+#define SIOCGSTAMPNS ((sizeof(struct timespec)) == 8 ? SIOCGSTAMPNS_OLD : SIOCGSTAMPNS_NEW)
 #endif
 
 /* Routing table calls. */

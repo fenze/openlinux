@@ -47,7 +47,7 @@
 #define BPF_EXIT  0x90 /* function return */
 
 /* atomic op type fields (stored in immediate) */
-#define BPF_FETCH   0x01 /* not an opcode on its own, used to build others */
+#define BPF_FETCH   0x01	       /* not an opcode on its own, used to build others */
 #define BPF_XCHG    (0xe0 | BPF_FETCH) /* atomic exchange */
 #define BPF_CMPXCHG (0xf0 | BPF_FETCH) /* atomic compare-and-write */
 
@@ -1013,8 +1013,7 @@ enum bpf_map_type {
 	 * functionality and more. So mark * BPF_MAP_TYPE_PERCPU_CGROUP_STORAGE
 	 * deprecated.
 	 */
-	BPF_MAP_TYPE_PERCPU_CGROUP_STORAGE =
-		BPF_MAP_TYPE_PERCPU_CGROUP_STORAGE_DEPRECATED,
+	BPF_MAP_TYPE_PERCPU_CGROUP_STORAGE = BPF_MAP_TYPE_PERCPU_CGROUP_STORAGE_DEPRECATED,
 	BPF_MAP_TYPE_QUEUE,
 	BPF_MAP_TYPE_STACK,
 	BPF_MAP_TYPE_SK_STORAGE,
@@ -1483,7 +1482,7 @@ enum {
 };
 
 union bpf_attr {
-	struct { /* anonymous struct used by BPF_MAP_CREATE command */
+	struct {		    /* anonymous struct used by BPF_MAP_CREATE command */
 		__u32 map_type;	    /* one of enum bpf_map_type */
 		__u32 key_size;	    /* size of key in bytes */
 		__u32 value_size;   /* size of value in bytes */
@@ -1496,10 +1495,10 @@ union bpf_attr {
 				     * BPF_F_NUMA_NODE is set).
 				     */
 		char map_name[BPF_OBJ_NAME_LEN];
-		__u32 map_ifindex;	 /* ifindex of netdev to create on */
-		__u32 btf_fd;		 /* fd pointing to a BTF type data */
-		__u32 btf_key_type_id;	 /* BTF type_id of the key */
-		__u32 btf_value_type_id; /* BTF type_id of the value */
+		__u32 map_ifindex;		 /* ifindex of netdev to create on */
+		__u32 btf_fd;			 /* fd pointing to a BTF type data */
+		__u32 btf_key_type_id;		 /* BTF type_id of the key */
+		__u32 btf_value_type_id;	 /* BTF type_id of the value */
 		__u32 btf_vmlinux_value_type_id; /* BTF type_id of a kernel-
 						  * struct stored as the
 						  * map value
@@ -1536,7 +1535,7 @@ union bpf_attr {
 		__u64 flags;
 	};
 
-	struct { /* struct used by BPF_MAP_*_BATCH commands */
+	struct {			 /* struct used by BPF_MAP_*_BATCH commands */
 		__aligned_u64 in_batch;	 /* start batch,
 					  * NULL to start from beginning
 					  */
@@ -1553,7 +1552,7 @@ union bpf_attr {
 		__u64 flags;
 	} batch;
 
-	struct { /* anonymous struct used by BPF_PROG_LOAD command */
+	struct {		 /* anonymous struct used by BPF_PROG_LOAD command */
 		__u32 prog_type; /* one of enum bpf_prog_type */
 		__u32 insn_cnt;
 		__aligned_u64 insns;
@@ -1577,7 +1576,7 @@ union bpf_attr {
 		__u32 line_info_rec_size; /* userspace bpf_line_info size */
 		__aligned_u64 line_info;  /* line info */
 		__u32 line_info_cnt;	  /* number of bpf_line_info records */
-		__u32 attach_btf_id; /* in-kernel BTF type id to attach to */
+		__u32 attach_btf_id;	  /* in-kernel BTF type id to attach to */
 		union {
 			/* valid prog_fd to attach to bpf prog */
 			__u32 attach_prog_fd;
@@ -1626,7 +1625,7 @@ union bpf_attr {
 
 	struct { /* anonymous struct used by BPF_PROG_ATTACH/DETACH commands */
 		union {
-			__u32 target_fd; /* target object to attach to or ... */
+			__u32 target_fd;      /* target object to attach to or ... */
 			__u32 target_ifindex; /* target ifindex */
 		};
 		__u32 attach_bpf_fd;
@@ -1685,7 +1684,7 @@ union bpf_attr {
 
 	struct { /* anonymous struct used by BPF_PROG_QUERY command */
 		union {
-			__u32 target_fd; /* target object to query or ... */
+			__u32 target_fd;      /* target object to query or ... */
 			__u32 target_ifindex; /* target ifindex */
 		};
 		__u32 attach_type;
@@ -1754,7 +1753,7 @@ union bpf_attr {
 			__u32 map_fd;  /* struct_ops to attach */
 		};
 		union {
-			__u32 target_fd; /* target object to attach to or ... */
+			__u32 target_fd;      /* target object to attach to or ... */
 			__u32 target_ifindex; /* target ifindex */
 		};
 		__u32 attach_type; /* attach type */
@@ -6117,9 +6116,7 @@ enum {
 	BPF_ADJ_ROOM_ENCAP_L2_SHIFT = 56,
 };
 
-#define BPF_F_ADJ_ROOM_ENCAP_L2(len)               \
-	(((__u64)len & BPF_ADJ_ROOM_ENCAP_L2_MASK) \
-	 << BPF_ADJ_ROOM_ENCAP_L2_SHIFT)
+#define BPF_F_ADJ_ROOM_ENCAP_L2(len) (((__u64)len & BPF_ADJ_ROOM_ENCAP_L2_MASK) << BPF_ADJ_ROOM_ENCAP_L2_SHIFT)
 
 /* BPF_FUNC_sysctl_get_name flags. */
 enum {
@@ -6198,8 +6195,7 @@ enum {
 	BPF_F_INGRESS = (1ULL << 0),	     /* used for skb path */
 	BPF_F_BROADCAST = (1ULL << 3),	     /* used for XDP path */
 	BPF_F_EXCLUDE_INGRESS = (1ULL << 4), /* used for XDP path */
-#define BPF_F_REDIRECT_FLAGS \
-	(BPF_F_INGRESS | BPF_F_BROADCAST | BPF_F_EXCLUDE_INGRESS)
+#define BPF_F_REDIRECT_FLAGS (BPF_F_INGRESS | BPF_F_BROADCAST | BPF_F_EXCLUDE_INGRESS)
 };
 
 #define __bpf_md_ptr(type, name) \
@@ -6644,8 +6640,8 @@ struct bpf_link_info {
 		struct {
 			__aligned_u64 target_name; /* in/out: target_name buffer
 						      ptr */
-			__u32 target_name_len; /* in/out: target_name buffer len
-						*/
+			__u32 target_name_len;	   /* in/out: target_name buffer len
+						    */
 
 			/* If the iter specific field is 32 bits, it can be put
 			 * in the first or second union. Otherwise it should be
@@ -6926,8 +6922,7 @@ enum {
 
 enum {
 	SK_BPF_CB_TX_TIMESTAMPING = 1 << 0,
-	SK_BPF_CB_MASK = (SK_BPF_CB_TX_TIMESTAMPING - 1) |
-			 SK_BPF_CB_TX_TIMESTAMPING
+	SK_BPF_CB_MASK = (SK_BPF_CB_TX_TIMESTAMPING - 1) | SK_BPF_CB_TX_TIMESTAMPING
 };
 
 /* List of known BPF sock_ops operators.
@@ -6935,16 +6930,16 @@ enum {
  */
 enum {
 	BPF_SOCK_OPS_VOID,
-	BPF_SOCK_OPS_TIMEOUT_INIT,   /* Should return SYN-RTO value to use or
-				      * -1 if default value should be used
-				      */
-	BPF_SOCK_OPS_RWND_INIT,	     /* Should return initial advertized
-				      * window (in packets) or -1 if default
-				      * value should be used
-				      */
-	BPF_SOCK_OPS_TCP_CONNECT_CB, /* Calls BPF program right before an
-				      * active connection is initialized
-				      */
+	BPF_SOCK_OPS_TIMEOUT_INIT,	     /* Should return SYN-RTO value to use or
+					      * -1 if default value should be used
+					      */
+	BPF_SOCK_OPS_RWND_INIT,		     /* Should return initial advertized
+					      * window (in packets) or -1 if default
+					      * value should be used
+					      */
+	BPF_SOCK_OPS_TCP_CONNECT_CB,	     /* Calls BPF program right before an
+					      * active connection is initialized
+					      */
 	BPF_SOCK_OPS_ACTIVE_ESTABLISHED_CB,  /* Calls BPF program when an
 					      * active connection is
 					      * established
@@ -6953,119 +6948,119 @@ enum {
 					      * passive connection is
 					      * established
 					      */
-	BPF_SOCK_OPS_NEEDS_ECN,		/* If connection's congestion control
-					 * needs ECN
-					 */
-	BPF_SOCK_OPS_BASE_RTT,		/* Get base RTT. The correct value is
-					 * based on the path and may be
-					 * dependent on the congestion control
-					 * algorithm. In general it indicates
-					 * a congestion threshold. RTTs above
-					 * this indicate congestion
-					 */
-	BPF_SOCK_OPS_RTO_CB,		/* Called when an RTO has triggered.
-					 * Arg1: value of icsk_retransmits
-					 * Arg2: value of icsk_rto
-					 * Arg3: whether RTO has expired
-					 */
-	BPF_SOCK_OPS_RETRANS_CB,	/* Called when skb is retransmitted.
-					 * Arg1: sequence number of 1st byte
-					 * Arg2: # segments
-					 * Arg3: return value of
-					 *       tcp_transmit_skb (0 => success)
-					 */
-	BPF_SOCK_OPS_STATE_CB,		/* Called when TCP changes state.
-					 * Arg1: old_state
-					 * Arg2: new_state
-					 */
-	BPF_SOCK_OPS_TCP_LISTEN_CB,	/* Called on listen(2), right after
-					 * socket transition to LISTEN state.
-					 */
-	BPF_SOCK_OPS_RTT_CB,		/* Called on every RTT.
-					 * Arg1: measured RTT input (mrtt)
-					 * Arg2: updated srtt
-					 */
-	BPF_SOCK_OPS_PARSE_HDR_OPT_CB,	/* Parse the header option.
-					 * It will be called to handle
-					 * the packets received at
-					 * an already established
-					 * connection.
-					 *
-					 * sock_ops->skb_data:
-					 * Referring to the received skb.
-					 * It covers the TCP header only.
-					 *
-					 * bpf_load_hdr_opt() can also
-					 * be used to search for a
-					 * particular option.
-					 */
-	BPF_SOCK_OPS_HDR_OPT_LEN_CB,	/* Reserve space for writing the
-					 * header option later in
-					 * BPF_SOCK_OPS_WRITE_HDR_OPT_CB.
-					 * Arg1: bool want_cookie. (in
-					 *       writing SYNACK only)
-					 *
-					 * sock_ops->skb_data:
-					 * Not available because no header has
-					 * been	written yet.
-					 *
-					 * sock_ops->skb_tcp_flags:
-					 * The tcp_flags of the
-					 * outgoing skb. (e.g. SYN, ACK, FIN).
-					 *
-					 * bpf_reserve_hdr_opt() should
-					 * be used to reserve space.
-					 */
-	BPF_SOCK_OPS_WRITE_HDR_OPT_CB,	/* Write the header options
-					 * Arg1: bool want_cookie. (in
-					 *       writing SYNACK only)
-					 *
-					 * sock_ops->skb_data:
-					 * Referring to the outgoing skb.
-					 * It covers the TCP header
-					 * that has already been written
-					 * by the kernel and the
-					 * earlier bpf-progs.
-					 *
-					 * sock_ops->skb_tcp_flags:
-					 * The tcp_flags of the outgoing
-					 * skb. (e.g. SYN, ACK, FIN).
-					 *
-					 * bpf_store_hdr_opt() should
-					 * be used to write the
-					 * option.
-					 *
-					 * bpf_load_hdr_opt() can also
-					 * be used to search for a
-					 * particular option that
-					 * has already been written
-					 * by the kernel or the
-					 * earlier bpf-progs.
-					 */
-	BPF_SOCK_OPS_TSTAMP_SCHED_CB,	/* Called when skb is passing
-					 * through dev layer when
-					 * SK_BPF_CB_TX_TIMESTAMPING
-					 * feature is on.
-					 */
-	BPF_SOCK_OPS_TSTAMP_SND_SW_CB,	/* Called when skb is about to send
-					 * to the nic when
-					 * SK_BPF_CB_TX_TIMESTAMPING  feature is
-					 * on.
-					 */
-	BPF_SOCK_OPS_TSTAMP_SND_HW_CB,	/* Called in hardware phase when
-					 * SK_BPF_CB_TX_TIMESTAMPING feature
-					 * is on.
-					 */
-	BPF_SOCK_OPS_TSTAMP_ACK_CB,	/* Called when all the skbs in the
-					 * same sendmsg call are acked
-					 * when SK_BPF_CB_TX_TIMESTAMPING
-					 * feature is on.
-					 */
-	BPF_SOCK_OPS_TSTAMP_SENDMSG_CB, /* Called when every sendmsg syscall
-					 * is triggered. It's used to correlate
-					 * sendmsg timestamp with corresponding
-					 * tskey.
-					 */
+	BPF_SOCK_OPS_NEEDS_ECN,		     /* If connection's congestion control
+					      * needs ECN
+					      */
+	BPF_SOCK_OPS_BASE_RTT,		     /* Get base RTT. The correct value is
+					      * based on the path and may be
+					      * dependent on the congestion control
+					      * algorithm. In general it indicates
+					      * a congestion threshold. RTTs above
+					      * this indicate congestion
+					      */
+	BPF_SOCK_OPS_RTO_CB,		     /* Called when an RTO has triggered.
+					      * Arg1: value of icsk_retransmits
+					      * Arg2: value of icsk_rto
+					      * Arg3: whether RTO has expired
+					      */
+	BPF_SOCK_OPS_RETRANS_CB,	     /* Called when skb is retransmitted.
+					      * Arg1: sequence number of 1st byte
+					      * Arg2: # segments
+					      * Arg3: return value of
+					      *       tcp_transmit_skb (0 => success)
+					      */
+	BPF_SOCK_OPS_STATE_CB,		     /* Called when TCP changes state.
+					      * Arg1: old_state
+					      * Arg2: new_state
+					      */
+	BPF_SOCK_OPS_TCP_LISTEN_CB,	     /* Called on listen(2), right after
+					      * socket transition to LISTEN state.
+					      */
+	BPF_SOCK_OPS_RTT_CB,		     /* Called on every RTT.
+					      * Arg1: measured RTT input (mrtt)
+					      * Arg2: updated srtt
+					      */
+	BPF_SOCK_OPS_PARSE_HDR_OPT_CB,	     /* Parse the header option.
+					      * It will be called to handle
+					      * the packets received at
+					      * an already established
+					      * connection.
+					      *
+					      * sock_ops->skb_data:
+					      * Referring to the received skb.
+					      * It covers the TCP header only.
+					      *
+					      * bpf_load_hdr_opt() can also
+					      * be used to search for a
+					      * particular option.
+					      */
+	BPF_SOCK_OPS_HDR_OPT_LEN_CB,	     /* Reserve space for writing the
+					      * header option later in
+					      * BPF_SOCK_OPS_WRITE_HDR_OPT_CB.
+					      * Arg1: bool want_cookie. (in
+					      *       writing SYNACK only)
+					      *
+					      * sock_ops->skb_data:
+					      * Not available because no header has
+					      * been	written yet.
+					      *
+					      * sock_ops->skb_tcp_flags:
+					      * The tcp_flags of the
+					      * outgoing skb. (e.g. SYN, ACK, FIN).
+					      *
+					      * bpf_reserve_hdr_opt() should
+					      * be used to reserve space.
+					      */
+	BPF_SOCK_OPS_WRITE_HDR_OPT_CB,	     /* Write the header options
+					      * Arg1: bool want_cookie. (in
+					      *       writing SYNACK only)
+					      *
+					      * sock_ops->skb_data:
+					      * Referring to the outgoing skb.
+					      * It covers the TCP header
+					      * that has already been written
+					      * by the kernel and the
+					      * earlier bpf-progs.
+					      *
+					      * sock_ops->skb_tcp_flags:
+					      * The tcp_flags of the outgoing
+					      * skb. (e.g. SYN, ACK, FIN).
+					      *
+					      * bpf_store_hdr_opt() should
+					      * be used to write the
+					      * option.
+					      *
+					      * bpf_load_hdr_opt() can also
+					      * be used to search for a
+					      * particular option that
+					      * has already been written
+					      * by the kernel or the
+					      * earlier bpf-progs.
+					      */
+	BPF_SOCK_OPS_TSTAMP_SCHED_CB,	     /* Called when skb is passing
+					      * through dev layer when
+					      * SK_BPF_CB_TX_TIMESTAMPING
+					      * feature is on.
+					      */
+	BPF_SOCK_OPS_TSTAMP_SND_SW_CB,	     /* Called when skb is about to send
+					      * to the nic when
+					      * SK_BPF_CB_TX_TIMESTAMPING  feature is
+					      * on.
+					      */
+	BPF_SOCK_OPS_TSTAMP_SND_HW_CB,	     /* Called in hardware phase when
+					      * SK_BPF_CB_TX_TIMESTAMPING feature
+					      * is on.
+					      */
+	BPF_SOCK_OPS_TSTAMP_ACK_CB,	     /* Called when all the skbs in the
+					      * same sendmsg call are acked
+					      * when SK_BPF_CB_TX_TIMESTAMPING
+					      * feature is on.
+					      */
+	BPF_SOCK_OPS_TSTAMP_SENDMSG_CB,	     /* Called when every sendmsg syscall
+					      * is triggered. It's used to correlate
+					      * sendmsg timestamp with corresponding
+					      * tskey.
+					      */
 };
 
 /* List of TCP states. There is a build check in net/ipv4/tcp.c to detect
@@ -7128,11 +7123,11 @@ enum {
 	 * -ENOENT: The SYN skb is not available now and the earlier SYN pkt
 	 *	    is not saved by setsockopt(TCP_SAVE_SYN).
 	 */
-	TCP_BPF_SYN = 1005,	/* Copy the TCP header */
-	TCP_BPF_SYN_IP = 1006,	/* Copy the IP[46] and TCP header */
-	TCP_BPF_SYN_MAC = 1007, /* Copy the MAC, IP[46], and TCP header */
+	TCP_BPF_SYN = 1005,		  /* Copy the TCP header */
+	TCP_BPF_SYN_IP = 1006,		  /* Copy the IP[46] and TCP header */
+	TCP_BPF_SYN_MAC = 1007,		  /* Copy the MAC, IP[46], and TCP header */
 	TCP_BPF_SOCK_OPS_CB_FLAGS = 1008, /* Get or Set TCP sock ops flags */
-	SK_BPF_CB_FLAGS = 1009, /* Get or set sock ops flags in socket */
+	SK_BPF_CB_FLAGS = 1009,		  /* Get or set sock ops flags in socket */
 };
 
 enum {
@@ -7426,8 +7421,8 @@ struct bpf_pidns_info {
 struct bpf_sk_lookup {
 	union {
 		__bpf_md_ptr(struct bpf_sock *, sk); /* Selected socket */
-		__u64 cookie; /* Non-zero if socket was selected in
-				 PROG_TEST_RUN */
+		__u64 cookie;			     /* Non-zero if socket was selected in
+							PROG_TEST_RUN */
 	};
 
 	__u32 family;	       /* Protocol family (AF_INET, AF_INET6) */

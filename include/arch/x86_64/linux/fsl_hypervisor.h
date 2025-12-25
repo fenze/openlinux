@@ -187,35 +187,27 @@ struct fsl_hv_ioctl_prop {
 #define FSL_HV_IOCTL_TYPE 0xAF
 
 /* Restart another partition */
-#define FSL_HV_IOCTL_PARTITION_RESTART \
-	_IOWR(FSL_HV_IOCTL_TYPE, 1, struct fsl_hv_ioctl_restart)
+#define FSL_HV_IOCTL_PARTITION_RESTART _IOWR(FSL_HV_IOCTL_TYPE, 1, struct fsl_hv_ioctl_restart)
 
 /* Get a partition's status */
-#define FSL_HV_IOCTL_PARTITION_GET_STATUS \
-	_IOWR(FSL_HV_IOCTL_TYPE, 2, struct fsl_hv_ioctl_status)
+#define FSL_HV_IOCTL_PARTITION_GET_STATUS _IOWR(FSL_HV_IOCTL_TYPE, 2, struct fsl_hv_ioctl_status)
 
 /* Boot another partition */
-#define FSL_HV_IOCTL_PARTITION_START \
-	_IOWR(FSL_HV_IOCTL_TYPE, 3, struct fsl_hv_ioctl_start)
+#define FSL_HV_IOCTL_PARTITION_START _IOWR(FSL_HV_IOCTL_TYPE, 3, struct fsl_hv_ioctl_start)
 
 /* Stop this or another partition */
-#define FSL_HV_IOCTL_PARTITION_STOP \
-	_IOWR(FSL_HV_IOCTL_TYPE, 4, struct fsl_hv_ioctl_stop)
+#define FSL_HV_IOCTL_PARTITION_STOP _IOWR(FSL_HV_IOCTL_TYPE, 4, struct fsl_hv_ioctl_stop)
 
 /* Copy data from one partition to another */
-#define FSL_HV_IOCTL_MEMCPY \
-	_IOWR(FSL_HV_IOCTL_TYPE, 5, struct fsl_hv_ioctl_memcpy)
+#define FSL_HV_IOCTL_MEMCPY _IOWR(FSL_HV_IOCTL_TYPE, 5, struct fsl_hv_ioctl_memcpy)
 
 /* Ring a doorbell */
-#define FSL_HV_IOCTL_DOORBELL \
-	_IOWR(FSL_HV_IOCTL_TYPE, 6, struct fsl_hv_ioctl_doorbell)
+#define FSL_HV_IOCTL_DOORBELL _IOWR(FSL_HV_IOCTL_TYPE, 6, struct fsl_hv_ioctl_doorbell)
 
 /* Get a property from another guest's device tree */
-#define FSL_HV_IOCTL_GETPROP \
-	_IOWR(FSL_HV_IOCTL_TYPE, 7, struct fsl_hv_ioctl_prop)
+#define FSL_HV_IOCTL_GETPROP _IOWR(FSL_HV_IOCTL_TYPE, 7, struct fsl_hv_ioctl_prop)
 
 /* Set a property in another guest's device tree */
-#define FSL_HV_IOCTL_SETPROP \
-	_IOWR(FSL_HV_IOCTL_TYPE, 8, struct fsl_hv_ioctl_prop)
+#define FSL_HV_IOCTL_SETPROP _IOWR(FSL_HV_IOCTL_TYPE, 8, struct fsl_hv_ioctl_prop)
 
 #endif /* FSL_HYPERVISOR_H */

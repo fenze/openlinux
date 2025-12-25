@@ -33,10 +33,6 @@ struct matroxioc_output_mode {
 /* which outputs exist on this framebuffer */
 #define MATROXFB_GET_ALL_OUTPUTS _IOR('n', 0xFB, size_t)
 
-enum matroxfb_ctrl_id {
-	MATROXFB_CID_TESTOUT = V4L2_CID_PRIVATE_BASE,
-	MATROXFB_CID_DEFLICKER,
-	MATROXFB_CID_LAST
-};
+enum matroxfb_ctrl_id { MATROXFB_CID_TESTOUT = V4L2_CID_PRIVATE_BASE, MATROXFB_CID_DEFLICKER, MATROXFB_CID_LAST };
 
 #endif

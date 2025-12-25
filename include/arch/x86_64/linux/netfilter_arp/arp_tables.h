@@ -17,19 +17,18 @@
 
 #include <linux/netfilter/x_tables.h>
 
-#define ARPT_FUNCTION_MAXNAMELEN XT_FUNCTION_MAXNAMELEN
-#define ARPT_TABLE_MAXNAMELEN	 XT_TABLE_MAXNAMELEN
-#define arpt_entry_target	 xt_entry_target
-#define arpt_standard_target	 xt_standard_target
-#define arpt_error_target	 xt_error_target
-#define ARPT_CONTINUE		 XT_CONTINUE
-#define ARPT_RETURN		 XT_RETURN
-#define arpt_counters_info	 xt_counters_info
-#define arpt_counters		 xt_counters
-#define ARPT_STANDARD_TARGET	 XT_STANDARD_TARGET
-#define ARPT_ERROR_TARGET	 XT_ERROR_TARGET
-#define ARPT_ENTRY_ITERATE(entries, size, fn, args...) \
-	XT_ENTRY_ITERATE(struct arpt_entry, entries, size, fn, ##args)
+#define ARPT_FUNCTION_MAXNAMELEN		       XT_FUNCTION_MAXNAMELEN
+#define ARPT_TABLE_MAXNAMELEN			       XT_TABLE_MAXNAMELEN
+#define arpt_entry_target			       xt_entry_target
+#define arpt_standard_target			       xt_standard_target
+#define arpt_error_target			       xt_error_target
+#define ARPT_CONTINUE				       XT_CONTINUE
+#define ARPT_RETURN				       XT_RETURN
+#define arpt_counters_info			       xt_counters_info
+#define arpt_counters				       xt_counters
+#define ARPT_STANDARD_TARGET			       XT_STANDARD_TARGET
+#define ARPT_ERROR_TARGET			       XT_ERROR_TARGET
+#define ARPT_ENTRY_ITERATE(entries, size, fn, args...) XT_ENTRY_ITERATE(struct arpt_entry, entries, size, fn, ##args)
 
 #define ARPT_DEV_ADDR_LEN_MAX 16
 

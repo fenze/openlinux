@@ -22,9 +22,9 @@
  */
 
 typedef struct capi_register_params { /* CAPI_REGISTER */
-	__u32 level3cnt;  /* No. of simulatneous user data connections */
-	__u32 datablkcnt; /* No. of buffered data messages */
-	__u32 datablklen; /* Size of buffered data messages */
+	__u32 level3cnt;	      /* No. of simulatneous user data connections */
+	__u32 datablkcnt;	      /* No. of buffered data messages */
+	__u32 datablklen;	      /* Size of buffered data messages */
 } capi_register_params;
 
 #define CAPI_REGISTER _IOW('C', 0x01, struct capi_register_params)
@@ -57,8 +57,7 @@ typedef struct capi_version {
  */
 
 #define CAPI_SERIAL_LEN 8
-#define CAPI_GET_SERIAL \
-	_IOWR('C', 0x08, int) /* broken: wanted size 8 (CAPI_SERIAL_LEN) */
+#define CAPI_GET_SERIAL _IOWR('C', 0x08, int) /* broken: wanted size 8 (CAPI_SERIAL_LEN) */
 
 /*
  * CAPI_GET_PROFILE

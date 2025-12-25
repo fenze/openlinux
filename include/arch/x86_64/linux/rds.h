@@ -314,9 +314,8 @@ struct rds_cmsg_rx_trace {
  * The correspondence between bits and ports is
  *	1 << (portnum % 64)
  */
-#define RDS_CONG_MONITOR_SIZE 64
-#define RDS_CONG_MONITOR_BIT(port) \
-	(((unsigned int)port) % RDS_CONG_MONITOR_SIZE)
+#define RDS_CONG_MONITOR_SIZE	    64
+#define RDS_CONG_MONITOR_BIT(port)  (((unsigned int)port) % RDS_CONG_MONITOR_SIZE)
 #define RDS_CONG_MONITOR_MASK(port) (1ULL << RDS_CONG_MONITOR_BIT(port))
 
 /*

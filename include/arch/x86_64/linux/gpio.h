@@ -512,30 +512,24 @@ struct gpioevent_data {
 /*
  * v2 ioctl()s
  */
-#define GPIO_V2_GET_LINEINFO_IOCTL _IOWR(0xB4, 0x05, struct gpio_v2_line_info)
-#define GPIO_V2_GET_LINEINFO_WATCH_IOCTL \
-	_IOWR(0xB4, 0x06, struct gpio_v2_line_info)
-#define GPIO_V2_GET_LINE_IOCTL _IOWR(0xB4, 0x07, struct gpio_v2_line_request)
-#define GPIO_V2_LINE_SET_CONFIG_IOCTL \
-	_IOWR(0xB4, 0x0D, struct gpio_v2_line_config)
-#define GPIO_V2_LINE_GET_VALUES_IOCTL \
-	_IOWR(0xB4, 0x0E, struct gpio_v2_line_values)
-#define GPIO_V2_LINE_SET_VALUES_IOCTL \
-	_IOWR(0xB4, 0x0F, struct gpio_v2_line_values)
+#define GPIO_V2_GET_LINEINFO_IOCTL	 _IOWR(0xB4, 0x05, struct gpio_v2_line_info)
+#define GPIO_V2_GET_LINEINFO_WATCH_IOCTL _IOWR(0xB4, 0x06, struct gpio_v2_line_info)
+#define GPIO_V2_GET_LINE_IOCTL		 _IOWR(0xB4, 0x07, struct gpio_v2_line_request)
+#define GPIO_V2_LINE_SET_CONFIG_IOCTL	 _IOWR(0xB4, 0x0D, struct gpio_v2_line_config)
+#define GPIO_V2_LINE_GET_VALUES_IOCTL	 _IOWR(0xB4, 0x0E, struct gpio_v2_line_values)
+#define GPIO_V2_LINE_SET_VALUES_IOCTL	 _IOWR(0xB4, 0x0F, struct gpio_v2_line_values)
 
 /*
  * v1 ioctl()s
  *
  * These ioctl()s are deprecated.  Use the v2 equivalent instead.
  */
-#define GPIO_GET_LINEINFO_IOCTL	  _IOWR(0xB4, 0x02, struct gpioline_info)
-#define GPIO_GET_LINEHANDLE_IOCTL _IOWR(0xB4, 0x03, struct gpiohandle_request)
-#define GPIO_GET_LINEEVENT_IOCTL  _IOWR(0xB4, 0x04, struct gpioevent_request)
-#define GPIOHANDLE_GET_LINE_VALUES_IOCTL \
-	_IOWR(0xB4, 0x08, struct gpiohandle_data)
-#define GPIOHANDLE_SET_LINE_VALUES_IOCTL \
-	_IOWR(0xB4, 0x09, struct gpiohandle_data)
-#define GPIOHANDLE_SET_CONFIG_IOCTL   _IOWR(0xB4, 0x0A, struct gpiohandle_config)
-#define GPIO_GET_LINEINFO_WATCH_IOCTL _IOWR(0xB4, 0x0B, struct gpioline_info)
+#define GPIO_GET_LINEINFO_IOCTL		 _IOWR(0xB4, 0x02, struct gpioline_info)
+#define GPIO_GET_LINEHANDLE_IOCTL	 _IOWR(0xB4, 0x03, struct gpiohandle_request)
+#define GPIO_GET_LINEEVENT_IOCTL	 _IOWR(0xB4, 0x04, struct gpioevent_request)
+#define GPIOHANDLE_GET_LINE_VALUES_IOCTL _IOWR(0xB4, 0x08, struct gpiohandle_data)
+#define GPIOHANDLE_SET_LINE_VALUES_IOCTL _IOWR(0xB4, 0x09, struct gpiohandle_data)
+#define GPIOHANDLE_SET_CONFIG_IOCTL	 _IOWR(0xB4, 0x0A, struct gpiohandle_config)
+#define GPIO_GET_LINEINFO_WATCH_IOCTL	 _IOWR(0xB4, 0x0B, struct gpioline_info)
 
 #endif /* _GPIO_H_ */

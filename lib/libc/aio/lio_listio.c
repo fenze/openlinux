@@ -1,15 +1,14 @@
-#include <__aio.h>
-#include <aio.h>
-#include <errno.h>
-#include <stddef.h>
-#include <stdlib.h>
-#include <string.h>
-#include <sys/eventfd.h>
-#include <unistd.h>
-#include <stdint.h>
+#include <__aio.h>	 // for lio_group, __aio_lookup, aio_request
+#include <aio.h>	 // for LIO_NOWAIT, aio_read, aio_write, LIO_NOP
+#include <errno.h>	 // for errno, EINVAL, EIO
+#include <stddef.h>	 // for NULL
+#include <stdint.h>	 // for uint64_t
+#include <stdlib.h>	 // for malloc
+#include <string.h>	 // for memset
+#include <sys/eventfd.h> // for eventfd, EFD_CLOEXEC
+#include <unistd.h>	 // for read
 
-int lio_listio(int mode, struct aiocb *restrict const list[restrict], int nent,
-	       struct sigevent *restrict sig)
+int lio_listio(int mode, struct aiocb *restrict const list[restrict], int nent, struct sigevent *restrict sig)
 {
 	struct lio_group *grp = NULL;
 

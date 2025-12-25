@@ -120,8 +120,7 @@ int pthread_kill(pthread_t, int);
 int pthread_sigmask(int, const sigset_t *restrict, sigset_t *restrict);
 int raise(int);
 int sig2str(int, char *);
-int sigaction(int, const struct sigaction *restrict,
-	      struct sigaction *restrict);
+int sigaction(int, const struct sigaction *restrict, struct sigaction *restrict);
 int sigaddset(sigset_t *, int);
 int sigaltstack(const stack_t *restrict, stack_t *restrict);
 int sigdelset(sigset_t *, int);
@@ -133,8 +132,7 @@ int sigpending(sigset_t *);
 int sigprocmask(int, const sigset_t *restrict, sigset_t *restrict);
 int sigqueue(pid_t, int, union sigval);
 int sigsuspend(const sigset_t *);
-int sigtimedwait(const sigset_t *restrict, siginfo_t *restrict,
-		 const struct timespec *restrict);
+int sigtimedwait(const sigset_t *restrict, siginfo_t *restrict, const struct timespec *restrict);
 int sigwait(const sigset_t *restrict, int *restrict);
 int sigwaitinfo(const sigset_t *restrict, siginfo_t *restrict);
 int str2sig(const char *restrict, int *restrict);

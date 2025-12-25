@@ -642,47 +642,26 @@ struct drm_tegra_gem_get_flags {
 #define DRM_TEGRA_GEM_SET_FLAGS	  0x0c
 #define DRM_TEGRA_GEM_GET_FLAGS	  0x0d
 
-#define DRM_IOCTL_TEGRA_GEM_CREATE                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_TEGRA_GEM_CREATE, \
-		 struct drm_tegra_gem_create)
-#define DRM_IOCTL_TEGRA_GEM_MMAP                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_TEGRA_GEM_MMAP, \
-		 struct drm_tegra_gem_mmap)
-#define DRM_IOCTL_TEGRA_SYNCPT_READ                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_TEGRA_SYNCPT_READ, \
-		 struct drm_tegra_syncpt_read)
-#define DRM_IOCTL_TEGRA_SYNCPT_INCR                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_TEGRA_SYNCPT_INCR, \
-		 struct drm_tegra_syncpt_incr)
-#define DRM_IOCTL_TEGRA_SYNCPT_WAIT                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_TEGRA_SYNCPT_WAIT, \
-		 struct drm_tegra_syncpt_wait)
-#define DRM_IOCTL_TEGRA_OPEN_CHANNEL                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_TEGRA_OPEN_CHANNEL, \
-		 struct drm_tegra_open_channel)
-#define DRM_IOCTL_TEGRA_CLOSE_CHANNEL                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_TEGRA_CLOSE_CHANNEL, \
-		 struct drm_tegra_close_channel)
-#define DRM_IOCTL_TEGRA_GET_SYNCPT                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_TEGRA_GET_SYNCPT, \
-		 struct drm_tegra_get_syncpt)
-#define DRM_IOCTL_TEGRA_SUBMIT \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_TEGRA_SUBMIT, struct drm_tegra_submit)
-#define DRM_IOCTL_TEGRA_GET_SYNCPT_BASE                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_TEGRA_GET_SYNCPT_BASE, \
-		 struct drm_tegra_get_syncpt_base)
-#define DRM_IOCTL_TEGRA_GEM_SET_TILING                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_TEGRA_GEM_SET_TILING, \
-		 struct drm_tegra_gem_set_tiling)
-#define DRM_IOCTL_TEGRA_GEM_GET_TILING                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_TEGRA_GEM_GET_TILING, \
-		 struct drm_tegra_gem_get_tiling)
-#define DRM_IOCTL_TEGRA_GEM_SET_FLAGS                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_TEGRA_GEM_SET_FLAGS, \
-		 struct drm_tegra_gem_set_flags)
-#define DRM_IOCTL_TEGRA_GEM_GET_FLAGS                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_TEGRA_GEM_GET_FLAGS, \
-		 struct drm_tegra_gem_get_flags)
+#define DRM_IOCTL_TEGRA_GEM_CREATE   DRM_IOWR(DRM_COMMAND_BASE + DRM_TEGRA_GEM_CREATE, struct drm_tegra_gem_create)
+#define DRM_IOCTL_TEGRA_GEM_MMAP     DRM_IOWR(DRM_COMMAND_BASE + DRM_TEGRA_GEM_MMAP, struct drm_tegra_gem_mmap)
+#define DRM_IOCTL_TEGRA_SYNCPT_READ  DRM_IOWR(DRM_COMMAND_BASE + DRM_TEGRA_SYNCPT_READ, struct drm_tegra_syncpt_read)
+#define DRM_IOCTL_TEGRA_SYNCPT_INCR  DRM_IOWR(DRM_COMMAND_BASE + DRM_TEGRA_SYNCPT_INCR, struct drm_tegra_syncpt_incr)
+#define DRM_IOCTL_TEGRA_SYNCPT_WAIT  DRM_IOWR(DRM_COMMAND_BASE + DRM_TEGRA_SYNCPT_WAIT, struct drm_tegra_syncpt_wait)
+#define DRM_IOCTL_TEGRA_OPEN_CHANNEL DRM_IOWR(DRM_COMMAND_BASE + DRM_TEGRA_OPEN_CHANNEL, struct drm_tegra_open_channel)
+#define DRM_IOCTL_TEGRA_CLOSE_CHANNEL \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_TEGRA_CLOSE_CHANNEL, struct drm_tegra_close_channel)
+#define DRM_IOCTL_TEGRA_GET_SYNCPT DRM_IOWR(DRM_COMMAND_BASE + DRM_TEGRA_GET_SYNCPT, struct drm_tegra_get_syncpt)
+#define DRM_IOCTL_TEGRA_SUBMIT	   DRM_IOWR(DRM_COMMAND_BASE + DRM_TEGRA_SUBMIT, struct drm_tegra_submit)
+#define DRM_IOCTL_TEGRA_GET_SYNCPT_BASE \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_TEGRA_GET_SYNCPT_BASE, struct drm_tegra_get_syncpt_base)
+#define DRM_IOCTL_TEGRA_GEM_SET_TILING \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_TEGRA_GEM_SET_TILING, struct drm_tegra_gem_set_tiling)
+#define DRM_IOCTL_TEGRA_GEM_GET_TILING \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_TEGRA_GEM_GET_TILING, struct drm_tegra_gem_get_tiling)
+#define DRM_IOCTL_TEGRA_GEM_SET_FLAGS \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_TEGRA_GEM_SET_FLAGS, struct drm_tegra_gem_set_flags)
+#define DRM_IOCTL_TEGRA_GEM_GET_FLAGS \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_TEGRA_GEM_GET_FLAGS, struct drm_tegra_gem_get_flags)
 
 /* New Tegra DRM UAPI */
 
@@ -750,10 +729,9 @@ struct drm_tegra_channel_close {
  * DRM_TEGRA_CHANNEL_MAP_READ: create mapping that allows HW read access
  * DRM_TEGRA_CHANNEL_MAP_WRITE: create mapping that allows HW write access
  */
-#define DRM_TEGRA_CHANNEL_MAP_READ  (1 << 0)
-#define DRM_TEGRA_CHANNEL_MAP_WRITE (1 << 1)
-#define DRM_TEGRA_CHANNEL_MAP_READ_WRITE \
-	(DRM_TEGRA_CHANNEL_MAP_READ | DRM_TEGRA_CHANNEL_MAP_WRITE)
+#define DRM_TEGRA_CHANNEL_MAP_READ	 (1 << 0)
+#define DRM_TEGRA_CHANNEL_MAP_WRITE	 (1 << 1)
+#define DRM_TEGRA_CHANNEL_MAP_READ_WRITE (DRM_TEGRA_CHANNEL_MAP_READ | DRM_TEGRA_CHANNEL_MAP_WRITE)
 
 struct drm_tegra_channel_map {
 	/**
@@ -1070,23 +1048,15 @@ struct drm_tegra_syncpoint_wait {
 	__u32 padding;
 };
 
-#define DRM_IOCTL_TEGRA_CHANNEL_OPEN \
-	DRM_IOWR(DRM_COMMAND_BASE + 0x10, struct drm_tegra_channel_open)
-#define DRM_IOCTL_TEGRA_CHANNEL_CLOSE \
-	DRM_IOWR(DRM_COMMAND_BASE + 0x11, struct drm_tegra_channel_close)
-#define DRM_IOCTL_TEGRA_CHANNEL_MAP \
-	DRM_IOWR(DRM_COMMAND_BASE + 0x12, struct drm_tegra_channel_map)
-#define DRM_IOCTL_TEGRA_CHANNEL_UNMAP \
-	DRM_IOWR(DRM_COMMAND_BASE + 0x13, struct drm_tegra_channel_unmap)
-#define DRM_IOCTL_TEGRA_CHANNEL_SUBMIT \
-	DRM_IOWR(DRM_COMMAND_BASE + 0x14, struct drm_tegra_channel_submit)
+#define DRM_IOCTL_TEGRA_CHANNEL_OPEN   DRM_IOWR(DRM_COMMAND_BASE + 0x10, struct drm_tegra_channel_open)
+#define DRM_IOCTL_TEGRA_CHANNEL_CLOSE  DRM_IOWR(DRM_COMMAND_BASE + 0x11, struct drm_tegra_channel_close)
+#define DRM_IOCTL_TEGRA_CHANNEL_MAP    DRM_IOWR(DRM_COMMAND_BASE + 0x12, struct drm_tegra_channel_map)
+#define DRM_IOCTL_TEGRA_CHANNEL_UNMAP  DRM_IOWR(DRM_COMMAND_BASE + 0x13, struct drm_tegra_channel_unmap)
+#define DRM_IOCTL_TEGRA_CHANNEL_SUBMIT DRM_IOWR(DRM_COMMAND_BASE + 0x14, struct drm_tegra_channel_submit)
 
-#define DRM_IOCTL_TEGRA_SYNCPOINT_ALLOCATE \
-	DRM_IOWR(DRM_COMMAND_BASE + 0x20, struct drm_tegra_syncpoint_allocate)
-#define DRM_IOCTL_TEGRA_SYNCPOINT_FREE \
-	DRM_IOWR(DRM_COMMAND_BASE + 0x21, struct drm_tegra_syncpoint_free)
-#define DRM_IOCTL_TEGRA_SYNCPOINT_WAIT \
-	DRM_IOWR(DRM_COMMAND_BASE + 0x22, struct drm_tegra_syncpoint_wait)
+#define DRM_IOCTL_TEGRA_SYNCPOINT_ALLOCATE DRM_IOWR(DRM_COMMAND_BASE + 0x20, struct drm_tegra_syncpoint_allocate)
+#define DRM_IOCTL_TEGRA_SYNCPOINT_FREE	   DRM_IOWR(DRM_COMMAND_BASE + 0x21, struct drm_tegra_syncpoint_free)
+#define DRM_IOCTL_TEGRA_SYNCPOINT_WAIT	   DRM_IOWR(DRM_COMMAND_BASE + 0x22, struct drm_tegra_syncpoint_wait)
 
 #if defined(__cplusplus)
 }

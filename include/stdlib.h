@@ -47,8 +47,7 @@ double atof(const char *);
 int atoi(const char *);
 long atol(const char *);
 long long atoll(const char *);
-void *bsearch(const void *, const void *, size_t, size_t,
-	      int (*)(const void *, const void *));
+void *bsearch(const void *, const void *, size_t, size_t, int (*)(const void *, const void *));
 void *calloc(size_t, size_t);
 div_t div(int, int);
 double drand48(void);
@@ -81,8 +80,7 @@ int ptsname_r(int, char *, size_t);
 int putenv(char *);
 void qsort(void *, size_t, size_t, int (*)(const void *, const void *));
 _Noreturn void quick_exit(int);
-void qsort_r(void *, size_t, size_t,
-	     int (*)(const void *, const void *, void *), void *);
+void qsort_r(void *, size_t, size_t, int (*)(const void *, const void *, void *), void *);
 int rand(void);
 long random(void);
 void *realloc(void *, size_t);

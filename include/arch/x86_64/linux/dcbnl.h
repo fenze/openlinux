@@ -431,12 +431,7 @@ enum ieee_attrs {
 };
 #define DCB_ATTR_IEEE_MAX (__DCB_ATTR_IEEE_MAX - 1)
 
-enum ieee_attrs_app {
-	DCB_ATTR_IEEE_APP_UNSPEC,
-	DCB_ATTR_IEEE_APP,
-	DCB_ATTR_DCB_APP,
-	__DCB_ATTR_IEEE_APP_MAX
-};
+enum ieee_attrs_app { DCB_ATTR_IEEE_APP_UNSPEC, DCB_ATTR_IEEE_APP, DCB_ATTR_DCB_APP, __DCB_ATTR_IEEE_APP_MAX };
 #define DCB_ATTR_IEEE_APP_MAX (__DCB_ATTR_IEEE_APP_MAX - 1)
 
 /**
@@ -476,11 +471,7 @@ enum peer_app_attr {
 };
 #define DCB_ATTR_CEE_PEER_APP_MAX (__DCB_ATTR_CEE_PEER_APP_MAX - 1)
 
-enum cee_attrs_app {
-	DCB_ATTR_CEE_APP_UNSPEC,
-	DCB_ATTR_CEE_APP,
-	__DCB_ATTR_CEE_APP_MAX
-};
+enum cee_attrs_app { DCB_ATTR_CEE_APP_UNSPEC, DCB_ATTR_CEE_APP, __DCB_ATTR_CEE_APP_MAX };
 #define DCB_ATTR_CEE_APP_MAX (__DCB_ATTR_CEE_APP_MAX - 1)
 
 /**

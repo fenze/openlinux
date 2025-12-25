@@ -23,7 +23,7 @@
 /* #define SND_DEV_SNDPROC	9 */ /* /dev/sndproc for programmable devices
 					(not used) */
 /* #define SND_DEV_DMMIDI	9 */
-#define SND_DEV_SYNTH	  9 /* Raw synth access /dev/synth (same as /dev/dmfm) */
+#define SND_DEV_SYNTH	  9  /* Raw synth access /dev/synth (same as /dev/dmfm) */
 #define SND_DEV_DMFM	  10 /* Raw synth access /dev/dmfm */
 #define SND_DEV_UNKNOWN11 11
 #define SND_DEV_ADSP	  12 /* Like /dev/dsp (obsolete) */

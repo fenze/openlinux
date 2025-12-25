@@ -108,9 +108,9 @@
 					   */
 #define HFI1_CAP_NO_INTEGRITY (1UL << 13) /* Enable ctxt integrity checks */
 #define HFI1_CAP_PKEY_CHECK   (1UL << 14) /* Enable ctxt PKey checking */
-#define HFI1_CAP_STATIC_RATE_CTRL                  \
-	(1UL << 15) /* Allow PBC.StaticRateControl \
-		     */
+#define HFI1_CAP_STATIC_RATE_CTRL                                               \
+	(1UL << 15)				 /* Allow PBC.StaticRateControl \
+						  */
 #define HFI1_CAP_OPFN		     (1UL << 16) /* Enable the OPFN protocol */
 #define HFI1_CAP_SDMA_HEAD_CHECK     (1UL << 17) /* SDMA head checking */
 #define HFI1_CAP_EARLY_CREDIT_RETURN (1UL << 18) /* early credit return */

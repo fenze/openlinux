@@ -119,16 +119,6 @@ enum nfs_stat {
 
 /* NFSv2 file types - beware, these are not the same in NFSv3 */
 
-enum nfs_ftype {
-	NFNON = 0,
-	NFREG = 1,
-	NFDIR = 2,
-	NFBLK = 3,
-	NFCHR = 4,
-	NFLNK = 5,
-	NFSOCK = 6,
-	NFBAD = 7,
-	NFFIFO = 8
-};
+enum nfs_ftype { NFNON = 0, NFREG = 1, NFDIR = 2, NFBLK = 3, NFCHR = 4, NFLNK = 5, NFSOCK = 6, NFBAD = 7, NFFIFO = 8 };
 
 #endif /* _LINUX_NFS_H */

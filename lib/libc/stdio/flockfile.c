@@ -4,5 +4,5 @@
 
 void flockfile(FILE *file)
 {
-	LIBC_LOCK(file->lock);
+	LIBC_LOCK(((struct __FILE *)file)->lock);
 }

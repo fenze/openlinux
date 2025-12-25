@@ -2,7 +2,7 @@
 #include <atomic.h>
 #include <stdio.h>
 
-void funlockfile(FILE *file)
+void funlockfile(struct __FILE *file)
 {
 	LIBC_UNLOCK(file->lock);
 }

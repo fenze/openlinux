@@ -1,8 +1,9 @@
 #include <__stdio.h>
-#include <atomic.h>
+#include <stdatomic.h>
+#include <stddef.h>
 #include <stdio.h>
 
-int ftrylockfile(FILE *file)
+int ftrylockfile(struct __FILE *file)
 {
 	if (file == NULL)
 		return -1;

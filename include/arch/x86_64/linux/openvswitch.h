@@ -51,13 +51,7 @@ struct ovs_header {
 /* First OVS datapath version to support features */
 #define OVS_DP_VER_FEATURES 2
 
-enum ovs_datapath_cmd {
-	OVS_DP_CMD_UNSPEC,
-	OVS_DP_CMD_NEW,
-	OVS_DP_CMD_DEL,
-	OVS_DP_CMD_GET,
-	OVS_DP_CMD_SET
-};
+enum ovs_datapath_cmd { OVS_DP_CMD_UNSPEC, OVS_DP_CMD_NEW, OVS_DP_CMD_DEL, OVS_DP_CMD_GET, OVS_DP_CMD_SET };
 
 /**
  * enum ovs_datapath_attr - attributes for %OVS_DP_* commands.
@@ -198,10 +192,10 @@ enum ovs_packet_cmd {
  */
 enum ovs_packet_attr {
 	OVS_PACKET_ATTR_UNSPEC,
-	OVS_PACKET_ATTR_PACKET,	  /* Packet data. */
-	OVS_PACKET_ATTR_KEY,	  /* Nested OVS_KEY_ATTR_* attributes. */
-	OVS_PACKET_ATTR_ACTIONS,  /* Nested OVS_ACTION_ATTR_* attributes. */
-	OVS_PACKET_ATTR_USERDATA, /* OVS_ACTION_ATTR_USERSPACE arg. */
+	OVS_PACKET_ATTR_PACKET,		/* Packet data. */
+	OVS_PACKET_ATTR_KEY,		/* Nested OVS_KEY_ATTR_* attributes. */
+	OVS_PACKET_ATTR_ACTIONS,	/* Nested OVS_ACTION_ATTR_* attributes. */
+	OVS_PACKET_ATTR_USERDATA,	/* OVS_ACTION_ATTR_USERSPACE arg. */
 	OVS_PACKET_ATTR_EGRESS_TUN_KEY, /* Nested OVS_TUNNEL_KEY_ATTR_*
 					   attributes. */
 	OVS_PACKET_ATTR_UNUSED1,
@@ -223,13 +217,7 @@ enum ovs_packet_attr {
 #define OVS_VPORT_MCGROUP "ovs_vport"
 #define OVS_VPORT_VERSION 0x1
 
-enum ovs_vport_cmd {
-	OVS_VPORT_CMD_UNSPEC,
-	OVS_VPORT_CMD_NEW,
-	OVS_VPORT_CMD_DEL,
-	OVS_VPORT_CMD_GET,
-	OVS_VPORT_CMD_SET
-};
+enum ovs_vport_cmd { OVS_VPORT_CMD_UNSPEC, OVS_VPORT_CMD_NEW, OVS_VPORT_CMD_DEL, OVS_VPORT_CMD_GET, OVS_VPORT_CMD_SET };
 
 enum ovs_vport_type {
 	OVS_VPORT_TYPE_UNSPEC,
@@ -295,11 +283,7 @@ enum ovs_vport_attr {
  * @OVS_VPORT_UPCALL_SUCCESS: 64-bit upcall success packets.
  * @OVS_VPORT_UPCALL_FAIL: 64-bit upcall fail packets.
  */
-enum ovs_vport_upcall_attr {
-	OVS_VPORT_UPCALL_ATTR_SUCCESS,
-	OVS_VPORT_UPCALL_ATTR_FAIL,
-	__OVS_VPORT_UPCALL_ATTR_MAX
-};
+enum ovs_vport_upcall_attr { OVS_VPORT_UPCALL_ATTR_SUCCESS, OVS_VPORT_UPCALL_ATTR_FAIL, __OVS_VPORT_UPCALL_ATTR_MAX };
 
 #define OVS_VPORT_UPCALL_ATTR_MAX (__OVS_VPORT_UPCALL_ATTR_MAX - 1)
 
@@ -328,13 +312,7 @@ enum {
 #define OVS_FLOW_MCGROUP "ovs_flow"
 #define OVS_FLOW_VERSION 0x1
 
-enum ovs_flow_cmd {
-	OVS_FLOW_CMD_UNSPEC,
-	OVS_FLOW_CMD_NEW,
-	OVS_FLOW_CMD_DEL,
-	OVS_FLOW_CMD_GET,
-	OVS_FLOW_CMD_SET
-};
+enum ovs_flow_cmd { OVS_FLOW_CMD_UNSPEC, OVS_FLOW_CMD_NEW, OVS_FLOW_CMD_DEL, OVS_FLOW_CMD_GET, OVS_FLOW_CMD_SET };
 
 struct ovs_flow_stats {
 	__u64 n_packets; /* Number of matched packets. */
@@ -343,34 +321,34 @@ struct ovs_flow_stats {
 
 enum ovs_key_attr {
 	OVS_KEY_ATTR_UNSPEC,
-	OVS_KEY_ATTR_ENCAP,	/* Nested set of encapsulated attributes. */
-	OVS_KEY_ATTR_PRIORITY,	/* u32 skb->priority */
-	OVS_KEY_ATTR_IN_PORT,	/* u32 OVS dp port number */
-	OVS_KEY_ATTR_ETHERNET,	/* struct ovs_key_ethernet */
-	OVS_KEY_ATTR_VLAN,	/* be16 VLAN TCI */
-	OVS_KEY_ATTR_ETHERTYPE, /* be16 Ethernet type */
-	OVS_KEY_ATTR_IPV4,	/* struct ovs_key_ipv4 */
-	OVS_KEY_ATTR_IPV6,	/* struct ovs_key_ipv6 */
-	OVS_KEY_ATTR_TCP,	/* struct ovs_key_tcp */
-	OVS_KEY_ATTR_UDP,	/* struct ovs_key_udp */
-	OVS_KEY_ATTR_ICMP,	/* struct ovs_key_icmp */
-	OVS_KEY_ATTR_ICMPV6,	/* struct ovs_key_icmpv6 */
-	OVS_KEY_ATTR_ARP,	/* struct ovs_key_arp */
-	OVS_KEY_ATTR_ND,	/* struct ovs_key_nd */
-	OVS_KEY_ATTR_SKB_MARK,	/* u32 skb mark */
-	OVS_KEY_ATTR_TUNNEL,	/* Nested set of ovs_tunnel attributes */
-	OVS_KEY_ATTR_SCTP,	/* struct ovs_key_sctp */
-	OVS_KEY_ATTR_TCP_FLAGS, /* be16 TCP flags. */
-	OVS_KEY_ATTR_DP_HASH,	/* u32 hash value. Value 0 indicates the hash
-				is not computed by the datapath. */
-	OVS_KEY_ATTR_RECIRC_ID, /* u32 recirc id */
-	OVS_KEY_ATTR_MPLS,	/* array of struct ovs_key_mpls.
-				 * The implementation may restrict
-				 * the accepted length of the array. */
-	OVS_KEY_ATTR_CT_STATE,	/* u32 bitmask of OVS_CS_F_* */
-	OVS_KEY_ATTR_CT_ZONE,	/* u16 connection tracking zone. */
-	OVS_KEY_ATTR_CT_MARK,	/* u32 connection tracking mark */
-	OVS_KEY_ATTR_CT_LABELS, /* 16-octet connection tracking label */
+	OVS_KEY_ATTR_ENCAP,		 /* Nested set of encapsulated attributes. */
+	OVS_KEY_ATTR_PRIORITY,		 /* u32 skb->priority */
+	OVS_KEY_ATTR_IN_PORT,		 /* u32 OVS dp port number */
+	OVS_KEY_ATTR_ETHERNET,		 /* struct ovs_key_ethernet */
+	OVS_KEY_ATTR_VLAN,		 /* be16 VLAN TCI */
+	OVS_KEY_ATTR_ETHERTYPE,		 /* be16 Ethernet type */
+	OVS_KEY_ATTR_IPV4,		 /* struct ovs_key_ipv4 */
+	OVS_KEY_ATTR_IPV6,		 /* struct ovs_key_ipv6 */
+	OVS_KEY_ATTR_TCP,		 /* struct ovs_key_tcp */
+	OVS_KEY_ATTR_UDP,		 /* struct ovs_key_udp */
+	OVS_KEY_ATTR_ICMP,		 /* struct ovs_key_icmp */
+	OVS_KEY_ATTR_ICMPV6,		 /* struct ovs_key_icmpv6 */
+	OVS_KEY_ATTR_ARP,		 /* struct ovs_key_arp */
+	OVS_KEY_ATTR_ND,		 /* struct ovs_key_nd */
+	OVS_KEY_ATTR_SKB_MARK,		 /* u32 skb mark */
+	OVS_KEY_ATTR_TUNNEL,		 /* Nested set of ovs_tunnel attributes */
+	OVS_KEY_ATTR_SCTP,		 /* struct ovs_key_sctp */
+	OVS_KEY_ATTR_TCP_FLAGS,		 /* be16 TCP flags. */
+	OVS_KEY_ATTR_DP_HASH,		 /* u32 hash value. Value 0 indicates the hash
+					 is not computed by the datapath. */
+	OVS_KEY_ATTR_RECIRC_ID,		 /* u32 recirc id */
+	OVS_KEY_ATTR_MPLS,		 /* array of struct ovs_key_mpls.
+					  * The implementation may restrict
+					  * the accepted length of the array. */
+	OVS_KEY_ATTR_CT_STATE,		 /* u32 bitmask of OVS_CS_F_* */
+	OVS_KEY_ATTR_CT_ZONE,		 /* u16 connection tracking zone. */
+	OVS_KEY_ATTR_CT_MARK,		 /* u32 connection tracking mark */
+	OVS_KEY_ATTR_CT_LABELS,		 /* 16-octet connection tracking label */
 	OVS_KEY_ATTR_CT_ORIG_TUPLE_IPV4, /* struct ovs_key_ct_tuple_ipv4 */
 	OVS_KEY_ATTR_CT_ORIG_TUPLE_IPV6, /* struct ovs_key_ct_tuple_ipv6 */
 	OVS_KEY_ATTR_NSH,		 /* Nested set of ovs_nsh_key_* */
@@ -408,8 +386,8 @@ enum ovs_tunnel_key_attr {
 	OVS_TUNNEL_KEY_ATTR_TP_SRC,	   /* be16 src Transport Port. */
 	OVS_TUNNEL_KEY_ATTR_TP_DST,	   /* be16 dst Transport Port. */
 	OVS_TUNNEL_KEY_ATTR_VXLAN_OPTS,	   /* Nested OVS_VXLAN_EXT_* */
-	OVS_TUNNEL_KEY_ATTR_IPV6_SRC, /* struct in6_addr src IPv6 address. */
-	OVS_TUNNEL_KEY_ATTR_IPV6_DST, /* struct in6_addr dst IPv6 address. */
+	OVS_TUNNEL_KEY_ATTR_IPV6_SRC,	   /* struct in6_addr src IPv6 address. */
+	OVS_TUNNEL_KEY_ATTR_IPV6_DST,	   /* struct in6_addr dst IPv6 address. */
 	OVS_TUNNEL_KEY_ATTR_PAD,
 	OVS_TUNNEL_KEY_ATTR_ERSPAN_OPTS,      /* struct erspan_metadata */
 	OVS_TUNNEL_KEY_ATTR_IPV4_INFO_BRIDGE, /* No argument. IPV4_INFO_BRIDGE
@@ -428,12 +406,7 @@ enum ovs_tunnel_key_attr {
  * Used as the @ipv4_frag in &struct ovs_key_ipv4 and as @ipv6_frag &struct
  * ovs_key_ipv6.
  */
-enum ovs_frag_type {
-	OVS_FRAG_TYPE_NONE,
-	OVS_FRAG_TYPE_FIRST,
-	OVS_FRAG_TYPE_LATER,
-	__OVS_FRAG_TYPE_MAX
-};
+enum ovs_frag_type { OVS_FRAG_TYPE_NONE, OVS_FRAG_TYPE_FIRST, OVS_FRAG_TYPE_LATER, __OVS_FRAG_TYPE_MAX };
 
 #define OVS_FRAG_TYPE_MAX (__OVS_FRAG_TYPE_MAX - 1)
 
@@ -684,8 +657,8 @@ enum ovs_sample_attr {
  */
 enum ovs_userspace_attr {
 	OVS_USERSPACE_ATTR_UNSPEC,
-	OVS_USERSPACE_ATTR_PID,	     /* u32 Netlink PID to receive upcalls. */
-	OVS_USERSPACE_ATTR_USERDATA, /* Optional user-specified cookie. */
+	OVS_USERSPACE_ATTR_PID,		    /* u32 Netlink PID to receive upcalls. */
+	OVS_USERSPACE_ATTR_USERDATA,	    /* Optional user-specified cookie. */
 	OVS_USERSPACE_ATTR_EGRESS_TUN_PORT, /* Optional, u32 output port
 					     * to get tunnel info. */
 	OVS_USERSPACE_ATTR_ACTIONS,	    /* Optional flag to get actions. */
@@ -811,13 +784,13 @@ struct ovs_action_hash {
  */
 enum ovs_ct_attr {
 	OVS_CT_ATTR_UNSPEC,
-	OVS_CT_ATTR_COMMIT, /* No argument, commits connection. */
-	OVS_CT_ATTR_ZONE,   /* u16 zone id. */
-	OVS_CT_ATTR_MARK,   /* mark to associate with this connection. */
-	OVS_CT_ATTR_LABELS, /* labels to associate with this connection. */
-	OVS_CT_ATTR_HELPER, /* netlink helper to assist detection of
-			       related connections. */
-	OVS_CT_ATTR_NAT,    /* Nested OVS_NAT_ATTR_* */
+	OVS_CT_ATTR_COMMIT,	  /* No argument, commits connection. */
+	OVS_CT_ATTR_ZONE,	  /* u16 zone id. */
+	OVS_CT_ATTR_MARK,	  /* mark to associate with this connection. */
+	OVS_CT_ATTR_LABELS,	  /* labels to associate with this connection. */
+	OVS_CT_ATTR_HELPER,	  /* netlink helper to assist detection of
+				     related connections. */
+	OVS_CT_ATTR_NAT,	  /* Nested OVS_NAT_ATTR_* */
 	OVS_CT_ATTR_FORCE_COMMIT, /* No argument */
 	OVS_CT_ATTR_EVENTMASK,	  /* u32 mask of IPCT_* events. */
 	OVS_CT_ATTR_TIMEOUT,	  /* Associate timeout with this connection for

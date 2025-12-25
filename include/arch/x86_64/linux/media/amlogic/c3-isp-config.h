@@ -485,14 +485,11 @@ struct c3_isp_params_blc {
  * a buffer sized appropriately to accommodate userspace attempting to set all
  * possible parameters in a single frame.
  */
-#define C3_ISP_PARAMS_MAX_SIZE                                                 \
-	(sizeof(struct c3_isp_params_awb_gains) +                              \
-	 sizeof(struct c3_isp_params_awb_config) +                             \
-	 sizeof(struct c3_isp_params_ae_config) +                              \
-	 sizeof(struct c3_isp_params_af_config) +                              \
-	 sizeof(struct c3_isp_params_pst_gamma) +                              \
-	 sizeof(struct c3_isp_params_ccm) + sizeof(struct c3_isp_params_csc) + \
-	 sizeof(struct c3_isp_params_blc))
+#define C3_ISP_PARAMS_MAX_SIZE                                                              \
+	(sizeof(struct c3_isp_params_awb_gains) + sizeof(struct c3_isp_params_awb_config) + \
+	 sizeof(struct c3_isp_params_ae_config) + sizeof(struct c3_isp_params_af_config) +  \
+	 sizeof(struct c3_isp_params_pst_gamma) + sizeof(struct c3_isp_params_ccm) +        \
+	 sizeof(struct c3_isp_params_csc) + sizeof(struct c3_isp_params_blc))
 
 /**
  * struct c3_isp_params_cfg - C3 ISP configuration parameters

@@ -22,11 +22,9 @@ struct icmp6hdr {
 
 		struct icmpv6_nd_advt {
 #if defined(__LITTLE_ENDIAN_BITFIELD)
-			__u32 reserved : 5, override : 1, solicited : 1,
-				router : 1, reserved2 : 24;
+			__u32 reserved : 5, override : 1, solicited : 1, router : 1, reserved2 : 24;
 #elif defined(__BIG_ENDIAN_BITFIELD)
-			__u32 router : 1, solicited : 1, override : 1,
-				reserved : 29;
+			__u32 router : 1, solicited : 1, override : 1, reserved : 29;
 #else
 #error "Please fix <asm/byteorder.h>"
 #endif
@@ -35,12 +33,10 @@ struct icmp6hdr {
 		struct icmpv6_nd_ra {
 			__u8 hop_limit;
 #if defined(__LITTLE_ENDIAN_BITFIELD)
-			__u8 reserved : 3, router_pref : 2, home_agent : 1,
-				other : 1, managed : 1;
+			__u8 reserved : 3, router_pref : 2, home_agent : 1, other : 1, managed : 1;
 
 #elif defined(__BIG_ENDIAN_BITFIELD)
-			__u8 managed : 1, other : 1, home_agent : 1,
-				router_pref : 2, reserved : 3;
+			__u8 managed : 1, other : 1, home_agent : 1, router_pref : 2, reserved : 3;
 #else
 #error "Please fix <asm/byteorder.h>"
 #endif

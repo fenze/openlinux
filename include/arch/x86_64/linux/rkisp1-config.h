@@ -94,8 +94,7 @@
 /* Maximum number of color samples supported */
 #define RKISP1_CIF_ISP_GAMMA_OUT_MAX_SAMPLES_V10 17
 #define RKISP1_CIF_ISP_GAMMA_OUT_MAX_SAMPLES_V12 34
-#define RKISP1_CIF_ISP_GAMMA_OUT_MAX_SAMPLES \
-	RKISP1_CIF_ISP_GAMMA_OUT_MAX_SAMPLES_V12
+#define RKISP1_CIF_ISP_GAMMA_OUT_MAX_SAMPLES	 RKISP1_CIF_ISP_GAMMA_OUT_MAX_SAMPLES_V12
 
 /*
  * Lens shade correction
@@ -113,8 +112,7 @@
  */
 #define RKISP1_CIF_ISP_HISTOGRAM_WEIGHT_GRIDS_SIZE_V10 25
 #define RKISP1_CIF_ISP_HISTOGRAM_WEIGHT_GRIDS_SIZE_V12 81
-#define RKISP1_CIF_ISP_HISTOGRAM_WEIGHT_GRIDS_SIZE \
-	RKISP1_CIF_ISP_HISTOGRAM_WEIGHT_GRIDS_SIZE_V12
+#define RKISP1_CIF_ISP_HISTOGRAM_WEIGHT_GRIDS_SIZE     RKISP1_CIF_ISP_HISTOGRAM_WEIGHT_GRIDS_SIZE_V12
 
 /*
  * Defect Pixel Cluster Correction
@@ -174,9 +172,8 @@
 /*
  * Wide Dynamic Range
  */
-#define RKISP1_CIF_ISP_WDR_CURVE_NUM_INTERV 32
-#define RKISP1_CIF_ISP_WDR_CURVE_NUM_COEFF \
-	(RKISP1_CIF_ISP_WDR_CURVE_NUM_INTERV + 1)
+#define RKISP1_CIF_ISP_WDR_CURVE_NUM_INTERV  32
+#define RKISP1_CIF_ISP_WDR_CURVE_NUM_COEFF   (RKISP1_CIF_ISP_WDR_CURVE_NUM_INTERV + 1)
 #define RKISP1_CIF_ISP_WDR_CURVE_NUM_DY_REGS 4
 
 /*
@@ -222,10 +219,7 @@ enum rkisp1_cif_isp_awb_mode_type {
 	RKISP1_CIF_ISP_AWB_MODE_YCBCR
 };
 
-enum rkisp1_cif_isp_flt_mode {
-	RKISP1_CIF_ISP_FLT_STATIC_MODE,
-	RKISP1_CIF_ISP_FLT_DYNAMIC_MODE
-};
+enum rkisp1_cif_isp_flt_mode { RKISP1_CIF_ISP_FLT_STATIC_MODE, RKISP1_CIF_ISP_FLT_DYNAMIC_MODE };
 
 /**
  * enum rkisp1_cif_isp_exp_ctrl_autostop - stop modes
@@ -356,8 +350,7 @@ struct rkisp1_cif_isp_dpcc_config {
 	__u32 mode;
 	__u32 output_mode;
 	__u32 set_use;
-	struct rkisp1_cif_isp_dpcc_methods_config
-		methods[RKISP1_CIF_ISP_DPCC_METHODS_MAX];
+	struct rkisp1_cif_isp_dpcc_methods_config methods[RKISP1_CIF_ISP_DPCC_METHODS_MAX];
 	__u32 ro_limits;
 	__u32 rnd_offs;
 };
@@ -427,14 +420,10 @@ struct rkisp1_cif_isp_sdg_config {
  * @config_height: not used at the moment
  */
 struct rkisp1_cif_isp_lsc_config {
-	__u16 r_data_tbl[RKISP1_CIF_ISP_LSC_SAMPLES_MAX]
-			[RKISP1_CIF_ISP_LSC_SAMPLES_MAX];
-	__u16 gr_data_tbl[RKISP1_CIF_ISP_LSC_SAMPLES_MAX]
-			 [RKISP1_CIF_ISP_LSC_SAMPLES_MAX];
-	__u16 gb_data_tbl[RKISP1_CIF_ISP_LSC_SAMPLES_MAX]
-			 [RKISP1_CIF_ISP_LSC_SAMPLES_MAX];
-	__u16 b_data_tbl[RKISP1_CIF_ISP_LSC_SAMPLES_MAX]
-			[RKISP1_CIF_ISP_LSC_SAMPLES_MAX];
+	__u16 r_data_tbl[RKISP1_CIF_ISP_LSC_SAMPLES_MAX][RKISP1_CIF_ISP_LSC_SAMPLES_MAX];
+	__u16 gr_data_tbl[RKISP1_CIF_ISP_LSC_SAMPLES_MAX][RKISP1_CIF_ISP_LSC_SAMPLES_MAX];
+	__u16 gb_data_tbl[RKISP1_CIF_ISP_LSC_SAMPLES_MAX][RKISP1_CIF_ISP_LSC_SAMPLES_MAX];
+	__u16 b_data_tbl[RKISP1_CIF_ISP_LSC_SAMPLES_MAX][RKISP1_CIF_ISP_LSC_SAMPLES_MAX];
 
 	__u16 x_grad_tbl[RKISP1_CIF_ISP_LSC_SECTORS_TBL_SIZE];
 	__u16 y_grad_tbl[RKISP1_CIF_ISP_LSC_SECTORS_TBL_SIZE];
@@ -615,10 +604,7 @@ struct rkisp1_cif_isp_ctk_config {
 	__u16 ct_offset[3];
 };
 
-enum rkisp1_cif_isp_goc_mode {
-	RKISP1_CIF_ISP_GOC_MODE_LOGARITHMIC,
-	RKISP1_CIF_ISP_GOC_MODE_EQUIDISTANT
-};
+enum rkisp1_cif_isp_goc_mode { RKISP1_CIF_ISP_GOC_MODE_LOGARITHMIC, RKISP1_CIF_ISP_GOC_MODE_EQUIDISTANT };
 
 /**
  * struct rkisp1_cif_isp_goc_config - Configuration used by Gamma Out correction
@@ -1599,28 +1585,18 @@ struct rkisp1_ext_params_wdr_config {
  * The rkisp1_ext_params_compand_curve_config structure is counted twice as it
  * is used for both the COMPAND_EXPAND and COMPAND_COMPRESS block types.
  */
-#define RKISP1_EXT_PARAMS_MAX_SIZE                               \
-	(sizeof(struct rkisp1_ext_params_bls_config) +           \
-	 sizeof(struct rkisp1_ext_params_dpcc_config) +          \
-	 sizeof(struct rkisp1_ext_params_sdg_config) +           \
-	 sizeof(struct rkisp1_ext_params_lsc_config) +           \
-	 sizeof(struct rkisp1_ext_params_awb_gain_config) +      \
-	 sizeof(struct rkisp1_ext_params_flt_config) +           \
-	 sizeof(struct rkisp1_ext_params_bdm_config) +           \
-	 sizeof(struct rkisp1_ext_params_ctk_config) +           \
-	 sizeof(struct rkisp1_ext_params_goc_config) +           \
-	 sizeof(struct rkisp1_ext_params_dpf_config) +           \
-	 sizeof(struct rkisp1_ext_params_dpf_strength_config) +  \
-	 sizeof(struct rkisp1_ext_params_cproc_config) +         \
-	 sizeof(struct rkisp1_ext_params_ie_config) +            \
-	 sizeof(struct rkisp1_ext_params_awb_meas_config) +      \
-	 sizeof(struct rkisp1_ext_params_hst_config) +           \
-	 sizeof(struct rkisp1_ext_params_aec_config) +           \
-	 sizeof(struct rkisp1_ext_params_afc_config) +           \
-	 sizeof(struct rkisp1_ext_params_compand_bls_config) +   \
-	 sizeof(struct rkisp1_ext_params_compand_curve_config) + \
-	 sizeof(struct rkisp1_ext_params_compand_curve_config) + \
-	 sizeof(struct rkisp1_ext_params_wdr_config))
+#define RKISP1_EXT_PARAMS_MAX_SIZE                                                                              \
+	(sizeof(struct rkisp1_ext_params_bls_config) + sizeof(struct rkisp1_ext_params_dpcc_config) +           \
+	 sizeof(struct rkisp1_ext_params_sdg_config) + sizeof(struct rkisp1_ext_params_lsc_config) +            \
+	 sizeof(struct rkisp1_ext_params_awb_gain_config) + sizeof(struct rkisp1_ext_params_flt_config) +       \
+	 sizeof(struct rkisp1_ext_params_bdm_config) + sizeof(struct rkisp1_ext_params_ctk_config) +            \
+	 sizeof(struct rkisp1_ext_params_goc_config) + sizeof(struct rkisp1_ext_params_dpf_config) +            \
+	 sizeof(struct rkisp1_ext_params_dpf_strength_config) + sizeof(struct rkisp1_ext_params_cproc_config) + \
+	 sizeof(struct rkisp1_ext_params_ie_config) + sizeof(struct rkisp1_ext_params_awb_meas_config) +        \
+	 sizeof(struct rkisp1_ext_params_hst_config) + sizeof(struct rkisp1_ext_params_aec_config) +            \
+	 sizeof(struct rkisp1_ext_params_afc_config) + sizeof(struct rkisp1_ext_params_compand_bls_config) +    \
+	 sizeof(struct rkisp1_ext_params_compand_curve_config) +                                                \
+	 sizeof(struct rkisp1_ext_params_compand_curve_config) + sizeof(struct rkisp1_ext_params_wdr_config))
 
 /**
  * enum rksip1_ext_param_buffer_version - RkISP1 extensible parameters version

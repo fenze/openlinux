@@ -1,15 +1,13 @@
+#include "stddef.h"
+#include "sys/cdefs.h"
 #include <__thread.h>
-#include <asm/prctl.h>
-#include <errno.h>
 #include <libc.h>
-#include <linux/sched.h>
 #include <sched.h>
-#include <signal.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <sys/mman.h>
 #include <syscall.h>
 #include <threads.h>
-#include <unistd.h>
 
 struct thread_start {
 	struct __thread_self *self;

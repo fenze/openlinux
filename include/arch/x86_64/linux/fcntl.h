@@ -135,11 +135,9 @@
  * These flags are currently statx(2)-specific, but they could be made generic
  * in the future and so they should not be used for other per-syscall flags.
  */
-#define AT_STATX_SYNC_TYPE \
-	0x6000 /* Type of synchronisation required from statx() */
+#define AT_STATX_SYNC_TYPE    0x6000 /* Type of synchronisation required from statx() */
 #define AT_STATX_SYNC_AS_STAT 0x0000 /* - Do whatever stat() does */
-#define AT_STATX_FORCE_SYNC \
-	0x2000 /* - Force the attributes to be sync'd with the server */
+#define AT_STATX_FORCE_SYNC   0x2000 /* - Force the attributes to be sync'd with the server */
 #define AT_STATX_DONT_SYNC                                \
 	0x4000 /* - Don't sync attributes with the server \
 		*/

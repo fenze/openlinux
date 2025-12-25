@@ -150,8 +150,7 @@ static inline u128 mul64_128(uint64_t a, uint64_t b)
 	uint64_t alo = a & 0xffffffff;
 	uint64_t bhi = b >> 32;
 	uint64_t blo = b & 0xffffffff;
-	uint64_t lo1 = ((ahi * blo) & 0xffffffff) + ((alo * bhi) & 0xffffffff) +
-		       (alo * blo >> 32);
+	uint64_t lo1 = ((ahi * blo) & 0xffffffff) + ((alo * bhi) & 0xffffffff) + (alo * blo >> 32);
 	uint64_t lo2 = (alo * blo) & 0xffffffff;
 	r.hi = ahi * bhi + (ahi * blo >> 32) + (alo * bhi >> 32) + (lo1 >> 32);
 	r.lo = (lo1 << 32) + lo2;
@@ -243,8 +242,7 @@ long double sqrtl(long double x)
 
 	long double y;
 	u128 d2, d1, d0;
-	d0 = sub128(lsh(ml, 2 * (LDBL_MANT_DIG - 1) - 126),
-		    mul128_tail(sl, sl));
+	d0 = sub128(lsh(ml, 2 * (LDBL_MANT_DIG - 1) - 126), mul128_tail(sl, sl));
 	d1 = sub128(sl, d0);
 	d2 = add128(add64(sl, 1), d1);
 	sl = add64(sl, d1.hi >> 63);

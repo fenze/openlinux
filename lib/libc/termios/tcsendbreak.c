@@ -1,5 +1,5 @@
+#include "sys/cdefs.h"
 #include <asm-generic/ioctls.h>
-#include <libc.h>
 #include <syscall.h>
 #include <termios.h>
 

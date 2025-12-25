@@ -56,13 +56,11 @@ enum {
 #define NBD_FLAG_SEND_TRIM	   (1 << 5) /* send trim/discard */
 #define NBD_FLAG_SEND_WRITE_ZEROES (1 << 6) /* supports WRITE_ZEROES */
 /* there is a gap here to match userspace */
-#define NBD_FLAG_CAN_MULTI_CONN \
-	(1 << 8) /* Server supports multiple connections per export. */
+#define NBD_FLAG_CAN_MULTI_CONN (1 << 8) /* Server supports multiple connections per export. */
 
 /* values for cmd flags in the upper 16 bits of request type */
-#define NBD_CMD_FLAG_FUA (1 << 16) /* FUA (forced unit access) op */
-#define NBD_CMD_FLAG_NO_HOLE \
-	(1 << 17) /* Do not punch a hole for WRITE_ZEROES */
+#define NBD_CMD_FLAG_FUA     (1 << 16) /* FUA (forced unit access) op */
+#define NBD_CMD_FLAG_NO_HOLE (1 << 17) /* Do not punch a hole for WRITE_ZEROES */
 
 /* These are client behavior specific flags. */
 #define NBD_CFLAG_DESTROY_ON_DISCONNECT      \

@@ -6,9 +6,8 @@
 
 float exp10f(float x)
 {
-	static const float p10[] = { 1e-7f, 1e-6f, 1e-5f, 1e-4f, 1e-3f,
-				     1e-2f, 1e-1f, 1,	  1e1,	 1e2,
-				     1e3,   1e4,   1e5,	  1e6,	 1e7 };
+	static const float p10[] = { 1e-7f, 1e-6f, 1e-5f, 1e-4f, 1e-3f, 1e-2f, 1e-1f, 1,
+				     1e1,   1e2,   1e3,	  1e4,	 1e5,	1e6,   1e7 };
 	float n, y = modff(x, &n);
 	union {
 		float f;

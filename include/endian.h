@@ -2,6 +2,7 @@
 #define __ENDIAN_H
 
 #include <stdint.h>
+
 #define BYTE_ORDER    __BYTE_ORDER__
 #define LITTLE_ENDIAN __ORDER_LITTLE_ENDIAN__
 #define BIG_ENDIAN    __ORDER_BIG_ENDIAN__

@@ -1,7 +1,8 @@
 #include "__stdio.h" // for __FILE, __libc_fadd
-#include <stdio.h>   // for FILE, _IONBF, SEEK_END, _IOLBF, fdopen
-#include <stdlib.h>  // for calloc, free
-#include <sys/cdefs.h>
+#include "stddef.h"
+#include <stdatomic.h>
+#include <stdio.h>  // for FILE, _IONBF, SEEK_END, _IOLBF, fdopen
+#include <stdlib.h> // for calloc, free
 #include <unistd.h> // for lseek, off_t
 
 FILE *fdopen(int fildes, const char *mode)

@@ -496,47 +496,27 @@ struct drm_nouveau_svm_bind {
  */
 #define NOUVEAU_SVM_BIND_TARGET__GPU_VRAM (1UL << 31)
 
-#define DRM_IOCTL_NOUVEAU_GETPARAM                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_GETPARAM, \
-		 struct drm_nouveau_getparam)
-#define DRM_IOCTL_NOUVEAU_CHANNEL_ALLOC                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_CHANNEL_ALLOC, \
-		 struct drm_nouveau_channel_alloc)
-#define DRM_IOCTL_NOUVEAU_CHANNEL_FREE                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_NOUVEAU_CHANNEL_FREE, \
-		struct drm_nouveau_channel_free)
+#define DRM_IOCTL_NOUVEAU_GETPARAM DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_GETPARAM, struct drm_nouveau_getparam)
+#define DRM_IOCTL_NOUVEAU_CHANNEL_ALLOC \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_CHANNEL_ALLOC, struct drm_nouveau_channel_alloc)
+#define DRM_IOCTL_NOUVEAU_CHANNEL_FREE \
+	DRM_IOW(DRM_COMMAND_BASE + DRM_NOUVEAU_CHANNEL_FREE, struct drm_nouveau_channel_free)
 
-#define DRM_IOCTL_NOUVEAU_SVM_INIT                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_SVM_INIT, \
-		 struct drm_nouveau_svm_init)
-#define DRM_IOCTL_NOUVEAU_SVM_BIND                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_SVM_BIND, \
-		 struct drm_nouveau_svm_bind)
+#define DRM_IOCTL_NOUVEAU_SVM_INIT DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_SVM_INIT, struct drm_nouveau_svm_init)
+#define DRM_IOCTL_NOUVEAU_SVM_BIND DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_SVM_BIND, struct drm_nouveau_svm_bind)
 
-#define DRM_IOCTL_NOUVEAU_GEM_NEW                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_GEM_NEW, \
-		 struct drm_nouveau_gem_new)
-#define DRM_IOCTL_NOUVEAU_GEM_PUSHBUF                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_GEM_PUSHBUF, \
-		 struct drm_nouveau_gem_pushbuf)
-#define DRM_IOCTL_NOUVEAU_GEM_CPU_PREP                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_NOUVEAU_GEM_CPU_PREP, \
-		struct drm_nouveau_gem_cpu_prep)
-#define DRM_IOCTL_NOUVEAU_GEM_CPU_FINI                       \
-	DRM_IOW(DRM_COMMAND_BASE + DRM_NOUVEAU_GEM_CPU_FINI, \
-		struct drm_nouveau_gem_cpu_fini)
-#define DRM_IOCTL_NOUVEAU_GEM_INFO                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_GEM_INFO, \
-		 struct drm_nouveau_gem_info)
+#define DRM_IOCTL_NOUVEAU_GEM_NEW DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_GEM_NEW, struct drm_nouveau_gem_new)
+#define DRM_IOCTL_NOUVEAU_GEM_PUSHBUF \
+	DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_GEM_PUSHBUF, struct drm_nouveau_gem_pushbuf)
+#define DRM_IOCTL_NOUVEAU_GEM_CPU_PREP \
+	DRM_IOW(DRM_COMMAND_BASE + DRM_NOUVEAU_GEM_CPU_PREP, struct drm_nouveau_gem_cpu_prep)
+#define DRM_IOCTL_NOUVEAU_GEM_CPU_FINI \
+	DRM_IOW(DRM_COMMAND_BASE + DRM_NOUVEAU_GEM_CPU_FINI, struct drm_nouveau_gem_cpu_fini)
+#define DRM_IOCTL_NOUVEAU_GEM_INFO DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_GEM_INFO, struct drm_nouveau_gem_info)
 
-#define DRM_IOCTL_NOUVEAU_VM_INIT                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_VM_INIT, \
-		 struct drm_nouveau_vm_init)
-#define DRM_IOCTL_NOUVEAU_VM_BIND                        \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_VM_BIND, \
-		 struct drm_nouveau_vm_bind)
-#define DRM_IOCTL_NOUVEAU_EXEC \
-	DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_EXEC, struct drm_nouveau_exec)
+#define DRM_IOCTL_NOUVEAU_VM_INIT DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_VM_INIT, struct drm_nouveau_vm_init)
+#define DRM_IOCTL_NOUVEAU_VM_BIND DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_VM_BIND, struct drm_nouveau_vm_bind)
+#define DRM_IOCTL_NOUVEAU_EXEC	  DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_EXEC, struct drm_nouveau_exec)
 #if defined(__cplusplus)
 }
 #endif

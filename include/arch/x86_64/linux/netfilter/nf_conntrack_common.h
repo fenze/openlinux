@@ -109,10 +109,8 @@ enum ip_conntrack_status {
 	/* Be careful here, modifying these bits can make things messy,
 	 * so don't let users modify them directly.
 	 */
-	IPS_UNCHANGEABLE_MASK =
-		(IPS_NAT_DONE_MASK | IPS_NAT_MASK | IPS_EXPECTED |
-		 IPS_CONFIRMED | IPS_DYING | IPS_SEQ_ADJUST | IPS_TEMPLATE |
-		 IPS_UNTRACKED | IPS_OFFLOAD | IPS_HW_OFFLOAD),
+	IPS_UNCHANGEABLE_MASK = (IPS_NAT_DONE_MASK | IPS_NAT_MASK | IPS_EXPECTED | IPS_CONFIRMED | IPS_DYING |
+				 IPS_SEQ_ADJUST | IPS_TEMPLATE | IPS_UNTRACKED | IPS_OFFLOAD | IPS_HW_OFFLOAD),
 
 	__IPS_MAX_BIT = 16,
 };
