@@ -1,5 +1,3 @@
-#include "stddef.h" // for NULL
-
 #include <errno.h>  // for errno, EINVAL, ENOMEM
 #include <stdlib.h> // for calloc, malloc
 #include <string.h> // for size_t, memset
@@ -19,7 +17,8 @@ void *calloc(size_t nelem, size_t elsize)
 		return NULL;
 	}
 
-	if ((ptr = malloc(total)) != NULL) {
+	ptr = malloc(total);
+	if (ptr != NULL) {
 		memset(ptr, 0, total);
 	}
 

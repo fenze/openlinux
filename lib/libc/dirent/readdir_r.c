@@ -2,21 +2,20 @@
 
 #include "sys/types.h" // for off_t
 
-#include <__dirent.h> // for linux_dirent64
-#include <dirent.h>   // for dirent, ssize_t, DIR, readdir_r
-#include <errno.h>    // for EINVAL, errno
-#include <stddef.h>   // for NULL, offsetof
-#include <string.h>   // for memcpy, size_t, memset
-#include <syscall.h>  // for __syscall_3, syscall
+#include <dirent.h>	 // for dirent, ssize_t, DIR, readdir_r
+#include <errno.h>	 // for EINVAL, errno
+#include <libc/dirent.h> // for linux_dirent64
+#include <stddef.h>	 // for NULL, offsetof
+#include <string.h>	 // for memcpy, size_t, memset
+#include <syscall.h>	 // for __syscall_3, syscall
 
-int readdir_r(DIR *restrict dirp, struct dirent *restrict entry,
-	      struct dirent **restrict result)
+int readdir_r(DIR *restrict dirp, struct dirent *restrict entry, struct dirent **restrict result)
 {
 	struct linux_dirent64 *ldir = (void *)dirp->buffer;
 	ssize_t nread;
 	int ret;
 
-	if (dirp == NULL || entry == NULL || result == NULL) {
+	if (dirp == NULL || entry == NULL || (void *)result == NULL) {
 		return EINVAL;
 	}
 
@@ -28,19 +27,15 @@ int readdir_r(DIR *restrict dirp, struct dirent *restrict entry,
 
 		/* Validate buffer bounds */
 		if (dirp->offset >= (off_t)sizeof(dirp->buffer) ||
-		    dirp->offset + (off_t)sizeof(struct linux_dirent64) >
-			    (off_t)sizeof(dirp->buffer)) {
+		    dirp->offset + (off_t)sizeof(struct linux_dirent64) > (off_t)sizeof(dirp->buffer)) {
 			dirp->cached = 0;
 			*result = NULL;
 			return 0;
 		}
 
 		/* Validate record length */
-		if (ldir->d_reclen <
-			    offsetof(struct linux_dirent64, d_name) + 1 ||
-		    dirp->offset + (off_t)ldir->d_reclen >
-			    (off_t)sizeof(dirp->buffer) ||
-		    ldir->d_reclen == 0) {
+		if (ldir->d_reclen < offsetof(struct linux_dirent64, d_name) + 1 ||
+		    dirp->offset + (off_t)ldir->d_reclen > (off_t)sizeof(dirp->buffer) || ldir->d_reclen == 0) {
 			dirp->cached = 0;
 			*result = NULL;
 			return 0;
@@ -49,16 +44,14 @@ int readdir_r(DIR *restrict dirp, struct dirent *restrict entry,
 		entry->d_ino = ldir->d_ino;
 
 		/* Calculate available space for name */
-		size_t max_name_len = ldir->d_reclen -
-				      offsetof(struct linux_dirent64, d_name);
+		size_t max_name_len = ldir->d_reclen - offsetof(struct linux_dirent64, d_name);
 		if (max_name_len > sizeof(entry->d_name) - 1) {
 			max_name_len = sizeof(entry->d_name) - 1;
 		}
 
 		/* Find actual string length, bounded by available space */
 		size_t name_len = 0;
-		while (name_len < max_name_len &&
-		       ldir->d_name[name_len] != '\0') {
+		while (name_len < max_name_len && ldir->d_name[name_len] != '\0') {
 			name_len++;
 		}
 
@@ -75,8 +68,7 @@ int readdir_r(DIR *restrict dirp, struct dirent *restrict entry,
 	dirp->cached = 0;
 	dirp->offset = 0;
 
-	ret = syscall(getdents64, dirp->fildes, dirp->buffer,
-		      sizeof(dirp->buffer));
+	ret = syscall(getdents64, dirp->fildes, dirp->buffer, sizeof(dirp->buffer));
 	if (ret < 0)
 		return errno;
 
@@ -90,8 +82,8 @@ int readdir_r(DIR *restrict dirp, struct dirent *restrict entry,
 
 	/* Validate first entry bounds */
 	if (nread < (ssize_t)sizeof(struct linux_dirent64) ||
-	    ldir->d_reclen < offsetof(struct linux_dirent64, d_name) + 1 ||
-	    ldir->d_reclen > nread || ldir->d_reclen == 0) {
+	    ldir->d_reclen < offsetof(struct linux_dirent64, d_name) + 1 || ldir->d_reclen > nread ||
+	    ldir->d_reclen == 0) {
 		*result = NULL;
 		return EINVAL;
 	}
@@ -100,8 +92,7 @@ int readdir_r(DIR *restrict dirp, struct dirent *restrict entry,
 	entry->d_ino = ldir->d_ino;
 
 	/* Calculate available space for name */
-	size_t max_name_len =
-		ldir->d_reclen - offsetof(struct linux_dirent64, d_name);
+	size_t max_name_len = ldir->d_reclen - offsetof(struct linux_dirent64, d_name);
 	if (max_name_len > sizeof(entry->d_name) - 1) {
 		max_name_len = sizeof(entry->d_name) - 1;
 	}
@@ -119,16 +110,12 @@ int readdir_r(DIR *restrict dirp, struct dirent *restrict entry,
 	/* Count the amount of remaining entries we have cached from getdents.
 	 */
 	for (ssize_t buffer_offset = ldir->d_reclen; buffer_offset < nread;) {
-		struct linux_dirent64 *next_ldir =
-			(void *)(dirp->buffer + buffer_offset);
+		struct linux_dirent64 *next_ldir = (void *)(dirp->buffer + buffer_offset);
 
 		/* Validate entry bounds to prevent infinite loops */
-		if (buffer_offset + (ssize_t)sizeof(struct linux_dirent64) >
-			    nread ||
-		    next_ldir->d_reclen <
-			    offsetof(struct linux_dirent64, d_name) + 1 ||
-		    buffer_offset + next_ldir->d_reclen > nread ||
-		    next_ldir->d_reclen == 0) {
+		if (buffer_offset + (ssize_t)sizeof(struct linux_dirent64) > nread ||
+		    next_ldir->d_reclen < offsetof(struct linux_dirent64, d_name) + 1 ||
+		    buffer_offset + next_ldir->d_reclen > nread || next_ldir->d_reclen == 0) {
 			break;
 		}
 

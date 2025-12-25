@@ -1,7 +1,7 @@
 #include <libc.h>
 #include <sys/mman.h>
 
-void __deinit_tls(void)
+void __libc_deinit_tls(void)
 {
 	int r;
 

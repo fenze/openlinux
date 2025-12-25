@@ -3,9 +3,11 @@
 
 #include <threads.h>
 
-/* Ensure TLS is initialized if errno is used */
-extern void __init_tls(void);
-void *__force_tls_init = (void *) __init_tls;
+extern void __libc_init_tls(void);
+void *__libc_force_init_tls = (void *)__libc_init_tls;
+
+extern void __libc_deinit_tls(void);
+void *__libc_force_deinit_tls = (void *)__libc_deinit_tls;
 
 int *__errno(void)
 {

@@ -1,8 +1,8 @@
-#include <__dirent.h> // for __DIR
-#include <dirent.h>   // for DIR, closedir
-#include <errno.h>    // for EBADF, errno
-#include <stdlib.h>   // for free
-#include <unistd.h>   // for close
+#include <dirent.h>	 // for DIR, closedir
+#include <errno.h>	 // for EBADF, errno
+#include <libc/dirent.h> // for __DIR
+#include <stdlib.h>	 // for free
+#include <unistd.h>	 // for close
 
 int closedir(DIR *dirp)
 {
