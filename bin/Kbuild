@@ -1,13 +1,11 @@
-obj-y += playground/
-
-obj-y += basename/
-obj-y += clear/
-obj-y += echo/
-obj-y += false/
-obj-y += free/
-obj-y += gzip/
-obj-y += pwd/
-obj-y += sleep/
-obj-y += sync/
-obj-y += true/
-obj-y += yes/
+obj-$(CONFIG_BIN_BASENAME) += basename/
+obj-$(CONFIG_BIN_CLEAR)    += clear/
+obj-$(CONFIG_BIN_ECHO)     += echo/
+obj-$(CONFIG_BIN_FALSE)    += false/
+obj-$(CONFIG_BIN_FREE)     += free/
+obj-$(CONFIG_BIN_GZIP)     += gzip/
+obj-$(CONFIG_BIN_PWD)      += pwd/
+obj-$(CONFIG_BIN_SLEEP)    += sleep/
+obj-$(CONFIG_BIN_SYNC)     += sync/
+obj-$(CONFIG_BIN_TRUE)     += true/
+obj-$(CONFIG_BIN_YES)      += yes/

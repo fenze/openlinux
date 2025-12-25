@@ -1,1 +1,1 @@
-obj-y += init/
+obj-$(CONFIG_BOOT_INIT) += init/

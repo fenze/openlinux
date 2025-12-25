@@ -1,15 +1,111 @@
 mainmenu "Openlinux Configuration"
 
+config MODULES
+    bool
+    modules
+    default y
+
 menu "General Setup"
+    choice
+        prompt "Select target architecture"
+        default ARCH_X86_64
+    
+        config ARCH_X86_64
+            bool "x86_64"
+            help
+                Target the x86_64 architecture.
+    
+        # config ARCH_AARCH64
+        #     bool "aarch64"
+        #     help
+        #         Target the ARM 64-bit architecture.
+    
+    endchoice
+
+    config LLVM
+        bool "Use LLVM/Clang toolchain"
+        default y
+        help
+            Select this option to use the LLVM/Clang toolchain
+            for building the system instead of GCC.
+
     config WERROR
+	default n
         bool "Compile the system with -Werror"
 	help
 	  If you select this option, all compiler warnings will be treated as errors.
 
     config DEBUG
         bool "Enable Debugging Features"
+	default y
 	help
 	  Enable this option to include debugging symbols and additional debug information in the build.
+
+    choice
+    	prompt "Compiler optimization level"
+    	default OPTIMIZATION_LEVEL_G
+
+
+    config OPTIMIZATION_LEVEL_O0
+    	bool "No optimization (-O0)"
+    	help
+    		Compile the system without any optimization.
+    		This is useful for debugging but results in
+    		slower binaries.
+    
+    config OPTIMIZATION_LEVEL_G
+    	bool "Optimize for debugging (-Og)"
+    	help
+    		Compile the system with optimizations that
+    		are compatible with debugging, providing a
+    		balance between performance and debuggability.
+    
+    config OPTIMIZATION_LEVEL_O1
+    	bool "Optimize for size and speed (-O1)"
+    	help
+    		Compile the system with basic optimizations
+    		that improve performance without significantly
+    		increasing compile time.
+    
+    config OPTIMIZATION_LEVEL_O2
+    	bool "Optimize for speed (-O2)"
+    	help
+    		Compile the system with optimizations that
+    		improve execution speed. This is a good
+    		balance between performance and compile time.
+    
+    config OPTIMIZATION_LEVEL_O3
+    	bool "Optimize for maximum speed (-O3)"
+    	help
+    		Compile the system with aggressive optimizations
+    		that maximize execution speed, potentially at
+    		the cost of longer compile times and larger binaries.
+    
+    config OPTIMIZATION_LEVEL_S
+    	bool "Optimize for size (-Os)"
+    	help
+    		Compile the system with optimizations that
+    		reduce binary size, which is useful for
+    		resource-constrained environments.
+    
+    config OPTIMIZATION_LEVEL_Z
+    	bool "Optimize for minimum size (-Oz)"
+    	help
+    		Compile the system with optimizations that
+    		focus on minimizing binary size as much as
+    		possible, often at the expense of performance.
+    
+    config OPTIMIZATION_LEVEL_FAST
+    	bool "Optimize for maximum speed (Ofast)"
+    	depends on LLVM
+    	help
+    		Compile the system with aggressive optimizations
+    		that may violate strict standards compliance
+    		to achieve the highest possible performance.
+    endchoice
+
 endmenu
 
+source "boot/Kconfig"
+source "lib/Kconfig"
 source "bin/Kconfig"

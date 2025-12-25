@@ -1,5 +1,4 @@
-lib-y := libm.a
-install-y := lib/libm.a
+lib-$(CONFIG_LIB_LIBM) := libm.a
 
 obj-y += __cos.o
 obj-y += __cosdf.o

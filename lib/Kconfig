@@ -1,0 +1,24 @@
+# lib/Kconfig
+
+menu "Libraries"
+
+config LIB_LIBC
+	tristate "libc"
+	default m
+	help
+		Build/Add the 'libc' library.
+
+config LIB_LIBC_HEADERS
+	bool "libc headers"
+	default n
+	help
+		Add the 'libc' library headers.
+
+
+config LIB_LIBM
+	tristate "libm"
+	default n
+	help
+		Build/Add the 'libm' library.
+
+endmenu

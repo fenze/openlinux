@@ -1,5 +1,4 @@
-lib-y := libc.a
-install-y := lib/libc.a
+lib-$(CONFIG_LIB_LIBC) := libc.a
 
 cflags-y += -I $(src)/internal/include
 

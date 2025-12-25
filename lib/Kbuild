@@ -1,2 +1,2 @@
-obj-y += libc/
-obj-y += libm/
+obj-$(CONFIG_LIB_LIBC) += libc/
+obj-$(CONFIG_LIB_LIBM) += libm/

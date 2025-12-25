@@ -11,6 +11,8 @@ src := $(patsubst %/,%,$(obj))
 
 ifdef lib-y
   export cflags-y
+else ifdef lib-m
+  export cflags-y
 endif
 
 ifdef bin-y
@@ -18,8 +20,16 @@ ifdef bin-y
   export ldflags-y
 endif
 
+ifneq ($(strip $(lib-y) $(lib-m) $(lib-n)),)
+lib = $(lib-y)$(lib-m)$(lib-n)
+endif
+ifneq ($(strip $(bin-y) $(bin-n)),)
+bin = $(bin-y)$(bin-n)
+endif
+
+
 objects := $(filter %.o,$(obj-y))
-subdirs := $(filter %/,$(obj-y))
+subdirs := $(filter %/,$(obj-y)) $(filter %/,$(obj-m))
 
 cflags := $(cflags-y) $(KBUILD_CFLAGS) -MMD -MP
 asflags := $(asflags-y) $(KBUILD_ASFLAGS)
@@ -29,7 +39,8 @@ collect-obj-y = $(foreach e,$(shell echo 'all:; @echo $$(obj-y)' | \
   $(MAKE) -f $(obj)$(1)Kbuild -f - --no-print-directory 2>/dev/null),\
   $(if $(filter %/,$(e)),$(addprefix $(e),$(call collect-obj-y,$(1)$(e))),$(e)))
 
-ifdef lib-y
+
+ifneq ($(strip $(lib-y) $(lib-m)),)
   subdir-objects := $(foreach d,$(subdirs),$(addprefix $(d),$(call collect-obj-y,$(d))))
   all-objects := $(objects) $(subdir-objects)
 else ifdef bin-y
@@ -47,23 +58,26 @@ s-sources := $(wildcard $(addprefix $(obj),$(objects:.o=.s)))
 subdir-c-sources := $(wildcard $(addprefix $(obj),$(subdir-objects:.o=.c)))
 subdir-s-sources := $(wildcard $(addprefix $(obj),$(subdir-objects:.o=.s)))
 
-PHONY := all
+PHONY := all install
 
 ifdef lib-y
 all: $(obj)$(lib-y) $(addprefix $(obj),$(always))
-$(obj)$(lib-y): $(addprefix $(obj),$(all-objects))
+$(obj)$(lib): $(addprefix $(obj),$(all-objects))
 	$(MSG) AR "$@"
 	$(Q)$(AR) rcs $@ $^
 
-$(O)/$(install-y): $(obj)$(lib-y)
-	mkdir -p $(O)/$(dir $(install-y))
-	install -m 0644 $< $(O)/$(install-y)
+$(O)/$(parent)/$(lib-y): $(obj)$(lib-y)
+	$(Q)mkdir -p $(O)/$(dir $@)
+	$(Q)install -m 0644 $< $@
 
-ifdef install-y
-install: $(O)/$(install-y)
-else
-install:
-endif
+install: $(O)/$(parent)/$(lib-y)
+
+else ifdef lib-m
+all: $(obj)$(lib-m) $(addprefix $(obj),$(always))
+
+$(obj)$(lib): $(addprefix $(obj),$(all-objects))
+	$(MSG) AR "$@"
+	$(Q)$(AR) rcs $@ $^
 
 else ifdef bin-y
 all: $(obj)$(bin-y) $(addprefix $(obj),$(always))
@@ -72,16 +86,11 @@ $(obj)$(bin-y): $(addprefix $(obj),$(all-objects)) $(libs-y) ${prereq}
 	$(MSG) LD "$@"
 	$(Q)$(LD) $(ldflags) -o $@ $^
 
-ifdef install-y
-$(O)/$(install-y): $(obj)$(bin-y)
-	mkdir -p $(O)/$(dir $(install-y))
-	install -m 0755 $< $(O)/$(install-y)
+$(O)/$(parent)/$(bin-y): $(obj)$(bin-y)
+	$(Q)mkdir -p $(O)/$(parent)
+	$(Q)install -m 0755 $< $@
 
-install: $(O)/$(install-y)
-else
-install:
-endif
-
+install: $(O)/$(parent)/$(bin-y)
 else
 all: $(addprefix $(obj),$(all-objects)) $(subdirs) $(addprefix $(obj),$(always))
 
@@ -99,29 +108,27 @@ endif
 ifdef all-objects
 	$(Q)rm -f $(addprefix $(obj),$(all-objects))
 endif
-ifdef lib-y
-	$(Q)rm -f $(obj)$(lib-y)
+ifdef lib
+	$(Q)rm -f "$(obj)$(lib)"
 endif
-ifdef bin-y
-	$(Q)rm -f $(obj)$(bin-y)
+ifdef bin
+	$(Q)rm -f $(obj)$(bin)
 endif
 ifdef always
 	$(Q)rm -f $(addprefix $(obj),$(always))
 endif
 
-# Build C sources to objects
 $(filter $(addprefix $(obj),$(all-objects)),$(c-sources:.c=.o) $(subdir-c-sources:.c=.o)): $(obj)%.o: $(obj)%.c
 	$(MSG) CC "$@"
 	$(Q)$(CC) $(cflags) -c $< -o $@
 
-# Build assembly sources to objects
 $(filter $(addprefix $(obj),$(all-objects)),$(s-sources:.s=.o) $(subdir-s-sources:.s=.o)): $(obj)%.o: $(obj)%.s
 	$(MSG) AS "$@"
 	$(Q)$(CC) $(asflags) -c $< -o $@
 
 .PHONY: $(subdirs)
 $(subdirs):
-	$(Q)$(MAKE) -f $(srctree)/scripts/Makefile.build obj="$(obj)$@" ${MAKECMDGOALS}
+	$(Q)$(MAKE) -f $(srctree)/scripts/Makefile.build obj="$(obj)$@" parent="$(obj)" ${MAKECMDGOALS}
 
 clean-%:
 	$(Q)$(MAKE) -f $(srctree)/scripts/Makefile.build obj="$(obj)$*" clean

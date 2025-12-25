@@ -1,4 +1,2 @@
 bin-y := false
 obj-y += arch/
-
-install-y := bin/false

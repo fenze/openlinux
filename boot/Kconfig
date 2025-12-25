@@ -1,0 +1,8 @@
+menu "Boot"
+
+config BOOT_INIT
+	bool "init"
+	default n
+	depends on LIB_LIBC
+
+endmenu
