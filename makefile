@@ -43,7 +43,7 @@ KCONFIG_CONFIG ?= .config
 
 -include ${KCONFIG_CONFIG}
 
-ifneq ($(CONFIG_LLVM),1)
+ifneq ($(CONFIG_LLVM),y)
   ifneq ($(filter %/,$(LLVM)),)
     LLVM_PREFIX = $(LLVM)
   else ifneq ($(filter -%,$(LLVM)),)
@@ -51,7 +51,7 @@ ifneq ($(CONFIG_LLVM),1)
   endif
 endif
 
-ifeq ($(CONFIG_LLVM),1)
+ifeq ($(CONFIG_LLVM),y)
   CC      = $(LLVM_PREFIX)clang$(LLVM_SUFFIX)
   LD      = $(LLVM_PREFIX)ld.lld$(LLVM_SUFFIX)
   AR      = $(LLVM_PREFIX)llvm-ar$(LLVM_SUFFIX)

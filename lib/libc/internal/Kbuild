@@ -1,4 +1,5 @@
 obj-y += arch/
+obj-y += deinit/
 obj-y += init/
 obj-y += thrd/
 obj-y += util/

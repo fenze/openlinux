@@ -1,0 +1,2 @@
+obj-y += deinit.o
+obj-y += tls.o
