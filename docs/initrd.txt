@@ -1,0 +1,10 @@
+INITRD
+======
+
+Initrd contains two files:
+
+- bootconfig.txt (1)
+- init (2)
+
+(1) - https://docs.kernel.org/admin-guide/bootconfig.html
+(2) - See boot.txt

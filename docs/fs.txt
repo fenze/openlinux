@@ -1,0 +1,30 @@
+FILESYSTEM
+==========
+
+Openlinux filesystem is designed to be as handy as possible.
+
+┌── bin/
+│   └── (System binaries)
+│
+├── efi/ (separate parition can be mounted at /boot)
+│   └── boot/
+│       ├── bootx64.efi (1)
+│       └── initrd (2)
+│
+├── lib/
+│   └── (System libraries)
+│
+├── usr/
+│   ├── include/
+│   │   └── (System headers)
+│   │
+│   ├── local/
+│   │   ├── bin/ 
+│   │   │   └── (User binaries)
+│   │   ├── lib/
+│   │   │   └── (User libraries)
+│   │   └── include/ 
+│   │       └── (User headers)
+
+(1) - https://www.kernel.org/doc/html/latest/admin-guide/efi-stub.html
+(2) - https://www.kernel.org/doc/html/latest/admin-guide/initrd.html

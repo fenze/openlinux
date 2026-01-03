@@ -1,5 +1,4 @@
-#ifndef __ELF_H
-#define __ELF_H
+#pragma once
 
 #include <stdint.h>
 
@@ -402,5 +401,3 @@ typedef struct {
 		uint64_t a_val;
 	} a_un;
 } Elf64_auxv_t;
-
-#endif

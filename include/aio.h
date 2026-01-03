@@ -1,13 +1,10 @@
-#ifndef __AIO_H
-#define __AIO_H
+#pragma once
 
-#include <stddef.h>
-#include <time.h>
 #define __BITS_SIGEVENT_H_
-#include <bits/sigevent.h>
+#include "bits/sigevent.h"
 
 #define __BITS_TIMESPEC_H_
-#include <bits/timespec.h>
+#include "bits/timespec.h"
 
 #define AIO_CANCELED	0
 #define AIO_NOTCANCELED 1
@@ -42,5 +39,3 @@ ssize_t aio_return(struct aiocb *);
 int aio_suspend(const struct aiocb *const[], int, const struct timespec *);
 int aio_write(struct aiocb *);
 int lio_listio(int, struct aiocb *restrict const[restrict], int, struct sigevent *restrict);
-
-#endif

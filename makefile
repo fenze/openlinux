@@ -163,7 +163,6 @@ clean:
 PHONY += distclean
 distclean: clean
 	$(Q)$(MAKE) -C scripts/kconfig clean
-	$(Q)rm -f compile_commands.json
 
 $(KCONFIG_CONFIG):
 	@echo >&2 '***'
@@ -179,42 +178,23 @@ help:
 	@echo "Available make targets:"
 	@echo "  all                  - Build the project (default)"
 	@echo "  clang-format         - Format source files using clang-format"
-	@echo "  clang-tidy           - Run clang-tidy on the source files"
 	@echo "  clean                - Clean build files"
 	@echo "  distclean            - Clean all generated files"
-	@echo "  include-what-you-use - Run include-what-you-use on the source files"
 	@echo "  install              - Install the built files"
 	@echo "  menuconfig           - Launch the menu-based configuration tool"
 	@echo "Flags:"
 	@echo "  o=<dir>/             - Destination directory"
 	@echo "  obj=<dir>/           - Build single target"
 
-compile_commands.json:
-	$(Q)bear -- $(MAKE) -f scripts/makefile.build obj=$(obj) all
-
 PHONY += menuconfig
 menuconfig:
 	$(Q)$(MAKE) -C $(srctree)/scripts/kconfig menuconfig
-
-PHONY += include-what-you-use
-include-what-you-use: compile_commands.json
-	$(Q)iwyu_tool.py -p. -j4 -- -Xiwyu --update_comments -Xiwyu --transitive_includes_only -Xiwyu --no_internal_mappings | \
-		fix_includes.py --comments \
-			--quoted_includes_first \
-			--nosafe_headers \
-			--update_comments \
-			--reorder
-
-PHONY += clang-tidy
-clang-tidy: compile_commands.json
-	$(Q)clang-tidy -header-filter=.* -p=. -fix -fix-errors $(shell find . -name '*.c' -o -name '*.h' | grep -v './scripts/\|dtoa\|linux\|arch\|bits\|libm') \
-		--export-fixes=clang-tidy-fixes.yaml
 
 PHONY += clang-format
 clang-format:
 	$(Q)clang-format -i $(shell find . -name '*.c' -o -name '*.h' | grep -v './scripts/')
 
-%/include/config/auto.conf %/include/generated/autoconf.h: $(KCONFIG_CONFIG) compile_commands.json
+%/include/config/auto.conf %/include/generated/autoconf.h: $(KCONFIG_CONFIG)
 	$(Q)$(MAKE) -f scripts/kconfig/makefile syncconfig
 
 .PHONY: $(PHONY)

@@ -1,0 +1,15 @@
+BOOT
+====
+
+Openlinux for now supports only uefi based booting.
+Kernel bzImage must have efi stub (1) option enabled, 
+and placed in correct path (2). The uefi starts image,
+kernel does it startup procedures, then mounts our initrd (3),
+and parses bootconfig.txt (3), next init (4) is called.
+Init program mounts kernel virtual filesystems and switches to real root partition, then
+runs real init system.
+
+(1) - https://www.kernel.org/doc/html/latest/admin-guide/efi-stub.html
+(2) - See docs/fs.txt
+(3) - See docs/initrd.txt
+(4) - https://www.kernel.org/doc/html/latest/admin-guide/bootconfig.html

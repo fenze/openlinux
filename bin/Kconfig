@@ -48,4 +48,18 @@ config BIN_TRUE
     help
       Build/Add the 'true' command which returns a zero exit status.
 
+config BIN_NOHUP
+    bool "nohup"
+    default y
+    depends on LIB_LIBC
+    help
+      Build/Add the 'nohup' command which returns a zero exit status.
+
+config BIN_UNLINK
+    bool "unlink"
+    default y
+    depends on LIB_LIBC
+    help
+      Build/Add the 'unlink' command which returns a zero exit status.
+
 endmenu

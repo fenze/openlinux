@@ -1,0 +1,3 @@
+bin-y  := unlink
+obj-y  += unlink.o
+libs-y += $(srctree)/lib/libc/libc.a

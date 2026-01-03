@@ -1,0 +1,3 @@
+bin-y := nohup
+obj-y += nohup.o
+libs-y += $(srctree)/lib/libc/libc.a

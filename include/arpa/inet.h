@@ -1,10 +1,7 @@
-#ifndef __ARPA_INET_H
-#define __ARPA_INET_H
+#pragma once
 
-#include <stdint.h>
 #define __BITS_IN_ADDR_H_
-#include <bits/in_addr.h>
-#undef __BITS_IN_ADDR_H_
+#include "bits/in_addr.h"
 
 #define INET_ADDRSTRLEN	 16
 #define INET6_ADDRSTRLEN 46
@@ -23,5 +20,3 @@ in_addr_t inet_addr(const char *);
 char *inet_ntoa(struct in_addr);
 const char *inet_ntop(int, const void *restrict, char *restrict, socklen_t);
 int inet_pton(int, const char *restrict, void *restrict);
-
-#endif

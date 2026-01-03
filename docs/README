@@ -1,0 +1,11 @@
+Documentation
+=============
+
+There are some tiny documents how openlinux is designed.
+Is not another copy of wikipedia, how things work, but
+collection of base things and useful sources.
+
+docs/
+  boot.txt   - boot procedure design
+  fs.txt     - filesystem layout
+  initrd.txt - initramfs layout

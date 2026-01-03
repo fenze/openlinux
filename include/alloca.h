@@ -1,6 +1,3 @@
-#ifndef __ALLOCA_H
-#define __ALLOCA_H
+#pragma once
 
 #define alloca(__size) __builtin_alloca(__size)
-
-#endif

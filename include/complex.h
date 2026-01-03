@@ -1,7 +1,5 @@
-#ifndef __COMPLEX_H
-#define __COMPLEX_H
+#pragma once
 
-#include <complex.h>
 #define complex	     _Complex
 #define _Complex_I   (__extension__(0.0f + 1.0fi))
 #define imaginary    _Imaginary
@@ -78,5 +76,3 @@ double complex ctanh(double complex);
 float complex ctanhf(float complex);
 long double complex ctanhl(long double complex);
 long double complex ctanl(long double complex);
-
-#endif

@@ -1,6 +1,0 @@
-bin-y := main
-obj-y := main.o
-
-cflags-y += -fblocks
-
-libs-y := $(srctree)/lib/libc/libc.a

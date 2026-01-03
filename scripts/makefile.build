@@ -27,7 +27,6 @@ ifneq ($(strip $(bin-y) $(bin-n)),)
 bin = $(bin-y)$(bin-n)
 endif
 
-
 objects := $(filter %.o,$(obj-y))
 subdirs := $(filter %/,$(obj-y)) $(filter %/,$(obj-m))
 
@@ -38,7 +37,6 @@ ldflags := $(ldflags-y) $(KBUILD_LDFLAGS)
 collect-obj-y = $(foreach e,$(shell echo 'all:; @echo $$(obj-y)' | \
   $(MAKE) -f $(obj)$(1)Kbuild -f - --no-print-directory 2>/dev/null),\
   $(if $(filter %/,$(e)),$(addprefix $(e),$(call collect-obj-y,$(1)$(e))),$(e)))
-
 
 ifneq ($(strip $(lib-y) $(lib-m)),)
   subdir-objects := $(foreach d,$(subdirs),$(addprefix $(d),$(call collect-obj-y,$(d))))
